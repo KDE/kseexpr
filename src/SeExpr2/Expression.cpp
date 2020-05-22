@@ -40,13 +40,13 @@
 namespace SeExpr2 {
 
 // Get debugging flag from environment
-bool Expression::debugging = getenv("SE_EXPR_DEBUG") != 0;
+bool Expression::debugging = getenv("SE_EXPR_DEBUG") != nullptr;
 // Choose the defeault strategy based on what we've compiled with (SEEXPR_ENABLE_LLVM)
 // And the environment variables SE_EXPR_DEBUG
 static Expression::EvaluationStrategy chooseDefaultEvaluationStrategy() {
     if (Expression::debugging) {
         std::cerr << "SeExpr2 Debug Mode Enabled " <<
-#if defined(WINDOWS)
+#if defined(WINDOWS) && defined(_MSC_VER)
             _MSC_FULL_VER
 #else
             __VERSION__
@@ -69,14 +69,16 @@ Expression::EvaluationStrategy Expression::defaultEvaluationStrategy = chooseDef
 class TypePrintExaminer : public SeExpr2::Examiner<true> {
   public:
     virtual bool examine(const SeExpr2::ExprNode* examinee);
-    virtual void reset() {};
+    virtual void reset() {}
+
+    virtual ~TypePrintExaminer() {}
 };
 
 bool TypePrintExaminer::examine(const ExprNode* examinee) {
     const ExprNode* curr = examinee;
     int depth = 0;
     char buf[1024];
-    while (curr != 0) {
+    while (curr != nullptr) {
         depth++;
         curr = curr->parent();
     }
@@ -89,8 +91,8 @@ bool TypePrintExaminer::examine(const ExprNode* examinee) {
 
 Expression::Expression(Expression::EvaluationStrategy evaluationStrategy)
     : _wantVec(true), _expression(""), _evaluationStrategy(evaluationStrategy), _context(&Context::global()),
-      _desiredReturnType(ExprType().FP(3).Varying()), _parseTree(0), _isValid(0), _parsed(0), _prepped(0),
-      _interpreter(0), _llvmEvaluator(new LLVMEvaluator()) {
+      _desiredReturnType(ExprType().FP(3).Varying()), _parseTree(nullptr), _isValid(false), _parsed(false), _prepped(false),
+      _interpreter(nullptr), _llvmEvaluator(new LLVMEvaluator()) {
     ExprFunc::init();
 }
 
@@ -99,7 +101,7 @@ Expression::Expression(const std::string& e,
                        EvaluationStrategy evaluationStrategy,
                        const Context& context)
     : _wantVec(true), _expression(e), _evaluationStrategy(evaluationStrategy), _context(&context),
-      _desiredReturnType(type), _parseTree(0), _isValid(0), _parsed(0), _prepped(0), _interpreter(0),
+      _desiredReturnType(type), _parseTree(nullptr), _isValid(false), _parsed(false), _prepped(false), _interpreter(nullptr),
       _llvmEvaluator(new LLVMEvaluator()) {
     ExprFunc::init();
 }
@@ -133,10 +135,10 @@ void Expression::reset() {
     delete _llvmEvaluator;
     _llvmEvaluator = new LLVMEvaluator();
     delete _parseTree;
-    _parseTree = 0;
+    _parseTree = nullptr;
     if (_evaluationStrategy == UseInterpreter) {
         delete _interpreter;
-        _interpreter = 0;
+        _interpreter = nullptr;
     }
     _isValid = 0;
     _parsed = 0;
@@ -346,7 +348,7 @@ const char* Expression::evalStr(VarBlock* varBlock) const {
             return _llvmEvaluator->evalStr(varBlock);
         }
     }
-    return 0;
+    return nullptr;
 }
 
 }  // end namespace SeExpr2/

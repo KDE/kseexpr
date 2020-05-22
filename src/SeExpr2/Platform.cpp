@@ -21,8 +21,7 @@
 
 #include "Platform.h"
 
-#if defined(WINDOWS)
-
+#if defined(WINDOWS) && defined(_MSC_VER)
 #define _CRT_NONSTDC_NO_DEPRECATE 1
 #define _CRT_SECURE_NO_DEPRECATE 1
 #define NOMINMAX 1
@@ -30,7 +29,7 @@
 // windows - defined for both Win32 and Win64
 #define WIN32_LEAN_AND_MEAN
 #define VC_EXTRALEAN
-#include <Windows.h>
+#include <windows.h>
 
 namespace SeExpr2 {
 

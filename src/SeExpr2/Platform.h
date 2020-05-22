@@ -28,14 +28,17 @@
 #endif
 
 // platform-specific includes
-#if defined(_WIN32) || defined(_WINDOWS) || defined(_MSC_VER)
+#if defined(_WIN32) || defined(_WINDOWS) || defined(_MSC_VER) || defined(__MINGW32__) || defined(__MINGW64__)
 #ifndef WINDOWS
 #define WINDOWS
 #endif
+#ifdef _MSC_VER
 #define _CRT_NONSTDC_NO_DEPRECATE 1
 #define _CRT_SECURE_NO_DEPRECATE 1
+#endif
 #if !defined(NOMINMAX)
 #define NOMINMAX 1
+#endif
 #endif
 
 // note: because there are some conflicts preventing the use of
@@ -44,6 +47,8 @@
 // do NOT include windows.h here. The Windows implementation is
 // done on the Platform.cpp file, using opaque types.
 
+#if defined(WINDOWS) && defined(_MSC_VER)
+
 #include <malloc.h>
 #include <io.h>
 #include <tchar.h>
@@ -51,9 +56,15 @@
 
 #else
 
-// linux/unix/posix
+// linux/unix/posix/mingw
 #include <stdlib.h>
+#if defined(__MINGW32__) || defined(__MINGW64__)
+#include <malloc.h>
+// Fix generated ExprParser not finding alloca - amyspark
+#include <unistd.h>
+#else
 #include <alloca.h>
+#endif
 #include <string.h>
 #include <pthread.h>
 #include <inttypes.h>
@@ -71,7 +82,7 @@
 #include <assert.h>
 
 // missing functions on Windows
-#ifdef WINDOWS
+#if defined(WINDOWS) && defined(_MSC_VER)
 #define snprintf sprintf_s
 #define strtok_r strtok_s
 typedef __int64 FilePos;
@@ -94,7 +105,7 @@ typedef off_t FilePos;
 #endif
 
 namespace SeExpr2 {
-#ifndef WINDOWS
+#if !(defined(WINDOWS) && defined(_MSC_VER))
 
 class Timer {
 #ifdef __APPLE__
@@ -166,7 +177,7 @@ namespace SeExprInternal2 {
  * Mutex/SpinLock classes
  */
 
-#ifdef WINDOWS
+#if defined(WINDOWS) && defined(_MSC_VER)
 
 class _Mutex {
   public:
