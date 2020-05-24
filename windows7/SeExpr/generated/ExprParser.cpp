@@ -1,19 +1,20 @@
-/* A Bison parser, made by GNU Bison 2.7.  */
+/* A Bison parser, made by GNU Bison 3.5.4.  */
 
 /* Bison implementation for Yacc-like parsers in C
-   
-      Copyright (C) 1984, 1989-1990, 2000-2012 Free Software Foundation, Inc.
-   
+
+   Copyright (C) 1984, 1989-1990, 2000-2015, 2018-2020 Free Software Foundation,
+   Inc.
+
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
    the Free Software Foundation, either version 3 of the License, or
    (at your option) any later version.
-   
+
    This program is distributed in the hope that it will be useful,
    but WITHOUT ANY WARRANTY; without even the implied warranty of
    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
    GNU General Public License for more details.
-   
+
    You should have received a copy of the GNU General Public License
    along with this program.  If not, see <http://www.gnu.org/licenses/>.  */
 
@@ -26,7 +27,7 @@
    special exception, which will cause the skeleton and the resulting
    Bison output files to be licensed under the GNU General Public
    License without this special exception.
-   
+
    This special exception was added by the Free Software Foundation in
    version 2.2 of Bison.  */
 
@@ -40,11 +41,14 @@
    define necessary library symbols; they are noted "INFRINGES ON
    USER NAME SPACE" below.  */
 
+/* Undocumented macros, especially those whose name start with SeExprYY_,
+   are private implementation details.  Do not rely on them.  */
+
 /* Identify Bison output.  */
 #define SeExprYYBISON 1
 
 /* Bison version.  */
-#define SeExprYYBISON_VERSION "2.7"
+#define SeExprYYBISON_VERSION "3.5.4"
 
 /* Skeleton name.  */
 #define SeExprYYSKELETON_NAME "yacc.c"
@@ -63,15 +67,14 @@
 #define SeExpr2parse         SeExpr2parse
 #define SeExpr2lex           SeExpr2lex
 #define SeExpr2error         SeExpr2error
-#define SeExpr2lval          SeExpr2lval
-#define SeExpr2char          SeExpr2char
 #define SeExpr2debug         SeExpr2debug
 #define SeExpr2nerrs         SeExpr2nerrs
+#define SeExpr2lval          SeExpr2lval
+#define SeExpr2char          SeExpr2char
 #define SeExpr2lloc          SeExpr2lloc
 
-/* Copy the first part of user declarations.  */
-/* Line 371 of yacc.c  */
-#line 18 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParser.y"
+/* First part of user prologue.  */
+#line 18 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
 
 #ifndef MAKEDEPEND
 #include <algorithm>
@@ -130,14 +133,26 @@ inline void Forget(SeExpr2::ExprNode* n)
 #define NODE3(startPos,endPos,name,a,b,c) Remember(new SeExpr2::Expr##name(Expr,a,b,c),startPos,endPos)
 #define NODE4(startPos,endPos,name,a,b,c,t) Remember(new SeExpr2::Expr##name(Expr,a,b,c,t),startPos,endPos)
 
-/* Line 371 of yacc.c  */
-#line 135 "y.tab.c"
+#line 137 "y.tab.c"
 
-# ifndef SeExprYY_NULL
-#  if defined __cplusplus && 201103L <= __cplusplus
-#   define SeExprYY_NULL nullptr
+# ifndef SeExprYY_CAST
+#  ifdef __cplusplus
+#   define SeExprYY_CAST(Type, Val) static_cast<Type> (Val)
+#   define SeExprYY_REINTERPRET_CAST(Type, Val) reinterpret_cast<Type> (Val)
 #  else
-#   define SeExprYY_NULL 0
+#   define SeExprYY_CAST(Type, Val) ((Type) (Val))
+#   define SeExprYY_REINTERPRET_CAST(Type, Val) ((Type) (Val))
+#  endif
+# endif
+# ifndef SeExprYY_NULLPTR
+#  if defined __cplusplus
+#   if 201103L <= __cplusplus
+#    define SeExprYY_NULLPTR nullptr
+#   else
+#    define SeExprYY_NULLPTR 0
+#   endif
+#  else
+#   define SeExprYY_NULLPTR ((void*)0)
 #  endif
 # endif
 
@@ -149,11 +164,11 @@ inline void Forget(SeExpr2::ExprNode* n)
 # define SeExprYYERROR_VERBOSE 0
 #endif
 
-/* In a future release of Bison, this section will be replaced
-   by #include "y.tab.h".  */
+/* Use api.header.include to #include this header
+   instead of duplicating it here.  */
 #ifndef SeExprYY_SEEXPR2_Y_TAB_H_INCLUDED
 # define SeExprYY_SEEXPR2_Y_TAB_H_INCLUDED
-/* Enabling traces.  */
+/* Debug traces.  */
 #ifndef SeExprYYDEBUG
 # define SeExprYYDEBUG 0
 #endif
@@ -161,79 +176,47 @@ inline void Forget(SeExpr2::ExprNode* n)
 extern int SeExpr2debug;
 #endif
 
-/* Tokens.  */
+/* Token type.  */
 #ifndef SeExprYYTOKENTYPE
 # define SeExprYYTOKENTYPE
-   /* Put the tokens into the symbol table, so that GDB and other debuggers
-      know about them.  */
-   enum SeExpr2tokentype {
-     IF = 258,
-     ELSE = 259,
-     EXTERN = 260,
-     DEF = 261,
-     FLOATPOINT = 262,
-     STRING = 263,
-     NAME = 264,
-     VAR = 265,
-     STR = 266,
-     NUMBER = 267,
-     LIFETIME_CONSTANT = 268,
-     LIFETIME_UNIFORM = 269,
-     LIFETIME_VARYING = 270,
-     LIFETIME_ERROR = 271,
-     AddEq = 272,
-     SubEq = 273,
-     MultEq = 274,
-     DivEq = 275,
-     ExpEq = 276,
-     ModEq = 277,
-     ARROW = 278,
-     OR = 279,
-     AND = 280,
-     NE = 281,
-     EQ = 282,
-     SEEXPR_GE = 283,
-     SEEXPR_LE = 284,
-     UNARY = 285
-   };
+  enum SeExpr2tokentype
+  {
+    IF = 258,
+    ELSE = 259,
+    EXTERN = 260,
+    DEF = 261,
+    FLOATPOINT = 262,
+    STRING = 263,
+    NAME = 264,
+    VAR = 265,
+    STR = 266,
+    NUMBER = 267,
+    LIFETIME_CONSTANT = 268,
+    LIFETIME_UNIFORM = 269,
+    LIFETIME_VARYING = 270,
+    LIFETIME_ERROR = 271,
+    AddEq = 272,
+    SubEq = 273,
+    MultEq = 274,
+    DivEq = 275,
+    ExpEq = 276,
+    ModEq = 277,
+    ARROW = 278,
+    OR = 279,
+    AND = 280,
+    EQ = 281,
+    NE = 282,
+    SEEXPR_LE = 283,
+    SEEXPR_GE = 284,
+    UNARY = 285
+  };
 #endif
-/* Tokens.  */
-#define IF 258
-#define ELSE 259
-#define EXTERN 260
-#define DEF 261
-#define FLOATPOINT 262
-#define STRING 263
-#define NAME 264
-#define VAR 265
-#define STR 266
-#define NUMBER 267
-#define LIFETIME_CONSTANT 268
-#define LIFETIME_UNIFORM 269
-#define LIFETIME_VARYING 270
-#define LIFETIME_ERROR 271
-#define AddEq 272
-#define SubEq 273
-#define MultEq 274
-#define DivEq 275
-#define ExpEq 276
-#define ModEq 277
-#define ARROW 278
-#define OR 279
-#define AND 280
-#define NE 281
-#define EQ 282
-#define SEEXPR_GE 283
-#define SEEXPR_LE 284
-#define UNARY 285
 
-
-
+/* Value type.  */
 #if ! defined SeExprYYSTYPE && ! defined SeExprYYSTYPE_IS_DECLARED
-typedef union SeExprYYSTYPE
+union SeExprYYSTYPE
 {
-/* Line 387 of yacc.c  */
-#line 77 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParser.y"
+#line 77 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
 
     SeExpr2::ExprNode* n; /* a node is returned for all non-terminals to
 		      build the parse tree from the leaves up. */
@@ -248,80 +231,110 @@ typedef union SeExprYYSTYPE
     } t;  // return value for types
     SeExpr2::ExprType::Lifetime l; // return value for lifetime qualifiers
 
+#line 235 "y.tab.c"
 
-/* Line 387 of yacc.c  */
-#line 254 "y.tab.c"
-} SeExprYYSTYPE;
+};
+typedef union SeExprYYSTYPE SeExprYYSTYPE;
 # define SeExprYYSTYPE_IS_TRIVIAL 1
-# define SeExpr2stype SeExprYYSTYPE /* obsolescent; will be withdrawn */
 # define SeExprYYSTYPE_IS_DECLARED 1
 #endif
 
+/* Location type.  */
 #if ! defined SeExprYYLTYPE && ! defined SeExprYYLTYPE_IS_DECLARED
-typedef struct SeExprYYLTYPE
+typedef struct SeExprYYLTYPE SeExprYYLTYPE;
+struct SeExprYYLTYPE
 {
   int first_line;
   int first_column;
   int last_line;
   int last_column;
-} SeExprYYLTYPE;
-# define SeExpr2ltype SeExprYYLTYPE /* obsolescent; will be withdrawn */
+};
 # define SeExprYYLTYPE_IS_DECLARED 1
 # define SeExprYYLTYPE_IS_TRIVIAL 1
 #endif
 
+
 extern SeExprYYSTYPE SeExpr2lval;
 extern SeExprYYLTYPE SeExpr2lloc;
-#ifdef SeExprYYPARSE_PARAM
-#if defined __STDC__ || defined __cplusplus
-int SeExpr2parse (void *SeExprYYPARSE_PARAM);
-#else
-int SeExpr2parse ();
-#endif
-#else /* ! SeExprYYPARSE_PARAM */
-#if defined __STDC__ || defined __cplusplus
 int SeExpr2parse (void);
-#else
-int SeExpr2parse ();
-#endif
-#endif /* ! SeExprYYPARSE_PARAM */
 
 #endif /* !SeExprYY_SEEXPR2_Y_TAB_H_INCLUDED  */
 
-/* Copy the second part of user declarations.  */
 
-/* Line 390 of yacc.c  */
-#line 295 "y.tab.c"
 
 #ifdef short
 # undef short
 #endif
 
-#ifdef SeExprYYTYPE_UINT8
-typedef SeExprYYTYPE_UINT8 SeExpr2type_uint8;
-#else
-typedef unsigned char SeExpr2type_uint8;
+/* On compilers that do not define __PTRDIFF_MAX__ etc., make sure
+   <limits.h> and (if available) <stdint.h> are included
+   so that the code can choose integer types of a good width.  */
+
+#ifndef __PTRDIFF_MAX__
+# include <limits.h> /* INFRINGES ON USER NAME SPACE */
+# if defined __STDC_VERSION__ && 199901 <= __STDC_VERSION__
+#  include <stdint.h> /* INFRINGES ON USER NAME SPACE */
+#  define SeExprYY_STDINT_H
+# endif
 #endif
 
-#ifdef SeExprYYTYPE_INT8
-typedef SeExprYYTYPE_INT8 SeExpr2type_int8;
-#elif (defined __STDC__ || defined __C99__FUNC__ \
-     || defined __cplusplus || defined _MSC_VER)
+/* Narrow types that promote to a signed type and that can represent a
+   signed or unsigned integer of at least N bits.  In tables they can
+   save space and decrease cache pressure.  Promoting to a signed type
+   helps avoid bugs in integer arithmetic.  */
+
+#ifdef __INT_LEAST8_MAX__
+typedef __INT_LEAST8_TYPE__ SeExpr2type_int8;
+#elif defined SeExprYY_STDINT_H
+typedef int_least8_t SeExpr2type_int8;
+#else
 typedef signed char SeExpr2type_int8;
-#else
-typedef short int SeExpr2type_int8;
 #endif
 
-#ifdef SeExprYYTYPE_UINT16
-typedef SeExprYYTYPE_UINT16 SeExpr2type_uint16;
+#ifdef __INT_LEAST16_MAX__
+typedef __INT_LEAST16_TYPE__ SeExpr2type_int16;
+#elif defined SeExprYY_STDINT_H
+typedef int_least16_t SeExpr2type_int16;
 #else
-typedef unsigned short int SeExpr2type_uint16;
+typedef short SeExpr2type_int16;
 #endif
 
-#ifdef SeExprYYTYPE_INT16
-typedef SeExprYYTYPE_INT16 SeExpr2type_int16;
+#if defined __UINT_LEAST8_MAX__ && __UINT_LEAST8_MAX__ <= __INT_MAX__
+typedef __UINT_LEAST8_TYPE__ SeExpr2type_uint8;
+#elif (!defined __UINT_LEAST8_MAX__ && defined SeExprYY_STDINT_H \
+       && UINT_LEAST8_MAX <= INT_MAX)
+typedef uint_least8_t SeExpr2type_uint8;
+#elif !defined __UINT_LEAST8_MAX__ && UCHAR_MAX <= INT_MAX
+typedef unsigned char SeExpr2type_uint8;
 #else
-typedef short int SeExpr2type_int16;
+typedef short SeExpr2type_uint8;
+#endif
+
+#if defined __UINT_LEAST16_MAX__ && __UINT_LEAST16_MAX__ <= __INT_MAX__
+typedef __UINT_LEAST16_TYPE__ SeExpr2type_uint16;
+#elif (!defined __UINT_LEAST16_MAX__ && defined SeExprYY_STDINT_H \
+       && UINT_LEAST16_MAX <= INT_MAX)
+typedef uint_least16_t SeExpr2type_uint16;
+#elif !defined __UINT_LEAST16_MAX__ && USHRT_MAX <= INT_MAX
+typedef unsigned short SeExpr2type_uint16;
+#else
+typedef int SeExpr2type_uint16;
+#endif
+
+#ifndef SeExprYYPTRDIFF_T
+# if defined __PTRDIFF_TYPE__ && defined __PTRDIFF_MAX__
+#  define SeExprYYPTRDIFF_T __PTRDIFF_TYPE__
+#  define SeExprYYPTRDIFF_MAXIMUM __PTRDIFF_MAX__
+# elif defined PTRDIFF_MAX
+#  ifndef ptrdiff_t
+#   include <stddef.h> /* INFRINGES ON USER NAME SPACE */
+#  endif
+#  define SeExprYYPTRDIFF_T ptrdiff_t
+#  define SeExprYYPTRDIFF_MAXIMUM PTRDIFF_MAX
+# else
+#  define SeExprYYPTRDIFF_T long
+#  define SeExprYYPTRDIFF_MAXIMUM LONG_MAX
+# endif
 #endif
 
 #ifndef SeExprYYSIZE_T
@@ -329,16 +342,27 @@ typedef short int SeExpr2type_int16;
 #  define SeExprYYSIZE_T __SIZE_TYPE__
 # elif defined size_t
 #  define SeExprYYSIZE_T size_t
-# elif ! defined SeExprYYSIZE_T && (defined __STDC__ || defined __C99__FUNC__ \
-     || defined __cplusplus || defined _MSC_VER)
+# elif defined __STDC_VERSION__ && 199901 <= __STDC_VERSION__
 #  include <stddef.h> /* INFRINGES ON USER NAME SPACE */
 #  define SeExprYYSIZE_T size_t
 # else
-#  define SeExprYYSIZE_T unsigned int
+#  define SeExprYYSIZE_T unsigned
 # endif
 #endif
 
-#define SeExprYYSIZE_MAXIMUM ((SeExprYYSIZE_T) -1)
+#define SeExprYYSIZE_MAXIMUM                                  \
+  SeExprYY_CAST (SeExprYYPTRDIFF_T,                                 \
+           (SeExprYYPTRDIFF_MAXIMUM < SeExprYY_CAST (SeExprYYSIZE_T, -1)  \
+            ? SeExprYYPTRDIFF_MAXIMUM                         \
+            : SeExprYY_CAST (SeExprYYSIZE_T, -1)))
+
+#define SeExprYYSIZEOF(X) SeExprYY_CAST (SeExprYYPTRDIFF_T, sizeof (X))
+
+/* Stored state numbers (used for stacks). */
+typedef SeExpr2type_uint8 SeExpr2_state_t;
+
+/* State numbers in computations.  */
+typedef int SeExpr2_state_fast_t;
 
 #ifndef SeExprYY_
 # if defined SeExprYYENABLE_NLS && SeExprYYENABLE_NLS
@@ -352,6 +376,22 @@ typedef short int SeExpr2type_int16;
 # endif
 #endif
 
+#ifndef SeExprYY_ATTRIBUTE_PURE
+# if defined __GNUC__ && 2 < __GNUC__ + (96 <= __GNUC_MINOR__)
+#  define SeExprYY_ATTRIBUTE_PURE __attribute__ ((__pure__))
+# else
+#  define SeExprYY_ATTRIBUTE_PURE
+# endif
+#endif
+
+#ifndef SeExprYY_ATTRIBUTE_UNUSED
+# if defined __GNUC__ && 2 < __GNUC__ + (7 <= __GNUC_MINOR__)
+#  define SeExprYY_ATTRIBUTE_UNUSED __attribute__ ((__unused__))
+# else
+#  define SeExprYY_ATTRIBUTE_UNUSED
+# endif
+#endif
+
 /* Suppress unused-variable warnings by "using" E.  */
 #if ! defined lint || defined __GNUC__
 # define SeExprYYUSE(E) ((void) (E))
@@ -359,23 +399,39 @@ typedef short int SeExpr2type_int16;
 # define SeExprYYUSE(E) /* empty */
 #endif
 
-/* Identity function, used to suppress warnings about constant conditions.  */
-#ifndef lint
-# define SeExprYYID(N) (N)
+#if defined __GNUC__ && ! defined __ICC && 407 <= __GNUC__ * 100 + __GNUC_MINOR__
+/* Suppress an incorrect diagnostic about SeExpr2lval being uninitialized.  */
+# define SeExprYY_IGNORE_MAYBE_UNINITIALIZED_BEGIN                            \
+    _Pragma ("GCC diagnostic push")                                     \
+    _Pragma ("GCC diagnostic ignored \"-Wuninitialized\"")              \
+    _Pragma ("GCC diagnostic ignored \"-Wmaybe-uninitialized\"")
+# define SeExprYY_IGNORE_MAYBE_UNINITIALIZED_END      \
+    _Pragma ("GCC diagnostic pop")
 #else
-#if (defined __STDC__ || defined __C99__FUNC__ \
-     || defined __cplusplus || defined _MSC_VER)
-static int
-SeExprYYID (int SeExpr2i)
-#else
-static int
-SeExprYYID (SeExpr2i)
-    int SeExpr2i;
+# define SeExprYY_INITIAL_VALUE(Value) Value
 #endif
-{
-  return SeExpr2i;
-}
+#ifndef SeExprYY_IGNORE_MAYBE_UNINITIALIZED_BEGIN
+# define SeExprYY_IGNORE_MAYBE_UNINITIALIZED_BEGIN
+# define SeExprYY_IGNORE_MAYBE_UNINITIALIZED_END
 #endif
+#ifndef SeExprYY_INITIAL_VALUE
+# define SeExprYY_INITIAL_VALUE(Value) /* Nothing. */
+#endif
+
+#if defined __cplusplus && defined __GNUC__ && ! defined __ICC && 6 <= __GNUC__
+# define SeExprYY_IGNORE_USELESS_CAST_BEGIN                          \
+    _Pragma ("GCC diagnostic push")                            \
+    _Pragma ("GCC diagnostic ignored \"-Wuseless-cast\"")
+# define SeExprYY_IGNORE_USELESS_CAST_END            \
+    _Pragma ("GCC diagnostic pop")
+#endif
+#ifndef SeExprYY_IGNORE_USELESS_CAST_BEGIN
+# define SeExprYY_IGNORE_USELESS_CAST_BEGIN
+# define SeExprYY_IGNORE_USELESS_CAST_END
+#endif
+
+
+#define SeExprYY_ASSERT(E) ((void) (0 && (E)))
 
 #if ! defined SeExpr2overflow || SeExprYYERROR_VERBOSE
 
@@ -394,8 +450,7 @@ SeExprYYID (SeExpr2i)
 #    define alloca _alloca
 #   else
 #    define SeExprYYSTACK_ALLOC alloca
-#    if ! defined _ALLOCA_H && ! defined EXIT_SUCCESS && (defined __STDC__ || defined __C99__FUNC__ \
-     || defined __cplusplus || defined _MSC_VER)
+#    if ! defined _ALLOCA_H && ! defined EXIT_SUCCESS
 #     include <stdlib.h> /* INFRINGES ON USER NAME SPACE */
       /* Use EXIT_SUCCESS as a witness for stdlib.h.  */
 #     ifndef EXIT_SUCCESS
@@ -407,8 +462,8 @@ SeExprYYID (SeExpr2i)
 # endif
 
 # ifdef SeExprYYSTACK_ALLOC
-   /* Pacify GCC's `empty if-body' warning.  */
-#  define SeExprYYSTACK_FREE(Ptr) do { /* empty */; } while (SeExprYYID (0))
+   /* Pacify GCC's 'empty if-body' warning.  */
+#  define SeExprYYSTACK_FREE(Ptr) do { /* empty */; } while (0)
 #  ifndef SeExprYYSTACK_ALLOC_MAXIMUM
     /* The OS might guarantee only one guard page at the bottom of the stack,
        and a page size can be as small as 4096 bytes.  So we cannot safely
@@ -424,7 +479,7 @@ SeExprYYID (SeExpr2i)
 #  endif
 #  if (defined __cplusplus && ! defined EXIT_SUCCESS \
        && ! ((defined SeExprYYMALLOC || defined malloc) \
-	     && (defined SeExprYYFREE || defined free)))
+             && (defined SeExprYYFREE || defined free)))
 #   include <stdlib.h> /* INFRINGES ON USER NAME SPACE */
 #   ifndef EXIT_SUCCESS
 #    define EXIT_SUCCESS 0
@@ -432,15 +487,13 @@ SeExprYYID (SeExpr2i)
 #  endif
 #  ifndef SeExprYYMALLOC
 #   define SeExprYYMALLOC malloc
-#   if ! defined malloc && ! defined EXIT_SUCCESS && (defined __STDC__ || defined __C99__FUNC__ \
-     || defined __cplusplus || defined _MSC_VER)
+#   if ! defined malloc && ! defined EXIT_SUCCESS
 void *malloc (SeExprYYSIZE_T); /* INFRINGES ON USER NAME SPACE */
 #   endif
 #  endif
 #  ifndef SeExprYYFREE
 #   define SeExprYYFREE free
-#   if ! defined free && ! defined EXIT_SUCCESS && (defined __STDC__ || defined __C99__FUNC__ \
-     || defined __cplusplus || defined _MSC_VER)
+#   if ! defined free && ! defined EXIT_SUCCESS
 void free (void *); /* INFRINGES ON USER NAME SPACE */
 #   endif
 #  endif
@@ -450,24 +503,25 @@ void free (void *); /* INFRINGES ON USER NAME SPACE */
 
 #if (! defined SeExpr2overflow \
      && (! defined __cplusplus \
-	 || (defined SeExprYYLTYPE_IS_TRIVIAL && SeExprYYLTYPE_IS_TRIVIAL \
-	     && defined SeExprYYSTYPE_IS_TRIVIAL && SeExprYYSTYPE_IS_TRIVIAL)))
+         || (defined SeExprYYLTYPE_IS_TRIVIAL && SeExprYYLTYPE_IS_TRIVIAL \
+             && defined SeExprYYSTYPE_IS_TRIVIAL && SeExprYYSTYPE_IS_TRIVIAL)))
 
 /* A type that is properly aligned for any stack member.  */
 union SeExpr2alloc
 {
-  SeExpr2type_int16 SeExpr2ss_alloc;
+  SeExpr2_state_t SeExpr2ss_alloc;
   SeExprYYSTYPE SeExpr2vs_alloc;
   SeExprYYLTYPE SeExpr2ls_alloc;
 };
 
 /* The size of the maximum gap between one aligned stack and the next.  */
-# define SeExprYYSTACK_GAP_MAXIMUM (sizeof (union SeExpr2alloc) - 1)
+# define SeExprYYSTACK_GAP_MAXIMUM (SeExprYYSIZEOF (union SeExpr2alloc) - 1)
 
 /* The size of an array large to enough to hold all stacks, each with
    N elements.  */
 # define SeExprYYSTACK_BYTES(N) \
-     ((N) * (sizeof (SeExpr2type_int16) + sizeof (SeExprYYSTYPE) + sizeof (SeExprYYLTYPE)) \
+     ((N) * (SeExprYYSIZEOF (SeExpr2_state_t) + SeExprYYSIZEOF (SeExprYYSTYPE) \
+             + SeExprYYSIZEOF (SeExprYYLTYPE)) \
       + 2 * SeExprYYSTACK_GAP_MAXIMUM)
 
 # define SeExprYYCOPY_NEEDED 1
@@ -477,16 +531,16 @@ union SeExpr2alloc
    elements in the stack, and SeExprYYPTR gives the new location of the
    stack.  Advance SeExprYYPTR to a properly aligned location for the next
    stack.  */
-# define SeExprYYSTACK_RELOCATE(Stack_alloc, Stack)				\
-    do									\
-      {									\
-	SeExprYYSIZE_T SeExpr2newbytes;						\
-	SeExprYYCOPY (&SeExpr2ptr->Stack_alloc, Stack, SeExpr2size);			\
-	Stack = &SeExpr2ptr->Stack_alloc;					\
-	SeExpr2newbytes = SeExpr2stacksize * sizeof (*Stack) + SeExprYYSTACK_GAP_MAXIMUM; \
-	SeExpr2ptr += SeExpr2newbytes / sizeof (*SeExpr2ptr);				\
-      }									\
-    while (SeExprYYID (0))
+# define SeExprYYSTACK_RELOCATE(Stack_alloc, Stack)                           \
+    do                                                                  \
+      {                                                                 \
+        SeExprYYPTRDIFF_T SeExpr2newbytes;                                         \
+        SeExprYYCOPY (&SeExpr2ptr->Stack_alloc, Stack, SeExpr2size);                    \
+        Stack = &SeExpr2ptr->Stack_alloc;                                    \
+        SeExpr2newbytes = SeExpr2stacksize * SeExprYYSIZEOF (*Stack) + SeExprYYSTACK_GAP_MAXIMUM; \
+        SeExpr2ptr += SeExpr2newbytes / SeExprYYSIZEOF (*SeExpr2ptr);                        \
+      }                                                                 \
+    while (0)
 
 #endif
 
@@ -496,16 +550,16 @@ union SeExpr2alloc
 # ifndef SeExprYYCOPY
 #  if defined __GNUC__ && 1 < __GNUC__
 #   define SeExprYYCOPY(Dst, Src, Count) \
-      __builtin_memcpy (Dst, Src, (Count) * sizeof (*(Src)))
+      __builtin_memcpy (Dst, Src, SeExprYY_CAST (SeExprYYSIZE_T, (Count)) * sizeof (*(Src)))
 #  else
 #   define SeExprYYCOPY(Dst, Src, Count)              \
       do                                        \
         {                                       \
-          SeExprYYSIZE_T SeExpr2i;                         \
+          SeExprYYPTRDIFF_T SeExpr2i;                      \
           for (SeExpr2i = 0; SeExpr2i < (Count); SeExpr2i++)   \
             (Dst)[SeExpr2i] = (Src)[SeExpr2i];            \
         }                                       \
-      while (SeExprYYID (0))
+      while (0)
 #  endif
 # endif
 #endif /* !SeExprYYCOPY_NEEDED */
@@ -513,7 +567,7 @@ union SeExpr2alloc
 /* SeExprYYFINAL -- State number of the termination state.  */
 #define SeExprYYFINAL  52
 /* SeExprYYLAST -- Last index in SeExprYYTABLE.  */
-#define SeExprYYLAST   691
+#define SeExprYYLAST   698
 
 /* SeExprYYNTOKENS -- Number of terminals.  */
 #define SeExprYYNTOKENS  52
@@ -521,23 +575,26 @@ union SeExpr2alloc
 #define SeExprYYNNTS  21
 /* SeExprYYNRULES -- Number of rules.  */
 #define SeExprYYNRULES  84
-/* SeExprYYNRULES -- Number of states.  */
+/* SeExprYYNSTATES -- Number of states.  */
 #define SeExprYYNSTATES  187
 
-/* SeExprYYTRANSLATE(SeExprYYLEX) -- Bison symbol number corresponding to SeExprYYLEX.  */
 #define SeExprYYUNDEFTOK  2
 #define SeExprYYMAXUTOK   285
 
-#define SeExprYYTRANSLATE(SeExprYYX)						\
-  ((unsigned int) (SeExprYYX) <= SeExprYYMAXUTOK ? SeExpr2translate[SeExprYYX] : SeExprYYUNDEFTOK)
 
-/* SeExprYYTRANSLATE[SeExprYYLEX] -- Bison symbol number corresponding to SeExprYYLEX.  */
-static const SeExpr2type_uint8 SeExpr2translate[] =
+/* SeExprYYTRANSLATE(TOKEN-NUM) -- Symbol number corresponding to TOKEN-NUM
+   as returned by SeExpr2lex, with out-of-bounds checking.  */
+#define SeExprYYTRANSLATE(SeExprYYX)                                                \
+  (0 <= (SeExprYYX) && (SeExprYYX) <= SeExprYYMAXUTOK ? SeExpr2translate[SeExprYYX] : SeExprYYUNDEFTOK)
+
+/* SeExprYYTRANSLATE[TOKEN-NUM] -- Symbol number corresponding to TOKEN-NUM
+   as returned by SeExpr2lex.  */
+static const SeExpr2type_int8 SeExpr2translate[] =
 {
        0,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
-       2,     2,     2,    41,     2,     2,     2,    40,     2,     2,
+       2,     2,     2,    42,     2,     2,     2,    40,     2,     2,
       23,    24,    38,    36,    49,    37,     2,    39,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,    26,    51,
       32,    50,    33,    27,     2,     2,     2,     2,     2,     2,
@@ -546,7 +603,7 @@ static const SeExpr2type_uint8 SeExpr2translate[] =
        2,    45,     2,    48,    44,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
-       2,     2,     2,    46,     2,    47,    42,     2,     2,     2,
+       2,     2,     2,    46,     2,    47,    43,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
@@ -562,63 +619,12 @@ static const SeExpr2type_uint8 SeExpr2translate[] =
        2,     2,     2,     2,     2,     2,     1,     2,     3,     4,
        5,     6,     7,     8,     9,    10,    11,    12,    13,    14,
       15,    16,    17,    18,    19,    20,    21,    22,    25,    28,
-      29,    30,    31,    34,    35,    43
+      29,    30,    31,    34,    35,    41
 };
 
 #if SeExprYYDEBUG
-/* SeExprYYPRHS[SeExprYYN] -- Index of the first RHS symbol of rule number SeExprYYN in
-   SeExprYYRHS.  */
-static const SeExpr2type_uint16 SeExpr2prhs[] =
-{
-       0,     0,     3,     6,     8,    10,    13,    20,    30,    39,
-      40,    42,    44,    46,    48,    51,    57,    60,    61,    63,
-      65,    69,    70,    72,    75,    80,    83,    85,    86,    88,
-      90,    93,    95,   100,   105,   110,   115,   120,   125,   130,
-     135,   140,   145,   150,   155,   160,   165,   174,   175,   180,
-     183,   187,   191,   196,   202,   206,   210,   214,   218,   222,
-     226,   230,   234,   237,   240,   243,   246,   250,   254,   258,
-     262,   266,   270,   275,   282,   284,   286,   288,   290,   292,
-     296,   297,   299,   301,   305
-};
-
-/* SeExprYYRHS -- A `-1'-separated list of the rules' RHS.  */
-static const SeExpr2type_int8 SeExpr2rhs[] =
-{
-      53,     0,    -1,    54,    62,    -1,    62,    -1,    55,    -1,
-      54,    55,    -1,     5,    57,     9,    23,    58,    24,    -1,
-       6,    57,     9,    23,    60,    24,    46,    62,    47,    -1,
-       6,     9,    23,    60,    24,    46,    62,    47,    -1,    -1,
-      13,    -1,    14,    -1,    15,    -1,    16,    -1,     7,    56,
-      -1,     7,    45,    12,    48,    56,    -1,     8,    56,    -1,
-      -1,    59,    -1,    57,    -1,    59,    49,    57,    -1,    -1,
-      61,    -1,    57,     9,    -1,    61,    49,    57,     9,    -1,
-      64,    68,    -1,    68,    -1,    -1,    64,    -1,    65,    -1,
-      64,    65,    -1,    66,    -1,    10,    50,    68,    51,    -1,
-      10,    17,    68,    51,    -1,    10,    18,    68,    51,    -1,
-      10,    19,    68,    51,    -1,    10,    20,    68,    51,    -1,
-      10,    21,    68,    51,    -1,    10,    22,    68,    51,    -1,
-       9,    50,    68,    51,    -1,     9,    17,    68,    51,    -1,
-       9,    18,    68,    51,    -1,     9,    19,    68,    51,    -1,
-       9,    20,    68,    51,    -1,     9,    21,    68,    51,    -1,
-       9,    22,    68,    51,    -1,     3,    23,    68,    24,    46,
-      63,    47,    67,    -1,    -1,     4,    46,    63,    47,    -1,
-       4,    66,    -1,    23,    68,    24,    -1,    45,    69,    48,
-      -1,    68,    45,    68,    48,    -1,    68,    27,    68,    26,
-      68,    -1,    68,    28,    68,    -1,    68,    29,    68,    -1,
-      68,    31,    68,    -1,    68,    30,    68,    -1,    68,    32,
-      68,    -1,    68,    33,    68,    -1,    68,    35,    68,    -1,
-      68,    34,    68,    -1,    36,    68,    -1,    37,    68,    -1,
-      41,    68,    -1,    42,    68,    -1,    68,    36,    68,    -1,
-      68,    37,    68,    -1,    68,    38,    68,    -1,    68,    39,
-      68,    -1,    68,    40,    68,    -1,    68,    44,    68,    -1,
-       9,    23,    70,    24,    -1,    68,    25,     9,    23,    70,
-      24,    -1,    10,    -1,     9,    -1,    12,    -1,    11,    -1,
-      68,    -1,    69,    49,    68,    -1,    -1,    71,    -1,    72,
-      -1,    71,    49,    72,    -1,    68,    -1
-};
-
-/* SeExprYYRLINE[SeExprYYN] -- source line where rule number SeExprYYN was defined.  */
-static const SeExpr2type_uint16 SeExpr2rline[] =
+  /* SeExprYYRLINE[SeExprYYN] -- Source line where rule number SeExprYYN was defined.  */
+static const SeExpr2type_int16 SeExpr2rline[] =
 {
        0,   132,   132,   134,   139,   140,   146,   154,   162,   172,
      173,   174,   175,   176,   180,   183,   188,   194,   195,   199,
@@ -641,63 +647,70 @@ static const char *const SeExpr2tname[] =
   "FLOATPOINT", "STRING", "NAME", "VAR", "STR", "NUMBER",
   "LIFETIME_CONSTANT", "LIFETIME_UNIFORM", "LIFETIME_VARYING",
   "LIFETIME_ERROR", "AddEq", "SubEq", "MultEq", "DivEq", "ExpEq", "ModEq",
-  "'('", "')'", "ARROW", "':'", "'?'", "OR", "AND", "NE", "EQ", "'<'",
-  "'>'", "SEEXPR_GE", "SEEXPR_LE", "'+'", "'-'", "'*'", "'/'", "'%'",
-  "'!'", "'~'", "UNARY", "'^'", "'['", "'{'", "'}'", "']'", "','", "'='",
+  "'('", "')'", "ARROW", "':'", "'?'", "OR", "AND", "EQ", "NE", "'<'",
+  "'>'", "SEEXPR_LE", "SEEXPR_GE", "'+'", "'-'", "'*'", "'/'", "'%'",
+  "UNARY", "'!'", "'~'", "'^'", "'['", "'{'", "'}'", "']'", "','", "'='",
   "';'", "$accept", "module", "declarationList", "declaration",
   "lifetimeOptional", "typeDeclare", "typeListOptional", "typeList",
   "formalTypeListOptional", "formalTypeList", "block", "optassigns",
   "assigns", "assign", "ifthenelse", "optelse", "e", "exprlist", "optargs",
-  "args", "arg", SeExprYY_NULL
+  "args", "arg", SeExprYY_NULLPTR
 };
 #endif
 
 # ifdef SeExprYYPRINT
-/* SeExprYYTOKNUM[SeExprYYLEX-NUM] -- Internal token number corresponding to
-   token SeExprYYLEX-NUM.  */
-static const SeExpr2type_uint16 SeExpr2toknum[] =
+/* SeExprYYTOKNUM[NUM] -- (External) token number corresponding to the
+   (internal) symbol number NUM (which must be that of a token).  */
+static const SeExpr2type_int16 SeExpr2toknum[] =
 {
        0,   256,   257,   258,   259,   260,   261,   262,   263,   264,
      265,   266,   267,   268,   269,   270,   271,   272,   273,   274,
      275,   276,   277,    40,    41,   278,    58,    63,   279,   280,
      281,   282,    60,    62,   283,   284,    43,    45,    42,    47,
-      37,    33,   126,   285,    94,    91,   123,   125,    93,    44,
+      37,   285,    33,   126,    94,    91,   123,   125,    93,    44,
       61,    59
 };
 # endif
 
-/* SeExprYYR1[SeExprYYN] -- Symbol number of symbol that rule SeExprYYN derives.  */
-static const SeExpr2type_uint8 SeExpr2r1[] =
+#define SeExprYYPACT_NINF (-76)
+
+#define SeExpr2pact_value_is_default(Yyn) \
+  ((Yyn) == SeExprYYPACT_NINF)
+
+#define SeExprYYTABLE_NINF (-1)
+
+#define SeExpr2table_value_is_error(Yyn) \
+  0
+
+  /* SeExprYYPACT[STATE-NUM] -- Index in SeExprYYTABLE of the portion describing
+     STATE-NUM.  */
+static const SeExpr2type_int16 SeExpr2pact[] =
 {
-       0,    52,    53,    53,    54,    54,    55,    55,    55,    56,
-      56,    56,    56,    56,    57,    57,    57,    58,    58,    59,
-      59,    60,    60,    61,    61,    62,    62,    63,    63,    64,
-      64,    65,    65,    65,    65,    65,    65,    65,    65,    65,
-      65,    65,    65,    65,    65,    65,    66,    67,    67,    67,
-      68,    68,    68,    68,    68,    68,    68,    68,    68,    68,
-      68,    68,    68,    68,    68,    68,    68,    68,    68,    68,
-      68,    68,    68,    68,    68,    68,    68,    68,    69,    69,
-      70,    70,    71,    71,    72
+      67,     0,     4,    76,    24,    31,   -76,   -76,   115,   115,
+     115,   115,   115,   115,    40,    67,   -76,   -76,    77,   -76,
+     -76,   587,   115,    83,    78,    62,    72,    93,   115,   115,
+     115,   115,   115,   115,   115,   115,   115,   115,   115,   115,
+     115,   115,   115,    85,   -76,   523,    61,    61,    61,    61,
+     587,    68,   -76,   -76,   -76,   -76,   587,   102,   115,   115,
+     115,   115,   115,   115,   115,   115,   115,   115,   115,   115,
+     115,   115,   115,   115,   545,   -76,   -76,   -76,   -76,   103,
+     -76,   -76,    95,     4,    98,   148,   176,   201,   226,   251,
+     276,   587,   105,    81,   -76,   301,   326,   351,   376,   401,
+     426,   451,   476,   -76,   -76,   115,   108,   566,   623,   639,
+     653,   653,   109,   109,   109,   109,   -23,   -23,    61,    61,
+      61,    61,   501,    86,    87,     4,   125,   112,    90,     4,
+     -76,   -76,   -76,   -76,   -76,   -76,   -76,   115,   -76,   -76,
+     -76,   -76,   -76,   -76,   -76,   -76,   587,   115,   115,   -76,
+      10,    78,   -76,   116,    92,   -76,    96,     4,   135,   -76,
+     137,   606,   150,    31,   118,    10,   -76,   -76,     4,    77,
+     153,   117,   -76,   170,   -76,   142,   -76,    77,    36,   -76,
+     -76,   143,    10,   -76,   -76,   144,   -76
 };
 
-/* SeExprYYR2[SeExprYYN] -- Number of symbols composing right hand side of rule SeExprYYN.  */
-static const SeExpr2type_uint8 SeExpr2r2[] =
-{
-       0,     2,     2,     1,     1,     2,     6,     9,     8,     0,
-       1,     1,     1,     1,     2,     5,     2,     0,     1,     1,
-       3,     0,     1,     2,     4,     2,     1,     0,     1,     1,
-       2,     1,     4,     4,     4,     4,     4,     4,     4,     4,
-       4,     4,     4,     4,     4,     4,     8,     0,     4,     2,
-       3,     3,     4,     5,     3,     3,     3,     3,     3,     3,
-       3,     3,     2,     2,     2,     2,     3,     3,     3,     3,
-       3,     3,     4,     6,     1,     1,     1,     1,     1,     3,
-       0,     1,     1,     3,     1
-};
-
-/* SeExprYYDEFACT[STATE-NAME] -- Default reduction number in state STATE-NUM.
-   Performed when SeExprYYTABLE doesn't specify something else to do.  Zero
-   means the default is an error.  */
-static const SeExpr2type_uint8 SeExpr2defact[] =
+  /* SeExprYYDEFACT[STATE-NUM] -- Default reduction number in state STATE-NUM.
+     Performed when SeExprYYTABLE does not specify something else to do.  Zero
+     means the default is an error.  */
+static const SeExpr2type_int8 SeExpr2defact[] =
 {
        0,     0,     0,     0,    75,    74,    77,    76,     0,     0,
        0,     0,     0,     0,     0,     0,     4,     3,     0,    29,
@@ -710,7 +723,7 @@ static const SeExpr2type_uint8 SeExpr2defact[] =
       14,    16,     0,    21,     0,     0,     0,     0,     0,     0,
        0,    84,     0,    81,    82,     0,     0,     0,     0,     0,
        0,     0,     0,    50,    51,     0,     0,     0,    54,    55,
-      57,    56,    58,    59,    61,    60,    66,    67,    68,    69,
+      56,    57,    58,    59,    60,    61,    66,    67,    68,    69,
       70,    71,     0,     0,     0,    17,     0,     0,    22,    21,
       40,    41,    42,    43,    44,    45,    72,     0,    39,    33,
       34,    35,    36,    37,    38,    32,    79,    80,     0,    52,
@@ -720,7 +733,15 @@ static const SeExpr2type_uint8 SeExpr2defact[] =
        8,     0,    27,    49,     7,     0,    48
 };
 
-/* SeExprYYDEFGOTO[NTERM-NUM].  */
+  /* SeExprYYPGOTO[NTERM-NUM].  */
+static const SeExpr2type_int16 SeExpr2pgoto[] =
+{
+     -76,   -76,   -76,   179,   -14,    -2,   -76,   -76,    66,   -76,
+     -13,    14,   -75,   -15,    19,   -76,    -4,   -76,    51,   -76,
+      65
+};
+
+  /* SeExprYYDEFGOTO[NTERM-NUM].  */
 static const SeExpr2type_int16 SeExpr2defgoto[] =
 {
       -1,    14,    15,    16,    80,   126,   153,   154,   127,   128,
@@ -728,123 +749,82 @@ static const SeExpr2type_int16 SeExpr2defgoto[] =
       94
 };
 
-/* SeExprYYPACT[STATE-NUM] -- Index in SeExprYYTABLE of the portion describing
-   STATE-NUM.  */
-#define SeExprYYPACT_NINF -68
-static const SeExpr2type_int16 SeExpr2pact[] =
-{
-      67,     0,     4,    90,    24,    31,   -68,   -68,    84,    84,
-      84,    84,    84,    84,    71,    67,   -68,   -68,    77,   -68,
-     -68,   580,    84,   125,   202,    66,    17,    93,    84,    84,
-      84,    84,    84,    84,    84,    84,    84,    84,    84,    84,
-      84,    84,    84,    82,   -68,   516,    40,    40,    40,    40,
-     580,    43,   -68,   -68,   -68,   -68,   580,    97,    84,    84,
-      84,    84,    84,    84,    84,    84,    84,    84,    84,    84,
-      84,    84,    84,    84,   538,   -68,   -68,   -68,   -68,    98,
-     -68,   -68,    88,     4,    94,   144,   169,   194,   219,   244,
-     269,   580,    92,    75,   -68,   294,   319,   344,   369,   394,
-     419,   444,   469,   -68,   -68,    84,   104,   559,   616,   632,
-     646,   646,   109,   109,   109,   109,   -23,   -23,    40,    40,
-      40,    40,   494,    85,    80,     4,   121,   108,    86,     4,
-     -68,   -68,   -68,   -68,   -68,   -68,   -68,    84,   -68,   -68,
-     -68,   -68,   -68,   -68,   -68,   -68,   580,    84,    84,   -68,
-      10,   202,   -68,   110,    87,   -68,    96,     4,   127,   -68,
-     128,   599,   140,    31,   116,    10,   -68,   -68,     4,    77,
-     156,   122,   -68,   163,   -68,   138,   -68,    77,    36,   -68,
-     -68,   139,    10,   -68,   -68,   145,   -68
-};
-
-/* SeExprYYPGOTO[NTERM-NUM].  */
-static const SeExpr2type_int16 SeExpr2pgoto[] =
-{
-     -68,   -68,   -68,   172,   -14,    -2,   -68,   -68,    62,   -68,
-     -13,    11,   -67,   -15,    32,   -68,    -4,   -68,    64,   -68,
-      99
-};
-
-/* SeExprYYTABLE[SeExprYYPACT[STATE-NUM]].  What to do in state STATE-NUM.  If
-   positive, shift that token.  If negative, reduce the rule which
-   number is the opposite.  If SeExprYYTABLE_NINF, syntax error.  */
-#define SeExprYYTABLE_NINF -1
+  /* SeExprYYTABLE[SeExprYYPACT[STATE-NUM]] -- What to do in state STATE-NUM.  If
+     positive, shift that token.  If negative, reduce the rule whose
+     number is the opposite.  If SeExprYYTABLE_NINF, syntax error.  */
 static const SeExpr2type_uint8 SeExpr2table[] =
 {
       25,    27,    54,    55,    45,    46,    47,    48,    49,    50,
       81,    23,    24,     1,    56,    69,    70,    71,    74,   162,
      163,    72,    73,    22,    85,    86,    87,    88,    89,    90,
       91,    95,    96,    97,    98,    99,   100,   101,   102,     1,
-      83,    28,    29,    30,    31,    32,    33,    34,    36,    37,
+      52,    28,    29,    30,    31,    32,    33,    34,    36,    37,
       38,    39,    40,    41,   107,   108,   109,   110,   111,   112,
      113,   114,   115,   116,   117,   118,   119,   120,   121,   122,
-       1,    52,     2,     3,    35,    82,     4,     5,     6,     7,
-       1,    42,   182,   165,    72,    73,     4,     5,     6,     7,
-       8,   104,   105,    43,    44,     6,     7,    23,    24,    26,
-       8,   146,    84,     9,    10,    34,   106,     8,    11,    12,
-     124,   125,    13,     9,    10,   165,   136,   129,    11,    12,
-       9,    10,    13,   152,   137,    11,    12,   147,   151,    13,
-     155,   150,   156,    91,   167,   157,   168,   166,    75,    76,
-      77,    78,   169,    91,   161,    67,    68,    69,    70,    71,
-      55,   171,   172,    72,    73,   170,   175,    28,    29,    30,
-      31,    32,    33,   173,   181,   176,   174,   178,   177,    57,
-      79,    58,    59,    60,    61,    62,    63,    64,    65,    66,
-      67,    68,    69,    70,    71,   180,   184,    53,    72,    73,
-      35,   158,   186,   185,    57,   130,    58,    59,    60,    61,
-      62,    63,    64,    65,    66,    67,    68,    69,    70,    71,
-     183,   160,     0,    72,    73,    75,    76,    77,    78,    57,
-     131,    58,    59,    60,    61,    62,    63,    64,    65,    66,
-      67,    68,    69,    70,    71,     0,   159,     0,    72,    73,
-       0,     0,     0,     0,    57,   132,    58,    59,    60,    61,
-      62,    63,    64,    65,    66,    67,    68,    69,    70,    71,
-       0,     0,     0,    72,    73,     0,     0,     0,     0,    57,
-     133,    58,    59,    60,    61,    62,    63,    64,    65,    66,
-      67,    68,    69,    70,    71,     0,     0,     0,    72,    73,
-       0,     0,     0,     0,    57,   134,    58,    59,    60,    61,
-      62,    63,    64,    65,    66,    67,    68,    69,    70,    71,
-       0,     0,     0,    72,    73,     0,     0,     0,     0,    57,
-     135,    58,    59,    60,    61,    62,    63,    64,    65,    66,
-      67,    68,    69,    70,    71,     0,     0,     0,    72,    73,
-       0,     0,     0,     0,    57,   138,    58,    59,    60,    61,
-      62,    63,    64,    65,    66,    67,    68,    69,    70,    71,
-       0,     0,     0,    72,    73,     0,     0,     0,     0,    57,
-     139,    58,    59,    60,    61,    62,    63,    64,    65,    66,
-      67,    68,    69,    70,    71,     0,     0,     0,    72,    73,
-       0,     0,     0,     0,    57,   140,    58,    59,    60,    61,
-      62,    63,    64,    65,    66,    67,    68,    69,    70,    71,
-       0,     0,     0,    72,    73,     0,     0,     0,     0,    57,
-     141,    58,    59,    60,    61,    62,    63,    64,    65,    66,
-      67,    68,    69,    70,    71,     0,     0,     0,    72,    73,
-       0,     0,     0,     0,    57,   142,    58,    59,    60,    61,
-      62,    63,    64,    65,    66,    67,    68,    69,    70,    71,
-       0,     0,     0,    72,    73,     0,     0,     0,     0,    57,
-     143,    58,    59,    60,    61,    62,    63,    64,    65,    66,
-      67,    68,    69,    70,    71,     0,     0,     0,    72,    73,
-       0,     0,     0,     0,    57,   144,    58,    59,    60,    61,
-      62,    63,    64,    65,    66,    67,    68,    69,    70,    71,
-       0,     0,     0,    72,    73,     0,     0,     0,     0,    57,
-     145,    58,    59,    60,    61,    62,    63,    64,    65,    66,
-      67,    68,    69,    70,    71,     0,     0,     0,    72,    73,
-     103,    57,   149,    58,    59,    60,    61,    62,    63,    64,
+       1,    82,     2,     3,    35,   165,     4,     5,     6,     7,
+       1,    42,   182,    23,    24,    26,     4,     5,     6,     7,
+       8,    75,    76,    77,    78,    83,    75,    76,    77,    78,
+       8,   146,    84,     9,    10,    72,    73,   165,    34,    11,
+      12,   106,    13,     9,    10,   124,   104,   105,   125,    11,
+      12,   129,    13,   152,    43,    44,     6,     7,    79,   136,
+     137,   147,   150,    91,   155,   151,   156,   166,     8,   157,
+     167,   168,   169,    91,   161,    67,    68,    69,    70,    71,
+      55,     9,    10,    72,    73,   170,   175,    11,    12,   171,
+      13,   172,   176,   177,   181,   173,   174,    28,    29,    30,
+      31,    32,    33,    57,   178,    58,    59,    60,    61,    62,
+      63,    64,    65,    66,    67,    68,    69,    70,    71,   180,
+     184,   186,    72,    73,    53,   158,   185,   183,   160,   130,
+      35,    57,   159,    58,    59,    60,    61,    62,    63,    64,
       65,    66,    67,    68,    69,    70,    71,     0,     0,     0,
-      72,    73,   123,    57,     0,    58,    59,    60,    61,    62,
-      63,    64,    65,    66,    67,    68,    69,    70,    71,     0,
-       0,     0,    72,    73,    57,   148,    58,    59,    60,    61,
-      62,    63,    64,    65,    66,    67,    68,    69,    70,    71,
-       0,     0,     0,    72,    73,    57,     0,    58,    59,    60,
-      61,    62,    63,    64,    65,    66,    67,    68,    69,    70,
-      71,     0,     0,     0,    72,    73,    58,    59,    60,    61,
-      62,    63,    64,    65,    66,    67,    68,    69,    70,    71,
-       0,     0,     0,    72,    73,    60,    61,    62,    63,    64,
+      72,    73,     0,     0,     0,     0,    57,   131,    58,    59,
+      60,    61,    62,    63,    64,    65,    66,    67,    68,    69,
+      70,    71,     0,     0,     0,    72,    73,     0,     0,     0,
+       0,    57,   132,    58,    59,    60,    61,    62,    63,    64,
       65,    66,    67,    68,    69,    70,    71,     0,     0,     0,
-      72,    73,    61,    62,    63,    64,    65,    66,    67,    68,
-      69,    70,    71,     0,     0,     0,    72,    73,    63,    64,
+      72,    73,     0,     0,     0,     0,    57,   133,    58,    59,
+      60,    61,    62,    63,    64,    65,    66,    67,    68,    69,
+      70,    71,     0,     0,     0,    72,    73,     0,     0,     0,
+       0,    57,   134,    58,    59,    60,    61,    62,    63,    64,
       65,    66,    67,    68,    69,    70,    71,     0,     0,     0,
-      72,    73
+      72,    73,     0,     0,     0,     0,    57,   135,    58,    59,
+      60,    61,    62,    63,    64,    65,    66,    67,    68,    69,
+      70,    71,     0,     0,     0,    72,    73,     0,     0,     0,
+       0,    57,   138,    58,    59,    60,    61,    62,    63,    64,
+      65,    66,    67,    68,    69,    70,    71,     0,     0,     0,
+      72,    73,     0,     0,     0,     0,    57,   139,    58,    59,
+      60,    61,    62,    63,    64,    65,    66,    67,    68,    69,
+      70,    71,     0,     0,     0,    72,    73,     0,     0,     0,
+       0,    57,   140,    58,    59,    60,    61,    62,    63,    64,
+      65,    66,    67,    68,    69,    70,    71,     0,     0,     0,
+      72,    73,     0,     0,     0,     0,    57,   141,    58,    59,
+      60,    61,    62,    63,    64,    65,    66,    67,    68,    69,
+      70,    71,     0,     0,     0,    72,    73,     0,     0,     0,
+       0,    57,   142,    58,    59,    60,    61,    62,    63,    64,
+      65,    66,    67,    68,    69,    70,    71,     0,     0,     0,
+      72,    73,     0,     0,     0,     0,    57,   143,    58,    59,
+      60,    61,    62,    63,    64,    65,    66,    67,    68,    69,
+      70,    71,     0,     0,     0,    72,    73,     0,     0,     0,
+       0,    57,   144,    58,    59,    60,    61,    62,    63,    64,
+      65,    66,    67,    68,    69,    70,    71,     0,     0,     0,
+      72,    73,     0,     0,     0,     0,    57,   145,    58,    59,
+      60,    61,    62,    63,    64,    65,    66,    67,    68,    69,
+      70,    71,     0,     0,     0,    72,    73,   103,    57,   149,
+      58,    59,    60,    61,    62,    63,    64,    65,    66,    67,
+      68,    69,    70,    71,     0,     0,     0,    72,    73,   123,
+      57,     0,    58,    59,    60,    61,    62,    63,    64,    65,
+      66,    67,    68,    69,    70,    71,     0,     0,     0,    72,
+      73,    57,   148,    58,    59,    60,    61,    62,    63,    64,
+      65,    66,    67,    68,    69,    70,    71,     0,     0,     0,
+      72,    73,    57,     0,    58,    59,    60,    61,    62,    63,
+      64,    65,    66,    67,    68,    69,    70,    71,     0,     0,
+       0,    72,    73,    58,    59,    60,    61,    62,    63,    64,
+      65,    66,    67,    68,    69,    70,    71,     0,     0,     0,
+      72,    73,    60,    61,    62,    63,    64,    65,    66,    67,
+      68,    69,    70,    71,     0,     0,     0,    72,    73,    61,
+      62,    63,    64,    65,    66,    67,    68,    69,    70,    71,
+       0,     0,     0,    72,    73,    63,    64,    65,    66,    67,
+      68,    69,    70,    71,     0,     0,     0,    72,    73
 };
-
-#define SeExpr2pact_value_is_default(Yystate) \
-  (!!((Yystate) == (-68)))
-
-#define SeExpr2table_value_is_error(Yytable_value) \
-  SeExprYYID (0)
 
 static const SeExpr2type_int16 SeExpr2check[] =
 {
@@ -852,80 +832,80 @@ static const SeExpr2type_int16 SeExpr2check[] =
       24,     7,     8,     3,    18,    38,    39,    40,    22,     9,
       10,    44,    45,    23,    28,    29,    30,    31,    32,    33,
       34,    35,    36,    37,    38,    39,    40,    41,    42,     3,
-      23,    17,    18,    19,    20,    21,    22,    23,    17,    18,
+       0,    17,    18,    19,    20,    21,    22,    23,    17,    18,
       19,    20,    21,    22,    58,    59,    60,    61,    62,    63,
       64,    65,    66,    67,    68,    69,    70,    71,    72,    73,
-       3,     0,     5,     6,    50,     9,     9,    10,    11,    12,
-       3,    50,    46,   150,    44,    45,     9,    10,    11,    12,
-      23,    48,    49,     9,    10,    11,    12,     7,     8,     9,
-      23,   105,     9,    36,    37,    23,     9,    23,    41,    42,
-      12,    23,    45,    36,    37,   182,    24,    23,    41,    42,
-      36,    37,    45,   125,    49,    41,    42,    23,    48,    45,
-       9,    46,    24,   137,    24,    49,    49,   151,    13,    14,
-      15,    16,    46,   147,   148,    36,    37,    38,    39,    40,
-     165,    24,    24,    44,    45,   157,   169,    17,    18,    19,
-      20,    21,    22,    47,   177,     9,   168,     4,    46,    25,
-      45,    27,    28,    29,    30,    31,    32,    33,    34,    35,
-      36,    37,    38,    39,    40,    47,    47,    15,    44,    45,
-      50,   129,    47,   182,    25,    51,    27,    28,    29,    30,
-      31,    32,    33,    34,    35,    36,    37,    38,    39,    40,
-     178,   147,    -1,    44,    45,    13,    14,    15,    16,    25,
-      51,    27,    28,    29,    30,    31,    32,    33,    34,    35,
-      36,    37,    38,    39,    40,    -1,   137,    -1,    44,    45,
-      -1,    -1,    -1,    -1,    25,    51,    27,    28,    29,    30,
-      31,    32,    33,    34,    35,    36,    37,    38,    39,    40,
-      -1,    -1,    -1,    44,    45,    -1,    -1,    -1,    -1,    25,
-      51,    27,    28,    29,    30,    31,    32,    33,    34,    35,
-      36,    37,    38,    39,    40,    -1,    -1,    -1,    44,    45,
-      -1,    -1,    -1,    -1,    25,    51,    27,    28,    29,    30,
-      31,    32,    33,    34,    35,    36,    37,    38,    39,    40,
-      -1,    -1,    -1,    44,    45,    -1,    -1,    -1,    -1,    25,
-      51,    27,    28,    29,    30,    31,    32,    33,    34,    35,
-      36,    37,    38,    39,    40,    -1,    -1,    -1,    44,    45,
-      -1,    -1,    -1,    -1,    25,    51,    27,    28,    29,    30,
-      31,    32,    33,    34,    35,    36,    37,    38,    39,    40,
-      -1,    -1,    -1,    44,    45,    -1,    -1,    -1,    -1,    25,
-      51,    27,    28,    29,    30,    31,    32,    33,    34,    35,
-      36,    37,    38,    39,    40,    -1,    -1,    -1,    44,    45,
-      -1,    -1,    -1,    -1,    25,    51,    27,    28,    29,    30,
-      31,    32,    33,    34,    35,    36,    37,    38,    39,    40,
-      -1,    -1,    -1,    44,    45,    -1,    -1,    -1,    -1,    25,
-      51,    27,    28,    29,    30,    31,    32,    33,    34,    35,
-      36,    37,    38,    39,    40,    -1,    -1,    -1,    44,    45,
-      -1,    -1,    -1,    -1,    25,    51,    27,    28,    29,    30,
-      31,    32,    33,    34,    35,    36,    37,    38,    39,    40,
-      -1,    -1,    -1,    44,    45,    -1,    -1,    -1,    -1,    25,
-      51,    27,    28,    29,    30,    31,    32,    33,    34,    35,
-      36,    37,    38,    39,    40,    -1,    -1,    -1,    44,    45,
-      -1,    -1,    -1,    -1,    25,    51,    27,    28,    29,    30,
-      31,    32,    33,    34,    35,    36,    37,    38,    39,    40,
-      -1,    -1,    -1,    44,    45,    -1,    -1,    -1,    -1,    25,
-      51,    27,    28,    29,    30,    31,    32,    33,    34,    35,
-      36,    37,    38,    39,    40,    -1,    -1,    -1,    44,    45,
-      24,    25,    48,    27,    28,    29,    30,    31,    32,    33,
+       3,     9,     5,     6,    50,   150,     9,    10,    11,    12,
+       3,    50,    46,     7,     8,     9,     9,    10,    11,    12,
+      23,    13,    14,    15,    16,    23,    13,    14,    15,    16,
+      23,   105,     9,    36,    37,    44,    45,   182,    23,    42,
+      43,     9,    45,    36,    37,    12,    48,    49,    23,    42,
+      43,    23,    45,   125,     9,    10,    11,    12,    45,    24,
+      49,    23,    46,   137,     9,    48,    24,   151,    23,    49,
+      24,    49,    46,   147,   148,    36,    37,    38,    39,    40,
+     165,    36,    37,    44,    45,   157,   169,    42,    43,    24,
+      45,    24,     9,    46,   177,    47,   168,    17,    18,    19,
+      20,    21,    22,    25,     4,    27,    28,    29,    30,    31,
+      32,    33,    34,    35,    36,    37,    38,    39,    40,    47,
+      47,    47,    44,    45,    15,   129,   182,   178,   147,    51,
+      50,    25,   137,    27,    28,    29,    30,    31,    32,    33,
       34,    35,    36,    37,    38,    39,    40,    -1,    -1,    -1,
-      44,    45,    24,    25,    -1,    27,    28,    29,    30,    31,
-      32,    33,    34,    35,    36,    37,    38,    39,    40,    -1,
-      -1,    -1,    44,    45,    25,    26,    27,    28,    29,    30,
-      31,    32,    33,    34,    35,    36,    37,    38,    39,    40,
-      -1,    -1,    -1,    44,    45,    25,    -1,    27,    28,    29,
-      30,    31,    32,    33,    34,    35,    36,    37,    38,    39,
-      40,    -1,    -1,    -1,    44,    45,    27,    28,    29,    30,
-      31,    32,    33,    34,    35,    36,    37,    38,    39,    40,
-      -1,    -1,    -1,    44,    45,    29,    30,    31,    32,    33,
+      44,    45,    -1,    -1,    -1,    -1,    25,    51,    27,    28,
+      29,    30,    31,    32,    33,    34,    35,    36,    37,    38,
+      39,    40,    -1,    -1,    -1,    44,    45,    -1,    -1,    -1,
+      -1,    25,    51,    27,    28,    29,    30,    31,    32,    33,
       34,    35,    36,    37,    38,    39,    40,    -1,    -1,    -1,
-      44,    45,    30,    31,    32,    33,    34,    35,    36,    37,
-      38,    39,    40,    -1,    -1,    -1,    44,    45,    32,    33,
+      44,    45,    -1,    -1,    -1,    -1,    25,    51,    27,    28,
+      29,    30,    31,    32,    33,    34,    35,    36,    37,    38,
+      39,    40,    -1,    -1,    -1,    44,    45,    -1,    -1,    -1,
+      -1,    25,    51,    27,    28,    29,    30,    31,    32,    33,
       34,    35,    36,    37,    38,    39,    40,    -1,    -1,    -1,
-      44,    45
+      44,    45,    -1,    -1,    -1,    -1,    25,    51,    27,    28,
+      29,    30,    31,    32,    33,    34,    35,    36,    37,    38,
+      39,    40,    -1,    -1,    -1,    44,    45,    -1,    -1,    -1,
+      -1,    25,    51,    27,    28,    29,    30,    31,    32,    33,
+      34,    35,    36,    37,    38,    39,    40,    -1,    -1,    -1,
+      44,    45,    -1,    -1,    -1,    -1,    25,    51,    27,    28,
+      29,    30,    31,    32,    33,    34,    35,    36,    37,    38,
+      39,    40,    -1,    -1,    -1,    44,    45,    -1,    -1,    -1,
+      -1,    25,    51,    27,    28,    29,    30,    31,    32,    33,
+      34,    35,    36,    37,    38,    39,    40,    -1,    -1,    -1,
+      44,    45,    -1,    -1,    -1,    -1,    25,    51,    27,    28,
+      29,    30,    31,    32,    33,    34,    35,    36,    37,    38,
+      39,    40,    -1,    -1,    -1,    44,    45,    -1,    -1,    -1,
+      -1,    25,    51,    27,    28,    29,    30,    31,    32,    33,
+      34,    35,    36,    37,    38,    39,    40,    -1,    -1,    -1,
+      44,    45,    -1,    -1,    -1,    -1,    25,    51,    27,    28,
+      29,    30,    31,    32,    33,    34,    35,    36,    37,    38,
+      39,    40,    -1,    -1,    -1,    44,    45,    -1,    -1,    -1,
+      -1,    25,    51,    27,    28,    29,    30,    31,    32,    33,
+      34,    35,    36,    37,    38,    39,    40,    -1,    -1,    -1,
+      44,    45,    -1,    -1,    -1,    -1,    25,    51,    27,    28,
+      29,    30,    31,    32,    33,    34,    35,    36,    37,    38,
+      39,    40,    -1,    -1,    -1,    44,    45,    24,    25,    48,
+      27,    28,    29,    30,    31,    32,    33,    34,    35,    36,
+      37,    38,    39,    40,    -1,    -1,    -1,    44,    45,    24,
+      25,    -1,    27,    28,    29,    30,    31,    32,    33,    34,
+      35,    36,    37,    38,    39,    40,    -1,    -1,    -1,    44,
+      45,    25,    26,    27,    28,    29,    30,    31,    32,    33,
+      34,    35,    36,    37,    38,    39,    40,    -1,    -1,    -1,
+      44,    45,    25,    -1,    27,    28,    29,    30,    31,    32,
+      33,    34,    35,    36,    37,    38,    39,    40,    -1,    -1,
+      -1,    44,    45,    27,    28,    29,    30,    31,    32,    33,
+      34,    35,    36,    37,    38,    39,    40,    -1,    -1,    -1,
+      44,    45,    29,    30,    31,    32,    33,    34,    35,    36,
+      37,    38,    39,    40,    -1,    -1,    -1,    44,    45,    30,
+      31,    32,    33,    34,    35,    36,    37,    38,    39,    40,
+      -1,    -1,    -1,    44,    45,    32,    33,    34,    35,    36,
+      37,    38,    39,    40,    -1,    -1,    -1,    44,    45
 };
 
-/* SeExprYYSTOS[STATE-NUM] -- The (internal number of the) accessing
-   symbol of state STATE-NUM.  */
-static const SeExpr2type_uint8 SeExpr2stos[] =
+  /* SeExprYYSTOS[STATE-NUM] -- The (internal number of the) accessing
+     symbol of state STATE-NUM.  */
+static const SeExpr2type_int8 SeExpr2stos[] =
 {
        0,     3,     5,     6,     9,    10,    11,    12,    23,    36,
-      37,    41,    42,    45,    53,    54,    55,    62,    64,    65,
+      37,    42,    43,    45,    53,    54,    55,    62,    64,    65,
       66,    68,    23,     7,     8,    57,     9,    57,    17,    18,
       19,    20,    21,    22,    23,    50,    17,    18,    19,    20,
       21,    22,    50,     9,    10,    68,    68,    68,    68,    68,
@@ -945,53 +925,67 @@ static const SeExpr2type_uint8 SeExpr2stos[] =
       47,    62,    46,    66,    47,    63,    47
 };
 
-#define SeExpr2errok		(SeExpr2errstatus = 0)
-#define SeExpr2clearin	(SeExpr2char = SeExprYYEMPTY)
-#define SeExprYYEMPTY		(-2)
-#define SeExprYYEOF		0
+  /* SeExprYYR1[SeExprYYN] -- Symbol number of symbol that rule SeExprYYN derives.  */
+static const SeExpr2type_int8 SeExpr2r1[] =
+{
+       0,    52,    53,    53,    54,    54,    55,    55,    55,    56,
+      56,    56,    56,    56,    57,    57,    57,    58,    58,    59,
+      59,    60,    60,    61,    61,    62,    62,    63,    63,    64,
+      64,    65,    65,    65,    65,    65,    65,    65,    65,    65,
+      65,    65,    65,    65,    65,    65,    66,    67,    67,    67,
+      68,    68,    68,    68,    68,    68,    68,    68,    68,    68,
+      68,    68,    68,    68,    68,    68,    68,    68,    68,    68,
+      68,    68,    68,    68,    68,    68,    68,    68,    69,    69,
+      70,    70,    71,    71,    72
+};
 
-#define SeExprYYACCEPT	goto SeExpr2acceptlab
-#define SeExprYYABORT		goto SeExpr2abortlab
-#define SeExprYYERROR		goto SeExpr2errorlab
+  /* SeExprYYR2[SeExprYYN] -- Number of symbols on the right hand side of rule SeExprYYN.  */
+static const SeExpr2type_int8 SeExpr2r2[] =
+{
+       0,     2,     2,     1,     1,     2,     6,     9,     8,     0,
+       1,     1,     1,     1,     2,     5,     2,     0,     1,     1,
+       3,     0,     1,     2,     4,     2,     1,     0,     1,     1,
+       2,     1,     4,     4,     4,     4,     4,     4,     4,     4,
+       4,     4,     4,     4,     4,     4,     8,     0,     4,     2,
+       3,     3,     4,     5,     3,     3,     3,     3,     3,     3,
+       3,     3,     2,     2,     2,     2,     3,     3,     3,     3,
+       3,     3,     4,     6,     1,     1,     1,     1,     1,     3,
+       0,     1,     1,     3,     1
+};
 
 
-/* Like SeExprYYERROR except do call SeExpr2error.  This remains here temporarily
-   to ease the transition to the new meaning of SeExprYYERROR, for GCC.
-   Once GCC version 2 has supplanted version 1, this can go.  However,
-   SeExprYYFAIL appears to be in use.  Nevertheless, it is formally deprecated
-   in Bison 2.4.2's NEWS entry, where a plan to phase it out is
-   discussed.  */
+#define SeExpr2errok         (SeExpr2errstatus = 0)
+#define SeExpr2clearin       (SeExpr2char = SeExprYYEMPTY)
+#define SeExprYYEMPTY         (-2)
+#define SeExprYYEOF           0
 
-#define SeExprYYFAIL		goto SeExpr2errlab
-#if defined SeExprYYFAIL
-  /* This is here to suppress warnings from the GCC cpp's
-     -Wunused-macros.  Normally we don't worry about that warning, but
-     some users do, and we want to make it easy for users to remove
-     SeExprYYFAIL uses, which will produce warnings from Bison 2.5.  */
-#endif
+#define SeExprYYACCEPT        goto SeExpr2acceptlab
+#define SeExprYYABORT         goto SeExpr2abortlab
+#define SeExprYYERROR         goto SeExpr2errorlab
+
 
 #define SeExprYYRECOVERING()  (!!SeExpr2errstatus)
 
-#define SeExprYYBACKUP(Token, Value)                                  \
-do                                                              \
-  if (SeExpr2char == SeExprYYEMPTY)                                        \
-    {                                                           \
-      SeExpr2char = (Token);                                         \
-      SeExpr2lval = (Value);                                         \
-      SeExprYYPOPSTACK (SeExpr2len);                                       \
-      SeExpr2state = *SeExpr2ssp;                                         \
-      goto SeExpr2backup;                                            \
-    }                                                           \
-  else                                                          \
-    {                                                           \
-      SeExpr2error (SeExprYY_("syntax error: cannot back up")); \
-      SeExprYYERROR;							\
-    }								\
-while (SeExprYYID (0))
+#define SeExprYYBACKUP(Token, Value)                                    \
+  do                                                              \
+    if (SeExpr2char == SeExprYYEMPTY)                                        \
+      {                                                           \
+        SeExpr2char = (Token);                                         \
+        SeExpr2lval = (Value);                                         \
+        SeExprYYPOPSTACK (SeExpr2len);                                       \
+        SeExpr2state = *SeExpr2ssp;                                         \
+        goto SeExpr2backup;                                            \
+      }                                                           \
+    else                                                          \
+      {                                                           \
+        SeExpr2error (SeExprYY_("syntax error: cannot back up")); \
+        SeExprYYERROR;                                                  \
+      }                                                           \
+  while (0)
 
 /* Error token number */
-#define SeExprYYTERROR	1
-#define SeExprYYERRCODE	256
+#define SeExprYYTERROR        1
+#define SeExprYYERRCODE       256
 
 
 /* SeExprYYLLOC_DEFAULT -- Set CURRENT to span from RHS[1] to RHS[N].
@@ -1001,7 +995,7 @@ while (SeExprYYID (0))
 #ifndef SeExprYYLLOC_DEFAULT
 # define SeExprYYLLOC_DEFAULT(Current, Rhs, N)                                \
     do                                                                  \
-      if (SeExprYYID (N))                                                     \
+      if (N)                                                            \
         {                                                               \
           (Current).first_line   = SeExprYYRHSLOC (Rhs, 1).first_line;        \
           (Current).first_column = SeExprYYRHSLOC (Rhs, 1).first_column;      \
@@ -1015,10 +1009,25 @@ while (SeExprYYID (0))
           (Current).first_column = (Current).last_column =              \
             SeExprYYRHSLOC (Rhs, 0).last_column;                              \
         }                                                               \
-    while (SeExprYYID (0))
+    while (0)
 #endif
 
 #define SeExprYYRHSLOC(Rhs, K) ((Rhs)[K])
+
+
+/* Enable debugging if requested.  */
+#if SeExprYYDEBUG
+
+# ifndef SeExprYYFPRINTF
+#  include <stdio.h> /* INFRINGES ON USER NAME SPACE */
+#  define SeExprYYFPRINTF fprintf
+# endif
+
+# define SeExprYYDPRINTF(Args)                        \
+do {                                            \
+  if (SeExpr2debug)                                  \
+    SeExprYYFPRINTF Args;                             \
+} while (0)
 
 
 /* SeExprYY_LOCATION_PRINT -- Print the location on the stream.
@@ -1030,35 +1039,28 @@ while (SeExprYYID (0))
 
 /* Print *SeExprYYLOCP on SeExprYYO.  Private, do not rely on its existence. */
 
-#if (defined __STDC__ || defined __C99__FUNC__ \
-     || defined __cplusplus || defined _MSC_VER)
-static unsigned
+SeExprYY_ATTRIBUTE_UNUSED
+static int
 SeExpr2_location_print_ (FILE *SeExpr2o, SeExprYYLTYPE const * const SeExpr2locp)
-#else
-static unsigned
-SeExpr2_location_print_ (SeExpr2o, SeExpr2locp)
-    FILE *SeExpr2o;
-    SeExprYYLTYPE const * const SeExpr2locp;
-#endif
 {
-  unsigned res = 0;
+  int res = 0;
   int end_col = 0 != SeExpr2locp->last_column ? SeExpr2locp->last_column - 1 : 0;
   if (0 <= SeExpr2locp->first_line)
     {
-      res += fprintf (SeExpr2o, "%d", SeExpr2locp->first_line);
+      res += SeExprYYFPRINTF (SeExpr2o, "%d", SeExpr2locp->first_line);
       if (0 <= SeExpr2locp->first_column)
-        res += fprintf (SeExpr2o, ".%d", SeExpr2locp->first_column);
+        res += SeExprYYFPRINTF (SeExpr2o, ".%d", SeExpr2locp->first_column);
     }
   if (0 <= SeExpr2locp->last_line)
     {
       if (SeExpr2locp->first_line < SeExpr2locp->last_line)
         {
-          res += fprintf (SeExpr2o, "-%d", SeExpr2locp->last_line);
+          res += SeExprYYFPRINTF (SeExpr2o, "-%d", SeExpr2locp->last_line);
           if (0 <= end_col)
-            res += fprintf (SeExpr2o, ".%d", end_col);
+            res += SeExprYYFPRINTF (SeExpr2o, ".%d", end_col);
         }
       else if (0 <= end_col && SeExpr2locp->first_column < end_col)
-        res += fprintf (SeExpr2o, "-%d", end_col);
+        res += SeExprYYFPRINTF (SeExpr2o, "-%d", end_col);
     }
   return res;
  }
@@ -1072,102 +1074,54 @@ SeExpr2_location_print_ (SeExpr2o, SeExpr2locp)
 #endif
 
 
-/* SeExprYYLEX -- calling `SeExpr2lex' with the right arguments.  */
-#ifdef SeExprYYLEX_PARAM
-# define SeExprYYLEX SeExpr2lex (SeExprYYLEX_PARAM)
-#else
-# define SeExprYYLEX SeExpr2lex ()
-#endif
-
-/* Enable debugging if requested.  */
-#if SeExprYYDEBUG
-
-# ifndef SeExprYYFPRINTF
-#  include <stdio.h> /* INFRINGES ON USER NAME SPACE */
-#  define SeExprYYFPRINTF fprintf
-# endif
-
-# define SeExprYYDPRINTF(Args)			\
-do {						\
-  if (SeExpr2debug)					\
-    SeExprYYFPRINTF Args;				\
-} while (SeExprYYID (0))
-
-# define SeExprYY_SYMBOL_PRINT(Title, Type, Value, Location)			  \
-do {									  \
-  if (SeExpr2debug)								  \
-    {									  \
-      SeExprYYFPRINTF (stderr, "%s ", Title);					  \
-      SeExpr2_symbol_print (stderr,						  \
-		  Type, Value, Location); \
-      SeExprYYFPRINTF (stderr, "\n");						  \
-    }									  \
-} while (SeExprYYID (0))
+# define SeExprYY_SYMBOL_PRINT(Title, Type, Value, Location)                    \
+do {                                                                      \
+  if (SeExpr2debug)                                                            \
+    {                                                                     \
+      SeExprYYFPRINTF (stderr, "%s ", Title);                                   \
+      SeExpr2_symbol_print (stderr,                                            \
+                  Type, Value, Location); \
+      SeExprYYFPRINTF (stderr, "\n");                                           \
+    }                                                                     \
+} while (0)
 
 
-/*--------------------------------.
-| Print this symbol on SeExprYYOUTPUT.  |
-`--------------------------------*/
+/*-----------------------------------.
+| Print this symbol's value on SeExprYYO.  |
+`-----------------------------------*/
 
-/*ARGSUSED*/
-#if (defined __STDC__ || defined __C99__FUNC__ \
-     || defined __cplusplus || defined _MSC_VER)
 static void
-SeExpr2_symbol_value_print (FILE *SeExpr2output, int SeExpr2type, SeExprYYSTYPE const * const SeExpr2valuep, SeExprYYLTYPE const * const SeExpr2locationp)
-#else
-static void
-SeExpr2_symbol_value_print (SeExpr2output, SeExpr2type, SeExpr2valuep, SeExpr2locationp)
-    FILE *SeExpr2output;
-    int SeExpr2type;
-    SeExprYYSTYPE const * const SeExpr2valuep;
-    SeExprYYLTYPE const * const SeExpr2locationp;
-#endif
+SeExpr2_symbol_value_print (FILE *SeExpr2o, int SeExpr2type, SeExprYYSTYPE const * const SeExpr2valuep, SeExprYYLTYPE const * const SeExpr2locationp)
 {
-  FILE *SeExpr2o = SeExpr2output;
-  SeExprYYUSE (SeExpr2o);
+  FILE *SeExpr2output = SeExpr2o;
+  SeExprYYUSE (SeExpr2output);
+  SeExprYYUSE (SeExpr2locationp);
   if (!SeExpr2valuep)
     return;
-  SeExprYYUSE (SeExpr2locationp);
 # ifdef SeExprYYPRINT
   if (SeExpr2type < SeExprYYNTOKENS)
-    SeExprYYPRINT (SeExpr2output, SeExpr2toknum[SeExpr2type], *SeExpr2valuep);
-# else
-  SeExprYYUSE (SeExpr2output);
+    SeExprYYPRINT (SeExpr2o, SeExpr2toknum[SeExpr2type], *SeExpr2valuep);
 # endif
-  switch (SeExpr2type)
-    {
-      default:
-        break;
-    }
+  SeExprYY_IGNORE_MAYBE_UNINITIALIZED_BEGIN
+  SeExprYYUSE (SeExpr2type);
+  SeExprYY_IGNORE_MAYBE_UNINITIALIZED_END
 }
 
 
-/*--------------------------------.
-| Print this symbol on SeExprYYOUTPUT.  |
-`--------------------------------*/
+/*---------------------------.
+| Print this symbol on SeExprYYO.  |
+`---------------------------*/
 
-#if (defined __STDC__ || defined __C99__FUNC__ \
-     || defined __cplusplus || defined _MSC_VER)
 static void
-SeExpr2_symbol_print (FILE *SeExpr2output, int SeExpr2type, SeExprYYSTYPE const * const SeExpr2valuep, SeExprYYLTYPE const * const SeExpr2locationp)
-#else
-static void
-SeExpr2_symbol_print (SeExpr2output, SeExpr2type, SeExpr2valuep, SeExpr2locationp)
-    FILE *SeExpr2output;
-    int SeExpr2type;
-    SeExprYYSTYPE const * const SeExpr2valuep;
-    SeExprYYLTYPE const * const SeExpr2locationp;
-#endif
+SeExpr2_symbol_print (FILE *SeExpr2o, int SeExpr2type, SeExprYYSTYPE const * const SeExpr2valuep, SeExprYYLTYPE const * const SeExpr2locationp)
 {
-  if (SeExpr2type < SeExprYYNTOKENS)
-    SeExprYYFPRINTF (SeExpr2output, "token %s (", SeExpr2tname[SeExpr2type]);
-  else
-    SeExprYYFPRINTF (SeExpr2output, "nterm %s (", SeExpr2tname[SeExpr2type]);
+  SeExprYYFPRINTF (SeExpr2o, "%s %s (",
+             SeExpr2type < SeExprYYNTOKENS ? "token" : "nterm", SeExpr2tname[SeExpr2type]);
 
-  SeExprYY_LOCATION_PRINT (SeExpr2output, *SeExpr2locationp);
-  SeExprYYFPRINTF (SeExpr2output, ": ");
-  SeExpr2_symbol_value_print (SeExpr2output, SeExpr2type, SeExpr2valuep, SeExpr2locationp);
-  SeExprYYFPRINTF (SeExpr2output, ")");
+  SeExprYY_LOCATION_PRINT (SeExpr2o, *SeExpr2locationp);
+  SeExprYYFPRINTF (SeExpr2o, ": ");
+  SeExpr2_symbol_value_print (SeExpr2o, SeExpr2type, SeExpr2valuep, SeExpr2locationp);
+  SeExprYYFPRINTF (SeExpr2o, ")");
 }
 
 /*------------------------------------------------------------------.
@@ -1175,16 +1129,8 @@ SeExpr2_symbol_print (SeExpr2output, SeExpr2type, SeExpr2valuep, SeExpr2location
 | TOP (included).                                                   |
 `------------------------------------------------------------------*/
 
-#if (defined __STDC__ || defined __C99__FUNC__ \
-     || defined __cplusplus || defined _MSC_VER)
 static void
-SeExpr2_stack_print (SeExpr2type_int16 *SeExpr2bottom, SeExpr2type_int16 *SeExpr2top)
-#else
-static void
-SeExpr2_stack_print (SeExpr2bottom, SeExpr2top)
-    SeExpr2type_int16 *SeExpr2bottom;
-    SeExpr2type_int16 *SeExpr2top;
-#endif
+SeExpr2_stack_print (SeExpr2_state_t *SeExpr2bottom, SeExpr2_state_t *SeExpr2top)
 {
   SeExprYYFPRINTF (stderr, "Stack now");
   for (; SeExpr2bottom <= SeExpr2top; SeExpr2bottom++)
@@ -1195,50 +1141,42 @@ SeExpr2_stack_print (SeExpr2bottom, SeExpr2top)
   SeExprYYFPRINTF (stderr, "\n");
 }
 
-# define SeExprYY_STACK_PRINT(Bottom, Top)				\
-do {								\
-  if (SeExpr2debug)							\
-    SeExpr2_stack_print ((Bottom), (Top));				\
-} while (SeExprYYID (0))
+# define SeExprYY_STACK_PRINT(Bottom, Top)                            \
+do {                                                            \
+  if (SeExpr2debug)                                                  \
+    SeExpr2_stack_print ((Bottom), (Top));                           \
+} while (0)
 
 
 /*------------------------------------------------.
 | Report that the SeExprYYRULE is going to be reduced.  |
 `------------------------------------------------*/
 
-#if (defined __STDC__ || defined __C99__FUNC__ \
-     || defined __cplusplus || defined _MSC_VER)
 static void
-SeExpr2_reduce_print (SeExprYYSTYPE *SeExpr2vsp, SeExprYYLTYPE *SeExpr2lsp, int SeExpr2rule)
-#else
-static void
-SeExpr2_reduce_print (SeExpr2vsp, SeExpr2lsp, SeExpr2rule)
-    SeExprYYSTYPE *SeExpr2vsp;
-    SeExprYYLTYPE *SeExpr2lsp;
-    int SeExpr2rule;
-#endif
+SeExpr2_reduce_print (SeExpr2_state_t *SeExpr2ssp, SeExprYYSTYPE *SeExpr2vsp, SeExprYYLTYPE *SeExpr2lsp, int SeExpr2rule)
 {
+  int SeExpr2lno = SeExpr2rline[SeExpr2rule];
   int SeExpr2nrhs = SeExpr2r2[SeExpr2rule];
   int SeExpr2i;
-  unsigned long int SeExpr2lno = SeExpr2rline[SeExpr2rule];
-  SeExprYYFPRINTF (stderr, "Reducing stack by rule %d (line %lu):\n",
-	     SeExpr2rule - 1, SeExpr2lno);
+  SeExprYYFPRINTF (stderr, "Reducing stack by rule %d (line %d):\n",
+             SeExpr2rule - 1, SeExpr2lno);
   /* The symbols being reduced.  */
   for (SeExpr2i = 0; SeExpr2i < SeExpr2nrhs; SeExpr2i++)
     {
       SeExprYYFPRINTF (stderr, "   $%d = ", SeExpr2i + 1);
-      SeExpr2_symbol_print (stderr, SeExpr2rhs[SeExpr2prhs[SeExpr2rule] + SeExpr2i],
-		       &(SeExpr2vsp[(SeExpr2i + 1) - (SeExpr2nrhs)])
-		       , &(SeExpr2lsp[(SeExpr2i + 1) - (SeExpr2nrhs)])		       );
+      SeExpr2_symbol_print (stderr,
+                       SeExpr2stos[+SeExpr2ssp[SeExpr2i + 1 - SeExpr2nrhs]],
+                       &SeExpr2vsp[(SeExpr2i + 1) - (SeExpr2nrhs)]
+                       , &(SeExpr2lsp[(SeExpr2i + 1) - (SeExpr2nrhs)])                       );
       SeExprYYFPRINTF (stderr, "\n");
     }
 }
 
-# define SeExprYY_REDUCE_PRINT(Rule)		\
-do {					\
-  if (SeExpr2debug)				\
-    SeExpr2_reduce_print (SeExpr2vsp, SeExpr2lsp, Rule); \
-} while (SeExprYYID (0))
+# define SeExprYY_REDUCE_PRINT(Rule)          \
+do {                                    \
+  if (SeExpr2debug)                          \
+    SeExpr2_reduce_print (SeExpr2ssp, SeExpr2vsp, SeExpr2lsp, Rule); \
+} while (0)
 
 /* Nonzero means print parse trace.  It is left uninitialized so that
    multiple parsers can coexist.  */
@@ -1252,7 +1190,7 @@ int SeExpr2debug;
 
 
 /* SeExprYYINITDEPTH -- initial size of the parser's stacks.  */
-#ifndef	SeExprYYINITDEPTH
+#ifndef SeExprYYINITDEPTH
 # define SeExprYYINITDEPTH 200
 #endif
 
@@ -1272,20 +1210,13 @@ int SeExpr2debug;
 
 # ifndef SeExpr2strlen
 #  if defined __GLIBC__ && defined _STRING_H
-#   define SeExpr2strlen strlen
+#   define SeExpr2strlen(S) (SeExprYY_CAST (SeExprYYPTRDIFF_T, strlen (S)))
 #  else
 /* Return the length of SeExprYYSTR.  */
-#if (defined __STDC__ || defined __C99__FUNC__ \
-     || defined __cplusplus || defined _MSC_VER)
-static SeExprYYSIZE_T
+static SeExprYYPTRDIFF_T
 SeExpr2strlen (const char *SeExpr2str)
-#else
-static SeExprYYSIZE_T
-SeExpr2strlen (SeExpr2str)
-    const char *SeExpr2str;
-#endif
 {
-  SeExprYYSIZE_T SeExpr2len;
+  SeExprYYPTRDIFF_T SeExpr2len;
   for (SeExpr2len = 0; SeExpr2str[SeExpr2len]; SeExpr2len++)
     continue;
   return SeExpr2len;
@@ -1299,16 +1230,8 @@ SeExpr2strlen (SeExpr2str)
 #  else
 /* Copy SeExprYYSRC to SeExprYYDEST, returning the address of the terminating '\0' in
    SeExprYYDEST.  */
-#if (defined __STDC__ || defined __C99__FUNC__ \
-     || defined __cplusplus || defined _MSC_VER)
 static char *
 SeExpr2stpcpy (char *SeExpr2dest, const char *SeExpr2src)
-#else
-static char *
-SeExpr2stpcpy (SeExpr2dest, SeExpr2src)
-    char *SeExpr2dest;
-    const char *SeExpr2src;
-#endif
 {
   char *SeExpr2d = SeExpr2dest;
   const char *SeExpr2s = SeExpr2src;
@@ -1329,43 +1252,46 @@ SeExpr2stpcpy (SeExpr2dest, SeExpr2src)
    backslash-backslash).  SeExprYYSTR is taken from SeExpr2tname.  If SeExprYYRES is
    null, do not copy; instead, return the length of what the result
    would have been.  */
-static SeExprYYSIZE_T
+static SeExprYYPTRDIFF_T
 SeExpr2tnamerr (char *SeExpr2res, const char *SeExpr2str)
 {
   if (*SeExpr2str == '"')
     {
-      SeExprYYSIZE_T SeExpr2n = 0;
+      SeExprYYPTRDIFF_T SeExpr2n = 0;
       char const *SeExpr2p = SeExpr2str;
 
       for (;;)
-	switch (*++SeExpr2p)
-	  {
-	  case '\'':
-	  case ',':
-	    goto do_not_strip_quotes;
+        switch (*++SeExpr2p)
+          {
+          case '\'':
+          case ',':
+            goto do_not_strip_quotes;
 
-	  case '\\':
-	    if (*++SeExpr2p != '\\')
-	      goto do_not_strip_quotes;
-	    /* Fall through.  */
-	  default:
-	    if (SeExpr2res)
-	      SeExpr2res[SeExpr2n] = *SeExpr2p;
-	    SeExpr2n++;
-	    break;
+          case '\\':
+            if (*++SeExpr2p != '\\')
+              goto do_not_strip_quotes;
+            else
+              goto append;
 
-	  case '"':
-	    if (SeExpr2res)
-	      SeExpr2res[SeExpr2n] = '\0';
-	    return SeExpr2n;
-	  }
+          append:
+          default:
+            if (SeExpr2res)
+              SeExpr2res[SeExpr2n] = *SeExpr2p;
+            SeExpr2n++;
+            break;
+
+          case '"':
+            if (SeExpr2res)
+              SeExpr2res[SeExpr2n] = '\0';
+            return SeExpr2n;
+          }
     do_not_strip_quotes: ;
     }
 
-  if (! SeExpr2res)
+  if (SeExpr2res)
+    return SeExpr2stpcpy (SeExpr2res, SeExpr2str) - SeExpr2res;
+  else
     return SeExpr2strlen (SeExpr2str);
-
-  return SeExpr2stpcpy (SeExpr2res, SeExpr2str) - SeExpr2res;
 }
 # endif
 
@@ -1378,25 +1304,21 @@ SeExpr2tnamerr (char *SeExpr2res, const char *SeExpr2str)
    *SeExprYYMSG_ALLOC to the required number of bytes.  Return 2 if the
    required number of bytes is too large to store.  */
 static int
-SeExpr2syntax_error (SeExprYYSIZE_T *SeExpr2msg_alloc, char **SeExpr2msg,
-                SeExpr2type_int16 *SeExpr2ssp, int SeExpr2token)
+SeExpr2syntax_error (SeExprYYPTRDIFF_T *SeExpr2msg_alloc, char **SeExpr2msg,
+                SeExpr2_state_t *SeExpr2ssp, int SeExpr2token)
 {
-  SeExprYYSIZE_T SeExpr2size0 = SeExpr2tnamerr (SeExprYY_NULL, SeExpr2tname[SeExpr2token]);
-  SeExprYYSIZE_T SeExpr2size = SeExpr2size0;
   enum { SeExprYYERROR_VERBOSE_ARGS_MAXIMUM = 5 };
   /* Internationalized format string. */
-  const char *SeExpr2format = SeExprYY_NULL;
-  /* Arguments of SeExpr2format. */
+  const char *SeExpr2format = SeExprYY_NULLPTR;
+  /* Arguments of SeExpr2format: reported tokens (one for the "unexpected",
+     one per "expected"). */
   char const *SeExpr2arg[SeExprYYERROR_VERBOSE_ARGS_MAXIMUM];
-  /* Number of reported tokens (one for the "unexpected", one per
-     "expected"). */
+  /* Actual size of SeExprYYARG. */
   int SeExpr2count = 0;
+  /* Cumulated lengths of SeExprYYARG.  */
+  SeExprYYPTRDIFF_T SeExpr2size = 0;
 
   /* There are many possibilities here to consider:
-     - Assume SeExprYYFAIL is not used.  It's too flawed to consider.  See
-       <http://lists.gnu.org/archive/html/bison-patches/2009-12/msg00024.html>
-       for details.  SeExprYYERROR is fine as it does not invoke this
-       function.
      - If this state is a consistent state with a default action, then
        the only way this function was invoked is if the default action
        is an error action.  In that case, don't check for expected
@@ -1421,7 +1343,9 @@ SeExpr2syntax_error (SeExprYYSIZE_T *SeExpr2msg_alloc, char **SeExpr2msg,
   */
   if (SeExpr2token != SeExprYYEMPTY)
     {
-      int SeExpr2n = SeExpr2pact[*SeExpr2ssp];
+      int SeExpr2n = SeExpr2pact[+*SeExpr2ssp];
+      SeExprYYPTRDIFF_T SeExpr2size0 = SeExpr2tnamerr (SeExprYY_NULLPTR, SeExpr2tname[SeExpr2token]);
+      SeExpr2size = SeExpr2size0;
       SeExpr2arg[SeExpr2count++] = SeExpr2tname[SeExpr2token];
       if (!SeExpr2pact_value_is_default (SeExpr2n))
         {
@@ -1446,11 +1370,12 @@ SeExpr2syntax_error (SeExprYYSIZE_T *SeExpr2msg_alloc, char **SeExpr2msg,
                   }
                 SeExpr2arg[SeExpr2count++] = SeExpr2tname[SeExpr2x];
                 {
-                  SeExprYYSIZE_T SeExpr2size1 = SeExpr2size + SeExpr2tnamerr (SeExprYY_NULL, SeExpr2tname[SeExpr2x]);
-                  if (! (SeExpr2size <= SeExpr2size1
-                         && SeExpr2size1 <= SeExprYYSTACK_ALLOC_MAXIMUM))
+                  SeExprYYPTRDIFF_T SeExpr2size1
+                    = SeExpr2size + SeExpr2tnamerr (SeExprYY_NULLPTR, SeExpr2tname[SeExpr2x]);
+                  if (SeExpr2size <= SeExpr2size1 && SeExpr2size1 <= SeExprYYSTACK_ALLOC_MAXIMUM)
+                    SeExpr2size = SeExpr2size1;
+                  else
                     return 2;
-                  SeExpr2size = SeExpr2size1;
                 }
               }
         }
@@ -1462,6 +1387,7 @@ SeExpr2syntax_error (SeExprYYSIZE_T *SeExpr2msg_alloc, char **SeExpr2msg,
       case N:                               \
         SeExpr2format = S;                       \
       break
+    default: /* Avoid compiler warnings. */
       SeExprYYCASE_(0, SeExprYY_("syntax error"));
       SeExprYYCASE_(1, SeExprYY_("syntax error, unexpected %s"));
       SeExprYYCASE_(2, SeExprYY_("syntax error, unexpected %s, expecting %s"));
@@ -1472,10 +1398,13 @@ SeExpr2syntax_error (SeExprYYSIZE_T *SeExpr2msg_alloc, char **SeExpr2msg,
     }
 
   {
-    SeExprYYSIZE_T SeExpr2size1 = SeExpr2size + SeExpr2strlen (SeExpr2format);
-    if (! (SeExpr2size <= SeExpr2size1 && SeExpr2size1 <= SeExprYYSTACK_ALLOC_MAXIMUM))
+    /* Don't count the "%s"s in the final size, but reserve room for
+       the terminator.  */
+    SeExprYYPTRDIFF_T SeExpr2size1 = SeExpr2size + (SeExpr2strlen (SeExpr2format) - 2 * SeExpr2count) + 1;
+    if (SeExpr2size <= SeExpr2size1 && SeExpr2size1 <= SeExprYYSTACK_ALLOC_MAXIMUM)
+      SeExpr2size = SeExpr2size1;
+    else
       return 2;
-    SeExpr2size = SeExpr2size1;
   }
 
   if (*SeExpr2msg_alloc < SeExpr2size)
@@ -1501,8 +1430,8 @@ SeExpr2syntax_error (SeExprYYSIZE_T *SeExpr2msg_alloc, char **SeExpr2msg,
         }
       else
         {
-          SeExpr2p++;
-          SeExpr2format++;
+          ++SeExpr2p;
+          ++SeExpr2format;
         }
   }
   return 0;
@@ -1513,33 +1442,18 @@ SeExpr2syntax_error (SeExprYYSIZE_T *SeExpr2msg_alloc, char **SeExpr2msg,
 | Release the memory associated to this symbol.  |
 `-----------------------------------------------*/
 
-/*ARGSUSED*/
-#if (defined __STDC__ || defined __C99__FUNC__ \
-     || defined __cplusplus || defined _MSC_VER)
 static void
 SeExpr2destruct (const char *SeExpr2msg, int SeExpr2type, SeExprYYSTYPE *SeExpr2valuep, SeExprYYLTYPE *SeExpr2locationp)
-#else
-static void
-SeExpr2destruct (SeExpr2msg, SeExpr2type, SeExpr2valuep, SeExpr2locationp)
-    const char *SeExpr2msg;
-    int SeExpr2type;
-    SeExprYYSTYPE *SeExpr2valuep;
-    SeExprYYLTYPE *SeExpr2locationp;
-#endif
 {
   SeExprYYUSE (SeExpr2valuep);
   SeExprYYUSE (SeExpr2locationp);
-
   if (!SeExpr2msg)
     SeExpr2msg = "Deleting";
   SeExprYY_SYMBOL_PRINT (SeExpr2msg, SeExpr2type, SeExpr2valuep, SeExpr2locationp);
 
-  switch (SeExpr2type)
-    {
-
-      default:
-        break;
-    }
+  SeExprYY_IGNORE_MAYBE_UNINITIALIZED_BEGIN
+  SeExprYYUSE (SeExpr2type);
+  SeExprYY_IGNORE_MAYBE_UNINITIALIZED_END
 }
 
 
@@ -1548,26 +1462,14 @@ SeExpr2destruct (SeExpr2msg, SeExpr2type, SeExpr2valuep, SeExpr2locationp)
 /* The lookahead symbol.  */
 int SeExpr2char;
 
-
-#ifndef SeExprYY_IGNORE_MAYBE_UNINITIALIZED_BEGIN
-# define SeExprYY_IGNORE_MAYBE_UNINITIALIZED_BEGIN
-# define SeExprYY_IGNORE_MAYBE_UNINITIALIZED_END
-#endif
-#ifndef SeExprYY_INITIAL_VALUE
-# define SeExprYY_INITIAL_VALUE(Value) /* Nothing. */
-#endif
-
 /* The semantic value of the lookahead symbol.  */
-SeExprYYSTYPE SeExpr2lval SeExprYY_INITIAL_VALUE(SeExpr2val_default);
-
+SeExprYYSTYPE SeExpr2lval;
 /* Location data for the lookahead symbol.  */
 SeExprYYLTYPE SeExpr2lloc
 # if defined SeExprYYLTYPE_IS_TRIVIAL && SeExprYYLTYPE_IS_TRIVIAL
   = { 1, 1, 1, 1 }
 # endif
 ;
-
-
 /* Number of syntax errors so far.  */
 int SeExpr2nerrs;
 
@@ -1576,44 +1478,25 @@ int SeExpr2nerrs;
 | SeExpr2parse.  |
 `----------*/
 
-#ifdef SeExprYYPARSE_PARAM
-#if (defined __STDC__ || defined __C99__FUNC__ \
-     || defined __cplusplus || defined _MSC_VER)
-int
-SeExpr2parse (void *SeExprYYPARSE_PARAM)
-#else
-int
-SeExpr2parse (SeExprYYPARSE_PARAM)
-    void *SeExprYYPARSE_PARAM;
-#endif
-#else /* ! SeExprYYPARSE_PARAM */
-#if (defined __STDC__ || defined __C99__FUNC__ \
-     || defined __cplusplus || defined _MSC_VER)
 int
 SeExpr2parse (void)
-#else
-int
-SeExpr2parse ()
-
-#endif
-#endif
 {
-    int SeExpr2state;
+    SeExpr2_state_fast_t SeExpr2state;
     /* Number of tokens to shift before error messages enabled.  */
     int SeExpr2errstatus;
 
     /* The stacks and their tools:
-       `SeExpr2ss': related to states.
-       `SeExpr2vs': related to semantic values.
-       `SeExpr2ls': related to locations.
+       'SeExpr2ss': related to states.
+       'SeExpr2vs': related to semantic values.
+       'SeExpr2ls': related to locations.
 
        Refer to the stacks through separate pointers, to allow SeExpr2overflow
        to reallocate them elsewhere.  */
 
     /* The state stack.  */
-    SeExpr2type_int16 SeExpr2ssa[SeExprYYINITDEPTH];
-    SeExpr2type_int16 *SeExpr2ss;
-    SeExpr2type_int16 *SeExpr2ssp;
+    SeExpr2_state_t SeExpr2ssa[SeExprYYINITDEPTH];
+    SeExpr2_state_t *SeExpr2ss;
+    SeExpr2_state_t *SeExpr2ssp;
 
     /* The semantic value stack.  */
     SeExprYYSTYPE SeExpr2vsa[SeExprYYINITDEPTH];
@@ -1628,7 +1511,7 @@ SeExpr2parse ()
     /* The locations where the error started and ended.  */
     SeExprYYLTYPE SeExpr2error_range[3];
 
-    SeExprYYSIZE_T SeExpr2stacksize;
+    SeExprYYPTRDIFF_T SeExpr2stacksize;
 
   int SeExpr2n;
   int SeExpr2result;
@@ -1643,7 +1526,7 @@ SeExpr2parse ()
   /* Buffer for error messages, and its allocated size.  */
   char SeExpr2msgbuf[128];
   char *SeExpr2msg = SeExpr2msgbuf;
-  SeExprYYSIZE_T SeExpr2msg_alloc = sizeof SeExpr2msgbuf;
+  SeExprYYPTRDIFF_T SeExpr2msg_alloc = sizeof SeExpr2msgbuf;
 #endif
 
 #define SeExprYYPOPSTACK(N)   (SeExpr2vsp -= (N), SeExpr2ssp -= (N), SeExpr2lsp -= (N))
@@ -1666,95 +1549,104 @@ SeExpr2parse ()
   SeExpr2lsp[0] = SeExpr2lloc;
   goto SeExpr2setstate;
 
+
 /*------------------------------------------------------------.
-| SeExpr2newstate -- Push a new state, which is found in SeExpr2state.  |
+| SeExpr2newstate -- push a new state, which is found in SeExpr2state.  |
 `------------------------------------------------------------*/
- SeExpr2newstate:
+SeExpr2newstate:
   /* In all cases, when you get here, the value and location stacks
      have just been pushed.  So pushing a state here evens the stacks.  */
   SeExpr2ssp++;
 
- SeExpr2setstate:
-  *SeExpr2ssp = SeExpr2state;
+
+/*--------------------------------------------------------------------.
+| SeExpr2setstate -- set current state (the top of the stack) to SeExpr2state.  |
+`--------------------------------------------------------------------*/
+SeExpr2setstate:
+  SeExprYYDPRINTF ((stderr, "Entering state %d\n", SeExpr2state));
+  SeExprYY_ASSERT (0 <= SeExpr2state && SeExpr2state < SeExprYYNSTATES);
+  SeExprYY_IGNORE_USELESS_CAST_BEGIN
+  *SeExpr2ssp = SeExprYY_CAST (SeExpr2_state_t, SeExpr2state);
+  SeExprYY_IGNORE_USELESS_CAST_END
 
   if (SeExpr2ss + SeExpr2stacksize - 1 <= SeExpr2ssp)
+#if !defined SeExpr2overflow && !defined SeExprYYSTACK_RELOCATE
+    goto SeExpr2exhaustedlab;
+#else
     {
       /* Get the current used size of the three stacks, in elements.  */
-      SeExprYYSIZE_T SeExpr2size = SeExpr2ssp - SeExpr2ss + 1;
+      SeExprYYPTRDIFF_T SeExpr2size = SeExpr2ssp - SeExpr2ss + 1;
 
-#ifdef SeExpr2overflow
+# if defined SeExpr2overflow
       {
-	/* Give user a chance to reallocate the stack.  Use copies of
-	   these so that the &'s don't force the real ones into
-	   memory.  */
-	SeExprYYSTYPE *SeExpr2vs1 = SeExpr2vs;
-	SeExpr2type_int16 *SeExpr2ss1 = SeExpr2ss;
-	SeExprYYLTYPE *SeExpr2ls1 = SeExpr2ls;
+        /* Give user a chance to reallocate the stack.  Use copies of
+           these so that the &'s don't force the real ones into
+           memory.  */
+        SeExpr2_state_t *SeExpr2ss1 = SeExpr2ss;
+        SeExprYYSTYPE *SeExpr2vs1 = SeExpr2vs;
+        SeExprYYLTYPE *SeExpr2ls1 = SeExpr2ls;
 
-	/* Each stack pointer address is followed by the size of the
-	   data in use in that stack, in bytes.  This used to be a
-	   conditional around just the two extra args, but that might
-	   be undefined if SeExpr2overflow is a macro.  */
-	SeExpr2overflow (SeExprYY_("memory exhausted"),
-		    &SeExpr2ss1, SeExpr2size * sizeof (*SeExpr2ssp),
-		    &SeExpr2vs1, SeExpr2size * sizeof (*SeExpr2vsp),
-		    &SeExpr2ls1, SeExpr2size * sizeof (*SeExpr2lsp),
-		    &SeExpr2stacksize);
-
-	SeExpr2ls = SeExpr2ls1;
-	SeExpr2ss = SeExpr2ss1;
-	SeExpr2vs = SeExpr2vs1;
+        /* Each stack pointer address is followed by the size of the
+           data in use in that stack, in bytes.  This used to be a
+           conditional around just the two extra args, but that might
+           be undefined if SeExpr2overflow is a macro.  */
+        SeExpr2overflow (SeExprYY_("memory exhausted"),
+                    &SeExpr2ss1, SeExpr2size * SeExprYYSIZEOF (*SeExpr2ssp),
+                    &SeExpr2vs1, SeExpr2size * SeExprYYSIZEOF (*SeExpr2vsp),
+                    &SeExpr2ls1, SeExpr2size * SeExprYYSIZEOF (*SeExpr2lsp),
+                    &SeExpr2stacksize);
+        SeExpr2ss = SeExpr2ss1;
+        SeExpr2vs = SeExpr2vs1;
+        SeExpr2ls = SeExpr2ls1;
       }
-#else /* no SeExpr2overflow */
-# ifndef SeExprYYSTACK_RELOCATE
-      goto SeExpr2exhaustedlab;
-# else
+# else /* defined SeExprYYSTACK_RELOCATE */
       /* Extend the stack our own way.  */
       if (SeExprYYMAXDEPTH <= SeExpr2stacksize)
-	goto SeExpr2exhaustedlab;
+        goto SeExpr2exhaustedlab;
       SeExpr2stacksize *= 2;
       if (SeExprYYMAXDEPTH < SeExpr2stacksize)
-	SeExpr2stacksize = SeExprYYMAXDEPTH;
+        SeExpr2stacksize = SeExprYYMAXDEPTH;
 
       {
-	SeExpr2type_int16 *SeExpr2ss1 = SeExpr2ss;
-	union SeExpr2alloc *SeExpr2ptr =
-	  (union SeExpr2alloc *) SeExprYYSTACK_ALLOC (SeExprYYSTACK_BYTES (SeExpr2stacksize));
-	if (! SeExpr2ptr)
-	  goto SeExpr2exhaustedlab;
-	SeExprYYSTACK_RELOCATE (SeExpr2ss_alloc, SeExpr2ss);
-	SeExprYYSTACK_RELOCATE (SeExpr2vs_alloc, SeExpr2vs);
-	SeExprYYSTACK_RELOCATE (SeExpr2ls_alloc, SeExpr2ls);
-#  undef SeExprYYSTACK_RELOCATE
-	if (SeExpr2ss1 != SeExpr2ssa)
-	  SeExprYYSTACK_FREE (SeExpr2ss1);
+        SeExpr2_state_t *SeExpr2ss1 = SeExpr2ss;
+        union SeExpr2alloc *SeExpr2ptr =
+          SeExprYY_CAST (union SeExpr2alloc *,
+                   SeExprYYSTACK_ALLOC (SeExprYY_CAST (SeExprYYSIZE_T, SeExprYYSTACK_BYTES (SeExpr2stacksize))));
+        if (! SeExpr2ptr)
+          goto SeExpr2exhaustedlab;
+        SeExprYYSTACK_RELOCATE (SeExpr2ss_alloc, SeExpr2ss);
+        SeExprYYSTACK_RELOCATE (SeExpr2vs_alloc, SeExpr2vs);
+        SeExprYYSTACK_RELOCATE (SeExpr2ls_alloc, SeExpr2ls);
+# undef SeExprYYSTACK_RELOCATE
+        if (SeExpr2ss1 != SeExpr2ssa)
+          SeExprYYSTACK_FREE (SeExpr2ss1);
       }
 # endif
-#endif /* no SeExpr2overflow */
 
       SeExpr2ssp = SeExpr2ss + SeExpr2size - 1;
       SeExpr2vsp = SeExpr2vs + SeExpr2size - 1;
       SeExpr2lsp = SeExpr2ls + SeExpr2size - 1;
 
-      SeExprYYDPRINTF ((stderr, "Stack size increased to %lu\n",
-		  (unsigned long int) SeExpr2stacksize));
+      SeExprYY_IGNORE_USELESS_CAST_BEGIN
+      SeExprYYDPRINTF ((stderr, "Stack size increased to %ld\n",
+                  SeExprYY_CAST (long, SeExpr2stacksize)));
+      SeExprYY_IGNORE_USELESS_CAST_END
 
       if (SeExpr2ss + SeExpr2stacksize - 1 <= SeExpr2ssp)
-	SeExprYYABORT;
+        SeExprYYABORT;
     }
-
-  SeExprYYDPRINTF ((stderr, "Entering state %d\n", SeExpr2state));
+#endif /* !defined SeExpr2overflow && !defined SeExprYYSTACK_RELOCATE */
 
   if (SeExpr2state == SeExprYYFINAL)
     SeExprYYACCEPT;
 
   goto SeExpr2backup;
 
+
 /*-----------.
 | SeExpr2backup.  |
 `-----------*/
 SeExpr2backup:
-
   /* Do appropriate processing given the current state.  Read a
      lookahead token if we need one and don't already have one.  */
 
@@ -1769,7 +1661,7 @@ SeExpr2backup:
   if (SeExpr2char == SeExprYYEMPTY)
     {
       SeExprYYDPRINTF ((stderr, "Reading a token: "));
-      SeExpr2char = SeExprYYLEX;
+      SeExpr2char = SeExpr2lex ();
     }
 
   if (SeExpr2char <= SeExprYYEOF)
@@ -1804,15 +1696,14 @@ SeExpr2backup:
 
   /* Shift the lookahead token.  */
   SeExprYY_SYMBOL_PRINT ("Shifting", SeExpr2token, &SeExpr2lval, &SeExpr2lloc);
-
-  /* Discard the shifted token.  */
-  SeExpr2char = SeExprYYEMPTY;
-
   SeExpr2state = SeExpr2n;
   SeExprYY_IGNORE_MAYBE_UNINITIALIZED_BEGIN
   *++SeExpr2vsp = SeExpr2lval;
   SeExprYY_IGNORE_MAYBE_UNINITIALIZED_END
   *++SeExpr2lsp = SeExpr2lloc;
+
+  /* Discard the shifted token.  */
+  SeExpr2char = SeExprYYEMPTY;
   goto SeExpr2newstate;
 
 
@@ -1827,14 +1718,14 @@ SeExpr2default:
 
 
 /*-----------------------------.
-| SeExpr2reduce -- Do a reduction.  |
+| SeExpr2reduce -- do a reduction.  |
 `-----------------------------*/
 SeExpr2reduce:
   /* SeExpr2n is the number of a rule to reduce with.  */
   SeExpr2len = SeExpr2r2[SeExpr2n];
 
   /* If SeExprYYLEN is nonzero, implement the default value of the action:
-     `$$ = $1'.
+     '$$ = $1'.
 
      Otherwise, the following line sets SeExprYYVAL to garbage.
      This behavior is undocumented and Bison
@@ -1843,585 +1734,586 @@ SeExpr2reduce:
      GCC warning that SeExprYYVAL may be used uninitialized.  */
   SeExpr2val = SeExpr2vsp[1-SeExpr2len];
 
-  /* Default location.  */
+  /* Default location. */
   SeExprYYLLOC_DEFAULT (SeExpr2loc, (SeExpr2lsp - SeExpr2len), SeExpr2len);
+  SeExpr2error_range[1] = SeExpr2loc;
   SeExprYY_REDUCE_PRINT (SeExpr2n);
   switch (SeExpr2n)
     {
-        case 2:
-/* Line 1792 of yacc.c  */
-#line 132 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParser.y"
-    { ParseResult = (SeExpr2vsp[(1) - (2)].n); ParseResult->setPosition((SeExpr2loc).first_column, (SeExpr2loc).last_column);
-                                  ParseResult->addChild((SeExpr2vsp[(2) - (2)].n)); }
+  case 2:
+#line 132 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+                                { ParseResult = (SeExpr2vsp[-1].n); ParseResult->setPosition((SeExpr2loc).first_column, (SeExpr2loc).last_column);
+                                  ParseResult->addChild((SeExpr2vsp[0].n)); }
+#line 1748 "y.tab.c"
     break;
 
   case 3:
-/* Line 1792 of yacc.c  */
-#line 134 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParser.y"
-    { ParseResult = NODE((SeExpr2loc).first_column, (SeExpr2loc).last_column, ModuleNode);
-                                  ParseResult->addChild((SeExpr2vsp[(1) - (1)].n)); }
+#line 134 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+                                { ParseResult = NODE((SeExpr2loc).first_column, (SeExpr2loc).last_column, ModuleNode);
+                                  ParseResult->addChild((SeExpr2vsp[0].n)); }
+#line 1755 "y.tab.c"
     break;
 
   case 4:
-/* Line 1792 of yacc.c  */
-#line 139 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParser.y"
-    { (SeExpr2val.n) = NODE((SeExpr2loc).first_column, (SeExpr2loc).last_column, ModuleNode); (SeExpr2val.n)->addChild((SeExpr2vsp[(1) - (1)].n)); }
+#line 139 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+                                { (SeExpr2val.n) = NODE((SeExpr2loc).first_column, (SeExpr2loc).last_column, ModuleNode); (SeExpr2val.n)->addChild((SeExpr2vsp[0].n)); }
+#line 1761 "y.tab.c"
     break;
 
   case 5:
-/* Line 1792 of yacc.c  */
-#line 141 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParser.y"
-    { (SeExpr2val.n) = (SeExpr2vsp[(1) - (2)].n); (SeExpr2val.n)->setPosition((SeExpr2loc).first_column, (SeExpr2loc).last_column);
-                                  (SeExpr2val.n)->addChild((SeExpr2vsp[(2) - (2)].n)); }
+#line 141 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+                                { (SeExpr2val.n) = (SeExpr2vsp[-1].n); (SeExpr2val.n)->setPosition((SeExpr2loc).first_column, (SeExpr2loc).last_column);
+                                  (SeExpr2val.n)->addChild((SeExpr2vsp[0].n)); }
+#line 1768 "y.tab.c"
     break;
 
   case 6:
-/* Line 1792 of yacc.c  */
-#line 147 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParser.y"
-    { SeExpr2::ExprType type = SeExpr2::ExprType((SeExpr2vsp[(2) - (6)].t).type, (SeExpr2vsp[(2) - (6)].t).dim, (SeExpr2vsp[(2) - (6)].t).lifetime);
+#line 147 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+                                { SeExpr2::ExprType type = SeExpr2::ExprType((SeExpr2vsp[-4].t).type, (SeExpr2vsp[-4].t).dim, (SeExpr2vsp[-4].t).lifetime);
                                     SeExpr2::ExprPrototypeNode * prototype =
-                                        (SeExpr2::ExprPrototypeNode*)NODE2((SeExpr2loc).first_column, (SeExpr2loc).last_column, PrototypeNode, (SeExpr2vsp[(3) - (6)].s), type);
-                                  prototype->addArgTypes((SeExpr2vsp[(5) - (6)].n));
-                                  Forget((SeExpr2vsp[(5) - (6)].n));
+                                        (SeExpr2::ExprPrototypeNode*)NODE2((SeExpr2loc).first_column, (SeExpr2loc).last_column, PrototypeNode, (SeExpr2vsp[-3].s), type);
+                                  prototype->addArgTypes((SeExpr2vsp[-1].n));
+                                  Forget((SeExpr2vsp[-1].n));
                                   (SeExpr2val.n) = prototype;
-                                  free((SeExpr2vsp[(3) - (6)].s)); }
+                                  free((SeExpr2vsp[-3].s)); }
+#line 1780 "y.tab.c"
     break;
 
   case 7:
-/* Line 1792 of yacc.c  */
-#line 155 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParser.y"
-    { SeExpr2::ExprType type = SeExpr2::ExprType((SeExpr2vsp[(2) - (9)].t).type, (SeExpr2vsp[(2) - (9)].t).dim, (SeExpr2vsp[(2) - (9)].t).lifetime);
+#line 155 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+                                { SeExpr2::ExprType type = SeExpr2::ExprType((SeExpr2vsp[-7].t).type, (SeExpr2vsp[-7].t).dim, (SeExpr2vsp[-7].t).lifetime);
                                   SeExpr2::ExprPrototypeNode * prototype =
-                                      (SeExpr2::ExprPrototypeNode*)NODE2((SeExpr2loc).first_column, (SeExpr2lsp[(6) - (9)]).last_column, PrototypeNode, (SeExpr2vsp[(3) - (9)].s), type);
-                                  prototype->addArgs((SeExpr2vsp[(5) - (9)].n));
-                                  Forget((SeExpr2vsp[(5) - (9)].n));
-                                  (SeExpr2val.n) = NODE2((SeExpr2loc).first_column, (SeExpr2loc).last_column, LocalFunctionNode, prototype, (SeExpr2vsp[(8) - (9)].n));
-                                  free((SeExpr2vsp[(3) - (9)].s)); }
+                                      (SeExpr2::ExprPrototypeNode*)NODE2((SeExpr2loc).first_column, (SeExpr2lsp[-3]).last_column, PrototypeNode, (SeExpr2vsp[-6].s), type);
+                                  prototype->addArgs((SeExpr2vsp[-4].n));
+                                  Forget((SeExpr2vsp[-4].n));
+                                  (SeExpr2val.n) = NODE2((SeExpr2loc).first_column, (SeExpr2loc).last_column, LocalFunctionNode, prototype, (SeExpr2vsp[-1].n));
+                                  free((SeExpr2vsp[-6].s)); }
+#line 1792 "y.tab.c"
     break;
 
   case 8:
-/* Line 1792 of yacc.c  */
-#line 163 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParser.y"
-    { SeExpr2::ExprPrototypeNode * prototype =
-                                        (SeExpr2::ExprPrototypeNode*)NODE1((SeExpr2loc).first_column, (SeExpr2lsp[(5) - (8)]).last_column, PrototypeNode, (SeExpr2vsp[(2) - (8)].s));
-                                  prototype->addArgs((SeExpr2vsp[(4) - (8)].n));
-                                  Forget((SeExpr2vsp[(4) - (8)].n));
-                                  (SeExpr2val.n) = NODE2((SeExpr2loc).first_column, (SeExpr2loc).last_column, LocalFunctionNode, prototype, (SeExpr2vsp[(7) - (8)].n));
-                                  free((SeExpr2vsp[(2) - (8)].s)); }
+#line 163 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+                                { SeExpr2::ExprPrototypeNode * prototype =
+                                        (SeExpr2::ExprPrototypeNode*)NODE1((SeExpr2loc).first_column, (SeExpr2lsp[-3]).last_column, PrototypeNode, (SeExpr2vsp[-6].s));
+                                  prototype->addArgs((SeExpr2vsp[-4].n));
+                                  Forget((SeExpr2vsp[-4].n));
+                                  (SeExpr2val.n) = NODE2((SeExpr2loc).first_column, (SeExpr2loc).last_column, LocalFunctionNode, prototype, (SeExpr2vsp[-1].n));
+                                  free((SeExpr2vsp[-6].s)); }
+#line 1803 "y.tab.c"
     break;
 
   case 9:
-/* Line 1792 of yacc.c  */
-#line 172 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParser.y"
-    { (SeExpr2val.l) = SeExpr2::ExprType::ltVARYING; }
+#line 172 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+                                { (SeExpr2val.l) = SeExpr2::ExprType::ltVARYING; }
+#line 1809 "y.tab.c"
     break;
 
   case 10:
-/* Line 1792 of yacc.c  */
-#line 173 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParser.y"
-    { (SeExpr2val.l) = SeExpr2::ExprType::ltCONSTANT; }
+#line 173 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+                                { (SeExpr2val.l) = SeExpr2::ExprType::ltCONSTANT; }
+#line 1815 "y.tab.c"
     break;
 
   case 11:
-/* Line 1792 of yacc.c  */
-#line 174 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParser.y"
-    { (SeExpr2val.l) = SeExpr2::ExprType::ltUNIFORM; }
+#line 174 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+                                { (SeExpr2val.l) = SeExpr2::ExprType::ltUNIFORM; }
+#line 1821 "y.tab.c"
     break;
 
   case 12:
-/* Line 1792 of yacc.c  */
-#line 175 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParser.y"
-    { (SeExpr2val.l) = SeExpr2::ExprType::ltVARYING; }
+#line 175 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+                                { (SeExpr2val.l) = SeExpr2::ExprType::ltVARYING; }
+#line 1827 "y.tab.c"
     break;
 
   case 13:
-/* Line 1792 of yacc.c  */
-#line 176 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParser.y"
-    { (SeExpr2val.l) = SeExpr2::ExprType::ltERROR; }
+#line 176 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+                                { (SeExpr2val.l) = SeExpr2::ExprType::ltERROR; }
+#line 1833 "y.tab.c"
     break;
 
   case 14:
-/* Line 1792 of yacc.c  */
-#line 180 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParser.y"
-    {(SeExpr2val.t).type     = SeExpr2::ExprType::tFP;
+#line 180 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+                                 {(SeExpr2val.t).type     = SeExpr2::ExprType::tFP;
                                   (SeExpr2val.t).dim      = 1;
-                                  (SeExpr2val.t).lifetime = (SeExpr2vsp[(2) - (2)].l); }
+                                  (SeExpr2val.t).lifetime = (SeExpr2vsp[0].l); }
+#line 1841 "y.tab.c"
     break;
 
   case 15:
-/* Line 1792 of yacc.c  */
-#line 184 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParser.y"
-    { (SeExpr2val.t).type = ((SeExpr2vsp[(3) - (5)].d) > 0 ? SeExpr2::ExprType::tFP : SeExpr2::ExprType::tERROR);
+#line 184 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+                                { (SeExpr2val.t).type = ((SeExpr2vsp[-2].d) > 0 ? SeExpr2::ExprType::tFP : SeExpr2::ExprType::tERROR);
                                   //TODO: This causes an error but does not report it to user. Change this.
-                                  (SeExpr2val.t).dim  = ((SeExpr2vsp[(3) - (5)].d) > 0 ? (SeExpr2vsp[(3) - (5)].d) : 0);
-                                  (SeExpr2val.t).lifetime = (SeExpr2vsp[(5) - (5)].l); }
+                                  (SeExpr2val.t).dim  = ((SeExpr2vsp[-2].d) > 0 ? (SeExpr2vsp[-2].d) : 0);
+                                  (SeExpr2val.t).lifetime = (SeExpr2vsp[0].l); }
+#line 1850 "y.tab.c"
     break;
 
   case 16:
-/* Line 1792 of yacc.c  */
-#line 188 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParser.y"
-    { (SeExpr2val.t).type = SeExpr2::ExprType::tSTRING;
+#line 188 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+                                { (SeExpr2val.t).type = SeExpr2::ExprType::tSTRING;
                                   (SeExpr2val.t).dim  = 1;
-                                  (SeExpr2val.t).lifetime = (SeExpr2vsp[(2) - (2)].l); }
+                                  (SeExpr2val.t).lifetime = (SeExpr2vsp[0].l); }
+#line 1858 "y.tab.c"
     break;
 
   case 17:
-/* Line 1792 of yacc.c  */
-#line 194 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParser.y"
-    { (SeExpr2val.n) = NODE((SeExpr2loc).first_column, (SeExpr2loc).last_column, Node); }
+#line 194 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+                                { (SeExpr2val.n) = NODE((SeExpr2loc).first_column, (SeExpr2loc).last_column, Node); }
+#line 1864 "y.tab.c"
     break;
 
   case 18:
-/* Line 1792 of yacc.c  */
-#line 195 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParser.y"
-    { (SeExpr2val.n) = (SeExpr2vsp[(1) - (1)].n); }
+#line 195 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+                                { (SeExpr2val.n) = (SeExpr2vsp[0].n); }
+#line 1870 "y.tab.c"
     break;
 
   case 19:
-/* Line 1792 of yacc.c  */
-#line 199 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParser.y"
-    { (SeExpr2val.n) = NODE((SeExpr2loc).first_column, (SeExpr2loc).last_column, Node);
-                                  SeExpr2::ExprType type = SeExpr2::ExprType((SeExpr2vsp[(1) - (1)].t).type, (SeExpr2vsp[(1) - (1)].t).dim, (SeExpr2vsp[(1) - (1)].t).lifetime);
-                                  SeExpr2::ExprNode* varNode = NODE2((SeExpr2loc).first_column, (SeExpr2loc).last_column, VarNode, 0, type);
+#line 199 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+                                { (SeExpr2val.n) = NODE((SeExpr2loc).first_column, (SeExpr2loc).last_column, Node);
+                                  SeExpr2::ExprType type = SeExpr2::ExprType((SeExpr2vsp[0].t).type, (SeExpr2vsp[0].t).dim, (SeExpr2vsp[0].t).lifetime);
+                                  SeExpr2::ExprNode* varNode = NODE2((SeExpr2loc).first_column, (SeExpr2loc).last_column, VarNode, "", type);
                                   (SeExpr2val.n)->addChild(varNode); }
+#line 1879 "y.tab.c"
     break;
 
   case 20:
-/* Line 1792 of yacc.c  */
-#line 203 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParser.y"
-    { (SeExpr2val.n) = (SeExpr2vsp[(1) - (3)].n);
-                                  SeExpr2::ExprType type = SeExpr2::ExprType((SeExpr2vsp[(3) - (3)].t).type, (SeExpr2vsp[(3) - (3)].t).dim, (SeExpr2vsp[(3) - (3)].t).lifetime);
-                                  SeExpr2::ExprNode* varNode = NODE2((SeExpr2lsp[(3) - (3)]).first_column, (SeExpr2lsp[(3) - (3)]).last_column, VarNode, 0, type);
+#line 203 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+                                { (SeExpr2val.n) = (SeExpr2vsp[-2].n);
+                                  SeExpr2::ExprType type = SeExpr2::ExprType((SeExpr2vsp[0].t).type, (SeExpr2vsp[0].t).dim, (SeExpr2vsp[0].t).lifetime);
+                                  SeExpr2::ExprNode* varNode = NODE2((SeExpr2lsp[0]).first_column, (SeExpr2lsp[0]).last_column, VarNode, "", type);
                                   (SeExpr2val.n)->addChild(varNode); }
+#line 1888 "y.tab.c"
     break;
 
   case 21:
-/* Line 1792 of yacc.c  */
-#line 210 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParser.y"
-    { (SeExpr2val.n) = NODE((SeExpr2loc).first_column, (SeExpr2loc).last_column, Node); }
+#line 210 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+                                { (SeExpr2val.n) = NODE((SeExpr2loc).first_column, (SeExpr2loc).last_column, Node); }
+#line 1894 "y.tab.c"
     break;
 
   case 22:
-/* Line 1792 of yacc.c  */
-#line 211 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParser.y"
-    { (SeExpr2val.n) = (SeExpr2vsp[(1) - (1)].n); }
+#line 211 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+                                { (SeExpr2val.n) = (SeExpr2vsp[0].n); }
+#line 1900 "y.tab.c"
     break;
 
   case 23:
-/* Line 1792 of yacc.c  */
-#line 215 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParser.y"
-    { (SeExpr2val.n) = NODE((SeExpr2loc).first_column, (SeExpr2loc).last_column, Node);
-                                  SeExpr2::ExprType type = SeExpr2::ExprType((SeExpr2vsp[(1) - (2)].t).type, (SeExpr2vsp[(1) - (2)].t).dim, (SeExpr2vsp[(1) - (2)].t).lifetime);
-                                  SeExpr2::ExprNode* varNode = NODE2((SeExpr2loc).first_column, (SeExpr2loc).last_column, VarNode, (SeExpr2vsp[(2) - (2)].s), type);
+#line 215 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+                                 { (SeExpr2val.n) = NODE((SeExpr2loc).first_column, (SeExpr2loc).last_column, Node);
+                                  SeExpr2::ExprType type = SeExpr2::ExprType((SeExpr2vsp[-1].t).type, (SeExpr2vsp[-1].t).dim, (SeExpr2vsp[-1].t).lifetime);
+                                  SeExpr2::ExprNode* varNode = NODE2((SeExpr2loc).first_column, (SeExpr2loc).last_column, VarNode, (SeExpr2vsp[0].s), type);
                                   (SeExpr2val.n)->addChild(varNode);
-                                  free((SeExpr2vsp[(2) - (2)].s)); }
+                                  free((SeExpr2vsp[0].s)); }
+#line 1910 "y.tab.c"
     break;
 
   case 24:
-/* Line 1792 of yacc.c  */
-#line 221 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParser.y"
-    { (SeExpr2val.n) = (SeExpr2vsp[(1) - (4)].n);
-                                  SeExpr2::ExprType type = SeExpr2::ExprType((SeExpr2vsp[(3) - (4)].t).type, (SeExpr2vsp[(3) - (4)].t).dim, (SeExpr2vsp[(3) - (4)].t).lifetime);
-                                  SeExpr2::ExprNode* varNode = NODE2((SeExpr2lsp[(3) - (4)]).first_column, (SeExpr2lsp[(4) - (4)]).last_column, VarNode, (SeExpr2vsp[(4) - (4)].s), type);
+#line 221 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+                                { (SeExpr2val.n) = (SeExpr2vsp[-3].n);
+                                  SeExpr2::ExprType type = SeExpr2::ExprType((SeExpr2vsp[-1].t).type, (SeExpr2vsp[-1].t).dim, (SeExpr2vsp[-1].t).lifetime);
+                                  SeExpr2::ExprNode* varNode = NODE2((SeExpr2lsp[-1]).first_column, (SeExpr2lsp[0]).last_column, VarNode, (SeExpr2vsp[0].s), type);
                                   (SeExpr2val.n)->addChild(varNode);
-                                  free((SeExpr2vsp[(4) - (4)].s)); }
+                                  free((SeExpr2vsp[0].s)); }
+#line 1920 "y.tab.c"
     break;
 
   case 25:
-/* Line 1792 of yacc.c  */
-#line 229 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParser.y"
-    { (SeExpr2val.n) = NODE2((SeExpr2loc).first_column,(SeExpr2loc).last_column,BlockNode, (SeExpr2vsp[(1) - (2)].n), (SeExpr2vsp[(2) - (2)].n)); }
+#line 229 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+                                { (SeExpr2val.n) = NODE2((SeExpr2loc).first_column,(SeExpr2loc).last_column,BlockNode, (SeExpr2vsp[-1].n), (SeExpr2vsp[0].n)); }
+#line 1926 "y.tab.c"
     break;
 
   case 26:
-/* Line 1792 of yacc.c  */
-#line 230 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParser.y"
-    { (SeExpr2val.n) = (SeExpr2vsp[(1) - (1)].n); }
+#line 230 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+                                { (SeExpr2val.n) = (SeExpr2vsp[0].n); }
+#line 1932 "y.tab.c"
     break;
 
   case 27:
-/* Line 1792 of yacc.c  */
-#line 235 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParser.y"
-    { (SeExpr2val.n) = NODE((SeExpr2loc).first_column,(SeExpr2loc).last_column,Node); /* create empty node */; }
+#line 235 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+                                { (SeExpr2val.n) = NODE((SeExpr2loc).first_column,(SeExpr2loc).last_column,Node); /* create empty node */; }
+#line 1938 "y.tab.c"
     break;
 
   case 28:
-/* Line 1792 of yacc.c  */
-#line 236 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParser.y"
-    { (SeExpr2val.n) = (SeExpr2vsp[(1) - (1)].n); }
+#line 236 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+                                { (SeExpr2val.n) = (SeExpr2vsp[0].n); }
+#line 1944 "y.tab.c"
     break;
 
   case 29:
-/* Line 1792 of yacc.c  */
-#line 240 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParser.y"
-    { (SeExpr2val.n) = NODE1((SeExpr2loc).first_column,(SeExpr2loc).last_column,Node, (SeExpr2vsp[(1) - (1)].n)); /* create var list */}
+#line 240 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+                                { (SeExpr2val.n) = NODE1((SeExpr2loc).first_column,(SeExpr2loc).last_column,Node, (SeExpr2vsp[0].n)); /* create var list */}
+#line 1950 "y.tab.c"
     break;
 
   case 30:
-/* Line 1792 of yacc.c  */
-#line 241 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParser.y"
-    { (SeExpr2val.n) = (SeExpr2vsp[(1) - (2)].n); (SeExpr2vsp[(1) - (2)].n)->addChild((SeExpr2vsp[(2) - (2)].n)); /* add to list */}
+#line 241 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+                                { (SeExpr2val.n) = (SeExpr2vsp[-1].n); (SeExpr2vsp[-1].n)->addChild((SeExpr2vsp[0].n)); /* add to list */}
+#line 1956 "y.tab.c"
     break;
 
   case 31:
-/* Line 1792 of yacc.c  */
-#line 245 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParser.y"
-    { (SeExpr2val.n) = (SeExpr2vsp[(1) - (1)].n); }
+#line 245 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+                                { (SeExpr2val.n) = (SeExpr2vsp[0].n); }
+#line 1962 "y.tab.c"
     break;
 
   case 32:
-/* Line 1792 of yacc.c  */
-#line 246 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParser.y"
-    { (SeExpr2val.n) = NODE2((SeExpr2loc).first_column,(SeExpr2loc).last_column,AssignNode, (SeExpr2vsp[(1) - (4)].s), (SeExpr2vsp[(3) - (4)].n)); free((SeExpr2vsp[(1) - (4)].s)); }
+#line 246 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+                                { (SeExpr2val.n) = NODE2((SeExpr2loc).first_column,(SeExpr2loc).last_column,AssignNode, (SeExpr2vsp[-3].s), (SeExpr2vsp[-1].n)); free((SeExpr2vsp[-3].s)); }
+#line 1968 "y.tab.c"
     break;
 
   case 33:
-/* Line 1792 of yacc.c  */
-#line 247 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParser.y"
-    {SeExpr2::ExprNode* varNode=NODE1((SeExpr2lsp[(1) - (4)]).first_column,(SeExpr2lsp[(1) - (4)]).first_column,VarNode, (SeExpr2vsp[(1) - (4)].s));
-                               SeExpr2::ExprNode* opNode=NODE3((SeExpr2lsp[(3) - (4)]).first_column,(SeExpr2lsp[(3) - (4)]).first_column,BinaryOpNode,varNode,(SeExpr2vsp[(3) - (4)].n),'+');
-                                (SeExpr2val.n) = NODE2((SeExpr2loc).first_column,(SeExpr2loc).last_column,AssignNode, (SeExpr2vsp[(1) - (4)].s), opNode);free((SeExpr2vsp[(1) - (4)].s));}
+#line 247 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+                                   {SeExpr2::ExprNode* varNode=NODE1((SeExpr2lsp[-3]).first_column,(SeExpr2lsp[-3]).first_column,VarNode, (SeExpr2vsp[-3].s));
+                               SeExpr2::ExprNode* opNode=NODE3((SeExpr2lsp[-1]).first_column,(SeExpr2lsp[-1]).first_column,BinaryOpNode,varNode,(SeExpr2vsp[-1].n),'+');
+                                (SeExpr2val.n) = NODE2((SeExpr2loc).first_column,(SeExpr2loc).last_column,AssignNode, (SeExpr2vsp[-3].s), opNode);free((SeExpr2vsp[-3].s));}
+#line 1976 "y.tab.c"
     break;
 
   case 34:
-/* Line 1792 of yacc.c  */
-#line 250 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParser.y"
-    {SeExpr2::ExprNode* varNode=NODE1((SeExpr2lsp[(1) - (4)]).first_column,(SeExpr2lsp[(1) - (4)]).first_column,VarNode, (SeExpr2vsp[(1) - (4)].s));
-                               SeExpr2::ExprNode* opNode=NODE3((SeExpr2lsp[(3) - (4)]).first_column,(SeExpr2lsp[(3) - (4)]).first_column,BinaryOpNode,varNode,(SeExpr2vsp[(3) - (4)].n),'-');
-                                (SeExpr2val.n) = NODE2((SeExpr2loc).first_column,(SeExpr2loc).last_column,AssignNode, (SeExpr2vsp[(1) - (4)].s), opNode);free((SeExpr2vsp[(1) - (4)].s));}
+#line 250 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+                                   {SeExpr2::ExprNode* varNode=NODE1((SeExpr2lsp[-3]).first_column,(SeExpr2lsp[-3]).first_column,VarNode, (SeExpr2vsp[-3].s));
+                               SeExpr2::ExprNode* opNode=NODE3((SeExpr2lsp[-1]).first_column,(SeExpr2lsp[-1]).first_column,BinaryOpNode,varNode,(SeExpr2vsp[-1].n),'-');
+                                (SeExpr2val.n) = NODE2((SeExpr2loc).first_column,(SeExpr2loc).last_column,AssignNode, (SeExpr2vsp[-3].s), opNode);free((SeExpr2vsp[-3].s));}
+#line 1984 "y.tab.c"
     break;
 
   case 35:
-/* Line 1792 of yacc.c  */
-#line 253 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParser.y"
-    {SeExpr2::ExprNode* varNode=NODE1((SeExpr2lsp[(1) - (4)]).first_column,(SeExpr2lsp[(1) - (4)]).first_column,VarNode, (SeExpr2vsp[(1) - (4)].s));
-                               SeExpr2::ExprNode* opNode=NODE3((SeExpr2lsp[(3) - (4)]).first_column,(SeExpr2lsp[(3) - (4)]).first_column,BinaryOpNode,varNode,(SeExpr2vsp[(3) - (4)].n),'*');
-                                (SeExpr2val.n) = NODE2((SeExpr2loc).first_column,(SeExpr2loc).last_column,AssignNode, (SeExpr2vsp[(1) - (4)].s), opNode);free((SeExpr2vsp[(1) - (4)].s));}
+#line 253 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+                                    {SeExpr2::ExprNode* varNode=NODE1((SeExpr2lsp[-3]).first_column,(SeExpr2lsp[-3]).first_column,VarNode, (SeExpr2vsp[-3].s));
+                               SeExpr2::ExprNode* opNode=NODE3((SeExpr2lsp[-1]).first_column,(SeExpr2lsp[-1]).first_column,BinaryOpNode,varNode,(SeExpr2vsp[-1].n),'*');
+                                (SeExpr2val.n) = NODE2((SeExpr2loc).first_column,(SeExpr2loc).last_column,AssignNode, (SeExpr2vsp[-3].s), opNode);free((SeExpr2vsp[-3].s));}
+#line 1992 "y.tab.c"
     break;
 
   case 36:
-/* Line 1792 of yacc.c  */
-#line 256 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParser.y"
-    {SeExpr2::ExprNode* varNode=NODE1((SeExpr2lsp[(1) - (4)]).first_column,(SeExpr2lsp[(1) - (4)]).first_column,VarNode, (SeExpr2vsp[(1) - (4)].s));
-                               SeExpr2::ExprNode* opNode=NODE3((SeExpr2lsp[(3) - (4)]).first_column,(SeExpr2lsp[(3) - (4)]).first_column,BinaryOpNode,varNode,(SeExpr2vsp[(3) - (4)].n),'/');
-                                (SeExpr2val.n) = NODE2((SeExpr2loc).first_column,(SeExpr2loc).last_column,AssignNode, (SeExpr2vsp[(1) - (4)].s), opNode);free((SeExpr2vsp[(1) - (4)].s));}
+#line 256 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+                                   {SeExpr2::ExprNode* varNode=NODE1((SeExpr2lsp[-3]).first_column,(SeExpr2lsp[-3]).first_column,VarNode, (SeExpr2vsp[-3].s));
+                               SeExpr2::ExprNode* opNode=NODE3((SeExpr2lsp[-1]).first_column,(SeExpr2lsp[-1]).first_column,BinaryOpNode,varNode,(SeExpr2vsp[-1].n),'/');
+                                (SeExpr2val.n) = NODE2((SeExpr2loc).first_column,(SeExpr2loc).last_column,AssignNode, (SeExpr2vsp[-3].s), opNode);free((SeExpr2vsp[-3].s));}
+#line 2000 "y.tab.c"
     break;
 
   case 37:
-/* Line 1792 of yacc.c  */
-#line 259 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParser.y"
-    {SeExpr2::ExprNode* varNode=NODE1((SeExpr2lsp[(1) - (4)]).first_column,(SeExpr2lsp[(1) - (4)]).first_column,VarNode, (SeExpr2vsp[(1) - (4)].s));
-                               SeExpr2::ExprNode* opNode=NODE3((SeExpr2lsp[(3) - (4)]).first_column,(SeExpr2lsp[(3) - (4)]).first_column,BinaryOpNode,varNode,(SeExpr2vsp[(3) - (4)].n),'^');
-                                (SeExpr2val.n) = NODE2((SeExpr2loc).first_column,(SeExpr2loc).last_column,AssignNode, (SeExpr2vsp[(1) - (4)].s), opNode);free((SeExpr2vsp[(1) - (4)].s));}
+#line 259 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+                                   {SeExpr2::ExprNode* varNode=NODE1((SeExpr2lsp[-3]).first_column,(SeExpr2lsp[-3]).first_column,VarNode, (SeExpr2vsp[-3].s));
+                               SeExpr2::ExprNode* opNode=NODE3((SeExpr2lsp[-1]).first_column,(SeExpr2lsp[-1]).first_column,BinaryOpNode,varNode,(SeExpr2vsp[-1].n),'^');
+                                (SeExpr2val.n) = NODE2((SeExpr2loc).first_column,(SeExpr2loc).last_column,AssignNode, (SeExpr2vsp[-3].s), opNode);free((SeExpr2vsp[-3].s));}
+#line 2008 "y.tab.c"
     break;
 
   case 38:
-/* Line 1792 of yacc.c  */
-#line 262 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParser.y"
-    {SeExpr2::ExprNode* varNode=NODE1((SeExpr2lsp[(1) - (4)]).first_column,(SeExpr2lsp[(1) - (4)]).first_column,VarNode, (SeExpr2vsp[(1) - (4)].s));
-                               SeExpr2::ExprNode* opNode=NODE3((SeExpr2lsp[(3) - (4)]).first_column,(SeExpr2lsp[(3) - (4)]).first_column,BinaryOpNode,varNode,(SeExpr2vsp[(3) - (4)].n),'%');
-                                (SeExpr2val.n) = NODE2((SeExpr2loc).first_column,(SeExpr2loc).last_column,AssignNode, (SeExpr2vsp[(1) - (4)].s), opNode);free((SeExpr2vsp[(1) - (4)].s));}
+#line 262 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+                                   {SeExpr2::ExprNode* varNode=NODE1((SeExpr2lsp[-3]).first_column,(SeExpr2lsp[-3]).first_column,VarNode, (SeExpr2vsp[-3].s));
+                               SeExpr2::ExprNode* opNode=NODE3((SeExpr2lsp[-1]).first_column,(SeExpr2lsp[-1]).first_column,BinaryOpNode,varNode,(SeExpr2vsp[-1].n),'%');
+                                (SeExpr2val.n) = NODE2((SeExpr2loc).first_column,(SeExpr2loc).last_column,AssignNode, (SeExpr2vsp[-3].s), opNode);free((SeExpr2vsp[-3].s));}
+#line 2016 "y.tab.c"
     break;
 
   case 39:
-/* Line 1792 of yacc.c  */
-#line 265 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParser.y"
-    { (SeExpr2val.n) = NODE2((SeExpr2loc).first_column,(SeExpr2loc).last_column,AssignNode, (SeExpr2vsp[(1) - (4)].s), (SeExpr2vsp[(3) - (4)].n)); free((SeExpr2vsp[(1) - (4)].s)); }
+#line 265 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+                                { (SeExpr2val.n) = NODE2((SeExpr2loc).first_column,(SeExpr2loc).last_column,AssignNode, (SeExpr2vsp[-3].s), (SeExpr2vsp[-1].n)); free((SeExpr2vsp[-3].s)); }
+#line 2022 "y.tab.c"
     break;
 
   case 40:
-/* Line 1792 of yacc.c  */
-#line 266 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParser.y"
-    {SeExpr2::ExprNode* varNode=NODE1((SeExpr2lsp[(1) - (4)]).first_column,(SeExpr2lsp[(1) - (4)]).first_column,VarNode, (SeExpr2vsp[(1) - (4)].s));
-                               SeExpr2::ExprNode* opNode=NODE3((SeExpr2lsp[(3) - (4)]).first_column,(SeExpr2lsp[(3) - (4)]).first_column,BinaryOpNode,varNode,(SeExpr2vsp[(3) - (4)].n),'+');
-                                (SeExpr2val.n) = NODE2((SeExpr2loc).first_column,(SeExpr2loc).last_column,AssignNode, (SeExpr2vsp[(1) - (4)].s), opNode);free((SeExpr2vsp[(1) - (4)].s));}
+#line 266 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+                                    {SeExpr2::ExprNode* varNode=NODE1((SeExpr2lsp[-3]).first_column,(SeExpr2lsp[-3]).first_column,VarNode, (SeExpr2vsp[-3].s));
+                               SeExpr2::ExprNode* opNode=NODE3((SeExpr2lsp[-1]).first_column,(SeExpr2lsp[-1]).first_column,BinaryOpNode,varNode,(SeExpr2vsp[-1].n),'+');
+                                (SeExpr2val.n) = NODE2((SeExpr2loc).first_column,(SeExpr2loc).last_column,AssignNode, (SeExpr2vsp[-3].s), opNode);free((SeExpr2vsp[-3].s));}
+#line 2030 "y.tab.c"
     break;
 
   case 41:
-/* Line 1792 of yacc.c  */
-#line 269 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParser.y"
-    {SeExpr2::ExprNode* varNode=NODE1((SeExpr2lsp[(1) - (4)]).first_column,(SeExpr2lsp[(1) - (4)]).first_column,VarNode, (SeExpr2vsp[(1) - (4)].s));
-                               SeExpr2::ExprNode* opNode=NODE3((SeExpr2lsp[(3) - (4)]).first_column,(SeExpr2lsp[(3) - (4)]).first_column,BinaryOpNode,varNode,(SeExpr2vsp[(3) - (4)].n),'-');
-                                (SeExpr2val.n) = NODE2((SeExpr2loc).first_column,(SeExpr2loc).last_column,AssignNode, (SeExpr2vsp[(1) - (4)].s), opNode);free((SeExpr2vsp[(1) - (4)].s));}
+#line 269 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+                                    {SeExpr2::ExprNode* varNode=NODE1((SeExpr2lsp[-3]).first_column,(SeExpr2lsp[-3]).first_column,VarNode, (SeExpr2vsp[-3].s));
+                               SeExpr2::ExprNode* opNode=NODE3((SeExpr2lsp[-1]).first_column,(SeExpr2lsp[-1]).first_column,BinaryOpNode,varNode,(SeExpr2vsp[-1].n),'-');
+                                (SeExpr2val.n) = NODE2((SeExpr2loc).first_column,(SeExpr2loc).last_column,AssignNode, (SeExpr2vsp[-3].s), opNode);free((SeExpr2vsp[-3].s));}
+#line 2038 "y.tab.c"
     break;
 
   case 42:
-/* Line 1792 of yacc.c  */
-#line 272 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParser.y"
-    {SeExpr2::ExprNode* varNode=NODE1((SeExpr2lsp[(1) - (4)]).first_column,(SeExpr2lsp[(1) - (4)]).first_column,VarNode, (SeExpr2vsp[(1) - (4)].s));
-                               SeExpr2::ExprNode* opNode=NODE3((SeExpr2lsp[(3) - (4)]).first_column,(SeExpr2lsp[(3) - (4)]).first_column,BinaryOpNode,varNode,(SeExpr2vsp[(3) - (4)].n),'*');
-                                (SeExpr2val.n) = NODE2((SeExpr2loc).first_column,(SeExpr2loc).last_column,AssignNode, (SeExpr2vsp[(1) - (4)].s), opNode);free((SeExpr2vsp[(1) - (4)].s));}
+#line 272 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+                                     {SeExpr2::ExprNode* varNode=NODE1((SeExpr2lsp[-3]).first_column,(SeExpr2lsp[-3]).first_column,VarNode, (SeExpr2vsp[-3].s));
+                               SeExpr2::ExprNode* opNode=NODE3((SeExpr2lsp[-1]).first_column,(SeExpr2lsp[-1]).first_column,BinaryOpNode,varNode,(SeExpr2vsp[-1].n),'*');
+                                (SeExpr2val.n) = NODE2((SeExpr2loc).first_column,(SeExpr2loc).last_column,AssignNode, (SeExpr2vsp[-3].s), opNode);free((SeExpr2vsp[-3].s));}
+#line 2046 "y.tab.c"
     break;
 
   case 43:
-/* Line 1792 of yacc.c  */
-#line 275 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParser.y"
-    {SeExpr2::ExprNode* varNode=NODE1((SeExpr2lsp[(1) - (4)]).first_column,(SeExpr2lsp[(1) - (4)]).first_column,VarNode, (SeExpr2vsp[(1) - (4)].s));
-                               SeExpr2::ExprNode* opNode=NODE3((SeExpr2lsp[(3) - (4)]).first_column,(SeExpr2lsp[(3) - (4)]).first_column,BinaryOpNode,varNode,(SeExpr2vsp[(3) - (4)].n),'/');
-                                (SeExpr2val.n) = NODE2((SeExpr2loc).first_column,(SeExpr2loc).last_column,AssignNode, (SeExpr2vsp[(1) - (4)].s), opNode);free((SeExpr2vsp[(1) - (4)].s));}
+#line 275 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+                                    {SeExpr2::ExprNode* varNode=NODE1((SeExpr2lsp[-3]).first_column,(SeExpr2lsp[-3]).first_column,VarNode, (SeExpr2vsp[-3].s));
+                               SeExpr2::ExprNode* opNode=NODE3((SeExpr2lsp[-1]).first_column,(SeExpr2lsp[-1]).first_column,BinaryOpNode,varNode,(SeExpr2vsp[-1].n),'/');
+                                (SeExpr2val.n) = NODE2((SeExpr2loc).first_column,(SeExpr2loc).last_column,AssignNode, (SeExpr2vsp[-3].s), opNode);free((SeExpr2vsp[-3].s));}
+#line 2054 "y.tab.c"
     break;
 
   case 44:
-/* Line 1792 of yacc.c  */
-#line 278 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParser.y"
-    {SeExpr2::ExprNode* varNode=NODE1((SeExpr2lsp[(1) - (4)]).first_column,(SeExpr2lsp[(1) - (4)]).first_column,VarNode, (SeExpr2vsp[(1) - (4)].s));
-                               SeExpr2::ExprNode* opNode=NODE3((SeExpr2lsp[(3) - (4)]).first_column,(SeExpr2lsp[(3) - (4)]).first_column,BinaryOpNode,varNode,(SeExpr2vsp[(3) - (4)].n),'^');
-                                (SeExpr2val.n) = NODE2((SeExpr2loc).first_column,(SeExpr2loc).last_column,AssignNode, (SeExpr2vsp[(1) - (4)].s), opNode);free((SeExpr2vsp[(1) - (4)].s));}
+#line 278 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+                                    {SeExpr2::ExprNode* varNode=NODE1((SeExpr2lsp[-3]).first_column,(SeExpr2lsp[-3]).first_column,VarNode, (SeExpr2vsp[-3].s));
+                               SeExpr2::ExprNode* opNode=NODE3((SeExpr2lsp[-1]).first_column,(SeExpr2lsp[-1]).first_column,BinaryOpNode,varNode,(SeExpr2vsp[-1].n),'^');
+                                (SeExpr2val.n) = NODE2((SeExpr2loc).first_column,(SeExpr2loc).last_column,AssignNode, (SeExpr2vsp[-3].s), opNode);free((SeExpr2vsp[-3].s));}
+#line 2062 "y.tab.c"
     break;
 
   case 45:
-/* Line 1792 of yacc.c  */
-#line 281 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParser.y"
-    {SeExpr2::ExprNode* varNode=NODE1((SeExpr2lsp[(1) - (4)]).first_column,(SeExpr2lsp[(1) - (4)]).first_column,VarNode, (SeExpr2vsp[(1) - (4)].s));
-                               SeExpr2::ExprNode* opNode=NODE3((SeExpr2lsp[(3) - (4)]).first_column,(SeExpr2lsp[(3) - (4)]).first_column,BinaryOpNode,varNode,(SeExpr2vsp[(3) - (4)].n),'%');
-                                (SeExpr2val.n) = NODE2((SeExpr2loc).first_column,(SeExpr2loc).last_column,AssignNode, (SeExpr2vsp[(1) - (4)].s), opNode);free((SeExpr2vsp[(1) - (4)].s));}
+#line 281 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+                                    {SeExpr2::ExprNode* varNode=NODE1((SeExpr2lsp[-3]).first_column,(SeExpr2lsp[-3]).first_column,VarNode, (SeExpr2vsp[-3].s));
+                               SeExpr2::ExprNode* opNode=NODE3((SeExpr2lsp[-1]).first_column,(SeExpr2lsp[-1]).first_column,BinaryOpNode,varNode,(SeExpr2vsp[-1].n),'%');
+                                (SeExpr2val.n) = NODE2((SeExpr2loc).first_column,(SeExpr2loc).last_column,AssignNode, (SeExpr2vsp[-3].s), opNode);free((SeExpr2vsp[-3].s));}
+#line 2070 "y.tab.c"
     break;
 
   case 46:
-/* Line 1792 of yacc.c  */
-#line 288 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParser.y"
-    { (SeExpr2val.n) = NODE3((SeExpr2loc).first_column,(SeExpr2loc).last_column,IfThenElseNode, (SeExpr2vsp[(3) - (8)].n), (SeExpr2vsp[(6) - (8)].n), (SeExpr2vsp[(8) - (8)].n)); }
+#line 288 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+                                { (SeExpr2val.n) = NODE3((SeExpr2loc).first_column,(SeExpr2loc).last_column,IfThenElseNode, (SeExpr2vsp[-5].n), (SeExpr2vsp[-2].n), (SeExpr2vsp[0].n)); }
+#line 2076 "y.tab.c"
     break;
 
   case 47:
-/* Line 1792 of yacc.c  */
-#line 292 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParser.y"
-    { (SeExpr2val.n) = NODE((SeExpr2loc).first_column,(SeExpr2loc).last_column,Node); /* create empty node */ }
+#line 292 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+                                { (SeExpr2val.n) = NODE((SeExpr2loc).first_column,(SeExpr2loc).last_column,Node); /* create empty node */ }
+#line 2082 "y.tab.c"
     break;
 
   case 48:
-/* Line 1792 of yacc.c  */
-#line 293 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParser.y"
-    { (SeExpr2val.n) = (SeExpr2vsp[(3) - (4)].n); }
+#line 293 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+                                { (SeExpr2val.n) = (SeExpr2vsp[-1].n); }
+#line 2088 "y.tab.c"
     break;
 
   case 49:
-/* Line 1792 of yacc.c  */
-#line 294 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParser.y"
-    { (SeExpr2val.n) = (SeExpr2vsp[(2) - (2)].n); }
+#line 294 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+                                { (SeExpr2val.n) = (SeExpr2vsp[0].n); }
+#line 2094 "y.tab.c"
     break;
 
   case 50:
-/* Line 1792 of yacc.c  */
-#line 299 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParser.y"
-    { (SeExpr2val.n) = (SeExpr2vsp[(2) - (3)].n); }
+#line 299 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+                                { (SeExpr2val.n) = (SeExpr2vsp[-1].n); }
+#line 2100 "y.tab.c"
     break;
 
   case 51:
-/* Line 1792 of yacc.c  */
-#line 300 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParser.y"
-    { SeExpr2::ExprNode* newNode = NODE((SeExpr2loc).first_column,(SeExpr2loc).last_column,VecNode); newNode->addChildren((SeExpr2vsp[(2) - (3)].n)); Forget((SeExpr2vsp[(2) - (3)].n)); (SeExpr2val.n)=newNode;}
+#line 300 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+                                { SeExpr2::ExprNode* newNode = NODE((SeExpr2loc).first_column,(SeExpr2loc).last_column,VecNode); newNode->addChildren((SeExpr2vsp[-1].n)); Forget((SeExpr2vsp[-1].n)); (SeExpr2val.n)=newNode;}
+#line 2106 "y.tab.c"
     break;
 
   case 52:
-/* Line 1792 of yacc.c  */
-#line 301 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParser.y"
-    { (SeExpr2val.n) = NODE2((SeExpr2loc).first_column,(SeExpr2loc).last_column,SubscriptNode, (SeExpr2vsp[(1) - (4)].n), (SeExpr2vsp[(3) - (4)].n)); }
+#line 301 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+                                { (SeExpr2val.n) = NODE2((SeExpr2loc).first_column,(SeExpr2loc).last_column,SubscriptNode, (SeExpr2vsp[-3].n), (SeExpr2vsp[-1].n)); }
+#line 2112 "y.tab.c"
     break;
 
   case 53:
-/* Line 1792 of yacc.c  */
-#line 302 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParser.y"
-    { (SeExpr2val.n) = NODE3((SeExpr2loc).first_column,(SeExpr2loc).last_column,CondNode, (SeExpr2vsp[(1) - (5)].n), (SeExpr2vsp[(3) - (5)].n), (SeExpr2vsp[(5) - (5)].n)); }
+#line 302 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+                                { (SeExpr2val.n) = NODE3((SeExpr2loc).first_column,(SeExpr2loc).last_column,CondNode, (SeExpr2vsp[-4].n), (SeExpr2vsp[-2].n), (SeExpr2vsp[0].n)); }
+#line 2118 "y.tab.c"
     break;
 
   case 54:
-/* Line 1792 of yacc.c  */
-#line 303 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParser.y"
-    { (SeExpr2val.n) = NODE3((SeExpr2loc).first_column,(SeExpr2loc).last_column,CompareNode, (SeExpr2vsp[(1) - (3)].n), (SeExpr2vsp[(3) - (3)].n), '|'); }
+#line 303 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+                                { (SeExpr2val.n) = NODE3((SeExpr2loc).first_column,(SeExpr2loc).last_column,CompareNode, (SeExpr2vsp[-2].n), (SeExpr2vsp[0].n), '|'); }
+#line 2124 "y.tab.c"
     break;
 
   case 55:
-/* Line 1792 of yacc.c  */
-#line 304 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParser.y"
-    { (SeExpr2val.n) = NODE3((SeExpr2loc).first_column,(SeExpr2loc).last_column,CompareNode, (SeExpr2vsp[(1) - (3)].n), (SeExpr2vsp[(3) - (3)].n), '&'); }
+#line 304 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+                                { (SeExpr2val.n) = NODE3((SeExpr2loc).first_column,(SeExpr2loc).last_column,CompareNode, (SeExpr2vsp[-2].n), (SeExpr2vsp[0].n), '&'); }
+#line 2130 "y.tab.c"
     break;
 
   case 56:
-/* Line 1792 of yacc.c  */
-#line 305 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParser.y"
-    { (SeExpr2val.n) = NODE3((SeExpr2loc).first_column,(SeExpr2loc).last_column,CompareEqNode, (SeExpr2vsp[(1) - (3)].n), (SeExpr2vsp[(3) - (3)].n),'='); }
+#line 305 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+                                { (SeExpr2val.n) = NODE3((SeExpr2loc).first_column,(SeExpr2loc).last_column,CompareEqNode, (SeExpr2vsp[-2].n), (SeExpr2vsp[0].n),'='); }
+#line 2136 "y.tab.c"
     break;
 
   case 57:
-/* Line 1792 of yacc.c  */
-#line 306 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParser.y"
-    { (SeExpr2val.n) = NODE3((SeExpr2loc).first_column,(SeExpr2loc).last_column,CompareEqNode, (SeExpr2vsp[(1) - (3)].n), (SeExpr2vsp[(3) - (3)].n),'!'); }
+#line 306 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+                                { (SeExpr2val.n) = NODE3((SeExpr2loc).first_column,(SeExpr2loc).last_column,CompareEqNode, (SeExpr2vsp[-2].n), (SeExpr2vsp[0].n),'!'); }
+#line 2142 "y.tab.c"
     break;
 
   case 58:
-/* Line 1792 of yacc.c  */
-#line 307 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParser.y"
-    { (SeExpr2val.n) = NODE3((SeExpr2loc).first_column,(SeExpr2loc).last_column,CompareNode, (SeExpr2vsp[(1) - (3)].n), (SeExpr2vsp[(3) - (3)].n),'<'); }
+#line 307 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+                                { (SeExpr2val.n) = NODE3((SeExpr2loc).first_column,(SeExpr2loc).last_column,CompareNode, (SeExpr2vsp[-2].n), (SeExpr2vsp[0].n),'<'); }
+#line 2148 "y.tab.c"
     break;
 
   case 59:
-/* Line 1792 of yacc.c  */
-#line 308 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParser.y"
-    { (SeExpr2val.n) = NODE3((SeExpr2loc).first_column,(SeExpr2loc).last_column,CompareNode, (SeExpr2vsp[(1) - (3)].n), (SeExpr2vsp[(3) - (3)].n),'>'); }
+#line 308 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+                                { (SeExpr2val.n) = NODE3((SeExpr2loc).first_column,(SeExpr2loc).last_column,CompareNode, (SeExpr2vsp[-2].n), (SeExpr2vsp[0].n),'>'); }
+#line 2154 "y.tab.c"
     break;
 
   case 60:
-/* Line 1792 of yacc.c  */
-#line 309 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParser.y"
-    { (SeExpr2val.n) = NODE3((SeExpr2loc).first_column,(SeExpr2loc).last_column,CompareNode, (SeExpr2vsp[(1) - (3)].n), (SeExpr2vsp[(3) - (3)].n),'l'); }
+#line 309 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+                                        { (SeExpr2val.n) = NODE3((SeExpr2loc).first_column,(SeExpr2loc).last_column,CompareNode, (SeExpr2vsp[-2].n), (SeExpr2vsp[0].n),'l'); }
+#line 2160 "y.tab.c"
     break;
 
   case 61:
-/* Line 1792 of yacc.c  */
-#line 310 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParser.y"
-    { (SeExpr2val.n) = NODE3((SeExpr2loc).first_column,(SeExpr2loc).last_column,CompareNode, (SeExpr2vsp[(1) - (3)].n), (SeExpr2vsp[(3) - (3)].n),'g'); }
+#line 310 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+                                        { (SeExpr2val.n) = NODE3((SeExpr2loc).first_column,(SeExpr2loc).last_column,CompareNode, (SeExpr2vsp[-2].n), (SeExpr2vsp[0].n),'g'); }
+#line 2166 "y.tab.c"
     break;
 
   case 62:
-/* Line 1792 of yacc.c  */
-#line 311 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParser.y"
-    { (SeExpr2val.n) = (SeExpr2vsp[(2) - (2)].n); }
+#line 311 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+                                { (SeExpr2val.n) = (SeExpr2vsp[0].n); }
+#line 2172 "y.tab.c"
     break;
 
   case 63:
-/* Line 1792 of yacc.c  */
-#line 312 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParser.y"
-    { (SeExpr2val.n) = NODE2((SeExpr2loc).first_column,(SeExpr2loc).last_column,UnaryOpNode, (SeExpr2vsp[(2) - (2)].n), '-'); }
+#line 312 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+                                { (SeExpr2val.n) = NODE2((SeExpr2loc).first_column,(SeExpr2loc).last_column,UnaryOpNode, (SeExpr2vsp[0].n), '-'); }
+#line 2178 "y.tab.c"
     break;
 
   case 64:
-/* Line 1792 of yacc.c  */
-#line 313 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParser.y"
-    { (SeExpr2val.n) = NODE2((SeExpr2loc).first_column,(SeExpr2loc).last_column,UnaryOpNode, (SeExpr2vsp[(2) - (2)].n), '!'); }
+#line 313 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+                                { (SeExpr2val.n) = NODE2((SeExpr2loc).first_column,(SeExpr2loc).last_column,UnaryOpNode, (SeExpr2vsp[0].n), '!'); }
+#line 2184 "y.tab.c"
     break;
 
   case 65:
-/* Line 1792 of yacc.c  */
-#line 314 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParser.y"
-    { (SeExpr2val.n) = NODE2((SeExpr2loc).first_column,(SeExpr2loc).last_column,UnaryOpNode, (SeExpr2vsp[(2) - (2)].n), '~'); }
+#line 314 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+                                { (SeExpr2val.n) = NODE2((SeExpr2loc).first_column,(SeExpr2loc).last_column,UnaryOpNode, (SeExpr2vsp[0].n), '~'); }
+#line 2190 "y.tab.c"
     break;
 
   case 66:
-/* Line 1792 of yacc.c  */
-#line 315 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParser.y"
-    { (SeExpr2val.n) = NODE3((SeExpr2loc).first_column,(SeExpr2loc).last_column,BinaryOpNode, (SeExpr2vsp[(1) - (3)].n), (SeExpr2vsp[(3) - (3)].n), '+'); }
+#line 315 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+                                { (SeExpr2val.n) = NODE3((SeExpr2loc).first_column,(SeExpr2loc).last_column,BinaryOpNode, (SeExpr2vsp[-2].n), (SeExpr2vsp[0].n), '+'); }
+#line 2196 "y.tab.c"
     break;
 
   case 67:
-/* Line 1792 of yacc.c  */
-#line 316 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParser.y"
-    { (SeExpr2val.n) = NODE3((SeExpr2loc).first_column,(SeExpr2loc).last_column,BinaryOpNode, (SeExpr2vsp[(1) - (3)].n), (SeExpr2vsp[(3) - (3)].n), '-'); }
+#line 316 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+                                { (SeExpr2val.n) = NODE3((SeExpr2loc).first_column,(SeExpr2loc).last_column,BinaryOpNode, (SeExpr2vsp[-2].n), (SeExpr2vsp[0].n), '-'); }
+#line 2202 "y.tab.c"
     break;
 
   case 68:
-/* Line 1792 of yacc.c  */
-#line 317 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParser.y"
-    { (SeExpr2val.n) = NODE3((SeExpr2loc).first_column,(SeExpr2loc).last_column,BinaryOpNode, (SeExpr2vsp[(1) - (3)].n), (SeExpr2vsp[(3) - (3)].n), '*'); }
+#line 317 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+                                { (SeExpr2val.n) = NODE3((SeExpr2loc).first_column,(SeExpr2loc).last_column,BinaryOpNode, (SeExpr2vsp[-2].n), (SeExpr2vsp[0].n), '*'); }
+#line 2208 "y.tab.c"
     break;
 
   case 69:
-/* Line 1792 of yacc.c  */
-#line 318 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParser.y"
-    { (SeExpr2val.n) = NODE3((SeExpr2loc).first_column,(SeExpr2loc).last_column,BinaryOpNode, (SeExpr2vsp[(1) - (3)].n), (SeExpr2vsp[(3) - (3)].n), '/'); }
+#line 318 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+                                { (SeExpr2val.n) = NODE3((SeExpr2loc).first_column,(SeExpr2loc).last_column,BinaryOpNode, (SeExpr2vsp[-2].n), (SeExpr2vsp[0].n), '/'); }
+#line 2214 "y.tab.c"
     break;
 
   case 70:
-/* Line 1792 of yacc.c  */
-#line 319 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParser.y"
-    { (SeExpr2val.n) = NODE3((SeExpr2loc).first_column,(SeExpr2loc).last_column,BinaryOpNode, (SeExpr2vsp[(1) - (3)].n), (SeExpr2vsp[(3) - (3)].n), '%'); }
+#line 319 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+                                { (SeExpr2val.n) = NODE3((SeExpr2loc).first_column,(SeExpr2loc).last_column,BinaryOpNode, (SeExpr2vsp[-2].n), (SeExpr2vsp[0].n), '%'); }
+#line 2220 "y.tab.c"
     break;
 
   case 71:
-/* Line 1792 of yacc.c  */
-#line 320 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParser.y"
-    { (SeExpr2val.n) = NODE3((SeExpr2loc).first_column,(SeExpr2loc).last_column,BinaryOpNode, (SeExpr2vsp[(1) - (3)].n), (SeExpr2vsp[(3) - (3)].n), '^'); }
+#line 320 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+                                { (SeExpr2val.n) = NODE3((SeExpr2loc).first_column,(SeExpr2loc).last_column,BinaryOpNode, (SeExpr2vsp[-2].n), (SeExpr2vsp[0].n), '^'); }
+#line 2226 "y.tab.c"
     break;
 
   case 72:
-/* Line 1792 of yacc.c  */
-#line 321 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParser.y"
-    { (SeExpr2val.n) = NODE1((SeExpr2loc).first_column,(SeExpr2loc).last_column,FuncNode, (SeExpr2vsp[(1) - (4)].s));
-				  free((SeExpr2vsp[(1) - (4)].s)); // free name string
+#line 321 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+                                { (SeExpr2val.n) = NODE1((SeExpr2loc).first_column,(SeExpr2loc).last_column,FuncNode, (SeExpr2vsp[-3].s));
+				  free((SeExpr2vsp[-3].s)); // free name string
 				  // add args directly and discard arg list node
-				  (SeExpr2val.n)->addChildren((SeExpr2vsp[(3) - (4)].n)); Forget((SeExpr2vsp[(3) - (4)].n)); }
+				  (SeExpr2val.n)->addChildren((SeExpr2vsp[-1].n)); Forget((SeExpr2vsp[-1].n)); }
+#line 2235 "y.tab.c"
     break;
 
   case 73:
-/* Line 1792 of yacc.c  */
-#line 326 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParser.y"
-    { (SeExpr2val.n) = NODE1((SeExpr2loc).first_column,(SeExpr2loc).last_column,FuncNode, (SeExpr2vsp[(3) - (6)].s));
-				  free((SeExpr2vsp[(3) - (6)].s)); // free name string
-				  (SeExpr2val.n)->addChild((SeExpr2vsp[(1) - (6)].n));
+#line 326 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+                                { (SeExpr2val.n) = NODE1((SeExpr2loc).first_column,(SeExpr2loc).last_column,FuncNode, (SeExpr2vsp[-3].s));
+				  free((SeExpr2vsp[-3].s)); // free name string
+				  (SeExpr2val.n)->addChild((SeExpr2vsp[-5].n));
 				  // add args directly and discard arg list node
-				  (SeExpr2val.n)->addChildren((SeExpr2vsp[(5) - (6)].n)); Forget((SeExpr2vsp[(5) - (6)].n)); }
+				  (SeExpr2val.n)->addChildren((SeExpr2vsp[-1].n)); Forget((SeExpr2vsp[-1].n)); }
+#line 2245 "y.tab.c"
     break;
 
   case 74:
-/* Line 1792 of yacc.c  */
-#line 331 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParser.y"
-    { (SeExpr2val.n) = NODE1((SeExpr2loc).first_column,(SeExpr2loc).last_column,VarNode, (SeExpr2vsp[(1) - (1)].s)); free((SeExpr2vsp[(1) - (1)].s)); /* free name string */ }
+#line 331 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+                                { (SeExpr2val.n) = NODE1((SeExpr2loc).first_column,(SeExpr2loc).last_column,VarNode, (SeExpr2vsp[0].s)); free((SeExpr2vsp[0].s)); /* free name string */ }
+#line 2251 "y.tab.c"
     break;
 
   case 75:
-/* Line 1792 of yacc.c  */
-#line 332 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParser.y"
-    { (SeExpr2val.n) = NODE1((SeExpr2loc).first_column,(SeExpr2loc).last_column,VarNode, (SeExpr2vsp[(1) - (1)].s)); free((SeExpr2vsp[(1) - (1)].s)); /* free name string */ }
+#line 332 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+                                { (SeExpr2val.n) = NODE1((SeExpr2loc).first_column,(SeExpr2loc).last_column,VarNode, (SeExpr2vsp[0].s)); free((SeExpr2vsp[0].s)); /* free name string */ }
+#line 2257 "y.tab.c"
     break;
 
   case 76:
-/* Line 1792 of yacc.c  */
-#line 333 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParser.y"
-    { (SeExpr2val.n) = NODE1((SeExpr2loc).first_column,(SeExpr2loc).last_column,NumNode, (SeExpr2vsp[(1) - (1)].d)); /*printf("line %d",@$.last_column);*/}
+#line 333 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+                                { (SeExpr2val.n) = NODE1((SeExpr2loc).first_column,(SeExpr2loc).last_column,NumNode, (SeExpr2vsp[0].d)); /*printf("line %d",@$.last_column);*/}
+#line 2263 "y.tab.c"
     break;
 
   case 77:
-/* Line 1792 of yacc.c  */
-#line 334 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParser.y"
-    { (SeExpr2val.n) = NODE1((SeExpr2loc).first_column,(SeExpr2loc).last_column,StrNode, (SeExpr2vsp[(1) - (1)].s)); free((SeExpr2vsp[(1) - (1)].s)); /* free string */}
+#line 334 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+                                { (SeExpr2val.n) = NODE1((SeExpr2loc).first_column,(SeExpr2loc).last_column,StrNode, (SeExpr2vsp[0].s)); free((SeExpr2vsp[0].s)); /* free string */}
+#line 2269 "y.tab.c"
     break;
 
   case 78:
-/* Line 1792 of yacc.c  */
-#line 338 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParser.y"
-    { (SeExpr2val.n) = NODE1((SeExpr2loc).first_column,(SeExpr2loc).last_column,Node,(SeExpr2vsp[(1) - (1)].n)); }
+#line 338 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+                                { (SeExpr2val.n) = NODE1((SeExpr2loc).first_column,(SeExpr2loc).last_column,Node,(SeExpr2vsp[0].n)); }
+#line 2275 "y.tab.c"
     break;
 
   case 79:
-/* Line 1792 of yacc.c  */
-#line 339 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParser.y"
-    { (SeExpr2val.n) = (SeExpr2vsp[(1) - (3)].n);
-                                  (SeExpr2vsp[(1) - (3)].n)->addChild((SeExpr2vsp[(3) - (3)].n)); }
+#line 339 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+                                { (SeExpr2val.n) = (SeExpr2vsp[-2].n);
+                                  (SeExpr2vsp[-2].n)->addChild((SeExpr2vsp[0].n)); }
+#line 2282 "y.tab.c"
     break;
 
   case 80:
-/* Line 1792 of yacc.c  */
-#line 345 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParser.y"
-    { (SeExpr2val.n) = NODE((SeExpr2loc).first_column,(SeExpr2loc).last_column,Node); /* create empty node */}
+#line 345 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+                                { (SeExpr2val.n) = NODE((SeExpr2loc).first_column,(SeExpr2loc).last_column,Node); /* create empty node */}
+#line 2288 "y.tab.c"
     break;
 
   case 81:
-/* Line 1792 of yacc.c  */
-#line 346 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParser.y"
-    { (SeExpr2val.n) = (SeExpr2vsp[(1) - (1)].n); }
+#line 346 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+                                { (SeExpr2val.n) = (SeExpr2vsp[0].n); }
+#line 2294 "y.tab.c"
     break;
 
   case 82:
-/* Line 1792 of yacc.c  */
-#line 351 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParser.y"
-    { (SeExpr2val.n) = NODE1((SeExpr2loc).first_column,(SeExpr2loc).last_column,Node, (SeExpr2vsp[(1) - (1)].n)); /* create arg list */}
+#line 351 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+                                { (SeExpr2val.n) = NODE1((SeExpr2loc).first_column,(SeExpr2loc).last_column,Node, (SeExpr2vsp[0].n)); /* create arg list */}
+#line 2300 "y.tab.c"
     break;
 
   case 83:
-/* Line 1792 of yacc.c  */
-#line 352 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParser.y"
-    { (SeExpr2val.n) = (SeExpr2vsp[(1) - (3)].n); (SeExpr2vsp[(1) - (3)].n)->addChild((SeExpr2vsp[(3) - (3)].n)); /* add to list */}
+#line 352 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+                                { (SeExpr2val.n) = (SeExpr2vsp[-2].n); (SeExpr2vsp[-2].n)->addChild((SeExpr2vsp[0].n)); /* add to list */}
+#line 2306 "y.tab.c"
     break;
 
   case 84:
-/* Line 1792 of yacc.c  */
-#line 356 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParser.y"
-    { (SeExpr2val.n) = (SeExpr2vsp[(1) - (1)].n); }
+#line 356 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+                                { (SeExpr2val.n) = (SeExpr2vsp[0].n); }
+#line 2312 "y.tab.c"
     break;
 
 
-/* Line 1792 of yacc.c  */
-#line 2426 "y.tab.c"
+#line 2316 "y.tab.c"
+
       default: break;
     }
   /* User semantic actions sometimes alter SeExpr2char, and that requires
@@ -2444,24 +2336,23 @@ SeExpr2reduce:
   *++SeExpr2vsp = SeExpr2val;
   *++SeExpr2lsp = SeExpr2loc;
 
-  /* Now `shift' the result of the reduction.  Determine what state
+  /* Now 'shift' the result of the reduction.  Determine what state
      that goes to, based on the state we popped back to and the rule
      number reduced by.  */
-
-  SeExpr2n = SeExpr2r1[SeExpr2n];
-
-  SeExpr2state = SeExpr2pgoto[SeExpr2n - SeExprYYNTOKENS] + *SeExpr2ssp;
-  if (0 <= SeExpr2state && SeExpr2state <= SeExprYYLAST && SeExpr2check[SeExpr2state] == *SeExpr2ssp)
-    SeExpr2state = SeExpr2table[SeExpr2state];
-  else
-    SeExpr2state = SeExpr2defgoto[SeExpr2n - SeExprYYNTOKENS];
+  {
+    const int SeExpr2lhs = SeExpr2r1[SeExpr2n] - SeExprYYNTOKENS;
+    const int SeExpr2i = SeExpr2pgoto[SeExpr2lhs] + *SeExpr2ssp;
+    SeExpr2state = (0 <= SeExpr2i && SeExpr2i <= SeExprYYLAST && SeExpr2check[SeExpr2i] == *SeExpr2ssp
+               ? SeExpr2table[SeExpr2i]
+               : SeExpr2defgoto[SeExpr2lhs]);
+  }
 
   goto SeExpr2newstate;
 
 
-/*------------------------------------.
-| SeExpr2errlab -- here on detecting error |
-`------------------------------------*/
+/*--------------------------------------.
+| SeExpr2errlab -- here on detecting error.  |
+`--------------------------------------*/
 SeExpr2errlab:
   /* Make sure we have latest lookahead translation.  See comments at
      user semantic actions for why this is necessary.  */
@@ -2486,7 +2377,7 @@ SeExpr2errlab:
           {
             if (SeExpr2msg != SeExpr2msgbuf)
               SeExprYYSTACK_FREE (SeExpr2msg);
-            SeExpr2msg = (char *) SeExprYYSTACK_ALLOC (SeExpr2msg_alloc);
+            SeExpr2msg = SeExprYY_CAST (char *, SeExprYYSTACK_ALLOC (SeExprYY_CAST (SeExprYYSIZE_T, SeExpr2msg_alloc)));
             if (!SeExpr2msg)
               {
                 SeExpr2msg = SeExpr2msgbuf;
@@ -2512,20 +2403,20 @@ SeExpr2errlab:
   if (SeExpr2errstatus == 3)
     {
       /* If just tried and failed to reuse lookahead token after an
-	 error, discard it.  */
+         error, discard it.  */
 
       if (SeExpr2char <= SeExprYYEOF)
-	{
-	  /* Return failure if at end of input.  */
-	  if (SeExpr2char == SeExprYYEOF)
-	    SeExprYYABORT;
-	}
+        {
+          /* Return failure if at end of input.  */
+          if (SeExpr2char == SeExprYYEOF)
+            SeExprYYABORT;
+        }
       else
-	{
-	  SeExpr2destruct ("Error: discarding",
-		      SeExpr2token, &SeExpr2lval, &SeExpr2lloc);
-	  SeExpr2char = SeExprYYEMPTY;
-	}
+        {
+          SeExpr2destruct ("Error: discarding",
+                      SeExpr2token, &SeExpr2lval, &SeExpr2lloc);
+          SeExpr2char = SeExprYYEMPTY;
+        }
     }
 
   /* Else will try to reuse lookahead token after shifting the error
@@ -2537,15 +2428,12 @@ SeExpr2errlab:
 | SeExpr2errorlab -- error raised explicitly by SeExprYYERROR.  |
 `---------------------------------------------------*/
 SeExpr2errorlab:
+  /* Pacify compilers when the user code never invokes SeExprYYERROR and the
+     label SeExpr2errorlab therefore never appears in user code.  */
+  if (0)
+    SeExprYYERROR;
 
-  /* Pacify compilers like GCC when the user code never invokes
-     SeExprYYERROR and the label SeExpr2errorlab therefore never appears in user
-     code.  */
-  if (/*CONSTCOND*/ 0)
-     goto SeExpr2errorlab;
-
-  SeExpr2error_range[1] = SeExpr2lsp[1-SeExpr2len];
-  /* Do not reclaim the symbols of the rule which action triggered
+  /* Do not reclaim the symbols of the rule whose action triggered
      this SeExprYYERROR.  */
   SeExprYYPOPSTACK (SeExpr2len);
   SeExpr2len = 0;
@@ -2558,29 +2446,29 @@ SeExpr2errorlab:
 | SeExpr2errlab1 -- common code for both syntax error and SeExprYYERROR.  |
 `-------------------------------------------------------------*/
 SeExpr2errlab1:
-  SeExpr2errstatus = 3;	/* Each real token shifted decrements this.  */
+  SeExpr2errstatus = 3;      /* Each real token shifted decrements this.  */
 
   for (;;)
     {
       SeExpr2n = SeExpr2pact[SeExpr2state];
       if (!SeExpr2pact_value_is_default (SeExpr2n))
-	{
-	  SeExpr2n += SeExprYYTERROR;
-	  if (0 <= SeExpr2n && SeExpr2n <= SeExprYYLAST && SeExpr2check[SeExpr2n] == SeExprYYTERROR)
-	    {
-	      SeExpr2n = SeExpr2table[SeExpr2n];
-	      if (0 < SeExpr2n)
-		break;
-	    }
-	}
+        {
+          SeExpr2n += SeExprYYTERROR;
+          if (0 <= SeExpr2n && SeExpr2n <= SeExprYYLAST && SeExpr2check[SeExpr2n] == SeExprYYTERROR)
+            {
+              SeExpr2n = SeExpr2table[SeExpr2n];
+              if (0 < SeExpr2n)
+                break;
+            }
+        }
 
       /* Pop the current state because it cannot handle the error token.  */
       if (SeExpr2ssp == SeExpr2ss)
-	SeExprYYABORT;
+        SeExprYYABORT;
 
       SeExpr2error_range[1] = *SeExpr2lsp;
       SeExpr2destruct ("Error: popping",
-		  SeExpr2stos[SeExpr2state], SeExpr2vsp, SeExpr2lsp);
+                  SeExpr2stos[SeExpr2state], SeExpr2vsp, SeExpr2lsp);
       SeExprYYPOPSTACK (1);
       SeExpr2state = *SeExpr2ssp;
       SeExprYY_STACK_PRINT (SeExpr2ss, SeExpr2ssp);
@@ -2610,12 +2498,14 @@ SeExpr2acceptlab:
   SeExpr2result = 0;
   goto SeExpr2return;
 
+
 /*-----------------------------------.
 | SeExpr2abortlab -- SeExprYYABORT comes here.  |
 `-----------------------------------*/
 SeExpr2abortlab:
   SeExpr2result = 1;
   goto SeExpr2return;
+
 
 #if !defined SeExpr2overflow || SeExprYYERROR_VERBOSE
 /*-------------------------------------------------.
@@ -2627,6 +2517,10 @@ SeExpr2exhaustedlab:
   /* Fall through.  */
 #endif
 
+
+/*-----------------------------------------------------.
+| SeExpr2return -- parsing is finished, return the result.  |
+`-----------------------------------------------------*/
 SeExpr2return:
   if (SeExpr2char != SeExprYYEMPTY)
     {
@@ -2636,14 +2530,14 @@ SeExpr2return:
       SeExpr2destruct ("Cleanup: discarding lookahead",
                   SeExpr2token, &SeExpr2lval, &SeExpr2lloc);
     }
-  /* Do not reclaim the symbols of the rule which action triggered
+  /* Do not reclaim the symbols of the rule whose action triggered
      this SeExprYYABORT or SeExprYYACCEPT.  */
   SeExprYYPOPSTACK (SeExpr2len);
   SeExprYY_STACK_PRINT (SeExpr2ss, SeExpr2ssp);
   while (SeExpr2ssp != SeExpr2ss)
     {
       SeExpr2destruct ("Cleanup: popping",
-		  SeExpr2stos[*SeExpr2ssp], SeExpr2vsp, SeExpr2lsp);
+                  SeExpr2stos[+*SeExpr2ssp], SeExpr2vsp, SeExpr2lsp);
       SeExprYYPOPSTACK (1);
     }
 #ifndef SeExpr2overflow
@@ -2654,13 +2548,9 @@ SeExpr2return:
   if (SeExpr2msg != SeExpr2msgbuf)
     SeExprYYSTACK_FREE (SeExpr2msg);
 #endif
-  /* Make sure SeExprYYID is used.  */
-  return SeExprYYID (SeExpr2result);
+  return SeExpr2result;
 }
-
-
-/* Line 2055 of yacc.c  */
-#line 359 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParser.y"
+#line 359 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
 
 
       /* SeExpr2error - Report an error.  This is called by the parser.
