@@ -28,8 +28,8 @@ set_source_files_properties("ExprBuiltins.cpp" PROPERTIES COMPILE_DEFINITIONS "_
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
 ## find our parser generators
-find_program(BISON_EXE bison)
-find_program(FLEX_EXE flex)
+find_package(BISON)
+find_package(FLEX)
 find_program(SED_EXE sed)
 
 # TODO use recent cmake to use FindFlex FindBison
