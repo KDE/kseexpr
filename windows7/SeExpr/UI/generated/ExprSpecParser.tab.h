@@ -1,4 +1,4 @@
-/* A Bison parser, made by GNU Bison 3.5.4.  */
+/* A Bison parser, made by GNU Bison 3.6.2.  */
 
 /* Bison interface for Yacc-like parsers in C
 
@@ -31,8 +31,9 @@
    This special exception was added by the Free Software Foundation in
    version 2.2 of Bison.  */
 
-/* Undocumented macros, especially those whose name start with ExprSpecYY_,
-   are private implementation details.  Do not rely on them.  */
+/* DO NOT RELY ON FEATURES THAT ARE NOT DOCUMENTED in the manual,
+   especially those whose name start with ExprSpecYY_ or ExprSpec_.  They are
+   private implementation details that can be changed or removed.  */
 
 #ifndef ExprSpecYY_EXPRSPEC_Y_TAB_H_INCLUDED
 # define ExprSpecYY_EXPRSPEC_Y_TAB_H_INCLUDED
@@ -44,32 +45,37 @@
 extern int ExprSpecdebug;
 #endif
 
-/* Token type.  */
+/* Token kinds.  */
 #ifndef ExprSpecYYTOKENTYPE
 # define ExprSpecYYTOKENTYPE
   enum ExprSpectokentype
   {
-    IF = 258,
-    ELSE = 259,
-    NAME = 260,
-    VAR = 261,
-    STR = 262,
-    NUMBER = 263,
-    AddEq = 264,
-    SubEq = 265,
-    MultEq = 266,
-    DivEq = 267,
-    ExpEq = 268,
-    ModEq = 269,
-    ARROW = 270,
-    OR = 271,
-    AND = 272,
-    EQ = 273,
-    NE = 274,
-    LE = 275,
-    GE = 276,
-    UNARY = 277
+    ExprSpecYYEMPTY = -2,
+    ExprSpecYYEOF = 0,                     /* "end of file"  */
+    ExprSpecYYerror = 256,                 /* error  */
+    ExprSpecYYUNDEF = 257,                 /* "invalid token"  */
+    IF = 258,                      /* IF  */
+    ELSE = 259,                    /* ELSE  */
+    NAME = 260,                    /* NAME  */
+    VAR = 261,                     /* VAR  */
+    STR = 262,                     /* STR  */
+    NUMBER = 263,                  /* NUMBER  */
+    AddEq = 264,                   /* AddEq  */
+    SubEq = 265,                   /* SubEq  */
+    MultEq = 266,                  /* MultEq  */
+    DivEq = 267,                   /* DivEq  */
+    ExpEq = 268,                   /* ExpEq  */
+    ModEq = 269,                   /* ModEq  */
+    ARROW = 270,                   /* ARROW  */
+    OR = 271,                      /* OR  */
+    AND = 272,                     /* AND  */
+    EQ = 273,                      /* EQ  */
+    NE = 274,                      /* NE  */
+    LE = 275,                      /* LE  */
+    GE = 276,                      /* GE  */
+    UNARY = 277                    /* UNARY  */
   };
+  typedef enum ExprSpectokentype ExprSpectoken_kind_t;
 #endif
 
 /* Value type.  */
@@ -82,7 +88,7 @@ union ExprSpecYYSTYPE
     double d;      // return value for number tokens
     char* s;       /* return value for name tokens.  Note: UNLIKE the regular parser, this is not strdup()'dthe string */
 
-#line 86 "y.tab.h"
+#line 92 "y.tab.h"
 
 };
 typedef union ExprSpecYYSTYPE ExprSpecYYSTYPE;

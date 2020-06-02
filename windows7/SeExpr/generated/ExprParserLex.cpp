@@ -1054,7 +1054,7 @@ SeExprYY_RULE_SETUP
 case 31:
 SeExprYY_RULE_SETUP
 #line 111 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
-{ SeExpr2lval.d = atof(SeExpr2text); return NUMBER; }
+{ SeExpr2lval.d = crack_atof(SeExpr2text); return NUMBER; }
 	SeExprYY_BREAK
 case 32:
 SeExprYY_RULE_SETUP

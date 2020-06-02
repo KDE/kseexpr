@@ -979,7 +979,7 @@ ExprSpecYY_RULE_SETUP
 case 23:
 ExprSpecYY_RULE_SETUP
 #line 100 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParserLex.l"
-{ ExprSpeclval.d = atof(ExprSpectext); return NUMBER; }
+{ ExprSpeclval.d = crack_atof(ExprSpectext); return NUMBER; }
 	ExprSpecYY_BREAK
 case 24:
 ExprSpecYY_RULE_SETUP

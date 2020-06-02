@@ -1,4 +1,4 @@
-/* A Bison parser, made by GNU Bison 3.5.4.  */
+/* A Bison parser, made by GNU Bison 3.6.2.  */
 
 /* Bison interface for Yacc-like parsers in C
 
@@ -31,8 +31,9 @@
    This special exception was added by the Free Software Foundation in
    version 2.2 of Bison.  */
 
-/* Undocumented macros, especially those whose name start with SeExprYY_,
-   are private implementation details.  Do not rely on them.  */
+/* DO NOT RELY ON FEATURES THAT ARE NOT DOCUMENTED in the manual,
+   especially those whose name start with SeExprYY_ or SeExpr2_.  They are
+   private implementation details that can be changed or removed.  */
 
 #ifndef SeExprYY_SEEXPR2_Y_TAB_H_INCLUDED
 # define SeExprYY_SEEXPR2_Y_TAB_H_INCLUDED
@@ -44,40 +45,45 @@
 extern int SeExpr2debug;
 #endif
 
-/* Token type.  */
+/* Token kinds.  */
 #ifndef SeExprYYTOKENTYPE
 # define SeExprYYTOKENTYPE
   enum SeExpr2tokentype
   {
-    IF = 258,
-    ELSE = 259,
-    EXTERN = 260,
-    DEF = 261,
-    FLOATPOINT = 262,
-    STRING = 263,
-    NAME = 264,
-    VAR = 265,
-    STR = 266,
-    NUMBER = 267,
-    LIFETIME_CONSTANT = 268,
-    LIFETIME_UNIFORM = 269,
-    LIFETIME_VARYING = 270,
-    LIFETIME_ERROR = 271,
-    AddEq = 272,
-    SubEq = 273,
-    MultEq = 274,
-    DivEq = 275,
-    ExpEq = 276,
-    ModEq = 277,
-    ARROW = 278,
-    OR = 279,
-    AND = 280,
-    EQ = 281,
-    NE = 282,
-    SEEXPR_LE = 283,
-    SEEXPR_GE = 284,
-    UNARY = 285
+    SeExprYYEMPTY = -2,
+    SeExprYYEOF = 0,                     /* "end of file"  */
+    SeExprYYerror = 256,                 /* error  */
+    SeExprYYUNDEF = 257,                 /* "invalid token"  */
+    IF = 258,                      /* IF  */
+    ELSE = 259,                    /* ELSE  */
+    EXTERN = 260,                  /* EXTERN  */
+    DEF = 261,                     /* DEF  */
+    FLOATPOINT = 262,              /* FLOATPOINT  */
+    STRING = 263,                  /* STRING  */
+    NAME = 264,                    /* NAME  */
+    VAR = 265,                     /* VAR  */
+    STR = 266,                     /* STR  */
+    NUMBER = 267,                  /* NUMBER  */
+    LIFETIME_CONSTANT = 268,       /* LIFETIME_CONSTANT  */
+    LIFETIME_UNIFORM = 269,        /* LIFETIME_UNIFORM  */
+    LIFETIME_VARYING = 270,        /* LIFETIME_VARYING  */
+    LIFETIME_ERROR = 271,          /* LIFETIME_ERROR  */
+    AddEq = 272,                   /* AddEq  */
+    SubEq = 273,                   /* SubEq  */
+    MultEq = 274,                  /* MultEq  */
+    DivEq = 275,                   /* DivEq  */
+    ExpEq = 276,                   /* ExpEq  */
+    ModEq = 277,                   /* ModEq  */
+    ARROW = 278,                   /* ARROW  */
+    OR = 279,                      /* OR  */
+    AND = 280,                     /* AND  */
+    EQ = 281,                      /* EQ  */
+    NE = 282,                      /* NE  */
+    SEEXPR_LE = 283,               /* SEEXPR_LE  */
+    SEEXPR_GE = 284,               /* SEEXPR_GE  */
+    UNARY = 285                    /* UNARY  */
   };
+  typedef enum SeExpr2tokentype SeExpr2token_kind_t;
 #endif
 
 /* Value type.  */
@@ -99,7 +105,7 @@ union SeExprYYSTYPE
     } t;  // return value for types
     SeExpr2::ExprType::Lifetime l; // return value for lifetime qualifiers
 
-#line 103 "y.tab.h"
+#line 109 "y.tab.h"
 
 };
 typedef union SeExprYYSTYPE SeExprYYSTYPE;

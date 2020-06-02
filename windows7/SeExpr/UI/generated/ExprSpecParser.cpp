@@ -1,4 +1,4 @@
-/* A Bison parser, made by GNU Bison 3.5.4.  */
+/* A Bison parser, made by GNU Bison 3.6.2.  */
 
 /* Bison implementation for Yacc-like parsers in C
 
@@ -34,6 +34,10 @@
 /* C LALR(1) parser skeleton written by Richard Stallman, by
    simplifying the original so-called "semantic" parser.  */
 
+/* DO NOT RELY ON FEATURES THAT ARE NOT DOCUMENTED in the manual,
+   especially those whose name start with ExprSpecYY_ or ExprSpec_.  They are
+   private implementation details that can be changed or removed.  */
+
 /* All symbols defined below should begin with ExprSpec or ExprSpecYY, to avoid
    infringing on user name space.  This should be done even for local
    variables, as they might otherwise be expanded by user macros.
@@ -41,14 +45,11 @@
    define necessary library symbols; they are noted "INFRINGES ON
    USER NAME SPACE" below.  */
 
-/* Undocumented macros, especially those whose name start with ExprSpecYY_,
-   are private implementation details.  Do not rely on them.  */
-
 /* Identify Bison output.  */
 #define ExprSpecYYBISON 1
 
 /* Bison version.  */
-#define ExprSpecYYBISON_VERSION "3.5.4"
+#define ExprSpecYYBISON_VERSION "3.6.2"
 
 /* Skeleton name.  */
 #define ExprSpecYYSKELETON_NAME "yacc.c"
@@ -327,7 +328,7 @@ static void specRegisterEditable(const char* var,ExprSpecNode* node)
 static void ExprSpecerror(const char* msg);
 
 
-#line 331 "y.tab.c"
+#line 332 "y.tab.c"
 
 # ifndef ExprSpecYY_CAST
 #  ifdef __cplusplus
@@ -350,14 +351,6 @@ static void ExprSpecerror(const char* msg);
 #  endif
 # endif
 
-/* Enabling verbose error messages.  */
-#ifdef ExprSpecYYERROR_VERBOSE
-# undef ExprSpecYYERROR_VERBOSE
-# define ExprSpecYYERROR_VERBOSE 1
-#else
-# define ExprSpecYYERROR_VERBOSE 0
-#endif
-
 /* Use api.header.include to #include this header
    instead of duplicating it here.  */
 #ifndef ExprSpecYY_EXPRSPEC_Y_TAB_H_INCLUDED
@@ -370,32 +363,37 @@ static void ExprSpecerror(const char* msg);
 extern int ExprSpecdebug;
 #endif
 
-/* Token type.  */
+/* Token kinds.  */
 #ifndef ExprSpecYYTOKENTYPE
 # define ExprSpecYYTOKENTYPE
   enum ExprSpectokentype
   {
-    IF = 258,
-    ELSE = 259,
-    NAME = 260,
-    VAR = 261,
-    STR = 262,
-    NUMBER = 263,
-    AddEq = 264,
-    SubEq = 265,
-    MultEq = 266,
-    DivEq = 267,
-    ExpEq = 268,
-    ModEq = 269,
-    ARROW = 270,
-    OR = 271,
-    AND = 272,
-    EQ = 273,
-    NE = 274,
-    LE = 275,
-    GE = 276,
-    UNARY = 277
+    ExprSpecYYEMPTY = -2,
+    ExprSpecYYEOF = 0,                     /* "end of file"  */
+    ExprSpecYYerror = 256,                 /* error  */
+    ExprSpecYYUNDEF = 257,                 /* "invalid token"  */
+    IF = 258,                      /* IF  */
+    ELSE = 259,                    /* ELSE  */
+    NAME = 260,                    /* NAME  */
+    VAR = 261,                     /* VAR  */
+    STR = 262,                     /* STR  */
+    NUMBER = 263,                  /* NUMBER  */
+    AddEq = 264,                   /* AddEq  */
+    SubEq = 265,                   /* SubEq  */
+    MultEq = 266,                  /* MultEq  */
+    DivEq = 267,                   /* DivEq  */
+    ExpEq = 268,                   /* ExpEq  */
+    ModEq = 269,                   /* ModEq  */
+    ARROW = 270,                   /* ARROW  */
+    OR = 271,                      /* OR  */
+    AND = 272,                     /* AND  */
+    EQ = 273,                      /* EQ  */
+    NE = 274,                      /* NE  */
+    LE = 275,                      /* LE  */
+    GE = 276,                      /* GE  */
+    UNARY = 277                    /* UNARY  */
   };
+  typedef enum ExprSpectokentype ExprSpectoken_kind_t;
 #endif
 
 /* Value type.  */
@@ -408,7 +406,7 @@ union ExprSpecYYSTYPE
     double d;      // return value for number tokens
     char* s;       /* return value for name tokens.  Note: UNLIKE the regular parser, this is not strdup()'dthe string */
 
-#line 412 "y.tab.c"
+#line 410 "y.tab.c"
 
 };
 typedef union ExprSpecYYSTYPE ExprSpecYYSTYPE;
@@ -436,6 +434,68 @@ extern ExprSpecYYLTYPE ExprSpeclloc;
 int ExprSpecparse (void);
 
 #endif /* !ExprSpecYY_EXPRSPEC_Y_TAB_H_INCLUDED  */
+/* Symbol kind.  */
+enum ExprSpecsymbol_kind_t
+{
+  ExprSpecYYSYMBOL_ExprSpecYYEMPTY = -2,
+  ExprSpecYYSYMBOL_ExprSpecYYEOF = 0,                      /* "end of file"  */
+  ExprSpecYYSYMBOL_ExprSpecYYerror = 1,                    /* error  */
+  ExprSpecYYSYMBOL_ExprSpecYYUNDEF = 2,                    /* "invalid token"  */
+  ExprSpecYYSYMBOL_IF = 3,                         /* IF  */
+  ExprSpecYYSYMBOL_ELSE = 4,                       /* ELSE  */
+  ExprSpecYYSYMBOL_NAME = 5,                       /* NAME  */
+  ExprSpecYYSYMBOL_VAR = 6,                        /* VAR  */
+  ExprSpecYYSYMBOL_STR = 7,                        /* STR  */
+  ExprSpecYYSYMBOL_NUMBER = 8,                     /* NUMBER  */
+  ExprSpecYYSYMBOL_AddEq = 9,                      /* AddEq  */
+  ExprSpecYYSYMBOL_SubEq = 10,                     /* SubEq  */
+  ExprSpecYYSYMBOL_MultEq = 11,                    /* MultEq  */
+  ExprSpecYYSYMBOL_DivEq = 12,                     /* DivEq  */
+  ExprSpecYYSYMBOL_ExpEq = 13,                     /* ExpEq  */
+  ExprSpecYYSYMBOL_ModEq = 14,                     /* ModEq  */
+  ExprSpecYYSYMBOL_15_ = 15,                       /* '('  */
+  ExprSpecYYSYMBOL_16_ = 16,                       /* ')'  */
+  ExprSpecYYSYMBOL_ARROW = 17,                     /* ARROW  */
+  ExprSpecYYSYMBOL_18_ = 18,                       /* ':'  */
+  ExprSpecYYSYMBOL_19_ = 19,                       /* '?'  */
+  ExprSpecYYSYMBOL_OR = 20,                        /* OR  */
+  ExprSpecYYSYMBOL_AND = 21,                       /* AND  */
+  ExprSpecYYSYMBOL_EQ = 22,                        /* EQ  */
+  ExprSpecYYSYMBOL_NE = 23,                        /* NE  */
+  ExprSpecYYSYMBOL_24_ = 24,                       /* '<'  */
+  ExprSpecYYSYMBOL_25_ = 25,                       /* '>'  */
+  ExprSpecYYSYMBOL_LE = 26,                        /* LE  */
+  ExprSpecYYSYMBOL_GE = 27,                        /* GE  */
+  ExprSpecYYSYMBOL_28_ = 28,                       /* '+'  */
+  ExprSpecYYSYMBOL_29_ = 29,                       /* '-'  */
+  ExprSpecYYSYMBOL_30_ = 30,                       /* '*'  */
+  ExprSpecYYSYMBOL_31_ = 31,                       /* '/'  */
+  ExprSpecYYSYMBOL_32_ = 32,                       /* '%'  */
+  ExprSpecYYSYMBOL_UNARY = 33,                     /* UNARY  */
+  ExprSpecYYSYMBOL_34_ = 34,                       /* '!'  */
+  ExprSpecYYSYMBOL_35_ = 35,                       /* '~'  */
+  ExprSpecYYSYMBOL_36_ = 36,                       /* '^'  */
+  ExprSpecYYSYMBOL_37_ = 37,                       /* '['  */
+  ExprSpecYYSYMBOL_38_ = 38,                       /* '='  */
+  ExprSpecYYSYMBOL_39_ = 39,                       /* ';'  */
+  ExprSpecYYSYMBOL_40_ = 40,                       /* '{'  */
+  ExprSpecYYSYMBOL_41_ = 41,                       /* '}'  */
+  ExprSpecYYSYMBOL_42_ = 42,                       /* ','  */
+  ExprSpecYYSYMBOL_43_ = 43,                       /* ']'  */
+  ExprSpecYYSYMBOL_ExprSpecYYACCEPT = 44,                  /* $accept  */
+  ExprSpecYYSYMBOL_expr = 45,                      /* expr  */
+  ExprSpecYYSYMBOL_optassigns = 46,                /* optassigns  */
+  ExprSpecYYSYMBOL_assigns = 47,                   /* assigns  */
+  ExprSpecYYSYMBOL_assign = 48,                    /* assign  */
+  ExprSpecYYSYMBOL_ifthenelse = 49,                /* ifthenelse  */
+  ExprSpecYYSYMBOL_optelse = 50,                   /* optelse  */
+  ExprSpecYYSYMBOL_e = 51,                         /* e  */
+  ExprSpecYYSYMBOL_optargs = 52,                   /* optargs  */
+  ExprSpecYYSYMBOL_args = 53,                      /* args  */
+  ExprSpecYYSYMBOL_arg = 54                        /* arg  */
+};
+typedef enum ExprSpecsymbol_kind_t ExprSpecsymbol_kind_t;
+
 
 
 
@@ -535,6 +595,7 @@ typedef int ExprSpectype_uint16;
 
 #define ExprSpecYYSIZEOF(X) ExprSpecYY_CAST (ExprSpecYYPTRDIFF_T, sizeof (X))
 
+
 /* Stored state numbers (used for stacks). */
 typedef ExprSpectype_uint8 ExprSpec_state_t;
 
@@ -552,6 +613,7 @@ typedef int ExprSpec_state_fast_t;
 #  define ExprSpecYY_(Msgid) Msgid
 # endif
 #endif
+
 
 #ifndef ExprSpecYY_ATTRIBUTE_PURE
 # if defined __GNUC__ && 2 < __GNUC__ + (96 <= __GNUC_MINOR__)
@@ -610,7 +672,7 @@ typedef int ExprSpec_state_fast_t;
 
 #define ExprSpecYY_ASSERT(E) ((void) (0 && (E)))
 
-#if ! defined ExprSpecoverflow || ExprSpecYYERROR_VERBOSE
+#if !defined ExprSpecoverflow
 
 /* The parser invokes alloca or malloc; define the necessary symbols.  */
 
@@ -675,8 +737,7 @@ void free (void *); /* INFRINGES ON USER NAME SPACE */
 #   endif
 #  endif
 # endif
-#endif /* ! defined ExprSpecoverflow || ExprSpecYYERROR_VERBOSE */
-
+#endif /* !defined ExprSpecoverflow */
 
 #if (! defined ExprSpecoverflow \
      && (! defined __cplusplus \
@@ -755,14 +816,15 @@ union ExprSpecalloc
 /* ExprSpecYYNSTATES -- Number of states.  */
 #define ExprSpecYYNSTATES  139
 
-#define ExprSpecYYUNDEFTOK  2
 #define ExprSpecYYMAXUTOK   277
 
 
 /* ExprSpecYYTRANSLATE(TOKEN-NUM) -- Symbol number corresponding to TOKEN-NUM
    as returned by ExprSpeclex, with out-of-bounds checking.  */
-#define ExprSpecYYTRANSLATE(ExprSpecYYX)                                                \
-  (0 <= (ExprSpecYYX) && (ExprSpecYYX) <= ExprSpecYYMAXUTOK ? ExprSpectranslate[ExprSpecYYX] : ExprSpecYYUNDEFTOK)
+#define ExprSpecYYTRANSLATE(ExprSpecYYX)                                \
+  (0 <= (ExprSpecYYX) && (ExprSpecYYX) <= ExprSpecYYMAXUTOK                     \
+   ? ExprSpecYY_CAST (ExprSpecsymbol_kind_t, ExprSpectranslate[ExprSpecYYX])        \
+   : ExprSpecYYSYMBOL_ExprSpecYYUNDEF)
 
 /* ExprSpecYYTRANSLATE[TOKEN-NUM] -- Symbol number corresponding to TOKEN-NUM
    as returned by ExprSpeclex.  */
@@ -799,7 +861,7 @@ static const ExprSpectype_int8 ExprSpectranslate[] =
 };
 
 #if ExprSpecYYDEBUG
-  /* ExprSpecYYRLINE[ExprSpecYYN] -- Source line where rule number ExprSpecYYN was defined.  */
+  /* ExprSpecYYRLINEExprSpecYYN -- Source line where rule number ExprSpecYYN was defined.  */
 static const ExprSpectype_int16 ExprSpecrline[] =
 {
        0,   313,   313,   314,   319,   320,   324,   325,   330,   331,
@@ -811,22 +873,35 @@ static const ExprSpectype_int16 ExprSpecrline[] =
 };
 #endif
 
-#if ExprSpecYYDEBUG || ExprSpecYYERROR_VERBOSE || 0
+/** Accessing symbol of state STATE.  */
+#define ExprSpecYY_ACCESSING_SYMBOL(State) ExprSpecYY_CAST (ExprSpecsymbol_kind_t, ExprSpecstos[State])
+
+#if ExprSpecYYDEBUG || 0
+/* The user-facing name of the symbol whose (internal) number is
+   ExprSpecYYSYMBOL.  No bounds checking.  */
+static const char *ExprSpecsymbol_name (ExprSpecsymbol_kind_t ExprSpecsymbol) ExprSpecYY_ATTRIBUTE_UNUSED;
+
 /* ExprSpecYYTNAME[SYMBOL-NUM] -- String name of the symbol SYMBOL-NUM.
    First, the terminals, then, starting at ExprSpecYYNTOKENS, nonterminals.  */
 static const char *const ExprSpectname[] =
 {
-  "$end", "error", "$undefined", "IF", "ELSE", "NAME", "VAR", "STR",
-  "NUMBER", "AddEq", "SubEq", "MultEq", "DivEq", "ExpEq", "ModEq", "'('",
-  "')'", "ARROW", "':'", "'?'", "OR", "AND", "EQ", "NE", "'<'", "'>'",
-  "LE", "GE", "'+'", "'-'", "'*'", "'/'", "'%'", "UNARY", "'!'", "'~'",
-  "'^'", "'['", "'='", "';'", "'{'", "'}'", "','", "']'", "$accept",
-  "expr", "optassigns", "assigns", "assign", "ifthenelse", "optelse", "e",
-  "optargs", "args", "arg", ExprSpecYY_NULLPTR
+  "\"end of file\"", "error", "\"invalid token\"", "IF", "ELSE", "NAME",
+  "VAR", "STR", "NUMBER", "AddEq", "SubEq", "MultEq", "DivEq", "ExpEq",
+  "ModEq", "'('", "')'", "ARROW", "':'", "'?'", "OR", "AND", "EQ", "NE",
+  "'<'", "'>'", "LE", "GE", "'+'", "'-'", "'*'", "'/'", "'%'", "UNARY",
+  "'!'", "'~'", "'^'", "'['", "'='", "';'", "'{'", "'}'", "','", "']'",
+  "$accept", "expr", "optassigns", "assigns", "assign", "ifthenelse",
+  "optelse", "e", "optargs", "args", "arg", ExprSpecYY_NULLPTR
 };
+
+static const char *
+ExprSpecsymbol_name (ExprSpecsymbol_kind_t ExprSpecsymbol)
+{
+  return ExprSpectname[ExprSpecsymbol];
+}
 #endif
 
-# ifdef ExprSpecYYPRINT
+#ifdef ExprSpecYYPRINT
 /* ExprSpecYYTOKNUM[NUM] -- (External) token number corresponding to the
    (internal) symbol number NUM (which must be that of a token).  */
 static const ExprSpectype_int16 ExprSpectoknum[] =
@@ -837,7 +912,7 @@ static const ExprSpectype_int16 ExprSpectoknum[] =
       42,    47,    37,   277,    33,   126,    94,    91,    61,    59,
      123,   125,    44,    93
 };
-# endif
+#endif
 
 #define ExprSpecYYPACT_NINF (-57)
 
@@ -849,7 +924,7 @@ static const ExprSpectype_int16 ExprSpectoknum[] =
 #define ExprSpectable_value_is_error(Yyn) \
   0
 
-  /* ExprSpecYYPACT[STATE-NUM] -- Index in ExprSpecYYTABLE of the portion describing
+  /* ExprSpecYYPACTSTATE-NUM -- Index in ExprSpecYYTABLE of the portion describing
      STATE-NUM.  */
 static const ExprSpectype_int16 ExprSpecpact[] =
 {
@@ -869,7 +944,7 @@ static const ExprSpectype_int16 ExprSpecpact[] =
      -57,    69,   -57,    -1,   -57,     8,   -57,    34,   -57
 };
 
-  /* ExprSpecYYDEFACT[STATE-NUM] -- Default reduction number in state STATE-NUM.
+  /* ExprSpecYYDEFACTSTATE-NUM -- Default reduction number in state STATE-NUM.
      Performed when ExprSpecYYTABLE does not specify something else to do.  Zero
      means the default is an error.  */
 static const ExprSpectype_int8 ExprSpecdefact[] =
@@ -890,21 +965,21 @@ static const ExprSpectype_int8 ExprSpecdefact[] =
       50,    24,    28,     0,    23,     4,    26,     0,    25
 };
 
-  /* ExprSpecYYPGOTO[NTERM-NUM].  */
+  /* ExprSpecYYPGOTONTERM-NUM.  */
 static const ExprSpectype_int8 ExprSpecpgoto[] =
 {
      -57,   -57,   -56,    82,   -11,   -50,   -57,     0,   -29,   -57,
      -23
 };
 
-  /* ExprSpecYYDEFGOTO[NTERM-NUM].  */
+  /* ExprSpecYYDEFGOTONTERM-NUM.  */
 static const ExprSpectype_int16 ExprSpecdefgoto[] =
 {
       -1,    11,   127,   128,    13,    14,   134,    68,    69,    70,
       71
 };
 
-  /* ExprSpecYYTABLE[ExprSpecYYPACT[STATE-NUM]] -- What to do in state STATE-NUM.  If
+  /* ExprSpecYYTABLEExprSpecYYPACT[STATE-NUM] -- What to do in state STATE-NUM.  If
      positive, shift that token.  If negative, reduce the rule whose
      number is the opposite.  If ExprSpecYYTABLE_NINF, syntax error.  */
 static const ExprSpectype_uint8 ExprSpectable[] =
@@ -1055,7 +1130,7 @@ static const ExprSpectype_int16 ExprSpeccheck[] =
       -1,    36,    37
 };
 
-  /* ExprSpecYYSTOS[STATE-NUM] -- The (internal number of the) accessing
+  /* ExprSpecYYSTOSSTATE-NUM -- The (internal number of the) accessing
      symbol of state STATE-NUM.  */
 static const ExprSpectype_int8 ExprSpecstos[] =
 {
@@ -1075,7 +1150,7 @@ static const ExprSpectype_int8 ExprSpecstos[] =
       16,    41,    43,     4,    50,    40,    49,    46,    41
 };
 
-  /* ExprSpecYYR1[ExprSpecYYN] -- Symbol number of symbol that rule ExprSpecYYN derives.  */
+  /* ExprSpecYYR1ExprSpecYYN -- Symbol number of symbol that rule ExprSpecYYN derives.  */
 static const ExprSpectype_int8 ExprSpecr1[] =
 {
        0,    44,    45,    45,    46,    46,    47,    47,    48,    48,
@@ -1086,7 +1161,7 @@ static const ExprSpectype_int8 ExprSpecr1[] =
       51,    51,    51,    51,    52,    52,    53,    53,    54,    54
 };
 
-  /* ExprSpecYYR2[ExprSpecYYN] -- Number of symbols on the right hand side of rule ExprSpecYYN.  */
+  /* ExprSpecYYR2ExprSpecYYN -- Number of symbols on the right hand side of rule ExprSpecYYN.  */
 static const ExprSpectype_int8 ExprSpecr2[] =
 {
        0,     2,     2,     1,     0,     1,     1,     2,     1,     4,
@@ -1098,10 +1173,10 @@ static const ExprSpectype_int8 ExprSpecr2[] =
 };
 
 
+enum { ExprSpecYYENOMEM = -2 };
+
 #define ExprSpecerrok         (ExprSpecerrstatus = 0)
 #define ExprSpecclearin       (ExprSpecchar = ExprSpecYYEMPTY)
-#define ExprSpecYYEMPTY         (-2)
-#define ExprSpecYYEOF           0
 
 #define ExprSpecYYACCEPT        goto ExprSpecacceptlab
 #define ExprSpecYYABORT         goto ExprSpecabortlab
@@ -1127,10 +1202,9 @@ static const ExprSpectype_int8 ExprSpecr2[] =
       }                                                           \
   while (0)
 
-/* Error token number */
-#define ExprSpecYYTERROR        1
-#define ExprSpecYYERRCODE       256
-
+/* Backward compatibility with an undocumented macro.
+   Use ExprSpecYYerror or ExprSpecYYUNDEF. */
+#define ExprSpecYYERRCODE ExprSpecYYUNDEF
 
 /* ExprSpecYYLLOC_DEFAULT -- Set CURRENT to span from RHS[1] to RHS[N].
    If N is 0, then set CURRENT to the empty location which ends
@@ -1178,8 +1252,8 @@ do {                                            \
    This macro was not mandated originally: define only if we know
    we won't break user code: when these are the locations we know.  */
 
-#ifndef ExprSpecYY_LOCATION_PRINT
-# if defined ExprSpecYYLTYPE_IS_TRIVIAL && ExprSpecYYLTYPE_IS_TRIVIAL
+# ifndef ExprSpecYY_LOCATION_PRINT
+#  if defined ExprSpecYYLTYPE_IS_TRIVIAL && ExprSpecYYLTYPE_IS_TRIVIAL
 
 /* Print *ExprSpecYYLOCP on ExprSpecYYO.  Private, do not rely on its existence. */
 
@@ -1209,22 +1283,22 @@ ExprSpec_location_print_ (FILE *ExprSpeco, ExprSpecYYLTYPE const * const ExprSpe
   return res;
  }
 
-#  define ExprSpecYY_LOCATION_PRINT(File, Loc)          \
+#   define ExprSpecYY_LOCATION_PRINT(File, Loc)          \
   ExprSpec_location_print_ (File, &(Loc))
 
-# else
-#  define ExprSpecYY_LOCATION_PRINT(File, Loc) ((void) 0)
-# endif
-#endif
+#  else
+#   define ExprSpecYY_LOCATION_PRINT(File, Loc) ((void) 0)
+#  endif
+# endif /* !defined ExprSpecYY_LOCATION_PRINT */
 
 
-# define ExprSpecYY_SYMBOL_PRINT(Title, Type, Value, Location)                    \
+# define ExprSpecYY_SYMBOL_PRINT(Title, Kind, Value, Location)                    \
 do {                                                                      \
   if (ExprSpecdebug)                                                            \
     {                                                                     \
       ExprSpecYYFPRINTF (stderr, "%s ", Title);                                   \
       ExprSpec_symbol_print (stderr,                                            \
-                  Type, Value, Location); \
+                  Kind, Value, Location); \
       ExprSpecYYFPRINTF (stderr, "\n");                                           \
     }                                                                     \
 } while (0)
@@ -1235,7 +1309,8 @@ do {                                                                      \
 `-----------------------------------*/
 
 static void
-ExprSpec_symbol_value_print (FILE *ExprSpeco, int ExprSpectype, ExprSpecYYSTYPE const * const ExprSpecvaluep, ExprSpecYYLTYPE const * const ExprSpeclocationp)
+ExprSpec_symbol_value_print (FILE *ExprSpeco,
+                       ExprSpecsymbol_kind_t ExprSpeckind, ExprSpecYYSTYPE const * const ExprSpecvaluep, ExprSpecYYLTYPE const * const ExprSpeclocationp)
 {
   FILE *ExprSpecoutput = ExprSpeco;
   ExprSpecYYUSE (ExprSpecoutput);
@@ -1243,11 +1318,11 @@ ExprSpec_symbol_value_print (FILE *ExprSpeco, int ExprSpectype, ExprSpecYYSTYPE 
   if (!ExprSpecvaluep)
     return;
 # ifdef ExprSpecYYPRINT
-  if (ExprSpectype < ExprSpecYYNTOKENS)
-    ExprSpecYYPRINT (ExprSpeco, ExprSpectoknum[ExprSpectype], *ExprSpecvaluep);
+  if (ExprSpeckind < ExprSpecYYNTOKENS)
+    ExprSpecYYPRINT (ExprSpeco, ExprSpectoknum[ExprSpeckind], *ExprSpecvaluep);
 # endif
   ExprSpecYY_IGNORE_MAYBE_UNINITIALIZED_BEGIN
-  ExprSpecYYUSE (ExprSpectype);
+  ExprSpecYYUSE (ExprSpeckind);
   ExprSpecYY_IGNORE_MAYBE_UNINITIALIZED_END
 }
 
@@ -1257,14 +1332,15 @@ ExprSpec_symbol_value_print (FILE *ExprSpeco, int ExprSpectype, ExprSpecYYSTYPE 
 `---------------------------*/
 
 static void
-ExprSpec_symbol_print (FILE *ExprSpeco, int ExprSpectype, ExprSpecYYSTYPE const * const ExprSpecvaluep, ExprSpecYYLTYPE const * const ExprSpeclocationp)
+ExprSpec_symbol_print (FILE *ExprSpeco,
+                 ExprSpecsymbol_kind_t ExprSpeckind, ExprSpecYYSTYPE const * const ExprSpecvaluep, ExprSpecYYLTYPE const * const ExprSpeclocationp)
 {
   ExprSpecYYFPRINTF (ExprSpeco, "%s %s (",
-             ExprSpectype < ExprSpecYYNTOKENS ? "token" : "nterm", ExprSpectname[ExprSpectype]);
+             ExprSpeckind < ExprSpecYYNTOKENS ? "token" : "nterm", ExprSpecsymbol_name (ExprSpeckind));
 
   ExprSpecYY_LOCATION_PRINT (ExprSpeco, *ExprSpeclocationp);
   ExprSpecYYFPRINTF (ExprSpeco, ": ");
-  ExprSpec_symbol_value_print (ExprSpeco, ExprSpectype, ExprSpecvaluep, ExprSpeclocationp);
+  ExprSpec_symbol_value_print (ExprSpeco, ExprSpeckind, ExprSpecvaluep, ExprSpeclocationp);
   ExprSpecYYFPRINTF (ExprSpeco, ")");
 }
 
@@ -1297,7 +1373,8 @@ do {                                                            \
 `------------------------------------------------*/
 
 static void
-ExprSpec_reduce_print (ExprSpec_state_t *ExprSpecssp, ExprSpecYYSTYPE *ExprSpecvsp, ExprSpecYYLTYPE *ExprSpeclsp, int ExprSpecrule)
+ExprSpec_reduce_print (ExprSpec_state_t *ExprSpecssp, ExprSpecYYSTYPE *ExprSpecvsp, ExprSpecYYLTYPE *ExprSpeclsp,
+                 int ExprSpecrule)
 {
   int ExprSpeclno = ExprSpecrline[ExprSpecrule];
   int ExprSpecnrhs = ExprSpecr2[ExprSpecrule];
@@ -1309,9 +1386,9 @@ ExprSpec_reduce_print (ExprSpec_state_t *ExprSpecssp, ExprSpecYYSTYPE *ExprSpecv
     {
       ExprSpecYYFPRINTF (stderr, "   $%d = ", ExprSpeci + 1);
       ExprSpec_symbol_print (stderr,
-                       ExprSpecstos[+ExprSpecssp[ExprSpeci + 1 - ExprSpecnrhs]],
-                       &ExprSpecvsp[(ExprSpeci + 1) - (ExprSpecnrhs)]
-                       , &(ExprSpeclsp[(ExprSpeci + 1) - (ExprSpecnrhs)])                       );
+                       ExprSpecYY_ACCESSING_SYMBOL (+ExprSpecssp[ExprSpeci + 1 - ExprSpecnrhs]),
+                       &ExprSpecvsp[(ExprSpeci + 1) - (ExprSpecnrhs)],
+                       &(ExprSpeclsp[(ExprSpeci + 1) - (ExprSpecnrhs)]));
       ExprSpecYYFPRINTF (stderr, "\n");
     }
 }
@@ -1326,8 +1403,8 @@ do {                                    \
    multiple parsers can coexist.  */
 int ExprSpecdebug;
 #else /* !ExprSpecYYDEBUG */
-# define ExprSpecYYDPRINTF(Args)
-# define ExprSpecYY_SYMBOL_PRINT(Title, Type, Value, Location)
+# define ExprSpecYYDPRINTF(Args) ((void) 0)
+# define ExprSpecYY_SYMBOL_PRINT(Title, Kind, Value, Location)
 # define ExprSpecYY_STACK_PRINT(Bottom, Top)
 # define ExprSpecYY_REDUCE_PRINT(Rule)
 #endif /* !ExprSpecYYDEBUG */
@@ -1350,257 +1427,28 @@ int ExprSpecdebug;
 #endif
 
 
-#if ExprSpecYYERROR_VERBOSE
 
-# ifndef ExprSpecstrlen
-#  if defined __GLIBC__ && defined _STRING_H
-#   define ExprSpecstrlen(S) (ExprSpecYY_CAST (ExprSpecYYPTRDIFF_T, strlen (S)))
-#  else
-/* Return the length of ExprSpecYYSTR.  */
-static ExprSpecYYPTRDIFF_T
-ExprSpecstrlen (const char *ExprSpecstr)
-{
-  ExprSpecYYPTRDIFF_T ExprSpeclen;
-  for (ExprSpeclen = 0; ExprSpecstr[ExprSpeclen]; ExprSpeclen++)
-    continue;
-  return ExprSpeclen;
-}
-#  endif
-# endif
 
-# ifndef ExprSpecstpcpy
-#  if defined __GLIBC__ && defined _STRING_H && defined _GNU_SOURCE
-#   define ExprSpecstpcpy stpcpy
-#  else
-/* Copy ExprSpecYYSRC to ExprSpecYYDEST, returning the address of the terminating '\0' in
-   ExprSpecYYDEST.  */
-static char *
-ExprSpecstpcpy (char *ExprSpecdest, const char *ExprSpecsrc)
-{
-  char *ExprSpecd = ExprSpecdest;
-  const char *ExprSpecs = ExprSpecsrc;
 
-  while ((*ExprSpecd++ = *ExprSpecs++) != '\0')
-    continue;
-
-  return ExprSpecd - 1;
-}
-#  endif
-# endif
-
-# ifndef ExprSpectnamerr
-/* Copy to ExprSpecYYRES the contents of ExprSpecYYSTR after stripping away unnecessary
-   quotes and backslashes, so that it's suitable for ExprSpecerror.  The
-   heuristic is that double-quoting is unnecessary unless the string
-   contains an apostrophe, a comma, or backslash (other than
-   backslash-backslash).  ExprSpecYYSTR is taken from ExprSpectname.  If ExprSpecYYRES is
-   null, do not copy; instead, return the length of what the result
-   would have been.  */
-static ExprSpecYYPTRDIFF_T
-ExprSpectnamerr (char *ExprSpecres, const char *ExprSpecstr)
-{
-  if (*ExprSpecstr == '"')
-    {
-      ExprSpecYYPTRDIFF_T ExprSpecn = 0;
-      char const *ExprSpecp = ExprSpecstr;
-
-      for (;;)
-        switch (*++ExprSpecp)
-          {
-          case '\'':
-          case ',':
-            goto do_not_strip_quotes;
-
-          case '\\':
-            if (*++ExprSpecp != '\\')
-              goto do_not_strip_quotes;
-            else
-              goto append;
-
-          append:
-          default:
-            if (ExprSpecres)
-              ExprSpecres[ExprSpecn] = *ExprSpecp;
-            ExprSpecn++;
-            break;
-
-          case '"':
-            if (ExprSpecres)
-              ExprSpecres[ExprSpecn] = '\0';
-            return ExprSpecn;
-          }
-    do_not_strip_quotes: ;
-    }
-
-  if (ExprSpecres)
-    return ExprSpecstpcpy (ExprSpecres, ExprSpecstr) - ExprSpecres;
-  else
-    return ExprSpecstrlen (ExprSpecstr);
-}
-# endif
-
-/* Copy into *ExprSpecYYMSG, which is of size *ExprSpecYYMSG_ALLOC, an error message
-   about the unexpected token ExprSpecYYTOKEN for the state stack whose top is
-   ExprSpecYYSSP.
-
-   Return 0 if *ExprSpecYYMSG was successfully written.  Return 1 if *ExprSpecYYMSG is
-   not large enough to hold the message.  In that case, also set
-   *ExprSpecYYMSG_ALLOC to the required number of bytes.  Return 2 if the
-   required number of bytes is too large to store.  */
-static int
-ExprSpecsyntax_error (ExprSpecYYPTRDIFF_T *ExprSpecmsg_alloc, char **ExprSpecmsg,
-                ExprSpec_state_t *ExprSpecssp, int ExprSpectoken)
-{
-  enum { ExprSpecYYERROR_VERBOSE_ARGS_MAXIMUM = 5 };
-  /* Internationalized format string. */
-  const char *ExprSpecformat = ExprSpecYY_NULLPTR;
-  /* Arguments of ExprSpecformat: reported tokens (one for the "unexpected",
-     one per "expected"). */
-  char const *ExprSpecarg[ExprSpecYYERROR_VERBOSE_ARGS_MAXIMUM];
-  /* Actual size of ExprSpecYYARG. */
-  int ExprSpeccount = 0;
-  /* Cumulated lengths of ExprSpecYYARG.  */
-  ExprSpecYYPTRDIFF_T ExprSpecsize = 0;
-
-  /* There are many possibilities here to consider:
-     - If this state is a consistent state with a default action, then
-       the only way this function was invoked is if the default action
-       is an error action.  In that case, don't check for expected
-       tokens because there are none.
-     - The only way there can be no lookahead present (in ExprSpecchar) is if
-       this state is a consistent state with a default action.  Thus,
-       detecting the absence of a lookahead is sufficient to determine
-       that there is no unexpected or expected token to report.  In that
-       case, just report a simple "syntax error".
-     - Don't assume there isn't a lookahead just because this state is a
-       consistent state with a default action.  There might have been a
-       previous inconsistent state, consistent state with a non-default
-       action, or user semantic action that manipulated ExprSpecchar.
-     - Of course, the expected token list depends on states to have
-       correct lookahead information, and it depends on the parser not
-       to perform extra reductions after fetching a lookahead from the
-       scanner and before detecting a syntax error.  Thus, state merging
-       (from LALR or IELR) and default reductions corrupt the expected
-       token list.  However, the list is correct for canonical LR with
-       one exception: it will still contain any token that will not be
-       accepted due to an error action in a later state.
-  */
-  if (ExprSpectoken != ExprSpecYYEMPTY)
-    {
-      int ExprSpecn = ExprSpecpact[+*ExprSpecssp];
-      ExprSpecYYPTRDIFF_T ExprSpecsize0 = ExprSpectnamerr (ExprSpecYY_NULLPTR, ExprSpectname[ExprSpectoken]);
-      ExprSpecsize = ExprSpecsize0;
-      ExprSpecarg[ExprSpeccount++] = ExprSpectname[ExprSpectoken];
-      if (!ExprSpecpact_value_is_default (ExprSpecn))
-        {
-          /* Start ExprSpecYYX at -ExprSpecYYN if negative to avoid negative indexes in
-             ExprSpecYYCHECK.  In other words, skip the first -ExprSpecYYN actions for
-             this state because they are default actions.  */
-          int ExprSpecxbegin = ExprSpecn < 0 ? -ExprSpecn : 0;
-          /* Stay within bounds of both ExprSpeccheck and ExprSpectname.  */
-          int ExprSpecchecklim = ExprSpecYYLAST - ExprSpecn + 1;
-          int ExprSpecxend = ExprSpecchecklim < ExprSpecYYNTOKENS ? ExprSpecchecklim : ExprSpecYYNTOKENS;
-          int ExprSpecx;
-
-          for (ExprSpecx = ExprSpecxbegin; ExprSpecx < ExprSpecxend; ++ExprSpecx)
-            if (ExprSpeccheck[ExprSpecx + ExprSpecn] == ExprSpecx && ExprSpecx != ExprSpecYYTERROR
-                && !ExprSpectable_value_is_error (ExprSpectable[ExprSpecx + ExprSpecn]))
-              {
-                if (ExprSpeccount == ExprSpecYYERROR_VERBOSE_ARGS_MAXIMUM)
-                  {
-                    ExprSpeccount = 1;
-                    ExprSpecsize = ExprSpecsize0;
-                    break;
-                  }
-                ExprSpecarg[ExprSpeccount++] = ExprSpectname[ExprSpecx];
-                {
-                  ExprSpecYYPTRDIFF_T ExprSpecsize1
-                    = ExprSpecsize + ExprSpectnamerr (ExprSpecYY_NULLPTR, ExprSpectname[ExprSpecx]);
-                  if (ExprSpecsize <= ExprSpecsize1 && ExprSpecsize1 <= ExprSpecYYSTACK_ALLOC_MAXIMUM)
-                    ExprSpecsize = ExprSpecsize1;
-                  else
-                    return 2;
-                }
-              }
-        }
-    }
-
-  switch (ExprSpeccount)
-    {
-# define ExprSpecYYCASE_(N, S)                      \
-      case N:                               \
-        ExprSpecformat = S;                       \
-      break
-    default: /* Avoid compiler warnings. */
-      ExprSpecYYCASE_(0, ExprSpecYY_("syntax error"));
-      ExprSpecYYCASE_(1, ExprSpecYY_("syntax error, unexpected %s"));
-      ExprSpecYYCASE_(2, ExprSpecYY_("syntax error, unexpected %s, expecting %s"));
-      ExprSpecYYCASE_(3, ExprSpecYY_("syntax error, unexpected %s, expecting %s or %s"));
-      ExprSpecYYCASE_(4, ExprSpecYY_("syntax error, unexpected %s, expecting %s or %s or %s"));
-      ExprSpecYYCASE_(5, ExprSpecYY_("syntax error, unexpected %s, expecting %s or %s or %s or %s"));
-# undef ExprSpecYYCASE_
-    }
-
-  {
-    /* Don't count the "%s"s in the final size, but reserve room for
-       the terminator.  */
-    ExprSpecYYPTRDIFF_T ExprSpecsize1 = ExprSpecsize + (ExprSpecstrlen (ExprSpecformat) - 2 * ExprSpeccount) + 1;
-    if (ExprSpecsize <= ExprSpecsize1 && ExprSpecsize1 <= ExprSpecYYSTACK_ALLOC_MAXIMUM)
-      ExprSpecsize = ExprSpecsize1;
-    else
-      return 2;
-  }
-
-  if (*ExprSpecmsg_alloc < ExprSpecsize)
-    {
-      *ExprSpecmsg_alloc = 2 * ExprSpecsize;
-      if (! (ExprSpecsize <= *ExprSpecmsg_alloc
-             && *ExprSpecmsg_alloc <= ExprSpecYYSTACK_ALLOC_MAXIMUM))
-        *ExprSpecmsg_alloc = ExprSpecYYSTACK_ALLOC_MAXIMUM;
-      return 1;
-    }
-
-  /* Avoid sprintf, as that infringes on the user's name space.
-     Don't have undefined behavior even if the translation
-     produced a string with the wrong number of "%s"s.  */
-  {
-    char *ExprSpecp = *ExprSpecmsg;
-    int ExprSpeci = 0;
-    while ((*ExprSpecp = *ExprSpecformat) != '\0')
-      if (*ExprSpecp == '%' && ExprSpecformat[1] == 's' && ExprSpeci < ExprSpeccount)
-        {
-          ExprSpecp += ExprSpectnamerr (ExprSpecp, ExprSpecarg[ExprSpeci++]);
-          ExprSpecformat += 2;
-        }
-      else
-        {
-          ++ExprSpecp;
-          ++ExprSpecformat;
-        }
-  }
-  return 0;
-}
-#endif /* ExprSpecYYERROR_VERBOSE */
 
 /*-----------------------------------------------.
 | Release the memory associated to this symbol.  |
 `-----------------------------------------------*/
 
 static void
-ExprSpecdestruct (const char *ExprSpecmsg, int ExprSpectype, ExprSpecYYSTYPE *ExprSpecvaluep, ExprSpecYYLTYPE *ExprSpeclocationp)
+ExprSpecdestruct (const char *ExprSpecmsg,
+            ExprSpecsymbol_kind_t ExprSpeckind, ExprSpecYYSTYPE *ExprSpecvaluep, ExprSpecYYLTYPE *ExprSpeclocationp)
 {
   ExprSpecYYUSE (ExprSpecvaluep);
   ExprSpecYYUSE (ExprSpeclocationp);
   if (!ExprSpecmsg)
     ExprSpecmsg = "Deleting";
-  ExprSpecYY_SYMBOL_PRINT (ExprSpecmsg, ExprSpectype, ExprSpecvaluep, ExprSpeclocationp);
+  ExprSpecYY_SYMBOL_PRINT (ExprSpecmsg, ExprSpeckind, ExprSpecvaluep, ExprSpeclocationp);
 
   ExprSpecYY_IGNORE_MAYBE_UNINITIALIZED_BEGIN
-  ExprSpecYYUSE (ExprSpectype);
+  ExprSpecYYUSE (ExprSpeckind);
   ExprSpecYY_IGNORE_MAYBE_UNINITIALIZED_END
 }
-
-
 
 
 /* The lookahead symbol.  */
@@ -1616,6 +1464,8 @@ ExprSpecYYLTYPE ExprSpeclloc
 ;
 /* Number of syntax errors so far.  */
 int ExprSpecnerrs;
+
+
 
 
 /*----------.
@@ -1637,6 +1487,9 @@ ExprSpecparse (void)
        Refer to the stacks through separate pointers, to allow ExprSpecoverflow
        to reallocate them elsewhere.  */
 
+    /* Their size.  */
+    ExprSpecYYPTRDIFF_T ExprSpecstacksize;
+
     /* The state stack.  */
     ExprSpec_state_t ExprSpecssa[ExprSpecYYINITDEPTH];
     ExprSpec_state_t *ExprSpecss;
@@ -1652,26 +1505,20 @@ ExprSpecparse (void)
     ExprSpecYYLTYPE *ExprSpecls;
     ExprSpecYYLTYPE *ExprSpeclsp;
 
-    /* The locations where the error started and ended.  */
-    ExprSpecYYLTYPE ExprSpecerror_range[3];
-
-    ExprSpecYYPTRDIFF_T ExprSpecstacksize;
-
   int ExprSpecn;
+  /* The return value of ExprSpecparse.  */
   int ExprSpecresult;
   /* Lookahead token as an internal (translated) token number.  */
-  int ExprSpectoken = 0;
+  ExprSpecsymbol_kind_t ExprSpectoken = ExprSpecYYSYMBOL_ExprSpecYYEMPTY;
   /* The variables used to return semantic value and location from the
      action routines.  */
   ExprSpecYYSTYPE ExprSpecval;
   ExprSpecYYLTYPE ExprSpecloc;
 
-#if ExprSpecYYERROR_VERBOSE
-  /* Buffer for error messages, and its allocated size.  */
-  char ExprSpecmsgbuf[128];
-  char *ExprSpecmsg = ExprSpecmsgbuf;
-  ExprSpecYYPTRDIFF_T ExprSpecmsg_alloc = sizeof ExprSpecmsgbuf;
-#endif
+  /* The locations where the error started and ended.  */
+  ExprSpecYYLTYPE ExprSpecerror_range[3];
+
+
 
 #define ExprSpecYYPOPSTACK(N)   (ExprSpecvsp -= (N), ExprSpecssp -= (N), ExprSpeclsp -= (N))
 
@@ -1679,16 +1526,18 @@ ExprSpecparse (void)
      Keep to zero when no symbol should be popped.  */
   int ExprSpeclen = 0;
 
+  ExprSpecnerrs = 0;
+  ExprSpecstate = 0;
+  ExprSpecerrstatus = 0;
+
+  ExprSpecstacksize = ExprSpecYYINITDEPTH;
   ExprSpecssp = ExprSpecss = ExprSpecssa;
   ExprSpecvsp = ExprSpecvs = ExprSpecvsa;
   ExprSpeclsp = ExprSpecls = ExprSpeclsa;
-  ExprSpecstacksize = ExprSpecYYINITDEPTH;
+
 
   ExprSpecYYDPRINTF ((stderr, "Starting parse\n"));
 
-  ExprSpecstate = 0;
-  ExprSpecerrstatus = 0;
-  ExprSpecnerrs = 0;
   ExprSpecchar = ExprSpecYYEMPTY; /* Cause a token to be read.  */
   ExprSpeclsp[0] = ExprSpeclloc;
   goto ExprSpecsetstate;
@@ -1712,6 +1561,7 @@ ExprSpecsetstate:
   ExprSpecYY_IGNORE_USELESS_CAST_BEGIN
   *ExprSpecssp = ExprSpecYY_CAST (ExprSpec_state_t, ExprSpecstate);
   ExprSpecYY_IGNORE_USELESS_CAST_END
+  ExprSpecYY_STACK_PRINT (ExprSpecss, ExprSpecssp);
 
   if (ExprSpecss + ExprSpecstacksize - 1 <= ExprSpecssp)
 #if !defined ExprSpecoverflow && !defined ExprSpecYYSTACK_RELOCATE
@@ -1761,7 +1611,7 @@ ExprSpecsetstate:
         ExprSpecYYSTACK_RELOCATE (ExprSpecss_alloc, ExprSpecss);
         ExprSpecYYSTACK_RELOCATE (ExprSpecvs_alloc, ExprSpecvs);
         ExprSpecYYSTACK_RELOCATE (ExprSpecls_alloc, ExprSpecls);
-# undef ExprSpecYYSTACK_RELOCATE
+#  undef ExprSpecYYSTACK_RELOCATE
         if (ExprSpecss1 != ExprSpecssa)
           ExprSpecYYSTACK_FREE (ExprSpecss1);
       }
@@ -1801,17 +1651,29 @@ ExprSpecbackup:
 
   /* Not known => get a lookahead token if don't already have one.  */
 
-  /* ExprSpecYYCHAR is either ExprSpecYYEMPTY or ExprSpecYYEOF or a valid lookahead symbol.  */
+  /* ExprSpecYYCHAR is either empty, or end-of-input, or a valid lookahead.  */
   if (ExprSpecchar == ExprSpecYYEMPTY)
     {
-      ExprSpecYYDPRINTF ((stderr, "Reading a token: "));
+      ExprSpecYYDPRINTF ((stderr, "Reading a token\n"));
       ExprSpecchar = ExprSpeclex ();
     }
 
   if (ExprSpecchar <= ExprSpecYYEOF)
     {
-      ExprSpecchar = ExprSpectoken = ExprSpecYYEOF;
+      ExprSpecchar = ExprSpecYYEOF;
+      ExprSpectoken = ExprSpecYYSYMBOL_ExprSpecYYEOF;
       ExprSpecYYDPRINTF ((stderr, "Now at end of input.\n"));
+    }
+  else if (ExprSpecchar == ExprSpecYYerror)
+    {
+      /* The scanner already issued an error message, process directly
+         to error recovery.  But do not keep the error token as
+         lookahead, it is too special and may lead us to an endless
+         loop in error recovery. */
+      ExprSpecchar = ExprSpecYYUNDEF;
+      ExprSpectoken = ExprSpecYYSYMBOL_ExprSpecYYerror;
+      ExprSpecerror_range[1] = ExprSpeclloc;
+      goto ExprSpecerrlab1;
     }
   else
     {
@@ -1887,43 +1749,43 @@ ExprSpecreduce:
   case 2:
 #line 313 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 { ParseResult = 0; }
-#line 1891 "y.tab.c"
+#line 1753 "y.tab.c"
     break;
 
   case 3:
 #line 314 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 { ParseResult = 0; }
-#line 1897 "y.tab.c"
+#line 1759 "y.tab.c"
     break;
 
   case 4:
 #line 319 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 1903 "y.tab.c"
+#line 1765 "y.tab.c"
     break;
 
   case 5:
 #line 320 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 1909 "y.tab.c"
+#line 1771 "y.tab.c"
     break;
 
   case 6:
 #line 324 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 1915 "y.tab.c"
+#line 1777 "y.tab.c"
     break;
 
   case 7:
 #line 325 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 1921 "y.tab.c"
+#line 1783 "y.tab.c"
     break;
 
   case 8:
 #line 330 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 1927 "y.tab.c"
+#line 1789 "y.tab.c"
     break;
 
   case 9:
@@ -1932,43 +1794,43 @@ ExprSpecreduce:
         specRegisterVariable((ExprSpecvsp[-3].s));
         specRegisterEditable((ExprSpecvsp[-3].s),(ExprSpecvsp[-1].n));
       }
-#line 1936 "y.tab.c"
+#line 1798 "y.tab.c"
     break;
 
   case 10:
 #line 335 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 1942 "y.tab.c"
+#line 1804 "y.tab.c"
     break;
 
   case 11:
 #line 336 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 1948 "y.tab.c"
+#line 1810 "y.tab.c"
     break;
 
   case 12:
 #line 337 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 1954 "y.tab.c"
+#line 1816 "y.tab.c"
     break;
 
   case 13:
 #line 338 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 1960 "y.tab.c"
+#line 1822 "y.tab.c"
     break;
 
   case 14:
 #line 339 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 1966 "y.tab.c"
+#line 1828 "y.tab.c"
     break;
 
   case 15:
 #line 340 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 1972 "y.tab.c"
+#line 1834 "y.tab.c"
     break;
 
   case 16:
@@ -1977,73 +1839,73 @@ ExprSpecreduce:
         specRegisterVariable((ExprSpecvsp[-3].s));
         specRegisterEditable((ExprSpecvsp[-3].s),(ExprSpecvsp[-1].n));
       }
-#line 1981 "y.tab.c"
+#line 1843 "y.tab.c"
     break;
 
   case 17:
 #line 345 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 {  (ExprSpecval.n) = 0; }
-#line 1987 "y.tab.c"
+#line 1849 "y.tab.c"
     break;
 
   case 18:
 #line 346 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 {  (ExprSpecval.n) = 0; }
-#line 1993 "y.tab.c"
+#line 1855 "y.tab.c"
     break;
 
   case 19:
 #line 347 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 {  (ExprSpecval.n) = 0; }
-#line 1999 "y.tab.c"
+#line 1861 "y.tab.c"
     break;
 
   case 20:
 #line 348 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 {  (ExprSpecval.n) = 0; }
-#line 2005 "y.tab.c"
+#line 1867 "y.tab.c"
     break;
 
   case 21:
 #line 349 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 {  (ExprSpecval.n) = 0; }
-#line 2011 "y.tab.c"
+#line 1873 "y.tab.c"
     break;
 
   case 22:
 #line 350 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 {  (ExprSpecval.n) = 0; }
-#line 2017 "y.tab.c"
+#line 1879 "y.tab.c"
     break;
 
   case 23:
 #line 355 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
     { (ExprSpecval.n) = 0; }
-#line 2023 "y.tab.c"
+#line 1885 "y.tab.c"
     break;
 
   case 24:
 #line 359 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                         { (ExprSpecval.n) = 0; }
-#line 2029 "y.tab.c"
+#line 1891 "y.tab.c"
     break;
 
   case 25:
 #line 360 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                             { (ExprSpecval.n) = 0;}
-#line 2035 "y.tab.c"
+#line 1897 "y.tab.c"
     break;
 
   case 26:
 #line 361 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0;}
-#line 2041 "y.tab.c"
+#line 1903 "y.tab.c"
     break;
 
   case 27:
 #line 366 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 2047 "y.tab.c"
+#line 1909 "y.tab.c"
     break;
 
   case 28:
@@ -2053,73 +1915,73 @@ ExprSpecreduce:
             (ExprSpecval.n)=remember(new ExprSpecVectorNode((ExprSpecloc).first_column,(ExprSpecloc).last_column,(ExprSpecvsp[-5].n),(ExprSpecvsp[-3].n),(ExprSpecvsp[-1].n)));
         }else (ExprSpecval.n)=0;
       }
-#line 2057 "y.tab.c"
+#line 1919 "y.tab.c"
     break;
 
   case 29:
 #line 372 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 2063 "y.tab.c"
+#line 1925 "y.tab.c"
     break;
 
   case 30:
 #line 373 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 2069 "y.tab.c"
+#line 1931 "y.tab.c"
     break;
 
   case 31:
 #line 374 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 2075 "y.tab.c"
+#line 1937 "y.tab.c"
     break;
 
   case 32:
 #line 375 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 2081 "y.tab.c"
+#line 1943 "y.tab.c"
     break;
 
   case 33:
 #line 376 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 2087 "y.tab.c"
+#line 1949 "y.tab.c"
     break;
 
   case 34:
 #line 377 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 2093 "y.tab.c"
+#line 1955 "y.tab.c"
     break;
 
   case 35:
 #line 378 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 2099 "y.tab.c"
+#line 1961 "y.tab.c"
     break;
 
   case 36:
 #line 379 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 2105 "y.tab.c"
+#line 1967 "y.tab.c"
     break;
 
   case 37:
 #line 380 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 2111 "y.tab.c"
+#line 1973 "y.tab.c"
     break;
 
   case 38:
 #line 381 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 2117 "y.tab.c"
+#line 1979 "y.tab.c"
     break;
 
   case 39:
 #line 382 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = (ExprSpecvsp[0].n); }
-#line 2123 "y.tab.c"
+#line 1985 "y.tab.c"
     break;
 
   case 40:
@@ -2133,55 +1995,55 @@ ExprSpecreduce:
             (ExprSpecval.n)=(ExprSpecvsp[0].n);
         }else (ExprSpecval.n)=0;
       }
-#line 2137 "y.tab.c"
+#line 1999 "y.tab.c"
     break;
 
   case 41:
 #line 392 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 2143 "y.tab.c"
+#line 2005 "y.tab.c"
     break;
 
   case 42:
 #line 393 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 2149 "y.tab.c"
+#line 2011 "y.tab.c"
     break;
 
   case 43:
 #line 394 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 2155 "y.tab.c"
+#line 2017 "y.tab.c"
     break;
 
   case 44:
 #line 395 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 2161 "y.tab.c"
+#line 2023 "y.tab.c"
     break;
 
   case 45:
 #line 396 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 2167 "y.tab.c"
+#line 2029 "y.tab.c"
     break;
 
   case 46:
 #line 397 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 2173 "y.tab.c"
+#line 2035 "y.tab.c"
     break;
 
   case 47:
 #line 398 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 2179 "y.tab.c"
+#line 2041 "y.tab.c"
     break;
 
   case 48:
 #line 399 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 2185 "y.tab.c"
+#line 2047 "y.tab.c"
     break;
 
   case 49:
@@ -2211,43 +2073,43 @@ ExprSpecreduce:
             (ExprSpecval.n)=0;
         }else (ExprSpecval.n)=0;
       }
-#line 2215 "y.tab.c"
+#line 2077 "y.tab.c"
     break;
 
   case 50:
 #line 425 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                   {(ExprSpecval.n) = 0; }
-#line 2221 "y.tab.c"
+#line 2083 "y.tab.c"
     break;
 
   case 51:
 #line 426 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 {  (ExprSpecval.n) = 0; }
-#line 2227 "y.tab.c"
+#line 2089 "y.tab.c"
     break;
 
   case 52:
 #line 427 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 {  (ExprSpecval.n) = 0; }
-#line 2233 "y.tab.c"
+#line 2095 "y.tab.c"
     break;
 
   case 53:
 #line 428 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 { (ExprSpecval.n)=remember(new ExprSpecScalarNode((ExprSpecloc).first_column,(ExprSpecloc).last_column,(ExprSpecvsp[0].d))); }
-#line 2239 "y.tab.c"
+#line 2101 "y.tab.c"
     break;
 
   case 54:
 #line 433 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0;}
-#line 2245 "y.tab.c"
+#line 2107 "y.tab.c"
     break;
 
   case 55:
 #line 434 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = (ExprSpecvsp[0].n);}
-#line 2251 "y.tab.c"
+#line 2113 "y.tab.c"
     break;
 
   case 56:
@@ -2261,7 +2123,7 @@ ExprSpecreduce:
        remember(list);
        (ExprSpecval.n)=list;
    }
-#line 2265 "y.tab.c"
+#line 2127 "y.tab.c"
     break;
 
   case 57:
@@ -2275,13 +2137,13 @@ ExprSpecreduce:
           (ExprSpecval.n)=0;
       }
     }
-#line 2279 "y.tab.c"
+#line 2141 "y.tab.c"
     break;
 
   case 58:
 #line 460 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = (ExprSpecvsp[0].n);}
-#line 2285 "y.tab.c"
+#line 2147 "y.tab.c"
     break;
 
   case 59:
@@ -2292,11 +2154,11 @@ ExprSpecreduce:
         // TODO: move string stuff out
         (ExprSpecval.n) = remember(str);
       }
-#line 2296 "y.tab.c"
+#line 2158 "y.tab.c"
     break;
 
 
-#line 2300 "y.tab.c"
+#line 2162 "y.tab.c"
 
       default: break;
     }
@@ -2311,11 +2173,10 @@ ExprSpecreduce:
      case of ExprSpecYYERROR or ExprSpecYYBACKUP, subsequent parser actions might lead
      to an incorrect destructor call or verbose syntax error message
      before the lookahead is translated.  */
-  ExprSpecYY_SYMBOL_PRINT ("-> $$ =", ExprSpecr1[ExprSpecn], &ExprSpecval, &ExprSpecloc);
+  ExprSpecYY_SYMBOL_PRINT ("-> $$ =", ExprSpecYY_CAST (ExprSpecsymbol_kind_t, ExprSpecr1[ExprSpecn]), &ExprSpecval, &ExprSpecloc);
 
   ExprSpecYYPOPSTACK (ExprSpeclen);
   ExprSpeclen = 0;
-  ExprSpecYY_STACK_PRINT (ExprSpecss, ExprSpecssp);
 
   *++ExprSpecvsp = ExprSpecval;
   *++ExprSpeclsp = ExprSpecloc;
@@ -2340,50 +2201,15 @@ ExprSpecreduce:
 ExprSpecerrlab:
   /* Make sure we have latest lookahead translation.  See comments at
      user semantic actions for why this is necessary.  */
-  ExprSpectoken = ExprSpecchar == ExprSpecYYEMPTY ? ExprSpecYYEMPTY : ExprSpecYYTRANSLATE (ExprSpecchar);
-
+  ExprSpectoken = ExprSpecchar == ExprSpecYYEMPTY ? ExprSpecYYSYMBOL_ExprSpecYYEMPTY : ExprSpecYYTRANSLATE (ExprSpecchar);
   /* If not already recovering from an error, report this error.  */
   if (!ExprSpecerrstatus)
     {
       ++ExprSpecnerrs;
-#if ! ExprSpecYYERROR_VERBOSE
       ExprSpecerror (ExprSpecYY_("syntax error"));
-#else
-# define ExprSpecYYSYNTAX_ERROR ExprSpecsyntax_error (&ExprSpecmsg_alloc, &ExprSpecmsg, \
-                                        ExprSpecssp, ExprSpectoken)
-      {
-        char const *ExprSpecmsgp = ExprSpecYY_("syntax error");
-        int ExprSpecsyntax_error_status;
-        ExprSpecsyntax_error_status = ExprSpecYYSYNTAX_ERROR;
-        if (ExprSpecsyntax_error_status == 0)
-          ExprSpecmsgp = ExprSpecmsg;
-        else if (ExprSpecsyntax_error_status == 1)
-          {
-            if (ExprSpecmsg != ExprSpecmsgbuf)
-              ExprSpecYYSTACK_FREE (ExprSpecmsg);
-            ExprSpecmsg = ExprSpecYY_CAST (char *, ExprSpecYYSTACK_ALLOC (ExprSpecYY_CAST (ExprSpecYYSIZE_T, ExprSpecmsg_alloc)));
-            if (!ExprSpecmsg)
-              {
-                ExprSpecmsg = ExprSpecmsgbuf;
-                ExprSpecmsg_alloc = sizeof ExprSpecmsgbuf;
-                ExprSpecsyntax_error_status = 2;
-              }
-            else
-              {
-                ExprSpecsyntax_error_status = ExprSpecYYSYNTAX_ERROR;
-                ExprSpecmsgp = ExprSpecmsg;
-              }
-          }
-        ExprSpecerror (ExprSpecmsgp);
-        if (ExprSpecsyntax_error_status == 2)
-          goto ExprSpecexhaustedlab;
-      }
-# undef ExprSpecYYSYNTAX_ERROR
-#endif
     }
 
   ExprSpecerror_range[1] = ExprSpeclloc;
-
   if (ExprSpecerrstatus == 3)
     {
       /* If just tried and failed to reuse lookahead token after an
@@ -2432,13 +2258,14 @@ ExprSpecerrorlab:
 ExprSpecerrlab1:
   ExprSpecerrstatus = 3;      /* Each real token shifted decrements this.  */
 
+  /* Pop stack until we find a state that shifts the error token.  */
   for (;;)
     {
       ExprSpecn = ExprSpecpact[ExprSpecstate];
       if (!ExprSpecpact_value_is_default (ExprSpecn))
         {
-          ExprSpecn += ExprSpecYYTERROR;
-          if (0 <= ExprSpecn && ExprSpecn <= ExprSpecYYLAST && ExprSpeccheck[ExprSpecn] == ExprSpecYYTERROR)
+          ExprSpecn += ExprSpecYYSYMBOL_ExprSpecYYerror;
+          if (0 <= ExprSpecn && ExprSpecn <= ExprSpecYYLAST && ExprSpeccheck[ExprSpecn] == ExprSpecYYSYMBOL_ExprSpecYYerror)
             {
               ExprSpecn = ExprSpectable[ExprSpecn];
               if (0 < ExprSpecn)
@@ -2452,7 +2279,7 @@ ExprSpecerrlab1:
 
       ExprSpecerror_range[1] = *ExprSpeclsp;
       ExprSpecdestruct ("Error: popping",
-                  ExprSpecstos[ExprSpecstate], ExprSpecvsp, ExprSpeclsp);
+                  ExprSpecYY_ACCESSING_SYMBOL (ExprSpecstate), ExprSpecvsp, ExprSpeclsp);
       ExprSpecYYPOPSTACK (1);
       ExprSpecstate = *ExprSpecssp;
       ExprSpecYY_STACK_PRINT (ExprSpecss, ExprSpecssp);
@@ -2463,13 +2290,11 @@ ExprSpecerrlab1:
   ExprSpecYY_IGNORE_MAYBE_UNINITIALIZED_END
 
   ExprSpecerror_range[2] = ExprSpeclloc;
-  /* Using ExprSpecYYLLOC is tempting, but would change the location of
-     the lookahead.  ExprSpecYYLOC is available though.  */
-  ExprSpecYYLLOC_DEFAULT (ExprSpecloc, ExprSpecerror_range, 2);
-  *++ExprSpeclsp = ExprSpecloc;
+  ++ExprSpeclsp;
+  ExprSpecYYLLOC_DEFAULT (*ExprSpeclsp, ExprSpecerror_range, 2);
 
   /* Shift the error token.  */
-  ExprSpecYY_SYMBOL_PRINT ("Shifting", ExprSpecstos[ExprSpecn], ExprSpecvsp, ExprSpeclsp);
+  ExprSpecYY_SYMBOL_PRINT ("Shifting", ExprSpecYY_ACCESSING_SYMBOL (ExprSpecn), ExprSpecvsp, ExprSpeclsp);
 
   ExprSpecstate = ExprSpecn;
   goto ExprSpecnewstate;
@@ -2491,7 +2316,7 @@ ExprSpecabortlab:
   goto ExprSpecreturn;
 
 
-#if !defined ExprSpecoverflow || ExprSpecYYERROR_VERBOSE
+#if !defined ExprSpecoverflow
 /*-------------------------------------------------.
 | ExprSpecexhaustedlab -- memory exhaustion comes here.  |
 `-------------------------------------------------*/
@@ -2521,19 +2346,17 @@ ExprSpecreturn:
   while (ExprSpecssp != ExprSpecss)
     {
       ExprSpecdestruct ("Cleanup: popping",
-                  ExprSpecstos[+*ExprSpecssp], ExprSpecvsp, ExprSpeclsp);
+                  ExprSpecYY_ACCESSING_SYMBOL (+*ExprSpecssp), ExprSpecvsp, ExprSpeclsp);
       ExprSpecYYPOPSTACK (1);
     }
 #ifndef ExprSpecoverflow
   if (ExprSpecss != ExprSpecssa)
     ExprSpecYYSTACK_FREE (ExprSpecss);
 #endif
-#if ExprSpecYYERROR_VERBOSE
-  if (ExprSpecmsg != ExprSpecmsgbuf)
-    ExprSpecYYSTACK_FREE (ExprSpecmsg);
-#endif
+
   return ExprSpecresult;
 }
+
 #line 469 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
 
 
