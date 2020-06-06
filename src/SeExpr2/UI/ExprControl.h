@@ -72,7 +72,7 @@ class ExprControl : public QWidget {
     /// Interface for setting the color (used for linked color picking)
     virtual void setColor(QColor color) {Q_UNUSED(color)};
 
-signals:
+Q_SIGNALS:
     // sends that the control has been changed to the control collection
     void controlChanged(int id);
     // sends the new color to the control collection
@@ -80,7 +80,7 @@ signals:
     // sends that a color link is desired to the control collection
     void linkColorLink(int id);
   public
-slots:
+Q_SLOTS:
     // receives that the link should be changed to the given state (0=off,1=on)
     void linkStateChange(int state);
 
@@ -110,11 +110,11 @@ class ExprLineEdit : public QLineEdit {
         QLineEdit::setText(t);
     }
 
-signals:
+Q_SIGNALS:
     void textChanged(int id, const QString& text);
 
   private
-slots:
+Q_SLOTS:
     void textChangedCB(const QString& text);
 
   private:
@@ -155,10 +155,10 @@ class ExprChannelSlider : public QWidget {
     void setDisplayColor(QColor c) { _col = c; }
 
   public
-slots:
+Q_SLOTS:
     void setValue(float value);
 
-signals:
+Q_SIGNALS:
     void valueChanged(int id, float value);
 
   private:
@@ -187,7 +187,7 @@ class NumberControl : public ExprControl {
     /// Update values in slider and textbox  given what the model contains
     void updateControl();
   private
-slots:
+Q_SLOTS:
     void sliderChanged(int val);
     void editChanged(int id, const QString& text);
 };
@@ -217,7 +217,7 @@ class VectorControl : public ExprControl {
     /// update the individual slider and eidt box controls
     void updateControl();
   private
-slots:
+Q_SLOTS:
     void sliderChanged(int id, float val);
     void editChanged(int id, const QString& text);
     void swatchChanged(QColor color);
@@ -238,7 +238,7 @@ class StringControl : public ExprControl {
   private:
     void updateControl();
   private
-slots:
+Q_SLOTS:
     void textChanged(const QString& newText);
     void fileBrowse();
     void directoryBrowse();
@@ -256,7 +256,7 @@ class CurveControl : public ExprControl {
   public:
     CurveControl(int id, CurveEditable* stringEditable);
   private
-slots:
+Q_SLOTS:
     void curveChanged();
 };
 
@@ -274,7 +274,7 @@ class CCurveControl : public ExprControl {
     QColor getColor();
     void setColor(QColor color);
   private
-slots:
+Q_SLOTS:
     void curveChanged();
 };
 
@@ -292,11 +292,11 @@ class AnimCurveControl : public ExprControl {
     static void setAnimCurveCallback(AnimCurveCallback callback);
 
   public
-slots:
+Q_SLOTS:
     void editGraphClicked();
 
   private
-slots:
+Q_SLOTS:
     void refreshClicked();
 
   private:
@@ -315,7 +315,7 @@ class ColorSwatchControl : public ExprControl {
   public:
     ColorSwatchControl(int id, ColorSwatchEditable* swatchEditable);
   private
-slots:
+Q_SLOTS:
     void buildSwatchWidget();
     void colorChanged(int index, SeExpr2::Vec3d value);
     void colorAdded(int index, SeExpr2::Vec3d value);
@@ -337,7 +337,7 @@ class DeepWaterControl : public ExprControl {
   public:
     DeepWaterControl(int id, DeepWaterEditable* stringEditable);
   private
-slots:
+Q_SLOTS:
     void deepWaterChanged();
 };
 

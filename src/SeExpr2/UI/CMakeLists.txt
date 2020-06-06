@@ -22,6 +22,15 @@ endif()
 find_package(OpenGL)
 
 if (Qt5_FOUND OR QT4_FOUND)
+    # Adding Krita's definitions to make headers automatically compatible. -amyspark
+    add_definitions(
+        -DQT_USE_QSTRINGBUILDER
+        -DQT_STRICT_ITERATORS
+        -DQT_NO_SIGNALS_SLOTS_KEYWORDS
+        -DQT_NO_URL_CAST_FROM_STRING
+        -DQT_USE_FAST_CONCATENATION
+        -DQT_USE_FAST_OPERATOR_PLUS
+    )
 
     BuildParserScanner(ExprSpecParserLex ExprSpecParser ExprSpec
                        editor_parser_cpp)

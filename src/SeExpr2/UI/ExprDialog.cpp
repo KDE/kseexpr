@@ -223,7 +223,7 @@ void ExprDialog::setupHelp(QTabWidget* tab) {
         QString sheet =
             "body {background-color: #eeeeee; color: #000000;} \na {color: #3333ff; text-decoration: none;}\n";
         helpBrowser->document()->setDefaultStyleSheet(sheet);
-        helpBrowser->setSource(helpDoc->fileName());
+        helpBrowser->setSource(QUrl::fromLocalFile(helpDoc->fileName()));
     }
 
     QPushButton* backPb = new QPushButton("Back");

@@ -368,7 +368,7 @@ Now we're ready to create an apply button and add it to the bottom of the layout
     bottomLayout->addWidget(buttonWidget);
 </pre>
 
-We will need to write the applyExpression() function to call the ImageSynthesizer object to evaluate the expression inside the editor.  First, we need to include the <a href="http://qt-project.org/doc/qt-4.8/moc.html#moc">Q_OBJECT</a> macro in the ImageEditorDialog class definition, since we're going to be connecting signals and slots:
+We will need to write the applyExpression() function to call the ImageSynthesizer object to evaluate the expression inside the editor.  First, we need to include the <a href="http://qt-project.org/doc/qt-4.8/moc.html#moc">Q_OBJECT</a> macro in the ImageEditorDialog class definition, since we're going to be connecting signals and Q_SLOTS:
 
 <pre style="padding-left: 5em;">
 class ImageEditorDialog: public QDialog
@@ -382,7 +382,7 @@ Next, we'll add a new data member for the ImageSynthesizer instance as well as t
 <pre style="padding-left: 5em;">
 private:
     ImageSynthesizer *_imageSynthesizer;
-private slots:
+private Q_SLOTS:
     void applyExpression();
 </pre>
 
@@ -440,7 +440,7 @@ private:
     QLabel *_imageLabel;
     ExprEditor *_editor;
     ImageSynthesizer *_imageSynthesizer;
-private slots:
+private Q_SLOTS:
     void applyExpression();
 };
 </pre>

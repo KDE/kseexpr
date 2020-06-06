@@ -103,7 +103,7 @@ class ExprShortEdit : public QWidget {
     void checkErrors();
 
   protected
-slots:
+Q_SLOTS:
     virtual void detailPressed();
     virtual void expandPressed();
     virtual void textFinished();
@@ -113,7 +113,7 @@ slots:
     virtual void expressionApplied();
     virtual void dialogClosed();
 
-signals:
+Q_SIGNALS:
     void exprChanged();
 };
 
@@ -147,10 +147,10 @@ class ExprShortTextEdit : public QTextEdit {
 
     void setColor(bool editing);
     void finishEdit();
-signals:
+Q_SIGNALS:
     void editingFinished();
   private
-slots:
+Q_SLOTS:
     void insertCompletion(const QString& completion);
 };
 

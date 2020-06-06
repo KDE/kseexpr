@@ -71,7 +71,7 @@ class ExprAddDialog : public QDialog {
     ExprAddDialog(int &count, QWidget *parent = 0);
     const char *initSwatch();
   private
-slots:
+Q_SLOTS:
     void colorChooseClicked();
 };
 
@@ -114,7 +114,7 @@ class ExprControlCollection : public QWidget {
     }
 
   private
-slots:
+Q_SLOTS:
     /// When a user clicks "Add Widget" button
     void addControlDialog();
     /// Notification when by a control whenever it is edited
@@ -123,7 +123,7 @@ slots:
     void linkColorLink(int id);
     /// Notification by a control that a color is edited (when it is linked)
     void linkColorEdited(int id, QColor color);
-signals:
+Q_SIGNALS:
     /// Notification that a specific control was changed
     void controlChanged(int id);
     /// Gives information about when a link color was changed
@@ -132,7 +132,7 @@ signals:
     /// i.e. after "Add Widget" was used
     void insertString(const std::string &controlString);
   public
-slots:
+Q_SLOTS:
     /// Notification from outside that a linked color widget was changed
     /// and should be forwarded to any linked controls
     void linkColorInput(QColor color);

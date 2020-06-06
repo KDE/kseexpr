@@ -46,7 +46,7 @@ class CurveGraphicsView : public QGraphicsView {
 
     virtual void resizeEvent(QResizeEvent *event);
 
-signals:
+Q_SIGNALS:
     void resizeSignal(int width, int height);
 };
 
@@ -92,13 +92,13 @@ class CurveScene : public QGraphicsScene {
   private:
     T_CURVE *_curve;
   public
-slots:
+Q_SLOTS:
     void interpChanged(const int interp);
     void selPosChanged(double pos);
     void selValChanged(double val);
     void resize(const int width, const int height);
 
-signals:
+Q_SIGNALS:
     void cvSelected(double x, double y, T_INTERP interp);
     void curveChanged();
 
@@ -133,13 +133,13 @@ class ExprCurve : public QWidget {
     CurveScene *_scene;
 
   public
-slots:
+Q_SLOTS:
     void cvSelectedSlot(double pos, double val, T_INTERP interp);
     void selPosChanged();
     void selValChanged();
     void openDetail();
 
-signals:
+Q_SIGNALS:
     void selPosChangedSignal(double pos);
     void selValChangedSignal(double val);
 

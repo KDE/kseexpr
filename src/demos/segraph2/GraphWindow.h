@@ -46,7 +46,7 @@ class GraphWindow : public QFrame {
     GraphWindow(QWidget* parent = 0);
     ~GraphWindow();
   private
-slots:
+Q_SLOTS:
     //! Add new function when it is entered into the add box
     void addNewFunction();
     //! Start finding a numeric quantity after button clicked

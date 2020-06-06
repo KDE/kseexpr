@@ -88,12 +88,12 @@ class ExprDialog : public QDialog {
     void findHelper(QTextDocument::FindFlags flags);
     void closeEvent(QCloseEvent* event);
 
-signals:
+Q_SIGNALS:
     void preview();
     void expressionApplied();
     void dialogClosed();
   private
-slots:
+Q_SLOTS:
     void previewExpression();
     void verifiedApply();
     void verifiedAccept();
@@ -101,7 +101,7 @@ slots:
     void findPrevInHelp();
     void _showEditor();
   public
-slots:
+Q_SLOTS:
 
     void applyExpression();
 

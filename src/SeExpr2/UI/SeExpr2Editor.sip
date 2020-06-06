@@ -81,11 +81,11 @@ public:
     void setExpressionString(const std::string&);
     void show();
 
-signals:
+Q_SIGNALS:
     void preview();
     void expressionApplied();
 
-public slots:
+public Q_SLOTS:
     void applyExpression();
     void clearExpression();
     
@@ -107,12 +107,12 @@ class ExprEditor:QWidget{
 public:
     ExprEditor(QWidget* parent /TransferThis/,ExprControlCollection* collection);
 
-signals:
+Q_SIGNALS:
     void applyExpression(); // This is when text or controls are manipulated
     //void needNewPreview();
     void clearExpression();
 
-public slots:
+public Q_SLOTS:
     void exprChanged();
     void rebuildControls();
     void controlChanged(int id);
@@ -159,7 +159,7 @@ public:
     void selectPath(const char * path);
     void setSearchPath(const QString& context, const QString& path);
 
-public slots:
+public Q_SLOTS:
     void update();
     void clear();
 
@@ -178,7 +178,7 @@ class ExprShortTextEdit:QTextEdit
 public:
     ExprShortTextEdit(QWidget* parent);
 
-signals:
+Q_SIGNALS:
     void textChanged();
 };
 
@@ -207,7 +207,7 @@ public:
     QToolButton* expandButton;
     ExprShortTextEdit* edit;
 
-protected slots:
+protected Q_SLOTS:
     virtual void detailPressed();
     virtual void expandPressed();
     virtual void textFinished();
@@ -217,7 +217,7 @@ protected slots:
     virtual void expressionApplied();
     virtual void dialogClosed();
 
-signals:
+Q_SIGNALS:
     void exprChanged();
 };
 

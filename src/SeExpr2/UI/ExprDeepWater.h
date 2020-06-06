@@ -169,7 +169,7 @@ class DeepWaterGraphicsView : public QGraphicsView {
 
     virtual void resizeEvent(QResizeEvent *event);
 
-signals:
+Q_SIGNALS:
     void resizeSignal(int width, int height);
 };
 
@@ -180,7 +180,7 @@ class DeepWaterLineEdit : public QLineEdit {
     DeepWaterLineEdit(QWidget *parent = 0) {}
     ~DeepWaterLineEdit() {}
 
-signals:
+Q_SIGNALS:
     void focusOut();
 
   protected:
@@ -221,7 +221,7 @@ class DeepWaterScene : public QGraphicsScene {
     T_CURVE *_curve;
 
   public
-slots:
+Q_SLOTS:
     void resolutionChanged(int val);
     void tileSizeChanged(double val);
     void lengthCutoffChanged(double val);
@@ -234,7 +234,7 @@ slots:
     void sharpenChanged(double val);
     void resize(const int width, const int height);
 
-signals:
+Q_SIGNALS:
     void deepWaterChanged();
 
   private:
@@ -255,7 +255,7 @@ class ExprDeepWater : public QWidget {
     DeepWaterScene *_scene;
 
   public
-slots:
+Q_SLOTS:
     void resolutionChanged();
     void tileSizeChanged();
     void lengthCutoffChanged();
@@ -267,7 +267,7 @@ slots:
     void directionalReflectionDampingChanged();
     void sharpenChanged();
 
-signals:
+Q_SIGNALS:
     void resolutionChangedSignal(int val);
     void tileSizeChangedSignal(double val);
     void lengthCutoffChangedSignal(double val);

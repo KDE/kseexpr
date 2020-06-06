@@ -26,10 +26,10 @@ class ExprColorFrame : public QFrame {
     virtual void mouseReleaseEvent(QMouseEvent *event);
 
   private
-slots:
+Q_SLOTS:
     void deleteSwatchMenu(const QPoint &pos);
 
-signals:
+Q_SIGNALS:
     void selValChangedSignal(SeExpr2::Vec3d value);
     void swatchChanged(QColor color);
     void deleteSwatch(ExprColorFrame *swatch);
@@ -64,12 +64,12 @@ class ExprColorSwatchWidget : public QWidget {
     QColor getSwatchColor(int index);
 
   private
-slots:
+Q_SLOTS:
     void addNewColor();
     void removeSwatch(ExprColorFrame *);
     void internalSwatchChanged(QColor color);
 
-signals:
+Q_SIGNALS:
     void selValChangedSignal(SeExpr2::Vec3d val);
     void swatchChanged(int index, SeExpr2::Vec3d val);
     void swatchAdded(int index, SeExpr2::Vec3d val);

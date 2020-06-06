@@ -70,7 +70,7 @@ class ExprBrowser : public QWidget {
     void expandToDepth(int depth);
     void setApplyOnSelect(bool on) { _applyOnSelect = on; }
   public
-slots:
+Q_SLOTS:
     void handleSelection(const QModelIndex& current, const QModelIndex& previous);
     void update();
     void clear();
@@ -79,7 +79,7 @@ slots:
     void saveLocalExpressionAs();
     void saveExpressionAs();
   private
-slots:
+Q_SLOTS:
     void clearFilter();
     void filterChanged(const QString& str);
 };
