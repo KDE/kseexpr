@@ -558,10 +558,13 @@ double turbulence(int n, const Vec3d* args) {
     switch (n) {
         case 4:
             gain = args[3][0];
+            /* fall through */
         case 3:
             lacunarity = args[2][0];
+            /* fall through */
         case 2:
             octaves = int(clamp(args[1][0], 1, 8));
+            /* fall through */
         case 1:
             p = args[0];
     }
@@ -582,10 +585,13 @@ Vec3d vturbulence(int n, const Vec3d* args) {
     switch (n) {
         case 4:
             gain = args[3][0];
+            /* fall through */
         case 3:
             lacunarity = args[2][0];
+            /* fall through */
         case 2:
             octaves = int(clamp(args[1][0], 1, 8));
+            /* fall through */
         case 1:
             p = args[0];
     }
@@ -608,10 +614,13 @@ double fbm(int n, const Vec3d* args) {
     switch (n) {
         case 4:
             gain = args[3][0];
+            /* fall through */
         case 3:
             lacunarity = args[2][0];
+            /* fall through */
         case 2:
             octaves = int(clamp(args[1][0], 1, 8));
+            /* fall through */
         case 1:
             p = args[0];
     }
@@ -640,10 +649,13 @@ Vec3d vfbm(int n, const Vec3d* args) {
     switch (n) {
         case 4:
             gain = args[3][0];
+            /* fall through */
         case 3:
             lacunarity = args[2][0];
+            /* fall through */
         case 2:
             octaves = int(clamp(args[1][0], 1, 8));
+            /* fall through */
         case 1:
             p = args[0];
     }
@@ -666,12 +678,16 @@ double fbm4(int n, const Vec3d* args) {
     switch (n) {
         case 5:
             gain = args[4][0];
+            /* fall through */
         case 4:
             lacunarity = args[3][0];
+            /* fall through */
         case 3:
             octaves = int(clamp(args[2][0], 1, 8));
+            /* fall through */
         case 2:
             time = static_cast<float>(args[1][0]);
+            /* fall through */
         case 1:
             p = args[0];
     }
@@ -701,12 +717,16 @@ Vec3d vfbm4(int n, const Vec3d* args) {
     switch (n) {
         case 5:
             gain = args[4][0];
+            /* fall through */
         case 4:
             lacunarity = args[3][0];
+            /* fall through */
         case 3:
             octaves = int(clamp(args[2][0], 1, 8));
+            /* fall through */
         case 2:
             time = static_cast<float>(args[1][0]);
+            /* fall through */
         case 1:
             p = args[0];
     }
@@ -844,16 +864,22 @@ Vec3d voronoiFn(VoronoiPointData& data, int n, const Vec3d* args) {
     switch (n) {
         case 7:
             fbmGain = args[6][0];
+            /* fall through */
         case 6:
             fbmLacunarity = args[5][0];
+            /* fall through */
         case 5:
             fbmOctaves = args[4][0];
+            /* fall through */
         case 4:
             fbmScale = args[3][0];
+            /* fall through */
         case 3:
             jitter = clamp(args[2][0], 1e-3, 1);
+            /* fall through */
         case 2:
             type = int(args[1][0]);
+            /* fall through */
         case 1:
             p = args[0];
     }
@@ -910,16 +936,22 @@ Vec3d cvoronoiFn(VoronoiPointData& data, int n, const Vec3d* args) {
     switch (n) {
         case 7:
             fbmGain = args[6][0];
+            /* fall through */
         case 6:
             fbmLacunarity = args[5][0];
+            /* fall through */
         case 5:
             fbmOctaves = args[4][0];
+            /* fall through */
         case 4:
             fbmScale = args[3][0];
+            /* fall through */
         case 3:
             jitter = clamp(args[2][0], 1e-3, 1);
+            /* fall through */
         case 2:
             type = int(args[1][0]);
+            /* fall through */
         case 1:
             p = args[0];
     }
@@ -976,14 +1008,19 @@ Vec3d pvoronoiFn(VoronoiPointData& data, int n, const Vec3d* args) {
     switch (n) {
         case 6:
             fbmGain = args[5][0];
+            /* fall through */
         case 5:
             fbmLacunarity = args[4][0];
+            /* fall through */
         case 4:
             fbmOctaves = args[3][0];
+            /* fall through */
         case 3:
             fbmScale = args[2][0];
+            /* fall through */
         case 2:
             jitter = clamp(args[1][0], 1e-3, 1);
+            /* fall through */
         case 1:
             p = args[0];
     }
