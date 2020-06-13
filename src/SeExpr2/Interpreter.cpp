@@ -162,8 +162,8 @@ struct BinaryStringOp {
         // delete previous data and allocate a new buffer, only if needed
         // NOTE: this is more efficient, but might consume more memory...
         // Maybe make this behaviour configurable ?
-        int len1 = static_cast<int>(strlen(in1));
-        int len2 = static_cast<int>(strlen(in2));
+        size_t len1 = strlen(in1);
+        size_t len2 = strlen(in2);
         if (out == 0 || len1 + len2 + 1 > strlen(out))
         {
             delete [] out;
