@@ -80,7 +80,7 @@ ExprFileDialog::ExprFileDialog(QWidget* parent) : QFileDialog(parent) {
     _okButton = 0;
 
     // disconnect broken return press handling (mishandles new directory names)
-    QList<QLineEdit*> lineedits = findChildren<QLineEdit*>(QRegExp());
+    QList<QLineEdit*> lineedits = findChildren<QLineEdit*>();
     if (lineedits.size()) _nameEdit = (QLineEdit*)lineedits.at(0);
     if (_nameEdit) {
         _nameEdit->disconnect(SIGNAL(returnPressed()));
@@ -88,7 +88,7 @@ ExprFileDialog::ExprFileDialog(QWidget* parent) : QFileDialog(parent) {
     }
 
     // connect custom ok clicked handler
-    QList<QPushButton*> myWidgets = findChildren<QPushButton*>(QRegExp());
+    QList<QPushButton*> myWidgets = findChildren<QPushButton*>();
     for (int w = 0; w < myWidgets.size(); w++) {
         QPushButton* item = (QPushButton*)myWidgets.at(w);
         if (item->text().contains("Open")) _okButton = item;

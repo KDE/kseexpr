@@ -177,7 +177,7 @@ ExprDeepWater::ExprDeepWater(QWidget *parent)
     editsLayout->setMargin(0);
     edits->setLayout(editsLayout);
 
-    int editWidth = QFontMetrics(font()).width("[0,0,0]") + 8;
+    int editWidth = QFontMetrics(font()).boundingRect("[0,0,0]").width() + 8;
 
     QWidget *resolution = new QWidget;
     QHBoxLayout *resolutionLayout = new QHBoxLayout;

@@ -113,10 +113,11 @@ ExprEditor::ExprEditor(QWidget* parent, ExprControlCollection* controls)
 
     // calibrate the font size
     int fontsize = 12;
-    while (QFontMetrics(QFont("Liberation Sans", fontsize)).width("abcdef") < 38 && fontsize < 20) fontsize++;
-    while (QFontMetrics(QFont("Liberation Sans", fontsize)).width("abcdef") > 44 && fontsize > 3) fontsize--;
+    QFont font("Liberation Sans", fontsize);
+    while (QFontMetrics(font).boundingRect("abcdef").width() < 38 && fontsize < 20) fontsize++;
+    while (QFontMetrics(font).boundingRect("abcdef").width() > 44 && fontsize > 3) fontsize--;
 
-    exprTe->setFont(QFont("Liberation Sans", fontsize));
+    exprTe->setFont(font);
 
     exprAndErrors->addWidget(exprTe);
 

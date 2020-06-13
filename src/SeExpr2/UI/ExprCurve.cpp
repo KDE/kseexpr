@@ -279,7 +279,7 @@ ExprCurve::ExprCurve(QWidget *parent, QString pLabel, QString vLabel, QString iL
     _selPosEdit = new QLineEdit;
     QDoubleValidator *posValidator = new QDoubleValidator(0.0, 1.0, 6, _selPosEdit);
     _selPosEdit->setValidator(posValidator);
-    int editwidth = QFontMetrics(font()).width("9.999") + 8;
+    int editwidth = QFontMetrics(font()).boundingRect("9.999").width() + 8;
     _selPosEdit->setFixedWidth(editwidth);
     _selPosEdit->setFixedHeight(20);
     selPosLayout->addStretch(50);
