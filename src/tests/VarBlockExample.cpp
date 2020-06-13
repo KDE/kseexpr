@@ -9,7 +9,7 @@ struct Expr : public SeExpr2::Expression {
     struct SimpleVar : public SeExpr2::ExprVarRef {
         SimpleVar() : ExprVarRef(SeExpr2::ExprType().FP(3).Varying()) { v[0] = v[1] = v[2] = 0; }
         double v[3];
-        void eval(const char**) {}
+        void eval(const char**) override {}
         void eval(double* result) override {
             for (int k = 0; k < 3; k++) result[k] = v[k];
         }

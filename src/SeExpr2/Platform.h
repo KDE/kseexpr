@@ -52,6 +52,7 @@
 #ifdef __APPLE__
 #include <Availability.h>
 #include <libgen.h>
+#include <os/lock.h>
 #endif
 
 // platform-specific includes
@@ -323,13 +324,13 @@ class _Mutex {
 #ifdef __APPLE__
 class _SpinLock {
   public:
-    _SpinLock() { _spinlock = 0; }
+    _SpinLock() { _spinlock = OS_UNFAIR_LOCK_INIT; }
     ~_SpinLock() {}
-    void lock() { OSSpinLockLock(&_spinlock); }
-    void unlock() { OSSpinLockUnlock(&_spinlock); }
+    void lock() { os_unfair_lock_lock(&_spinlock); }
+    void unlock() { os_unfair_lock_unlock(&_spinlock); }
 
   private:
-    OSSpinLock _spinlock;
+    os_unfair_lock _spinlock;
 };
 #else
 class _SpinLock {
