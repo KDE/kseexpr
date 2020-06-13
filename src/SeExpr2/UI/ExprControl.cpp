@@ -472,7 +472,8 @@ QColor CCurveControl::getColor() { return _curve->getSwatchColor(); }
 
 void CCurveControl::setColor(QColor color) { _curve->setSwatchColor(color); }
 
-struct ExprGraphPreview : public QWidget {
+class ExprGraphPreview : public QWidget {
+public:
     std::vector<float> x, y;
     std::vector<float> cpx, cpy;
     float xmin, xmax, ymin, ymax, dx, dy;

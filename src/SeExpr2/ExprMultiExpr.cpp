@@ -91,7 +91,7 @@ DExpression::DExpression(const std::string &varName,
                          const std::string &e,
                          const ExprType &type,
                          EvaluationStrategy be)
-    : Expression(e, type, be), context(context) {
+    : Expression(e, type, be), dContext(context) {
     if (type.isFP())
         val = new GlobalFP(varName, type.dim());
     else if (type.isString())
@@ -99,8 +99,8 @@ DExpression::DExpression(const std::string &varName,
     else
         assert(false);
 
-    operandExprs = context.AllExprs;
-    operandVars = context.AllExternalVars;
+    operandExprs = dContext.AllExprs;
+    operandVars = dContext.AllExternalVars;
     prepIfNeeded();
     operandExprs = tmpOperandExprs;
     operandVars = tmpOperandVars;

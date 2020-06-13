@@ -15,7 +15,7 @@
 * http://www.apache.org/licenses/LICENSE-2.0
 */
 #ifndef _ExprPopupDoc_h_
-#define _ExprPopupDoc_h
+#define _ExprPopupDoc_h_
 
 #include <QWidget>
 

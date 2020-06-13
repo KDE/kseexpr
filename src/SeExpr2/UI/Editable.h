@@ -37,7 +37,8 @@ inline void printVal(std::stringstream& stream, const SeExpr2::Vec3d& v) {
 
 #define UNUSED(x) (void)(x)
 
-struct Editable {
+class Editable {
+public:
     std::string name;
     int startPos, endPos;
 
@@ -57,7 +58,8 @@ struct Editable {
     virtual bool controlsMatch(const Editable&) const = 0;
 };
 
-struct NumberEditable : public Editable {
+class NumberEditable : public Editable {
+public:
     double v;
     double min, max;
     bool isInt;
@@ -98,7 +100,8 @@ struct NumberEditable : public Editable {
     }
 };
 
-struct VectorEditable : public Editable {
+class VectorEditable : public Editable {
+public:
     SeExpr2::Vec3d v;
     double min, max;
     bool isColor;
@@ -131,7 +134,8 @@ struct VectorEditable : public Editable {
     }
 };
 
-struct StringEditable : public Editable {
+class StringEditable : public Editable {
+public:
     std::string v;
     std::string type;
     StringEditable(int startPos, int endPos, const std::string& val) : Editable("unknown", startPos, endPos), v(val) {}
@@ -208,7 +212,8 @@ struct GenericCurveEditable : public Editable {
 typedef GenericCurveEditable<SeExpr2::Vec3d> ColorCurveEditable;
 typedef GenericCurveEditable<double> CurveEditable;
 
-struct AnimCurveEditable : public Editable {
+class AnimCurveEditable : public Editable {
+public:
     std::string name;
     int startPos, endPos;
 #ifdef SEEXPR_USE_ANIMLIB
@@ -271,7 +276,8 @@ struct AnimCurveEditable : public Editable {
     }
 };
 
-struct ColorSwatchEditable : public Editable {
+class ColorSwatchEditable : public Editable {
+public:
     std::vector<SeExpr2::Vec3d> colors;
     std::string labelType;
 
@@ -324,7 +330,8 @@ struct ColorSwatchEditable : public Editable {
     }
 };
 
-struct DeepWaterEditable : public Editable {
+class DeepWaterEditable : public Editable {
+public:
     SeDeepWaterParams params;
 
     DeepWaterEditable(const std::string& name, int startPos, int endPos) : Editable(name, startPos, endPos) {}
