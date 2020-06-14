@@ -83,18 +83,21 @@
 #include <string>
 #include <cstring>
 #include <typeinfo>
-#ifdef SEEXPR_USE_ANIMLIB
-#include <animlib/AnimCurve.h>
-#include <animlib/AnimKeyframe.h>
-#else
-#define UNUSED(x) (void)(x)
+#ifdef SEEXPR_ENABLE_ANIMCURVE
+    #ifdef SEEXPR_USE_ANIMLIB
+    #include <animlib/AnimCurve.h>
+    #include <animlib/AnimKeyframe.h>
+    #else
+    #define UNUSED(x) (void)(x)
+    #endif
 #endif
 #include <SeExpr2/Platform.h>
 #include <SeExpr2/Mutex.h>
 #include "ExprSpecType.h"
 #include "Editable.h"
+#ifdef SEEXPR_ENABLE_DEEPWATER
 #include "ExprDeepWater.h"
-
+#endif
 
 /******************
  lexer declarations
@@ -232,6 +235,7 @@ static void specRegisterEditable(const char* var,ExprSpecNode* node)
                 else delete swatch;
             }
         }
+#ifdef SEEXPR_ENABLE_ANIMCURVE
     }else if(ExprSpecAnimCurveNode* n=dynamic_cast<ExprSpecAnimCurveNode*>(node)){
         if(ExprSpecListNode* args=dynamic_cast<ExprSpecListNode*>(n->args)){
             // need 3 items for pre inf and post inf and weighting, plus 9 items per key
@@ -286,6 +290,8 @@ static void specRegisterEditable(const char* var,ExprSpecNode* node)
 #endif
             }
         }
+#endif
+#ifdef SEEXPR_ENABLE_DEEPWATER
     }else if(ExprSpecDeepWaterNode* n=dynamic_cast<ExprSpecDeepWaterNode*>(node)){
         if(ExprSpecListNode* args=dynamic_cast<ExprSpecListNode*>(n->args)){
             if(args->nodes.size()==12){
@@ -314,6 +320,7 @@ static void specRegisterEditable(const char* var,ExprSpecNode* node)
                 else delete deepWater;
             }
         }
+#endif
     }else{
         std::cerr<<"SEEXPREDITOR LOGIC ERROR: We didn't recognize the Spec"<<std::endl;
     }
@@ -328,7 +335,7 @@ static void specRegisterEditable(const char* var,ExprSpecNode* node)
 static void ExprSpecerror(const char* msg);
 
 
-#line 332 "y.tab.c"
+#line 339 "y.tab.c"
 
 # ifndef ExprSpecYY_CAST
 #  ifdef __cplusplus
@@ -400,13 +407,13 @@ extern int ExprSpecdebug;
 #if ! defined ExprSpecYYSTYPE && ! defined ExprSpecYYSTYPE_IS_DECLARED
 union ExprSpecYYSTYPE
 {
-#line 271 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 278 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
 
     ExprSpecNode* n;
     double d;      // return value for number tokens
     char* s;       /* return value for name tokens.  Note: UNLIKE the regular parser, this is not strdup()'dthe string */
 
-#line 410 "y.tab.c"
+#line 417 "y.tab.c"
 
 };
 typedef union ExprSpecYYSTYPE ExprSpecYYSTYPE;
@@ -864,12 +871,12 @@ static const ExprSpectype_int8 ExprSpectranslate[] =
   /* ExprSpecYYRLINEExprSpecYYN -- Source line where rule number ExprSpecYYN was defined.  */
 static const ExprSpectype_int16 ExprSpecrline[] =
 {
-       0,   313,   313,   314,   319,   320,   324,   325,   330,   331,
-     335,   336,   337,   338,   339,   340,   341,   345,   346,   347,
-     348,   349,   350,   354,   359,   360,   361,   366,   367,   372,
-     373,   374,   375,   376,   377,   378,   379,   380,   381,   382,
-     383,   392,   393,   394,   395,   396,   397,   398,   399,   400,
-     425,   426,   427,   428,   433,   434,   439,   448,   460,   461
+       0,   320,   320,   321,   326,   327,   331,   332,   337,   338,
+     342,   343,   344,   345,   346,   347,   348,   352,   353,   354,
+     355,   356,   357,   361,   366,   367,   368,   373,   374,   379,
+     380,   381,   382,   383,   384,   385,   386,   387,   388,   389,
+     390,   399,   400,   401,   402,   403,   404,   405,   406,   407,
+     436,   437,   438,   439,   444,   445,   450,   459,   471,   472
 };
 #endif
 
@@ -1747,245 +1754,245 @@ ExprSpecreduce:
   switch (ExprSpecn)
     {
   case 2:
-#line 313 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 320 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 { ParseResult = 0; }
-#line 1753 "y.tab.c"
+#line 1760 "y.tab.c"
     break;
 
   case 3:
-#line 314 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 321 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 { ParseResult = 0; }
-#line 1759 "y.tab.c"
+#line 1766 "y.tab.c"
     break;
 
   case 4:
-#line 319 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 326 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 1765 "y.tab.c"
+#line 1772 "y.tab.c"
     break;
 
   case 5:
-#line 320 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 327 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 1771 "y.tab.c"
+#line 1778 "y.tab.c"
     break;
 
   case 6:
-#line 324 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 331 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 1777 "y.tab.c"
+#line 1784 "y.tab.c"
     break;
 
   case 7:
-#line 325 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 332 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 1783 "y.tab.c"
+#line 1790 "y.tab.c"
     break;
 
   case 8:
-#line 330 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 337 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 1789 "y.tab.c"
+#line 1796 "y.tab.c"
     break;
 
   case 9:
-#line 331 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 338 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 {
         specRegisterVariable((ExprSpecvsp[-3].s));
         specRegisterEditable((ExprSpecvsp[-3].s),(ExprSpecvsp[-1].n));
       }
-#line 1798 "y.tab.c"
+#line 1805 "y.tab.c"
     break;
 
   case 10:
-#line 335 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 342 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 1804 "y.tab.c"
+#line 1811 "y.tab.c"
     break;
 
   case 11:
-#line 336 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 343 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 1810 "y.tab.c"
+#line 1817 "y.tab.c"
     break;
 
   case 12:
-#line 337 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 344 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 1816 "y.tab.c"
+#line 1823 "y.tab.c"
     break;
 
   case 13:
-#line 338 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 345 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 1822 "y.tab.c"
+#line 1829 "y.tab.c"
     break;
 
   case 14:
-#line 339 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 346 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 1828 "y.tab.c"
+#line 1835 "y.tab.c"
     break;
 
   case 15:
-#line 340 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 347 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 1834 "y.tab.c"
+#line 1841 "y.tab.c"
     break;
 
   case 16:
-#line 341 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 348 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 {
         specRegisterVariable((ExprSpecvsp[-3].s));
         specRegisterEditable((ExprSpecvsp[-3].s),(ExprSpecvsp[-1].n));
       }
-#line 1843 "y.tab.c"
+#line 1850 "y.tab.c"
     break;
 
   case 17:
-#line 345 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 352 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 {  (ExprSpecval.n) = 0; }
-#line 1849 "y.tab.c"
+#line 1856 "y.tab.c"
     break;
 
   case 18:
-#line 346 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 353 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 {  (ExprSpecval.n) = 0; }
-#line 1855 "y.tab.c"
+#line 1862 "y.tab.c"
     break;
 
   case 19:
-#line 347 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 354 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 {  (ExprSpecval.n) = 0; }
-#line 1861 "y.tab.c"
+#line 1868 "y.tab.c"
     break;
 
   case 20:
-#line 348 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 355 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 {  (ExprSpecval.n) = 0; }
-#line 1867 "y.tab.c"
+#line 1874 "y.tab.c"
     break;
 
   case 21:
-#line 349 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 356 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 {  (ExprSpecval.n) = 0; }
-#line 1873 "y.tab.c"
+#line 1880 "y.tab.c"
     break;
 
   case 22:
-#line 350 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 357 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 {  (ExprSpecval.n) = 0; }
-#line 1879 "y.tab.c"
+#line 1886 "y.tab.c"
     break;
 
   case 23:
-#line 355 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 362 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
     { (ExprSpecval.n) = 0; }
-#line 1885 "y.tab.c"
+#line 1892 "y.tab.c"
     break;
 
   case 24:
-#line 359 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 366 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                         { (ExprSpecval.n) = 0; }
-#line 1891 "y.tab.c"
+#line 1898 "y.tab.c"
     break;
 
   case 25:
-#line 360 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 367 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                             { (ExprSpecval.n) = 0;}
-#line 1897 "y.tab.c"
+#line 1904 "y.tab.c"
     break;
 
   case 26:
-#line 361 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 368 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0;}
-#line 1903 "y.tab.c"
+#line 1910 "y.tab.c"
     break;
 
   case 27:
-#line 366 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 373 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 1909 "y.tab.c"
+#line 1916 "y.tab.c"
     break;
 
   case 28:
-#line 367 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 374 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 {
         if(SPEC_IS_NUMBER((ExprSpecvsp[-5].n)) && SPEC_IS_NUMBER((ExprSpecvsp[-3].n)) && SPEC_IS_NUMBER((ExprSpecvsp[-1].n))){
             (ExprSpecval.n)=remember(new ExprSpecVectorNode((ExprSpecloc).first_column,(ExprSpecloc).last_column,(ExprSpecvsp[-5].n),(ExprSpecvsp[-3].n),(ExprSpecvsp[-1].n)));
         }else (ExprSpecval.n)=0;
       }
-#line 1919 "y.tab.c"
+#line 1926 "y.tab.c"
     break;
 
   case 29:
-#line 372 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 379 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 1925 "y.tab.c"
+#line 1932 "y.tab.c"
     break;
 
   case 30:
-#line 373 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 380 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 1931 "y.tab.c"
+#line 1938 "y.tab.c"
     break;
 
   case 31:
-#line 374 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 381 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 1937 "y.tab.c"
+#line 1944 "y.tab.c"
     break;
 
   case 32:
-#line 375 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 382 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 1943 "y.tab.c"
+#line 1950 "y.tab.c"
     break;
 
   case 33:
-#line 376 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 383 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 1949 "y.tab.c"
+#line 1956 "y.tab.c"
     break;
 
   case 34:
-#line 377 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 384 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 1955 "y.tab.c"
+#line 1962 "y.tab.c"
     break;
 
   case 35:
-#line 378 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 385 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 1961 "y.tab.c"
+#line 1968 "y.tab.c"
     break;
 
   case 36:
-#line 379 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 386 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 1967 "y.tab.c"
+#line 1974 "y.tab.c"
     break;
 
   case 37:
-#line 380 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 387 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 1973 "y.tab.c"
+#line 1980 "y.tab.c"
     break;
 
   case 38:
-#line 381 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 388 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 1979 "y.tab.c"
+#line 1986 "y.tab.c"
     break;
 
   case 39:
-#line 382 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 389 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = (ExprSpecvsp[0].n); }
-#line 1985 "y.tab.c"
+#line 1992 "y.tab.c"
     break;
 
   case 40:
-#line 383 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 390 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 {
         if(SPEC_IS_NUMBER((ExprSpecvsp[0].n))){
             ExprSpecScalarNode* node=(ExprSpecScalarNode*)(ExprSpecvsp[0].n);
@@ -1995,59 +2002,59 @@ ExprSpecreduce:
             (ExprSpecval.n)=(ExprSpecvsp[0].n);
         }else (ExprSpecval.n)=0;
       }
-#line 1999 "y.tab.c"
+#line 2006 "y.tab.c"
     break;
 
   case 41:
-#line 392 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 399 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 2005 "y.tab.c"
+#line 2012 "y.tab.c"
     break;
 
   case 42:
-#line 393 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 400 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 2011 "y.tab.c"
+#line 2018 "y.tab.c"
     break;
 
   case 43:
-#line 394 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 401 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 2017 "y.tab.c"
+#line 2024 "y.tab.c"
     break;
 
   case 44:
-#line 395 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 402 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 2023 "y.tab.c"
+#line 2030 "y.tab.c"
     break;
 
   case 45:
-#line 396 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 403 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 2029 "y.tab.c"
+#line 2036 "y.tab.c"
     break;
 
   case 46:
-#line 397 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 404 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 2035 "y.tab.c"
+#line 2042 "y.tab.c"
     break;
 
   case 47:
-#line 398 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 405 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 2041 "y.tab.c"
+#line 2048 "y.tab.c"
     break;
 
   case 48:
-#line 399 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 406 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 2047 "y.tab.c"
+#line 2054 "y.tab.c"
     break;
 
   case 49:
-#line 400 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 407 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 {
         if((ExprSpecvsp[-1].n) && strcmp((ExprSpecvsp[-3].s),"curve")==0){
             (ExprSpecval.n)=remember(new ExprSpecCurveNode((ExprSpecvsp[-1].n)));
@@ -2055,10 +2062,14 @@ ExprSpecreduce:
             (ExprSpecval.n)=remember(new ExprSpecCCurveNode((ExprSpecvsp[-1].n)));
         }else if((ExprSpecvsp[-1].n) && strcmp((ExprSpecvsp[-3].s),"swatch")==0){
             (ExprSpecval.n)=remember(new ExprSpecColorSwatchNode((ExprSpecvsp[-1].n)));
+#ifdef SEEXPR_ENABLE_ANIMCURVE
         }else if((ExprSpecvsp[-1].n) && strcmp((ExprSpecvsp[-3].s),"animCurve")==0){
             (ExprSpecval.n)=remember(new ExprSpecAnimCurveNode((ExprSpecvsp[-1].n)));
+#endif
+#ifdef SEEXPR_ENABLE_DEEPWATER
         }else if((ExprSpecvsp[-1].n) && strcmp((ExprSpecvsp[-3].s),"deepWater")==0){
             (ExprSpecval.n)=remember(new ExprSpecDeepWaterNode((ExprSpecvsp[-1].n)));
+#endif
         }else if((ExprSpecvsp[-1].n)){
             // function arguments not parse of curve, ccurve, or animCurve
             // check if there are any string args that need to be made into controls
@@ -2073,47 +2084,47 @@ ExprSpecreduce:
             (ExprSpecval.n)=0;
         }else (ExprSpecval.n)=0;
       }
-#line 2077 "y.tab.c"
+#line 2088 "y.tab.c"
     break;
 
   case 50:
-#line 425 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 436 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                   {(ExprSpecval.n) = 0; }
-#line 2083 "y.tab.c"
+#line 2094 "y.tab.c"
     break;
 
   case 51:
-#line 426 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 437 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 {  (ExprSpecval.n) = 0; }
-#line 2089 "y.tab.c"
+#line 2100 "y.tab.c"
     break;
 
   case 52:
-#line 427 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 438 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 {  (ExprSpecval.n) = 0; }
-#line 2095 "y.tab.c"
+#line 2106 "y.tab.c"
     break;
 
   case 53:
-#line 428 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 439 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 { (ExprSpecval.n)=remember(new ExprSpecScalarNode((ExprSpecloc).first_column,(ExprSpecloc).last_column,(ExprSpecvsp[0].d))); }
-#line 2101 "y.tab.c"
+#line 2112 "y.tab.c"
     break;
 
   case 54:
-#line 433 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 444 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0;}
-#line 2107 "y.tab.c"
+#line 2118 "y.tab.c"
     break;
 
   case 55:
-#line 434 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 445 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = (ExprSpecvsp[0].n);}
-#line 2113 "y.tab.c"
+#line 2124 "y.tab.c"
     break;
 
   case 56:
-#line 439 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 450 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
         {
        // ignore first argument unless it is a string (because we parse strings in weird ways)
        ExprSpecListNode* list=new ExprSpecListNode((ExprSpecloc).last_column,(ExprSpecloc).last_column);
@@ -2123,11 +2134,11 @@ ExprSpecreduce:
        remember(list);
        (ExprSpecval.n)=list;
    }
-#line 2127 "y.tab.c"
+#line 2138 "y.tab.c"
     break;
 
   case 57:
-#line 448 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 459 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                  {
 
       if((ExprSpecvsp[-2].n) && (ExprSpecvsp[0].n) && ((SPEC_IS_NUMBER((ExprSpecvsp[0].n)) || SPEC_IS_VECTOR((ExprSpecvsp[0].n)) || SPEC_IS_STR((ExprSpecvsp[0].n))))){
@@ -2137,28 +2148,28 @@ ExprSpecreduce:
           (ExprSpecval.n)=0;
       }
     }
-#line 2141 "y.tab.c"
+#line 2152 "y.tab.c"
     break;
 
   case 58:
-#line 460 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 471 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = (ExprSpecvsp[0].n);}
-#line 2147 "y.tab.c"
+#line 2158 "y.tab.c"
     break;
 
   case 59:
-#line 461 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 472 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
                                 {
         ExprSpecStringNode* str=new ExprSpecStringNode((ExprSpecloc).first_column,(ExprSpecloc).last_column,(ExprSpecvsp[0].s));
         //specRegisterEditable("<UNKNOWN>",str);
         // TODO: move string stuff out
         (ExprSpecval.n) = remember(str);
       }
-#line 2158 "y.tab.c"
+#line 2169 "y.tab.c"
     break;
 
 
-#line 2162 "y.tab.c"
+#line 2173 "y.tab.c"
 
       default: break;
     }
@@ -2357,7 +2368,7 @@ ExprSpecreturn:
   return ExprSpecresult;
 }
 
-#line 469 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 480 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
 
 
 /* ExprSpecerror - Report an error.  This is called by the parser.
