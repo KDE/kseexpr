@@ -27,7 +27,9 @@
 
 #include "ExprCurve.h"
 #include "ExprColorCurve.h"
+#ifdef SEEXPR_ENABLE_DEEPWATER
 #include "ExprDeepWater.h"
+#endif
 
 class QLabel;
 class ExprColorCurve;
@@ -37,18 +39,24 @@ class Editable;
 class StringEditable;
 class VectorEditable;
 class NumberEditable;
+#ifdef SEEXPR_ENABLE_ANIMCURVE
 class AnimCurveEditable;
+#endif
 class ColorSwatchEditable;
 class ExprColorSwatchWidget;
 template <class TVAL>
 struct GenericCurveEditable;
 typedef GenericCurveEditable<SeExpr2::Vec3d> ColorCurveEditable;
 typedef GenericCurveEditable<double> CurveEditable;
+#ifdef SEEXPR_ENABLE_DEEPWATER
 class DeepWaterEditable;
+#endif
 
+#ifdef SEEXPR_ENABLE_ANIMCURVE
 namespace animlib {
 class AnimCurve;
 }
+#endif
 
 /// Base class for all controls for Expressions
 class ExprControl : public QWidget {
@@ -278,6 +286,7 @@ Q_SLOTS:
     void curveChanged();
 };
 
+#ifdef SEEXPR_ENABLE_ANIMCURVE
 /// Anim curve control
 class ExprGraphPreview;
 class AnimCurveControl : public ExprControl {
@@ -302,6 +311,7 @@ Q_SLOTS:
   private:
     static AnimCurveCallback callback;
 };
+#endif
 
 /// A control for editing color swatches
 class ColorSwatchControl : public ExprControl {
@@ -325,6 +335,7 @@ Q_SLOTS:
     bool _indexLabel;
 };
 
+#ifdef SEEXPR_ENABLE_DEEPWATER
 /// Control for displaying a deep water spectrum
 class DeepWaterControl : public ExprControl {
     Q_OBJECT
@@ -340,5 +351,6 @@ class DeepWaterControl : public ExprControl {
 Q_SLOTS:
     void deepWaterChanged();
 };
+#endif // SEEXPR_ENABLE_DEEPWATER
 
 #endif

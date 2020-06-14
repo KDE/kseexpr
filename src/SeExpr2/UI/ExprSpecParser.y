@@ -22,18 +22,21 @@
 #include <string>
 #include <cstring>
 #include <typeinfo>
-#ifdef SEEXPR_USE_ANIMLIB
-#include <animlib/AnimCurve.h>
-#include <animlib/AnimKeyframe.h>
-#else
-#define UNUSED(x) (void)(x)
+#ifdef SEEXPR_ENABLE_ANIMCURVE
+    #ifdef SEEXPR_USE_ANIMLIB
+    #include <animlib/AnimCurve.h>
+    #include <animlib/AnimKeyframe.h>
+    #else
+    #define UNUSED(x) (void)(x)
+    #endif
 #endif
 #include <SeExpr2/Platform.h>
 #include <SeExpr2/Mutex.h>
 #include "ExprSpecType.h"
 #include "Editable.h"
+#ifdef SEEXPR_ENABLE_DEEPWATER
 #include "ExprDeepWater.h"
-
+#endif
 
 /******************
  lexer declarations
@@ -171,6 +174,7 @@ static void specRegisterEditable(const char* var,ExprSpecNode* node)
                 else delete swatch;
             }
         }
+#ifdef SEEXPR_ENABLE_ANIMCURVE
     }else if(ExprSpecAnimCurveNode* n=dynamic_cast<ExprSpecAnimCurveNode*>(node)){
         if(ExprSpecListNode* args=dynamic_cast<ExprSpecListNode*>(n->args)){
             // need 3 items for pre inf and post inf and weighting, plus 9 items per key
@@ -225,6 +229,8 @@ static void specRegisterEditable(const char* var,ExprSpecNode* node)
 #endif
             }
         }
+#endif
+#ifdef SEEXPR_ENABLE_DEEPWATER
     }else if(ExprSpecDeepWaterNode* n=dynamic_cast<ExprSpecDeepWaterNode*>(node)){
         if(ExprSpecListNode* args=dynamic_cast<ExprSpecListNode*>(n->args)){
             if(args->nodes.size()==12){
@@ -253,6 +259,7 @@ static void specRegisterEditable(const char* var,ExprSpecNode* node)
                 else delete deepWater;
             }
         }
+#endif
     }else{
         std::cerr<<"SEEXPREDITOR LOGIC ERROR: We didn't recognize the Spec"<<std::endl;
     }
@@ -404,10 +411,14 @@ e:
             $$=remember(new ExprSpecCCurveNode($3));
         }else if($3 && strcmp($1,"swatch")==0){
             $$=remember(new ExprSpecColorSwatchNode($3));
+#ifdef SEEXPR_ENABLE_ANIMCURVE
         }else if($3 && strcmp($1,"animCurve")==0){
             $$=remember(new ExprSpecAnimCurveNode($3));
+#endif
+#ifdef SEEXPR_ENABLE_DEEPWATER
         }else if($3 && strcmp($1,"deepWater")==0){
             $$=remember(new ExprSpecDeepWaterNode($3));
+#endif
         }else if($3){
             // function arguments not parse of curve, ccurve, or animCurve
             // check if there are any string args that need to be made into controls

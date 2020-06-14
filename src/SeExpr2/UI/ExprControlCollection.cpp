@@ -207,29 +207,31 @@ ExprAddDialog::ExprAddDialog(int& count, QWidget* parent) : QDialog(parent) {
 
         tabWidget->addTab(stringTab, QString(tr("String")));
     }
-
+#ifdef SEEXPR_ENABLE_ANIMCURVE
     // Anim Curve
     {
         QWidget* curveTab = new QWidget();
         QFormLayout* curveLayout = new QFormLayout(curveTab);
-        curveLayout->setWidget(0, QFormLayout::LabelRole, new QLabel("Lookup"));
-        curveLayout->setWidget(1, QFormLayout::LabelRole, new QLabel("Link"));
-        animCurveLookup = new QLineEdit("$frame");
-        animCurveLink = new QLineEdit("");
+        curveLayout->setWidget(0, QFormLayout::LabelRole, new QLabel(tr("Lookup")));
+        curveLayout->setWidget(1, QFormLayout::LabelRole, new QLabel(tr("Link")));
+        animCurveLookup = new QLineEdit(QString::fromLatin1("$frame"));
+        animCurveLink = new QLineEdit(QString());
         curveLayout->setWidget(0, QFormLayout::FieldRole, animCurveLookup);
         curveLayout->setWidget(1, QFormLayout::FieldRole, animCurveLink);
-        tabWidget->addTab(curveTab, QString("AnimCurve"));
+        tabWidget->addTab(curveTab, QString(tr("AnimCurve")));
     }
-
+#endif
+#ifdef SEEXPR_ENABLE_DEEPWATER
     // DeepWater
     {
         QWidget* deepWaterTab = new QWidget();
         QFormLayout* deepWaterLayout = new QFormLayout(deepWaterTab);
-        deepWaterLayout->setWidget(0, QFormLayout::LabelRole, new QLabel("Lookup"));
-        deepWaterLookup = new QLineEdit("$u");
+        deepWaterLayout->setWidget(0, QFormLayout::LabelRole, new QLabel(tr("Lookup")));
+        deepWaterLookup = new QLineEdit(tr("$u"));
         deepWaterLayout->setWidget(0, QFormLayout::FieldRole, deepWaterLookup);
-        tabWidget->addTab(deepWaterTab, QString("Deep Water"));
+        tabWidget->addTab(deepWaterTab, QString(tr("Deep Water")));
     }
+#endif
 
     verticalLayout->addWidget(tabWidget);
 
@@ -321,17 +323,21 @@ void ExprControlCollection::addControlDialog() {
                         .arg(dialog->stringTypeWidget->currentText())
                         .arg(dialog->stringNameWidget->text());
                 break;
+#ifdef SEEXPR_ENABLE_ANIMCURVE
             case 8:
-                s = QString("%1 = animCurve(%2,\"constant\",\"constant\",0,\"%3\");")
+                s = QString::fromLatin1("%1 = animCurve(%2,\"constant\",\"constant\",0,\"%3\");")
                         .arg(dialog->variableName->text())
                         .arg(dialog->animCurveLookup->text())
                         .arg(dialog->animCurveLink->text());
                 break;
+#endif
+#ifdef SEEXPR_ENABLE_DEEPWATER
             case 9:
-                s = QString("%1 = deepWater(%2,9,30,0,1,0,5,0,0,[0,0,0],0,0,0);\n")
+                s = QString::fromLatin1("%1 = deepWater(%2,9,30,0,1,0,5,0,0,[0,0,0],0,0,0);\n")
                         .arg(dialog->variableName->text())
                         .arg(dialog->deepWaterLookup->text());
                 break;
+#endif
         }
         emit insertString(s.toStdString());
     }
@@ -390,12 +396,16 @@ bool ExprControlCollection::rebuildControls(const QString& expressionText, std::
                 widget = new CurveControl(i, x);
             else if (ColorCurveEditable* x = dynamic_cast<ColorCurveEditable*>(editable))
                 widget = new CCurveControl(i, x);
-            else if (AnimCurveEditable* x = dynamic_cast<AnimCurveEditable*>(editable)) {
+#ifdef SEEXPR_ENABLE_ANIMCURVE
+            else if (AnimCurveEditable* x = dynamic_cast<AnimCurveEditable*>(editable)) 
                 widget = new AnimCurveControl(i, x);
-            } else if (ColorSwatchEditable* x = dynamic_cast<ColorSwatchEditable*>(editable))
+#endif
+            else if (ColorSwatchEditable* x = dynamic_cast<ColorSwatchEditable*>(editable))
                 widget = new ColorSwatchControl(i, x);
+#ifdef SEEXPR_ENABLE_DEEPWATER
             else if (DeepWaterEditable* x = dynamic_cast<DeepWaterEditable*>(editable))
                 widget = new DeepWaterControl(i, x);
+#endif
             else {
                 std::cerr << "SeExpr editor logic error, cannot find a widget for the given editable" << std::endl;
             }
@@ -417,6 +427,7 @@ bool ExprControlCollection::rebuildControls(const QString& expressionText, std::
 }
 
 void ExprControlCollection::showEditor(int idx) {
+#ifdef SEEXPR_ENABLE_ANIMCURVE
     if (idx < 0 || idx >= (int)_controls.size()) return;
 
     /* Right now we only launch the anim curve editor.
@@ -425,6 +436,7 @@ void ExprControlCollection::showEditor(int idx) {
     if (!control) return;
 
     control->editGraphClicked();
+#endif
 }
 
 void ExprControlCollection::linkColorLink(int id) {

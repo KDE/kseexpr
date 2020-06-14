@@ -35,19 +35,41 @@ if (Qt5_FOUND OR QT4_FOUND)
     BuildParserScanner(ExprSpecParserLex ExprSpecParser ExprSpec
                        editor_parser_cpp)
 
+    option(ENABLE_DEEPWATER "Whether to build controls for displaying a deep water spectrum" FALSE)
+    option(ENABLE_ANIMCURVE "Whether to build controls for anim curves" FALSE)
+    option(ENABLE_EXPRMAIN "Whether to build the ExprMain entrypoint" FALSE)
+
     set(EDITOR_MOC_HDRS ExprBrowser.h ExprColorCurve.h
         ExprColorSwatch.h ExprControlCollection.h
         ExprControl.h ExprCurve.h ExprDialog.h ExprEditor.h
         ExprFileDialog.h ExprGrapher2d.h ExprPopupDoc.h
-        ExprShortEdit.h ExprDeepWater.h)
+        ExprShortEdit.h)
 
     set(EDITOR_CPPS ExprFileDialog.cpp ExprControl.cpp
-        ExprEditor.cpp ExprMain.cpp ExprShortEdit.cpp
+        ExprEditor.cpp ExprShortEdit.cpp
         ExprCurve.cpp  ExprColorCurve.cpp ExprColorSwatch.cpp
         EditableExpression.cpp ExprPopupDoc.cpp
         ExprCompletionModel.cpp ExprDialog.cpp
         ExprControlCollection.cpp ExprGrapher2d.cpp ExprBrowser.cpp
-        BasicExpression.cpp ExprDeepWater.cpp)
+        BasicExpression.cpp)
+    
+    if (ENABLE_DEEPWATER)
+        add_definitions(-DSEEXPR_ENABLE_DEEPWATER)
+        set(EDITOR_MOC_HDRS ${EDITOR_MOC_HDRS} ExprDeepWater.h)
+        set(EDITOR_CPPS ${EDITOR_CPPS} ExprDeepWater.cpp)
+        set(PYQT_EXPORT_DEEPWATER "")
+    else()
+        set(PYQT_EXPORT_DEEPWATER "-x SEEXPR_ENABLE_DEEPWATER")
+    endif()
+
+    if (ENABLE_ANIMCURVE)
+        add_definitions(-DSEEXPR_ENABLE_ANIMCURVE)
+    endif()
+
+    if (ENABLE_EXPRMAIN)
+        set(EDITOR_CPPS ${EDITOR_CPPS} ExprMain.cpp)
+    endif()
+    
 
     if (ENABLE_QT5)
         qt5_wrap_cpp(EDITOR_MOC_SRCS ${EDITOR_MOC_HDRS})
@@ -135,6 +157,7 @@ if (Qt5_FOUND OR QT4_FOUND)
 
     ## Install library and includes
     install(TARGETS SeExpr2Editor DESTINATION ${CMAKE_INSTALL_LIBDIR})
+    # TODO exclude files as per animlib/deepwater/animcurve -- amyspark
     install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/ DESTINATION ${INCLUDE_DIR}/UI
             FILES_MATCHING PATTERN "*.h")
 
@@ -187,6 +210,7 @@ if (Qt5_FOUND OR QT4_FOUND)
                            ${PYQT_SIP_FLAGS}
                            -j 1
                            -I. -I${PYQT_SIP_DIR} -I${SIP_INCLUDE_DIR}
+                           ${PYQT_EXPORT_DEEPWATER}
                            ${CMAKE_CURRENT_SOURCE_DIR}/SeExpr2Editor.sip
                            VERBATIM)
 

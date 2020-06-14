@@ -52,6 +52,7 @@
 #include "ExprFileDialog.h"
 #include "Editable.h"
 
+#ifdef SEEXPR_ENABLE_ANIMCURVE
 /* XPM */
 static const char* refreshXPM[] = {
     "20 20 4 1",            "# c #303030",          "a c #585858",          "b c #c3c3c3",
@@ -71,6 +72,7 @@ static const char* graphXPM[] = {
     "..bb....bb#bbb......", "##bb####bbbbb#######", ".bb......bbb....c.c.", ".bb.......#......c..",
     ".b........#.....c.c.", "bb........#.........", "b.........#.........", "..........#.........",
     "..........#.........", "..........#........."};
+#endif
 
 /* XPM */
 static const char* directoryXPM[] = {
@@ -600,6 +602,7 @@ public:
 #endif
 };
 
+#ifdef SEEXPR_ENABLE_ANIMCURVE
 AnimCurveControl::AnimCurveControl(int id, AnimCurveEditable* editable)
     : ExprControl(id, editable, false), _editable(editable) {
 
@@ -679,6 +682,7 @@ void AnimCurveControl::editGraphClicked() {
 void AnimCurveControl::setAnimCurveCallback(AnimCurveCallback newCallback) { callback = newCallback; }
 
 AnimCurveControl::AnimCurveCallback AnimCurveControl::callback = 0;
+#endif
 
 // Editing widget for color swatch
 ColorSwatchControl::ColorSwatchControl(int id, ColorSwatchEditable* editable)
@@ -727,6 +731,8 @@ void ColorSwatchControl::buildSwatchWidget() {
     hbox->addWidget(_swatch);
 }
 
+#ifdef SEEXPR_ENABLE_DEEPWATER
+
 DeepWaterControl::DeepWaterControl(int id, DeepWaterEditable* editable)
     : ExprControl(id, editable, false), _deepWaterEditable(editable) {
     _deepWater = new ExprDeepWater(this);
@@ -742,3 +748,4 @@ void DeepWaterControl::deepWaterChanged() {
         emit controlChanged(_id);
     }
 }
+#endif

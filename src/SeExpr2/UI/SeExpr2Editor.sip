@@ -17,6 +17,8 @@
 #include <string>
 %End
 
+%Feature SEEXPR_ENABLE_DEEPWATER
+
 %ConvertFromTypeCode
     // convert an std::string to a Python (unicode) string
     PyObject* newstring;
@@ -246,6 +248,7 @@ public:
     ExprColorSwatchWidget(bool indexLabel = false, QWidget* parent = NULL);
 };
 
+%If (SEEXPR_ENABLE_DEEPWATER)
 class ExprDeepWater:QWidget{
 %TypeHeaderCode
 #include "ExprDeepWater.h"
@@ -253,3 +256,4 @@ class ExprDeepWater:QWidget{
 public:
     ExprDeepWater(QWidget* parent = NULL);
 };
+%End

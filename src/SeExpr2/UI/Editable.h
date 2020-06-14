@@ -24,11 +24,15 @@
 #include <SeExpr2/Curve.h>
 #include <cstdio>
 #include <cstring>
+#ifdef SEEXPR_ENABLE_ANIMCURVE
 #ifdef SEEXPR_USE_ANIMLIB
 #include <animlib/AnimCurve.h>
 #include <animlib/AnimKeyframe.h>
-#endif
+#endif  // SEEXPR_USE_ANIMLIB
+#endif  // SEEXPR_ENABLE_ANIMCURVE
+#ifdef SEEXPR_ENABLE_DEEPWATER
 #include <ExprDeepWater.h>
+#endif
 
 inline void printVal(std::stringstream& stream, double v) { stream << v; }
 inline void printVal(std::stringstream& stream, const SeExpr2::Vec3d& v) {
@@ -212,6 +216,7 @@ struct GenericCurveEditable : public Editable {
 typedef GenericCurveEditable<SeExpr2::Vec3d> ColorCurveEditable;
 typedef GenericCurveEditable<double> CurveEditable;
 
+#ifdef SEEXPR_ENABLE_ANIMCURVE
 class AnimCurveEditable : public Editable {
 public:
     std::string name;
@@ -275,6 +280,7 @@ public:
             return false;
     }
 };
+#endif
 
 class ColorSwatchEditable : public Editable {
 public:
@@ -330,6 +336,7 @@ public:
     }
 };
 
+#ifdef SEEXPR_ENABLE_DEEPWATER
 class DeepWaterEditable : public Editable {
 public:
     SeDeepWaterParams params;
@@ -370,5 +377,6 @@ public:
             return false;
     }
 };
+#endif  // SEEXPR_ENABLE_DEEPWATER
 
 #endif

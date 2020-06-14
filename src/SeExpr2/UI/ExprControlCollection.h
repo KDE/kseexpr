@@ -56,10 +56,14 @@ class ExprAddDialog : public QDialog {
     QLineEdit *vectorMax;
     QLineEdit *curveLookup;
     QLineEdit *colorCurveLookup;
+#ifdef SEEXPR_ENABLE_ANIMCURVE
     QLineEdit *animCurveLookup;
     QLineEdit *animCurveLink;
+#endif
     QLineEdit *swatchLookup;
+#ifdef SEEXPR_ENABLE_DEEPWATER
     QLineEdit *deepWaterLookup;
+#endif
     QRadioButton *rainbowPaletteBtn;
     QRadioButton *grayPaletteBtn;
     QColor color;
@@ -107,11 +111,12 @@ class ExprControlCollection : public QWidget {
     int numControls() { return _controls.size(); }
 
     void showEditor(int idx);
-
+#ifdef SEEXPR_ENABLE_ANIMCURVE
     /// Anim curve callback
     static void setAnimCurveCallback(AnimCurveControl::AnimCurveCallback callback) {
         AnimCurveControl::setAnimCurveCallback(callback);
     }
+#endif
 
   private
 Q_SLOTS:
