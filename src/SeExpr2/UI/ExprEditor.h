@@ -1,5 +1,6 @@
 /*
 * Copyright Disney Enterprises, Inc.  All rights reserved.
+* Copyright (C) 2020 L. E. Segovia <amy@amyspark.me>
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License
@@ -114,9 +115,9 @@ Q_SIGNALS:
 
   public:
     // Get the expression that is in the editor
-    std::string getExpr();
+    QString getExpr();
     // Sets the expression that is in the editor
-    void setExpr(const std::string& expression, const bool apply = false);
+    void setExpr(const QString& expression, const bool apply = false);
     // Append string
     void appendStr(const std::string& str);
   public
@@ -132,9 +133,9 @@ Q_SLOTS:
     // Removes all extra completion symbols
     void clearExtraCompleters();
     // Registers an extra function and associated do cstring
-    void registerExtraFunction(const std::string& name, const std::string& docString);
+    void registerExtraFunction(const QString& name, const QString& docString);
     // Register an extra variable (i.e. $P, or $u, something provided by resolveVar)
-    void registerExtraVariable(const std::string& name, const std::string& docString);
+    void registerExtraVariable(const QString& name, const QString& docString);
     // Replace extras
     void replaceExtras(const ExprCompletionModel& completer);
     // Updates the completion widget, must call after registering any new functions/variables

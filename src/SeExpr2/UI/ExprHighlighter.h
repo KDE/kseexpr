@@ -1,5 +1,6 @@
 /*
 * Copyright Disney Enterprises, Inc.  All rights reserved.
+* Copyright (C) 2020 L. E. Segovia <amy@amyspark.me>
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License
@@ -62,18 +63,18 @@ class ExprHighlighter : public QSyntaxHighlighter {
         //}
 
         numberFormat.setForeground(QColor::fromHsv(180, 204, lightness));
-        rule.pattern = QRegExp("\\b[0-9]*\\.[0-9]*)?|[0-9]+\\b");  // \\b?[^\\$][A-Za-z][A-Za-z0-9]*\\b");
+        rule.pattern = QRegExp(QString::fromLatin1("\\b[0-9]*\\.[0-9]*)?|[0-9]+\\b"));  // \\b?[^\\$][A-Za-z][A-Za-z0-9]*\\b");
         rule.format = numberFormat;
         // highlightingRules.append(rule);
 
         variableFormat.setForeground(QColor::fromHsv(200, 153, lightness));
         // variableFormat.setFontWeight(QFont::Bold);
-        rule.pattern = QRegExp("\\$[A-Za-z][A-Za-z0-9]*\\b");
+        rule.pattern = QRegExp(QString::fromLatin1("\\$[A-Za-z][A-Za-z0-9]*\\b"));
         rule.format = variableFormat;
         highlightingRules.append(rule);
 
         singleLineCommentFormat.setForeground(QColor::fromHsv(210, 128, lightness));
-        rule.pattern = QRegExp("#[^\n]*");
+        rule.pattern = QRegExp(QString::fromLatin1("#[^\n]*"));
         rule.format = singleLineCommentFormat;
         highlightingRules.append(rule);
     }

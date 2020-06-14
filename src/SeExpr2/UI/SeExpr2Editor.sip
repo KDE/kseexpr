@@ -78,7 +78,7 @@ public:
 
     ExprDialog(QWidget* parent /TransferThis/ = NULL);
     std::string getExpressionString();
-    void setExpressionString(const std::string&);
+    void setExpressionString(const QString&);
     void show();
 
 Q_SIGNALS:
@@ -192,10 +192,10 @@ class ExprShortEdit:QWidget
 public:
     ExprShortEdit(QWidget* parent);
     std::string getExpressionString() const;
-    void setExpressionString(const std::string&);
+    void setExpressionString(const QString&);
     void clearExtraCompleters();
-    void registerExtraFunction(const std::string& name,const std::string& docString);
-    void registerExtraVariable(const std::string& name,const std::string& docString);
+    void registerExtraFunction(const QString& name,const QString& docString);
+    void registerExtraVariable(const QString& name,const QString& docString);
     void setSimple(bool enabled);
     void updateCompleter();
     void setDetailsMenu(QMenu *menu);

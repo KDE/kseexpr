@@ -1,5 +1,6 @@
 /*
 * Copyright Disney Enterprises, Inc.  All rights reserved.
+* Copyright (C) 2020 L. E. Segovia <amy@amyspark.me>
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License
@@ -121,9 +122,9 @@ class ExprCurve : public QWidget {
 
   public:
     ExprCurve(QWidget *parent = 0,
-              QString pLabel = "",
-              QString vLabel = "",
-              QString iLabel = "",
+              QString pLabel = QString(),
+              QString vLabel = QString(),
+              QString iLabel = QString(),
               bool expandable = true);
     ~ExprCurve() {}
 

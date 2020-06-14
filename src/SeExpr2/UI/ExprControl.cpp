@@ -1,5 +1,6 @@
 /*
 * Copyright Disney Enterprises, Inc.  All rights reserved.
+* Copyright (C) 2020 L. E. Segovia <amy@amyspark.me>
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License
@@ -175,7 +176,10 @@ ExprControl::ExprControl(int id, Editable* editable, bool showColorLink)
     connect(_colorLinkCB, SIGNAL(stateChanged(int)), this, SLOT(linkStateChange(int)));
     hbox->addWidget(_colorLinkCB);
 
-    _label = new QLabel(QString("<b>") + editable->name.c_str() + "</b>");
+    // see parser's specRegisterEditable
+    // TODO these labels are untranslatable
+    QString editableLabel = QString::fromStdString(editable->name);
+    _label = new QLabel(QString(tr("<b>%1</b>")).arg(editableLabel));
     _label->setFixedWidth(72);
     _label->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
     _label->setIndent(2);
@@ -258,7 +262,7 @@ void NumberControl::updateControl() {
     _updating = 1;
     int sliderval = int(_numberEditable->isInt ? _numberEditable->v : _numberEditable->v * 1e5);
     if (sliderval != _slider->value()) _slider->setValue(sliderval);
-    _edit->setText(QString("%1").arg(_numberEditable->v, 0, 'f', _numberEditable->isInt ? 0 : 3));
+    _edit->setText(QString(tr("%1")).arg(_numberEditable->v, 0, 'f', _numberEditable->isInt ? 0 : 3));
     _updating = 0;
 }
 
@@ -343,7 +347,9 @@ void VectorControl::editChanged(int id, const QString& text) {
 void VectorControl::updateControl() {
     //    //std::cerr<<"In update control "<<_id<<std::endl;
     _updating = 1;
-    for (unsigned int i = 0; i < 3; i++) _edits[i]->setText(QString("%1").arg(_numberEditable->v[i], 0, 'f', 3));
+    for (unsigned int i = 0; i < 3; i++) {
+        _edits[i]->setText(QString(tr("%1")).arg(_numberEditable->v[i], 0, 'f', 3));
+    }
     double min = _numberEditable->min, max = _numberEditable->max;
     for (unsigned int i = 0; i < 3; i++) {
         _sliders[i]->setValue((_numberEditable->v[i] - min) / (max - min));
@@ -405,18 +411,21 @@ void StringControl::fileBrowse() {
     ExprFileDialog dialog(this);
     dialog.setPreview();
     QString newFilename =
-        dialog.getOpenFileName("Please choose a file", _edit->text(), tr("Images (*.tif *.tx *.jpg *.ptx *.png)"));
-    if (newFilename != "") _edit->setText(newFilename);
+        dialog.getOpenFileName(tr("Please choose a file"), _edit->text(), tr("Images (*.tif *.tx *.jpg *.ptx *.png)"));
+    if (!newFilename.isEmpty()) _edit->setText(newFilename);
 }
 
 void StringControl::directoryBrowse() {
     ExprFileDialog dialog(this);
     dialog.setPreview();
-    QString newFilename = dialog.getExistingDirectory("Please choose a file", _edit->text());
-    if (newFilename != "") _edit->setText(newFilename);
+    QString newFilename = dialog.getExistingDirectory(tr("Please choose a file"), _edit->text());
+    if (!newFilename.isEmpty()) _edit->setText(newFilename);
 }
 
-void StringControl::updateControl() { _edit->setText(_stringEditable->v.c_str()); }
+void StringControl::updateControl() {
+    QString newText = QString::fromStdString(_stringEditable->v);
+    _edit->setText(newText);
+}
 
 void StringControl::textChanged(const QString& newText) {
     if (_updating) return;
@@ -426,7 +435,7 @@ void StringControl::textChanged(const QString& newText) {
 
 CurveControl::CurveControl(int id, CurveEditable* editable)
     : ExprControl(id, editable, false), _curveEditable(editable) {
-    _curve = new ExprCurve(this, "Pos:", "Val:", "Interp:");
+    _curve = new ExprCurve(this, tr("Pos:"), tr("Val:"), tr("Interp:"));
     _curve->setFixedHeight(80);
 
     const int numVal = _curveEditable->cvs.size();
@@ -448,7 +457,7 @@ void CurveControl::curveChanged() {
 
 CCurveControl::CCurveControl(int id, ColorCurveEditable* editable)
     : ExprControl(id, editable, true), _curveEditable(editable) {
-    _curve = new ExprColorCurve(this, "Pos:", "Val:", "Interp:");
+    _curve = new ExprColorCurve(this, tr("Pos:"), tr("Val:"), tr("Interp:"));
     _curve->setFixedHeight(80);
 
     const int numVal = _curveEditable->cvs.size();
@@ -537,10 +546,10 @@ public:
         painter.drawPath(path);
 
         painter.setPen(QPen());
-        painter.drawText(right, Qt::AlignTop | Qt::AlignLeft, QString("%1").arg(ymax, 0, 'f', 1));
-        painter.drawText(right, Qt::AlignBottom | Qt::AlignLeft, QString("%1").arg(ymin, 0, 'f', 1));
-        painter.drawText(bottom, Qt::AlignTop | Qt::AlignLeft, QString("%1").arg(xmin, 0, 'f', 1));
-        painter.drawText(bottom, Qt::AlignTop | Qt::AlignRight, QString("%1").arg(xmax, 0, 'f', 1));
+        painter.drawText(right, Qt::AlignTop | Qt::AlignLeft, QString(tr("%1")).arg(ymax, 0, 'f', 1));
+        painter.drawText(right, Qt::AlignBottom | Qt::AlignLeft, QString(tr("%1")).arg(ymin, 0, 'f', 1));
+        painter.drawText(bottom, Qt::AlignTop | Qt::AlignLeft, QString(tr("%1")).arg(xmin, 0, 'f', 1));
+        painter.drawText(bottom, Qt::AlignTop | Qt::AlignRight, QString(tr("%1")).arg(xmax, 0, 'f', 1));
 
         painter.setBrush(QBrush(QColor(0, 0, 0), Qt::SolidPattern));
         for (size_t i = 0; i < cpx.size(); i++) {

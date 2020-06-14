@@ -1,5 +1,6 @@
 /*
 * Copyright Disney Enterprises, Inc.  All rights reserved.
+* Copyright (C) 2020 L. E. Segovia <amy@amyspark.me>
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License
@@ -50,7 +51,7 @@ ExprGrapherWidget::ExprGrapherWidget(QWidget* parent, int width, int height)
     connect(view, SIGNAL(scaleValueManipulated()), this, SLOT(scaleValueManipulated()));
     connect(view, SIGNAL(clicked()), this, SLOT(forwardPreview()));
 
-    hbox->addWidget(new QLabel("Width"), 0);
+    hbox->addWidget(new QLabel(tr("Width")), 0);
     hbox->addWidget(scale, 0);
 }
 
@@ -73,7 +74,7 @@ void ExprGrapherWidget::scaleValueEdited() {
 void ExprGrapherWidget::scaleValueManipulated() {
     float xmin, xmax, ymin, ymax, z;
     view->getWindow(xmin, xmax, ymin, ymax, z);
-    scale->setText(QString("%1").arg(.5 * (xmax - xmin)));
+    scale->setText(QString(tr("%1")).arg(.5 * (xmax - xmin)));
 }
 
 void ExprGrapherWidget::update() {

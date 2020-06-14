@@ -1,5 +1,6 @@
 /*
 * Copyright Disney Enterprises, Inc.  All rights reserved.
+* Copyright (C) 2020 L. E. Segovia <amy@amyspark.me>
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License
@@ -53,8 +54,8 @@ class ExprShortEdit : public QWidget {
     QVBoxLayout* vboxlayout;
     QHBoxLayout* hboxlayout;
     QLabel* error;
-    std::string _context;
-    std::string _searchPath;
+    QString _context;
+    QString _searchPath;
     bool _applyOnSelect;
 
   public:
@@ -65,13 +66,13 @@ class ExprShortEdit : public QWidget {
     std::string getExpressionString() const;
     QString getExpression() const;
     // Sets the string that is in the edit widget
-    void setExpressionString(const std::string& expression);
+    void setExpressionString(const QString& expression);
     // Removes all extra completion symbols
     void clearExtraCompleters();
-    // Registers an extra function and associated do cstring
-    void registerExtraFunction(const std::string& name, const std::string& docString);
+    // Registers an extra function and associated do QString
+    void registerExtraFunction(const QString& name, const QString& docString);
     // Register an extra variable (i.e. $P, or $u, something provided by resolveVar)
-    void registerExtraVariable(const std::string& name, const std::string& docString);
+    void registerExtraVariable(const QString& name, const QString& docString);
     // Updates the completion widget, must call after registering any new functions/variables
     void updateCompleter();
     // Hides the expression part of the interface

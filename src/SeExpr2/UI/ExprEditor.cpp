@@ -1,5 +1,6 @@
 /*
 * Copyright Disney Enterprises, Inc.  All rights reserved.
+* Copyright (C) 2020 L. E. Segovia <amy@amyspark.me>
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License
@@ -96,7 +97,7 @@ ExprEditor::ExprEditor(QWidget* parent, ExprControlCollection* controls)
     previewTimer = new QTimer();
 
     // title and minimum size
-    setWindowTitle("Expression Editor");
+    setWindowTitle(tr("Expression Editor"));
     setMinimumHeight(100);
 
     // expression controls, we need for signal connections
@@ -113,9 +114,17 @@ ExprEditor::ExprEditor(QWidget* parent, ExprControlCollection* controls)
 
     // calibrate the font size
     int fontsize = 12;
-    QFont font("Liberation Sans", fontsize);
-    while (QFontMetrics(font).boundingRect("abcdef").width() < 38 && fontsize < 20) fontsize++;
-    while (QFontMetrics(font).boundingRect("abcdef").width() > 44 && fontsize > 3) fontsize--;
+    // QFont font("Liberation Sans", fontsize);
+    QFont font = exprTe->font();
+    font.setPointSize(fontsize);
+    // while (QFontMetrics(font).boundingRect("yabcdef").width() < 38 && fontsize < 20) {
+    //     fontsize++;
+    //     font.setPointSize(fontsize);
+    // } ;
+    // while (QFontMetrics(font).boundingRect("abcdef").width() > 44 && fontsize > 3) {
+    //     fontsize--;
+    //     font.setPointSize(fontsize);
+    // };
 
     exprTe->setFont(font);
 
@@ -196,7 +205,7 @@ ExprTextEdit::ExprTextEdit(QWidget* parent) : QTextEdit(parent), lastStyleForHig
     completer->setCaseSensitivity(Qt::CaseInsensitive);
     QObject::connect(completer, SIGNAL(activated(const QString&)), this, SLOT(insertCompletion(const QString&)));
 
-    _popupEnabledAction = new QAction("Pop-up Help", this);
+    _popupEnabledAction = new QAction(tr("Pop-up Help"), this);
     _popupEnabledAction->setCheckable(true);
     _popupEnabledAction->setChecked(true);
 }
@@ -281,10 +290,10 @@ void ExprTextEdit::keyPressEvent(QKeyEvent* e) {
     QString line = tc.selectedText();
 
     // matches the last prefix of a completable variable or function and extract as completionPrefix
-    static QRegExp completion("^(?:.*[^A-Za-z0-9_$])?((?:\\$[A-Za-z0-9_]*)|[A-Za-z]+[A-Za-z0-9_]*)$");
+    static QRegExp completion(QString::fromLatin1("^(?:.*[^A-Za-z0-9_$])?((?:\\$[A-Za-z0-9_]*)|[A-Za-z]+[A-Za-z0-9_]*)$"));
     int index = completion.indexIn(line);
     QString completionPrefix;
-    if (index != -1 && !line.contains('#')) {
+    if (index != -1 && !line.contains(QLatin1Char('#'))) {
         completionPrefix = completion.cap(1);
         // std::cout<<"we have completer prefix '"<<completionPrefix.toStdString()<<"'"<<std::endl;
     }
@@ -311,14 +320,14 @@ void ExprTextEdit::keyPressEvent(QKeyEvent* e) {
     }
 
     // documentation completion
-    static QRegExp inFunction("^(?:.*[^A-Za-z0-9_$])?([A-Za-z0-9_]+)\\([^()]*$");
+    static QRegExp inFunction(QString::fromLatin1("^(?:.*[^A-Za-z0-9_$])?([A-Za-z0-9_]+)\\([^()]*$"));
     int index2 = inFunction.indexIn(line);
     if (index2 != -1) {
         QString functionName = inFunction.cap(1);
-        QStringList tips = completionModel->getDocString(functionName).split("\n");
-        QString tip = "<b>" + tips[0] + "</b>";
+        QStringList tips = completionModel->getDocString(functionName).split(QString::fromLatin1("\n"));
+        QString tip = QString(tr("<b>%1</b>")).arg(tips[0]);
         for (int i = 1; i < tips.size(); i++) {
-            tip += "<br>" + tips[i];
+            tip += QString(tr("<br>%1")).arg(tips[i]);
         }
         if (_popupEnabledAction->isChecked()) showTip(tip);
         // QToolTip::showText(mapToGlobal(cr.bottomLeft()),tip,this,cr);
@@ -342,7 +351,7 @@ void ExprTextEdit::contextMenuEvent(QContextMenuEvent* event) {
 
 void ExprTextEdit::showTip(const QString& string) {
     // skip empty strings
-    if (string == "") return;
+    if (string.isEmpty()) return;
     // skip already shown stuff
     if (_tip && !_tip->isHidden() && _tip->label->text() == string) return;
 
@@ -367,16 +376,16 @@ void ExprTextEdit::insertCompletion(const QString& completion) {
     tc.movePosition(QTextCursor::Left);
     tc.movePosition(QTextCursor::EndOfWord);
     tc.insertText(completion.right(extra));
-    if (completion[0] != '$') tc.insertText("(");
+    if (completion[0] != QLatin1Char('$')) tc.insertText(QString::fromLatin1("("));
     setTextCursor(tc);
 }
 
-std::string ExprEditor::getExpr() { return exprTe->toPlainText().toStdString(); }
+QString ExprEditor::getExpr() { return exprTe->toPlainText(); }
 
-void ExprEditor::setExpr(const std::string& expression, const bool doApply) {
+void ExprEditor::setExpr(const QString& expression, const bool doApply) {
     // exprTe->clear();
     exprTe->selectAll();
-    exprTe->insertPlainText(QString::fromStdString(expression));
+    exprTe->insertPlainText(expression);
     clearErrors();
     exprTe->moveCursor(QTextCursor::Start);
     if (doApply) emit apply();
@@ -387,7 +396,9 @@ void ExprEditor::insertStr(const std::string& str) { exprTe->insertPlainText(QSt
 void ExprEditor::appendStr(const std::string& str) { exprTe->append(QString::fromStdString(str)); }
 
 void ExprEditor::addError(const int startPos, const int endPos, const std::string& error) {
-    QListWidgetItem* item = new QListWidgetItem(("Error: " + error).c_str(), errorWidget);
+    // TODO: translate all node->addError strings in SeExpr - amyspark
+    QString errorStr = QString::fromStdString(error);
+    QListWidgetItem* item = new QListWidgetItem(tr("Error: %1").arg(errorStr), errorWidget);
     item->setData(Qt::UserRole, startPos);
     item->setData(Qt::UserRole + 1, endPos);
     errorWidget->setHidden(false);
@@ -420,12 +431,12 @@ void ExprEditor::clearExtraCompleters() {
     exprTe->completionModel->clearVariables();
 }
 
-void ExprEditor::registerExtraFunction(const std::string& name, const std::string& docString) {
-    exprTe->completionModel->addFunction(name.c_str(), docString.c_str());
+void ExprEditor::registerExtraFunction(const QString& name, const QString& docString) {
+    exprTe->completionModel->addFunction(name, docString);
 }
 
-void ExprEditor::registerExtraVariable(const std::string& name, const std::string& docString) {
-    exprTe->completionModel->addVariable(name.c_str(), docString.c_str());
+void ExprEditor::registerExtraVariable(const QString& name, const QString& docString) {
+    exprTe->completionModel->addVariable(name, docString);
 }
 
 void ExprEditor::replaceExtras(const ExprCompletionModel& completer) { exprTe->completionModel->syncExtras(completer); }

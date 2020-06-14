@@ -1,5 +1,6 @@
 /*
 * Copyright Disney Enterprises, Inc.  All rights reserved.
+* Copyright (C) 2020 L. E. Segovia <amy@amyspark.me>
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License
@@ -83,7 +84,7 @@ Q_SLOTS:
     void selChanged(const QString& path);
     void resetDir() {
         if (!_temppath.isEmpty()) setDirectory(_temppath);
-        _temppath = "";
+        _temppath = QString();
     }
 
   private:

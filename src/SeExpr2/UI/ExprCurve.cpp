@@ -1,5 +1,6 @@
 /*
 * Copyright Disney Enterprises, Inc.  All rights reserved.
+* Copyright (C) 2020 L. E. Segovia <amy@amyspark.me>
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License
@@ -140,7 +141,7 @@ void CurveScene::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent) {
 void CurveScene::contextMenuEvent(QGraphicsSceneContextMenuEvent *event) {
     if (_selectedItem >= 0) {
         QMenu *menu = new QMenu(event->widget());
-        QAction *deleteAction = menu->addAction("Delete Point");
+        QAction *deleteAction = menu->addAction(tr("Delete Point"));
         // menu->addAction("Cancel");
         QAction *action = menu->exec(event->screenPos());
         if (action == deleteAction) removePoint(_selectedItem);
@@ -279,13 +280,13 @@ ExprCurve::ExprCurve(QWidget *parent, QString pLabel, QString vLabel, QString iL
     _selPosEdit = new QLineEdit;
     QDoubleValidator *posValidator = new QDoubleValidator(0.0, 1.0, 6, _selPosEdit);
     _selPosEdit->setValidator(posValidator);
-    int editwidth = QFontMetrics(font()).boundingRect("9.999").width() + 8;
+    int editwidth = QFontMetrics(_selPosEdit->font()).boundingRect(QString::fromLatin1("9.999")).width() + 8;
     _selPosEdit->setFixedWidth(editwidth);
     _selPosEdit->setFixedHeight(20);
     selPosLayout->addStretch(50);
     QLabel *posLabel;
     if (pLabel.isEmpty()) {
-        posLabel = new QLabel("Selected Position:  ");
+        posLabel = new QLabel(tr("Selected Position:  "));
     } else {
         posLabel = new QLabel(pLabel);
     }
@@ -305,7 +306,7 @@ ExprCurve::ExprCurve(QWidget *parent, QString pLabel, QString vLabel, QString iL
     selValLayout->addStretch(50);
     QLabel *valLabel;
     if (vLabel.isEmpty()) {
-        valLabel = new QLabel("Selected Value:  ");
+        valLabel = new QLabel(tr("Selected Value:  "));
     } else {
         valLabel = new QLabel(vLabel);
     }
@@ -313,11 +314,11 @@ ExprCurve::ExprCurve(QWidget *parent, QString pLabel, QString vLabel, QString iL
     selValLayout->addWidget(_selValEdit);
 
     _interpComboBox = new QComboBox;
-    _interpComboBox->addItem("None");
-    _interpComboBox->addItem("Linear");
-    _interpComboBox->addItem("Smooth");
-    _interpComboBox->addItem("Spline");
-    _interpComboBox->addItem("MSpline");
+    _interpComboBox->addItem(tr("None"));
+    _interpComboBox->addItem(tr("Linear"));
+    _interpComboBox->addItem(tr("Smooth"));
+    _interpComboBox->addItem(tr("Spline"));
+    _interpComboBox->addItem(tr("MSpline"));
     _interpComboBox->setCurrentIndex(4);
     _interpComboBox->setFixedWidth(70);
     _interpComboBox->setFixedHeight(20);
@@ -348,7 +349,8 @@ ExprCurve::ExprCurve(QWidget *parent, QString pLabel, QString vLabel, QString iL
     mainLayout->addWidget(edits);
     mainLayout->addWidget(curveFrame);
     if (expandable) {
-        QPushButton *expandButton = new QPushButton(">");
+        // TODO replace with QToolButton - amyspark
+        QPushButton *expandButton = new QPushButton(tr(">"));
         expandButton->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Expanding);
         expandButton->setFixedWidth(15);
         mainLayout->addWidget(expandButton);
@@ -388,7 +390,7 @@ void ExprCurve::cvSelectedSlot(double pos, double val, T_INTERP interp) {
 // User entered new position, round and send signal to redraw curve.
 void ExprCurve::selPosChanged() {
     double pos = QString(_selPosEdit->text()).toDouble();
-    _selPosEdit->setText(QString("%1").arg(pos, 0, 'f', 3));
+    _selPosEdit->setText(QString(tr("%1")).arg(pos, 0, 'f', 3));
     emit selPosChangedSignal(pos);
 }
 
@@ -396,7 +398,7 @@ void ExprCurve::selPosChanged() {
 void ExprCurve::selValChanged() {
     double val = QString(_selValEdit->text()).toDouble();
     val = SeExpr2::clamp(val, 0, 1);
-    _selValEdit->setText(QString("%1").arg(val, 0, 'f', 3));
+    _selValEdit->setText(QString(tr("%1")).arg(val, 0, 'f', 3));
     emit selValChangedSignal(val);
 }
 
@@ -404,7 +406,7 @@ void ExprCurve::openDetail() {
     QDialog *dialog = new QDialog();
     dialog->setMinimumWidth(1024);
     dialog->setMinimumHeight(400);
-    ExprCurve *curve = new ExprCurve(0, "", "", "", false);
+    ExprCurve *curve = new ExprCurve(0, QString(), QString(), QString(), false);
 
     // copy points into new data
     const std::vector<T_CURVE::CV> &data = _scene->_cvs;

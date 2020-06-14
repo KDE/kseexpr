@@ -1,5 +1,6 @@
 /*
 * Copyright Disney Enterprises, Inc.  All rights reserved.
+* Copyright (C) 2020 L. E. Segovia <amy@amyspark.me>
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License
@@ -33,6 +34,7 @@
 #include <QSortFilterProxyModel>
 #include <QFileDialog>
 #include <QMessageBox>
+#include <QTextStream>
 
 #include <cassert>
 #include "ExprEditor.h"
@@ -79,7 +81,7 @@ class ExprTreeItem {
             // std::cerr<<"is dir and populating "<<path.toStdString()<<std::endl;
             for (QList<QFileInfo>::ConstIterator it = infos.constBegin(); it != infos.constEnd(); ++it) {
                 const QFileInfo* fi = &*it;
-                if (fi->isDir() || fi->fileName().endsWith(".se")) {
+                if (fi->isDir() || fi->fileName().endsWith(QString::fromLatin1(".se"))) {
                     addChild(new ExprTreeItem(this, fi->fileName(), fi->filePath()));
                 }
             }
@@ -130,7 +132,7 @@ class ExprTreeModel : public QAbstractItemModel {
     ExprTreeItem* root;
 
   public:
-    ExprTreeModel() : root(new ExprTreeItem(0, "", "")) {}
+    ExprTreeModel() : root(new ExprTreeItem(0, QString(), QString())) {}
 
     ~ExprTreeModel() { delete root; }
 
@@ -146,7 +148,7 @@ class ExprTreeModel : public QAbstractItemModel {
         endResetModel();
     }
 
-    void addPath(const char* label, const char* path) { root->addChild(new ExprTreeItem(root, label, path)); }
+    void addPath(const char* label, const char* path) { root->addChild(new ExprTreeItem(root, QString::fromLatin1(label), QString::fromLatin1(path))); }
 
     QModelIndex parent(const QModelIndex& index) const {
         if (!index.isValid()) return QModelIndex();
@@ -240,7 +242,7 @@ class ExprTreeFilterModel : public QSortFilterProxyModel {
 ExprBrowser::~ExprBrowser() { delete treeModel; }
 
 ExprBrowser::ExprBrowser(QWidget* parent, ExprEditor* editor)
-    : QWidget(parent), editor(editor), _context(""), _searchPath(""), _applyOnSelect(true) {
+    : QWidget(parent), editor(editor), _context(QString()), _searchPath(QString()), _applyOnSelect(true) {
     QVBoxLayout* rootLayout = new QVBoxLayout;
     rootLayout->setMargin(0);
     this->setLayout(rootLayout);
@@ -249,7 +251,7 @@ ExprBrowser::ExprBrowser(QWidget* parent, ExprEditor* editor)
     exprFilter = new QLineEdit();
     connect(exprFilter, SIGNAL(textChanged(const QString&)), SLOT(filterChanged(const QString&)));
     searchAndClearLayout->addWidget(exprFilter, 2);
-    QPushButton* clearFilterButton = new QPushButton("X");
+    QPushButton* clearFilterButton = new QPushButton(tr("X"));
     clearFilterButton->setFixedWidth(24);
     searchAndClearLayout->addWidget(clearFilterButton, 1);
     rootLayout->addLayout(searchAndClearLayout);
@@ -278,8 +280,8 @@ void ExprBrowser::addPath(const std::string& name, const std::string& path) {
 }
 
 void ExprBrowser::setSearchPath(const QString& context, const QString& path) {
-    _context = context.toStdString();
-    _searchPath = path.toStdString();
+    _context = context;
+    _searchPath = path;
 }
 
 std::string ExprBrowser::getSelectedPath() {
@@ -293,7 +295,7 @@ std::string ExprBrowser::getSelectedPath() {
 }
 
 void ExprBrowser::selectPath(const char* path) {
-    QModelIndex index = treeModel->find(path);
+    QModelIndex index = treeModel->find(QString::fromLatin1(path));
     treeNew->setCurrentIndex(proxyModel->mapFromSource(index));
 }
 
@@ -308,10 +310,12 @@ void ExprBrowser::handleSelection(const QModelIndex& current, const QModelIndex&
         QModelIndex realCurrent = proxyModel->mapToSource(current);
         ExprTreeItem* item = (ExprTreeItem*)realCurrent.internalPointer();
         QString path = item->path;
-        if (path.endsWith(".se")) {
-            std::ifstream file(path.toStdString().c_str());
-            std::string fileContents((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
-            editor->setExpr(fileContents, _applyOnSelect);
+        if (path.endsWith(QString::fromLatin1(".se"))) {
+            QFile file(path);
+            if (file.open(QIODevice::ReadOnly)) {
+                QTextStream fileContents(&file);
+                editor->setExpr(fileContents.readAll(), _applyOnSelect);
+            }
         }
     }
 }
@@ -331,7 +335,7 @@ void ExprBrowser::clearFilter() { exprFilter->clear(); }
 void ExprBrowser::filterChanged(const QString& str) {
     proxyModel->setFilterRegExp(QRegExp(str));
     proxyModel->setFilterKeyColumn(0);
-    if (str != "") {
+    if (!str.isEmpty()) {
         treeNew->expandAll();
     } else {
         treeNew->collapseAll();
@@ -339,16 +343,16 @@ void ExprBrowser::filterChanged(const QString& str) {
 }
 
 void ExprBrowser::saveExpressionAs() {
-    QString path = QFileDialog::getSaveFileName(this, "Save Expression", QString::fromStdString(_userExprDir), "*.se");
+    QString path = QFileDialog::getSaveFileName(this, tr("Save Expression"), QString::fromStdString(_userExprDir), tr("*.se"));
 
     if (path.length() > 0) {
         std::ofstream file(path.toStdString().c_str());
         if (!file) {
-            QString msg = QString("Could not open file %1 for writing").arg(path);
-            QMessageBox::warning(this, "Error", QString("<font face=fixed>%1</font>").arg(msg));
+            QString msg = tr("Could not open file %1 for writing").arg(path);
+            QMessageBox::warning(this, tr("Error"), QString::fromLatin1("<font face=fixed>%1</font>").arg(msg));
             return;
         }
-        file << editor->getExpr();
+        file << editor->getExpr().toStdString();
         file.close();
 
         update();
@@ -357,16 +361,16 @@ void ExprBrowser::saveExpressionAs() {
 }
 
 void ExprBrowser::saveLocalExpressionAs() {
-    QString path = QFileDialog::getSaveFileName(this, "Save Expression", QString::fromStdString(_localExprDir), "*.se");
+    QString path = QFileDialog::getSaveFileName(this, tr("Save Expression"), QString::fromStdString(_localExprDir), tr("*.se"));
 
     if (path.length() > 0) {
         std::ofstream file(path.toStdString().c_str());
         if (!file) {
-            QString msg = QString("Could not open file %1 for writing").arg(path);
-            QMessageBox::warning(this, "Error", QString("<font face=fixed>%1</font>").arg(msg));
+            QString msg = tr("Could not open file %1 for writing").arg(path);
+            QMessageBox::warning(this, tr("Error"), QString::fromLatin1("<font face=fixed>%1</font>").arg(msg));
             return;
         }
-        file << editor->getExpr();
+        file << editor->getExpr().toStdString();
         file.close();
 
         update();
@@ -383,11 +387,11 @@ void ExprBrowser::saveExpression() {
     std::ofstream file(path.c_str());
     if (!file) {
         QString msg =
-            QString("Could not open file %1 for writing.  Is it read-only?").arg(QString::fromStdString(path));
-        QMessageBox::warning(this, "Error", QString("<font face=fixed>%1</font>").arg(msg));
+            tr("Could not open file %1 for writing.  Is it read-only?").arg(QString::fromStdString(path));
+        QMessageBox::warning(this, tr("Error"), tr("<font face=fixed>%1</font>").arg(msg));
         return;
     }
-    file << editor->getExpr();
+    file << editor->getExpr().toStdString();
     file.close();
 }
 
@@ -400,7 +404,7 @@ void ExprBrowser::addUserExpressionPath(const std::string& context) {
     char* homepath = getenv("HOME");
     if (homepath) {
         std::string path = std::string(homepath) + "/" + context + "/expressions/";
-        if (QDir(QString(path.c_str())).exists()) {
+        if (QDir(QString::fromStdString(path)).exists()) {
             _userExprDir = path;
             addPath("My Expressions", path);
         }
@@ -418,7 +422,7 @@ bool ExprBrowser::getExpressionDirs() {
     /*bool homeFound = false; -- for xgen's config.txt UserRepo section below */
 
     if (_searchPath.length() > 0)
-        env = _searchPath.c_str();
+        env = _searchPath.toStdString().c_str();
     else
         env = getenv(P3D_CONFIG_ENVVAR); /* For backwards compatibility */
 
@@ -426,7 +430,7 @@ bool ExprBrowser::getExpressionDirs() {
 
     std::string context;
     if (_context.length() > 0) {
-        context = _context;
+        context = _context.toStdString();
     } else {
         context = "paint3d"; /* For backwards compatibility */
     }
@@ -449,12 +453,12 @@ bool ExprBrowser::getExpressionDirs() {
                     std::string label, path;
                     file >> label;
                     file >> path;
-                    if (QDir(QString(path.c_str())).exists()) addPath(label, path);
+                    if (QDir(QString::fromStdString(path)).exists()) addPath(label, path);
                 } else if (key == "ExpressionSubDir") {
                     std::string path;
                     file >> path;
                     _localExprDir = path;
-                    if (QDir(QString(path.c_str())).exists()) {
+                    if (QDir(QString::fromStdString(path)).exists()) {
                         addPath("Local", _localExprDir);
                         enableLocal = true;
                     }
@@ -465,13 +469,13 @@ bool ExprBrowser::getExpressionDirs() {
                     std::string path;
                     file >> path;
                     path += "/expressions/";
-                    if (QDir(QString(path.c_str())).exists()) addPath("Global", path);
+                    if (QDir(QString::fromStdString(path)).exists()) addPath("Global", path);
                 } else if (key == "LocalRepo") {
                     std::string path;
                     file >> path;
                     path += "/expressions/";
                     _localExprDir = path;
-                    if (QDir(QString(path.c_str())).exists()) {
+                    if (QDir(QString::fromStdString(path)).exists()) {
                         addPath("Local", _localExprDir);
                         enableLocal = true;
                     }

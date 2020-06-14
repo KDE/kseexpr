@@ -1,5 +1,6 @@
 /*
 * Copyright Disney Enterprises, Inc.  All rights reserved.
+* Copyright (C) 2020 L. E. Segovia <amy@amyspark.me>
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License
@@ -50,7 +51,7 @@ ExprDialog::ExprDialog(QWidget* parent) : QDialog(parent), _currentEditorIdx(0) 
     QWidget* previewLibraryWidget = new QWidget();
     QHBoxLayout* previewLibraryLayout = new QHBoxLayout();
     previewLibraryWidget->setLayout(previewLibraryLayout);
-    topTabWidget->addTab(previewLibraryWidget, "Preview / Library");
+    topTabWidget->addTab(previewLibraryWidget, tr("Preview / Library"));
 
     QWidget* bottomWidget = new QWidget();
     vsplitter->addWidget(bottomWidget);
@@ -77,16 +78,16 @@ ExprDialog::ExprDialog(QWidget* parent) : QDialog(parent), _currentEditorIdx(0) 
     QHBoxLayout* buttonBarLayout = new QHBoxLayout();
     // buttonBarWidget->setLayout(buttonBarLayout);
     buttonBarLayout->setMargin(1);
-    previewButton = new QPushButton("Preview");
+    previewButton = new QPushButton(tr("Preview"));
     buttonBarLayout->addWidget(previewButton);
-    saveButton = new QPushButton("Save");
+    saveButton = new QPushButton(tr("Save"));
     buttonBarLayout->addWidget(saveButton);
-    saveAsButton = new QPushButton("Save As");
+    saveAsButton = new QPushButton(tr("Save As"));
     buttonBarLayout->addWidget(saveAsButton);
-    saveLocalButton = new QPushButton("Save Local");
+    saveLocalButton = new QPushButton(tr("Save Local"));
     saveLocalButton->setEnabled(false);
     buttonBarLayout->addWidget(saveLocalButton);
-    clearButton = new QPushButton("Clear");
+    clearButton = new QPushButton(tr("Clear"));
     buttonBarLayout->addWidget(clearButton);
     bottomLayout->addLayout(buttonBarLayout);
 
@@ -116,11 +117,11 @@ ExprDialog::ExprDialog(QWidget* parent) : QDialog(parent), _currentEditorIdx(0) 
     // dialog buttons
     QHBoxLayout* buttonLayout = new QHBoxLayout(0);
     buttonLayout->addItem(new QSpacerItem(0, 0, QSizePolicy::MinimumExpanding, QSizePolicy::Minimum));
-    applyButton = new QPushButton("Apply");
+    applyButton = new QPushButton(tr("Apply"));
     buttonLayout->addWidget(applyButton);
-    acceptButton = new QPushButton("Accept");
+    acceptButton = new QPushButton(tr("Accept"));
     buttonLayout->addWidget(acceptButton);
-    cancelButton = new QPushButton("Cancel");
+    cancelButton = new QPushButton(tr("Cancel"));
     buttonLayout->addWidget(cancelButton);
     connect(applyButton, SIGNAL(clicked()), this, SLOT(verifiedApply()));
     connect(acceptButton, SIGNAL(clicked()), this, SLOT(verifiedAccept()));
@@ -180,13 +181,16 @@ void ExprDialog::verifiedApply() {
         emit expressionApplied();
     } else {
         QMessageBox msgBox;
-        msgBox.setText("Your expression had possible errors.");
-        msgBox.setInformativeText("Do you want to accept your expression anyways?");
-        QPushButton* okButton = msgBox.addButton("OK", QMessageBox::RejectRole);
-        msgBox.addButton("Cancel", QMessageBox::AcceptRole);
-        int ret = msgBox.exec();
-        Q_UNUSED(ret);
-        if (msgBox.clickedButton() == okButton) emit expressionApplied();
+        msgBox.setText(tr("Your expression had possible errors."));
+        msgBox.setInformativeText(tr("Do you want to accept your expression anyways?"));
+        msgBox.setStandardButtons(QMessageBox::Cancel | QMessageBox::Ok);
+        switch (msgBox.exec()) {
+            case QMessageBox::Ok:
+                emit expressionApplied();
+                break;
+            default:
+                break;
+        }
     }
 }
 
@@ -198,16 +202,17 @@ void ExprDialog::verifiedAccept() {
         accept();
     } else {
         QMessageBox msgBox;
-        msgBox.setText("Your expression had possible errors.");
-        msgBox.setInformativeText("Do you want to accept your expression anyways?");
-        QPushButton* okButton = msgBox.addButton("OK", QMessageBox::RejectRole);
-        msgBox.addButton("Cancel", QMessageBox::AcceptRole);
-        int ret = msgBox.exec();
-        Q_UNUSED(ret);
-        if (msgBox.clickedButton() == okButton) {
-            emit expressionApplied();
-            emit dialogClosed();
-            accept();
+        msgBox.setText(tr("Your expression had possible errors."));
+        msgBox.setInformativeText(tr("Do you want to accept your expression anyways?"));
+        msgBox.setStandardButtons(QMessageBox::Cancel | QMessageBox::Ok);
+        switch (msgBox.exec()) {
+            case QMessageBox::Ok:
+                emit expressionApplied();
+                emit dialogClosed();
+                accept();
+                break;
+            default:
+                break;
         }
     }
 }
@@ -215,21 +220,21 @@ void ExprDialog::verifiedAccept() {
 void ExprDialog::setupHelp(QTabWidget* tab) {
     QWidget* browserspace = new QWidget(tab);
     helpBrowser = new QTextBrowser(browserspace);
-    tab->addTab(browserspace, "Help");
+    tab->addTab(browserspace, tr("Help"));
 
     // Locate help docs relative to location of the app itself
-    QFile* helpDoc = new QFile(QCoreApplication::applicationDirPath() + "/../share/doc/SeExpr2/SeExpressions.html");
+    QFile* helpDoc = new QFile(QString::fromLatin1("%1/../share/doc/SeExpr2/SeExpressions.html").arg(QCoreApplication::applicationDirPath()));
     if (helpDoc->exists()) {
         QString sheet =
-            "body {background-color: #eeeeee; color: #000000;} \na {color: #3333ff; text-decoration: none;}\n";
+            QString::fromLatin1("body {background-color: #eeeeee; color: #000000;} \na {color: #3333ff; text-decoration: none;}\n");
         helpBrowser->document()->setDefaultStyleSheet(sheet);
         helpBrowser->setSource(QUrl::fromLocalFile(helpDoc->fileName()));
     }
 
-    QPushButton* backPb = new QPushButton("Back");
+    QPushButton* backPb = new QPushButton(tr("Back"));
     // backPb->setIcon(QApplication::style()->standardIcon(QStyle::SP_ArrowLeft));
     backPb->setEnabled(false);
-    QPushButton* forwardPb = new QPushButton("Forward");
+    QPushButton* forwardPb = new QPushButton(tr("Forward"));
     //    forwardPb->setIcon(QApplication::style()->standardIcon(QStyle::SP_ArrowRight));
     forwardPb->setEnabled(false);
 
@@ -241,12 +246,12 @@ void ExprDialog::setupHelp(QTabWidget* tab) {
     // helpPbLayout->addItem(new QSpacerItem(0,0, QSizePolicy::MinimumExpanding,
     //                            QSizePolicy::Minimum));
     QHBoxLayout* findBar = new QHBoxLayout();
-    helpPbLayout->addWidget(new QLabel("Find"), /*stretch*/ false);
+    helpPbLayout->addWidget(new QLabel(tr("Find")), /*stretch*/ false);
     helpFindBox = new QLineEdit;
     helpPbLayout->addWidget(helpFindBox, /*stretch*/ false);
     connect(helpFindBox, SIGNAL(returnPressed()), this, SLOT(findNextInHelp()));
-    QPushButton* nextButton = new QPushButton("Find Next");
-    QPushButton* prevButton = new QPushButton("Find Prev");
+    QPushButton* nextButton = new QPushButton(tr("Find Next"));
+    QPushButton* prevButton = new QPushButton(tr("Find Prev"));
     helpPbLayout->addWidget(nextButton, /*stretch*/ false);
     helpPbLayout->addWidget(prevButton, /*stretch*/ false);
     connect(nextButton, SIGNAL(clicked()), this, SLOT(findNextInHelp()));
@@ -284,28 +289,28 @@ void ExprDialog::previewExpression() {
 void ExprDialog::applyExpression() {
     editor->clearErrors();
     // set new expression
-    grapher->expr.setExpr(editor->getExpr());
+    grapher->expr.setExpr(editor->getExpr().toStdString());
     grapher->update();
 
     // set the label widget to mention that variables will not be previewed
     bool empty = true;
     if (grapher->expr.varmap.size() > 0) {
         std::stringstream s;
-        s << "<b>Variables not supported in preview (assumed zero):</b><br>";
+        s << tr("<b>Variables not supported in preview (assumed zero):</b><br>").toStdString();
         int count = 0;
         for (BasicExpression::VARMAP::iterator i = grapher->expr.varmap.begin(); i != grapher->expr.varmap.end(); ++i) {
             count++;
             s << "$" << i->first << " ";
             if (count % 4 == 0) s << "<br>";
         }
-        previewCommentLabel->setText(s.str().c_str());
+        previewCommentLabel->setText(QString::fromStdString(s.str()));
         empty = false;
     } else
-        previewCommentLabel->setText("");
+        previewCommentLabel->setText(QString());
     // set the label widget to mention that variables will not be previewed
     if (grapher->expr.funcmap.size() > 0) {
         std::stringstream s;
-        s << "<b>Functions not supported in preview (assumed zero):</b><br>";
+        s << tr("<b>Functions not supported in preview (assumed zero):</b><br>").toStdString();
         int count = 0;
         for (BasicExpression::FUNCMAP::iterator i = grapher->expr.funcmap.begin(); i != grapher->expr.funcmap.end();
              ++i) {
@@ -313,10 +318,10 @@ void ExprDialog::applyExpression() {
             s << "" << i->first << "() ";
             if (count % 4 == 0) s << "<br>";
         }
-        previewCommentLabel->setText(s.str().c_str());
+        previewCommentLabel->setText(QString::fromStdString(s.str()));
         empty = false;
     }
-    if (empty) previewCommentLabel->setText("");
+    if (empty) previewCommentLabel->setText(QString());
 
     // put errors into editor module
     bool valid = grapher->expr.isValid();
@@ -331,7 +336,7 @@ void ExprDialog::applyExpression() {
 
 void ExprDialog::clearExpression() {
     browser->clearSelection();
-    editor->setExpr("", false);
-    grapher->expr.setExpr("");
+    editor->setExpr(QString(), false);
+    grapher->expr.setExpr(std::string());
     grapher->update();
 }

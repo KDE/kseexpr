@@ -1,5 +1,6 @@
 /*
 * Copyright Disney Enterprises, Inc.  All rights reserved.
+* Copyright (C) 2020 L. E. Segovia <amy@amyspark.me>
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License
@@ -40,8 +41,8 @@ void ExprPreviewWidget::makePreview(const QString& path) {
     QFileInfo fi(path);
 
     if (fi.isDir()) {
-        QString s = fi.absoluteFilePath() + "/preview.tif";
-        if (!QFile::exists(s)) s = fi.absoluteFilePath() + "/preview.png";
+        QString s = fi.absoluteFilePath() + QString::fromLatin1("/preview.tif");
+        if (!QFile::exists(s)) s = fi.absoluteFilePath() + QString::fromLatin1("/preview.png");
         if (!QFile::exists(s)) _pm->setPixmap(QPixmap());  // nothing to preview
 
         QPixmap pix(s);
@@ -91,7 +92,7 @@ ExprFileDialog::ExprFileDialog(QWidget* parent) : QFileDialog(parent) {
     QList<QPushButton*> myWidgets = findChildren<QPushButton*>();
     for (int w = 0; w < myWidgets.size(); w++) {
         QPushButton* item = (QPushButton*)myWidgets.at(w);
-        if (item->text().contains("Open")) _okButton = item;
+        if (item->text().contains(tr("Open"))) _okButton = item;
     }
     if (_okButton) connect(_okButton, SIGNAL(clicked()), SLOT(handleOk()));
 
@@ -100,11 +101,11 @@ ExprFileDialog::ExprFileDialog(QWidget* parent) : QFileDialog(parent) {
     // don't create missing directories by default
     _createDir = 0;
     _pw = 0;
-    _favDir = "";
+    _favDir = QString();
     _combo = 0;
     _combolabel = 0;
     _cb = 0;
-    _temppath = "";
+    _temppath = QString();
 
     setMinimumWidth(680);
     resize(840, 440);
@@ -113,7 +114,7 @@ ExprFileDialog::ExprFileDialog(QWidget* parent) : QFileDialog(parent) {
 void ExprFileDialog::handleOk() {
     if (fileMode() != QFileDialog::DirectoryOnly) return;
     QString entry = _nameEdit->text();
-    if (entry == "") return;
+    if (entry.isEmpty()) return;
 
     // create directory if needed
     if (_createDir) {
@@ -121,8 +122,8 @@ void ExprFileDialog::handleOk() {
         if (!d.exists(entry)) {
             if (d.mkdir(entry)) {
                 _temppath = directory().absolutePath();
-                setDirectory(_temppath + "/" + entry);
-                _nameEdit->setText("");
+                setDirectory(_temppath + QLatin1Char('/') + entry);
+                _nameEdit->setText(QString());
                 if (_okButton) _okButton->animateClick();  // retry click to accept entry
 
                 QTimer::singleShot(200, this, SLOT(resetDir()));
@@ -135,17 +136,17 @@ void ExprFileDialog::editReturnPress() {
     if (!_nameEdit) return;
 
     QString str = _nameEdit->text();
-    if (str.contains('/')) {
+    if (str.contains(QLatin1Char('/'))) {
         QDir d;
         if (d.cd(str)) {
             setDirectory(str);
-            _nameEdit->setText("");
+            _nameEdit->setText(QString());
         } else {
-            int slashcount = str.count('/');
+            int slashcount = str.count(QLatin1Char('/'));
 
-            QString foundDir = "";
+            QString foundDir;
             for (int i = 0; i < slashcount; i++) {
-                QString section = str.section('/', 0, i);
+                QString section = str.section(QLatin1Char('/'), 0, i);
                 if (d.cd(section)) foundDir = section;
             }
             if (foundDir.length()) {
@@ -163,7 +164,7 @@ void ExprFileDialog::editReturnPress() {
 }
 
 void ExprFileDialog::addFavoritesButton(QString dirname, QString linkname, QString linkdir) {
-    QGridLayout* layout = findChild<QGridLayout*>("gridLayout");
+    QGridLayout* layout = findChild<QGridLayout*>(QString::fromLatin1("gridLayout"));
     if (!layout) return;
 
     QDir d;
@@ -186,7 +187,7 @@ void ExprFileDialog::addFavoritesButton(QString dirname, QString linkname, QStri
     QToolButton* fav = new QToolButton(this);
     fav->setFixedSize(18, 18);
     fav->setIcon(folderFav);
-    fav->setToolTip("Favorites");
+    fav->setToolTip(tr("Favorites"));
 
     layout->addWidget(fav, 0, 3);
 
@@ -194,7 +195,7 @@ void ExprFileDialog::addFavoritesButton(QString dirname, QString linkname, QStri
 }
 
 void ExprFileDialog::gotoFavorites() {
-    if (_favDir != "") setDirectory(_favDir);
+    if (!_favDir.isEmpty()) setDirectory(_favDir);
 }
 
 void ExprFileDialog::addLookInEntries(QStringList paths) {
@@ -214,11 +215,11 @@ void ExprFileDialog::restoreLookInEntries() { setHistory(_lookInList); }
 static QStringList makeFiltersList(const QString& filter) {
     if (filter.isEmpty()) return QStringList();
 
-    int i = filter.indexOf(";;", 0);
-    QString sep(";;");
+    int i = filter.indexOf(QString::fromLatin1(";;"), 0);
+    QString sep = QString::fromLatin1(";;");
     if (i == -1) {
-        if (filter.indexOf("\n", 0) != -1) {
-            sep = "\n";
+        if (filter.indexOf(QString::fromLatin1("\n"), 0) != -1) {
+            sep = QString::fromLatin1("\n");
             i = filter.indexOf(sep, 0);
         }
     }
@@ -236,7 +237,7 @@ QString ExprFileDialog::getOpenFileName(const QString& caption, const QString& s
     if (!caption.isNull()) setWindowTitle(caption);
     setFileMode(QFileDialog::ExistingFile);
     setAcceptMode(QFileDialog::AcceptOpen);
-    selectFile("");
+    selectFile(QString());
 
     QString result;
     if (exec() == QDialog::Accepted) {
@@ -258,7 +259,7 @@ QStringList ExprFileDialog::getOpenFileNames(const QString& caption, const QStri
     if (!caption.isNull()) setWindowTitle(caption);
     setFileMode(QFileDialog::ExistingFiles);
     setAcceptMode(QFileDialog::AcceptOpen);
-    selectFile("");
+    selectFile(QString());
 
     QString result;
     QStringList lst;
@@ -280,7 +281,7 @@ QString ExprFileDialog::getExistingDirectory(const QString& caption, const QStri
     if (!startWith.isEmpty()) setDirectory(startWith);
     if (!caption.isNull()) setWindowTitle(caption);
     setFileMode(QFileDialog::DirectoryOnly);
-    selectFile("");
+    selectFile(QString());
 
     QString result;
     if (exec() == QDialog::Accepted) {
@@ -312,7 +313,7 @@ QString ExprFileDialog::getSaveFileName(const QString& caption, const QString& s
     if (!caption.isNull()) setWindowTitle(caption);
     setFileMode(QFileDialog::AnyFile);
     setAcceptMode(QFileDialog::AcceptSave);
-    selectFile("");
+    selectFile(QString());
 
     QString result;
     if (exec() == QDialog::Accepted) {
@@ -325,7 +326,7 @@ QString ExprFileDialog::getSaveFileName(const QString& caption, const QString& s
 }
 
 void ExprFileDialog::setPreview() {
-    QGridLayout* layout = findChild<QGridLayout*>("gridLayout");
+    QGridLayout* layout = findChild<QGridLayout*>(QString::fromLatin1("gridLayout"));
     if (!layout) return;
 
     _pw = new ExprPreviewWidget(this);
@@ -339,7 +340,7 @@ void ExprFileDialog::resetPreview() {
 }
 
 void ExprFileDialog::addCheckBox(QString s) {
-    QGridLayout* layout = findChild<QGridLayout*>("gridLayout");
+    QGridLayout* layout = findChild<QGridLayout*>(QString::fromLatin1("gridLayout"));
     if (!layout) return;
 
     _cb = new QCheckBox(s, this);
@@ -362,7 +363,7 @@ void ExprFileDialog::hideCheckBox() {
 }
 
 void ExprFileDialog::addComboBox(QString s, QStringList sl) {
-    QGridLayout* layout = findChild<QGridLayout*>("gridLayout");
+    QGridLayout* layout = findChild<QGridLayout*>(QString::fromLatin1("gridLayout"));
     if (!layout) return;
 
     _combolabel = new QLabel(s, this);

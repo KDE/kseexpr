@@ -71,8 +71,8 @@ void ExprColorFrame::mouseReleaseEvent(QMouseEvent *event) {
 
 void ExprColorFrame::deleteSwatchMenu(const QPoint &pos) {
     QMenu *menu = new QMenu(this);
-    QAction *deleteAction = menu->addAction("Delete Swatch");
-    menu->addAction("Cancel");
+    QAction *deleteAction = menu->addAction(tr("Delete Swatch"));
+    menu->addAction(tr("Cancel"));
     QAction *action = menu->exec(mapToGlobal(pos));
     if (action == deleteAction) emit deleteSwatch(this);
 }
@@ -89,9 +89,7 @@ ExprColorWidget::ExprColorWidget(SeExpr2::Vec3d value, int index, bool indexLabe
     vbox->addWidget(_colorFrame);
 
     if (indexLabel) {
-        std::stringstream indexSS;
-        indexSS << index;
-        QLabel *label = new QLabel(indexSS.str().c_str());
+        QLabel *label = new QLabel(tr("%1").arg(index));
         vbox->addWidget(label);
     }
 
@@ -108,7 +106,8 @@ ExprColorSwatchWidget::ExprColorSwatchWidget(bool indexLabel, QWidget *parent)
     hboxLayout->setContentsMargins(0, 0, 0, 0);
     setLayout(hboxLayout);
 
-    QPushButton *addBtn = new QPushButton("+");
+    // TODO replace with QToolButton - amyspark
+    QPushButton *addBtn = new QPushButton(tr("+"));
     addBtn->setFixedWidth(16);
     addBtn->setFixedHeight(16);
     QVBoxLayout *swatchControlLayout = new QVBoxLayout();

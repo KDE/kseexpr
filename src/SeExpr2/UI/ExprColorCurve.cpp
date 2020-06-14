@@ -1,5 +1,6 @@
 /*
 * Copyright Disney Enterprises, Inc.  All rights reserved.
+* Copyright (C) 2020 L. E. Segovia <amy@amyspark.me>
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License
@@ -161,7 +162,7 @@ void CCurveScene::mouseMoveEvent(QGraphicsSceneMouseEvent *mouseEvent) {
 void CCurveScene::contextMenuEvent(QGraphicsSceneContextMenuEvent *event) {
     if (_selectedItem >= 0) {
         QMenu *menu = new QMenu(event->widget());
-        QAction *deleteAction = menu->addAction("Delete Point");
+        QAction *deleteAction = menu->addAction(tr("Delete Point"));
         QAction *action = menu->exec(event->screenPos());
         if (action == deleteAction) removePoint(_selectedItem);
     }
@@ -216,7 +217,7 @@ void CCurveScene::emitCurveChanged() { emit curveChanged(); }
 QPixmap &CCurveScene::getPixmap() {
     if (_pixmapDirty) {
         QByteArray buf;
-        buf.append(QString("P6\n%1 %2\n255\n").arg(_width).arg(_height));
+        buf.append(QString::fromLatin1("P6\n%1 %2\n255\n").arg(_width).arg(_height));
         buf.append(getCPixmap());
         _pixmap.loadFromData(buf, "PPM");
         _pixmapDirty = false;
@@ -370,7 +371,7 @@ ExprColorCurve::ExprColorCurve(QWidget *parent, QString pLabel, QString vLabel, 
     selPosLayout->addStretch(50);
     QLabel *posLabel;
     if (pLabel.isEmpty()) {
-        posLabel = new QLabel("Selected Position:  ");
+        posLabel = new QLabel(tr("Selected Position:  "));
     } else {
         posLabel = new QLabel(pLabel);
     }
@@ -388,7 +389,7 @@ ExprColorCurve::ExprColorCurve(QWidget *parent, QString pLabel, QString vLabel, 
     selValLayout->addStretch(50);
     QLabel *valLabel;
     if (vLabel.isEmpty()) {
-        valLabel = new QLabel("Selected Color:  ");
+        valLabel = new QLabel(tr("Selected Color:  "));
     } else {
         valLabel = new QLabel(vLabel);
     }
@@ -396,11 +397,11 @@ ExprColorCurve::ExprColorCurve(QWidget *parent, QString pLabel, QString vLabel, 
     selValLayout->addWidget(_selValEdit);
 
     _interpComboBox = new QComboBox;
-    _interpComboBox->addItem("None");
-    _interpComboBox->addItem("Linear");
-    _interpComboBox->addItem("Smooth");
-    _interpComboBox->addItem("Spline");
-    _interpComboBox->addItem("MSpline");
+    _interpComboBox->addItem(tr("None"));
+    _interpComboBox->addItem(tr("Linear"));
+    _interpComboBox->addItem(tr("Smooth"));
+    _interpComboBox->addItem(tr("Spline"));
+    _interpComboBox->addItem(tr("MSpline"));
     _interpComboBox->setCurrentIndex(4);
     _interpComboBox->setFixedWidth(70);
     _interpComboBox->setFixedHeight(20);
@@ -431,7 +432,8 @@ ExprColorCurve::ExprColorCurve(QWidget *parent, QString pLabel, QString vLabel, 
     mainLayout->addWidget(edits);
     mainLayout->addWidget(curveFrame);
     if (expandable) {
-        QPushButton *expandButton = new QPushButton(">");
+        // TODO replace with QToolButton - amyspark
+        QPushButton *expandButton = new QPushButton(tr(">"));
         expandButton->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Expanding);
         expandButton->setFixedWidth(15);
         mainLayout->addWidget(expandButton);
@@ -478,7 +480,7 @@ void ExprColorCurve::cvSelectedSlot(const double pos, const SeExpr2::Vec3d val, 
 // User entered new position, round and send signal to redraw curve.
 void ExprColorCurve::selPosChanged() {
     double pos = SeExpr2::clamp(QString(_selPosEdit->text()).toFloat(), 0, 1);
-    _selPosEdit->setText(QString("%1").arg(pos, 0, 'f', 3));
+    _selPosEdit->setText(QString(tr("%1")).arg(pos, 0, 'f', 3));
     emit selPosChangedSignal(pos);
 }
 
@@ -503,7 +505,7 @@ void ExprColorCurve::openDetail() {
     QDialog *dialog = new QDialog();
     dialog->setMinimumWidth(1024);
     dialog->setMinimumHeight(400);
-    ExprColorCurve *curve = new ExprColorCurve(0, "", "", "", false);
+    ExprColorCurve *curve = new ExprColorCurve(0, QString(), QString(), QString(), false);
 
     // copy points into new data
     const std::vector<T_CURVE::CV> &data = _scene->_cvs;

@@ -1,4 +1,5 @@
 # Copyright Disney Enterprises, Inc.  All rights reserved.
+# Copyright (C) 2020 L. E. Segovia <amy@amyspark.me>
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License
@@ -202,7 +203,7 @@ if (ENABLE_QT5)
         include_directories(${Qt5OpenGL_INCLUDE_DIRS})
     endif()
 else()
-    find_package(Qt4 COMPONENTS QtCore QtGui QtOpenGL)
+    find_package(Qt4 4.2.0 COMPONENTS QtCore QtGui QtOpenGL)
     if (Qt4_FOUND)
         message(STATUS "Qt4 Enabled")
         message(STATUS "QT_INCLUDE_DIR = ${QT_INCLUDE_DIR}")
