@@ -29,7 +29,7 @@
 #include <vector>
 
 class ExprCompletionModel : public QAbstractItemModel  // ItemModel
-                            {
+{
   public:
     // clear/add functions (these are ones that will be resolved with resolveFunc()
     void clearFunctions();
@@ -86,7 +86,9 @@ class ExprCompletionModel : public QAbstractItemModel  // ItemModel
     QString getDocString(const QString& s);
 
   private:
-    static std::vector<QString> builtins;
+    Q_OBJECT;
+
+    std::vector<QString> builtins;
     std::vector<QString> functions, functions_comment;
     std::map<QString, int> functionNameToFunction;
     std::vector<QString> variables, variables_comment;

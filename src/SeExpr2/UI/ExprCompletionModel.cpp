@@ -17,23 +17,22 @@
 *
 * @file ExprCompletionModel.h
 * @brief This provides an expression editor for SeExpr syntax with auto ui features
-* @author  aselle
+* @author  aselle, amyspark
 */
+#include <QCoreApplication>
 #include <QLineEdit>
 #include <SeExpr2/Expression.h>
 #include <SeExpr2/ExprFunc.h>
 #include "ExprCompletionModel.h"
 
-std::vector<QString> ExprCompletionModel::builtins;
+static const char* CONTEXT = "builtin";
 
 ExprCompletionModel::ExprCompletionModel(QObject* parent) : QAbstractItemModel(parent) {
-    if (builtins.size() == 0) {
-        std::vector<std::string> builtins_std;
-        SeExpr2::ExprFunc::getFunctionNames(builtins_std);
-        for (unsigned int i = 0; i < builtins_std.size(); i++) {
-            // Remember to extract all strings from the builtins! -- amyspark
-            builtins.push_back(tr(builtins_std[i].c_str()));
-        }
+    std::vector<std::string> builtins_std;
+    SeExpr2::ExprFunc::getFunctionNames(builtins_std);
+    for (unsigned int i = 0; i < builtins_std.size(); i++) {
+        // Remember to extract all strings from the builtins! -- amyspark
+        builtins.push_back(QCoreApplication::translate(CONTEXT, builtins_std[i].c_str()));
     }
 }
 

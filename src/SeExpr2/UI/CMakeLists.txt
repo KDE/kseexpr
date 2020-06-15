@@ -39,19 +39,39 @@ if (Qt5_FOUND OR QT4_FOUND)
     option(ENABLE_ANIMCURVE "Whether to build controls for anim curves" FALSE)
     option(ENABLE_EXPRMAIN "Whether to build the ExprMain entrypoint" FALSE)
 
-    set(EDITOR_MOC_HDRS ExprBrowser.h ExprColorCurve.h
-        ExprColorSwatch.h ExprControlCollection.h
-        ExprControl.h ExprCurve.h ExprDialog.h ExprEditor.h
-        ExprFileDialog.h ExprGrapher2d.h ExprPopupDoc.h
-        ExprShortEdit.h)
+    set(EDITOR_MOC_HDRS
+            ExprBrowser.h
+            ExprColorCurve.h
+            ExprColorSwatch.h
+            ExprCompletionModel.h
+            ExprControlCollection.h
+            ExprControl.h
+            ExprCurve.h
+            ExprDialog.h
+            ExprEditor.h
+            ExprFileDialog.h
+            ExprGrapher2d.h
+            ExprPopupDoc.h
+            ExprShortEdit.h
+        )
 
-    set(EDITOR_CPPS ExprFileDialog.cpp ExprControl.cpp
-        ExprEditor.cpp ExprShortEdit.cpp
-        ExprCurve.cpp  ExprColorCurve.cpp ExprColorSwatch.cpp
-        EditableExpression.cpp ExprPopupDoc.cpp
-        ExprCompletionModel.cpp ExprDialog.cpp
-        ExprControlCollection.cpp ExprGrapher2d.cpp ExprBrowser.cpp
-        BasicExpression.cpp)
+    set(EDITOR_CPPS
+            BasicExpression.cpp
+            EditableExpression.cpp
+            ExprBrowser.cpp
+            ExprColorCurve.cpp
+            ExprColorSwatch.cpp
+            ExprCompletionModel.cpp
+            ExprControl.cpp
+            ExprControlCollection.cpp
+            ExprCurve.cpp
+            ExprDialog.cpp
+            ExprEditor.cpp
+            ExprFileDialog.cpp
+            ExprGrapher2d.cpp
+            ExprPopupDoc.cpp
+            ExprShortEdit.cpp
+    )
     
     if (ENABLE_DEEPWATER)
         add_definitions(-DSEEXPR_ENABLE_DEEPWATER)
@@ -93,6 +113,15 @@ if (Qt5_FOUND OR QT4_FOUND)
             qt4_wrap_cpp(CE_MOC_SRCS ${CE_MOC_HDRS})
         endif()
         set(ANIMLIB_SRCS "${CE_CPPS} ${CE_MOC_SRCS}")
+    endif()
+
+    if (BUILD_TRANSLATIONS)
+        include(ECMPoQmTools)
+        ecm_install_po_files_as_qm("${CMAKE_SOURCE_DIR}/po")
+        ecm_create_qm_loader(SeExpr2Editor_QM_LOADER seexpr2_qt)
+        set(EDITOR_CPPS
+            ${EDITOR_CPPS}
+            ${SeExpr2Editor_QM_LOADER})
     endif()
 
     if (WIN32)
