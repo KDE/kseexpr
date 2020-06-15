@@ -1,5 +1,6 @@
 /*
 * Copyright Disney Enterprises, Inc.  All rights reserved.
+* Copyright (C) 2020 L. E. Segovia <amy@amyspark.me>
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License
@@ -20,6 +21,15 @@
 
 #include "ExprFunc.h"
 #include "Platform.h"
+
+/// Translation macros - for UI extraction
+/// These macros *need* a context for lupdate to not complain
+#ifndef QT_TRANSLATE_NOOP
+#define QT_TRANSLATE_NOOP(scope, x) x
+#endif
+#ifndef QT_TRANSLATE_NOOP_UTF8
+#define QT_TRANSLATE_NOOP_UTF8(scope, x) x
+#endif
 
 namespace SeExpr2 {
 
