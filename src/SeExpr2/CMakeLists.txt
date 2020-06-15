@@ -99,6 +99,10 @@ else()
     add_library(SeExpr2 STATIC ${io_cpp} ${core_cpp} ${parser_cpp} ${llvm_cpp})
 endif()
 
+target_include_directories(SeExpr2 INTERFACE
+    $<INSTALL_INTERFACE:include>
+)
+
 set_property(TARGET SeExpr2 PROPERTY VERSION ${SeExpr2_VERSION})
 set_property(TARGET SeExpr2 PROPERTY SOVERSION ${SeExpr2_MAJOR_VERSION})
 set_property(TARGET SeExpr2 PROPERTY
@@ -112,7 +116,7 @@ install(FILES "${CMAKE_CURRENT_BINARY_DIR}/seexpr2_export.h"
 
 ## Install binary and includes
 install(TARGETS SeExpr2 DESTINATION ${CMAKE_INSTALL_LIBDIR}
-        EXPORT SeExpr2Targets)
+        EXPORT ${PROJECT_NAME}Targets)
 
 install(DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/"
         COMPONENT devel DESTINATION ${INCLUDE_DIR}

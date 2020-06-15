@@ -146,46 +146,53 @@ if (Qt5_FOUND OR QT4_FOUND)
     set_property(TARGET SeExpr2Editor APPEND PROPERTY
                  COMPATIBLE_INTERFACE_STRING ${SeExpr2_MAJOR_VERSION})
 
-    include_directories(${CMAKE_BINARY_DIR}/src/SeExpr2)
-    include_directories(${CMAKE_CURRENT_SOURCE_DIR})
-    target_link_libraries(SeExpr2Editor SeExpr2)
+    target_include_directories(SeExpr2Editor
+        PRIVATE ${CMAKE_BINARY_DIR}/src/SeExpr2
+        PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}
+        INTERFACE $<INSTALL_INTERFACE:include>
+    )
+    target_link_libraries(SeExpr2Editor PUBLIC SeExpr2)
 
     if (ENABLE_QT5)
-        target_link_libraries(SeExpr2Editor Qt5::Core)
-        target_link_libraries(SeExpr2Editor Qt5::Gui)
-        target_link_libraries(SeExpr2Editor Qt5::Widgets)
-        target_link_libraries(SeExpr2Editor Qt5::OpenGL)
+        target_link_libraries(SeExpr2Editor PRIVATE
+            Qt5::Core
+            Qt5::Gui
+            Qt5::Widgets
+            Qt5::OpenGL
+        )
     else()
-        target_link_libraries(SeExpr2Editor ${QT_QTCORE_LIBRARY})
-        target_link_libraries(SeExpr2Editor ${QT_QTGUI_LIBRARY})
-        target_link_libraries(SeExpr2Editor ${QT_QTOPENGL_LIBRARY})
+        target_link_libraries(SeExpr2Editor PRIVATE
+            ${QT_QTCORE_LIBRARY}
+            ${QT_QTGUI_LIBRARY}
+            ${QT_QTOPENGL_LIBRARY}
+        )
     endif()
-    target_link_libraries(SeExpr2Editor ${OPENGL_LIBRARY})
-    target_link_libraries(SeExpr2Editor ${GLUT_LIBRARY})
+
+    target_link_libraries(SeExpr2Editor PRIVATE ${OPENGL_LIBRARY} ${GLUT_LIBRARY})
 
     if (DEFINED ANIMLIB_DIR)
         include_directories(${CMAKE_CURRENT_SOURCE_DIR}/CE)
-        target_link_libraries(SeExpr2Editor animlib)
+        target_link_libraries(SeExpr2Editor PRIVATE animlib)
     endif()
 
     if (DEFINED DERR_DIR)
-        target_link_libraries(SeExpr2Editor DErr)
+        target_link_libraries(SeExpr2Editor PRIVATE DErr)
     endif()
 
     if (DEFINED DMSG_DIR)
-        target_link_libraries(SeExpr2Editor DMsg)
+        target_link_libraries(SeExpr2Editor PRIVATE DMsg)
     endif()
 
     if (DEFINED QDGUI_DIR)
-        target_link_libraries(SeExpr2Editor qdcolorwidgets)
+        target_link_libraries(SeExpr2Editor PRIVATE qdcolorwidgets)
     endif()
 
     if (WIN32)
-        target_link_libraries(SeExpr2Editor opengl32)
+        target_link_libraries(SeExpr2Editor PRIVATE opengl32)
     endif()
 
     ## Install library and includes
-    install(TARGETS SeExpr2Editor DESTINATION ${CMAKE_INSTALL_LIBDIR})
+    install(TARGETS SeExpr2Editor EXPORT ${PROJECT_NAME}Targets DESTINATION ${CMAKE_INSTALL_LIBDIR})
     # TODO exclude files as per animlib/deepwater/animcurve -- amyspark
     install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/ DESTINATION ${INCLUDE_DIR}/UI
             FILES_MATCHING PATTERN "*.h")
@@ -267,7 +274,7 @@ if (Qt5_FOUND OR QT4_FOUND)
             set_target_properties(expreditor2 PROPERTIES SUFFIX ".so")
         endif()
 
-        install(TARGETS expreditor2 DESTINATION ${CMAKE_INSTALL_PYTHON})
+        install(TARGETS expreditor2 EXPORT ${PROJECT_NAME}Targets DESTINATION ${CMAKE_INSTALL_PYTHON})
         install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/__init__.py
                 DESTINATION ${CMAKE_INSTALL_PYTHON})
     endif()
