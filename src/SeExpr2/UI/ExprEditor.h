@@ -22,75 +22,11 @@
 #ifndef ExprEditor_h
 #define ExprEditor_h
 
-#include <vector>
-
-#include <QTextBrowser>
-#include <QPlainTextEdit>
-#include <QDialog>
+#include <QListWidget>
 #include <QTimer>
-#include <QRegExp>
-#include <QLineEdit>
-#include <QCheckBox>
-#include <QSlider>
 
-class QLabel;
-class QPushButton;
-class QLineEdit;
-class QMouseEvent;
-class QPaintEvent;
-class QKeyEvent;
-class QCompleter;
-class QToolTip;
-class QListWidget;
-class QListWidgetItem;
-class ExprCompletionModel;
-class ExprControl;
-class ExprControlCollection;
-
-class ExprEditor;
-class ExprCompletionModel;
-class ExprHighlighter;
-class ExprPopupDoc;
-
-class ExprTextEdit : public QTextEdit {
-    Q_OBJECT
-
-    QToolTip* functionTip;
-    std::map<std::string, std::string> functionTooltips;
-    ExprHighlighter* highlighter;
-    QStyle* lastStyleForHighlighter;
-    ExprPopupDoc* _tip;
-    QAction* _popupEnabledAction;
-
-  public:
-    QCompleter* completer;
-    ExprCompletionModel* completionModel;
-
-  public:
-    ExprTextEdit(QWidget* parent = 0);
-    ~ExprTextEdit();
-    void updateStyle();
-
-  protected:
-    void showTip(const QString& string);
-    void hideTip();
-
-    virtual void keyPressEvent(QKeyEvent* e);
-    void focusInEvent(QFocusEvent* e);
-    void focusOutEvent(QFocusEvent* e);
-    void mousePressEvent(QMouseEvent* event);
-    void mouseDoubleClickEvent(QMouseEvent* event);
-    void paintEvent(QPaintEvent* e);
-    void wheelEvent(QWheelEvent* e);
-    void contextMenuEvent(QContextMenuEvent* event);
-
-  private
-Q_SLOTS:
-    void insertCompletion(const QString& completion);
-Q_SIGNALS:
-    void applyShortcut();
-    void nextError();
-};
+#include "ExprTextEdit.h"
+#include "ExprControlCollection.h"
 
 class ExprEditor : public QWidget {
     Q_OBJECT
@@ -143,8 +79,11 @@ Q_SLOTS:
     // Updates style
     void updateStyle();
 
-  private:
+  // Expose the text editor widget to receive customizations in Krita. -amyspark
+  public:
     ExprTextEdit* exprTe;
+
+  private:
     ExprControlCollection* controls;
     QListWidget* errorWidget;
 

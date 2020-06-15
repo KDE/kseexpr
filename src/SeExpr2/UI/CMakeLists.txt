@@ -53,6 +53,7 @@ if (Qt5_FOUND OR QT4_FOUND)
             ExprGrapher2d.h
             ExprPopupDoc.h
             ExprShortEdit.h
+            ExprTextEdit.h
         )
 
     set(EDITOR_CPPS
@@ -71,6 +72,7 @@ if (Qt5_FOUND OR QT4_FOUND)
             ExprGrapher2d.cpp
             ExprPopupDoc.cpp
             ExprShortEdit.cpp
+            ExprTextEdit.cpp
     )
     
     if (ENABLE_DEEPWATER)
