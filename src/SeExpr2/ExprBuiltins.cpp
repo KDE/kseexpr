@@ -196,17 +196,16 @@ double remap(double x, double source, double range, double falloff, double inter
             return gaussstep(x, b, a);
     }
 }
-static const char* remap_docstring =
-    "remap(float x, float\n"
-    "source, float range, float falloff, float interp)\nGeneral remapping function.\n"
+static const char* remap_docstring = QT_TRANSLATE_NOOP_UTF8("builtin",
+    "remap(float x, float source, float range, float falloff, float interp)\n"
+    "General remapping function.\n"
     "When x is within +/- <i>range</i> of source, the result is one.\n"
     "The result falls to zero beyond that range over <i>falloff</i> distance.\n"
     "The falloff shape is controlled by <i>interp</i>. Numeric values\n"
     "or named constants may be used:\n"
-    "&nbsp;&nbsp;&nbsp;&nbsp;int <b>linear</b>\n"
-    "= 0\n"
+    "&nbsp;&nbsp;&nbsp;&nbsp;int <b>linear</b> = 0\n"
     "&nbsp;&nbsp;&nbsp;&nbsp;int <b>smooth</b> = 1\n"
-    "&nbsp;&nbsp;&nbsp;&nbsp;int <b>gaussian</b> = 2\n";
+    "&nbsp;&nbsp;&nbsp;&nbsp;int <b>gaussian</b> = 2\n");
 
 double mix(double x, double y, double alpha) { return x * (1 - alpha) + y * alpha; }
 static const char* mix_docstring = QT_TRANSLATE_NOOP_UTF8("builtin", "mix(float a,float b,float alpha)\nBlend of a and b according to alpha.");
@@ -233,14 +232,14 @@ Vec3d hsi(int n, const Vec3d* args) {
     }
     return hsiAdjust(args[0], h, s, i);
 }
-static const char* hsi_docstring =
+static const char* hsi_docstring = QT_TRANSLATE_NOOP_UTF8("builtin",
     "color  hsi(color x, float h, float s, float i, float map=1)\n"
     "The hsi function shifts the hue by h\n"
     "(in degrees) and scales the saturation and intensity by s and i\n"
     "respectively.&nbsp; An map may be supplied which will control the shift\n"
     "- the full shift will happen when the map is one and no shift will\n"
     "happen when the map is zero.&nbsp; The shift will be scaled back for\n"
-    "values between zero and one.";
+    "values between zero and one.");
 
 Vec3d midhsi(int n, const Vec3d* args) {
     if (n < 4) return 0.0;
@@ -274,11 +273,11 @@ Vec3d midhsi(int n, const Vec3d* args) {
     }
     return hsiAdjust(args[0], h, s, i);
 }
-static const char* midhsi_docstring =
+static const char* midhsi_docstring = QT_TRANSLATE_NOOP_UTF8("builtin",
     "color midhsi(color x, float h, float s, float i, float map, float falloff=1, int interp=0)\n"
     "The midhsi function is just like the hsi function except that\n"
     "the control map is centered around the mid point (value of 0.5)\n"
-    "and can scale the shift in both directions.";
+    "and can scale the shift in both directions.");
 
 Vec3d rgbtohsl(const Vec3d& rgb) {
     // RGB to HSL color space conversion
@@ -323,14 +322,14 @@ Vec3d rgbtohsl(const Vec3d& rgb) {
 
     return Vec3d(H, S, L);
 }
-static const char* rgbtohsl_docstring =
+static const char* rgbtohsl_docstring = QT_TRANSLATE_NOOP_UTF8("builtin",
     "color rgbtohsl(color rgb)\n"
     "RGB to HSL color space conversion.\n"
     "HSL is Hue, Saturation, Lightness (all in range [0..1] )\n"
     "These functions have also been extended to support rgb and hsl values\n"
     "outside of the range [0..1] in a reasonable way.&nbsp; For any rgb or\n"
     "hsl value (except for negative s values), the conversion is\n"
-    "well-defined and reversible.";
+    "well-defined and reversible.");
 
 static double hslvalue(double x, double y, double H) {
     H -= floor(H);  // make sure hue is in range 0..1
@@ -376,14 +375,14 @@ Vec3d hsltorgb(const Vec3d& hsl) {
     B = hslvalue(x, y, H - (1 / 3.));
     return Vec3d(R, G, B);
 }
-static const char* hsltorgb_docstring =
+static const char* hsltorgb_docstring = QT_TRANSLATE_NOOP_UTF8("builtin",
     "color hsltorgb(color hsl)\n"
     "RGB to HSL color space conversion.\n"
     "HSL is Hue, Saturation, Lightness (all in range [0..1] )\n"
     "These functions have also been extended to support rgb and hsl values\n"
     "outside of the range [0..1] in a reasonable way.&nbsp; For any rgb or\n"
     "hsl value (except for negative s values), the conversion is\n"
-    "well-defined and reversible.";
+    "well-defined and reversible.");
 
 static Vec3d saturate(const Vec3d& Cin, double amt) {
     const Vec3d lum(.2126, .7152, .0722);  // rec709 luminance
@@ -398,11 +397,11 @@ Vec3d saturate(int n, const Vec3d* args) {
     if (n < 2) return 0.0;
     return saturate(args[0], args[1][0]);
 }
-static const char* saturate_docstring =
+static const char* saturate_docstring = QT_TRANSLATE_NOOP_UTF8("builtin",
     "color saturate(color val, float amt)\n"
     "Scale saturation of color by amt.\n"
     "The color is scaled around the rec709 luminance value,\n"
-    "and negative results are clamped at zero.\n";
+    "and negative results are clamped at zero.\n");
 
 double hash(int n, double* args) {
     // combine args into a single seed
@@ -451,10 +450,10 @@ double hash(int n, double* args) {
     // scale to [0.0 .. 1.0]
     return u2.i * (1.0 / UINT32_MAX);
 }
-static const char* hash_docstring =
+static const char* hash_docstring = QT_TRANSLATE_NOOP_UTF8("builtin",
     "float hash(float seed1,[float seed2, ...])\n"
     "Like rand, but with no internal seeds. Any number of seeds may be given\n"
-    "and the result will be a random function based on all the seeds.";
+    "and the result will be a random function based on all the seeds.");
 
 double noise(int n, const Vec3d* args) {
     if (n < 1) return 0;
@@ -489,12 +488,12 @@ double noise(int n, const Vec3d* args) {
     }
     return .5 * result + .5;
 }
-static const char* noise_docstring =
-    "float noise ( vector v ) <br>\n"
+static const char* noise_docstring = QT_TRANSLATE_NOOP_UTF8("builtin",
+    "float noise ( vector v )\n"
     "float noise ( float x, float y )\n"
     "float noise ( float x, float y, float z )\n"
     "float noise ( float x, float y, float z, float w )\n"
-    "Original perlin noise at location (C2 interpolant)";
+    "Original perlin noise at location (C2 interpolant)");
 
 double snoise(const Vec3d& p) {
     double result;
@@ -628,14 +627,14 @@ double fbm(int n, const Vec3d* args) {
     FBM<3, 1, false>(P, &result, octaves, lacunarity, gain);
     return .5 * result + .5;
 }
-static const char* fbm_docstring =
+static const char* fbm_docstring =  QT_TRANSLATE_NOOP_UTF8("builtin",
     "float fbm(vector v,int octaves=6,float lacunarity=2,float gain=.5)\n"
     "fbm (Fractal Brownian Motion) is a multi-frequency noise function. \n"
     "The base frequency is the same as the \"noise\" function. The total \n"
     "number of frequencies is controlled by octaves. The lacunarity is the \n"
     "spacing between the frequencies - a value of 2 means each octave is \n"
     "twice the previous frequency. The gain< controls how much each \n"
-    "frequency is scaled relative to the previous frequency.";
+    "frequency is scaled relative to the previous frequency.");
 
 Vec3d vfbm(int n, const Vec3d* args) {
     // args: octaves, lacunarity, gain
@@ -695,14 +694,14 @@ double fbm4(int n, const Vec3d* args) {
     FBM<4, 1, false>(P, &result, octaves, lacunarity, gain);
     return .5 * result + .5;
 }
-static const char* fbm4_docstring =
+static const char* fbm4_docstring = QT_TRANSLATE_NOOP_UTF8("builtin",
     "float fbm4(vector v,float time,int octaves=6,float lacunarity=2,float gain=.5)\n"
     "fbm (Fractal Brownian Motion) is a multi-frequency noise function. \n"
     "The base frequency is the same as the \"noise\" function. The total \n"
     "number of frequencies is controlled by octaves. The lacunarity is the \n"
     "spacing between the frequencies - a value of 2 means each octave is \n"
     "twice the previous frequency. The gain< controls how much each \n"
-    "frequency is scaled relative to the previous frequency.";
+    "frequency is scaled relative to the previous frequency.");
 
 Vec3d vfbm4(int n, const Vec3d* args) {
     // args: octaves, lacunarity, gain
@@ -748,10 +747,10 @@ double cellnoise(const Vec3d& p) {
     CellNoise<3, 1>(args, &result);
     return result;
 }
-static const char* cellnoise_docstring =
+static const char* cellnoise_docstring = QT_TRANSLATE_NOOP_UTF8("builtin",
     "float cellnoise(vector v)\n"
     "cellnoise generates a field of constant colored cubes based on the integer location.\n"
-    "This is the same as the prman cellnoise function.";
+    "This is the same as the prman cellnoise function.");
 
 Vec3d ccellnoise(const Vec3d& p) {
     Vec3d result;
@@ -759,10 +758,10 @@ Vec3d ccellnoise(const Vec3d& p) {
     CellNoise<3, 3>(args, &result[0]);
     return result;
 }
-static const char* ccellnoise_docstring =
+static const char* ccellnoise_docstring = QT_TRANSLATE_NOOP_UTF8("builtin",
     "color cellnoise(vector v)\n"
     "cellnoise generates a field of constant colored cubes based on the integer location.\n"
-    "This is the same as the prman cellnoise function.";
+    "This is the same as the prman cellnoise function.");
 
 double pnoise(const Vec3d& p, const Vec3d& period) {
     double result;
@@ -916,10 +915,10 @@ Vec3d voronoiFn(VoronoiPointData& data, int n, const Vec3d* args) {
 
     return 0.0;
 }
-const static char* voronoi_docstring =
+const static char* voronoi_docstring = QT_TRANSLATE_NOOP_UTF8("builtin",
     "float voronoi(vector v, int type=1,float jitter=0.5, float fbmScale=0, int fbmOctaves=4,float fbmLacunarity=2, "
     "float fbmGain=.5)\n"
-    "voronoi is a cellular noise pattern. It is a jittered variant of cellnoise.";
+    "voronoi is a cellular noise pattern. It is a jittered variant of cellnoise.");
 
 Vec3d cvoronoiFn(VoronoiPointData& data, int n, const Vec3d* args) {
     // args = p, type, jitter,
@@ -989,10 +988,10 @@ Vec3d cvoronoiFn(VoronoiPointData& data, int n, const Vec3d* args) {
 
     return 0.0;
 }
-const static char* cvoronoi_docstring =
+const static char* cvoronoi_docstring = QT_TRANSLATE_NOOP_UTF8("builtin",
     "color cvoronoi(vector v, int type=1,float jitter=0.5, float fbmScale=0, int fbmOctaves=4,float fbmLacunarity=2, "
     "float fbmGain=.5)\n"
-    "returns color in cellular pattern. It is a jittered variant of cellnoise.";
+    "returns color in cellular pattern. It is a jittered variant of cellnoise.");
 
 Vec3d pvoronoiFn(VoronoiPointData& data, int n, const Vec3d* args) {
     // args = p, jitter,
@@ -1037,10 +1036,10 @@ Vec3d pvoronoiFn(VoronoiPointData& data, int n, const Vec3d* args) {
     voronoi_f1_3d(data, p, jitter, f1, pos1);
     return pos1;
 }
-const static char* pvoronoi_docstring =
+const static char* pvoronoi_docstring = QT_TRANSLATE_NOOP_UTF8("builtin",
     "color pvoronoi(vector v, int type=1,float jitter=0.5, float fbmScale=0, int fbmOctaves=4,float fbmLacunarity=2, "
     "float fbmGain=.5)\n"
-    "returns center of voronoi cell.";
+    "returns center of voronoi cell.");
 
 class CachedVoronoiFunc : public ExprFuncSimple {
   public:
@@ -1172,11 +1171,11 @@ double cycle(double index, double loRange, double hiRange) {
     if (result < 0) result += range;
     return lo + result;
 }
-static const char* cycle_docstring =
+static const char* cycle_docstring = QT_TRANSLATE_NOOP_UTF8("builtin",
     "int cycle(int index, int loRange, int hiRange )\n"
     "Cycles through values between loRange and hiRange based on supplied index.\n"
     "This is an offset \"mod\" function. The result is rotates v such that the\n"
-    "Y axis points in the given up direction";
+    "Y axis points in the given up direction");
 
 double pick(int n, double* params) {
     if (n < 3) return 0;
@@ -1227,12 +1226,12 @@ double pick(int n, double* params) {
     // add offset and return result
     return loRange + lo;
 }
-static const char* pick_docstring =
+static const char* pick_docstring = QT_TRANSLATE_NOOP_UTF8("builtin",
     "int pick(float index, int loRange, int hiRange, [float weights, ...] )\n"
     "Picks values randomly between loRange and hiRange based on supplied index (which is\n"
     "automatically hashed).&nbsp; The values will be distributed according\n"
     "to the supplied weights.&nbsp; Any weights not supplied are assumed to\n"
-    "be 1.0.";
+    "be 1.0.");
 
 double swatch(int n, double* params) { return choose(n, params); }
 static const char* swatch_docstring = QT_TRANSLATE_NOOP_UTF8("builtin",
@@ -1297,10 +1296,10 @@ double wchoose(int n, double* params) {
     // return corresponding value
     return params[lo * 2 + 1];
 }
-static const char* wchoose_docstring =
+static const char* wchoose_docstring = QT_TRANSLATE_NOOP_UTF8("builtin",
     "float wchoose(float index,float choice1, float weight1, float choice2, float weight2, [...] )\n"
     "Chooses one of the supplied choices based on the index (assumed to be in range[0..1]).\n"
-    "The values will be distributed according to the supplied weights.";
+    "The values will be distributed according to the supplied weights.");
 
 double spline(int n, double* params) {
     if (n < 5) return 0;
@@ -1316,10 +1315,10 @@ double spline(int n, double* params) {
     return 0.5 * (p[0] * (-u3 + 2 * u2 - u) + p[1] * (3 * u3 - 5 * u2 + 2) + p[2] * (-3 * u3 + 4 * u2 + u) +
                   p[3] * (u3 - u2));
 }
-static const char* spline_docstring =
+static const char* spline_docstring = QT_TRANSLATE_NOOP_UTF8("builtin",
     "float spline(float param,float y1,float y2,float y3,float y4,[...])\n\n"
     "Interpolates a set of values to the parameter specified where y1, ..., yn are\n"
-    "distributed evenly from [0...1]";
+    "distributed evenly from [0...1]");
 
 template <class T>
 struct CurveData : public ExprFuncNode::Data {
@@ -1373,12 +1372,12 @@ class CurveFuncX : public ExprFuncSimple {
     }
 
 } curve;
-static const char* curve_docstring =
+static const char* curve_docstring = QT_TRANSLATE_NOOP_UTF8("builtin",
     "float curve(float param,float pos0,float val0,int interp0,float pos1,float val1,int interp1,[...])\n\n"
     "Interpolates a 1D ramp defined by control points at 'param'. Control points are specified \n"
     "by triples of parameters pos_i, val_i, and interp_i. Interpolation codes are \n"
     "0 - none, 1 - linear, 2 - smooth, 3 - spline, \n"
-    "4-monotone (non oscillating spline)";
+    "4-monotone (non oscillating spline)");
 
 class CCurveFuncX : public ExprFuncSimple {
     virtual ExprType prep(ExprFuncNode* node, bool wantScalar, ExprVarEnvBuilder& envBuilder) const {
@@ -1428,12 +1427,12 @@ class CCurveFuncX : public ExprFuncSimple {
     CCurveFuncX() : ExprFuncSimple(true) {}  // Thread Safe
     virtual ~CCurveFuncX() {}
 } ccurve;
-static const char* ccurve_docstring =
+static const char* ccurve_docstring = QT_TRANSLATE_NOOP_UTF8("builtin",
     "color curve(float param,float pos0,color val0,int interp0,float pos1,color val1,int interp1,[...])\n\n"
     "Interpolates color ramp given by control points at 'param'. Control points are specified \n"
     "by triples of parameters pos_i, val_i, and interp_i. Interpolation codes are \n"
     "0 - none, 1 - linear, 2 - smooth, 3 - spline, \n"
-    "4 - monotone (non oscillating spline)";
+    "4 - monotone (non oscillating spline)");
 
 class GetVar : public ExprFuncSimple {
     struct Data : public ExprFuncNode::Data {
@@ -1711,7 +1710,6 @@ public:
 static const char* sprintf_docstring = QT_TRANSLATE_NOOP_UTF8("builtin",
     "sprintf(string format, [double|string, double|string, ...])\n"
     "Returns a string formatted from the given values.  See 'man sprintf' for format details.");
-
 
 #if 0
 
