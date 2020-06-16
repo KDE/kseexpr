@@ -36,7 +36,6 @@ class ExprTextEdit : public QTextEdit {
     std::map<std::string, std::string> functionTooltips;
     ExprHighlighter* highlighter;
     QStyle* lastStyleForHighlighter;
-    ExprPopupDoc* _tip;
     QAction* _popupEnabledAction;
 
   public:

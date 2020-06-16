@@ -30,8 +30,11 @@
 
 ExprTextEdit::~ExprTextEdit() {}
 
-ExprTextEdit::ExprTextEdit(QWidget* parent) : QTextEdit(parent), lastStyleForHighlighter(0), _tip(0) {
+ExprTextEdit::ExprTextEdit(QWidget* parent) : QTextEdit(parent), lastStyleForHighlighter(0) /*, _tip(0)*/ {
     highlighter = new ExprHighlighter(document());
+
+    // Block all external RTF input - amyspark
+    this->setAcceptRichText(false);
 
     // setup auto completion
     completer = new QCompleter();
@@ -43,6 +46,7 @@ ExprTextEdit::ExprTextEdit(QWidget* parent) : QTextEdit(parent), lastStyleForHig
     treePopup->setMinimumWidth(300);
     treePopup->setMinimumHeight(50);
     treePopup->setItemsExpandable(true);
+    treePopup->setWordWrap(true);
 
     completer->setWidget(this);
     completer->setCompletionMode(QCompleter::PopupCompletion);
@@ -136,7 +140,7 @@ void ExprTextEdit::keyPressEvent(QKeyEvent* e) {
     const bool ctrlOrShift = e->modifiers() & (Qt::ControlModifier | Qt::ShiftModifier);
     if (!completer || (ctrlOrShift && e->text().isEmpty())) return;
 
-    bool hasModifier = (e->modifiers() != Qt::NoModifier) && !ctrlOrShift;
+    bool hasModifier = (e->modifiers() != Qt::NoModifier) && ~(e->modifiers() & Qt::KeypadModifier) && !ctrlOrShift;
 
     // grab the line we're on
     QTextCursor tc = textCursor();
@@ -154,7 +158,7 @@ void ExprTextEdit::keyPressEvent(QKeyEvent* e) {
     }
 
     // hide the completer if we have too few characters, we are at end of word
-    if (!isShortcut && (hasModifier || e->text().isEmpty() || completionPrefix.length() < 1 || index == -1)) {
+    if (!isShortcut && (hasModifier || index == -1)) {
         completer->popup()->hide();
     } else if (_popupEnabledAction->isChecked()) {
         // copy the completion prefix in if we don't already have it in the completer
@@ -207,20 +211,16 @@ void ExprTextEdit::showTip(const QString& string) {
     // skip empty strings
     if (string.isEmpty()) return;
     // skip already shown stuff
-    if (_tip && !_tip->isHidden() && _tip->label->text() == string) return;
+    if (QToolTip::isVisible()) return;
 
     QRect cr = cursorRect();
     cr.setX(0);
     cr.setWidth(cr.width() * 3);
-    if (_tip) {
-        delete _tip;
-        _tip = 0;
-    }
-    _tip = new ExprPopupDoc(this, mapToGlobal(cr.bottomLeft()) + QPoint(0, 6), string);
+    QToolTip::showText(mapToGlobal(cr.bottomLeft()) + QPoint(0, 6), string);
 }
 
 void ExprTextEdit::hideTip() {
-    if (_tip) _tip->hide();
+    QToolTip::hideText();
 }
 
 void ExprTextEdit::insertCompletion(const QString& completion) {
@@ -230,6 +230,5 @@ void ExprTextEdit::insertCompletion(const QString& completion) {
     tc.movePosition(QTextCursor::Left);
     tc.movePosition(QTextCursor::EndOfWord);
     tc.insertText(completion.right(extra));
-    if (completion[0] != QLatin1Char('$')) tc.insertText(QString::fromLatin1("("));
     setTextCursor(tc);
 }
