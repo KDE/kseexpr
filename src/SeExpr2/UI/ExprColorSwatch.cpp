@@ -144,7 +144,6 @@ ExprColorSwatchWidget::ExprColorSwatchWidget(bool indexLabel, QWidget *parent)
     _gridLayout->setContentsMargins(0, 0, 0, 0);
     _gridLayout->setSpacing(0);
     paletteLayout->addLayout(_gridLayout);
-    paletteLayout->addStretch();
     colorGrid->setLayout(paletteLayout);
 
     hboxLayout->addWidget(colorGrid);
