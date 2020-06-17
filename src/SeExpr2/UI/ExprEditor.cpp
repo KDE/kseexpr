@@ -89,10 +89,11 @@ ExprEditor::ExprEditor(QWidget* parent, ExprControlCollection* controls)
     exprTe->setMinimumHeight(50);
 
     // calibrate the font size
-    int fontsize = 12;
+    // This should be done inside the target application. --amyspark
+    // int fontsize = 12
     // QFont font("Liberation Sans", fontsize);
-    QFont font = exprTe->font();
-    font.setPointSize(fontsize);
+    // QFont font = exprTe->font();
+    // font.setPointSize(fontsize);
     // while (QFontMetrics(font).boundingRect("yabcdef").width() < 38 && fontsize < 20) {
     //     fontsize++;
     //     font.setPointSize(fontsize);
@@ -101,8 +102,7 @@ ExprEditor::ExprEditor(QWidget* parent, ExprControlCollection* controls)
     //     fontsize--;
     //     font.setPointSize(fontsize);
     // };
-
-    exprTe->setFont(font);
+    // exprTe->setFont(font);
 
     exprAndErrors->addWidget(exprTe);
 
