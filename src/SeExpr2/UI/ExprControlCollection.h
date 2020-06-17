@@ -1,5 +1,6 @@
 /*
 * Copyright Disney Enterprises, Inc.  All rights reserved.
+* Copyright (C) 2020 L. E. Segovia <amy@amyspark.me>
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License
@@ -20,64 +21,13 @@
 */
 #ifndef _ExprControlCollection_h
 #define _ExprControlCollection_h
+
 #include <vector>
+#include <QVBoxLayout>
+#include <QWidget>
 
-#include <QTimer>
-#include <QRegExp>
-#include <QTextBrowser>
-#include <QPlainTextEdit>
-#include <QDialog>
-#include <QLineEdit>
-#include <QCheckBox>
-#include <QSlider>
+#include "EditableExpression.h"
 #include "ExprControl.h"
-
-class QVBoxLayout;
-class QRadioButton;
-class EditableExpression;
-
-/// This class is the UI for adding widgets
-class ExprAddDialog : public QDialog {
-    Q_OBJECT;
-
-  public:
-    QLineEdit *variableName;
-    QTabWidget *tabWidget;
-    QLineEdit *intDefault;
-    QLineEdit *intMin;
-    QLineEdit *intMax;
-    QLineEdit *floatDefault;
-    QLineEdit *floatMin;
-    QLineEdit *floatMax;
-    QLineEdit *vectorDefault0;
-    QLineEdit *vectorDefault1;
-    QLineEdit *vectorDefault2;
-    QLineEdit *vectorMin;
-    QLineEdit *vectorMax;
-    QLineEdit *curveLookup;
-    QLineEdit *colorCurveLookup;
-#ifdef SEEXPR_ENABLE_ANIMCURVE
-    QLineEdit *animCurveLookup;
-    QLineEdit *animCurveLink;
-#endif
-    QLineEdit *swatchLookup;
-#ifdef SEEXPR_ENABLE_DEEPWATER
-    QLineEdit *deepWaterLookup;
-#endif
-    QRadioButton *rainbowPaletteBtn;
-    QRadioButton *grayPaletteBtn;
-    QColor color;
-    QPushButton *colorWidget;
-    QComboBox *stringTypeWidget;
-    QLineEdit *stringDefaultWidget;
-    QLineEdit *stringNameWidget;
-
-    ExprAddDialog(int &count, QWidget *parent = 0);
-    const char *initSwatch();
-  private
-Q_SLOTS:
-    void colorChooseClicked();
-};
 
 /// Widget that holds and manages controls for an Expression
 ///   This is typically used by an ExprEditor or a ExprShortEdit widget
