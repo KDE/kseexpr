@@ -20,22 +20,21 @@
 * @author Arthur Shek
 * @version ashek     05/04/09  Initial Version
 */
-#include <iostream>
-#include <algorithm>
 
 #include <QDialog>
+#include <QDialogButtonBox>
 #include <QDoubleValidator>
+#include <QFormLayout>
 #include <QGraphicsSceneMouseEvent>
 #include <QHBoxLayout>
 #include <QLabel>
-#include <QVBoxLayout>
+#include <QMenu>
 #include <QPushButton>
 #include <QResizeEvent>
-#include <QDialogButtonBox>
-#include <QMenu>
+#include <QToolButton>
+#include <QVBoxLayout>
 
 #include <SeExpr2/ExprBuiltins.h>
-#include <cfloat>
 
 #include "ExprCurve.h"
 
@@ -262,56 +261,34 @@ ExprCurve::ExprCurve(QWidget *parent, QString pLabel, QString vLabel, QString iL
     : QWidget(parent), _scene(0), _selPosEdit(0), _selValEdit(0), _interpComboBox(0) {
     Q_UNUSED(iLabel);
     QHBoxLayout *mainLayout = new QHBoxLayout();
-    mainLayout->setSpacing(2);
-    mainLayout->setMargin(4);
+    mainLayout->setMargin(0);
 
     QWidget *edits = new QWidget;
-    QVBoxLayout *editsLayout = new QVBoxLayout;
-    editsLayout->setAlignment(Qt::AlignTop);
-    editsLayout->setSpacing(0);
+    QFormLayout *editsLayout = new QFormLayout;
     editsLayout->setMargin(0);
     edits->setLayout(editsLayout);
 
-    QWidget *selPos = new QWidget;
-    QHBoxLayout *selPosLayout = new QHBoxLayout;
-    selPosLayout->setSpacing(1);
-    selPosLayout->setMargin(1);
-    selPos->setLayout(selPosLayout);
     _selPosEdit = new QLineEdit;
     QDoubleValidator *posValidator = new QDoubleValidator(0.0, 1.0, 6, _selPosEdit);
     _selPosEdit->setValidator(posValidator);
-    int editwidth = QFontMetrics(_selPosEdit->font()).boundingRect(QString::fromLatin1("9.999")).width() + 8;
-    _selPosEdit->setFixedWidth(editwidth);
-    _selPosEdit->setFixedHeight(20);
-    selPosLayout->addStretch(50);
-    QLabel *posLabel;
+    QString posLabel;
     if (pLabel.isEmpty()) {
-        posLabel = new QLabel(tr("Selected Position:  "));
+        posLabel = tr("Selected Position:  ");
     } else {
-        posLabel = new QLabel(pLabel);
+        posLabel = pLabel;
     }
-    selPosLayout->addWidget(posLabel);
-    selPosLayout->addWidget(_selPosEdit);
+    editsLayout->addRow(posLabel, _selPosEdit);
 
-    QWidget *selVal = new QWidget;
-    QBoxLayout *selValLayout = new QHBoxLayout;
-    selValLayout->setSpacing(1);
-    selValLayout->setMargin(1);
-    selVal->setLayout(selValLayout);
     _selValEdit = new QLineEdit;
     QDoubleValidator *valValidator = new QDoubleValidator(0.0, 1.0, 6, _selValEdit);
     _selValEdit->setValidator(valValidator);
-    _selValEdit->setFixedWidth(editwidth);
-    _selValEdit->setFixedHeight(20);
-    selValLayout->addStretch(50);
-    QLabel *valLabel;
+    QString valLabel;
     if (vLabel.isEmpty()) {
-        valLabel = new QLabel(tr("Selected Value:  "));
+        valLabel = tr("Selected Value:  ");
     } else {
-        valLabel = new QLabel(vLabel);
+        valLabel = vLabel;
     }
-    selValLayout->addWidget(valLabel);
-    selValLayout->addWidget(_selValEdit);
+    editsLayout->addRow(valLabel, _selValEdit);
 
     _interpComboBox = new QComboBox;
     _interpComboBox->addItem(tr("None"));
@@ -320,21 +297,11 @@ ExprCurve::ExprCurve(QWidget *parent, QString pLabel, QString vLabel, QString iL
     _interpComboBox->addItem(tr("Spline"));
     _interpComboBox->addItem(tr("MSpline"));
     _interpComboBox->setCurrentIndex(4);
-    _interpComboBox->setFixedWidth(70);
-    _interpComboBox->setFixedHeight(20);
 
-    editsLayout->addWidget(selPos);
-    editsLayout->addWidget(selVal);
     editsLayout->addWidget(_interpComboBox);
 
-    QFrame *curveFrame = new QFrame;
-    curveFrame->setFrameShape(QFrame::Panel);
-    curveFrame->setFrameShadow(QFrame::Sunken);
-    curveFrame->setLineWidth(1);
-    QHBoxLayout *curveFrameLayout = new QHBoxLayout;
-    curveFrameLayout->setMargin(0);
     CurveGraphicsView *curveView = new CurveGraphicsView;
-    curveView->setFrameShape(QFrame::Panel);
+    curveView->setFrameShape(QFrame::StyledPanel);
     curveView->setFrameShadow(QFrame::Sunken);
     curveView->setLineWidth(1);
     curveView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -343,21 +310,20 @@ ExprCurve::ExprCurve(QWidget *parent, QString pLabel, QString vLabel, QString iL
     curveView->setScene(_scene);
     curveView->setTransform(QTransform().scale(1, -1));
     curveView->setRenderHints(QPainter::Antialiasing);
-    curveFrameLayout->addWidget(curveView);
-    curveFrame->setLayout(curveFrameLayout);
 
     mainLayout->addWidget(edits);
-    mainLayout->addWidget(curveFrame);
+    mainLayout->addWidget(curveView);
     if (expandable) {
-        // TODO replace with QToolButton - amyspark
-        QPushButton *expandButton = new QPushButton(tr(">"));
+        QToolButton *expandButton = new QToolButton(this);
         expandButton->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Expanding);
-        expandButton->setFixedWidth(15);
+        QAction *detailAction = new QAction(tr("&Expand..."));
+        detailAction->setIcon(QIcon::fromTheme("go-next"));
+        expandButton->setDefaultAction(detailAction);
         mainLayout->addWidget(expandButton);
         // open a the detail widget when clicked
-        connect(expandButton, SIGNAL(clicked()), this, SLOT(openDetail()));
+        connect(expandButton, SIGNAL(triggered(QAction *)), this, SLOT(openDetail()));
     }
-    mainLayout->setStretchFactor(curveFrame, 100);
+    mainLayout->setStretchFactor(curveView, 100);
     setLayout(mainLayout);
 
     // SIGNALS

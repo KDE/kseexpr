@@ -28,6 +28,7 @@
 #include <QPainter>
 #include <QMenu>
 #include <QLabel>
+#include <QToolButton>
 
 #include <SeExpr2/ExprBuiltins.h>
 #ifdef SEEXPR_USE_QDGUI
@@ -120,12 +121,14 @@ ExprColorSwatchWidget::ExprColorSwatchWidget(bool indexLabel, QWidget *parent)
     hboxLayout->setContentsMargins(0, 0, 0, 0);
     setLayout(hboxLayout);
 
-    // TODO replace with QToolButton - amyspark
-    QPushButton *addBtn = new QPushButton(tr("+"));
-    addBtn->setFixedWidth(16);
-    addBtn->setFixedHeight(16);
+    QToolButton *addBtn = new QToolButton;
+    addBtn->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
+    QAction *detailAction = new QAction(tr("&Add..."));
+    detailAction->setIcon(QIcon::fromTheme("list-add"));
+    addBtn->setDefaultAction(detailAction);
     QVBoxLayout *swatchControlLayout = new QVBoxLayout();
     swatchControlLayout->setContentsMargins(0, 0, 0, 0);
+    swatchControlLayout->setAlignment(Qt::AlignLeft | Qt::AlignCenter);
     QHBoxLayout *addRemoveBtnLayout = new QHBoxLayout();
     addRemoveBtnLayout->setContentsMargins(0, 0, 0, 0);
     addRemoveBtnLayout->setSpacing(0);
@@ -149,7 +152,7 @@ ExprColorSwatchWidget::ExprColorSwatchWidget(bool indexLabel, QWidget *parent)
     hboxLayout->addStretch();
 
     // SIGNALS
-    connect(addBtn, SIGNAL(clicked()), this, SLOT(addNewColor()));
+    connect(addBtn, SIGNAL(triggered(QAction *)), this, SLOT(addNewColor()));
 }
 
 void ExprColorSwatchWidget::addNewColor() {
