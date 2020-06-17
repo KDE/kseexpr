@@ -32,6 +32,7 @@
 #include <QFileDialog>
 #include <QSpacerItem>
 #include <QSizePolicy>
+#include <QTextBrowser>
 
 #include <iostream>
 #include <fstream>
