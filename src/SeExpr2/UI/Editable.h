@@ -1,5 +1,6 @@
 /*
 * Copyright Disney Enterprises, Inc.  All rights reserved.
+* Copyright (C) 2020 L. E. Segovia <amy@amyspark.me>
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License
@@ -41,6 +42,11 @@ inline void printVal(std::stringstream& stream, const SeExpr2::Vec3d& v) {
 }
 
 #define UNUSED(x) (void)(x)
+#define HACK_LOCALE_BEGIN  \
+    char* current_locale = setlocale(LC_NUMERIC, nullptr); \
+    setlocale(LC_NUMERIC, "C");
+#define HACK_LOCALE_END(x) \
+    setlocale(LC_NUMERIC, current_locale); return x;
 
 class Editable {
 public:
@@ -72,13 +78,14 @@ public:
         : Editable(name, startPos, endPos), v(val), min(0), max(1), isInt(false) {}
 
     bool parseComment(const std::string& comment) {
+        HACK_LOCALE_BEGIN
         if (comment.find('.') != std::string::npos || comment.find('e') != std::string::npos) {
             float fmin, fmax;
             if (sscanf(comment.c_str(), "#%f,%f", &fmin, &fmax) == 2) {
                 min = fmin;
                 max = fmax;
                 isInt = false;
-                return true;
+                HACK_LOCALE_END(true)
             }
         }
         int imin, imax;
@@ -86,9 +93,9 @@ public:
             min = imin;
             max = imax;
             isInt = true;
-            return true;
+            HACK_LOCALE_END(true)
         }
-        return true;
+        HACK_LOCALE_END(true)
     }
     std::string str() const {
         std::stringstream s;
@@ -114,6 +121,7 @@ public:
         : Editable(name, startPos, endPos), v(val), min(0), max(1), isColor(true) {}
 
     bool parseComment(const std::string& comment) {
+        HACK_LOCALE_BEGIN
         float fmin, fmax;
         int numParsed = sscanf(comment.c_str(), "#%f,%f", &fmin, &fmax);
         if (numParsed == 2) {
@@ -121,7 +129,7 @@ public:
             min = fmin;
             max = fmax;
         }
-        return true;
+        HACK_LOCALE_END(true);
     }
     std::string str() const {
         std::stringstream s;
@@ -146,14 +154,15 @@ public:
     StringEditable(int startPos, int endPos, const std::string& val) : Editable("unknown", startPos, endPos), v(val) {}
 
     bool parseComment(const std::string& comment) {
+        HACK_LOCALE_BEGIN
         char namebuf[1024], typebuf[1024];
         int parsed = sscanf(comment.c_str(), "#%s %s", typebuf, namebuf);
         if (parsed == 2) {
             name = namebuf;
             type = typebuf;
-            return true;
+            HACK_LOCALE_END(true);
         } else {
-            return false;
+            HACK_LOCALE_END(false);
         }
     }
 
