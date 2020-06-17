@@ -1,5 +1,6 @@
 /*
 * Copyright Disney Enterprises, Inc.  All rights reserved.
+* Copyright (C) 2020 L. E. Segovia <amy@amyspark.me>
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License
@@ -16,47 +17,21 @@
 */
 #ifndef _ExprControl_h_
 #define _ExprControl_h_
-#include <QTextBrowser>
-#include <QPlainTextEdit>
-#include <QDialog>
-#include <QTimer>
-#include <QRegExp>
-#include <QLineEdit>
-#include <QCheckBox>
-#include <QSlider>
 
+#include <QCheckBox>
+#include <QHBoxLayout>
+#include <QLabel>
+
+#include "Editable.h"
 #include "ExprCurve.h"
 #include "ExprColorCurve.h"
+#include "ExprColorSwatch.h"
 #ifdef SEEXPR_ENABLE_DEEPWATER
 #include "ExprDeepWater.h"
 #endif
 
-class QLabel;
-class ExprColorCurve;
-class QHBoxLayout;
-class ExprCSwatchFrame;
-class Editable;
-class StringEditable;
-class VectorEditable;
-class NumberEditable;
-#ifdef SEEXPR_ENABLE_ANIMCURVE
-class AnimCurveEditable;
-#endif
-class ColorSwatchEditable;
-class ExprColorSwatchWidget;
-template <class TVAL>
-struct GenericCurveEditable;
 typedef GenericCurveEditable<SeExpr2::Vec3d> ColorCurveEditable;
 typedef GenericCurveEditable<double> CurveEditable;
-#ifdef SEEXPR_ENABLE_DEEPWATER
-class DeepWaterEditable;
-#endif
-
-#ifdef SEEXPR_ENABLE_ANIMCURVE
-namespace animlib {
-class AnimCurve;
-}
-#endif
 
 /// Base class for all controls for Expressions
 class ExprControl : public QWidget {

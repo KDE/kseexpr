@@ -19,32 +19,6 @@
 * @brief UI control widgets for expressions.
 * @author  aselle
 */
-#include <QRegExp>
-#include <QLineEdit>
-#include <QPushButton>
-#include <QToolButton>
-#include <QSplitter>
-#include <QLabel>
-#include <QMouseEvent>
-#include <QKeyEvent>
-#include <QHBoxLayout>
-#include <QVBoxLayout>
-#include <QPaintEvent>
-#include <QPainter>
-#include <QScrollArea>
-#include <QSpacerItem>
-#include <QSizePolicy>
-#include <QTextCharFormat>
-#include <QCompleter>
-#include <QAbstractItemView>
-#include <QStandardItemModel>
-#include <QStringListModel>
-#include <QFileDialog>
-#include <QDialogButtonBox>
-#include <QScrollBar>
-#include <QToolTip>
-#include <QListWidget>
-#include <QTreeView>
 
 #include "Debug.h"
 #include "ExprControl.h"
@@ -170,11 +144,8 @@ void ExprChannelSlider::setValue(float value) {
 ExprControl::ExprControl(int id, Editable* editable, bool showColorLink)
     : _id(id), _updating(false), _editable(editable) {
     hbox = new QHBoxLayout(this);
-    hbox->setSpacing(2);
-    hbox->setMargin(0);
 
     _colorLinkCB = new QCheckBox(this);
-    _colorLinkCB->setFixedWidth(14);
     _colorLinkCB->setFocusPolicy(Qt::NoFocus);
     connect(_colorLinkCB, SIGNAL(stateChanged(int)), this, SLOT(linkStateChange(int)));
     hbox->addWidget(_colorLinkCB);
@@ -183,18 +154,13 @@ ExprControl::ExprControl(int id, Editable* editable, bool showColorLink)
     // TODO these labels are untranslatable
     QString editableLabel = QString::fromStdString(editable->name);
     _label = new QLabel(QString(tr("<b>%1</b>")).arg(editableLabel));
-    _label->setFixedWidth(72);
-    _label->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
-    _label->setIndent(2);
     _label->setAutoFillBackground(true);
     hbox->addWidget(_label);
 
     if (!showColorLink) {
-        _colorLinkCB->setHidden(true);
-        _label->setFixedWidth(84);
+        _colorLinkCB->setDisabled(true);
     } else {
-        _colorLinkCB->setHidden(false);
-        _label->setFixedWidth(84 - _colorLinkCB->width() + 2);
+        _colorLinkCB->setDisabled(false);
     }
 }
 
@@ -232,14 +198,10 @@ NumberControl::NumberControl(int id, NumberEditable* editable)
     _slider->setTickInterval(std::max(1, int(srange / 10)));
     _slider->setSingleStep(std::max(1, int(srange / 50)));
     _slider->setPageStep(std::max(1, int(srange / 10)));
-    _slider->setMinimumWidth(0);
-    _slider->setFixedHeight(16);
     _slider->setFocusPolicy(Qt::ClickFocus);
     hbox->addWidget(_slider, 3);
     // edit box
     _edit = new ExprLineEdit(0, this);
-    _edit->setMinimumWidth(0);
-    _edit->setFixedHeight(16);
     hbox->addWidget(_edit);
     connect(_edit, SIGNAL(textChanged(int, const QString&)), SLOT(editChanged(int, const QString&)));
     connect(_slider, SIGNAL(valueChanged(int)), SLOT(sliderChanged(int)));
@@ -282,8 +244,6 @@ VectorControl::VectorControl(int id, VectorEditable* editable)
 
     if (_numberEditable->isColor) {
         _swatch = new ExprCSwatchFrame(editable->v);
-        _swatch->setFixedWidth(38);
-        _swatch->setFixedHeight(20);
         connect(_swatch, SIGNAL(swatchChanged(QColor)), this, SLOT(swatchChanged(QColor)));
         hbox->addWidget(_swatch);
     }
@@ -296,12 +256,11 @@ VectorControl::VectorControl(int id, VectorEditable* editable)
         ExprLineEdit* edit = new ExprLineEdit(i, this);
         vbl->addWidget(edit);
         _edits[i] = edit;
-        edit->setMinimumWidth(0);
-        edit->setFixedHeight(16);
 
         ExprChannelSlider* slider = new ExprChannelSlider(i, this);
         vbl->addWidget(slider);
         _sliders[i] = slider;
+        // keep these, as channelSlider doesn't have a default height - amyspark
         slider->setFixedHeight(6);
         // set color
         static const QColor rgb[3] = {QColor(128, 64, 64), QColor(64, 128, 64), QColor(64, 64, 128)};
@@ -439,7 +398,6 @@ void StringControl::textChanged(const QString& newText) {
 CurveControl::CurveControl(int id, CurveEditable* editable)
     : ExprControl(id, editable, false), _curveEditable(editable) {
     _curve = new ExprCurve(this, tr("Pos:"), tr("Val:"), tr("Interp:"));
-    _curve->setFixedHeight(80);
 
     const int numVal = _curveEditable->cvs.size();
     for (int i = 0; i < numVal; i++) {
@@ -461,7 +419,6 @@ void CurveControl::curveChanged() {
 CCurveControl::CCurveControl(int id, ColorCurveEditable* editable)
     : ExprControl(id, editable, true), _curveEditable(editable) {
     _curve = new ExprColorCurve(this, tr("Pos:"), tr("Val:"), tr("Interp:"));
-    _curve->setFixedHeight(80);
 
     const int numVal = _curveEditable->cvs.size();
     for (int i = 0; i < numVal; i++) {
