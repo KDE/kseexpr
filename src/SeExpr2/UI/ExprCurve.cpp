@@ -45,7 +45,7 @@ void CurveGraphicsView::resizeEvent(QResizeEvent *event) {
 }
 
 CurveScene::CurveScene()
-    : _curve(new T_CURVE), _width(320), _height(170), _interp(T_CURVE::kMonotoneSpline), _selectedItem(-1),
+    : _curve(new T_CURVE), _width(320), _height(50), _interp(T_CURVE::kMonotoneSpline), _selectedItem(-1),
       _curvePoly(0), _baseRect(0), _lmb(false) {
     rebuildCurve();
     resize(_width, _height);
