@@ -979,7 +979,7 @@ YY_RULE_SETUP
 case 23:
 YY_RULE_SETUP
 #line 100 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParserLex.l"
-{ yylval.d = atof(yytext); return NUMBER; }
+{ yylval.d = crack_atof(yytext); return NUMBER; }
 	YY_BREAK
 case 24:
 YY_RULE_SETUP

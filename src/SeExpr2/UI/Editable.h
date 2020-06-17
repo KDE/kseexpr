@@ -33,6 +33,7 @@
 #ifdef SEEXPR_ENABLE_DEEPWATER
 #include <ExprDeepWater.h>
 #endif
+#include "Debug.h"
 
 inline void printVal(std::stringstream& stream, double v) { stream << v; }
 inline void printVal(std::stringstream& stream, const SeExpr2::Vec3d& v) {
@@ -329,9 +330,9 @@ public:
     void remove(int index) { colors.erase(colors.begin() + index); }
 
     void print() {
-        std::cerr << "\nColorSwatchEditable:\n";
+        dbgSeExpr << "\nColorSwatchEditable:\n";
         for (unsigned int i = 0; i < colors.size(); i++) {
-            std::cerr << colors[i][0] << ", " << colors[i][1] << ", " << colors[i][2] << std::endl;
+            dbgSeExpr << colors[i][0] << ", " << colors[i][1] << ", " << colors[i][2];
         }
     }
 };

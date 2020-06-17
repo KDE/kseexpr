@@ -37,6 +37,7 @@
 #include <QTextStream>
 
 #include <cassert>
+#include "Debug.h"
 #include "ExprEditor.h"
 #include "ExprBrowser.h"
 
@@ -78,7 +79,7 @@ class ExprTreeItem {
         if (info.isDir()) {
             QFileInfoList infos = QDir(path).entryInfoList(QDir::Dirs | QDir::Files | QDir::NoDotAndDotDot);
 
-            // std::cerr<<"is dir and populating "<<path.toStdString()<<std::endl;
+            // dbgSeExpr <<"is dir and populating "<<path.toStdString();
             for (QList<QFileInfo>::ConstIterator it = infos.constBegin(); it != infos.constEnd(); ++it) {
                 const QFileInfo* fi = &*it;
                 if (fi->isDir() || fi->fileName().endsWith(QString::fromLatin1(".se"))) {
@@ -207,7 +208,7 @@ class ExprTreeModel : public QAbstractItemModel {
             item = root->find(path);
         }
         if (item) {
-            std::cerr << "found it " << std::endl;
+            dbgSeExpr << "found it " ;
             return createIndex(item->row, 0, item);
         }
 

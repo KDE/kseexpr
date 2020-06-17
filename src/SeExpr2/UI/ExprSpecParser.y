@@ -37,6 +37,7 @@
 #ifdef SEEXPR_ENABLE_DEEPWATER
 #include "ExprDeepWater.h"
 #endif
+#include "Debug.h"
 
 /******************
  lexer declarations
@@ -106,9 +107,9 @@ static void specRegisterVariable(const char* var)
 /// an editable is the data part of a control (it's model essentially)
 static void specRegisterEditable(const char* var,ExprSpecNode* node)
 {
-    //std::cerr<<"we have editable var "<<var<<std::endl;
+    //dbgSeExpr <<"we have editable var "<<var;
     if(!node){
-        //std::cerr<<"   null ptr "<<var<<std::endl;
+        //dbgSeExpr <<"   null ptr "<<var;
     }else if(ExprSpecScalarNode* n=dynamic_cast<ExprSpecScalarNode*>(node)){
         editables->push_back(new NumberEditable(var,node->startPos,node->endPos,n->v));
     }else if(ExprSpecVectorNode* n=dynamic_cast<ExprSpecVectorNode*>(node)){
@@ -133,7 +134,7 @@ static void specRegisterEditable(const char* var,ExprSpecNode* node)
                 if(valid) editables->push_back(ccurve);
                 else delete ccurve;
             }else{
-                //std::cerr<<"Curve has wrong # of args"<<args->nodes.size()<<std::endl;
+                //dbgSeExpr <<"Curve has wrong # of args"<<args->nodes.size();
             }
         }
     }else if(ExprSpecCurveNode* n=dynamic_cast<ExprSpecCurveNode*>(node)){
@@ -261,7 +262,7 @@ static void specRegisterEditable(const char* var,ExprSpecNode* node)
         }
 #endif
     }else{
-        std::cerr<<"SEEXPREDITOR LOGIC ERROR: We didn't recognize the Spec"<<std::endl;
+        dbgSeExpr <<"SEEXPREDITOR LOGIC ERROR: We didn't recognize the Spec";
     }
 }
 

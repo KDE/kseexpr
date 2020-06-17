@@ -46,6 +46,7 @@
 #include <QListWidget>
 #include <QTreeView>
 
+#include "Debug.h"
 #include "ExprControl.h"
 #include "ExprColorCurve.h"
 #include "ExprColorSwatch.h"
@@ -269,7 +270,7 @@ void NumberControl::updateControl() {
 }
 
 void NumberControl::setValue(float value) {
-    // std::cerr<<"In setValue "<<_id<<value<<std::endl;
+    // dbgSeExpr<<"In setValue "<<_id<<value;
     if (fabs(_numberEditable->v - value) < 1e-5) return;
     _numberEditable->v = value;
     updateControl();
@@ -347,7 +348,7 @@ void VectorControl::editChanged(int id, const QString& text) {
 }
 
 void VectorControl::updateControl() {
-    //    //std::cerr<<"In update control "<<_id<<std::endl;
+    //    //dbgSeExpr<<"In update control "<<_id;
     _updating = 1;
     for (unsigned int i = 0; i < 3; i++) {
         _edits[i]->setText(QString(tr("%1")).arg(_numberEditable->v[i], 0, 'f', 3));
@@ -357,13 +358,13 @@ void VectorControl::updateControl() {
         _sliders[i]->setValue((_numberEditable->v[i] - min) / (max - min));
     }
     if (_numberEditable->isColor) {
-        // std::cerr<<"trying to set color"<<std::endl;
+        // dbgSeExpr<<"trying to set color";
         SeExpr2::Vec3d val = _numberEditable->v;
         float r = clamp(val[0], 0, 1);
         float g = clamp(val[1], 0, 1);
         float b = clamp(val[2], 0, 1);
         float lum = r * .2 + g * .7 + b * .1;
-        // std::cerr<<" rgb "<<r<<" "<<g<<" "<<b<<std::endl;
+        // dbgSeExpr<<" rgb "<<r<<" "<<g<<" "<<b;
         QPalette pal = palette();
         pal.setColor(QPalette::Window, QColor(int(r * 255), int(g * 255), int(b * 255)));
         pal.setColor(QPalette::WindowText, (lum < 0.5) ? QColor(255, 255, 255) : QColor(0, 0, 0));
@@ -591,14 +592,14 @@ public:
                 xeval += dx;
             }
             // pad window AFTER sampling
-            // std::cerr<<"we have xmin xmax ymin ymax "<<xmin<<" "<<xmax<<" "<<ymin<<" "<<ymax<<std::endl;
+            // dbgSeExpr<<"we have xmin xmax ymin ymax "<<xmin<<" "<<xmax<<" "<<ymin<<" "<<ymax;
         } else {
             xmin = -1;
             xmax = 1;
             ymin = -1;
             ymax = 1;
         }
-        // std::cerr<<"we have xmin xmax ymin ymax "<<xmin<<" "<<xmax<<" "<<ymin<<" "<<ymax<<std::endl;
+        // dbgSeExpr<<"we have xmin xmax ymin ymax "<<xmin<<" "<<xmax<<" "<<ymin<<" "<<ymax;
     }
 #endif
 };

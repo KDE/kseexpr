@@ -22,6 +22,7 @@
 
 #include <QPushButton>
 
+#include "Debug.h"
 #include "Editable.h"
 #include "ExprAddDialog.h"
 #include "ExprControlCollection.h"
@@ -188,7 +189,7 @@ bool ExprControlCollection::rebuildControls(const QString& expressionText, std::
                 widget = new DeepWaterControl(i, x);
 #endif
             else {
-                std::cerr << "SeExpr editor logic error, cannot find a widget for the given editable" << std::endl;
+                dbgSeExpr << "SeExpr editor logic error, cannot find a widget for the given editable";
             }
             if (widget) {
                 // successfully made widget
@@ -200,7 +201,7 @@ bool ExprControlCollection::rebuildControls(const QString& expressionText, std::
                 connect(widget, SIGNAL(linkColorEdited(int, QColor)), SLOT(linkColorEdited(int, QColor)));
                 connect(widget, SIGNAL(linkColorLink(int)), SLOT(linkColorLink(int)));
             } else {
-                std::cerr << "Expr Editor Logic ERROR did not make widget" << std::endl;
+                dbgSeExpr << "Expr Editor Logic ERROR did not make widget";
             }
         }
     }

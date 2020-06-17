@@ -38,6 +38,7 @@ if (Qt5_FOUND OR QT4_FOUND)
     option(ENABLE_OPENGL_DIALOGS "Whether to build legacy OpenGL widgets (ExprShortEdit, ExprDialog, and ExprGrapher2d)" FALSE)
 
     set(EDITOR_MOC_HDRS
+            Debug.h
             ExprAddDialog.h
             ExprBrowser.h
             ExprColorCurve.h
@@ -54,6 +55,7 @@ if (Qt5_FOUND OR QT4_FOUND)
 
     set(EDITOR_CPPS
             BasicExpression.cpp
+            Debug.cpp
             EditableExpression.cpp
             ExprAddDialog.cpp
             ExprBrowser.cpp
