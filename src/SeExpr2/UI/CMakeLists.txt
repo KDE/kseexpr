@@ -18,9 +18,6 @@ if (EXISTS "/usr/share/apps/cmake/modules")
     list(APPEND CMAKE_MODULE_PATH "/usr/share/apps/cmake/modules")
 endif()
 
-# Other package dependencies...
-find_package(OpenGL)
-
 if (Qt5_FOUND OR QT4_FOUND)
     # Adding Krita's definitions to make headers automatically compatible. -amyspark
     add_definitions(
@@ -38,6 +35,7 @@ if (Qt5_FOUND OR QT4_FOUND)
     option(ENABLE_DEEPWATER "Whether to build controls for displaying a deep water spectrum" FALSE)
     option(ENABLE_ANIMCURVE "Whether to build controls for anim curves" FALSE)
     option(ENABLE_EXPRMAIN "Whether to build the ExprMain entrypoint" FALSE)
+    option(ENABLE_OPENGL_DIALOGS "Whether to build legacy OpenGL widgets (ExprShortEdit, ExprDialog, and ExprGrapher2d)" FALSE)
 
     set(EDITOR_MOC_HDRS
             ExprBrowser.h
@@ -47,12 +45,9 @@ if (Qt5_FOUND OR QT4_FOUND)
             ExprControlCollection.h
             ExprControl.h
             ExprCurve.h
-            ExprDialog.h
             ExprEditor.h
             ExprFileDialog.h
-            ExprGrapher2d.h
             ExprPopupDoc.h
-            ExprShortEdit.h
             ExprTextEdit.h
         )
 
@@ -66,12 +61,9 @@ if (Qt5_FOUND OR QT4_FOUND)
             ExprControl.cpp
             ExprControlCollection.cpp
             ExprCurve.cpp
-            ExprDialog.cpp
             ExprEditor.cpp
             ExprFileDialog.cpp
-            ExprGrapher2d.cpp
             ExprPopupDoc.cpp
-            ExprShortEdit.cpp
             ExprTextEdit.cpp
     )
     
@@ -91,7 +83,24 @@ if (Qt5_FOUND OR QT4_FOUND)
     if (ENABLE_EXPRMAIN)
         set(EDITOR_CPPS ${EDITOR_CPPS} ExprMain.cpp)
     endif()
-    
+
+    if (ENABLE_OPENGL_DIALOGS)
+        # Other package dependencies...
+        find_package(OpenGL)
+        set(EDITOR_MOC_HDRS ${EDITOR_MOC_HDRS}
+                ExprDialog.h
+                ExprGrapher2d.h
+                ExprShortEdit.h
+        )
+        set(EDITOR_CPPS ${EDITOR_CPPS}
+                ExprDialog.cpp
+                ExprGrapher2d.cpp
+                ExprShortEdit.cpp
+        )
+        set(PYQT_EXPORT_OPENGL_DIALOGS "")
+    else()
+        set(PYQT_EXPORT_OPENGL_DIALOGS "-x SEEXPR_ENABLE_OPENGL_DIALOGS")
+    endif()
 
     if (ENABLE_QT5)
         qt5_wrap_cpp(EDITOR_MOC_SRCS ${EDITOR_MOC_HDRS})
@@ -160,17 +169,25 @@ if (Qt5_FOUND OR QT4_FOUND)
             Qt5::Core
             Qt5::Gui
             Qt5::Widgets
-            Qt5::OpenGL
         )
     else()
         target_link_libraries(SeExpr2Editor PRIVATE
             ${QT_QTCORE_LIBRARY}
             ${QT_QTGUI_LIBRARY}
-            ${QT_QTOPENGL_LIBRARY}
         )
     endif()
 
-    target_link_libraries(SeExpr2Editor PRIVATE ${OPENGL_LIBRARY} ${GLUT_LIBRARY})
+    if (ENABLE_OPENGL_DIALOGS)
+        if (ENABLE_QT5)
+            target_link_libraries(SeExpr2 PRIVATE Qt5::OpenGL)
+        else()
+            target_link_libraries(SeExpr2 PRIVATE ${QT_QTOPENGL_LIBRARY})
+        endif()
+        target_link_libraries(SeExpr2Editor PRIVATE ${OPENGL_LIBRARY} ${GLUT_LIBRARY})
+        if (WIN32)
+            target_link_libraries(SeExpr2Editor PRIVATE opengl32)
+        endif()
+    endif()
 
     if (DEFINED ANIMLIB_DIR)
         include_directories(${CMAKE_CURRENT_SOURCE_DIR}/CE)
@@ -187,10 +204,6 @@ if (Qt5_FOUND OR QT4_FOUND)
 
     if (DEFINED QDGUI_DIR)
         target_link_libraries(SeExpr2Editor PRIVATE qdcolorwidgets)
-    endif()
-
-    if (WIN32)
-        target_link_libraries(SeExpr2Editor PRIVATE opengl32)
     endif()
 
     ## Install library and includes
@@ -249,6 +262,7 @@ if (Qt5_FOUND OR QT4_FOUND)
                            -j 1
                            -I. -I${PYQT_SIP_DIR} -I${SIP_INCLUDE_DIR}
                            ${PYQT_EXPORT_DEEPWATER}
+                           ${PYQT_EXPORT_OPENGL_DIALOGS}
                            ${CMAKE_CURRENT_SOURCE_DIR}/SeExpr2Editor.sip
                            VERBATIM)
 
@@ -261,12 +275,20 @@ if (Qt5_FOUND OR QT4_FOUND)
                                   Qt5::Core
                                   Qt5::Gui
                                   Qt5::Widgets
-                                  Qt5::OpenGL)
+            )
         else()
             target_link_libraries(expreditor2 SeExpr2Editor
                                   ${QT_QTCORE_LIBRARY}
                                   ${QT_QTGUI_LIBRARY}
-                                  ${QT_QTOPENGL_LIBRARY})
+            )
+        endif()
+
+        if (ENABLE_EXPRDIALOG)
+            if (ENABLE_QT5)
+                target_link_libraries(expreditor2 PRIVATE Qt5::OpenGL)
+            else()
+                target_link_libraries(expreditor2 PRIVATE ${QT_QTOPENGL_LIBRARY})
+            endif()
         endif()
 
         # No prefix on python module name

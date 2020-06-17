@@ -18,6 +18,7 @@
 %End
 
 %Feature SEEXPR_ENABLE_DEEPWATER
+%Feature SEEXPR_ENABLE_OPENGL_WIDGETS
 
 %ConvertFromTypeCode
     // convert an std::string to a Python (unicode) string
@@ -70,6 +71,7 @@
 %End
 };
 
+%If (SEEXPR_ENABLE_OPENGL_WIDGETS)
 class ExprDialog:QDialog{
 %TypeHeaderCode
 #include "ExprDialog.h"
@@ -92,6 +94,7 @@ public Q_SLOTS:
     void clearExpression();
     
 };
+%End
 
 class ExprControlCollection:QWidget{
 %TypeHeaderCode
