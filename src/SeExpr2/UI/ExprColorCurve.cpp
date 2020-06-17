@@ -266,10 +266,14 @@ QByteArray CCurveScene::getCPixmap() {
 void CCurveScene::drawRect() {
     if (_baseRectW == 0) {
         _baseRectW = new ExprCBoxWidget(this);
+        // Disable the obtrusive grey background.
+        // It's noticeable with the sunken border of the CCurve. -amyspark
+        _baseRectW->setStyleSheet("background-color: transparent;");
     }
     if (_baseRect == 0) {
         _baseRect = addWidget(_baseRectW);
     }
+    _baseRectW->setMinimumWidth(_width);
     _baseRect->widget()->update();
     _baseRect->setZValue(0);
 }
