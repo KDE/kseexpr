@@ -29,7 +29,7 @@
 #include <SeExpr2/Interpreter.h>
 #include <SeExpr2/ExprFunc.h>
 #include <SeExpr2/ExprFuncX.h>
-#include <SeExpr2/Platform.h>
+#include <SeExpr2/Timer.h>
 
 namespace SeExpr2 {
 class RandFuncX : public ExprFuncSimple {

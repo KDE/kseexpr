@@ -34,7 +34,7 @@
 
 #include <SeExpr2/ExprFunc.h>
 #include <SeExpr2/ExprFuncX.h>
-#include <SeExpr2/Platform.h>  // performance timing
+#include <SeExpr2/Timer.h>  // performance timing
 #include <memory>
 #include <vector>
 

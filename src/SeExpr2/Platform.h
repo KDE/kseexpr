@@ -52,7 +52,6 @@
 #ifdef __APPLE__
 #include <Availability.h>
 #include <libgen.h>
-#include <os/lock.h>
 #endif
 
 // platform-specific includes
@@ -96,12 +95,6 @@
 #include <string.h>
 #include <pthread.h>
 #include <inttypes.h>
-#include <sys/time.h>
-// OS for spinlock
-#ifdef __APPLE__
-#include <libkern/OSAtomic.h>
-#include <sys/types.h>
-#endif
 #endif  // defined(_WIN32)...
 
 // general includes
@@ -209,142 +202,6 @@ inline double crack_atof(const char* num) {
   }
 
   return sign * (int_part + frac_part) * exp_part;
-}
-
-namespace SeExpr2 {
-#if !(defined(WINDOWS) && defined(_MSC_VER))
-
-class Timer {
-#ifdef __APPLE__
-    typedef struct timeval Time;
-#else
-    typedef timespec Time;
-#endif
-    Time startTime, stopTime;
-    bool started;
-
-  public:
-    Timer() : started(false) {}
-
-    void start() {
-        started = true;
-#ifdef __APPLE__
-        gettimeofday(&startTime, 0);
-#else
-        clock_gettime(CLOCK_MONOTONIC, &startTime);
-#endif
-    }
-
-    long elapsedTime() {
-        assert(started);
-#ifdef __APPLE__
-        gettimeofday(&stopTime, 0);
-        long seconds = stopTime.tv_sec - startTime.tv_sec;
-        long useconds = stopTime.tv_usec - startTime.tv_usec;
-        long elapsedTime = ((seconds) * 1000 + useconds / 1000.0) + 0.5;
-#else
-        clock_gettime(CLOCK_MONOTONIC, &stopTime);
-        long seconds = stopTime.tv_sec - startTime.tv_sec;
-        long nseconds = stopTime.tv_nsec - startTime.tv_nsec;
-        long elapsedTime = ((seconds) * 1000 + nseconds / 1000000.0) + 0.5;
-#endif
-        return elapsedTime;
-    }
-};
-#else  // Windows
-class Timer {
-    __int64 time();
-    __int64 ticksPerSeconds;
-    __int64 startTime, stopTime;
-    bool started;
-
-  public:
-    Timer();
-    void start();
-    long elapsedTime();
-};
-#endif
-
-class PrintTiming {
-  public:
-    PrintTiming(const std::string& s) : _s(s) { _timer.start(); }
-
-    ~PrintTiming() { std::cout << _s.c_str() << " (" << _timer.elapsedTime() << " ms)" << std::endl; }
-
-
-  private:
-    Timer _timer;
-    const std::string _s;
-};
-}
-
-namespace SeExprInternal2 {
-
-/*
- * Mutex/SpinLock classes
- */
-
-#if defined(WINDOWS) && defined(_MSC_VER)
-
-class _Mutex {
-  public:
-    _Mutex();
-    ~_Mutex();
-    void lock();
-    void unlock();
-
-  private:
-    void* _mutex;
-};
-
-class _SpinLock {
-  public:
-    _SpinLock();
-    ~_SpinLock();
-    void lock();
-    void unlock();
-
-  private:
-    void* _spinlock;
-};
-
-#else
-// assume linux/unix/posix
-class _Mutex {
-  public:
-    _Mutex() { pthread_mutex_init(&_mutex, 0); }
-    ~_Mutex() { pthread_mutex_destroy(&_mutex); }
-    void lock() { pthread_mutex_lock(&_mutex); }
-    void unlock() { pthread_mutex_unlock(&_mutex); }
-
-  private:
-    pthread_mutex_t _mutex;
-};
-
-#ifdef __APPLE__
-class _SpinLock {
-  public:
-    _SpinLock() { _spinlock = OS_UNFAIR_LOCK_INIT; }
-    ~_SpinLock() {}
-    void lock() { os_unfair_lock_lock(&_spinlock); }
-    void unlock() { os_unfair_lock_unlock(&_spinlock); }
-
-  private:
-    os_unfair_lock _spinlock;
-};
-#else
-class _SpinLock {
-  public:
-    _SpinLock() { pthread_spin_init(&_spinlock, PTHREAD_PROCESS_PRIVATE); }
-    ~_SpinLock() { pthread_spin_destroy(&_spinlock); }
-    void lock() { pthread_spin_lock(&_spinlock); }
-    void unlock() { pthread_spin_unlock(&_spinlock); }
-
-  private:
-    pthread_spinlock_t _spinlock;
-};
-#endif  // __APPLE__
-#endif
 }
 
 #endif  // Platform_h
