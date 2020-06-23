@@ -29,6 +29,10 @@ if (Qt5_FOUND OR QT4_FOUND)
         -DQT_USE_FAST_OPERATOR_PLUS
     )
 
+    if (CMAKE_COMPILER_IS_GNUCXX)
+        add_compile_options($<$<COMPILE_LANGUAGE:CXX>:-Wno-suggest-override> -Wextra)
+    endif()
+
     BuildParserScanner(ExprSpecParserLex ExprSpecParser ExprSpec
                        editor_parser_cpp)
 
@@ -69,6 +73,7 @@ if (Qt5_FOUND OR QT4_FOUND)
     set(EDITOR_CPPS
             BasicExpression.cpp
             Debug.cpp
+            Editable.cpp
             EditableExpression.cpp
             ErrorMessages.cpp
             ExprAddDialog.cpp
