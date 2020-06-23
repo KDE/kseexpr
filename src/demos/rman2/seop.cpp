@@ -95,17 +95,17 @@ struct ThreadData {
 
             // parse each var group (separated by spaces)
             char* varlist_end = 0;
-            char* vargroup = strtok_r(varlist, " ", &varlist_end);
+            char* vargroup = SEEXPR2_strtok_r(varlist, " ", &varlist_end);
             do {
                 // parse vars within var group (separated by commas)
                 int groupStart = varnames.size();
                 char* vargroup_end = 0;
-                char* var = strtok_r(vargroup, ",", &vargroup_end);
+                char* var = SEEXPR2_strtok_r(vargroup, ",", &vargroup_end);
                 do {
                     varnames.push_back(tokenize(var));
                     groupStarts.push_back(groupStart);
-                } while ((var = strtok_r(0, ",", &vargroup_end)));
-            } while ((vargroup = strtok_r(0, " ", &varlist_end)));
+                } while ((var = SEEXPR2_strtok_r(0, ",", &vargroup_end)));
+            } while ((vargroup = SEEXPR2_strtok_r(0, " ", &varlist_end)));
 
             // build new varmap
             int nvars = varnames.size();

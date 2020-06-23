@@ -221,7 +221,7 @@ void ExprFunc::loadPlugins(const char* path) {
     // first split path into individual entries
     char* pathdup = strdup(path);
     char* state = 0;
-    char* entry = strtok_r(pathdup, ":", &state);
+    char* entry = SEEXPR2_strtok_r(pathdup, ":", &state);
     while (entry) {
         // if entry ends with ".so", load directly
         if ((!strcmp(entry + strlen(entry) - 3, ".so")))
@@ -243,7 +243,7 @@ void ExprFunc::loadPlugins(const char* path) {
             }
         }
 
-        entry = strtok_r(0, ":", &state);
+        entry = SEEXPR2_strtok_r(0, ":", &state);
     }
     free(pathdup);
 #endif

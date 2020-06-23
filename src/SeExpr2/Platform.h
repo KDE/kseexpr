@@ -104,11 +104,11 @@
 
 // missing functions on Windows
 #if defined(WINDOWS) && defined(_MSC_VER)
-#define snprintf sprintf_s
-#define strtok_r strtok_s
+#define SEEXPR2_snprintf sprintf_s
+#define SEEXPR2_strtok_r strtok_s
 typedef __int64 FilePos;
-#define fseeko _fseeki64
-#define ftello _ftelli64
+#define SEEXPR2_fseeko _fseeki64
+#define SEEXPR2_ftello _ftelli64
 
 inline double log2(double x) { return log(x) * 1.4426950408889634; }
 
@@ -126,6 +126,10 @@ typedef unsigned int uint32_t;
 #define UINT32_MIN (0)
 #endif
 #else
+#define SEEXPR2_snprintf snprintf
+#define SEEXPR2_strtok_r strtok_r
+#define SEEXPR2_fseeko fseeko
+#define SEEXPR2_ftello ftello
 typedef off_t FilePos;
 #endif
 
