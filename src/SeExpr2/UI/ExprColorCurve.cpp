@@ -54,8 +54,9 @@ CCurveScene::~CCurveScene() { delete _curve; }
 
 void CCurveScene::resize(const int width, const int height) {
     // width and height already have the 8 px padding factored in
-    _width = width - 16;
-    _height = height - 16;
+    // MAKE SURE THIS NEVER UNDERFLOWS THE PIXMAPSIZE -- amyspark
+    _width = std::max(width - 16, 1);
+    _height = std::max(height - 16, 1);
     setSceneRect(-9, -2, width, height);
     drawRect();
     drawPoints();
