@@ -158,7 +158,7 @@ void ExprTextEdit::keyPressEvent(QKeyEvent* e) {
     }
 
     // hide the completer if we have too few characters, we are at end of word
-    if (!isShortcut && (hasModifier || index == -1)) {
+    if (!isShortcut && (hasModifier || e->text().isEmpty() || completionPrefix.length() < 1 || index == -1)) {
         completer->popup()->hide();
     } else if (_popupEnabledAction->isChecked()) {
         // copy the completion prefix in if we don't already have it in the completer
