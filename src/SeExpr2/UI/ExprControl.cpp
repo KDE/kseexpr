@@ -153,7 +153,12 @@ ExprControl::ExprControl(int id, Editable* editable, bool showColorLink)
     // see parser's specRegisterEditable
     // TODO these labels are untranslatable
     QString editableLabel = QString::fromStdString(editable->name);
-    _label = new QLabel(QString(tr("<b>%1</b>")).arg(editableLabel));
+    _label = new QLabel();
+    QFontMetrics _labelSize(_label->font());
+    // Fix label appearance and word wrap, just in case -- amyspark
+    // 45px gives us some breathing space
+    _label->setFixedWidth(60);
+    _label->setText(tr("<b>%1</b>").arg(_labelSize.elidedText(editableLabel, Qt::TextElideMode::ElideRight, 45)));
     _label->setAutoFillBackground(true);
     hbox->addWidget(_label);
 
