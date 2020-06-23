@@ -124,8 +124,10 @@ ExprColorSwatchWidget::ExprColorSwatchWidget(bool indexLabel, QWidget *parent)
     QToolButton *addBtn = new QToolButton;
     addBtn->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
     QAction *detailAction = new QAction(tr("&Add..."));
-    detailAction->setIcon(QIcon::fromTheme("list-add"));
+    QIcon detailIcon = QIcon::fromTheme("addlayer", QIcon::fromTheme("list-add"));
+    detailAction->setIcon(detailIcon);
     addBtn->setDefaultAction(detailAction);
+    addBtn->setFixedHeight(16);
     QVBoxLayout *swatchControlLayout = new QVBoxLayout();
     swatchControlLayout->setContentsMargins(0, 0, 0, 0);
     swatchControlLayout->setAlignment(Qt::AlignLeft | Qt::AlignCenter);

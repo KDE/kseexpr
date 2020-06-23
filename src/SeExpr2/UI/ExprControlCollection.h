@@ -70,7 +70,7 @@ class ExprControlCollection : public QWidget {
 
   private
 Q_SLOTS:
-    /// When a user clicks "Add Widget" button
+    /// When a user clicks "Add new variable" button
     void addControlDialog();
     /// Notification when by a control whenever it is edited
     void singleControlChanged(int id);
@@ -84,7 +84,7 @@ Q_SIGNALS:
     /// Gives information about when a link color was changed
     void linkColorOutput(QColor color);
     /// Emitted to request that a new widget string should be added to the expression
-    /// i.e. after "Add Widget" was used
+    /// i.e. after "Add new variable" was used
     void insertString(const std::string &controlString);
   public
 Q_SLOTS:

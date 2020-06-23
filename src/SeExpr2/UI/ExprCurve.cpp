@@ -316,8 +316,8 @@ ExprCurve::ExprCurve(QWidget *parent, QString pLabel, QString vLabel, QString iL
     if (expandable) {
         QToolButton *expandButton = new QToolButton(this);
         expandButton->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Expanding);
-        QAction *detailAction = new QAction(tr("&Expand..."));
-        detailAction->setIcon(QIcon::fromTheme("go-next"));
+        QIcon expandIcon = QIcon::fromTheme("arrow-right", QIcon::fromTheme("go-next"));
+        QAction *detailAction = new QAction(expandIcon, tr("&Expand..."));
         expandButton->setDefaultAction(detailAction);
         mainLayout->addWidget(expandButton);
         // open a the detail widget when clicked

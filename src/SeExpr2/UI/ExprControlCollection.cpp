@@ -35,7 +35,7 @@ ExprControlCollection::ExprControlCollection(QWidget* parent, bool showAddButton
     controlLayout->insertStretch(-1, 100);
 
     if (showAddButton) {
-        QPushButton* button = new QPushButton(tr("Add Widget"));
+        QPushButton* button = new QPushButton(tr("Add new variable"));
         button->setFocusPolicy(Qt::NoFocus);
         QHBoxLayout* buttonLayout = new QHBoxLayout();
         buttonLayout->insertStretch(-1, 100);

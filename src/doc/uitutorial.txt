@@ -132,7 +132,7 @@ Next we'll add 2 new components in the constructor and lay them out.  The <a hre
 Already we can use the demo app to create some expressions.  
 
 <p>
-Clicking the <b>Add Widget</b> button will give us a dialog to choose different variable types, with the corresponding expression output displayed in the editor:<br><br><img src="./ui_addWidget.png">
+Clicking the <b>Add new variable</b> button will give us a dialog to choose different variable types, with the corresponding expression output displayed in the editor:<br><br><img src="./ui_addWidget.png">
 
 <p>
 For example, adding a color widget creates 3 sliders for RGB values which we can edit either from the control sliders or from the text editor:<br><br><img src="./ui_editor1.png">
