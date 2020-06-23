@@ -158,7 +158,8 @@ ImageEditorDialog::ImageEditorDialog(QWidget *parent) : QDialog(parent) {
     scrollArea->setWidget(controls);
 
     // Expression editor
-    _editor = new ExprEditor(this, controls);
+    _editor = new ExprEditor(this);
+    _editor->setControlCollectionWidget(controls);
 
     // Expression browser
     ExprBrowser *browser = new ExprBrowser(0, _editor);

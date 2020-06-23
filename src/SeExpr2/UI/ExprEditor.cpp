@@ -65,8 +65,8 @@ ExprEditor::~ExprEditor() {
     delete previewTimer;
 }
 
-ExprEditor::ExprEditor(QWidget* parent, ExprControlCollection* controls)
-    : QWidget(parent), _updatingText(0), errorHeight(0) {
+ExprEditor::ExprEditor(QWidget* parent)
+    : QWidget(parent), controls(nullptr),_updatingText(0), errorHeight(0) {
     // timers
     controlRebuildTimer = new QTimer();
     previewTimer = new QTimer();
@@ -74,9 +74,6 @@ ExprEditor::ExprEditor(QWidget* parent, ExprControlCollection* controls)
     // title and minimum size
     setWindowTitle(tr("Expression Editor"));
     setMinimumHeight(100);
-
-    // expression controls, we need for signal connections
-    this->controls = controls;
 
     // make layout
     QVBoxLayout* exprAndErrors = new QVBoxLayout;
@@ -120,11 +117,32 @@ ExprEditor::ExprEditor(QWidget* parent, ExprControlCollection* controls)
     connect(exprTe, SIGNAL(applyShortcut()), SLOT(sendApply()));
     connect(exprTe, SIGNAL(nextError()), SLOT(nextError()));
     connect(exprTe, SIGNAL(textChanged()), SLOT(exprChanged()));
-    connect(controls, SIGNAL(controlChanged(int)), SLOT(controlChanged(int)));
-    connect(controls, SIGNAL(insertString(const std::string&)), SLOT(insertStr(const std::string&)));
-    connect(controlRebuildTimer, SIGNAL(timeout()), SLOT(rebuildControls()));
     connect(controlRebuildTimer, SIGNAL(timeout()), SLOT(sendPreview()));
     connect(previewTimer, SIGNAL(timeout()), SLOT(sendPreview()));
+}
+
+ExprControlCollection* ExprEditor::controlCollectionWidget() const
+{
+    return this->controls;
+}
+
+// expression controls, we need for signal connections
+void ExprEditor::setControlCollectionWidget(ExprControlCollection* widget) {
+    if (this->controls)
+    {
+        disconnect(controlRebuildTimer, SIGNAL(timeout())),
+        disconnect(controls, SIGNAL(controlChanged(int)));
+        disconnect(controlRebuildTimer, SIGNAL(timeout()));
+    }
+
+    this->controls = widget;
+
+    if (this->controls)
+    {
+        connect(controlRebuildTimer, SIGNAL(timeout()), SLOT(rebuildControls()));
+        connect(controls, SIGNAL(controlChanged(int)), SLOT(controlChanged(int)));
+        connect(controls, SIGNAL(insertString(const std::string&)), SLOT(insertStr(const std::string&)));
+    }
 }
 
 void ExprEditor::selectError() {

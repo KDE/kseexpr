@@ -32,8 +32,10 @@ class ExprEditor : public QWidget {
     Q_OBJECT
 
   public:
-    ExprEditor(QWidget* parent, ExprControlCollection* controls);
+    ExprEditor(QWidget* parent);
     virtual ~ExprEditor();
+    virtual void setControlCollectionWidget(ExprControlCollection* widget);
+    ExprControlCollection* controlCollectionWidget() const;
 
   public
 Q_SLOTS:
