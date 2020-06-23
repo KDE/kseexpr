@@ -54,6 +54,18 @@ if (Qt5_FOUND OR QT4_FOUND)
             ExprTextEdit.h
         )
 
+    set(EDITOR_ADDITIONAL_HEADERS
+            BasicExpression.h
+            ControlSpec.h
+            Editable.h
+            EditableExpression.h
+            ExprHelp.h
+            ExprHighlighter.h
+            ExprPopupDoc.h
+            ExprShortEdit.h
+            ExprSpecType.h
+    )
+
     set(EDITOR_CPPS
             BasicExpression.cpp
             Debug.cpp
@@ -215,9 +227,10 @@ if (Qt5_FOUND OR QT4_FOUND)
 
     ## Install library and includes
     install(TARGETS SeExpr2Editor EXPORT ${PROJECT_NAME}Targets DESTINATION ${CMAKE_INSTALL_LIBDIR})
-    # TODO exclude files as per animlib/deepwater/animcurve -- amyspark
-    install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/ DESTINATION ${INCLUDE_DIR}/UI
-            FILES_MATCHING PATTERN "*.h")
+    install(
+        FILES ${EDITOR_MOC_HDRS} ${EDITOR_ADDITIONAL_HEADERS}
+        DESTINATION ${INCLUDE_DIR}/UI
+    )
 
     if(USE_PYTHON)
         # Generate python module expreditor2, using sip

@@ -120,7 +120,10 @@ install(TARGETS SeExpr2 DESTINATION ${CMAKE_INSTALL_LIBDIR}
 
 install(DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/"
         COMPONENT devel DESTINATION ${INCLUDE_DIR}
-        FILES_MATCHING PATTERN "*.h")
+        FILES_MATCHING PATTERN "*.h"
+        PATTERN "UI/*" EXCLUDE
+        PATTERN "generated/*" EXCLUDE
+)
 
 configure_file("ExprConfig.h.in" "ExprConfig.h")
 install(FILES "${CMAKE_CURRENT_BINARY_DIR}/ExprConfig.h"
