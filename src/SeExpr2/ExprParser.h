@@ -21,11 +21,14 @@
 #include <string>
 #endif
 
+#include "Expression.h"
+#include "ErrorCode.h"
+#include "ExprNode.h"
+
 namespace SeExpr2 {
-class ExprNode;
-class Expression;
 bool ExprParse(SeExpr2::ExprNode*& parseTree,
-               std::string& error,
+               SeExpr2::ErrorCode& errorCode,
+               std::vector<std::string>& errorIds,
                int& errorStart,
                int& errorEnd,
                std::vector<std::pair<int, int> >& _comments,

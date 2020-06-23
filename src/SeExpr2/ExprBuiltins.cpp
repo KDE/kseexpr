@@ -16,6 +16,7 @@
 */
 
 #include <cassert>
+#define _USE_MATH_DEFINES
 #include <cmath>
 #include <cstdlib>
 #include <limits>
@@ -1050,7 +1051,7 @@ class CachedVoronoiFunc : public ExprFuncSimple {
         // check number of arguments
         int nargs = node->numChildren();
         if (nargs < 1 || nargs > 7) {
-            node->addError("Wrong number of arguments, should be 1 to 7");
+            node->addError(ErrorCode::WrongNumberOfArguments);
             return ExprType().Error();
         }
 
@@ -1334,7 +1335,7 @@ class CurveFuncX : public ExprFuncSimple {
         // check number of arguments
         int nargs = node->numChildren();
         if ((nargs - 1) % 3) {
-            node->addError("Wrong number of arguments, should be multiple of 3 plus 1");
+            node->addError(ErrorCode::WrongNumberOfArgumentsMultiple3Plus1);
             return ExprType().Error();
         }
 
@@ -1384,7 +1385,7 @@ class CCurveFuncX : public ExprFuncSimple {
         // check number of arguments
         int nargs = node->numChildren();
         if ((nargs - 1) % 3) {
-            node->addError("Wrong number of arguments, should be multiple of 3 plus 1");
+            node->addError(ErrorCode::WrongNumberOfArgumentsMultiple3Plus1);
             return ExprType().Error().Varying();
         }
 
@@ -1503,7 +1504,7 @@ class PrintFuncX : public ExprFuncSimple {
     virtual ExprType prep(ExprFuncNode* node, bool wantScalar, ExprVarEnvBuilder& envBuilder) const {
         int nargs = node->numChildren();
         if (nargs < 1) {
-            node->addError("Wrong number of arguments, should be GE 1");
+            node->addError(ErrorCode::WrongNumberOfArguments1Plus);
             return ExprType().Error().Varying();
         }
 
@@ -1615,11 +1616,11 @@ public:
     {
         int nargs = node->numChildren();
         if (nargs < 1) {
-            node->addError("Wrong number of arguments, should be >= 1");
+            node->addError(ErrorCode::WrongNumberOfArguments1Plus);
             return ExprType().Error().Constant();
         }
         if (! node->checkArg(0, ExprType().String().Constant(), envBuilder)) {
-            node->addError("First argument must be a string.");
+            node->addError(ErrorCode::FirstArgumentNotString);
             return ExprType().Error().Constant();
         }
 
@@ -1632,7 +1633,7 @@ public:
             const size_t specStart = format.find('%', searchStart);
             if (specStart == std::string::npos) break;
             if (specStart + 1 == format.length()) {
-                node->addError("incomplete format specifier");
+                node->addError(ErrorCode::IncompleteFormatSpecifier);
                 return ExprType().Error().Constant();
             }
             if (format[specStart + 1] == '%') {
@@ -1643,7 +1644,7 @@ public:
             const size_t specEnd = format.find_first_of(_intSpec + _doubleSpec + _strSpec, 
                                                         specStart);
             if (specEnd == std::string::npos) {
-                node->addError("incomplete format specifier");
+                node->addError(ErrorCode::IncompleteFormatSpecifier);
                 return ExprType().Error().Constant();
             }
             if (_strSpec.find(format[specEnd]) != std::string::npos) {

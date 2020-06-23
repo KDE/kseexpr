@@ -39,6 +39,7 @@ if (Qt5_FOUND OR QT4_FOUND)
 
     set(EDITOR_MOC_HDRS
             Debug.h
+            ErrorMessages.h
             ExprAddDialog.h
             ExprBrowser.h
             ExprColorCurve.h
@@ -57,6 +58,7 @@ if (Qt5_FOUND OR QT4_FOUND)
             BasicExpression.cpp
             Debug.cpp
             EditableExpression.cpp
+            ErrorMessages.cpp
             ExprAddDialog.cpp
             ExprBrowser.cpp
             ExprColorCurve.cpp
@@ -67,6 +69,7 @@ if (Qt5_FOUND OR QT4_FOUND)
             ExprCurve.cpp
             ExprEditor.cpp
             ExprFileDialog.cpp
+            ExprHighlighter.cpp
             ExprPopupDoc.cpp
             ExprTextEdit.cpp
     )

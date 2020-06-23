@@ -113,8 +113,12 @@ typedef __int64 FilePos;
 inline double log2(double x) { return log(x) * 1.4426950408889634; }
 
 typedef unsigned int uint32_t;
+#ifndef M_E
 #define M_E (2.7182818284590452354)
+#endif
+#ifndef M_PI
 #define M_PI (3.141592653589793238)
+#endif
 #if !defined(UINT32_MAX)
 #define UINT32_MAX (0xffffffff)
 #endif

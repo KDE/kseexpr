@@ -51,7 +51,8 @@ static void yyerror(const char* msg);
 
 // local data
 static const char* ParseStr;    // string being parsed
-static std::string ParseError;  // error (set from yyerror)
+static SeExpr2::ErrorCode ParseErrorCode;  // error (set from yyerror)
+static std::string ParseErrorId; // string that failed parsing (set from yyerror)
 static SeExpr2::ExprNode* ParseResult; // must set result here since yyparse can't return it
 static const SeExpr2::Expression* Expr;// used for parenting created SeExprOp's
 
@@ -374,24 +375,16 @@ static void yyerror(const char* /*msg*/)
     for (int i = end; i > pos; i--)
 	if (ParseStr[i] == '\n') { end = i - 1; multiline=1; }
 
-    ParseError = yytext[0] ? "Syntax error" : "Unexpected end of expression";
-    if (multiline) {
-	char buff[30];
-	snprintf(buff, 30, " at line %d", lineno);
-	ParseError += buff;
-    }
-    if (yytext[0]) {
-	ParseError += " near '";
-	ParseError += yytext;
-    }
-    ParseError += "':\n    ";
+    ParseErrorCode = yytext[0] ? SeExpr2::ErrorCode::SyntaxError : SeExpr2::ErrorCode::UnexpectedEndOfExpression;
+
+    ParseErrorId = "";
 
     int s = std::max(start, pos-30);
     int e = std::min(end, pos+30);
 
-    if (s != start) ParseError += "...";
-    ParseError += std::string(ParseStr, s, e-s+1);
-    if (e != end) ParseError += "...";
+    if (s != start) ParseErrorId += "...";
+    ParseErrorId += std::string(ParseStr, s, e-s+1);
+    if (e != end) ParseErrorId += "...";
 }
 
 
@@ -407,9 +400,14 @@ static SeExprInternal2::Mutex mutex;
 
 namespace SeExpr2 {
 bool ExprParse(SeExpr2::ExprNode*& parseTree,
-    std::string& error, int& errorStart, int& errorEnd,
+    SeExpr2::ErrorCode& errorCode,
+    std::vector<std::string>& errorIds,
+    int& errorStart,
+    int& errorEnd,
     std::vector<std::pair<int,int> >& comments,
-    const SeExpr2::Expression* expr, const char* str, bool wantVec)
+    const SeExpr2::Expression* expr,
+    const char* str,
+    bool wantVec)
 {
     SeExprInternal2::AutoMutex locker(mutex);
 
@@ -423,27 +421,35 @@ bool ExprParse(SeExpr2::ExprNode*& parseTree,
     yy_delete_buffer(buffer);
 
     if (resultCode == 0) {
-	// success
-	error = "";
-	parseTree = ParseResult;
+        // success
+        errorCode = ErrorCode::None;
+        errorIds = {};
+	    parseTree = ParseResult;
     }
     else {
-	// failure
-	error = ParseError;
+        // failure
+        errorCode = ParseErrorCode;
+        errorIds = { ParseErrorId };
         errorStart=yylloc.first_column;
         errorEnd=yylloc.last_column;
-	parseTree = 0;
-	// gather list of nodes with no parent
-	std::vector<SeExpr2::ExprNode*> delnodes;
-	std::vector<SeExpr2::ExprNode*>::iterator iter;
-	for (iter = ParseNodes.begin(); iter != ParseNodes.end(); iter++)
-	    if (!(*iter)->parent()) { delnodes.push_back(*iter); }
-	// now delete them (they will delete their own children)
-	for (iter = delnodes.begin(); iter != delnodes.end(); iter++)
-	    delete *iter;
+        parseTree = nullptr;
+
+        // gather list of nodes with no parent
+        std::vector<SeExpr2::ExprNode*> delnodes;
+        std::vector<SeExpr2::ExprNode*>::iterator iter;
+        for (iter = ParseNodes.begin(); iter != ParseNodes.end(); iter++) {
+            if (!(*iter)->parent()) {
+                delnodes.push_back(*iter);
+            }
+        }
+
+        // now delete them (they will delete their own children)
+        for (iter = delnodes.begin(); iter != delnodes.end(); iter++) {
+            delete *iter;
+        }
     }
     ParseNodes.clear();
 
-    return parseTree != 0;
+    return parseTree != nullptr;
 }
 }

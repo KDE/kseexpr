@@ -1,5 +1,6 @@
 /*
 * Copyright Disney Enterprises, Inc.  All rights reserved.
+* Copyright (C) 2020 L. E. Segovia <amy@amyspark.me>
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License
@@ -19,7 +20,8 @@
 %option noyywrap
 /* Don't generate unput since it's unused and gcc complains... */
 %option nounput
-
+/* Don't generate input since it's unused too -- amyspark */
+%option noinput
 %{
 #ifndef MAKEDEPEND
 #    include <ctype.h>

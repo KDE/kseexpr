@@ -165,7 +165,9 @@ class ExprNode {
     /// @}
 
     /// Register error. This will allow users and sophisticated editors to highlight where in code problem was
-    inline void addError(const std::string& error) const { _expr->addError(error, _startPos, _endPos); }
+    inline void addError(const ErrorCode error, const std::vector<std::string> ids = {}) const {
+      _expr->addError(error, ids, _startPos, _endPos);
+    }
 
   protected: /*protected functions*/
     //! Set type of parameter
@@ -187,37 +189,30 @@ class ExprNode {
 
   public:
     /// Checks the boolean value and records an error string with node if it is false
-    inline bool checkCondition(bool check, const std::string& message, bool& error) {
+    inline bool checkCondition(bool check, const ErrorCode message, const std::vector<std::string> ids, bool& error) {
         if (!check) {
-            addError(message);
+            addError(message, ids);
             error = true;
         }
         return check;
     };
     /// Checks if the type is a value (i.e. string or float[d])
     bool checkIsValue(const ExprType& type, bool& error) {
-        return checkCondition(type.isValue(), "Expected String or Float[d]", error);
+        return checkCondition(type.isValue(), ErrorCode::ExpectedStringOrFloatAnyD, {}, error);
     }
     /// Checks if the type is a float[d] for any d
     bool checkIsFP(const ExprType& type, bool& error) {
-        return checkCondition(type.isFP(), "Expected Float[d]", error);
+        return checkCondition(type.isFP(), ErrorCode::ExpectedFloatAnyD, {}, error);
     }
     /// Checks if the type is a float[d] for a specific d
     bool checkIsFP(int d, const ExprType& type, bool& error) {
-        if (!type.isFP(d)) {  // Defer creating expensive string creation unless error
-            std::stringstream s;
-            s << "Expected Float[" << d << "]" << std::endl;
-            return checkCondition(false, s.str(), error);
-        }
-        return false;
+      return checkCondition(type.isFP(d), ErrorCode::ExpectedFloatD, {std::to_string(d)}, error);
     }
     /// types match (true if they do)
     inline bool checkTypesCompatible(const ExprType& first, const ExprType& second, bool& error) {
-        if (!ExprType::valuesCompatible(first, second)) {
-            return checkCondition(
-                false, "Type mismatch. First: " + first.toString() + " Second: " + second.toString(), error);
-        } else
-            return false;
+      return checkCondition(ExprType::valuesCompatible(first, second),
+      ErrorCode::TypeMismatch12, {first.toString(), second.toString()}, error
+      );
     }
     /// @}
   protected: /*protected data members*/

@@ -112,7 +112,8 @@ static void SeExpr2error(const char* msg);
 
 // local data
 static const char* ParseStr;    // string being parsed
-static std::string ParseError;  // error (set from SeExpr2error)
+static SeExpr2::ErrorCode ParseErrorCode;  // error (set from SeExpr2error)
+static std::string ParseErrorId; // string that failed parsing (set from SeExpr2error)
 static SeExpr2::ExprNode* ParseResult; // must set result here since SeExpr2parse can't return it
 static const SeExpr2::Expression* Expr;// used for parenting created SeExprOp's
 
@@ -134,7 +135,7 @@ inline void Forget(SeExpr2::ExprNode* n)
 #define NODE3(startPos,endPos,name,a,b,c) Remember(new SeExpr2::Expr##name(Expr,a,b,c),startPos,endPos)
 #define NODE4(startPos,endPos,name,a,b,c,t) Remember(new SeExpr2::Expr##name(Expr,a,b,c,t),startPos,endPos)
 
-#line 138 "y.tab.c"
+#line 139 "y.tab.c"
 
 # ifndef SeExprYY_CAST
 #  ifdef __cplusplus
@@ -214,7 +215,7 @@ extern int SeExpr2debug;
 #if ! defined SeExprYYSTYPE && ! defined SeExprYYSTYPE_IS_DECLARED
 union SeExprYYSTYPE
 {
-#line 77 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+#line 78 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
 
     SeExpr2::ExprNode* n; /* a node is returned for all non-terminals to
 		      build the parse tree from the leaves up. */
@@ -229,7 +230,7 @@ union SeExprYYSTYPE
     } t;  // return value for types
     SeExpr2::ExprType::Lifetime l; // return value for lifetime qualifiers
 
-#line 233 "y.tab.c"
+#line 234 "y.tab.c"
 
 };
 typedef union SeExprYYSTYPE SeExprYYSTYPE;
@@ -706,15 +707,15 @@ static const SeExpr2type_int8 SeExpr2translate[] =
   /* SeExprYYRLINESeExprYYN -- Source line where rule number SeExprYYN was defined.  */
 static const SeExpr2type_int16 SeExpr2rline[] =
 {
-       0,   132,   132,   134,   139,   140,   146,   154,   162,   172,
-     173,   174,   175,   176,   180,   183,   188,   194,   195,   199,
-     203,   210,   211,   215,   220,   229,   230,   235,   236,   240,
-     241,   245,   246,   247,   250,   253,   256,   259,   262,   265,
-     266,   269,   272,   275,   278,   281,   287,   292,   293,   294,
-     299,   300,   301,   302,   303,   304,   305,   306,   307,   308,
-     309,   310,   311,   312,   313,   314,   315,   316,   317,   318,
-     319,   320,   321,   325,   331,   332,   333,   334,   338,   339,
-     345,   346,   351,   352,   356
+       0,   133,   133,   135,   140,   141,   147,   155,   163,   173,
+     174,   175,   176,   177,   181,   184,   189,   195,   196,   200,
+     204,   211,   212,   216,   221,   230,   231,   236,   237,   241,
+     242,   246,   247,   248,   251,   254,   257,   260,   263,   266,
+     267,   270,   273,   276,   279,   282,   288,   293,   294,   295,
+     300,   301,   302,   303,   304,   305,   306,   307,   308,   309,
+     310,   311,   312,   313,   314,   315,   316,   317,   318,   319,
+     320,   321,   322,   326,   332,   333,   334,   335,   339,   340,
+     346,   347,   352,   353,   357
 };
 #endif
 
@@ -1621,34 +1622,34 @@ SeExpr2reduce:
   switch (SeExpr2n)
     {
   case 2:
-#line 132 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+#line 133 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
                                 { ParseResult = (SeExpr2vsp[-1].n); ParseResult->setPosition((SeExpr2loc).first_column, (SeExpr2loc).last_column);
                                   ParseResult->addChild((SeExpr2vsp[0].n)); }
-#line 1628 "y.tab.c"
+#line 1629 "y.tab.c"
     break;
 
   case 3:
-#line 134 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+#line 135 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
                                 { ParseResult = NODE((SeExpr2loc).first_column, (SeExpr2loc).last_column, ModuleNode);
                                   ParseResult->addChild((SeExpr2vsp[0].n)); }
-#line 1635 "y.tab.c"
+#line 1636 "y.tab.c"
     break;
 
   case 4:
-#line 139 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+#line 140 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
                                 { (SeExpr2val.n) = NODE((SeExpr2loc).first_column, (SeExpr2loc).last_column, ModuleNode); (SeExpr2val.n)->addChild((SeExpr2vsp[0].n)); }
-#line 1641 "y.tab.c"
+#line 1642 "y.tab.c"
     break;
 
   case 5:
-#line 141 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+#line 142 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
                                 { (SeExpr2val.n) = (SeExpr2vsp[-1].n); (SeExpr2val.n)->setPosition((SeExpr2loc).first_column, (SeExpr2loc).last_column);
                                   (SeExpr2val.n)->addChild((SeExpr2vsp[0].n)); }
-#line 1648 "y.tab.c"
+#line 1649 "y.tab.c"
     break;
 
   case 6:
-#line 147 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+#line 148 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
                                 { SeExpr2::ExprType type = SeExpr2::ExprType((SeExpr2vsp[-4].t).type, (SeExpr2vsp[-4].t).dim, (SeExpr2vsp[-4].t).lifetime);
                                     SeExpr2::ExprPrototypeNode * prototype =
                                         (SeExpr2::ExprPrototypeNode*)NODE2((SeExpr2loc).first_column, (SeExpr2loc).last_column, PrototypeNode, (SeExpr2vsp[-3].s), type);
@@ -1656,11 +1657,11 @@ SeExpr2reduce:
                                   Forget((SeExpr2vsp[-1].n));
                                   (SeExpr2val.n) = prototype;
                                   free((SeExpr2vsp[-3].s)); }
-#line 1660 "y.tab.c"
+#line 1661 "y.tab.c"
     break;
 
   case 7:
-#line 155 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+#line 156 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
                                 { SeExpr2::ExprType type = SeExpr2::ExprType((SeExpr2vsp[-7].t).type, (SeExpr2vsp[-7].t).dim, (SeExpr2vsp[-7].t).lifetime);
                                   SeExpr2::ExprPrototypeNode * prototype =
                                       (SeExpr2::ExprPrototypeNode*)NODE2((SeExpr2loc).first_column, (SeExpr2lsp[-3]).last_column, PrototypeNode, (SeExpr2vsp[-6].s), type);
@@ -1668,531 +1669,531 @@ SeExpr2reduce:
                                   Forget((SeExpr2vsp[-4].n));
                                   (SeExpr2val.n) = NODE2((SeExpr2loc).first_column, (SeExpr2loc).last_column, LocalFunctionNode, prototype, (SeExpr2vsp[-1].n));
                                   free((SeExpr2vsp[-6].s)); }
-#line 1672 "y.tab.c"
+#line 1673 "y.tab.c"
     break;
 
   case 8:
-#line 163 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+#line 164 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
                                 { SeExpr2::ExprPrototypeNode * prototype =
                                         (SeExpr2::ExprPrototypeNode*)NODE1((SeExpr2loc).first_column, (SeExpr2lsp[-3]).last_column, PrototypeNode, (SeExpr2vsp[-6].s));
                                   prototype->addArgs((SeExpr2vsp[-4].n));
                                   Forget((SeExpr2vsp[-4].n));
                                   (SeExpr2val.n) = NODE2((SeExpr2loc).first_column, (SeExpr2loc).last_column, LocalFunctionNode, prototype, (SeExpr2vsp[-1].n));
                                   free((SeExpr2vsp[-6].s)); }
-#line 1683 "y.tab.c"
+#line 1684 "y.tab.c"
     break;
 
   case 9:
-#line 172 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+#line 173 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
                                 { (SeExpr2val.l) = SeExpr2::ExprType::ltVARYING; }
-#line 1689 "y.tab.c"
+#line 1690 "y.tab.c"
     break;
 
   case 10:
-#line 173 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+#line 174 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
                                 { (SeExpr2val.l) = SeExpr2::ExprType::ltCONSTANT; }
-#line 1695 "y.tab.c"
+#line 1696 "y.tab.c"
     break;
 
   case 11:
-#line 174 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+#line 175 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
                                 { (SeExpr2val.l) = SeExpr2::ExprType::ltUNIFORM; }
-#line 1701 "y.tab.c"
+#line 1702 "y.tab.c"
     break;
 
   case 12:
-#line 175 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+#line 176 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
                                 { (SeExpr2val.l) = SeExpr2::ExprType::ltVARYING; }
-#line 1707 "y.tab.c"
+#line 1708 "y.tab.c"
     break;
 
   case 13:
-#line 176 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+#line 177 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
                                 { (SeExpr2val.l) = SeExpr2::ExprType::ltERROR; }
-#line 1713 "y.tab.c"
+#line 1714 "y.tab.c"
     break;
 
   case 14:
-#line 180 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+#line 181 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
                                  {(SeExpr2val.t).type     = SeExpr2::ExprType::tFP;
                                   (SeExpr2val.t).dim      = 1;
                                   (SeExpr2val.t).lifetime = (SeExpr2vsp[0].l); }
-#line 1721 "y.tab.c"
+#line 1722 "y.tab.c"
     break;
 
   case 15:
-#line 184 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+#line 185 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
                                 { (SeExpr2val.t).type = ((SeExpr2vsp[-2].d) > 0 ? SeExpr2::ExprType::tFP : SeExpr2::ExprType::tERROR);
                                   //TODO: This causes an error but does not report it to user. Change this.
                                   (SeExpr2val.t).dim  = ((SeExpr2vsp[-2].d) > 0 ? (SeExpr2vsp[-2].d) : 0);
                                   (SeExpr2val.t).lifetime = (SeExpr2vsp[0].l); }
-#line 1730 "y.tab.c"
+#line 1731 "y.tab.c"
     break;
 
   case 16:
-#line 188 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+#line 189 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
                                 { (SeExpr2val.t).type = SeExpr2::ExprType::tSTRING;
                                   (SeExpr2val.t).dim  = 1;
                                   (SeExpr2val.t).lifetime = (SeExpr2vsp[0].l); }
-#line 1738 "y.tab.c"
+#line 1739 "y.tab.c"
     break;
 
   case 17:
-#line 194 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+#line 195 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
                                 { (SeExpr2val.n) = NODE((SeExpr2loc).first_column, (SeExpr2loc).last_column, Node); }
-#line 1744 "y.tab.c"
+#line 1745 "y.tab.c"
     break;
 
   case 18:
-#line 195 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+#line 196 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
                                 { (SeExpr2val.n) = (SeExpr2vsp[0].n); }
-#line 1750 "y.tab.c"
+#line 1751 "y.tab.c"
     break;
 
   case 19:
-#line 199 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+#line 200 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
                                 { (SeExpr2val.n) = NODE((SeExpr2loc).first_column, (SeExpr2loc).last_column, Node);
                                   SeExpr2::ExprType type = SeExpr2::ExprType((SeExpr2vsp[0].t).type, (SeExpr2vsp[0].t).dim, (SeExpr2vsp[0].t).lifetime);
                                   SeExpr2::ExprNode* varNode = NODE2((SeExpr2loc).first_column, (SeExpr2loc).last_column, VarNode, "", type);
                                   (SeExpr2val.n)->addChild(varNode); }
-#line 1759 "y.tab.c"
+#line 1760 "y.tab.c"
     break;
 
   case 20:
-#line 203 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+#line 204 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
                                 { (SeExpr2val.n) = (SeExpr2vsp[-2].n);
                                   SeExpr2::ExprType type = SeExpr2::ExprType((SeExpr2vsp[0].t).type, (SeExpr2vsp[0].t).dim, (SeExpr2vsp[0].t).lifetime);
                                   SeExpr2::ExprNode* varNode = NODE2((SeExpr2lsp[0]).first_column, (SeExpr2lsp[0]).last_column, VarNode, "", type);
                                   (SeExpr2val.n)->addChild(varNode); }
-#line 1768 "y.tab.c"
+#line 1769 "y.tab.c"
     break;
 
   case 21:
-#line 210 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+#line 211 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
                                 { (SeExpr2val.n) = NODE((SeExpr2loc).first_column, (SeExpr2loc).last_column, Node); }
-#line 1774 "y.tab.c"
+#line 1775 "y.tab.c"
     break;
 
   case 22:
-#line 211 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+#line 212 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
                                 { (SeExpr2val.n) = (SeExpr2vsp[0].n); }
-#line 1780 "y.tab.c"
+#line 1781 "y.tab.c"
     break;
 
   case 23:
-#line 215 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+#line 216 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
                                  { (SeExpr2val.n) = NODE((SeExpr2loc).first_column, (SeExpr2loc).last_column, Node);
                                   SeExpr2::ExprType type = SeExpr2::ExprType((SeExpr2vsp[-1].t).type, (SeExpr2vsp[-1].t).dim, (SeExpr2vsp[-1].t).lifetime);
                                   SeExpr2::ExprNode* varNode = NODE2((SeExpr2loc).first_column, (SeExpr2loc).last_column, VarNode, (SeExpr2vsp[0].s), type);
                                   (SeExpr2val.n)->addChild(varNode);
                                   free((SeExpr2vsp[0].s)); }
-#line 1790 "y.tab.c"
+#line 1791 "y.tab.c"
     break;
 
   case 24:
-#line 221 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+#line 222 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
                                 { (SeExpr2val.n) = (SeExpr2vsp[-3].n);
                                   SeExpr2::ExprType type = SeExpr2::ExprType((SeExpr2vsp[-1].t).type, (SeExpr2vsp[-1].t).dim, (SeExpr2vsp[-1].t).lifetime);
                                   SeExpr2::ExprNode* varNode = NODE2((SeExpr2lsp[-1]).first_column, (SeExpr2lsp[0]).last_column, VarNode, (SeExpr2vsp[0].s), type);
                                   (SeExpr2val.n)->addChild(varNode);
                                   free((SeExpr2vsp[0].s)); }
-#line 1800 "y.tab.c"
+#line 1801 "y.tab.c"
     break;
 
   case 25:
-#line 229 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+#line 230 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
                                 { (SeExpr2val.n) = NODE2((SeExpr2loc).first_column,(SeExpr2loc).last_column,BlockNode, (SeExpr2vsp[-1].n), (SeExpr2vsp[0].n)); }
-#line 1806 "y.tab.c"
+#line 1807 "y.tab.c"
     break;
 
   case 26:
-#line 230 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+#line 231 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
                                 { (SeExpr2val.n) = (SeExpr2vsp[0].n); }
-#line 1812 "y.tab.c"
+#line 1813 "y.tab.c"
     break;
 
   case 27:
-#line 235 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+#line 236 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
                                 { (SeExpr2val.n) = NODE((SeExpr2loc).first_column,(SeExpr2loc).last_column,Node); /* create empty node */; }
-#line 1818 "y.tab.c"
+#line 1819 "y.tab.c"
     break;
 
   case 28:
-#line 236 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+#line 237 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
                                 { (SeExpr2val.n) = (SeExpr2vsp[0].n); }
-#line 1824 "y.tab.c"
+#line 1825 "y.tab.c"
     break;
 
   case 29:
-#line 240 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+#line 241 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
                                 { (SeExpr2val.n) = NODE1((SeExpr2loc).first_column,(SeExpr2loc).last_column,Node, (SeExpr2vsp[0].n)); /* create var list */}
-#line 1830 "y.tab.c"
+#line 1831 "y.tab.c"
     break;
 
   case 30:
-#line 241 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+#line 242 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
                                 { (SeExpr2val.n) = (SeExpr2vsp[-1].n); (SeExpr2vsp[-1].n)->addChild((SeExpr2vsp[0].n)); /* add to list */}
-#line 1836 "y.tab.c"
+#line 1837 "y.tab.c"
     break;
 
   case 31:
-#line 245 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+#line 246 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
                                 { (SeExpr2val.n) = (SeExpr2vsp[0].n); }
-#line 1842 "y.tab.c"
+#line 1843 "y.tab.c"
     break;
 
   case 32:
-#line 246 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+#line 247 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
                                 { (SeExpr2val.n) = NODE2((SeExpr2loc).first_column,(SeExpr2loc).last_column,AssignNode, (SeExpr2vsp[-3].s), (SeExpr2vsp[-1].n)); free((SeExpr2vsp[-3].s)); }
-#line 1848 "y.tab.c"
+#line 1849 "y.tab.c"
     break;
 
   case 33:
-#line 247 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+#line 248 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
                                    {SeExpr2::ExprNode* varNode=NODE1((SeExpr2lsp[-3]).first_column,(SeExpr2lsp[-3]).first_column,VarNode, (SeExpr2vsp[-3].s));
                                SeExpr2::ExprNode* opNode=NODE3((SeExpr2lsp[-1]).first_column,(SeExpr2lsp[-1]).first_column,BinaryOpNode,varNode,(SeExpr2vsp[-1].n),'+');
                                 (SeExpr2val.n) = NODE2((SeExpr2loc).first_column,(SeExpr2loc).last_column,AssignNode, (SeExpr2vsp[-3].s), opNode);free((SeExpr2vsp[-3].s));}
-#line 1856 "y.tab.c"
+#line 1857 "y.tab.c"
     break;
 
   case 34:
-#line 250 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+#line 251 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
                                    {SeExpr2::ExprNode* varNode=NODE1((SeExpr2lsp[-3]).first_column,(SeExpr2lsp[-3]).first_column,VarNode, (SeExpr2vsp[-3].s));
                                SeExpr2::ExprNode* opNode=NODE3((SeExpr2lsp[-1]).first_column,(SeExpr2lsp[-1]).first_column,BinaryOpNode,varNode,(SeExpr2vsp[-1].n),'-');
                                 (SeExpr2val.n) = NODE2((SeExpr2loc).first_column,(SeExpr2loc).last_column,AssignNode, (SeExpr2vsp[-3].s), opNode);free((SeExpr2vsp[-3].s));}
-#line 1864 "y.tab.c"
+#line 1865 "y.tab.c"
     break;
 
   case 35:
-#line 253 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+#line 254 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
                                     {SeExpr2::ExprNode* varNode=NODE1((SeExpr2lsp[-3]).first_column,(SeExpr2lsp[-3]).first_column,VarNode, (SeExpr2vsp[-3].s));
                                SeExpr2::ExprNode* opNode=NODE3((SeExpr2lsp[-1]).first_column,(SeExpr2lsp[-1]).first_column,BinaryOpNode,varNode,(SeExpr2vsp[-1].n),'*');
                                 (SeExpr2val.n) = NODE2((SeExpr2loc).first_column,(SeExpr2loc).last_column,AssignNode, (SeExpr2vsp[-3].s), opNode);free((SeExpr2vsp[-3].s));}
-#line 1872 "y.tab.c"
+#line 1873 "y.tab.c"
     break;
 
   case 36:
-#line 256 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+#line 257 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
                                    {SeExpr2::ExprNode* varNode=NODE1((SeExpr2lsp[-3]).first_column,(SeExpr2lsp[-3]).first_column,VarNode, (SeExpr2vsp[-3].s));
                                SeExpr2::ExprNode* opNode=NODE3((SeExpr2lsp[-1]).first_column,(SeExpr2lsp[-1]).first_column,BinaryOpNode,varNode,(SeExpr2vsp[-1].n),'/');
                                 (SeExpr2val.n) = NODE2((SeExpr2loc).first_column,(SeExpr2loc).last_column,AssignNode, (SeExpr2vsp[-3].s), opNode);free((SeExpr2vsp[-3].s));}
-#line 1880 "y.tab.c"
+#line 1881 "y.tab.c"
     break;
 
   case 37:
-#line 259 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+#line 260 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
                                    {SeExpr2::ExprNode* varNode=NODE1((SeExpr2lsp[-3]).first_column,(SeExpr2lsp[-3]).first_column,VarNode, (SeExpr2vsp[-3].s));
                                SeExpr2::ExprNode* opNode=NODE3((SeExpr2lsp[-1]).first_column,(SeExpr2lsp[-1]).first_column,BinaryOpNode,varNode,(SeExpr2vsp[-1].n),'^');
                                 (SeExpr2val.n) = NODE2((SeExpr2loc).first_column,(SeExpr2loc).last_column,AssignNode, (SeExpr2vsp[-3].s), opNode);free((SeExpr2vsp[-3].s));}
-#line 1888 "y.tab.c"
+#line 1889 "y.tab.c"
     break;
 
   case 38:
-#line 262 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+#line 263 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
                                    {SeExpr2::ExprNode* varNode=NODE1((SeExpr2lsp[-3]).first_column,(SeExpr2lsp[-3]).first_column,VarNode, (SeExpr2vsp[-3].s));
                                SeExpr2::ExprNode* opNode=NODE3((SeExpr2lsp[-1]).first_column,(SeExpr2lsp[-1]).first_column,BinaryOpNode,varNode,(SeExpr2vsp[-1].n),'%');
                                 (SeExpr2val.n) = NODE2((SeExpr2loc).first_column,(SeExpr2loc).last_column,AssignNode, (SeExpr2vsp[-3].s), opNode);free((SeExpr2vsp[-3].s));}
-#line 1896 "y.tab.c"
+#line 1897 "y.tab.c"
     break;
 
   case 39:
-#line 265 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+#line 266 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
                                 { (SeExpr2val.n) = NODE2((SeExpr2loc).first_column,(SeExpr2loc).last_column,AssignNode, (SeExpr2vsp[-3].s), (SeExpr2vsp[-1].n)); free((SeExpr2vsp[-3].s)); }
-#line 1902 "y.tab.c"
+#line 1903 "y.tab.c"
     break;
 
   case 40:
-#line 266 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+#line 267 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
                                     {SeExpr2::ExprNode* varNode=NODE1((SeExpr2lsp[-3]).first_column,(SeExpr2lsp[-3]).first_column,VarNode, (SeExpr2vsp[-3].s));
                                SeExpr2::ExprNode* opNode=NODE3((SeExpr2lsp[-1]).first_column,(SeExpr2lsp[-1]).first_column,BinaryOpNode,varNode,(SeExpr2vsp[-1].n),'+');
                                 (SeExpr2val.n) = NODE2((SeExpr2loc).first_column,(SeExpr2loc).last_column,AssignNode, (SeExpr2vsp[-3].s), opNode);free((SeExpr2vsp[-3].s));}
-#line 1910 "y.tab.c"
+#line 1911 "y.tab.c"
     break;
 
   case 41:
-#line 269 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+#line 270 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
                                     {SeExpr2::ExprNode* varNode=NODE1((SeExpr2lsp[-3]).first_column,(SeExpr2lsp[-3]).first_column,VarNode, (SeExpr2vsp[-3].s));
                                SeExpr2::ExprNode* opNode=NODE3((SeExpr2lsp[-1]).first_column,(SeExpr2lsp[-1]).first_column,BinaryOpNode,varNode,(SeExpr2vsp[-1].n),'-');
                                 (SeExpr2val.n) = NODE2((SeExpr2loc).first_column,(SeExpr2loc).last_column,AssignNode, (SeExpr2vsp[-3].s), opNode);free((SeExpr2vsp[-3].s));}
-#line 1918 "y.tab.c"
+#line 1919 "y.tab.c"
     break;
 
   case 42:
-#line 272 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+#line 273 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
                                      {SeExpr2::ExprNode* varNode=NODE1((SeExpr2lsp[-3]).first_column,(SeExpr2lsp[-3]).first_column,VarNode, (SeExpr2vsp[-3].s));
                                SeExpr2::ExprNode* opNode=NODE3((SeExpr2lsp[-1]).first_column,(SeExpr2lsp[-1]).first_column,BinaryOpNode,varNode,(SeExpr2vsp[-1].n),'*');
                                 (SeExpr2val.n) = NODE2((SeExpr2loc).first_column,(SeExpr2loc).last_column,AssignNode, (SeExpr2vsp[-3].s), opNode);free((SeExpr2vsp[-3].s));}
-#line 1926 "y.tab.c"
+#line 1927 "y.tab.c"
     break;
 
   case 43:
-#line 275 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+#line 276 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
                                     {SeExpr2::ExprNode* varNode=NODE1((SeExpr2lsp[-3]).first_column,(SeExpr2lsp[-3]).first_column,VarNode, (SeExpr2vsp[-3].s));
                                SeExpr2::ExprNode* opNode=NODE3((SeExpr2lsp[-1]).first_column,(SeExpr2lsp[-1]).first_column,BinaryOpNode,varNode,(SeExpr2vsp[-1].n),'/');
                                 (SeExpr2val.n) = NODE2((SeExpr2loc).first_column,(SeExpr2loc).last_column,AssignNode, (SeExpr2vsp[-3].s), opNode);free((SeExpr2vsp[-3].s));}
-#line 1934 "y.tab.c"
+#line 1935 "y.tab.c"
     break;
 
   case 44:
-#line 278 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+#line 279 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
                                     {SeExpr2::ExprNode* varNode=NODE1((SeExpr2lsp[-3]).first_column,(SeExpr2lsp[-3]).first_column,VarNode, (SeExpr2vsp[-3].s));
                                SeExpr2::ExprNode* opNode=NODE3((SeExpr2lsp[-1]).first_column,(SeExpr2lsp[-1]).first_column,BinaryOpNode,varNode,(SeExpr2vsp[-1].n),'^');
                                 (SeExpr2val.n) = NODE2((SeExpr2loc).first_column,(SeExpr2loc).last_column,AssignNode, (SeExpr2vsp[-3].s), opNode);free((SeExpr2vsp[-3].s));}
-#line 1942 "y.tab.c"
+#line 1943 "y.tab.c"
     break;
 
   case 45:
-#line 281 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+#line 282 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
                                     {SeExpr2::ExprNode* varNode=NODE1((SeExpr2lsp[-3]).first_column,(SeExpr2lsp[-3]).first_column,VarNode, (SeExpr2vsp[-3].s));
                                SeExpr2::ExprNode* opNode=NODE3((SeExpr2lsp[-1]).first_column,(SeExpr2lsp[-1]).first_column,BinaryOpNode,varNode,(SeExpr2vsp[-1].n),'%');
                                 (SeExpr2val.n) = NODE2((SeExpr2loc).first_column,(SeExpr2loc).last_column,AssignNode, (SeExpr2vsp[-3].s), opNode);free((SeExpr2vsp[-3].s));}
-#line 1950 "y.tab.c"
+#line 1951 "y.tab.c"
     break;
 
   case 46:
-#line 288 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+#line 289 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
                                 { (SeExpr2val.n) = NODE3((SeExpr2loc).first_column,(SeExpr2loc).last_column,IfThenElseNode, (SeExpr2vsp[-5].n), (SeExpr2vsp[-2].n), (SeExpr2vsp[0].n)); }
-#line 1956 "y.tab.c"
+#line 1957 "y.tab.c"
     break;
 
   case 47:
-#line 292 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+#line 293 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
                                 { (SeExpr2val.n) = NODE((SeExpr2loc).first_column,(SeExpr2loc).last_column,Node); /* create empty node */ }
-#line 1962 "y.tab.c"
+#line 1963 "y.tab.c"
     break;
 
   case 48:
-#line 293 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+#line 294 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
                                 { (SeExpr2val.n) = (SeExpr2vsp[-1].n); }
-#line 1968 "y.tab.c"
+#line 1969 "y.tab.c"
     break;
 
   case 49:
-#line 294 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+#line 295 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
                                 { (SeExpr2val.n) = (SeExpr2vsp[0].n); }
-#line 1974 "y.tab.c"
+#line 1975 "y.tab.c"
     break;
 
   case 50:
-#line 299 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+#line 300 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
                                 { (SeExpr2val.n) = (SeExpr2vsp[-1].n); }
-#line 1980 "y.tab.c"
+#line 1981 "y.tab.c"
     break;
 
   case 51:
-#line 300 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+#line 301 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
                                 { SeExpr2::ExprNode* newNode = NODE((SeExpr2loc).first_column,(SeExpr2loc).last_column,VecNode); newNode->addChildren((SeExpr2vsp[-1].n)); Forget((SeExpr2vsp[-1].n)); (SeExpr2val.n)=newNode;}
-#line 1986 "y.tab.c"
+#line 1987 "y.tab.c"
     break;
 
   case 52:
-#line 301 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+#line 302 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
                                 { (SeExpr2val.n) = NODE2((SeExpr2loc).first_column,(SeExpr2loc).last_column,SubscriptNode, (SeExpr2vsp[-3].n), (SeExpr2vsp[-1].n)); }
-#line 1992 "y.tab.c"
+#line 1993 "y.tab.c"
     break;
 
   case 53:
-#line 302 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+#line 303 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
                                 { (SeExpr2val.n) = NODE3((SeExpr2loc).first_column,(SeExpr2loc).last_column,CondNode, (SeExpr2vsp[-4].n), (SeExpr2vsp[-2].n), (SeExpr2vsp[0].n)); }
-#line 1998 "y.tab.c"
+#line 1999 "y.tab.c"
     break;
 
   case 54:
-#line 303 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+#line 304 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
                                 { (SeExpr2val.n) = NODE3((SeExpr2loc).first_column,(SeExpr2loc).last_column,CompareNode, (SeExpr2vsp[-2].n), (SeExpr2vsp[0].n), '|'); }
-#line 2004 "y.tab.c"
+#line 2005 "y.tab.c"
     break;
 
   case 55:
-#line 304 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+#line 305 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
                                 { (SeExpr2val.n) = NODE3((SeExpr2loc).first_column,(SeExpr2loc).last_column,CompareNode, (SeExpr2vsp[-2].n), (SeExpr2vsp[0].n), '&'); }
-#line 2010 "y.tab.c"
+#line 2011 "y.tab.c"
     break;
 
   case 56:
-#line 305 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+#line 306 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
                                 { (SeExpr2val.n) = NODE3((SeExpr2loc).first_column,(SeExpr2loc).last_column,CompareEqNode, (SeExpr2vsp[-2].n), (SeExpr2vsp[0].n),'='); }
-#line 2016 "y.tab.c"
+#line 2017 "y.tab.c"
     break;
 
   case 57:
-#line 306 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+#line 307 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
                                 { (SeExpr2val.n) = NODE3((SeExpr2loc).first_column,(SeExpr2loc).last_column,CompareEqNode, (SeExpr2vsp[-2].n), (SeExpr2vsp[0].n),'!'); }
-#line 2022 "y.tab.c"
+#line 2023 "y.tab.c"
     break;
 
   case 58:
-#line 307 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+#line 308 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
                                 { (SeExpr2val.n) = NODE3((SeExpr2loc).first_column,(SeExpr2loc).last_column,CompareNode, (SeExpr2vsp[-2].n), (SeExpr2vsp[0].n),'<'); }
-#line 2028 "y.tab.c"
+#line 2029 "y.tab.c"
     break;
 
   case 59:
-#line 308 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+#line 309 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
                                 { (SeExpr2val.n) = NODE3((SeExpr2loc).first_column,(SeExpr2loc).last_column,CompareNode, (SeExpr2vsp[-2].n), (SeExpr2vsp[0].n),'>'); }
-#line 2034 "y.tab.c"
+#line 2035 "y.tab.c"
     break;
 
   case 60:
-#line 309 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+#line 310 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
                                         { (SeExpr2val.n) = NODE3((SeExpr2loc).first_column,(SeExpr2loc).last_column,CompareNode, (SeExpr2vsp[-2].n), (SeExpr2vsp[0].n),'l'); }
-#line 2040 "y.tab.c"
+#line 2041 "y.tab.c"
     break;
 
   case 61:
-#line 310 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+#line 311 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
                                         { (SeExpr2val.n) = NODE3((SeExpr2loc).first_column,(SeExpr2loc).last_column,CompareNode, (SeExpr2vsp[-2].n), (SeExpr2vsp[0].n),'g'); }
-#line 2046 "y.tab.c"
+#line 2047 "y.tab.c"
     break;
 
   case 62:
-#line 311 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+#line 312 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
                                 { (SeExpr2val.n) = (SeExpr2vsp[0].n); }
-#line 2052 "y.tab.c"
+#line 2053 "y.tab.c"
     break;
 
   case 63:
-#line 312 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+#line 313 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
                                 { (SeExpr2val.n) = NODE2((SeExpr2loc).first_column,(SeExpr2loc).last_column,UnaryOpNode, (SeExpr2vsp[0].n), '-'); }
-#line 2058 "y.tab.c"
+#line 2059 "y.tab.c"
     break;
 
   case 64:
-#line 313 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+#line 314 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
                                 { (SeExpr2val.n) = NODE2((SeExpr2loc).first_column,(SeExpr2loc).last_column,UnaryOpNode, (SeExpr2vsp[0].n), '!'); }
-#line 2064 "y.tab.c"
+#line 2065 "y.tab.c"
     break;
 
   case 65:
-#line 314 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+#line 315 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
                                 { (SeExpr2val.n) = NODE2((SeExpr2loc).first_column,(SeExpr2loc).last_column,UnaryOpNode, (SeExpr2vsp[0].n), '~'); }
-#line 2070 "y.tab.c"
+#line 2071 "y.tab.c"
     break;
 
   case 66:
-#line 315 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+#line 316 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
                                 { (SeExpr2val.n) = NODE3((SeExpr2loc).first_column,(SeExpr2loc).last_column,BinaryOpNode, (SeExpr2vsp[-2].n), (SeExpr2vsp[0].n), '+'); }
-#line 2076 "y.tab.c"
+#line 2077 "y.tab.c"
     break;
 
   case 67:
-#line 316 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+#line 317 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
                                 { (SeExpr2val.n) = NODE3((SeExpr2loc).first_column,(SeExpr2loc).last_column,BinaryOpNode, (SeExpr2vsp[-2].n), (SeExpr2vsp[0].n), '-'); }
-#line 2082 "y.tab.c"
+#line 2083 "y.tab.c"
     break;
 
   case 68:
-#line 317 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+#line 318 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
                                 { (SeExpr2val.n) = NODE3((SeExpr2loc).first_column,(SeExpr2loc).last_column,BinaryOpNode, (SeExpr2vsp[-2].n), (SeExpr2vsp[0].n), '*'); }
-#line 2088 "y.tab.c"
+#line 2089 "y.tab.c"
     break;
 
   case 69:
-#line 318 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+#line 319 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
                                 { (SeExpr2val.n) = NODE3((SeExpr2loc).first_column,(SeExpr2loc).last_column,BinaryOpNode, (SeExpr2vsp[-2].n), (SeExpr2vsp[0].n), '/'); }
-#line 2094 "y.tab.c"
+#line 2095 "y.tab.c"
     break;
 
   case 70:
-#line 319 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+#line 320 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
                                 { (SeExpr2val.n) = NODE3((SeExpr2loc).first_column,(SeExpr2loc).last_column,BinaryOpNode, (SeExpr2vsp[-2].n), (SeExpr2vsp[0].n), '%'); }
-#line 2100 "y.tab.c"
+#line 2101 "y.tab.c"
     break;
 
   case 71:
-#line 320 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+#line 321 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
                                 { (SeExpr2val.n) = NODE3((SeExpr2loc).first_column,(SeExpr2loc).last_column,BinaryOpNode, (SeExpr2vsp[-2].n), (SeExpr2vsp[0].n), '^'); }
-#line 2106 "y.tab.c"
+#line 2107 "y.tab.c"
     break;
 
   case 72:
-#line 321 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+#line 322 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
                                 { (SeExpr2val.n) = NODE1((SeExpr2loc).first_column,(SeExpr2loc).last_column,FuncNode, (SeExpr2vsp[-3].s));
 				  free((SeExpr2vsp[-3].s)); // free name string
 				  // add args directly and discard arg list node
 				  (SeExpr2val.n)->addChildren((SeExpr2vsp[-1].n)); Forget((SeExpr2vsp[-1].n)); }
-#line 2115 "y.tab.c"
+#line 2116 "y.tab.c"
     break;
 
   case 73:
-#line 326 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+#line 327 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
                                 { (SeExpr2val.n) = NODE1((SeExpr2loc).first_column,(SeExpr2loc).last_column,FuncNode, (SeExpr2vsp[-3].s));
 				  free((SeExpr2vsp[-3].s)); // free name string
 				  (SeExpr2val.n)->addChild((SeExpr2vsp[-5].n));
 				  // add args directly and discard arg list node
 				  (SeExpr2val.n)->addChildren((SeExpr2vsp[-1].n)); Forget((SeExpr2vsp[-1].n)); }
-#line 2125 "y.tab.c"
+#line 2126 "y.tab.c"
     break;
 
   case 74:
-#line 331 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+#line 332 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
                                 { (SeExpr2val.n) = NODE1((SeExpr2loc).first_column,(SeExpr2loc).last_column,VarNode, (SeExpr2vsp[0].s)); free((SeExpr2vsp[0].s)); /* free name string */ }
-#line 2131 "y.tab.c"
+#line 2132 "y.tab.c"
     break;
 
   case 75:
-#line 332 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+#line 333 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
                                 { (SeExpr2val.n) = NODE1((SeExpr2loc).first_column,(SeExpr2loc).last_column,VarNode, (SeExpr2vsp[0].s)); free((SeExpr2vsp[0].s)); /* free name string */ }
-#line 2137 "y.tab.c"
+#line 2138 "y.tab.c"
     break;
 
   case 76:
-#line 333 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+#line 334 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
                                 { (SeExpr2val.n) = NODE1((SeExpr2loc).first_column,(SeExpr2loc).last_column,NumNode, (SeExpr2vsp[0].d)); /*printf("line %d",@$.last_column);*/}
-#line 2143 "y.tab.c"
+#line 2144 "y.tab.c"
     break;
 
   case 77:
-#line 334 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+#line 335 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
                                 { (SeExpr2val.n) = NODE1((SeExpr2loc).first_column,(SeExpr2loc).last_column,StrNode, (SeExpr2vsp[0].s)); free((SeExpr2vsp[0].s)); /* free string */}
-#line 2149 "y.tab.c"
+#line 2150 "y.tab.c"
     break;
 
   case 78:
-#line 338 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+#line 339 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
                                 { (SeExpr2val.n) = NODE1((SeExpr2loc).first_column,(SeExpr2loc).last_column,Node,(SeExpr2vsp[0].n)); }
-#line 2155 "y.tab.c"
+#line 2156 "y.tab.c"
     break;
 
   case 79:
-#line 339 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+#line 340 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
                                 { (SeExpr2val.n) = (SeExpr2vsp[-2].n);
                                   (SeExpr2vsp[-2].n)->addChild((SeExpr2vsp[0].n)); }
-#line 2162 "y.tab.c"
+#line 2163 "y.tab.c"
     break;
 
   case 80:
-#line 345 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+#line 346 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
                                 { (SeExpr2val.n) = NODE((SeExpr2loc).first_column,(SeExpr2loc).last_column,Node); /* create empty node */}
-#line 2168 "y.tab.c"
+#line 2169 "y.tab.c"
     break;
 
   case 81:
-#line 346 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+#line 347 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
                                 { (SeExpr2val.n) = (SeExpr2vsp[0].n); }
-#line 2174 "y.tab.c"
+#line 2175 "y.tab.c"
     break;
 
   case 82:
-#line 351 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+#line 352 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
                                 { (SeExpr2val.n) = NODE1((SeExpr2loc).first_column,(SeExpr2loc).last_column,Node, (SeExpr2vsp[0].n)); /* create arg list */}
-#line 2180 "y.tab.c"
+#line 2181 "y.tab.c"
     break;
 
   case 83:
-#line 352 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+#line 353 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
                                 { (SeExpr2val.n) = (SeExpr2vsp[-2].n); (SeExpr2vsp[-2].n)->addChild((SeExpr2vsp[0].n)); /* add to list */}
-#line 2186 "y.tab.c"
+#line 2187 "y.tab.c"
     break;
 
   case 84:
-#line 356 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+#line 357 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
                                 { (SeExpr2val.n) = (SeExpr2vsp[0].n); }
-#line 2192 "y.tab.c"
+#line 2193 "y.tab.c"
     break;
 
 
-#line 2196 "y.tab.c"
+#line 2197 "y.tab.c"
 
       default: break;
     }
@@ -2391,7 +2392,7 @@ SeExpr2return:
   return SeExpr2result;
 }
 
-#line 359 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+#line 360 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
 
 
       /* SeExpr2error - Report an error.  This is called by the parser.
@@ -2410,24 +2411,16 @@ static void SeExpr2error(const char* /*msg*/)
     for (int i = end; i > pos; i--)
 	if (ParseStr[i] == '\n') { end = i - 1; multiline=1; }
 
-    ParseError = SeExpr2text[0] ? "Syntax error" : "Unexpected end of expression";
-    if (multiline) {
-	char buff[30];
-	snprintf(buff, 30, " at line %d", lineno);
-	ParseError += buff;
-    }
-    if (SeExpr2text[0]) {
-	ParseError += " near '";
-	ParseError += SeExpr2text;
-    }
-    ParseError += "':\n    ";
+    ParseErrorCode = SeExpr2text[0] ? SeExpr2::ErrorCode::SyntaxError : SeExpr2::ErrorCode::UnexpectedEndOfExpression;
+
+    ParseErrorId = "";
 
     int s = std::max(start, pos-30);
     int e = std::min(end, pos+30);
 
-    if (s != start) ParseError += "...";
-    ParseError += std::string(ParseStr, s, e-s+1);
-    if (e != end) ParseError += "...";
+    if (s != start) ParseErrorId += "...";
+    ParseErrorId += std::string(ParseStr, s, e-s+1);
+    if (e != end) ParseErrorId += "...";
 }
 
 
@@ -2443,9 +2436,14 @@ static SeExprInternal2::Mutex mutex;
 
 namespace SeExpr2 {
 bool ExprParse(SeExpr2::ExprNode*& parseTree,
-    std::string& error, int& errorStart, int& errorEnd,
+    SeExpr2::ErrorCode& errorCode,
+    std::vector<std::string>& errorIds,
+    int& errorStart,
+    int& errorEnd,
     std::vector<std::pair<int,int> >& comments,
-    const SeExpr2::Expression* expr, const char* str, bool wantVec)
+    const SeExpr2::Expression* expr,
+    const char* str,
+    bool wantVec)
 {
     SeExprInternal2::AutoMutex locker(mutex);
 
@@ -2459,27 +2457,35 @@ bool ExprParse(SeExpr2::ExprNode*& parseTree,
     SeExpr2_delete_buffer(buffer);
 
     if (resultCode == 0) {
-	// success
-	error = "";
-	parseTree = ParseResult;
+        // success
+        errorCode = ErrorCode::None;
+        errorIds = {};
+	    parseTree = ParseResult;
     }
     else {
-	// failure
-	error = ParseError;
+        // failure
+        errorCode = ParseErrorCode;
+        errorIds = { ParseErrorId };
         errorStart=SeExpr2lloc.first_column;
         errorEnd=SeExpr2lloc.last_column;
-	parseTree = 0;
-	// gather list of nodes with no parent
-	std::vector<SeExpr2::ExprNode*> delnodes;
-	std::vector<SeExpr2::ExprNode*>::iterator iter;
-	for (iter = ParseNodes.begin(); iter != ParseNodes.end(); iter++)
-	    if (!(*iter)->parent()) { delnodes.push_back(*iter); }
-	// now delete them (they will delete their own children)
-	for (iter = delnodes.begin(); iter != delnodes.end(); iter++)
-	    delete *iter;
+        parseTree = nullptr;
+
+        // gather list of nodes with no parent
+        std::vector<SeExpr2::ExprNode*> delnodes;
+        std::vector<SeExpr2::ExprNode*>::iterator iter;
+        for (iter = ParseNodes.begin(); iter != ParseNodes.end(); iter++) {
+            if (!(*iter)->parent()) {
+                delnodes.push_back(*iter);
+            }
+        }
+
+        // now delete them (they will delete their own children)
+        for (iter = delnodes.begin(); iter != delnodes.end(); iter++) {
+            delete *iter;
+        }
     }
     ParseNodes.clear();
 
-    return parseTree != 0;
+    return parseTree != nullptr;
 }
 }

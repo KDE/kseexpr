@@ -63,7 +63,7 @@ Q_SLOTS:
 
   public:
     // Adds an error and its associated position
-    void addError(const int startPos, const int endPos, const std::string& error);
+    void addError(const int startPos, const int endPos, const QString& error);
     // Removes all errors and hides the completion widget
     void clearErrors();
     // Removes all extra completion symbols

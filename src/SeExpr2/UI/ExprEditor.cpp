@@ -110,7 +110,8 @@ ExprEditor::ExprEditor(QWidget* parent, ExprControlCollection* controls)
     errorWidget = new QListWidget();
     errorWidget->setObjectName(QString::fromUtf8("errorWidget"));
     errorWidget->setSelectionMode(QAbstractItemView::SingleSelection);
-    errorWidget->setSizePolicy(QSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Maximum));
+    errorWidget->setSizePolicy(QSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding));
+    errorWidget->setMinimumHeight(30);
     connect(errorWidget, SIGNAL(itemSelectionChanged()), SLOT(selectError()));
     clearErrors();
     exprAndErrors->addWidget(errorWidget);
@@ -172,23 +173,38 @@ void ExprEditor::insertStr(const std::string& str) { exprTe->insertPlainText(QSt
 
 void ExprEditor::appendStr(const std::string& str) { exprTe->append(QString::fromStdString(str)); }
 
-void ExprEditor::addError(const int startPos, const int endPos, const std::string& error) {
-    // TODO: translate all node->addError strings in SeExpr - amyspark
-    QString errorStr = QString::fromStdString(error);
-    QListWidgetItem* item = new QListWidgetItem(tr("Error: %1").arg(errorStr), errorWidget);
+void ExprEditor::addError(const int startPos, const int endPos, const QString& error) {
+    QString message = tr("(%1, %2): %3").arg(startPos).arg(endPos).arg(error);
+    QListWidgetItem* item = new QListWidgetItem(message, errorWidget);
     item->setData(Qt::UserRole, startPos);
     item->setData(Qt::UserRole + 1, endPos);
     errorWidget->setHidden(false);
+
+    // Underline error
+    QTextCursor cursor = exprTe->textCursor();
+    cursor.movePosition(QTextCursor::Start, QTextCursor::MoveAnchor);
+    cursor.movePosition(QTextCursor::Right, QTextCursor::MoveAnchor, startPos);
+    cursor.movePosition(QTextCursor::Right, QTextCursor::KeepAnchor, endPos - startPos + 1);
+    QList<QTextEdit::ExtraSelection> extraSelections = exprTe->extraSelections();
+    QTextEdit::ExtraSelection selection;
+    QColor lineColor = QColor(Qt::yellow).lighter(130);
+    selection.format.setUnderlineColor(lineColor);
+    selection.format.setUnderlineStyle(QTextCharFormat::UnderlineStyle::WaveUnderline);
+    selection.cursor = cursor;
+    extraSelections.append(selection);
+    exprTe->setExtraSelections(extraSelections);
+
+    // errorWidget has its height fixed -- amyspark
     // TODO: fix to not use count lines and compute heuristic of 25 pixels per line!
-    const char* c = error.c_str();
-    int lines = 1;
-    while (*c != '\0') {
-        if (*c == '\n') lines++;
-        c++;
-    }
-    errorHeight += 25 * lines;
-    // widget should not need to be bigger than this
-    errorWidget->setMaximumHeight(errorHeight);
+    // const char* c = error.c_str();
+    // int lines = 1;
+    // while (*c != '\0') {
+    //     if (*c == '\n') lines++;
+    //     c++;
+    // }
+    // errorHeight += 25 * lines;
+    // // widget should not need to be bigger than this
+    // errorWidget->setMaximumHeight(errorHeight);
 }
 
 void ExprEditor::nextError() {
@@ -198,6 +214,8 @@ void ExprEditor::nextError() {
 }
 
 void ExprEditor::clearErrors() {
+    QList<QTextEdit::ExtraSelection> extraSelections;
+    exprTe->setExtraSelections(extraSelections);
     errorWidget->clear();
     errorWidget->setHidden(true);
     errorHeight = 0;

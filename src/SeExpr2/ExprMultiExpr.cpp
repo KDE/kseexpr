@@ -125,7 +125,7 @@ ExprVarRef *DExpression::resolveVar(const std::string &name) const {
             return *I;
         }
 
-    addError(name + " fail resolveVar", 0, 0);
+    addError(ErrorCode::UndeclaredVariable, { name },  0, 0);
     return 0;
 }
 

@@ -143,7 +143,8 @@ void Expression::reset() {
     _isValid = 0;
     _parsed = 0;
     _prepped = 0;
-    _parseError = "";
+    _parseErrorCode = ErrorCode::None;
+    _parseErrorIds.clear();
     _vars.clear();
     _funcs.clear();
     //_localVars.clear();
@@ -197,9 +198,9 @@ void Expression::parse() const {
     if (_parsed) return;
     _parsed = true;
     int tempStartPos, tempEndPos;
-    ExprParse(_parseTree, _parseError, tempStartPos, tempEndPos, _comments, this, _expression.c_str(), _wantVec);
+    ExprParse(_parseTree, _parseErrorCode, _parseErrorIds, tempStartPos, tempEndPos, _comments, this, _expression.c_str(), _wantVec);
     if (!_parseTree) {
-        addError(_parseError, tempStartPos, tempEndPos);
+        addError(_parseErrorCode, _parseErrorIds, tempStartPos, tempEndPos);
     }
 }
 
@@ -212,6 +213,7 @@ void Expression::prep() const {
     parseIfNeeded();
 
     bool error = false;
+    std::string _parseError;
 
     if (!_parseTree) {
         // parse error
@@ -222,8 +224,7 @@ void Expression::prep() const {
     } else if (!ExprType::valuesCompatible(_parseTree->type(), _desiredReturnType)) {
         // incompatible type error
         error = true;
-        _parseTree->addError("Expression generated type " + _parseTree->type().toString() +
-                             " incompatible with desired type " + _desiredReturnType.toString());
+        _parseTree->addError(ErrorCode::ExpressionIncompatibleTypes, { _parseTree->type().toString(), _desiredReturnType.toString() });
     } else {
         _isValid = true;
 
@@ -289,7 +290,7 @@ void Expression::prep() const {
 
     if (debugging) {
         std::cerr << "ending with isValid " << _isValid << std::endl;
-        std::cerr << "parse error \n" << parseError() << std::endl;
+        std::cerr << "parse error \n" << _parseError << std::endl;
     }
 }
 
