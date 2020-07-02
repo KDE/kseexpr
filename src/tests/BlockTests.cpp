@@ -50,7 +50,7 @@ int main() {
         e.setVarBlockCreator(&creator);
         e.setDesiredReturnType(type);
         if (!e.isValid()) {
-            throw std::runtime_error(std::string("Expr '") + expr + "'" + " invalid because\n" + e.parseError() + "\n");
+            throw std::runtime_error(std::string("Expr '") + expr + "'" + " invalid because\n" + std::to_string(e.parseError()) + "\n");
             return;
         } else {
             #if 1 // run multiple
