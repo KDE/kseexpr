@@ -85,7 +85,7 @@ Q_SIGNALS:
     void linkColorOutput(QColor color);
     /// Emitted to request that a new widget string should be added to the expression
     /// i.e. after "Add new variable" was used
-    void insertString(const std::string &controlString);
+    void insertString(const QString &controlString);
   public
 Q_SLOTS:
     /// Notification from outside that a linked color widget was changed

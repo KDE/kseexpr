@@ -141,7 +141,7 @@ void ExprEditor::setControlCollectionWidget(ExprControlCollection* widget) {
     {
         connect(controlRebuildTimer, SIGNAL(timeout()), SLOT(rebuildControls()));
         connect(controls, SIGNAL(controlChanged(int)), SLOT(controlChanged(int)));
-        connect(controls, SIGNAL(insertString(const std::string&)), SLOT(insertStr(const std::string&)));
+        connect(controls, SIGNAL(insertString(const QString&)), SLOT(insertStr(const QString&)));
     }
 }
 
@@ -187,9 +187,15 @@ void ExprEditor::setExpr(const QString& expression, const bool doApply) {
     if (doApply) emit apply();
 }
 
-void ExprEditor::insertStr(const std::string& str) { exprTe->insertPlainText(QString::fromStdString(str)); }
+void ExprEditor::insertStr(const QString& str)
+{
+    exprTe->append(str);
+}
 
-void ExprEditor::appendStr(const std::string& str) { exprTe->append(QString::fromStdString(str)); }
+void ExprEditor::appendStr(const QString& str)
+{
+    exprTe->append(str);
+}
 
 void ExprEditor::addError(const int startPos, const int endPos, const QString& error) {
     QString message = tr("(%1, %2): %3").arg(startPos).arg(endPos).arg(error);

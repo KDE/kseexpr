@@ -121,7 +121,7 @@ void ExprControlCollection::addControlDialog() {
                 break;
 #endif
         }
-        emit insertString(s.toStdString());
+        emit insertString(s);
     }
 }
 

@@ -57,11 +57,11 @@ Q_SIGNALS:
     // Sets the expression that is in the editor
     void setExpr(const QString& expression, const bool apply = false);
     // Append string
-    void appendStr(const std::string& str);
+    void appendStr(const QString& str);
   public
 Q_SLOTS:
     // Insert string
-    void insertStr(const std::string& str);
+    void insertStr(const QString& str);
 
   public:
     // Adds an error and its associated position
