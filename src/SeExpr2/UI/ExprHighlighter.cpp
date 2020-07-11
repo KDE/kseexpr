@@ -51,7 +51,7 @@ void ExprHighlighter::init() {
     //    highlightingRules.append(rule);
     //}
 
-    numberFormat.setForeground(QColor::fromHsv(180, 204, lightness));
+    numberFormat.setForeground(QColor::fromHsv(37, 200, lightness));
     rule.pattern = QRegExp(
         QString::fromLatin1("\\b[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)\\b"));  // \\b?[^\\$][A-Za-z][A-Za-z0-9]*\\b");
     rule.format = numberFormat;
@@ -63,7 +63,7 @@ void ExprHighlighter::init() {
     rule.format = variableFormat;
     highlightingRules.append(rule);
 
-    singleLineCommentFormat.setForeground(QColor::fromHsv(210, 128, lightness));
+    singleLineCommentFormat.setForeground(QColor::fromHsv(54, 49, lightness));
     rule.pattern = QRegExp(QString::fromLatin1("#[^\n]*"));
     rule.format = singleLineCommentFormat;
     highlightingRules.append(rule);
