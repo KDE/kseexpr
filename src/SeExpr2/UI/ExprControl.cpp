@@ -151,22 +151,29 @@ ExprControl::ExprControl(int id, Editable* editable, bool showColorLink)
     hbox->addWidget(_colorLinkCB);
 
     // see parser's specRegisterEditable
-    // TODO these labels are untranslatable
-    QString editableLabel = QString::fromStdString(editable->name);
+    // This is the variable name
+    QString editableLabel = QString::fromStdString(_editable->name);
     _label = new QLabel();
     QFontMetrics _labelSize(_label->font());
     // Fix label appearance and word wrap, just in case -- amyspark
     // 45px gives us some breathing space
-    _label->setFixedWidth(60);
-    _label->setText(tr("<b>%1</b>").arg(_labelSize.elidedText(editableLabel, Qt::TextElideMode::ElideRight, 45)));
+    _label->setMinimumWidth(60);
+    _label->setText(tr("<b>%1</b>").arg(_labelSize.elidedText(editableLabel, Qt::TextElideMode::ElideRight, qMax(0, _label->width() - 15))));
     _label->setAutoFillBackground(true);
-    hbox->addWidget(_label);
+    hbox->addWidget(_label, 1);
 
     if (!showColorLink) {
         _colorLinkCB->setDisabled(true);
     } else {
         _colorLinkCB->setDisabled(false);
     }
+}
+
+void ExprControl::resizeEvent(QResizeEvent *event)
+{
+    QString editableLabel = QString::fromStdString(_editable->name);
+    QFontMetrics _labelSize(_label->font());
+    _label->setText(tr("<b>%1</b>").arg(_labelSize.elidedText(editableLabel, Qt::TextElideMode::ElideRight, qMax(0, _label->width() - 15))));
 }
 
 void ExprControl::linkStateChange(int state) {
@@ -191,6 +198,7 @@ void ExprControl::linkDisconnect(int newId) {
 NumberControl::NumberControl(int id, NumberEditable* editable)
     : ExprControl(id, editable, false), _numberEditable(editable) {
 
+    QHBoxLayout *slider = new QHBoxLayout();
     // slider
     float smin = editable->min, smax = editable->max;
     if (!_numberEditable->isInt) {
@@ -204,10 +212,11 @@ NumberControl::NumberControl(int id, NumberEditable* editable)
     _slider->setSingleStep(std::max(1, int(srange / 50)));
     _slider->setPageStep(std::max(1, int(srange / 10)));
     _slider->setFocusPolicy(Qt::ClickFocus);
-    hbox->addWidget(_slider, 3);
+    slider->addWidget(_slider, 3);
     // edit box
     _edit = new ExprLineEdit(0, this);
-    hbox->addWidget(_edit);
+    slider->addWidget(_edit);
+    hbox->addLayout(slider, 4);
     connect(_edit, SIGNAL(textChanged(int, const QString&)), SLOT(editChanged(int, const QString&)));
     connect(_slider, SIGNAL(valueChanged(int)), SLOT(sliderChanged(int)));
     // show current values
@@ -247,14 +256,15 @@ void NumberControl::setValue(float value) {
 VectorControl::VectorControl(int id, VectorEditable* editable)
     : ExprControl(id, editable, true), _numberEditable(editable) {
 
+    QHBoxLayout *control = new QHBoxLayout();
     if (_numberEditable->isColor) {
         _swatch = new ExprCSwatchFrame(editable->v);
         connect(_swatch, SIGNAL(swatchChanged(QColor)), this, SLOT(swatchChanged(QColor)));
-        hbox->addWidget(_swatch);
+        control->addWidget(_swatch);
     }
     for (int i = 0; i < 3; i++) {
         QVBoxLayout* vbl = new QVBoxLayout();
-        hbox->addLayout(vbl);
+        control->addLayout(vbl);
         vbl->setMargin(0);
         vbl->setSpacing(0);
 
@@ -274,6 +284,7 @@ VectorControl::VectorControl(int id, VectorEditable* editable)
         connect(edit, SIGNAL(textChanged(int, const QString&)), SLOT(editChanged(int, const QString&)));
         connect(slider, SIGNAL(valueChanged(int, float)), SLOT(sliderChanged(int, float)));
     }
+    hbox->addLayout(control, 4);
     // update controls
     updateControl();
 }
@@ -409,7 +420,7 @@ CurveControl::CurveControl(int id, CurveEditable* editable)
         const SeExpr2::Curve<double>::CV& cv = _curveEditable->cvs[i];
         _curve->addPoint(cv._pos, cv._val, cv._interp);
     }
-    hbox->addWidget(_curve, 3);
+    hbox->addWidget(_curve, 4);
     connect(_curve->_scene, SIGNAL(curveChanged()), SLOT(curveChanged()));
     // unneded? updateControl();
 }
@@ -430,7 +441,7 @@ CCurveControl::CCurveControl(int id, ColorCurveEditable* editable)
         const SeExpr2::Curve<SeExpr2::Vec3d>::CV& cv = _curveEditable->cvs[i];
         _curve->addPoint(cv._pos, cv._val, cv._interp);
     }
-    hbox->addWidget(_curve, 3);
+    hbox->addWidget(_curve, 4);
     connect(_curve->_scene, SIGNAL(curveChanged()), SLOT(curveChanged()));
     // unneeded? updateControl();
 }
@@ -692,7 +703,7 @@ void ColorSwatchControl::buildSwatchWidget() {
         _swatch->addSwatch(val, i);
     }
     _updating = false;
-    hbox->addWidget(_swatch);
+    hbox->addWidget(_swatch, 4);
 }
 
 #ifdef SEEXPR_ENABLE_DEEPWATER

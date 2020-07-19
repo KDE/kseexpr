@@ -70,6 +70,9 @@ Q_SLOTS:
   public:
     // notifies this that the link should be disconnected
     void linkDisconnect(int newId);
+  protected:
+    // Allows to adapt the widget contents - amyspark
+    void resizeEvent(QResizeEvent *event) override;
 };
 
 /// clamp val to the specified range [minval,maxval]
