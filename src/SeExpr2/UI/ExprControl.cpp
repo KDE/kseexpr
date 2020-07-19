@@ -258,6 +258,7 @@ VectorControl::VectorControl(int id, VectorEditable* editable)
 
     QHBoxLayout *control = new QHBoxLayout();
     if (_numberEditable->isColor) {
+        // CSwatchFrame has size 0 here! see below
         _swatch = new ExprCSwatchFrame(editable->v);
         connect(_swatch, SIGNAL(swatchChanged(QColor)), this, SLOT(swatchChanged(QColor)));
         control->addWidget(_swatch);
@@ -271,6 +272,11 @@ VectorControl::VectorControl(int id, VectorEditable* editable)
         ExprLineEdit* edit = new ExprLineEdit(i, this);
         vbl->addWidget(edit);
         _edits[i] = edit;
+
+        // piggy-back on the ExprLineEdit height to set the CSwatchFrame - amyspark
+        _swatch->setMinimumWidth(edit->minimumSizeHint().width());
+        _swatch->setMinimumHeight(edit->minimumSizeHint().height() + 6);
+        _swatch->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Fixed);
 
         ExprChannelSlider* slider = new ExprChannelSlider(i, this);
         vbl->addWidget(slider);
