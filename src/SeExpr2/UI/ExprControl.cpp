@@ -273,10 +273,14 @@ VectorControl::VectorControl(int id, VectorEditable* editable)
         vbl->addWidget(edit);
         _edits[i] = edit;
 
-        // piggy-back on the ExprLineEdit height to set the CSwatchFrame - amyspark
-        _swatch->setMinimumWidth(edit->minimumSizeHint().width());
-        _swatch->setMinimumHeight(edit->minimumSizeHint().height() + 6);
-        _swatch->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Fixed);
+        if (_numberEditable->isColor) {
+            // piggy-back on the ExprLineEdit height to set the CSwatchFrame - amyspark
+            auto width(edit->minimumSizeHint().width());
+            auto height(edit->minimumSizeHint().height() + 6);
+            _swatch->setMinimumWidth(width);
+            _swatch->setMinimumHeight(height);
+            _swatch->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Fixed);
+        }
 
         ExprChannelSlider* slider = new ExprChannelSlider(i, this);
         vbl->addWidget(slider);
