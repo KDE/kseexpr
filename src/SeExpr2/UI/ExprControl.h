@@ -18,6 +18,8 @@
 #ifndef _ExprControl_h_
 #define _ExprControl_h_
 
+#include <memory>
+
 #include <QCheckBox>
 #include <QHBoxLayout>
 #include <QLabel>
@@ -40,11 +42,11 @@ class ExprControl : public QWidget {
   protected:
     int _id;
     bool _updating;  // whether to send events (i.e. masked when self editing)
-    QHBoxLayout* hbox;
-    QCheckBox* _colorLinkCB;
-    QLabel* _label;
+    QHBoxLayout* hbox{nullptr};
+    QCheckBox* _colorLinkCB{nullptr};
+    QLabel* _label{nullptr};
 
-    Editable* _editable;
+    Editable* _editable{nullptr};
 
   public:
     ExprControl(int id, Editable* editable, bool showColorLink);
@@ -158,11 +160,11 @@ class NumberControl : public ExprControl {
     Q_OBJECT
 
     /// Pointer to the number control model
-    NumberEditable* _numberEditable;
+    NumberEditable* _numberEditable{nullptr};
     /// Slider for the number
-    ExprSlider* _slider;
+    ExprSlider* _slider{nullptr};
     /// Text box for the number
-    ExprLineEdit* _edit;
+    ExprLineEdit* _edit{nullptr};
 
   public:
     NumberControl(int id, NumberEditable* number);
@@ -183,13 +185,13 @@ class VectorControl : public ExprControl {
     Q_OBJECT
 
     /// Number model
-    VectorEditable* _numberEditable;
+    VectorEditable* _numberEditable{nullptr};
     /// All three line edit widgets (for each component)
-    ExprLineEdit* _edits[3];
-    ExprCSwatchFrame* _swatch;
+    ExprLineEdit* _edits[3]{nullptr};
+    ExprCSwatchFrame* _swatch{nullptr};
     ;
     /// All three channel sliders (for each component)
-    ExprChannelSlider* _sliders[3];
+    ExprChannelSlider* _sliders[3]{nullptr};
 
   public:
     VectorControl(int id, VectorEditable* number);
@@ -214,9 +216,9 @@ class StringControl : public ExprControl {
     Q_OBJECT
 
     /// model for the string control
-    StringEditable* _stringEditable;
+    StringEditable* _stringEditable{nullptr};
     /// Edit box for the string
-    QLineEdit* _edit;
+    QLineEdit* _edit{nullptr};
 
   public:
     StringControl(int id, StringEditable* stringEditable);
@@ -235,9 +237,9 @@ class CurveControl : public ExprControl {
     Q_OBJECT
 
     /// curve model
-    CurveEditable* _curveEditable;
+    CurveEditable* _curveEditable{nullptr};
     /// curve edit widget
-    ExprCurve* _curve;
+    ExprCurve* _curve{nullptr};
 
   public:
     CurveControl(int id, CurveEditable* stringEditable);
@@ -251,9 +253,9 @@ class CCurveControl : public ExprControl {
     Q_OBJECT
 
     /// color curve model
-    ColorCurveEditable* _curveEditable;
+    ColorCurveEditable* _curveEditable{nullptr};
     /// color curve widget
-    ExprColorCurve* _curve;
+    ExprColorCurve* _curve{nullptr};
 
   public:
     CCurveControl(int id, ColorCurveEditable* stringEditable);
@@ -270,8 +272,8 @@ class ExprGraphPreview;
 class AnimCurveControl : public ExprControl {
     Q_OBJECT;
 
-    AnimCurveEditable* _editable;
-    ExprGraphPreview* _preview;
+    AnimCurveEditable* _editable{nullptr};
+    ExprGraphPreview* _preview{nullptr};
 
   public:
     AnimCurveControl(int id, AnimCurveEditable* curveEditable);
@@ -296,9 +298,9 @@ class ColorSwatchControl : public ExprControl {
     Q_OBJECT
 
     /// model for the color swatches control
-    ColorSwatchEditable* _swatchEditable;
+    ColorSwatchEditable* _swatchEditable{nullptr};
     /// Edit box for the color swatches
-    ExprColorSwatchWidget* _swatch;
+    ExprColorSwatchWidget* _swatch{nullptr};
 
   public:
     ColorSwatchControl(int id, ColorSwatchEditable* swatchEditable);
@@ -319,9 +321,9 @@ class DeepWaterControl : public ExprControl {
     Q_OBJECT
 
     /// curve model
-    DeepWaterEditable* _deepWaterEditable;
+    DeepWaterEditable* _deepWaterEditable{nullptr};
     /// deep water widget
-    ExprDeepWater* _deepWater;
+    ExprDeepWater* _deepWater{nullptr};
 
   public:
     DeepWaterControl(int id, DeepWaterEditable* stringEditable);
