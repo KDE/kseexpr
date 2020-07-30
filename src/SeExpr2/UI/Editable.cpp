@@ -113,7 +113,9 @@ bool VectorEditable::parseComment(const std::string& comment)
     float fmin, fmax;
     int numParsed = sscanf(comment.c_str(), "#%f,%f", &fmin, &fmax);
     if (numParsed == 2) {
-        isColor = false;
+        if (fmin < 0.0 || fmax > 1.0) {
+            isColor = false;
+        }
         min = fmin;
         max = fmax;
     }
