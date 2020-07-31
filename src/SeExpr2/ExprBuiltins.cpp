@@ -1084,10 +1084,10 @@ class CachedVoronoiFunc : public ExprFuncSimple {
     VoronoiFunc* _vfunc;
 } voronoi(voronoiFn), cvoronoi(cvoronoiFn), pvoronoi(pvoronoiFn);
 
-double dist(double ax, double ay, double az, double bx, double by, double bz) {
-    double x = ax - bx;
-    double y = ay - by;
-    double z = az - bz;
+double dist(const Vec3d& a, const Vec3d& b) {
+    double x = a[0] - b[0];
+    double y = a[1] - b[1];
+    double z = a[2] - b[2];
     return sqrt(x * x + y * y + z * z);
 }
 static const char* dist_docstring = QT_TRANSLATE_NOOP_UTF8("builtin",

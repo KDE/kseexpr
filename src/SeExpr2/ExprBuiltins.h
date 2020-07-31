@@ -33,8 +33,6 @@
 
 namespace SeExpr2 {
 
-void initPerlin();
-
 // trig
 inline double deg(double angle) { return angle * (180 / M_PI); }
 inline double rad(double angle) { return angle * (M_PI / 180); }
@@ -88,7 +86,7 @@ Vec3d ccellnoise(const Vec3d& p);
 double pnoise(const Vec3d& p, const Vec3d& period);
 
 // vectors
-double dist(double ax, double ay, double az, double bx, double by, double bz);
+double dist(const Vec3d& a, const Vec3d& b);
 double length(const Vec3d& v);
 double hypot(double x, double y);
 double dot(const Vec3d& a, const Vec3d& b);
