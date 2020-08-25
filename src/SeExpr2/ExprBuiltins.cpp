@@ -64,7 +64,7 @@ static const char* asinh_docstring = QT_TRANSLATE_NOOP_UTF8("builtin", "float as
 static const char* atanh_docstring = QT_TRANSLATE_NOOP_UTF8("builtin", "float atanh(float value)\nhyperbolic arc tangent in radians");
 // clamping/rounding
 static const char* clamp_docstring = QT_TRANSLATE_NOOP_UTF8("builtin", "float clamp(float x,float lo,float hi)\nconstrain x to range [lo,hi]");
-static const char* round_docstring = QT_TRANSLATE_NOOP_UTF8("builtin", "float round(float x)\nconstrain x to range [lo,hi]");
+static const char* round_docstring = QT_TRANSLATE_NOOP_UTF8("builtin", "float round(float x)\nnearest integer to x");
 static const char* max_docstring = QT_TRANSLATE_NOOP_UTF8("builtin", "float max(float a,float b)\ngreater of a and b");
 static const char* min_docstring = QT_TRANSLATE_NOOP_UTF8("builtin", "float min(float a,float b)\nlesser of a and b");
 static const char* trunc_docstring = QT_TRANSLATE_NOOP_UTF8("builtin", "float trunc(float a)\nnearest integer towards zero");
