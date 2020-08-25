@@ -154,7 +154,7 @@ double smoothstep(double x, double a, double b) {
 }
 static const char* smoothstep_docstring = QT_TRANSLATE_NOOP_UTF8("builtin",
     "float smoothstep(float x,float a,float b)\n if x &lt; a then 0, if x &gt; b then 1, and\nx transitions smoothly "
-    "(cubic) when &lt; x &lt; b");
+    "(cubic) when a &lt; x &lt; b");
 
 double gaussstep(double x, double a, double b) {
     if (a < b) {
@@ -171,7 +171,7 @@ double gaussstep(double x, double a, double b) {
 }
 static const char* gaussstep_docstring = QT_TRANSLATE_NOOP_UTF8("builtin",
     "float gasussstep(float x,float a,float b)\n if x &lt; a then 0, if x &gt; b then 1, and\nx transitions smoothly "
-    "(exponentially) when &lt; x &lt; b");
+    "(exponentially) when a &lt; x &lt; b");
 
 double remap(double x, double source, double range, double falloff, double interp) {
     range = fabs(range);
@@ -237,7 +237,7 @@ static const char* hsi_docstring = QT_TRANSLATE_NOOP_UTF8("builtin",
     "color  hsi(color x, float h, float s, float i, float map=1)\n"
     "The hsi function shifts the hue by h\n"
     "(in degrees) and scales the saturation and intensity by s and i\n"
-    "respectively.&nbsp; An map may be supplied which will control the shift\n"
+    "respectively.&nbsp; A map may be supplied which will control the shift\n"
     "- the full shift will happen when the map is one and no shift will\n"
     "happen when the map is zero.&nbsp; The shift will be scaled back for\n"
     "values between zero and one.");
@@ -1175,7 +1175,7 @@ double cycle(double index, double loRange, double hiRange) {
 static const char* cycle_docstring = QT_TRANSLATE_NOOP_UTF8("builtin",
     "int cycle(int index, int loRange, int hiRange )\n"
     "Cycles through values between loRange and hiRange based on supplied index.\n"
-    "This is an offset \"mod\" function. The result is rotates v such that the\n"
+    "This is an offset \"mod\" function. The result rotates v such that the\n"
     "Y axis points in the given up direction");
 
 double pick(int n, double* params) {
