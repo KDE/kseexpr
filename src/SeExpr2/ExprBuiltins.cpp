@@ -43,25 +43,25 @@ static const char* rad_docstring = QT_TRANSLATE_NOOP_UTF8("builtin", "float deg(
 static const char* cosd_docstring = QT_TRANSLATE_NOOP_UTF8("builtin", "float cosd(float angle)\ncosine in degrees");
 static const char* sind_docstring = QT_TRANSLATE_NOOP_UTF8("builtin", "float sind(float angle)\nsine in degrees");
 static const char* tand_docstring = QT_TRANSLATE_NOOP_UTF8("builtin", "float tand(float angle)\ntangent in degrees");
-static const char* acosd_docstring = QT_TRANSLATE_NOOP_UTF8("builtin", "float acosd(float angle)\narc cosine in degrees");
-static const char* asind_docstring = QT_TRANSLATE_NOOP_UTF8("builtin", "float asind(float angle)\narc sine in degrees");
-static const char* atand_docstring = QT_TRANSLATE_NOOP_UTF8("builtin", "float atand(float angle)\narc tangent in degrees");
+static const char* acosd_docstring = QT_TRANSLATE_NOOP_UTF8("builtin", "float acosd(float value)\narc cosine in degrees");
+static const char* asind_docstring = QT_TRANSLATE_NOOP_UTF8("builtin", "float asind(float value)\narc sine in degrees");
+static const char* atand_docstring = QT_TRANSLATE_NOOP_UTF8("builtin", "float atand(float value)\narc tangent in degrees");
 static const char* atan2d_docstring = QT_TRANSLATE_NOOP_UTF8("builtin", "float atan2d(float y,float x)\narc tangent in degrees of y/x between -180 and 180");
 // trig in radians
 static const char* cos_docstring = QT_TRANSLATE_NOOP_UTF8("builtin", "float cos(float angle)\ncosine in radians");
 static const char* sin_docstring = QT_TRANSLATE_NOOP_UTF8("builtin", "float sin(float angle)\nsine in radians");
 static const char* tan_docstring = QT_TRANSLATE_NOOP_UTF8("builtin", "float tan(float angle)\ntangent in radians");
-static const char* acos_docstring = QT_TRANSLATE_NOOP_UTF8("builtin", "float acos(float angle)\narc cosine in radians");
-static const char* asin_docstring = QT_TRANSLATE_NOOP_UTF8("builtin", "float asin(float angle)\narc sine in radians");
-static const char* atan_docstring = QT_TRANSLATE_NOOP_UTF8("builtin", "float atan(float angle)\narc tangent in radians");
+static const char* acos_docstring = QT_TRANSLATE_NOOP_UTF8("builtin", "float acos(float value)\narc cosine in radians");
+static const char* asin_docstring = QT_TRANSLATE_NOOP_UTF8("builtin", "float asin(float value)\narc sine in radians");
+static const char* atan_docstring = QT_TRANSLATE_NOOP_UTF8("builtin", "float atan(float value)\narc tangent in radians");
 static const char* atan2_docstring = QT_TRANSLATE_NOOP_UTF8("builtin", "float atan2(float y,float x)\narc tangent in radians of y/x between -PI and PI");
 // hyperbolic trig
 static const char* cosh_docstring = QT_TRANSLATE_NOOP_UTF8("builtin", "float cosh(float angle)\nhyperbolic cosine in radians");
 static const char* sinh_docstring = QT_TRANSLATE_NOOP_UTF8("builtin", "float sinh(float angle)\nhyperbolic sine in radians");
 static const char* tanh_docstring = QT_TRANSLATE_NOOP_UTF8("builtin", "float tanh(float angle)\nhyperbolic tangent in radians");
-static const char* acosh_docstring = QT_TRANSLATE_NOOP_UTF8("builtin", "float acosh(float angle)\nhyperbolic arc cosine in radians");
-static const char* asinh_docstring = QT_TRANSLATE_NOOP_UTF8("builtin", "float asinh(float angle)\nhyperbolic arc sine in radians");
-static const char* atanh_docstring = QT_TRANSLATE_NOOP_UTF8("builtin", "float atanh(float angle)\nhyperbolic arc tangent in radians");
+static const char* acosh_docstring = QT_TRANSLATE_NOOP_UTF8("builtin", "float acosh(float value)\nhyperbolic arc cosine in radians");
+static const char* asinh_docstring = QT_TRANSLATE_NOOP_UTF8("builtin", "float asinh(float value)\nhyperbolic arc sine in radians");
+static const char* atanh_docstring = QT_TRANSLATE_NOOP_UTF8("builtin", "float atanh(float value)\nhyperbolic arc tangent in radians");
 // clamping/rounding
 static const char* clamp_docstring = QT_TRANSLATE_NOOP_UTF8("builtin", "float clamp(float x,float lo,float hi)\nconstrain x to range [lo,hi]");
 static const char* round_docstring = QT_TRANSLATE_NOOP_UTF8("builtin", "float round(float x)\nconstrain x to range [lo,hi]");
