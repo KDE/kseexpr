@@ -39,7 +39,7 @@ QString ErrorMessages::message(SeExpr2::ErrorCode code)
         case ErrorCode::ConditionalTypesNotCompatible:
             return tr("Types of conditional are not compatible");
         case ErrorCode::InconsistentDefinition:
-            return tr("Variable '%1 defined in conditionals inconsistently");
+            return tr("Variable '%1' defined in conditionals inconsistently");
         case ErrorCode::FunctionTooFewArguments:
             return tr("Too few arguments for function '%1'");
         case ErrorCode::FunctionTooManyArguments:

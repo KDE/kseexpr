@@ -634,7 +634,7 @@ static const char* fbm_docstring =  QT_TRANSLATE_NOOP_UTF8("builtin",
     "The base frequency is the same as the \"noise\" function. The total \n"
     "number of frequencies is controlled by octaves. The lacunarity is the \n"
     "spacing between the frequencies - a value of 2 means each octave is \n"
-    "twice the previous frequency. The gain< controls how much each \n"
+    "twice the previous frequency. The gain controls how much each \n"
     "frequency is scaled relative to the previous frequency.");
 
 Vec3d vfbm(int n, const Vec3d* args) {
