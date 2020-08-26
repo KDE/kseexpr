@@ -1,5 +1,6 @@
 /*
 * Copyright Disney Enterprises, Inc.  All rights reserved.
+* Copyright (C) 2020 L. E. Segovia <amy@amyspark.me>
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License
@@ -31,6 +32,7 @@
 #include <QFileDialog>
 #include <QSpacerItem>
 #include <QSizePolicy>
+#include <QTextBrowser>
 
 #include <iostream>
 #include <fstream>
@@ -67,9 +69,9 @@ class ExprDialog : public QDialog {
   public:
     ExprDialog(QWidget* parent);
 
-    std::string getExpressionString() { return editor->getExpr(); }
+    QString getExpressionString() { return editor->getExpr(); }
 
-    void setExpressionString(const std::string& str) {
+    void setExpressionString(const QString& str) {
         clearExpression();
         editor->setExpr(str, /*apply*/ true);
     }
@@ -88,12 +90,12 @@ class ExprDialog : public QDialog {
     void findHelper(QTextDocument::FindFlags flags);
     void closeEvent(QCloseEvent* event);
 
-signals:
+Q_SIGNALS:
     void preview();
     void expressionApplied();
     void dialogClosed();
   private
-slots:
+Q_SLOTS:
     void previewExpression();
     void verifiedApply();
     void verifiedAccept();
@@ -101,7 +103,7 @@ slots:
     void findPrevInHelp();
     void _showEditor();
   public
-slots:
+Q_SLOTS:
 
     void applyExpression();
 

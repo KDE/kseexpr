@@ -28,16 +28,23 @@ set_source_files_properties("ExprBuiltins.cpp" PROPERTIES COMPILE_DEFINITIONS "_
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
 ## find our parser generators
-find_program(BISON_EXE bison)
-find_program(FLEX_EXE flex)
+find_package(BISON)
+find_package(FLEX)
 find_program(SED_EXE sed)
 
-# TODO use recent cmake to use FindFlex FindBison
-if ((BISON_EXE STREQUAL "BISON_EXE-NOTFOUND") OR
-    (FLEX_EXE STREQUAL "FLEX_EXE-NOTFOUND") OR
+if (NOT BISON_FOUND OR
+    NOT FLEX_FOUND OR
     (SED_EXE STREQUAL "SED_EXE-NOTFOUND"))
     # don't have flex/bison/sed, use pregenerated versions
-    set(parser_cpp generated/ExprParser.cpp generated/ExprParserLex.cpp)
+    message(STATUS "Using pregenerated parser files")
+    file(COPY ${CMAKE_SOURCE_DIR}/windows7/SeExpr/generated/
+        DESTINATION .
+        USE_SOURCE_PERMISSIONS)
+    file(COPY ${CMAKE_SOURCE_DIR}/windows7/SeExpr/UI/generated/
+        DESTINATION UI
+        USE_SOURCE_PERMISSIONS) 
+    set(parser_cpp ExprParser.cpp ExprParserLex.cpp)
+    
 else()
     ## build the parser from the flex/yacc sources
     add_custom_command(
@@ -84,10 +91,17 @@ endif()
 file(GLOB llvm_cpp "*.cpp")
 if (NOT WIN32)
     add_library(SeExpr2 SHARED ${io_cpp} ${core_cpp} ${parser_cpp} ${llvm_cpp})
+    if (NOT APPLE)
+        set_source_files_properties(interpreter.cpp PROPERTIES COMPILE_OPTIONS "-rdynamic")
+    endif()
     target_link_libraries(SeExpr2 "dl" "pthread")
 else()
     add_library(SeExpr2 STATIC ${io_cpp} ${core_cpp} ${parser_cpp} ${llvm_cpp})
 endif()
+
+target_include_directories(SeExpr2 INTERFACE
+    $<INSTALL_INTERFACE:include>
+)
 
 set_property(TARGET SeExpr2 PROPERTY VERSION ${SeExpr2_VERSION})
 set_property(TARGET SeExpr2 PROPERTY SOVERSION ${SeExpr2_MAJOR_VERSION})
@@ -102,11 +116,14 @@ install(FILES "${CMAKE_CURRENT_BINARY_DIR}/seexpr2_export.h"
 
 ## Install binary and includes
 install(TARGETS SeExpr2 DESTINATION ${CMAKE_INSTALL_LIBDIR}
-        EXPORT SeExpr2Targets)
+        EXPORT ${PROJECT_NAME}Targets)
 
 install(DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/"
         COMPONENT devel DESTINATION ${INCLUDE_DIR}
-        FILES_MATCHING PATTERN "*.h")
+        FILES_MATCHING PATTERN "*.h"
+        PATTERN "UI/*" EXCLUDE
+        PATTERN "generated/*" EXCLUDE
+)
 
 configure_file("ExprConfig.h.in" "ExprConfig.h")
 install(FILES "${CMAKE_CURRENT_BINARY_DIR}/ExprConfig.h"

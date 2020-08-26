@@ -1,5 +1,6 @@
 /*
 * Copyright Disney Enterprises, Inc.  All rights reserved.
+* Copyright (C) 2020 L. E. Segovia <amy@amyspark.me>
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License
@@ -19,7 +20,8 @@
 %option noyywrap
 /* Don't generate unput since it's unused and gcc complains... */
 %option nounput
-
+/* Don't generate input since it's unused too -- amyspark */
+%option noinput
 %{
 #ifndef MAKEDEPEND
 #    include <ctype.h>
@@ -108,7 +110,7 @@ smooth			{ yylval.d = 1; return NUMBER; }
 gaussian		{ yylval.d = 2; return NUMBER; }
 box			{ yylval.d = 3; return NUMBER; }
 
-{REAL}			{ yylval.d = atof(yytext); return NUMBER; }
+{REAL}			{ yylval.d = crack_atof(yytext); return NUMBER; }
 \"(\\\"|[^"\n])*\"	{ /* match quoted string, allow embedded quote, \" */
 			  yylval.s = strdup(&yytext[1]);
 			  yylval.s[strlen(yylval.s)-1] = '\0';

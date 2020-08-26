@@ -17,6 +17,9 @@
 #include <string>
 %End
 
+%Feature SEEXPR_ENABLE_DEEPWATER
+%Feature SEEXPR_ENABLE_OPENGL_WIDGETS
+
 %ConvertFromTypeCode
     // convert an std::string to a Python (unicode) string
     PyObject* newstring;
@@ -68,6 +71,7 @@
 %End
 };
 
+%If (SEEXPR_ENABLE_OPENGL_WIDGETS)
 class ExprDialog:QDialog{
 %TypeHeaderCode
 #include "ExprDialog.h"
@@ -78,18 +82,19 @@ public:
 
     ExprDialog(QWidget* parent /TransferThis/ = NULL);
     std::string getExpressionString();
-    void setExpressionString(const std::string&);
+    void setExpressionString(const QString&);
     void show();
 
-signals:
+Q_SIGNALS:
     void preview();
     void expressionApplied();
 
-public slots:
+public Q_SLOTS:
     void applyExpression();
     void clearExpression();
     
 };
+%End
 
 class ExprControlCollection:QWidget{
 %TypeHeaderCode
@@ -107,12 +112,12 @@ class ExprEditor:QWidget{
 public:
     ExprEditor(QWidget* parent /TransferThis/,ExprControlCollection* collection);
 
-signals:
+Q_SIGNALS:
     void applyExpression(); // This is when text or controls are manipulated
     //void needNewPreview();
     void clearExpression();
 
-public slots:
+public Q_SLOTS:
     void exprChanged();
     void rebuildControls();
     void controlChanged(int id);
@@ -159,7 +164,7 @@ public:
     void selectPath(const char * path);
     void setSearchPath(const QString& context, const QString& path);
 
-public slots:
+public Q_SLOTS:
     void update();
     void clear();
 
@@ -178,7 +183,7 @@ class ExprShortTextEdit:QTextEdit
 public:
     ExprShortTextEdit(QWidget* parent);
 
-signals:
+Q_SIGNALS:
     void textChanged();
 };
 
@@ -192,10 +197,10 @@ class ExprShortEdit:QWidget
 public:
     ExprShortEdit(QWidget* parent);
     std::string getExpressionString() const;
-    void setExpressionString(const std::string&);
+    void setExpressionString(const QString&);
     void clearExtraCompleters();
-    void registerExtraFunction(const std::string& name,const std::string& docString);
-    void registerExtraVariable(const std::string& name,const std::string& docString);
+    void registerExtraFunction(const QString& name,const QString& docString);
+    void registerExtraVariable(const QString& name,const QString& docString);
     void setSimple(bool enabled);
     void updateCompleter();
     void setDetailsMenu(QMenu *menu);
@@ -207,7 +212,7 @@ public:
     QToolButton* expandButton;
     ExprShortTextEdit* edit;
 
-protected slots:
+protected Q_SLOTS:
     virtual void detailPressed();
     virtual void expandPressed();
     virtual void textFinished();
@@ -217,7 +222,7 @@ protected slots:
     virtual void expressionApplied();
     virtual void dialogClosed();
 
-signals:
+Q_SIGNALS:
     void exprChanged();
 };
 
@@ -246,6 +251,7 @@ public:
     ExprColorSwatchWidget(bool indexLabel = false, QWidget* parent = NULL);
 };
 
+%If (SEEXPR_ENABLE_DEEPWATER)
 class ExprDeepWater:QWidget{
 %TypeHeaderCode
 #include "ExprDeepWater.h"
@@ -253,3 +259,4 @@ class ExprDeepWater:QWidget{
 public:
     ExprDeepWater(QWidget* parent = NULL);
 };
+%End

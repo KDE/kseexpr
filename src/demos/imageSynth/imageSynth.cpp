@@ -26,7 +26,7 @@
 
 #include <SeExpr2/Expression.h>
 #include <SeExpr2/Interpreter.h>
-#include <SeExpr2/Platform.h>
+#include <SeExpr2/Timer.h>
 
 namespace SeExpr2 {
 //! Simple image synthesizer expression class to support our function grapher

@@ -108,7 +108,7 @@ class CalculatorExpr : public Expression {
             if (fail_stack[position]) std::cerr << "Use of invalid result line." << std::endl;
             return &(stack[position]);
         };
-        addError("Use of undefined variable.", 0, 0);
+        addError(ErrorCode::UndeclaredVariable, { name }, 0, 0);
         return 0;
     };
 };

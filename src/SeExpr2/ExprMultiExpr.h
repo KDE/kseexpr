@@ -28,7 +28,7 @@ typedef std::set<DExpression*>::iterator ExprHandle;
 typedef std::pair<ExprHandle, std::vector<DExpression*> > ExprEvalHandle;
 
 class DExpression : public Expression {
-    Expressions& context;
+    Expressions& dContext;
 
   public:
     DExpression(const std::string& varName,

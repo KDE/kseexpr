@@ -1,5 +1,6 @@
 /*
 * Copyright Disney Enterprises, Inc.  All rights reserved.
+* Copyright (C) 2020 L. E. Segovia <amy@amyspark.me>
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License
@@ -55,7 +56,7 @@ static const char* stop_xpm[] = {"16 16 4 1",        "       c None",    ".     
                                  "                "};
 
 ExprShortEdit::ExprShortEdit(QWidget* parent, bool expanded, bool applyOnSelect)
-    : QWidget(parent), _dialog(0), _context(""), _searchPath(""), _applyOnSelect(applyOnSelect) {
+    : QWidget(parent), _dialog(0), _context(QString()), _searchPath(QString()), _applyOnSelect(applyOnSelect) {
     controlRebuildTimer = new QTimer(this);
 
     vboxlayout = new QVBoxLayout();
@@ -103,8 +104,8 @@ ExprShortEdit::ExprShortEdit(QWidget* parent, bool expanded, bool applyOnSelect)
 ExprShortEdit::~ExprShortEdit() {}
 
 void ExprShortEdit::setSearchPath(const QString& context, const QString& path) {
-    _context = context.toStdString();
-    _searchPath = path.toStdString();
+    _context = context;
+    _searchPath = path;
 }
 
 void ExprShortEdit::detailPressed() { showDetails(-1); }
@@ -114,9 +115,9 @@ void ExprShortEdit::showDetails(int idx) {
     _dialog->editor->replaceExtras(*edit->completionModel);
 
     _dialog->browser->setApplyOnSelect(_applyOnSelect);
-    _dialog->browser->setSearchPath(_context.c_str(), _searchPath.c_str());
+    _dialog->browser->setSearchPath(_context, _searchPath);
     _dialog->browser->expandAll();
-    _dialog->setExpressionString(getExpressionString());
+    _dialog->setExpressionString(getExpression());
     if (idx >= 0) {
         _dialog->showEditor(idx);
     }
@@ -172,8 +173,8 @@ void ExprShortEdit::textFinished() {
     emit exprChanged();
 }
 
-void ExprShortEdit::setExpressionString(const std::string& expression) {
-    edit->setText(QString(expression.c_str()));
+void ExprShortEdit::setExpressionString(const QString& expression) {
+    edit->setText(expression);
     controlRebuildTimer->setSingleShot(true);
     controlRebuildTimer->start(0);
     checkErrors();
@@ -199,12 +200,12 @@ void ExprShortEdit::clearExtraCompleters() {
     edit->completionModel->clearVariables();
 }
 
-void ExprShortEdit::registerExtraFunction(const std::string& name, const std::string& docString) {
-    edit->completionModel->addFunction(name.c_str(), docString.c_str());
+void ExprShortEdit::registerExtraFunction(const QString& name, const QString& docString) {
+    edit->completionModel->addFunction(name, docString);
 }
 
-void ExprShortEdit::registerExtraVariable(const std::string& name, const std::string& docString) {
-    edit->completionModel->addVariable(name.c_str(), docString.c_str());
+void ExprShortEdit::registerExtraVariable(const QString& name, const QString& docString) {
+    edit->completionModel->addVariable(name, docString);
 }
 
 void ExprShortEdit::updateCompleter() { edit->completer->setModel(edit->completionModel); }
@@ -354,10 +355,10 @@ void ExprShortTextEdit::keyPressEvent(QKeyEvent* e) {
     QString line = tc.selectedText();
 
     // matches the last prefix of a completable variable or function and extract as completionPrefix
-    static QRegExp completion("^(?:.*[^A-Za-z0-9_$])?((?:\\$[A-Za-z0-9_]*)|[A-Za-z]+[A-Za-z0-9_]*)$");
+    static QRegExp completion(QString::fromLatin1("^(?:.*[^A-Za-z0-9_$])?((?:\\$[A-Za-z0-9_]*)|[A-Za-z]+[A-Za-z0-9_]*)$"));
     int index = completion.indexIn(line);
     QString completionPrefix;
-    if (index != -1 && !line.contains('#')) {
+    if (index != -1 && !line.contains(QLatin1Char('#'))) {
         completionPrefix = completion.cap(1);
         // std::cout<<"we have completer prefix '"<<completionPrefix.toStdString()<<"'"<<std::endl;
     }
@@ -383,14 +384,14 @@ void ExprShortTextEdit::keyPressEvent(QKeyEvent* e) {
     }
 
     // documentation completion
-    static QRegExp inFunction("^(?:.*[^A-Za-z0-9_$])?([A-Za-z0-9_]+)\\([^()]*$");
+    static QRegExp inFunction(QString::fromLatin1("^(?:.*[^A-Za-z0-9_$])?([A-Za-z0-9_]+)\\([^()]*$"));
     int index2 = inFunction.indexIn(line);
     if (index2 != -1) {
         QString functionName = inFunction.cap(1);
-        QStringList tips = completionModel->getDocString(functionName).split("\n");
-        QString tip = "<b>" + tips[0] + "</b>";
+        QStringList tips = completionModel->getDocString(functionName).split(QString::fromLatin1("\n"));
+        QString tip = QString(tr("<b>%1</b>")).arg(tips[0]);
         for (int i = 1; i < tips.size(); i++) {
-            tip += "<br>" + tips[i];
+            tip += QString(tr("<br>%1")).arg(tips[i]);
         }
         showTip(tip);
     } else {
@@ -400,7 +401,7 @@ void ExprShortTextEdit::keyPressEvent(QKeyEvent* e) {
 
 void ExprShortTextEdit::showTip(const QString& string) {
     // skip empty strings
-    if (string == "") return;
+    if (string.isEmpty()) return;
     // skip already shwon stuff
     // if(_tip && !_tip->isHidden() && _tip->label->text() == string) return;
 
@@ -425,7 +426,7 @@ void ExprShortTextEdit::insertCompletion(const QString& completion) {
     tc.movePosition(QTextCursor::Left);
     tc.movePosition(QTextCursor::EndOfWord);
     tc.insertText(completion.right(extra));
-    if (completion[0] != '$') tc.insertText("(");
+    if (completion[0] != QLatin1Char('$')) tc.insertText(QString::fromLatin1("("));
     setTextCursor(tc);
 }
 

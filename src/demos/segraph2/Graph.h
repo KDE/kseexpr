@@ -112,7 +112,7 @@ class Graph : public QWidget {
     //! Solve max problem using golden
     void solveMax(const int function, double xmin, double xmax);
   public
-slots:
+Q_SLOTS:
     //! Redraw graph and clear all given roots
     void redraw();
 };

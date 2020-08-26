@@ -1,5 +1,6 @@
 /*
 * Copyright Disney Enterprises, Inc.  All rights reserved.
+* Copyright (C) 2020 L. E. Segovia <amy@amyspark.me>
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License
@@ -46,21 +47,21 @@ class ExprFileDialog : public QFileDialog {
     void addLookInEntries(QStringList paths);
     void saveLookInEntries();
     void restoreLookInEntries();
-    QString getOpenFileName(const QString& caption = QString::null,
-                            const QString& startWith = QString::null,
-                            const QString& filter = QString::null);
-    QString getExistingDirectory(const QString& caption = QString::null,
-                                 const QString& startWith = QString::null,
-                                 const QString& filter = QString::null);
-    QString getExistingOrNewDirectory(const QString& caption = QString::null,
-                                      const QString& startWith = QString::null,
-                                      const QString& filter = QString::null);
-    QStringList getOpenFileNames(const QString& caption = QString::null,
-                                 const QString& startWith = QString::null,
-                                 const QString& filter = QString::null);
-    QString getSaveFileName(const QString& caption = QString::null,
-                            const QString& startWith = QString::null,
-                            const QString& filter = QString::null);
+    QString getOpenFileName(const QString& caption = QString(),
+                            const QString& startWith = QString(),
+                            const QString& filter = QString());
+    QString getExistingDirectory(const QString& caption = QString(),
+                                 const QString& startWith = QString(),
+                                 const QString& filter = QString());
+    QString getExistingOrNewDirectory(const QString& caption = QString(),
+                                      const QString& startWith = QString(),
+                                      const QString& filter = QString());
+    QStringList getOpenFileNames(const QString& caption = QString(),
+                                 const QString& startWith = QString(),
+                                 const QString& filter = QString());
+    QString getSaveFileName(const QString& caption = QString(),
+                            const QString& startWith = QString(),
+                            const QString& filter = QString());
     void setPreview();
     void resetPreview();
     void addCheckBox(QString s);
@@ -76,14 +77,14 @@ class ExprFileDialog : public QFileDialog {
     void addSidebarShortcut(const QString& s);
 
   private
-slots:
+Q_SLOTS:
     void handleOk();
     void editReturnPress();
     void gotoFavorites();
     void selChanged(const QString& path);
     void resetDir() {
         if (!_temppath.isEmpty()) setDirectory(_temppath);
-        _temppath = "";
+        _temppath = QString();
     }
 
   private:

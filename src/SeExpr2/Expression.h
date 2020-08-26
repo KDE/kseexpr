@@ -23,10 +23,12 @@
 #include <vector>
 #include <iomanip>
 #include <stdint.h>
-#include "ExprConfig.h"
-#include "Vec.h"
+
 #include "Context.h"
+#include "ErrorCode.h"
+#include "ExprConfig.h"
 #include "ExprEnv.h"
+#include "Vec.h"
 
 namespace llvm {
 class ExecutionEngine;
@@ -89,8 +91,11 @@ class Expression {
 
     //! Represents a parse or type checking error in an expression
     struct Error {
-        //! Text of error
-        std::string error;
+        //! Error code (index to be translated)
+        ErrorCode error;
+
+        //! Arguments to the error (to be inserted into the translation)
+        std::vector<std::string> ids;
 
         //! Error start offset in expression string
         int startPos;
@@ -98,8 +103,8 @@ class Expression {
         //! Error end offset in expression string
         int endPos;
 
-        Error(const std::string& errorIn, const int startPosIn, const int endPosIn)
-            : error(errorIn), startPos(startPosIn), endPos(endPosIn) {}
+        Error(const ErrorCode errorIn, std::vector<std::string> idsIn, const int startPosIn, const int endPosIn)
+            : error(errorIn), ids(idsIn), startPos(startPosIn), endPos(endPosIn) {}
     };
 
     Expression(EvaluationStrategy be = Expression::defaultEvaluationStrategy);
@@ -137,7 +142,15 @@ class Expression {
 
     /** Get parse error (if any).  First call syntaxOK or isValid
         to parse (and optionally bind) the expression. */
-    const std::string& parseError() const { return _parseError; }
+    const ErrorCode& parseError() const { return _parseErrorCode; }
+
+    /** 
+     * Get parse error message's arguments. 
+     * First call syntaxOK or isValid to parse (and optionally bind)
+     * the expression.
+     * NOTE: These strings are NOT translatable.
+     */
+    const std::vector<std::string>& parseErrorArgs() const { return _parseErrorIds; }
 
     /** Get a reference to a list of parse errors in the expression.
         The error structure gives location information as well as the errors itself. */
@@ -196,14 +209,14 @@ class Expression {
     void reset();
 
     /** override resolveVar to add external variables */
-    virtual ExprVarRef* resolveVar(const std::string& name) const { return 0; }
+    virtual ExprVarRef* resolveVar(const std::string&) const { return 0; }
 
     /** override resolveFunc to add external functions */
-    virtual ExprFunc* resolveFunc(const std::string& name) const { return 0; }
+    virtual ExprFunc* resolveFunc(const std::string&) const { return 0; }
 
     /** records an error in prep or parse stage */
-    void addError(const std::string& error, const int startPos, const int endPos) const {
-        _errors.push_back(Error(error, startPos, endPos));
+    void addError(const ErrorCode error, const std::vector<std::string> ids, const int startPos, const int endPos) const {
+        _errors.push_back(Error(error, ids, startPos, endPos));
     }
 
     /** records a comment */
@@ -282,7 +295,10 @@ class Expression {
     mutable bool _parsed, _prepped;
 
     /** Cached parse error (returned by isValid) */
-    mutable std::string _parseError;
+    mutable ErrorCode _parseErrorCode;
+
+    /** Cached parse error components (returned by isValid) */
+    mutable std::vector<std::string> _parseErrorIds;
 
     /** Cached parse error location {startline,startcolumn,endline,endcolumn} */
     mutable std::vector<Error> _errors;

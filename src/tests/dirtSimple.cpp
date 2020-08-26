@@ -27,7 +27,7 @@ int main() {
     Expression e("1+2");
 
     if (!e.isValid()) {
-        throw std::runtime_error(e.parseError());
+        throw std::runtime_error(std::to_string(e.parseError()));
     }
     e.debugPrintParseTree();
     e.debugPrintLLVM();

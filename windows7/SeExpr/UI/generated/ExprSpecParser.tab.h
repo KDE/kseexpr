@@ -1,19 +1,20 @@
-/* A Bison parser, made by GNU Bison 2.7.  */
+/* A Bison parser, made by GNU Bison 3.6.2.  */
 
 /* Bison interface for Yacc-like parsers in C
-   
-      Copyright (C) 1984, 1989-1990, 2000-2012 Free Software Foundation, Inc.
-   
+
+   Copyright (C) 1984, 1989-1990, 2000-2015, 2018-2020 Free Software Foundation,
+   Inc.
+
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
    the Free Software Foundation, either version 3 of the License, or
    (at your option) any later version.
-   
+
    This program is distributed in the hope that it will be useful,
    but WITHOUT ANY WARRANTY; without even the implied warranty of
    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
    GNU General Public License for more details.
-   
+
    You should have received a copy of the GNU General Public License
    along with this program.  If not, see <http://www.gnu.org/licenses/>.  */
 
@@ -26,13 +27,17 @@
    special exception, which will cause the skeleton and the resulting
    Bison output files to be licensed under the GNU General Public
    License without this special exception.
-   
+
    This special exception was added by the Free Software Foundation in
    version 2.2 of Bison.  */
 
+/* DO NOT RELY ON FEATURES THAT ARE NOT DOCUMENTED in the manual,
+   especially those whose name start with ExprSpecYY_ or ExprSpec_.  They are
+   private implementation details that can be changed or removed.  */
+
 #ifndef ExprSpecYY_EXPRSPEC_Y_TAB_H_INCLUDED
 # define ExprSpecYY_EXPRSPEC_Y_TAB_H_INCLUDED
-/* Enabling traces.  */
+/* Debug traces.  */
 #ifndef ExprSpecYYDEBUG
 # define ExprSpecYYDEBUG 0
 #endif
@@ -40,104 +45,74 @@
 extern int ExprSpecdebug;
 #endif
 
-/* Tokens.  */
+/* Token kinds.  */
 #ifndef ExprSpecYYTOKENTYPE
 # define ExprSpecYYTOKENTYPE
-   /* Put the tokens into the symbol table, so that GDB and other debuggers
-      know about them.  */
-   enum ExprSpectokentype {
-     IF = 258,
-     ELSE = 259,
-     NAME = 260,
-     VAR = 261,
-     STR = 262,
-     NUMBER = 263,
-     AddEq = 264,
-     SubEq = 265,
-     MultEq = 266,
-     DivEq = 267,
-     ExpEq = 268,
-     ModEq = 269,
-     ARROW = 270,
-     OR = 271,
-     AND = 272,
-     NE = 273,
-     EQ = 274,
-     GE = 275,
-     LE = 276,
-     UNARY = 277
-   };
+  enum ExprSpectokentype
+  {
+    ExprSpecYYEMPTY = -2,
+    ExprSpecYYEOF = 0,                     /* "end of file"  */
+    ExprSpecYYerror = 256,                 /* error  */
+    ExprSpecYYUNDEF = 257,                 /* "invalid token"  */
+    IF = 258,                      /* IF  */
+    ELSE = 259,                    /* ELSE  */
+    NAME = 260,                    /* NAME  */
+    VAR = 261,                     /* VAR  */
+    STR = 262,                     /* STR  */
+    NUMBER = 263,                  /* NUMBER  */
+    AddEq = 264,                   /* AddEq  */
+    SubEq = 265,                   /* SubEq  */
+    MultEq = 266,                  /* MultEq  */
+    DivEq = 267,                   /* DivEq  */
+    ExpEq = 268,                   /* ExpEq  */
+    ModEq = 269,                   /* ModEq  */
+    ARROW = 270,                   /* ARROW  */
+    OR = 271,                      /* OR  */
+    AND = 272,                     /* AND  */
+    EQ = 273,                      /* EQ  */
+    NE = 274,                      /* NE  */
+    LE = 275,                      /* LE  */
+    GE = 276,                      /* GE  */
+    UNARY = 277                    /* UNARY  */
+  };
+  typedef enum ExprSpectokentype ExprSpectoken_kind_t;
 #endif
-/* Tokens.  */
-#define IF 258
-#define ELSE 259
-#define NAME 260
-#define VAR 261
-#define STR 262
-#define NUMBER 263
-#define AddEq 264
-#define SubEq 265
-#define MultEq 266
-#define DivEq 267
-#define ExpEq 268
-#define ModEq 269
-#define ARROW 270
-#define OR 271
-#define AND 272
-#define NE 273
-#define EQ 274
-#define GE 275
-#define LE 276
-#define UNARY 277
 
-
-
+/* Value type.  */
 #if ! defined ExprSpecYYSTYPE && ! defined ExprSpecYYSTYPE_IS_DECLARED
-typedef union ExprSpecYYSTYPE
+union ExprSpecYYSTYPE
 {
-/* Line 2058 of yacc.c  */
-#line 271 "/disney/users/jberlin/projects/seexpr2/src/ui/ExprSpecParser.y"
+#line 279 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
 
     ExprSpecNode* n;
     double d;      // return value for number tokens
     char* s;       /* return value for name tokens.  Note: UNLIKE the regular parser, this is not strdup()'dthe string */
 
+#line 92 "y.tab.h"
 
-/* Line 2058 of yacc.c  */
-#line 108 "y.tab.h"
-} ExprSpecYYSTYPE;
+};
+typedef union ExprSpecYYSTYPE ExprSpecYYSTYPE;
 # define ExprSpecYYSTYPE_IS_TRIVIAL 1
-# define ExprSpecstype ExprSpecYYSTYPE /* obsolescent; will be withdrawn */
 # define ExprSpecYYSTYPE_IS_DECLARED 1
 #endif
 
+/* Location type.  */
 #if ! defined ExprSpecYYLTYPE && ! defined ExprSpecYYLTYPE_IS_DECLARED
-typedef struct ExprSpecYYLTYPE
+typedef struct ExprSpecYYLTYPE ExprSpecYYLTYPE;
+struct ExprSpecYYLTYPE
 {
   int first_line;
   int first_column;
   int last_line;
   int last_column;
-} ExprSpecYYLTYPE;
-# define ExprSpecltype ExprSpecYYLTYPE /* obsolescent; will be withdrawn */
+};
 # define ExprSpecYYLTYPE_IS_DECLARED 1
 # define ExprSpecYYLTYPE_IS_TRIVIAL 1
 #endif
 
+
 extern ExprSpecYYSTYPE ExprSpeclval;
 extern ExprSpecYYLTYPE ExprSpeclloc;
-#ifdef ExprSpecYYPARSE_PARAM
-#if defined __STDC__ || defined __cplusplus
-int ExprSpecparse (void *ExprSpecYYPARSE_PARAM);
-#else
-int ExprSpecparse ();
-#endif
-#else /* ! ExprSpecYYPARSE_PARAM */
-#if defined __STDC__ || defined __cplusplus
 int ExprSpecparse (void);
-#else
-int ExprSpecparse ();
-#endif
-#endif /* ! ExprSpecYYPARSE_PARAM */
 
 #endif /* !ExprSpecYY_EXPRSPEC_Y_TAB_H_INCLUDED  */

@@ -1,5 +1,6 @@
 /*
 * Copyright Disney Enterprises, Inc.  All rights reserved.
+* Copyright (C) 2020 L. E. Segovia <amy@amyspark.me>
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License
@@ -157,7 +158,8 @@ ImageEditorDialog::ImageEditorDialog(QWidget *parent) : QDialog(parent) {
     scrollArea->setWidget(controls);
 
     // Expression editor
-    _editor = new ExprEditor(this, controls);
+    _editor = new ExprEditor(this);
+    _editor->setControlCollectionWidget(controls);
 
     // Expression browser
     ExprBrowser *browser = new ExprBrowser(0, _editor);
@@ -217,7 +219,7 @@ ImageEditorDialog::ImageEditorDialog(QWidget *parent) : QDialog(parent) {
 
 // Apply expression, if any, from the editor contents to the preview image
 void ImageEditorDialog::applyExpression() {
-    std::string exprStr = _editor->getExpr();
+    std::string exprStr = _editor->getExpr().toStdString();
     if (exprStr.empty()) {
         QMessageBox msgBox;
         msgBox.setText("No expression entered in the editor.");

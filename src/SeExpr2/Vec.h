@@ -23,7 +23,7 @@
 #include "Platform.h"
 
 // To fix differences in template TYPENAME resolution between MSVC and other compilers
-#if defined(WINDOWS)
+#if defined(WINDOWS) && defined(_MSC_VER)
 #   define TYPENAME
 #else
 #   define TYPENAME typename
@@ -49,7 +49,7 @@ struct my_enable_if {
 //! Enable_if failure case (substitution failure is not an error)
 template <class T>
 struct my_enable_if<false, T> {
-#if defined(WINDOWS)
+#if defined(WINDOWS) && defined(_MSC_VER)
     typedef void TYPE;
 #endif
 };

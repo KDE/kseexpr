@@ -1,5 +1,6 @@
 /*
 * Copyright Disney Enterprises, Inc.  All rights reserved.
+* Copyright (C) 2020 L. E. Segovia <amy@amyspark.me>
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License
@@ -21,85 +22,23 @@
 #ifndef ExprEditor_h
 #define ExprEditor_h
 
-#include <vector>
-
-#include <QTextBrowser>
-#include <QPlainTextEdit>
-#include <QDialog>
+#include <QListWidget>
 #include <QTimer>
-#include <QRegExp>
-#include <QLineEdit>
-#include <QCheckBox>
-#include <QSlider>
 
-class QLabel;
-class QPushButton;
-class QLineEdit;
-class QMouseEvent;
-class QPaintEvent;
-class QKeyEvent;
-class QCompleter;
-class QToolTip;
-class QListWidget;
-class QListWidgetItem;
-class ExprCompletionModel;
-class ExprControl;
-class ExprControlCollection;
-
-class ExprEditor;
-class ExprCompletionModel;
-class ExprHighlighter;
-class ExprPopupDoc;
-
-class ExprTextEdit : public QTextEdit {
-    Q_OBJECT
-
-    QToolTip* functionTip;
-    std::map<std::string, std::string> functionTooltips;
-    ExprHighlighter* highlighter;
-    QStyle* lastStyleForHighlighter;
-    ExprPopupDoc* _tip;
-    QAction* _popupEnabledAction;
-
-  public:
-    QCompleter* completer;
-    ExprCompletionModel* completionModel;
-
-  public:
-    ExprTextEdit(QWidget* parent = 0);
-    ~ExprTextEdit();
-    void updateStyle();
-
-  protected:
-    void showTip(const QString& string);
-    void hideTip();
-
-    virtual void keyPressEvent(QKeyEvent* e);
-    void focusInEvent(QFocusEvent* e);
-    void focusOutEvent(QFocusEvent* e);
-    void mousePressEvent(QMouseEvent* event);
-    void mouseDoubleClickEvent(QMouseEvent* event);
-    void paintEvent(QPaintEvent* e);
-    void wheelEvent(QWheelEvent* e);
-    void contextMenuEvent(QContextMenuEvent* event);
-
-  private
-slots:
-    void insertCompletion(const QString& completion);
-signals:
-    void applyShortcut();
-    void nextError();
-};
+#include "ExprTextEdit.h"
+#include "ExprControlCollection.h"
 
 class ExprEditor : public QWidget {
     Q_OBJECT
 
   public:
-    ExprEditor(QWidget* parent, ExprControlCollection* controls);
+    ExprEditor(QWidget* parent);
     virtual ~ExprEditor();
+    virtual void setControlCollectionWidget(ExprControlCollection* widget);
+    ExprControlCollection* controlCollectionWidget() const;
 
   public
-slots:
+Q_SLOTS:
     void exprChanged();
     void rebuildControls();
     void controlChanged(int id);
@@ -108,33 +47,33 @@ slots:
     void sendApply();
     void sendPreview();
 // void handlePreviewTimer();
-signals:
+Q_SIGNALS:
     void apply();
     void preview();
 
   public:
     // Get the expression that is in the editor
-    std::string getExpr();
+    QString getExpr();
     // Sets the expression that is in the editor
-    void setExpr(const std::string& expression, const bool apply = false);
+    void setExpr(const QString& expression, const bool apply = false);
     // Append string
-    void appendStr(const std::string& str);
+    void appendStr(const QString& str);
   public
-slots:
+Q_SLOTS:
     // Insert string
-    void insertStr(const std::string& str);
+    void insertStr(const QString& str);
 
   public:
     // Adds an error and its associated position
-    void addError(const int startPos, const int endPos, const std::string& error);
+    void addError(const int startPos, const int endPos, const QString& error);
     // Removes all errors and hides the completion widget
     void clearErrors();
     // Removes all extra completion symbols
     void clearExtraCompleters();
     // Registers an extra function and associated do cstring
-    void registerExtraFunction(const std::string& name, const std::string& docString);
+    void registerExtraFunction(const QString& name, const QString& docString);
     // Register an extra variable (i.e. $P, or $u, something provided by resolveVar)
-    void registerExtraVariable(const std::string& name, const std::string& docString);
+    void registerExtraVariable(const QString& name, const QString& docString);
     // Replace extras
     void replaceExtras(const ExprCompletionModel& completer);
     // Updates the completion widget, must call after registering any new functions/variables
@@ -142,8 +81,11 @@ slots:
     // Updates style
     void updateStyle();
 
-  private:
+  // Expose the text editor widget to receive customizations in Krita. -amyspark
+  public:
     ExprTextEdit* exprTe;
+
+  private:
     ExprControlCollection* controls;
     QListWidget* errorWidget;
 

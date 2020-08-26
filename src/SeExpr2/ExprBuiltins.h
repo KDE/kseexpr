@@ -1,5 +1,6 @@
 /*
 * Copyright Disney Enterprises, Inc.  All rights reserved.
+* Copyright (C) 2020 L. E. Segovia <amy@amyspark.me>
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License
@@ -21,9 +22,16 @@
 #include "ExprFunc.h"
 #include "Platform.h"
 
-namespace SeExpr2 {
+/// Translation macros - for UI extraction
+/// These macros *need* a context for lupdate to not complain
+#ifndef QT_TRANSLATE_NOOP
+#define QT_TRANSLATE_NOOP(scope, x) x
+#endif
+#ifndef QT_TRANSLATE_NOOP_UTF8
+#define QT_TRANSLATE_NOOP_UTF8(scope, x) x
+#endif
 
-void initPerlin();
+namespace SeExpr2 {
 
 // trig
 inline double deg(double angle) { return angle * (180 / M_PI); }
@@ -78,7 +86,7 @@ Vec3d ccellnoise(const Vec3d& p);
 double pnoise(const Vec3d& p, const Vec3d& period);
 
 // vectors
-double dist(double ax, double ay, double az, double bx, double by, double bz);
+double dist(const Vec3d& a, const Vec3d& b);
 double length(const Vec3d& v);
 double hypot(double x, double y);
 double dot(const Vec3d& a, const Vec3d& b);

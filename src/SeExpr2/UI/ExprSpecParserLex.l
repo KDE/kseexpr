@@ -97,7 +97,7 @@ smooth			{ yylval.d = 1; return NUMBER; }
 gaussian		{ yylval.d = 2; return NUMBER; }
 box			{ yylval.d = 3; return NUMBER; }
 
-{REAL}			{ yylval.d = atof(yytext); return NUMBER; }
+{REAL}			{ yylval.d = crack_atof(yytext); return NUMBER; }
 \"(\\\"|[^"\n])*\"	{ /* match quoted string, allow embedded quote, \" */
 			  yylval.s = specRegisterToken(&yytext[1]); 
 			  yylval.s[strlen(yylval.s)-1] = '\0';

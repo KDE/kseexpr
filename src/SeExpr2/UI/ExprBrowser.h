@@ -1,5 +1,6 @@
 /*
 * Copyright Disney Enterprises, Inc.  All rights reserved.
+* Copyright (C) 2020 L. E. Segovia <amy@amyspark.me>
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License
@@ -52,8 +53,8 @@ class ExprBrowser : public QWidget {
     QLineEdit* exprFilter;
     std::string _userExprDir;
     std::string _localExprDir;
-    std::string _context;
-    std::string _searchPath;
+    QString _context;
+    QString _searchPath;
     bool _applyOnSelect;
 
   public:
@@ -70,7 +71,7 @@ class ExprBrowser : public QWidget {
     void expandToDepth(int depth);
     void setApplyOnSelect(bool on) { _applyOnSelect = on; }
   public
-slots:
+Q_SLOTS:
     void handleSelection(const QModelIndex& current, const QModelIndex& previous);
     void update();
     void clear();
@@ -79,7 +80,7 @@ slots:
     void saveLocalExpressionAs();
     void saveExpressionAs();
   private
-slots:
+Q_SLOTS:
     void clearFilter();
     void filterChanged(const QString& str);
 };

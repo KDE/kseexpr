@@ -1,5 +1,6 @@
 /*
 * Copyright Disney Enterprises, Inc.  All rights reserved.
+* Copyright (C) 2020 L. E. Segovia <amy@amyspark.me>
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License
@@ -28,7 +29,7 @@
 #include <vector>
 
 class ExprCompletionModel : public QAbstractItemModel  // ItemModel
-                            {
+{
   public:
     // clear/add functions (these are ones that will be resolved with resolveFunc()
     void clearFunctions();
@@ -61,9 +62,9 @@ class ExprCompletionModel : public QAbstractItemModel  // ItemModel
     QString getFirstLine(const std::string& all) const {
         size_t newline = all.find("\n");
         if (newline != std::string::npos)
-            return QString(all.substr(0, newline).c_str());
+            return QString::fromStdString(all.substr(0, newline));
         else
-            return QString(all.c_str());
+            return QString::fromStdString(all);
     }
 
     QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const;
@@ -71,7 +72,7 @@ class ExprCompletionModel : public QAbstractItemModel  // ItemModel
     QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const {
         Q_UNUSED(orientation);
         if (role == Qt::DisplayRole)
-            return QVariant("");
+            return QVariant();
         else if (role == Qt::SizeHintRole) {
             if (section == 0)
                 return QVariant(QSize(100, 1));
@@ -85,7 +86,9 @@ class ExprCompletionModel : public QAbstractItemModel  // ItemModel
     QString getDocString(const QString& s);
 
   private:
-    static std::vector<QString> builtins;
+    Q_OBJECT;
+
+    std::vector<QString> builtins;
     std::vector<QString> functions, functions_comment;
     std::map<QString, int> functionNameToFunction;
     std::vector<QString> variables, variables_comment;

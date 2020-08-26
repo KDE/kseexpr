@@ -1,5 +1,6 @@
 /*
 * Copyright Disney Enterprises, Inc.  All rights reserved.
+* Copyright (C) 2020 L. E. Segovia <amy@amyspark.me>
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License
@@ -46,7 +47,7 @@ class CurveGraphicsView : public QGraphicsView {
 
     virtual void resizeEvent(QResizeEvent *event);
 
-signals:
+Q_SIGNALS:
     void resizeSignal(int width, int height);
 };
 
@@ -92,13 +93,13 @@ class CurveScene : public QGraphicsScene {
   private:
     T_CURVE *_curve;
   public
-slots:
+Q_SLOTS:
     void interpChanged(const int interp);
     void selPosChanged(double pos);
     void selValChanged(double val);
     void resize(const int width, const int height);
 
-signals:
+Q_SIGNALS:
     void cvSelected(double x, double y, T_INTERP interp);
     void curveChanged();
 
@@ -121,9 +122,9 @@ class ExprCurve : public QWidget {
 
   public:
     ExprCurve(QWidget *parent = 0,
-              QString pLabel = "",
-              QString vLabel = "",
-              QString iLabel = "",
+              QString pLabel = QString(),
+              QString vLabel = QString(),
+              QString iLabel = QString(),
               bool expandable = true);
     ~ExprCurve() {}
 
@@ -133,13 +134,13 @@ class ExprCurve : public QWidget {
     CurveScene *_scene;
 
   public
-slots:
+Q_SLOTS:
     void cvSelectedSlot(double pos, double val, T_INTERP interp);
     void selPosChanged();
     void selValChanged();
     void openDetail();
 
-signals:
+Q_SIGNALS:
     void selPosChangedSignal(double pos);
     void selValChangedSignal(double val);
 

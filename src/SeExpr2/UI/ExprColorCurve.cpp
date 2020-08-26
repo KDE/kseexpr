@@ -1,5 +1,6 @@
 /*
 * Copyright Disney Enterprises, Inc.  All rights reserved.
+* Copyright (C) 2020 L. E. Segovia <amy@amyspark.me>
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License
@@ -24,6 +25,8 @@
 
 #include <QColorDialog>
 #include <QDoubleValidator>
+#include <QFormLayout>
+#include <QToolButton>
 #include <QGraphicsSceneMouseEvent>
 #include <QHBoxLayout>
 #include <QLabel>
@@ -41,7 +44,7 @@
 #include "ExprColorCurve.h"
 
 CCurveScene::CCurveScene()
-    : _curve(new T_CURVE), _width(320), _height(170), _color(SeExpr2::Vec3d(.5)), _interp(T_CURVE::kMonotoneSpline),
+    : _curve(new T_CURVE), _width(320), _height(50), _color(SeExpr2::Vec3d(.5)), _interp(T_CURVE::kMonotoneSpline),
       _selectedItem(-1), _pixmapDirty(true), _baseRectW(0), _baseRect(0), _lmb(false) {
     rebuildCurve();
     resize(_width, _height);
@@ -51,8 +54,9 @@ CCurveScene::~CCurveScene() { delete _curve; }
 
 void CCurveScene::resize(const int width, const int height) {
     // width and height already have the 8 px padding factored in
-    _width = width - 16;
-    _height = height - 16;
+    // MAKE SURE THIS NEVER UNDERFLOWS THE PIXMAPSIZE -- amyspark
+    _width = std::max(width - 16, 1);
+    _height = std::max(height - 16, 1);
     setSceneRect(-9, -2, width, height);
     drawRect();
     drawPoints();
@@ -161,7 +165,7 @@ void CCurveScene::mouseMoveEvent(QGraphicsSceneMouseEvent *mouseEvent) {
 void CCurveScene::contextMenuEvent(QGraphicsSceneContextMenuEvent *event) {
     if (_selectedItem >= 0) {
         QMenu *menu = new QMenu(event->widget());
-        QAction *deleteAction = menu->addAction("Delete Point");
+        QAction *deleteAction = menu->addAction(tr("Delete Point"));
         QAction *action = menu->exec(event->screenPos());
         if (action == deleteAction) removePoint(_selectedItem);
     }
@@ -216,7 +220,7 @@ void CCurveScene::emitCurveChanged() { emit curveChanged(); }
 QPixmap &CCurveScene::getPixmap() {
     if (_pixmapDirty) {
         QByteArray buf;
-        buf.append(QString("P6\n%1 %2\n255\n").arg(_width).arg(_height));
+        buf.append(QString::fromLatin1("P6\n%1 %2\n255\n").arg(_width).arg(_height));
         buf.append(getCPixmap());
         _pixmap.loadFromData(buf, "PPM");
         _pixmapDirty = false;
@@ -263,11 +267,14 @@ QByteArray CCurveScene::getCPixmap() {
 void CCurveScene::drawRect() {
     if (_baseRectW == 0) {
         _baseRectW = new ExprCBoxWidget(this);
+        // Disable the obtrusive grey background.
+        // It's noticeable with the sunken border of the CCurve. -amyspark
+        _baseRectW->setStyleSheet("background-color: transparent;");
     }
     if (_baseRect == 0) {
         _baseRect = addWidget(_baseRectW);
     }
-    _baseRect->widget()->setFixedSize(_width, _height);
+    _baseRectW->setMinimumWidth(_width);
     _baseRect->widget()->update();
     _baseRect->setZValue(0);
 }
@@ -347,98 +354,68 @@ ExprColorCurve::ExprColorCurve(QWidget *parent, QString pLabel, QString vLabel, 
     : QWidget(parent), _scene(0), _selPosEdit(0), _selValEdit(0), _interpComboBox(0) {
     Q_UNUSED(iLabel);
     QHBoxLayout *mainLayout = new QHBoxLayout();
-    mainLayout->setSpacing(2);
-    mainLayout->setMargin(5);
+    mainLayout->setMargin(0);
 
     QWidget *edits = new QWidget;
-    QVBoxLayout *editsLayout = new QVBoxLayout;
-    editsLayout->setAlignment(Qt::AlignTop);
-    editsLayout->setSpacing(0);
+    QFormLayout *editsLayout = new QFormLayout;
     editsLayout->setMargin(0);
     edits->setLayout(editsLayout);
 
-    QWidget *selPos = new QWidget;
-    QHBoxLayout *selPosLayout = new QHBoxLayout;
-    selPosLayout->setSpacing(1);
-    selPosLayout->setMargin(1);
-    selPos->setLayout(selPosLayout);
     _selPosEdit = new QLineEdit;
     QDoubleValidator *posValidator = new QDoubleValidator(0.0, 1.0, 6, _selPosEdit);
     _selPosEdit->setValidator(posValidator);
-    _selPosEdit->setFixedWidth(38);
-    _selPosEdit->setFixedHeight(20);
-    selPosLayout->addStretch(50);
-    QLabel *posLabel;
+    QString posLabel;
     if (pLabel.isEmpty()) {
-        posLabel = new QLabel("Selected Position:  ");
+        posLabel = tr("Selected Position: ");
     } else {
-        posLabel = new QLabel(pLabel);
+        posLabel = pLabel;
     }
-    selPosLayout->addWidget(posLabel);
-    selPosLayout->addWidget(_selPosEdit);
+    editsLayout->addRow(posLabel, _selPosEdit);
 
-    QWidget *selVal = new QWidget;
-    QBoxLayout *selValLayout = new QHBoxLayout;
-    selValLayout->setSpacing(1);
-    selValLayout->setMargin(1);
-    selVal->setLayout(selValLayout);
     _selValEdit = new ExprCSwatchFrame(SeExpr2::Vec3d(.5));
-    _selValEdit->setFixedWidth(38);
-    _selValEdit->setFixedHeight(20);
-    selValLayout->addStretch(50);
-    QLabel *valLabel;
+    _selValEdit->setMinimumHeight(_selPosEdit->minimumSizeHint().height());
+    _selValEdit->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Fixed);
+    QString valLabel;
     if (vLabel.isEmpty()) {
-        valLabel = new QLabel("Selected Color:  ");
+        valLabel = tr("Selected Color:  ");
     } else {
-        valLabel = new QLabel(vLabel);
+        valLabel = vLabel;
     }
-    selValLayout->addWidget(valLabel);
-    selValLayout->addWidget(_selValEdit);
+    editsLayout->addRow(valLabel, _selValEdit);
 
     _interpComboBox = new QComboBox;
-    _interpComboBox->addItem("None");
-    _interpComboBox->addItem("Linear");
-    _interpComboBox->addItem("Smooth");
-    _interpComboBox->addItem("Spline");
-    _interpComboBox->addItem("MSpline");
+    _interpComboBox->addItem(tr("None"));
+    _interpComboBox->addItem(tr("Linear"));
+    _interpComboBox->addItem(tr("Smooth"));
+    _interpComboBox->addItem(tr("Spline"));
+    _interpComboBox->addItem(tr("MSpline"));
     _interpComboBox->setCurrentIndex(4);
-    _interpComboBox->setFixedWidth(70);
-    _interpComboBox->setFixedHeight(20);
 
-    editsLayout->addWidget(selPos);
-    editsLayout->addWidget(selVal);
     editsLayout->addWidget(_interpComboBox);
 
-    QFrame *curveFrame = new QFrame;
-    curveFrame->setFrameShape(QFrame::Panel);
-    curveFrame->setFrameShadow(QFrame::Sunken);
-    curveFrame->setLineWidth(1);
-    QHBoxLayout *curveFrameLayout = new QHBoxLayout;
-    curveFrameLayout->setMargin(0);
     CurveGraphicsView *curveView = new CurveGraphicsView;
-    curveView->setFrameShape(QFrame::Panel);
+    curveView->setFrameShape(QFrame::StyledPanel);
     curveView->setFrameShadow(QFrame::Sunken);
-    curveView->setLineWidth(1);
     curveView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     curveView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     _scene = new CCurveScene;
     curveView->setScene(_scene);
     curveView->setTransform(QTransform().scale(1, -1));
     curveView->setRenderHints(QPainter::Antialiasing);
-    curveFrameLayout->addWidget(curveView);
-    curveFrame->setLayout(curveFrameLayout);
 
     mainLayout->addWidget(edits);
-    mainLayout->addWidget(curveFrame);
+    mainLayout->addWidget(curveView);
     if (expandable) {
-        QPushButton *expandButton = new QPushButton(">");
+        QToolButton *expandButton = new QToolButton(this);
         expandButton->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Expanding);
-        expandButton->setFixedWidth(15);
+        QIcon expandIcon = QIcon::fromTheme("arrow-right", QIcon::fromTheme("go-next"));
+        QAction *detailAction = new QAction(expandIcon, tr("&Expand..."));
+        expandButton->setDefaultAction(detailAction);
         mainLayout->addWidget(expandButton);
         // open a the detail widget when clicked
-        connect(expandButton, SIGNAL(clicked()), this, SLOT(openDetail()));
+        connect(expandButton, SIGNAL(triggered(QAction *)), this, SLOT(openDetail()));
     }
-    mainLayout->setStretchFactor(curveFrame, 100);
+    mainLayout->setStretchFactor(curveView, 100);
     setLayout(mainLayout);
 
     // SIGNALS
@@ -478,7 +455,7 @@ void ExprColorCurve::cvSelectedSlot(const double pos, const SeExpr2::Vec3d val, 
 // User entered new position, round and send signal to redraw curve.
 void ExprColorCurve::selPosChanged() {
     double pos = SeExpr2::clamp(QString(_selPosEdit->text()).toFloat(), 0, 1);
-    _selPosEdit->setText(QString("%1").arg(pos, 0, 'f', 3));
+    _selPosEdit->setText(QString(tr("%1")).arg(pos, 0, 'f', 3));
     emit selPosChangedSignal(pos);
 }
 
@@ -503,7 +480,7 @@ void ExprColorCurve::openDetail() {
     QDialog *dialog = new QDialog();
     dialog->setMinimumWidth(1024);
     dialog->setMinimumHeight(400);
-    ExprColorCurve *curve = new ExprColorCurve(0, "", "", "", false);
+    ExprColorCurve *curve = new ExprColorCurve(0, QString(), QString(), QString(), false);
 
     // copy points into new data
     const std::vector<T_CURVE::CV> &data = _scene->_cvs;

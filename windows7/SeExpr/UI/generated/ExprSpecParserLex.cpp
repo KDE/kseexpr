@@ -1,6 +1,6 @@
-#line 2 "ExprSpecParserLexIn.cpp"
+#line 1 "ExprSpecParserLexIn.cpp"
 
-#line 4 "ExprSpecParserLexIn.cpp"
+#line 3 "ExprSpecParserLexIn.cpp"
 
 #define  ExprSpecYY_INT_ALIGNED short int
 
@@ -8,8 +8,8 @@
 
 #define FLEX_SCANNER
 #define ExprSpecYY_FLEX_MAJOR_VERSION 2
-#define ExprSpecYY_FLEX_MINOR_VERSION 5
-#define ExprSpecYY_FLEX_SUBMINOR_VERSION 37
+#define ExprSpecYY_FLEX_MINOR_VERSION 6
+#define ExprSpecYY_FLEX_SUBMINOR_VERSION 4
 #if ExprSpecYY_FLEX_SUBMINOR_VERSION > 0
 #define FLEX_BETA
 #endif
@@ -84,65 +84,61 @@ typedef unsigned int flex_uint32_t;
 #define UINT32_MAX             (4294967295U)
 #endif
 
+#ifndef SIZE_MAX
+#define SIZE_MAX               (~(size_t)0)
+#endif
+
 #endif /* ! C99 */
 
 #endif /* ! FLEXINT_H */
 
-#ifdef __cplusplus
+/* begin standard C++ headers. */
 
-/* The "const" storage-class-modifier is valid. */
-#define ExprSpecYY_USE_CONST
-
-#else	/* ! __cplusplus */
-
-/* C99 requires __STDC__ to be defined as 1. */
-#if defined (__STDC__)
-
-#define ExprSpecYY_USE_CONST
-
-#endif	/* defined (__STDC__) */
-#endif	/* ! __cplusplus */
-
-#ifdef ExprSpecYY_USE_CONST
+/* TODO: this is always defined, so inline it */
 #define ExprSpecconst const
+
+#if defined(__GNUC__) && __GNUC__ >= 3
+#define ExprSpecnoreturn __attribute__((__noreturn__))
 #else
-#define ExprSpecconst
+#define ExprSpecnoreturn
 #endif
 
 /* Returned upon end-of-file. */
 #define ExprSpecYY_NULL 0
 
-/* Promotes a possibly negative, possibly signed char to an unsigned
- * integer for use as an array index.  If the signed char is negative,
- * we want to instead treat it as an 8-bit unsigned char, hence the
- * double cast.
+/* Promotes a possibly negative, possibly signed char to an
+ *   integer in range [0..255] for use as an array index.
  */
-#define ExprSpecYY_SC_TO_UI(c) ((unsigned int) (unsigned char) c)
+#define ExprSpecYY_SC_TO_UI(c) ((ExprSpecYY_CHAR) (c))
 
 /* Enter a start condition.  This macro really ought to take a parameter,
  * but we do it the disgusting crufty way forced on us by the ()-less
  * definition of BEGIN.
  */
 #define BEGIN (ExprSpec_start) = 1 + 2 *
-
 /* Translate the current start state into a value that can be later handed
  * to BEGIN to return to the state.  The ExprSpecYYSTATE alias is for lex
  * compatibility.
  */
 #define ExprSpecYY_START (((ExprSpec_start) - 1) / 2)
 #define ExprSpecYYSTATE ExprSpecYY_START
-
 /* Action number for EOF rule of a given start state. */
 #define ExprSpecYY_STATE_EOF(state) (ExprSpecYY_END_OF_BUFFER + state + 1)
-
 /* Special action meaning "start processing a new file". */
-#define ExprSpecYY_NEW_FILE ExprSpecrestart(ExprSpecin  )
-
+#define ExprSpecYY_NEW_FILE ExprSpecrestart( ExprSpecin  )
 #define ExprSpecYY_END_OF_BUFFER_CHAR 0
 
 /* Size of default input buffer. */
 #ifndef ExprSpecYY_BUF_SIZE
+#ifdef __ia64__
+/* On IA-64, the buffer size is 16k, not 8k.
+ * Moreover, ExprSpecYY_BUF_SIZE is 2*ExprSpecYY_READ_BUF_SIZE in the general case.
+ * Ditto for the __ia64__ case accordingly.
+ */
+#define ExprSpecYY_BUF_SIZE 32768
+#else
 #define ExprSpecYY_BUF_SIZE 16384
+#endif /* __ia64__ */
 #endif
 
 /* The state buf must be large enough to hold one state per character in the main buffer.
@@ -159,15 +155,16 @@ typedef struct ExprSpec_buffer_state *ExprSpecYY_BUFFER_STATE;
 typedef size_t ExprSpec_size_t;
 #endif
 
-extern ExprSpec_size_t ExprSpecleng;
+extern int ExprSpecleng;
 
 extern FILE *ExprSpecin, *ExprSpecout;
 
 #define EOB_ACT_CONTINUE_SCAN 0
 #define EOB_ACT_END_OF_FILE 1
 #define EOB_ACT_LAST_MATCH 2
-
+    
     #define ExprSpecYY_LESS_LINENO(n)
+    #define ExprSpecYY_LINENO_REWIND_TO(ptr)
     
 /* Return all but the first "n" matched characters back to the input stream. */
 #define ExprSpecless(n) \
@@ -182,7 +179,6 @@ extern FILE *ExprSpecin, *ExprSpecout;
 		ExprSpecYY_DO_BEFORE_ACTION; /* set up ExprSpectext again */ \
 		} \
 	while ( 0 )
-
 #define unput(c) ExprSpecunput( c, (ExprSpectext_ptr)  )
 
 #ifndef ExprSpecYY_STRUCT_ExprSpecYY_BUFFER_STATE
@@ -197,12 +193,12 @@ struct ExprSpec_buffer_state
 	/* Size of input buffer in bytes, not including room for EOB
 	 * characters.
 	 */
-	ExprSpec_size_t ExprSpec_buf_size;
+	int ExprSpec_buf_size;
 
 	/* Number of characters read into ExprSpec_ch_buf, not including EOB
 	 * characters.
 	 */
-	ExprSpec_size_t ExprSpec_n_chars;
+	int ExprSpec_n_chars;
 
 	/* Whether we "own" the buffer - i.e., we know we created it,
 	 * and can realloc() it to grow it, and should free() it to
@@ -225,7 +221,7 @@ struct ExprSpec_buffer_state
 
     int ExprSpec_bs_lineno; /**< The line count. */
     int ExprSpec_bs_column; /**< The column count. */
-    
+
 	/* Whether to try to fill the input buffer when we reach the
 	 * end of it.
 	 */
@@ -253,7 +249,7 @@ struct ExprSpec_buffer_state
 /* Stack of input buffers. */
 static size_t ExprSpec_buffer_stack_top = 0; /**< index of top of stack. */
 static size_t ExprSpec_buffer_stack_max = 0; /**< capacity of stack. */
-static ExprSpecYY_BUFFER_STATE * ExprSpec_buffer_stack = 0; /**< Stack as an array. */
+static ExprSpecYY_BUFFER_STATE * ExprSpec_buffer_stack = NULL; /**< Stack as an array. */
 
 /* We provide macros for accessing buffer states in case in the
  * future we want to put the buffer states in a more general
@@ -264,7 +260,6 @@ static ExprSpecYY_BUFFER_STATE * ExprSpec_buffer_stack = 0; /**< Stack as an arr
 #define ExprSpecYY_CURRENT_BUFFER ( (ExprSpec_buffer_stack) \
                           ? (ExprSpec_buffer_stack)[(ExprSpec_buffer_stack_top)] \
                           : NULL)
-
 /* Same as previous macro, but useful when we know that the buffer stack is not
  * NULL or when we need an lvalue. For internal use only.
  */
@@ -272,11 +267,11 @@ static ExprSpecYY_BUFFER_STATE * ExprSpec_buffer_stack = 0; /**< Stack as an arr
 
 /* ExprSpec_hold_char holds the character lost when ExprSpectext is formed. */
 static char ExprSpec_hold_char;
-static ExprSpec_size_t ExprSpec_n_chars;		/* number of characters read into ExprSpec_ch_buf */
-ExprSpec_size_t ExprSpecleng;
+static int ExprSpec_n_chars;		/* number of characters read into ExprSpec_ch_buf */
+int ExprSpecleng;
 
 /* Points to current character in buffer. */
-static char *ExprSpec_c_buf_p = (char *) 0;
+static char *ExprSpec_c_buf_p = NULL;
 static int ExprSpec_init = 0;		/* whether we need to initialize */
 static int ExprSpec_start = 0;	/* start state number */
 
@@ -285,85 +280,81 @@ static int ExprSpec_start = 0;	/* start state number */
  */
 static int ExprSpec_did_buffer_switch_on_eof;
 
-void ExprSpecrestart (FILE *input_file  );
-void ExprSpec_switch_to_buffer (ExprSpecYY_BUFFER_STATE new_buffer  );
-ExprSpecYY_BUFFER_STATE ExprSpec_create_buffer (FILE *file,int size  );
-void ExprSpec_delete_buffer (ExprSpecYY_BUFFER_STATE b  );
-void ExprSpec_flush_buffer (ExprSpecYY_BUFFER_STATE b  );
-void ExprSpecpush_buffer_state (ExprSpecYY_BUFFER_STATE new_buffer  );
-void ExprSpecpop_buffer_state (void );
+void ExprSpecrestart ( FILE *input_file  );
+void ExprSpec_switch_to_buffer ( ExprSpecYY_BUFFER_STATE new_buffer  );
+ExprSpecYY_BUFFER_STATE ExprSpec_create_buffer ( FILE *file, int size  );
+void ExprSpec_delete_buffer ( ExprSpecYY_BUFFER_STATE b  );
+void ExprSpec_flush_buffer ( ExprSpecYY_BUFFER_STATE b  );
+void ExprSpecpush_buffer_state ( ExprSpecYY_BUFFER_STATE new_buffer  );
+void ExprSpecpop_buffer_state ( void );
 
-static void ExprSpecensure_buffer_stack (void );
-static void ExprSpec_load_buffer_state (void );
-static void ExprSpec_init_buffer (ExprSpecYY_BUFFER_STATE b,FILE *file  );
+static void ExprSpecensure_buffer_stack ( void );
+static void ExprSpec_load_buffer_state ( void );
+static void ExprSpec_init_buffer ( ExprSpecYY_BUFFER_STATE b, FILE *file  );
+#define ExprSpecYY_FLUSH_BUFFER ExprSpec_flush_buffer( ExprSpecYY_CURRENT_BUFFER )
 
-#define ExprSpecYY_FLUSH_BUFFER ExprSpec_flush_buffer(ExprSpecYY_CURRENT_BUFFER )
+ExprSpecYY_BUFFER_STATE ExprSpec_scan_buffer ( char *base, ExprSpec_size_t size  );
+ExprSpecYY_BUFFER_STATE ExprSpec_scan_string ( const char *ExprSpec_str  );
+ExprSpecYY_BUFFER_STATE ExprSpec_scan_bytes ( const char *bytes, int len  );
 
-ExprSpecYY_BUFFER_STATE ExprSpec_scan_buffer (char *base,ExprSpec_size_t size  );
-ExprSpecYY_BUFFER_STATE ExprSpec_scan_string (ExprSpecconst char *ExprSpec_str  );
-ExprSpecYY_BUFFER_STATE ExprSpec_scan_bytes (ExprSpecconst char *bytes,ExprSpec_size_t len  );
-
-void *ExprSpecalloc (ExprSpec_size_t  );
-void *ExprSpecrealloc (void *,ExprSpec_size_t  );
-void ExprSpecfree (void *  );
+void *ExprSpecalloc ( ExprSpec_size_t  );
+void *ExprSpecrealloc ( void *, ExprSpec_size_t  );
+void ExprSpecfree ( void *  );
 
 #define ExprSpec_new_buffer ExprSpec_create_buffer
-
 #define ExprSpec_set_interactive(is_interactive) \
 	{ \
 	if ( ! ExprSpecYY_CURRENT_BUFFER ){ \
         ExprSpecensure_buffer_stack (); \
 		ExprSpecYY_CURRENT_BUFFER_LVALUE =    \
-            ExprSpec_create_buffer(ExprSpecin,ExprSpecYY_BUF_SIZE ); \
+            ExprSpec_create_buffer( ExprSpecin, ExprSpecYY_BUF_SIZE ); \
 	} \
 	ExprSpecYY_CURRENT_BUFFER_LVALUE->ExprSpec_is_interactive = is_interactive; \
 	}
-
 #define ExprSpec_set_bol(at_bol) \
 	{ \
 	if ( ! ExprSpecYY_CURRENT_BUFFER ){\
         ExprSpecensure_buffer_stack (); \
 		ExprSpecYY_CURRENT_BUFFER_LVALUE =    \
-            ExprSpec_create_buffer(ExprSpecin,ExprSpecYY_BUF_SIZE ); \
+            ExprSpec_create_buffer( ExprSpecin, ExprSpecYY_BUF_SIZE ); \
 	} \
 	ExprSpecYY_CURRENT_BUFFER_LVALUE->ExprSpec_at_bol = at_bol; \
 	}
-
 #define ExprSpecYY_AT_BOL() (ExprSpecYY_CURRENT_BUFFER_LVALUE->ExprSpec_at_bol)
 
 /* Begin user sect3 */
 
-#define ExprSpecwrap() 1
+#define ExprSpecwrap() (/*CONSTCOND*/1)
 #define ExprSpecYY_SKIP_ExprSpecYYWRAP
+typedef flex_uint8_t ExprSpecYY_CHAR;
 
-typedef unsigned char ExprSpecYY_CHAR;
-
-FILE *ExprSpecin = (FILE *) 0, *ExprSpecout = (FILE *) 0;
+FILE *ExprSpecin = NULL, *ExprSpecout = NULL;
 
 typedef int ExprSpec_state_type;
 
 extern int ExprSpeclineno;
-
 int ExprSpeclineno = 1;
 
 extern char *ExprSpectext;
+#ifdef ExprSpectext_ptr
+#undef ExprSpectext_ptr
+#endif
 #define ExprSpectext_ptr ExprSpectext
 
-static ExprSpec_state_type ExprSpec_get_previous_state (void );
-static ExprSpec_state_type ExprSpec_try_NUL_trans (ExprSpec_state_type current_state  );
-static int ExprSpec_get_next_buffer (void );
-static void ExprSpec_fatal_error (ExprSpecconst char msg[]  );
+static ExprSpec_state_type ExprSpec_get_previous_state ( void );
+static ExprSpec_state_type ExprSpec_try_NUL_trans ( ExprSpec_state_type current_state  );
+static int ExprSpec_get_next_buffer ( void );
+static void ExprSpecnoreturn ExprSpec_fatal_error ( const char* msg  );
 
 /* Done after the current pattern has been matched and before the
  * corresponding action - sets up ExprSpectext.
  */
 #define ExprSpecYY_DO_BEFORE_ACTION \
 	(ExprSpectext_ptr) = ExprSpec_bp; \
-	ExprSpecleng = (size_t) (ExprSpec_cp - ExprSpec_bp); \
+	ExprSpecleng = (int) (ExprSpec_cp - ExprSpec_bp); \
 	(ExprSpec_hold_char) = *ExprSpec_cp; \
 	*ExprSpec_cp = '\0'; \
 	(ExprSpec_c_buf_p) = ExprSpec_cp;
-
 #define ExprSpecYY_NUM_RULES 34
 #define ExprSpecYY_END_OF_BUFFER 35
 /* This struct is not used in this scanner,
@@ -373,7 +364,7 @@ struct ExprSpec_trans_info
 	flex_int32_t ExprSpec_verify;
 	flex_int32_t ExprSpec_nxt;
 	};
-static ExprSpecconst flex_int16_t ExprSpec_accept[115] =
+static const flex_int16_t ExprSpec_accept[115] =
     {   0,
         0,    0,   35,   33,   31,   31,   33,   33,   32,   33,
        33,   33,   33,   33,   33,   33,   33,   33,   23,   33,
@@ -390,7 +381,7 @@ static ExprSpecconst flex_int16_t ExprSpec_accept[115] =
         1,   28,   21,    0
     } ;
 
-static ExprSpecconst flex_int32_t ExprSpec_ec[256] =
+static const ExprSpecYY_CHAR ExprSpec_ec[256] =
     {   0,
         1,    1,    1,    1,    1,    1,    1,    1,    2,    3,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
@@ -422,7 +413,7 @@ static ExprSpecconst flex_int32_t ExprSpec_ec[256] =
         1,    1,    1,    1,    1
     } ;
 
-static ExprSpecconst flex_int32_t ExprSpec_meta[49] =
+static const ExprSpecYY_CHAR ExprSpec_meta[49] =
     {   0,
         1,    1,    2,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    3,    1,    3,    3,    4,    1,    1,
@@ -431,7 +422,7 @@ static ExprSpecconst flex_int32_t ExprSpec_meta[49] =
         5,    5,    5,    5,    5,    5,    5,    1
     } ;
 
-static ExprSpecconst flex_int16_t ExprSpec_base[123] =
+static const flex_int16_t ExprSpec_base[123] =
     {   0,
         0,    0,  193,  194,  194,  194,  171,   44,  161,    0,
       169,  180,   40,  167,  166,   30,   37,  165,   41,  164,
@@ -449,7 +440,7 @@ static ExprSpecconst flex_int16_t ExprSpec_base[123] =
        68,  151
     } ;
 
-static ExprSpecconst flex_int16_t ExprSpec_def[123] =
+static const flex_int16_t ExprSpec_def[123] =
     {   0,
       114,    1,  114,  114,  114,  114,  114,  115,  116,  117,
       114,  114,  118,  114,  114,  114,  114,  114,  114,  114,
@@ -467,7 +458,7 @@ static ExprSpecconst flex_int16_t ExprSpec_def[123] =
       114,  114
     } ;
 
-static ExprSpecconst flex_int16_t ExprSpec_nxt[243] =
+static const flex_int16_t ExprSpec_nxt[243] =
     {   0,
         4,    5,    6,    7,    8,    9,   10,   11,   12,   13,
        14,   15,   16,   17,   18,   19,   19,    4,    4,   20,
@@ -498,7 +489,7 @@ static ExprSpecconst flex_int16_t ExprSpec_nxt[243] =
       114,  114
     } ;
 
-static ExprSpecconst flex_int16_t ExprSpec_chk[243] =
+static const flex_int16_t ExprSpec_chk[243] =
     {   0,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
@@ -543,7 +534,7 @@ int ExprSpec_flex_debug = 0;
 #define ExprSpecYY_MORE_ADJ 0
 #define ExprSpecYY_RESTORE_ExprSpecYY_MORE_OFFSET
 char *ExprSpectext;
-#line 1 "/disney/users/jberlin/projects/seexpr2/src/ui/ExprSpecParserLex.l"
+#line 1 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParserLex.l"
 /*
 * Copyright Disney Enterprises, Inc.  All rights reserved.
 *
@@ -563,7 +554,7 @@ char *ExprSpectext;
 /* Don't generate ExprSpecwrap since everything is in one string */
 /* Don't generate unput since it's unused and gcc complains... */
 /* Don't worry about interactive and using isatty(). Fixes Windows compile. */
-#line 26 "/disney/users/jberlin/projects/seexpr2/src/ui/ExprSpecParserLex.l"
+#line 26 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParserLex.l"
 #ifndef MAKEDEPEND
 #    include <ctype.h>
 #    include <string.h>
@@ -586,13 +577,14 @@ char *ExprSpectext;
 // TODO: make this thread safe
 static int columnNumber=0; // really buffer position
 static int lineNumber=0; // not used
-
 static std::vector<std::pair<int,int> >* comments=0;
 
 extern char* specRegisterToken(char* tok);
+namespace SeExpr2 {
 void specResetCounters(std::vector<std::pair<int,int> >& commentsIn){
-   columnNumber=lineNumber=0;
-   comments=&commentsIn;
+    columnNumber=lineNumber=0;
+    comments=&commentsIn;
+}
 }
 
 int ExprSpecpos(); // forward declare
@@ -603,7 +595,8 @@ int ExprSpecpos(); // forward declare
     columnNumber+=ExprSpecleng;\
     ExprSpeclloc.last_column=columnNumber;ExprSpeclloc.last_line=lineNumber;} 
 
-#line 607 "ExprSpecParserLexIn.cpp"
+#line 598 "ExprSpecParserLexIn.cpp"
+#line 599 "ExprSpecParserLexIn.cpp"
 
 #define INITIAL 0
 
@@ -619,36 +612,36 @@ int ExprSpecpos(); // forward declare
 #define ExprSpecYY_EXTRA_TYPE void *
 #endif
 
-static int ExprSpec_init_globals (void );
+static int ExprSpec_init_globals ( void );
 
 /* Accessor methods to globals.
    These are made visible to non-reentrant scanners for convenience. */
 
-int ExprSpeclex_destroy (void );
+int ExprSpeclex_destroy ( void );
 
-int ExprSpecget_debug (void );
+int ExprSpecget_debug ( void );
 
-void ExprSpecset_debug (int debug_flag  );
+void ExprSpecset_debug ( int debug_flag  );
 
-ExprSpecYY_EXTRA_TYPE ExprSpecget_extra (void );
+ExprSpecYY_EXTRA_TYPE ExprSpecget_extra ( void );
 
-void ExprSpecset_extra (ExprSpecYY_EXTRA_TYPE user_defined  );
+void ExprSpecset_extra ( ExprSpecYY_EXTRA_TYPE user_defined  );
 
-FILE *ExprSpecget_in (void );
+FILE *ExprSpecget_in ( void );
 
-void ExprSpecset_in  (FILE * in_str  );
+void ExprSpecset_in  ( FILE * _in_str  );
 
-FILE *ExprSpecget_out (void );
+FILE *ExprSpecget_out ( void );
 
-void ExprSpecset_out  (FILE * out_str  );
+void ExprSpecset_out  ( FILE * _out_str  );
 
-ExprSpec_size_t ExprSpecget_leng (void );
+			int ExprSpecget_leng ( void );
 
-char *ExprSpecget_text (void );
+char *ExprSpecget_text ( void );
 
-int ExprSpecget_lineno (void );
+int ExprSpecget_lineno ( void );
 
-void ExprSpecset_lineno (int line_number  );
+void ExprSpecset_lineno ( int _line_number  );
 
 /* Macros after this point can all be overridden by user definitions in
  * section 1.
@@ -656,33 +649,41 @@ void ExprSpecset_lineno (int line_number  );
 
 #ifndef ExprSpecYY_SKIP_ExprSpecYYWRAP
 #ifdef __cplusplus
-extern "C" int ExprSpecwrap (void );
+extern "C" int ExprSpecwrap ( void );
 #else
-extern int ExprSpecwrap (void );
+extern int ExprSpecwrap ( void );
 #endif
+#endif
+
+#ifndef ExprSpecYY_NO_UNPUT
+    
 #endif
 
 #ifndef ExprSpectext_ptr
-static void ExprSpec_flex_strncpy (char *,ExprSpecconst char *,int );
+static void ExprSpec_flex_strncpy ( char *, const char *, int );
 #endif
 
 #ifdef ExprSpecYY_NEED_STRLEN
-static int ExprSpec_flex_strlen (ExprSpecconst char * );
+static int ExprSpec_flex_strlen ( const char * );
 #endif
 
 #ifndef ExprSpecYY_NO_INPUT
-
 #ifdef __cplusplus
-static int ExprSpecinput (void );
+static int ExprSpecinput ( void );
 #else
-static int input (void );
+static int input ( void );
 #endif
 
 #endif
 
 /* Amount of stuff to slurp up with each read. */
 #ifndef ExprSpecYY_READ_BUF_SIZE
+#ifdef __ia64__
+/* On IA-64, the buffer size is 16k, not 8k */
+#define ExprSpecYY_READ_BUF_SIZE 16384
+#else
 #define ExprSpecYY_READ_BUF_SIZE 8192
+#endif /* __ia64__ */
 #endif
 
 /* Copy whatever the last rule matched to the standard output. */
@@ -690,7 +691,7 @@ static int input (void );
 /* This used to be an fputs(), but since the string might contain NUL's,
  * we now use fwrite().
  */
-#define ECHO do { if (fwrite( ExprSpectext, ExprSpecleng, 1, ExprSpecout )) {} } while (0)
+#define ECHO do { if (fwrite( ExprSpectext, (size_t) ExprSpecleng, 1, ExprSpecout )) {} } while (0)
 #endif
 
 /* Gets input and stuffs it into "buf".  number of characters read, or ExprSpecYY_NULL,
@@ -701,7 +702,7 @@ static int input (void );
 	if ( ExprSpecYY_CURRENT_BUFFER_LVALUE->ExprSpec_is_interactive ) \
 		{ \
 		int c = '*'; \
-		size_t n; \
+		int n; \
 		for ( n = 0; n < max_size && \
 			     (c = getc( ExprSpecin )) != EOF && c != '\n'; ++n ) \
 			buf[n] = (char) c; \
@@ -714,7 +715,7 @@ static int input (void );
 	else \
 		{ \
 		errno=0; \
-		while ( (result = fread(buf, 1, max_size, ExprSpecin))==0 && ferror(ExprSpecin)) \
+		while ( (result = (int) fread(buf, 1, (ExprSpec_size_t) max_size, ExprSpecin)) == 0 && ferror(ExprSpecin)) \
 			{ \
 			if( errno != EINTR) \
 				{ \
@@ -769,7 +770,7 @@ extern int ExprSpeclex (void);
 
 /* Code executed at the end of each rule. */
 #ifndef ExprSpecYY_BREAK
-#define ExprSpecYY_BREAK break;
+#define ExprSpecYY_BREAK /*LINTED*/break;
 #endif
 
 #define ExprSpecYY_RULE_SETUP \
@@ -779,14 +780,10 @@ extern int ExprSpeclex (void);
  */
 ExprSpecYY_DECL
 {
-	register ExprSpec_state_type ExprSpec_current_state;
-	register char *ExprSpec_cp, *ExprSpec_bp;
-	register int ExprSpec_act;
+	ExprSpec_state_type ExprSpec_current_state;
+	char *ExprSpec_cp, *ExprSpec_bp;
+	int ExprSpec_act;
     
-#line 72 "/disney/users/jberlin/projects/seexpr2/src/ui/ExprSpecParserLex.l"
-
-#line 789 "ExprSpecParserLexIn.cpp"
-
 	if ( !(ExprSpec_init) )
 		{
 		(ExprSpec_init) = 1;
@@ -807,13 +804,18 @@ ExprSpecYY_DECL
 		if ( ! ExprSpecYY_CURRENT_BUFFER ) {
 			ExprSpecensure_buffer_stack ();
 			ExprSpecYY_CURRENT_BUFFER_LVALUE =
-				ExprSpec_create_buffer(ExprSpecin,ExprSpecYY_BUF_SIZE );
+				ExprSpec_create_buffer( ExprSpecin, ExprSpecYY_BUF_SIZE );
 		}
 
-		ExprSpec_load_buffer_state( );
+		ExprSpec_load_buffer_state(  );
 		}
 
-	while ( 1 )		/* loops until end-of-file is reached */
+	{
+#line 73 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParserLex.l"
+
+#line 816 "ExprSpecParserLexIn.cpp"
+
+	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
 		ExprSpec_cp = (ExprSpec_c_buf_p);
 
@@ -829,7 +831,7 @@ ExprSpecYY_DECL
 ExprSpec_match:
 		do
 			{
-			register ExprSpecYY_CHAR ExprSpec_c = ExprSpec_ec[ExprSpecYY_SC_TO_UI(*ExprSpec_cp)];
+			ExprSpecYY_CHAR ExprSpec_c = ExprSpec_ec[ExprSpecYY_SC_TO_UI(*ExprSpec_cp)] ;
 			if ( ExprSpec_accept[ExprSpec_current_state] )
 				{
 				(ExprSpec_last_accepting_state) = ExprSpec_current_state;
@@ -839,9 +841,9 @@ ExprSpec_match:
 				{
 				ExprSpec_current_state = (int) ExprSpec_def[ExprSpec_current_state];
 				if ( ExprSpec_current_state >= 115 )
-					ExprSpec_c = ExprSpec_meta[(unsigned int) ExprSpec_c];
+					ExprSpec_c = ExprSpec_meta[ExprSpec_c];
 				}
-			ExprSpec_current_state = ExprSpec_nxt[ExprSpec_base[ExprSpec_current_state] + (unsigned int) ExprSpec_c];
+			ExprSpec_current_state = ExprSpec_nxt[ExprSpec_base[ExprSpec_current_state] + ExprSpec_c];
 			++ExprSpec_cp;
 			}
 		while ( ExprSpec_current_state != 114 );
@@ -866,122 +868,122 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 ExprSpecYY_RULE_SETUP
-#line 73 "/disney/users/jberlin/projects/seexpr2/src/ui/ExprSpecParserLex.l"
+#line 74 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParserLex.l"
 
 	ExprSpecYY_BREAK
 case 2:
 ExprSpecYY_RULE_SETUP
-#line 75 "/disney/users/jberlin/projects/seexpr2/src/ui/ExprSpecParserLex.l"
+#line 76 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParserLex.l"
 { return IF; }
 	ExprSpecYY_BREAK
 case 3:
 ExprSpecYY_RULE_SETUP
-#line 76 "/disney/users/jberlin/projects/seexpr2/src/ui/ExprSpecParserLex.l"
+#line 77 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParserLex.l"
 { return ELSE; }
 	ExprSpecYY_BREAK
 case 4:
 ExprSpecYY_RULE_SETUP
-#line 78 "/disney/users/jberlin/projects/seexpr2/src/ui/ExprSpecParserLex.l"
+#line 79 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParserLex.l"
 { return OR; }
 	ExprSpecYY_BREAK
 case 5:
 ExprSpecYY_RULE_SETUP
-#line 79 "/disney/users/jberlin/projects/seexpr2/src/ui/ExprSpecParserLex.l"
+#line 80 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParserLex.l"
 { return AND; }
 	ExprSpecYY_BREAK
 case 6:
 ExprSpecYY_RULE_SETUP
-#line 80 "/disney/users/jberlin/projects/seexpr2/src/ui/ExprSpecParserLex.l"
+#line 81 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParserLex.l"
 { return EQ; }
 	ExprSpecYY_BREAK
 case 7:
 ExprSpecYY_RULE_SETUP
-#line 81 "/disney/users/jberlin/projects/seexpr2/src/ui/ExprSpecParserLex.l"
+#line 82 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParserLex.l"
 { return NE; }
 	ExprSpecYY_BREAK
 case 8:
 ExprSpecYY_RULE_SETUP
-#line 82 "/disney/users/jberlin/projects/seexpr2/src/ui/ExprSpecParserLex.l"
+#line 83 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParserLex.l"
 { return LE; }
 	ExprSpecYY_BREAK
 case 9:
 ExprSpecYY_RULE_SETUP
-#line 83 "/disney/users/jberlin/projects/seexpr2/src/ui/ExprSpecParserLex.l"
+#line 84 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParserLex.l"
 { return GE; }
 	ExprSpecYY_BREAK
 case 10:
 ExprSpecYY_RULE_SETUP
-#line 84 "/disney/users/jberlin/projects/seexpr2/src/ui/ExprSpecParserLex.l"
+#line 85 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParserLex.l"
 { return ARROW; }
 	ExprSpecYY_BREAK
 case 11:
 ExprSpecYY_RULE_SETUP
-#line 85 "/disney/users/jberlin/projects/seexpr2/src/ui/ExprSpecParserLex.l"
+#line 86 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParserLex.l"
 { return AddEq; }
 	ExprSpecYY_BREAK
 case 12:
 ExprSpecYY_RULE_SETUP
-#line 86 "/disney/users/jberlin/projects/seexpr2/src/ui/ExprSpecParserLex.l"
+#line 87 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParserLex.l"
 { return SubEq; }
 	ExprSpecYY_BREAK
 case 13:
 ExprSpecYY_RULE_SETUP
-#line 87 "/disney/users/jberlin/projects/seexpr2/src/ui/ExprSpecParserLex.l"
+#line 88 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParserLex.l"
 { return MultEq; }
 	ExprSpecYY_BREAK
 case 14:
 ExprSpecYY_RULE_SETUP
-#line 88 "/disney/users/jberlin/projects/seexpr2/src/ui/ExprSpecParserLex.l"
+#line 89 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParserLex.l"
 { return DivEq; }
 	ExprSpecYY_BREAK
 case 15:
 ExprSpecYY_RULE_SETUP
-#line 89 "/disney/users/jberlin/projects/seexpr2/src/ui/ExprSpecParserLex.l"
+#line 90 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParserLex.l"
 { return ModEq; }
 	ExprSpecYY_BREAK
 case 16:
 ExprSpecYY_RULE_SETUP
-#line 90 "/disney/users/jberlin/projects/seexpr2/src/ui/ExprSpecParserLex.l"
+#line 91 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParserLex.l"
 { return ExpEq; }
 	ExprSpecYY_BREAK
 case 17:
 ExprSpecYY_RULE_SETUP
-#line 92 "/disney/users/jberlin/projects/seexpr2/src/ui/ExprSpecParserLex.l"
+#line 93 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParserLex.l"
 { ExprSpeclval.d = M_PI; return NUMBER; }
 	ExprSpecYY_BREAK
 case 18:
 ExprSpecYY_RULE_SETUP
-#line 93 "/disney/users/jberlin/projects/seexpr2/src/ui/ExprSpecParserLex.l"
+#line 94 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParserLex.l"
 { ExprSpeclval.d = M_E; return NUMBER; }
 	ExprSpecYY_BREAK
 case 19:
 ExprSpecYY_RULE_SETUP
-#line 94 "/disney/users/jberlin/projects/seexpr2/src/ui/ExprSpecParserLex.l"
+#line 95 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParserLex.l"
 { ExprSpeclval.d = 0; return NUMBER; }
 	ExprSpecYY_BREAK
 case 20:
 ExprSpecYY_RULE_SETUP
-#line 95 "/disney/users/jberlin/projects/seexpr2/src/ui/ExprSpecParserLex.l"
+#line 96 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParserLex.l"
 { ExprSpeclval.d = 1; return NUMBER; }
 	ExprSpecYY_BREAK
 case 21:
 ExprSpecYY_RULE_SETUP
-#line 96 "/disney/users/jberlin/projects/seexpr2/src/ui/ExprSpecParserLex.l"
+#line 97 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParserLex.l"
 { ExprSpeclval.d = 2; return NUMBER; }
 	ExprSpecYY_BREAK
 case 22:
 ExprSpecYY_RULE_SETUP
-#line 97 "/disney/users/jberlin/projects/seexpr2/src/ui/ExprSpecParserLex.l"
+#line 98 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParserLex.l"
 { ExprSpeclval.d = 3; return NUMBER; }
 	ExprSpecYY_BREAK
 case 23:
 ExprSpecYY_RULE_SETUP
-#line 99 "/disney/users/jberlin/projects/seexpr2/src/ui/ExprSpecParserLex.l"
-{ ExprSpeclval.d = atof(ExprSpectext); return NUMBER; }
+#line 100 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParserLex.l"
+{ ExprSpeclval.d = crack_atof(ExprSpectext); return NUMBER; }
 	ExprSpecYY_BREAK
 case 24:
 ExprSpecYY_RULE_SETUP
-#line 100 "/disney/users/jberlin/projects/seexpr2/src/ui/ExprSpecParserLex.l"
+#line 101 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParserLex.l"
 { /* match quoted string, allow embedded quote, \" */
 			  ExprSpeclval.s = specRegisterToken(&ExprSpectext[1]); 
 			  ExprSpeclval.s[strlen(ExprSpeclval.s)-1] = '\0';
@@ -989,7 +991,7 @@ ExprSpecYY_RULE_SETUP
 	ExprSpecYY_BREAK
 case 25:
 ExprSpecYY_RULE_SETUP
-#line 104 "/disney/users/jberlin/projects/seexpr2/src/ui/ExprSpecParserLex.l"
+#line 105 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParserLex.l"
 { /* match quoted string, allow embedded quote, \' */
 			  ExprSpeclval.s = specRegisterToken(&ExprSpectext[1]); 
 			  ExprSpeclval.s[strlen(ExprSpeclval.s)-1] = '\0';
@@ -997,53 +999,53 @@ ExprSpecYY_RULE_SETUP
 	ExprSpecYY_BREAK
 case 26:
 ExprSpecYY_RULE_SETUP
-#line 108 "/disney/users/jberlin/projects/seexpr2/src/ui/ExprSpecParserLex.l"
+#line 109 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParserLex.l"
 { ExprSpeclval.s = specRegisterToken(&ExprSpectext[1]); return VAR; }
 	ExprSpecYY_BREAK
 case 27:
 ExprSpecYY_RULE_SETUP
-#line 109 "/disney/users/jberlin/projects/seexpr2/src/ui/ExprSpecParserLex.l"
+#line 110 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParserLex.l"
 { ExprSpeclval.s = specRegisterToken(&ExprSpectext[1]); return VAR; }
 	ExprSpecYY_BREAK
 case 28:
 ExprSpecYY_RULE_SETUP
-#line 110 "/disney/users/jberlin/projects/seexpr2/src/ui/ExprSpecParserLex.l"
+#line 111 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParserLex.l"
 { ExprSpeclval.s = specRegisterToken(ExprSpectext); return NAME; }
 	ExprSpecYY_BREAK
 case 29:
 ExprSpecYY_RULE_SETUP
-#line 112 "/disney/users/jberlin/projects/seexpr2/src/ui/ExprSpecParserLex.l"
+#line 113 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParserLex.l"
 /* ignore quoted newline */;
 	ExprSpecYY_BREAK
 case 30:
 ExprSpecYY_RULE_SETUP
-#line 113 "/disney/users/jberlin/projects/seexpr2/src/ui/ExprSpecParserLex.l"
+#line 114 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParserLex.l"
 /* ignore quoted tab */;
 	ExprSpecYY_BREAK
 case 31:
 /* rule 31 can match eol */
 ExprSpecYY_RULE_SETUP
-#line 114 "/disney/users/jberlin/projects/seexpr2/src/ui/ExprSpecParserLex.l"
+#line 115 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParserLex.l"
 /* ignore whitespace */;
 	ExprSpecYY_BREAK
 case 32:
 ExprSpecYY_RULE_SETUP
-#line 115 "/disney/users/jberlin/projects/seexpr2/src/ui/ExprSpecParserLex.l"
+#line 116 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParserLex.l"
 { /* match comment */ 
                          int startPos=ExprSpecpos(),endPos=ExprSpecpos()+strlen(&ExprSpectext[1])+1;
                           comments->push_back(std::pair<int,int>(startPos,endPos));}
 	ExprSpecYY_BREAK
 case 33:
 ExprSpecYY_RULE_SETUP
-#line 120 "/disney/users/jberlin/projects/seexpr2/src/ui/ExprSpecParserLex.l"
+#line 121 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParserLex.l"
 { return ExprSpectext[0]; }
 	ExprSpecYY_BREAK
 case 34:
 ExprSpecYY_RULE_SETUP
-#line 122 "/disney/users/jberlin/projects/seexpr2/src/ui/ExprSpecParserLex.l"
+#line 123 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParserLex.l"
 ECHO;
 	ExprSpecYY_BREAK
-#line 1047 "ExprSpecParserLexIn.cpp"
+#line 1048 "ExprSpecParserLexIn.cpp"
 case ExprSpecYY_STATE_EOF(INITIAL):
 	ExprSpecterminate();
 
@@ -1122,7 +1124,7 @@ case ExprSpecYY_STATE_EOF(INITIAL):
 				{
 				(ExprSpec_did_buffer_switch_on_eof) = 0;
 
-				if ( ExprSpecwrap( ) )
+				if ( ExprSpecwrap(  ) )
 					{
 					/* Note: because we've taken care in
 					 * ExprSpec_get_next_buffer() to have set up
@@ -1175,6 +1177,7 @@ case ExprSpecYY_STATE_EOF(INITIAL):
 			"fatal flex scanner internal error--no action found" );
 	} /* end of action switch */
 		} /* end of scanning one token */
+	} /* end of user's declarations */
 } /* end of ExprSpeclex */
 
 /* ExprSpec_get_next_buffer - try to read in a new buffer
@@ -1186,9 +1189,9 @@ case ExprSpecYY_STATE_EOF(INITIAL):
  */
 static int ExprSpec_get_next_buffer (void)
 {
-    	register char *dest = ExprSpecYY_CURRENT_BUFFER_LVALUE->ExprSpec_ch_buf;
-	register char *source = (ExprSpectext_ptr);
-	register int number_to_move, i;
+    	char *dest = ExprSpecYY_CURRENT_BUFFER_LVALUE->ExprSpec_ch_buf;
+	char *source = (ExprSpectext_ptr);
+	int number_to_move, i;
 	int ret_val;
 
 	if ( (ExprSpec_c_buf_p) > &ExprSpecYY_CURRENT_BUFFER_LVALUE->ExprSpec_ch_buf[(ExprSpec_n_chars) + 1] )
@@ -1217,7 +1220,7 @@ static int ExprSpec_get_next_buffer (void)
 	/* Try to read more data. */
 
 	/* First move last chars to start of buffer. */
-	number_to_move = (int) ((ExprSpec_c_buf_p) - (ExprSpectext_ptr)) - 1;
+	number_to_move = (int) ((ExprSpec_c_buf_p) - (ExprSpectext_ptr) - 1);
 
 	for ( i = 0; i < number_to_move; ++i )
 		*(dest++) = *(source++);
@@ -1230,7 +1233,7 @@ static int ExprSpec_get_next_buffer (void)
 
 	else
 		{
-			ExprSpec_size_t num_to_read =
+			int num_to_read =
 			ExprSpecYY_CURRENT_BUFFER_LVALUE->ExprSpec_buf_size - number_to_move - 1;
 
 		while ( num_to_read <= 0 )
@@ -1244,7 +1247,7 @@ static int ExprSpec_get_next_buffer (void)
 
 			if ( b->ExprSpec_is_our_buffer )
 				{
-				ExprSpec_size_t new_size = b->ExprSpec_buf_size * 2;
+				int new_size = b->ExprSpec_buf_size * 2;
 
 				if ( new_size <= 0 )
 					b->ExprSpec_buf_size += b->ExprSpec_buf_size / 8;
@@ -1253,11 +1256,12 @@ static int ExprSpec_get_next_buffer (void)
 
 				b->ExprSpec_ch_buf = (char *)
 					/* Include room in for 2 EOB chars. */
-					ExprSpecrealloc((void *) b->ExprSpec_ch_buf,b->ExprSpec_buf_size + 2  );
+					ExprSpecrealloc( (void *) b->ExprSpec_ch_buf,
+							 (ExprSpec_size_t) (b->ExprSpec_buf_size + 2)  );
 				}
 			else
 				/* Can't grow it, we don't own it. */
-				b->ExprSpec_ch_buf = 0;
+				b->ExprSpec_ch_buf = NULL;
 
 			if ( ! b->ExprSpec_ch_buf )
 				ExprSpecYY_FATAL_ERROR(
@@ -1285,7 +1289,7 @@ static int ExprSpec_get_next_buffer (void)
 		if ( number_to_move == ExprSpecYY_MORE_ADJ )
 			{
 			ret_val = EOB_ACT_END_OF_FILE;
-			ExprSpecrestart(ExprSpecin  );
+			ExprSpecrestart( ExprSpecin  );
 			}
 
 		else
@@ -1299,12 +1303,15 @@ static int ExprSpec_get_next_buffer (void)
 	else
 		ret_val = EOB_ACT_CONTINUE_SCAN;
 
-	if ((ExprSpec_size_t) ((ExprSpec_n_chars) + number_to_move) > ExprSpecYY_CURRENT_BUFFER_LVALUE->ExprSpec_buf_size) {
+	if (((ExprSpec_n_chars) + number_to_move) > ExprSpecYY_CURRENT_BUFFER_LVALUE->ExprSpec_buf_size) {
 		/* Extend the array by 50%, plus the number we really need. */
-		ExprSpec_size_t new_size = (ExprSpec_n_chars) + number_to_move + ((ExprSpec_n_chars) >> 1);
-		ExprSpecYY_CURRENT_BUFFER_LVALUE->ExprSpec_ch_buf = (char *) ExprSpecrealloc((void *) ExprSpecYY_CURRENT_BUFFER_LVALUE->ExprSpec_ch_buf,new_size  );
+		int new_size = (ExprSpec_n_chars) + number_to_move + ((ExprSpec_n_chars) >> 1);
+		ExprSpecYY_CURRENT_BUFFER_LVALUE->ExprSpec_ch_buf = (char *) ExprSpecrealloc(
+			(void *) ExprSpecYY_CURRENT_BUFFER_LVALUE->ExprSpec_ch_buf, (ExprSpec_size_t) new_size  );
 		if ( ! ExprSpecYY_CURRENT_BUFFER_LVALUE->ExprSpec_ch_buf )
 			ExprSpecYY_FATAL_ERROR( "out of dynamic memory in ExprSpec_get_next_buffer()" );
+		/* "- 2" to take care of EOB's */
+		ExprSpecYY_CURRENT_BUFFER_LVALUE->ExprSpec_buf_size = (int) (new_size - 2);
 	}
 
 	(ExprSpec_n_chars) += number_to_move;
@@ -1320,14 +1327,14 @@ static int ExprSpec_get_next_buffer (void)
 
     static ExprSpec_state_type ExprSpec_get_previous_state (void)
 {
-	register ExprSpec_state_type ExprSpec_current_state;
-	register char *ExprSpec_cp;
+	ExprSpec_state_type ExprSpec_current_state;
+	char *ExprSpec_cp;
     
 	ExprSpec_current_state = (ExprSpec_start);
 
 	for ( ExprSpec_cp = (ExprSpectext_ptr) + ExprSpecYY_MORE_ADJ; ExprSpec_cp < (ExprSpec_c_buf_p); ++ExprSpec_cp )
 		{
-		register ExprSpecYY_CHAR ExprSpec_c = (*ExprSpec_cp ? ExprSpec_ec[ExprSpecYY_SC_TO_UI(*ExprSpec_cp)] : 1);
+		ExprSpecYY_CHAR ExprSpec_c = (*ExprSpec_cp ? ExprSpec_ec[ExprSpecYY_SC_TO_UI(*ExprSpec_cp)] : 1);
 		if ( ExprSpec_accept[ExprSpec_current_state] )
 			{
 			(ExprSpec_last_accepting_state) = ExprSpec_current_state;
@@ -1337,9 +1344,9 @@ static int ExprSpec_get_next_buffer (void)
 			{
 			ExprSpec_current_state = (int) ExprSpec_def[ExprSpec_current_state];
 			if ( ExprSpec_current_state >= 115 )
-				ExprSpec_c = ExprSpec_meta[(unsigned int) ExprSpec_c];
+				ExprSpec_c = ExprSpec_meta[ExprSpec_c];
 			}
-		ExprSpec_current_state = ExprSpec_nxt[ExprSpec_base[ExprSpec_current_state] + (unsigned int) ExprSpec_c];
+		ExprSpec_current_state = ExprSpec_nxt[ExprSpec_base[ExprSpec_current_state] + ExprSpec_c];
 		}
 
 	return ExprSpec_current_state;
@@ -1352,10 +1359,10 @@ static int ExprSpec_get_next_buffer (void)
  */
     static ExprSpec_state_type ExprSpec_try_NUL_trans  (ExprSpec_state_type ExprSpec_current_state )
 {
-	register int ExprSpec_is_jam;
-    	register char *ExprSpec_cp = (ExprSpec_c_buf_p);
+	int ExprSpec_is_jam;
+    	char *ExprSpec_cp = (ExprSpec_c_buf_p);
 
-	register ExprSpecYY_CHAR ExprSpec_c = 1;
+	ExprSpecYY_CHAR ExprSpec_c = 1;
 	if ( ExprSpec_accept[ExprSpec_current_state] )
 		{
 		(ExprSpec_last_accepting_state) = ExprSpec_current_state;
@@ -1365,13 +1372,17 @@ static int ExprSpec_get_next_buffer (void)
 		{
 		ExprSpec_current_state = (int) ExprSpec_def[ExprSpec_current_state];
 		if ( ExprSpec_current_state >= 115 )
-			ExprSpec_c = ExprSpec_meta[(unsigned int) ExprSpec_c];
+			ExprSpec_c = ExprSpec_meta[ExprSpec_c];
 		}
-	ExprSpec_current_state = ExprSpec_nxt[ExprSpec_base[ExprSpec_current_state] + (unsigned int) ExprSpec_c];
+	ExprSpec_current_state = ExprSpec_nxt[ExprSpec_base[ExprSpec_current_state] + ExprSpec_c];
 	ExprSpec_is_jam = (ExprSpec_current_state == 114);
 
 		return ExprSpec_is_jam ? 0 : ExprSpec_current_state;
 }
+
+#ifndef ExprSpecYY_NO_UNPUT
+
+#endif
 
 #ifndef ExprSpecYY_NO_INPUT
 #ifdef __cplusplus
@@ -1397,7 +1408,7 @@ static int ExprSpec_get_next_buffer (void)
 
 		else
 			{ /* need more input */
-			ExprSpec_size_t offset = (ExprSpec_c_buf_p) - (ExprSpectext_ptr);
+			int offset = (int) ((ExprSpec_c_buf_p) - (ExprSpectext_ptr));
 			++(ExprSpec_c_buf_p);
 
 			switch ( ExprSpec_get_next_buffer(  ) )
@@ -1414,14 +1425,14 @@ static int ExprSpec_get_next_buffer (void)
 					 */
 
 					/* Reset buffer status. */
-					ExprSpecrestart(ExprSpecin );
+					ExprSpecrestart( ExprSpecin );
 
 					/*FALLTHROUGH*/
 
 				case EOB_ACT_END_OF_FILE:
 					{
-					if ( ExprSpecwrap( ) )
-						return EOF;
+					if ( ExprSpecwrap(  ) )
+						return 0;
 
 					if ( ! (ExprSpec_did_buffer_switch_on_eof) )
 						ExprSpecYY_NEW_FILE;
@@ -1458,11 +1469,11 @@ static int ExprSpec_get_next_buffer (void)
 	if ( ! ExprSpecYY_CURRENT_BUFFER ){
         ExprSpecensure_buffer_stack ();
 		ExprSpecYY_CURRENT_BUFFER_LVALUE =
-            ExprSpec_create_buffer(ExprSpecin,ExprSpecYY_BUF_SIZE );
+            ExprSpec_create_buffer( ExprSpecin, ExprSpecYY_BUF_SIZE );
 	}
 
-	ExprSpec_init_buffer(ExprSpecYY_CURRENT_BUFFER,input_file );
-	ExprSpec_load_buffer_state( );
+	ExprSpec_init_buffer( ExprSpecYY_CURRENT_BUFFER, input_file );
+	ExprSpec_load_buffer_state(  );
 }
 
 /** Switch to a different input buffer.
@@ -1490,7 +1501,7 @@ static int ExprSpec_get_next_buffer (void)
 		}
 
 	ExprSpecYY_CURRENT_BUFFER_LVALUE = new_buffer;
-	ExprSpec_load_buffer_state( );
+	ExprSpec_load_buffer_state(  );
 
 	/* We don't actually know whether we did this switch during
 	 * EOF (ExprSpecwrap()) processing, but the only time this flag
@@ -1518,7 +1529,7 @@ static void ExprSpec_load_buffer_state  (void)
 {
 	ExprSpecYY_BUFFER_STATE b;
     
-	b = (ExprSpecYY_BUFFER_STATE) ExprSpecalloc(sizeof( struct ExprSpec_buffer_state )  );
+	b = (ExprSpecYY_BUFFER_STATE) ExprSpecalloc( sizeof( struct ExprSpec_buffer_state )  );
 	if ( ! b )
 		ExprSpecYY_FATAL_ERROR( "out of dynamic memory in ExprSpec_create_buffer()" );
 
@@ -1527,13 +1538,13 @@ static void ExprSpec_load_buffer_state  (void)
 	/* ExprSpec_ch_buf has to be 2 characters longer than the size given because
 	 * we need to put in 2 end-of-buffer characters.
 	 */
-	b->ExprSpec_ch_buf = (char *) ExprSpecalloc(b->ExprSpec_buf_size + 2  );
+	b->ExprSpec_ch_buf = (char *) ExprSpecalloc( (ExprSpec_size_t) (b->ExprSpec_buf_size + 2)  );
 	if ( ! b->ExprSpec_ch_buf )
 		ExprSpecYY_FATAL_ERROR( "out of dynamic memory in ExprSpec_create_buffer()" );
 
 	b->ExprSpec_is_our_buffer = 1;
 
-	ExprSpec_init_buffer(b,file );
+	ExprSpec_init_buffer( b, file );
 
 	return b;
 }
@@ -1552,9 +1563,9 @@ static void ExprSpec_load_buffer_state  (void)
 		ExprSpecYY_CURRENT_BUFFER_LVALUE = (ExprSpecYY_BUFFER_STATE) 0;
 
 	if ( b->ExprSpec_is_our_buffer )
-		ExprSpecfree((void *) b->ExprSpec_ch_buf  );
+		ExprSpecfree( (void *) b->ExprSpec_ch_buf  );
 
-	ExprSpecfree((void *) b  );
+	ExprSpecfree( (void *) b  );
 }
 
 /* Initializes or reinitializes a buffer.
@@ -1566,7 +1577,7 @@ static void ExprSpec_load_buffer_state  (void)
 {
 	int oerrno = errno;
     
-	ExprSpec_flush_buffer(b );
+	ExprSpec_flush_buffer( b );
 
 	b->ExprSpec_input_file = file;
 	b->ExprSpec_fill_buffer = 1;
@@ -1609,7 +1620,7 @@ static void ExprSpec_load_buffer_state  (void)
 	b->ExprSpec_buffer_status = ExprSpecYY_BUFFER_NEW;
 
 	if ( b == ExprSpecYY_CURRENT_BUFFER )
-		ExprSpec_load_buffer_state( );
+		ExprSpec_load_buffer_state(  );
 }
 
 /** Pushes the new state onto the stack. The new state becomes
@@ -1640,7 +1651,7 @@ void ExprSpecpush_buffer_state (ExprSpecYY_BUFFER_STATE new_buffer )
 	ExprSpecYY_CURRENT_BUFFER_LVALUE = new_buffer;
 
 	/* copied from ExprSpec_switch_to_buffer. */
-	ExprSpec_load_buffer_state( );
+	ExprSpec_load_buffer_state(  );
 	(ExprSpec_did_buffer_switch_on_eof) = 1;
 }
 
@@ -1659,7 +1670,7 @@ void ExprSpecpop_buffer_state (void)
 		--(ExprSpec_buffer_stack_top);
 
 	if (ExprSpecYY_CURRENT_BUFFER) {
-		ExprSpec_load_buffer_state( );
+		ExprSpec_load_buffer_state(  );
 		(ExprSpec_did_buffer_switch_on_eof) = 1;
 	}
 }
@@ -1677,15 +1688,15 @@ static void ExprSpecensure_buffer_stack (void)
 		 * scanner will even need a stack. We use 2 instead of 1 to avoid an
 		 * immediate realloc on the next call.
          */
-		num_to_alloc = 1;
+      num_to_alloc = 1; /* After all that talk, this was set to 1 anyways... */
 		(ExprSpec_buffer_stack) = (struct ExprSpec_buffer_state**)ExprSpecalloc
 								(num_to_alloc * sizeof(struct ExprSpec_buffer_state*)
 								);
 		if ( ! (ExprSpec_buffer_stack) )
 			ExprSpecYY_FATAL_ERROR( "out of dynamic memory in ExprSpecensure_buffer_stack()" );
-								  
+
 		memset((ExprSpec_buffer_stack), 0, num_to_alloc * sizeof(struct ExprSpec_buffer_state*));
-				
+
 		(ExprSpec_buffer_stack_max) = num_to_alloc;
 		(ExprSpec_buffer_stack_top) = 0;
 		return;
@@ -1694,7 +1705,7 @@ static void ExprSpecensure_buffer_stack (void)
 	if ((ExprSpec_buffer_stack_top) >= ((ExprSpec_buffer_stack_max)) - 1){
 
 		/* Increase the buffer to prepare for a possible push. */
-		int grow_size = 8 /* arbitrary grow size */;
+		ExprSpec_size_t grow_size = 8 /* arbitrary grow size */;
 
 		num_to_alloc = (ExprSpec_buffer_stack_max) + grow_size;
 		(ExprSpec_buffer_stack) = (struct ExprSpec_buffer_state**)ExprSpecrealloc
@@ -1714,7 +1725,7 @@ static void ExprSpecensure_buffer_stack (void)
  * @param base the character buffer
  * @param size the size in bytes of the character buffer
  * 
- * @return the newly allocated buffer state object. 
+ * @return the newly allocated buffer state object.
  */
 ExprSpecYY_BUFFER_STATE ExprSpec_scan_buffer  (char * base, ExprSpec_size_t  size )
 {
@@ -1724,23 +1735,23 @@ ExprSpecYY_BUFFER_STATE ExprSpec_scan_buffer  (char * base, ExprSpec_size_t  siz
 	     base[size-2] != ExprSpecYY_END_OF_BUFFER_CHAR ||
 	     base[size-1] != ExprSpecYY_END_OF_BUFFER_CHAR )
 		/* They forgot to leave room for the EOB's. */
-		return 0;
+		return NULL;
 
-	b = (ExprSpecYY_BUFFER_STATE) ExprSpecalloc(sizeof( struct ExprSpec_buffer_state )  );
+	b = (ExprSpecYY_BUFFER_STATE) ExprSpecalloc( sizeof( struct ExprSpec_buffer_state )  );
 	if ( ! b )
 		ExprSpecYY_FATAL_ERROR( "out of dynamic memory in ExprSpec_scan_buffer()" );
 
-	b->ExprSpec_buf_size = size - 2;	/* "- 2" to take care of EOB's */
+	b->ExprSpec_buf_size = (int) (size - 2);	/* "- 2" to take care of EOB's */
 	b->ExprSpec_buf_pos = b->ExprSpec_ch_buf = base;
 	b->ExprSpec_is_our_buffer = 0;
-	b->ExprSpec_input_file = 0;
+	b->ExprSpec_input_file = NULL;
 	b->ExprSpec_n_chars = b->ExprSpec_buf_size;
 	b->ExprSpec_is_interactive = 0;
 	b->ExprSpec_at_bol = 1;
 	b->ExprSpec_fill_buffer = 0;
 	b->ExprSpec_buffer_status = ExprSpecYY_BUFFER_NEW;
 
-	ExprSpec_switch_to_buffer(b  );
+	ExprSpec_switch_to_buffer( b  );
 
 	return b;
 }
@@ -1753,10 +1764,10 @@ ExprSpecYY_BUFFER_STATE ExprSpec_scan_buffer  (char * base, ExprSpec_size_t  siz
  * @note If you want to scan bytes that may contain NUL values, then use
  *       ExprSpec_scan_bytes() instead.
  */
-ExprSpecYY_BUFFER_STATE ExprSpec_scan_string (ExprSpecconst char * ExprSpecstr )
+ExprSpecYY_BUFFER_STATE ExprSpec_scan_string (const char * ExprSpecstr )
 {
     
-	return ExprSpec_scan_bytes(ExprSpecstr,strlen(ExprSpecstr) );
+	return ExprSpec_scan_bytes( ExprSpecstr, (int) strlen(ExprSpecstr) );
 }
 
 /** Setup the input buffer state to scan the given bytes. The next call to ExprSpeclex() will
@@ -1766,7 +1777,7 @@ ExprSpecYY_BUFFER_STATE ExprSpec_scan_string (ExprSpecconst char * ExprSpecstr )
  * 
  * @return the newly allocated buffer state object.
  */
-ExprSpecYY_BUFFER_STATE ExprSpec_scan_bytes  (ExprSpecconst char * ExprSpecbytes, ExprSpec_size_t  _ExprSpecbytes_len )
+ExprSpecYY_BUFFER_STATE ExprSpec_scan_bytes  (const char * ExprSpecbytes, int  _ExprSpecbytes_len )
 {
 	ExprSpecYY_BUFFER_STATE b;
 	char *buf;
@@ -1774,8 +1785,8 @@ ExprSpecYY_BUFFER_STATE ExprSpec_scan_bytes  (ExprSpecconst char * ExprSpecbytes
 	int i;
     
 	/* Get memory for full buffer, including space for trailing EOB's. */
-	n = _ExprSpecbytes_len + 2;
-	buf = (char *) ExprSpecalloc(n  );
+	n = (ExprSpec_size_t) (_ExprSpecbytes_len + 2);
+	buf = (char *) ExprSpecalloc( n  );
 	if ( ! buf )
 		ExprSpecYY_FATAL_ERROR( "out of dynamic memory in ExprSpec_scan_bytes()" );
 
@@ -1784,7 +1795,7 @@ ExprSpecYY_BUFFER_STATE ExprSpec_scan_bytes  (ExprSpecconst char * ExprSpecbytes
 
 	buf[_ExprSpecbytes_len] = buf[_ExprSpecbytes_len+1] = ExprSpecYY_END_OF_BUFFER_CHAR;
 
-	b = ExprSpec_scan_buffer(buf,n );
+	b = ExprSpec_scan_buffer( buf, n );
 	if ( ! b )
 		ExprSpecYY_FATAL_ERROR( "bad buffer in ExprSpec_scan_bytes()" );
 
@@ -1800,9 +1811,9 @@ ExprSpecYY_BUFFER_STATE ExprSpec_scan_bytes  (ExprSpecconst char * ExprSpecbytes
 #define ExprSpecYY_EXIT_FAILURE 2
 #endif
 
-static void ExprSpec_fatal_error (ExprSpecconst char* msg )
+static void ExprSpecnoreturn ExprSpec_fatal_error (const char* msg )
 {
-    	(void) fprintf( stderr, "%s\n", msg );
+			fprintf( stderr, "%s\n", msg );
 	exit( ExprSpecYY_EXIT_FAILURE );
 }
 
@@ -1830,7 +1841,7 @@ static void ExprSpec_fatal_error (ExprSpecconst char* msg )
  */
 int ExprSpecget_lineno  (void)
 {
-        
+    
     return ExprSpeclineno;
 }
 
@@ -1853,7 +1864,7 @@ FILE *ExprSpecget_out  (void)
 /** Get the length of the current token.
  * 
  */
-ExprSpec_size_t ExprSpecget_leng  (void)
+int ExprSpecget_leng  (void)
 {
         return ExprSpecleng;
 }
@@ -1868,29 +1879,29 @@ char *ExprSpecget_text  (void)
 }
 
 /** Set the current line number.
- * @param line_number
+ * @param _line_number line number
  * 
  */
-void ExprSpecset_lineno (int  line_number )
+void ExprSpecset_lineno (int  _line_number )
 {
     
-    ExprSpeclineno = line_number;
+    ExprSpeclineno = _line_number;
 }
 
 /** Set the input stream. This does not discard the current
  * input buffer.
- * @param in_str A readable stream.
+ * @param _in_str A readable stream.
  * 
  * @see ExprSpec_switch_to_buffer
  */
-void ExprSpecset_in (FILE *  in_str )
+void ExprSpecset_in (FILE *  _in_str )
 {
-        ExprSpecin = in_str ;
+        ExprSpecin = _in_str ;
 }
 
-void ExprSpecset_out (FILE *  out_str )
+void ExprSpecset_out (FILE *  _out_str )
 {
-        ExprSpecout = out_str ;
+        ExprSpecout = _out_str ;
 }
 
 int ExprSpecget_debug  (void)
@@ -1898,9 +1909,9 @@ int ExprSpecget_debug  (void)
         return ExprSpec_flex_debug;
 }
 
-void ExprSpecset_debug (int  bdebug )
+void ExprSpecset_debug (int  _bdebug )
 {
-        ExprSpec_flex_debug = bdebug ;
+        ExprSpec_flex_debug = _bdebug ;
 }
 
 static int ExprSpec_init_globals (void)
@@ -1909,10 +1920,10 @@ static int ExprSpec_init_globals (void)
      * This function is called from ExprSpeclex_destroy(), so don't allocate here.
      */
 
-    (ExprSpec_buffer_stack) = 0;
+    (ExprSpec_buffer_stack) = NULL;
     (ExprSpec_buffer_stack_top) = 0;
     (ExprSpec_buffer_stack_max) = 0;
-    (ExprSpec_c_buf_p) = (char *) 0;
+    (ExprSpec_c_buf_p) = NULL;
     (ExprSpec_init) = 0;
     (ExprSpec_start) = 0;
 
@@ -1921,8 +1932,8 @@ static int ExprSpec_init_globals (void)
     ExprSpecin = stdin;
     ExprSpecout = stdout;
 #else
-    ExprSpecin = (FILE *) 0;
-    ExprSpecout = (FILE *) 0;
+    ExprSpecin = NULL;
+    ExprSpecout = NULL;
 #endif
 
     /* For future reference: Set errno on error, since we are called by
@@ -1937,7 +1948,7 @@ int ExprSpeclex_destroy  (void)
     
     /* Pop the buffer stack, destroying each element. */
 	while(ExprSpecYY_CURRENT_BUFFER){
-		ExprSpec_delete_buffer(ExprSpecYY_CURRENT_BUFFER  );
+		ExprSpec_delete_buffer( ExprSpecYY_CURRENT_BUFFER  );
 		ExprSpecYY_CURRENT_BUFFER_LVALUE = NULL;
 		ExprSpecpop_buffer_state();
 	}
@@ -1958,18 +1969,19 @@ int ExprSpeclex_destroy  (void)
  */
 
 #ifndef ExprSpectext_ptr
-static void ExprSpec_flex_strncpy (char* s1, ExprSpecconst char * s2, int n )
+static void ExprSpec_flex_strncpy (char* s1, const char * s2, int n )
 {
-	register int i;
+		
+	int i;
 	for ( i = 0; i < n; ++i )
 		s1[i] = s2[i];
 }
 #endif
 
 #ifdef ExprSpecYY_NEED_STRLEN
-static int ExprSpec_flex_strlen (ExprSpecconst char * s )
+static int ExprSpec_flex_strlen (const char * s )
 {
-	register int n;
+	int n;
 	for ( n = 0; s[n]; ++n )
 		;
 
@@ -1979,11 +1991,12 @@ static int ExprSpec_flex_strlen (ExprSpecconst char * s )
 
 void *ExprSpecalloc (ExprSpec_size_t  size )
 {
-	return (void *) malloc( size );
+			return malloc(size);
 }
 
 void *ExprSpecrealloc  (void * ptr, ExprSpec_size_t  size )
 {
+		
 	/* The cast to (char *) in the following accommodates both
 	 * implementations that use char* generic pointers, and those
 	 * that use void* generic pointers.  It works with the latter
@@ -1991,18 +2004,17 @@ void *ExprSpecrealloc  (void * ptr, ExprSpec_size_t  size )
 	 * any pointer type to void*, and deal with argument conversions
 	 * as though doing an assignment.
 	 */
-	return (void *) realloc( (char *) ptr, size );
+	return realloc(ptr, size);
 }
 
 void ExprSpecfree (void * ptr )
 {
-	free( (char *) ptr );	/* see ExprSpecrealloc() for (char *) cast */
+			free( (char *) ptr );	/* see ExprSpecrealloc() for (char *) cast */
 }
 
 #define ExprSpecYYTABLES_NAME "ExprSpectables"
 
-#line 122 "/disney/users/jberlin/projects/seexpr2/src/ui/ExprSpecParserLex.l"
-
+#line 123 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParserLex.l"
 
 
 /* Gets index of current token (corresponding to ExprSpectext).  

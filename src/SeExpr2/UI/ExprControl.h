@@ -1,5 +1,6 @@
 /*
 * Copyright Disney Enterprises, Inc.  All rights reserved.
+* Copyright (C) 2020 L. E. Segovia <amy@amyspark.me>
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License
@@ -16,39 +17,23 @@
 */
 #ifndef _ExprControl_h_
 #define _ExprControl_h_
-#include <QTextBrowser>
-#include <QPlainTextEdit>
-#include <QDialog>
-#include <QTimer>
-#include <QRegExp>
-#include <QLineEdit>
-#include <QCheckBox>
-#include <QSlider>
 
+#include <memory>
+
+#include <QCheckBox>
+#include <QHBoxLayout>
+#include <QLabel>
+
+#include "Editable.h"
 #include "ExprCurve.h"
 #include "ExprColorCurve.h"
+#include "ExprColorSwatch.h"
+#ifdef SEEXPR_ENABLE_DEEPWATER
 #include "ExprDeepWater.h"
+#endif
 
-class QLabel;
-class ExprColorCurve;
-class QHBoxLayout;
-class ExprCSwatchFrame;
-class Editable;
-class StringEditable;
-class VectorEditable;
-class NumberEditable;
-class AnimCurveEditable;
-class ColorSwatchEditable;
-class ExprColorSwatchWidget;
-template <class TVAL>
-struct GenericCurveEditable;
 typedef GenericCurveEditable<SeExpr2::Vec3d> ColorCurveEditable;
 typedef GenericCurveEditable<double> CurveEditable;
-class DeepWaterEditable;
-
-namespace animlib {
-class AnimCurve;
-}
 
 /// Base class for all controls for Expressions
 class ExprControl : public QWidget {
@@ -57,11 +42,11 @@ class ExprControl : public QWidget {
   protected:
     int _id;
     bool _updating;  // whether to send events (i.e. masked when self editing)
-    QHBoxLayout* hbox;
-    QCheckBox* _colorLinkCB;
-    QLabel* _label;
+    QHBoxLayout* hbox{nullptr};
+    QCheckBox* _colorLinkCB{nullptr};
+    QLabel* _label{nullptr};
 
-    Editable* _editable;
+    Editable* _editable{nullptr};
 
   public:
     ExprControl(int id, Editable* editable, bool showColorLink);
@@ -72,7 +57,7 @@ class ExprControl : public QWidget {
     /// Interface for setting the color (used for linked color picking)
     virtual void setColor(QColor color) {Q_UNUSED(color)};
 
-signals:
+Q_SIGNALS:
     // sends that the control has been changed to the control collection
     void controlChanged(int id);
     // sends the new color to the control collection
@@ -80,13 +65,16 @@ signals:
     // sends that a color link is desired to the control collection
     void linkColorLink(int id);
   public
-slots:
+Q_SLOTS:
     // receives that the link should be changed to the given state (0=off,1=on)
     void linkStateChange(int state);
 
   public:
     // notifies this that the link should be disconnected
     void linkDisconnect(int newId);
+  protected:
+    // Allows to adapt the widget contents - amyspark
+    void resizeEvent(QResizeEvent *event) override;
 };
 
 /// clamp val to the specified range [minval,maxval]
@@ -110,11 +98,11 @@ class ExprLineEdit : public QLineEdit {
         QLineEdit::setText(t);
     }
 
-signals:
+Q_SIGNALS:
     void textChanged(int id, const QString& text);
 
   private
-slots:
+Q_SLOTS:
     void textChangedCB(const QString& text);
 
   private:
@@ -155,10 +143,10 @@ class ExprChannelSlider : public QWidget {
     void setDisplayColor(QColor c) { _col = c; }
 
   public
-slots:
+Q_SLOTS:
     void setValue(float value);
 
-signals:
+Q_SIGNALS:
     void valueChanged(int id, float value);
 
   private:
@@ -172,11 +160,11 @@ class NumberControl : public ExprControl {
     Q_OBJECT
 
     /// Pointer to the number control model
-    NumberEditable* _numberEditable;
+    NumberEditable* _numberEditable{nullptr};
     /// Slider for the number
-    ExprSlider* _slider;
+    ExprSlider* _slider{nullptr};
     /// Text box for the number
-    ExprLineEdit* _edit;
+    ExprLineEdit* _edit{nullptr};
 
   public:
     NumberControl(int id, NumberEditable* number);
@@ -187,7 +175,7 @@ class NumberControl : public ExprControl {
     /// Update values in slider and textbox  given what the model contains
     void updateControl();
   private
-slots:
+Q_SLOTS:
     void sliderChanged(int val);
     void editChanged(int id, const QString& text);
 };
@@ -197,13 +185,13 @@ class VectorControl : public ExprControl {
     Q_OBJECT
 
     /// Number model
-    VectorEditable* _numberEditable;
+    VectorEditable* _numberEditable{nullptr};
     /// All three line edit widgets (for each component)
-    ExprLineEdit* _edits[3];
-    ExprCSwatchFrame* _swatch;
+    ExprLineEdit* _edits[3]{nullptr};
+    ExprCSwatchFrame* _swatch{nullptr};
     ;
     /// All three channel sliders (for each component)
-    ExprChannelSlider* _sliders[3];
+    ExprChannelSlider* _sliders[3]{nullptr};
 
   public:
     VectorControl(int id, VectorEditable* number);
@@ -217,7 +205,7 @@ class VectorControl : public ExprControl {
     /// update the individual slider and eidt box controls
     void updateControl();
   private
-slots:
+Q_SLOTS:
     void sliderChanged(int id, float val);
     void editChanged(int id, const QString& text);
     void swatchChanged(QColor color);
@@ -228,9 +216,9 @@ class StringControl : public ExprControl {
     Q_OBJECT
 
     /// model for the string control
-    StringEditable* _stringEditable;
+    StringEditable* _stringEditable{nullptr};
     /// Edit box for the string
-    QLineEdit* _edit;
+    QLineEdit* _edit{nullptr};
 
   public:
     StringControl(int id, StringEditable* stringEditable);
@@ -238,7 +226,7 @@ class StringControl : public ExprControl {
   private:
     void updateControl();
   private
-slots:
+Q_SLOTS:
     void textChanged(const QString& newText);
     void fileBrowse();
     void directoryBrowse();
@@ -249,14 +237,14 @@ class CurveControl : public ExprControl {
     Q_OBJECT
 
     /// curve model
-    CurveEditable* _curveEditable;
+    CurveEditable* _curveEditable{nullptr};
     /// curve edit widget
-    ExprCurve* _curve;
+    ExprCurve* _curve{nullptr};
 
   public:
     CurveControl(int id, CurveEditable* stringEditable);
   private
-slots:
+Q_SLOTS:
     void curveChanged();
 };
 
@@ -265,26 +253,27 @@ class CCurveControl : public ExprControl {
     Q_OBJECT
 
     /// color curve model
-    ColorCurveEditable* _curveEditable;
+    ColorCurveEditable* _curveEditable{nullptr};
     /// color curve widget
-    ExprColorCurve* _curve;
+    ExprColorCurve* _curve{nullptr};
 
   public:
     CCurveControl(int id, ColorCurveEditable* stringEditable);
     QColor getColor();
     void setColor(QColor color);
   private
-slots:
+Q_SLOTS:
     void curveChanged();
 };
 
+#ifdef SEEXPR_ENABLE_ANIMCURVE
 /// Anim curve control
 class ExprGraphPreview;
 class AnimCurveControl : public ExprControl {
     Q_OBJECT;
 
-    AnimCurveEditable* _editable;
-    ExprGraphPreview* _preview;
+    AnimCurveEditable* _editable{nullptr};
+    ExprGraphPreview* _preview{nullptr};
 
   public:
     AnimCurveControl(int id, AnimCurveEditable* curveEditable);
@@ -292,30 +281,31 @@ class AnimCurveControl : public ExprControl {
     static void setAnimCurveCallback(AnimCurveCallback callback);
 
   public
-slots:
+Q_SLOTS:
     void editGraphClicked();
 
   private
-slots:
+Q_SLOTS:
     void refreshClicked();
 
   private:
     static AnimCurveCallback callback;
 };
+#endif
 
 /// A control for editing color swatches
 class ColorSwatchControl : public ExprControl {
     Q_OBJECT
 
     /// model for the color swatches control
-    ColorSwatchEditable* _swatchEditable;
+    ColorSwatchEditable* _swatchEditable{nullptr};
     /// Edit box for the color swatches
-    ExprColorSwatchWidget* _swatch;
+    ExprColorSwatchWidget* _swatch{nullptr};
 
   public:
     ColorSwatchControl(int id, ColorSwatchEditable* swatchEditable);
   private
-slots:
+Q_SLOTS:
     void buildSwatchWidget();
     void colorChanged(int index, SeExpr2::Vec3d value);
     void colorAdded(int index, SeExpr2::Vec3d value);
@@ -325,20 +315,22 @@ slots:
     bool _indexLabel;
 };
 
+#ifdef SEEXPR_ENABLE_DEEPWATER
 /// Control for displaying a deep water spectrum
 class DeepWaterControl : public ExprControl {
     Q_OBJECT
 
     /// curve model
-    DeepWaterEditable* _deepWaterEditable;
+    DeepWaterEditable* _deepWaterEditable{nullptr};
     /// deep water widget
-    ExprDeepWater* _deepWater;
+    ExprDeepWater* _deepWater{nullptr};
 
   public:
     DeepWaterControl(int id, DeepWaterEditable* stringEditable);
   private
-slots:
+Q_SLOTS:
     void deepWaterChanged();
 };
+#endif // SEEXPR_ENABLE_DEEPWATER
 
 #endif

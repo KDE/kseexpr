@@ -153,7 +153,7 @@ ExprType ExprPrototypeNode::prep(bool wantScalar, ExprVarEnvBuilder& envBuilder)
         child(c)->prep(wantScalar, envBuilder);
     }
 #else
-    checkCondition(false, "Prototypes are currently not supported", error);
+    checkCondition(false, ErrorCode::Unknown, { "Prototypes are currently not supported" }, error);
 #endif
     if (error)
         setType(ExprType().Error());
@@ -223,7 +223,7 @@ ExprType ExprLocalFunctionNode::prep(bool wantScalar, ExprVarEnvBuilder& envBuil
         error = true;
     }
 #else
-    checkCondition(false, "Local functions are currently not supported.", error);
+    checkCondition(false, ErrorCode::Unknown, { "Local functions are currently not supported." }, error);
 #endif
 
     if (error)
@@ -250,7 +250,7 @@ ExprType ExprLocalFunctionNode::prep(ExprFuncNode* callerNode, bool scalarWanted
     return error ? ExprType().Error() : prototype()->returnType();
 #else
     bool error = false;
-    callerNode->checkCondition(false, "Local functions are currently not supported.", error);
+    callerNode->checkCondition(false, ErrorCode::Unknown, {"Local functions are currently not supported." }, error);
     return ExprType().Error();
 #endif
 }
@@ -311,8 +311,7 @@ ExprType ExprAssignNode::prep(bool wantScalar, ExprVarEnvBuilder& envBuilder) {
     _localVar = localVar.get();
     envBuilder.current()->add(_name, std::move(localVar));
     bool error = false;
-    checkCondition(
-        _assignedType.isValid(), std::string("Assignment operation has bad type: ") + _type.toString(), error);
+    checkCondition(_assignedType.isValid(), ErrorCode::BadAssignmentOperator, { _type.toString() }, error);
 
     if (error)
         setType(ExprType().Error());
@@ -382,7 +381,7 @@ ExprType ExprCondNode::prep(bool wantScalar, ExprVarEnvBuilder& envBuilder) {
 
     checkIsValue(thenType, error);
     checkIsValue(elseType, error);
-    checkCondition(ExprType::valuesCompatible(thenType, elseType), "Types of conditional are not compatible", error);
+    checkCondition(ExprType::valuesCompatible(thenType, elseType), ErrorCode::ConditionalTypesNotCompatible, {}, error);
 
     if (error)
         setType(ExprType().Error());
@@ -490,7 +489,7 @@ ExprType ExprVarNode::prep(bool wantScalar, ExprVarEnvBuilder& envBuilder) {
             /// Some friendlier error suggestions
             if (ExprLocalVarPhi* phi = dynamic_cast<ExprLocalVarPhi*>(_localVar)) {
                 if (!phi->_thenVar->type().isError() && !phi->_elseVar->type().isError()) {
-                    addError(std::string("Variable ") + name() + " defined in conditionals inconsistently.");
+                    addError(ErrorCode::InconsistentDefinition, { name() });
                 }
             }
         }
@@ -512,7 +511,7 @@ ExprType ExprVarNode::prep(bool wantScalar, ExprVarEnvBuilder& envBuilder) {
         }
     }
     // If we get here we do not have a variable!
-    checkCondition(_var || _localVar, std::string("No variable named ''") + name() + "'", error);
+    checkCondition(_var || _localVar, ErrorCode::UndeclaredVariable, { name() }, error);
     setType(ExprType().Error());
     return _type;
 }
@@ -548,10 +547,10 @@ ExprType ExprFuncNode::prep(bool wantScalar, ExprVarEnvBuilder& envBuilder) {
         if (!_func) _func = ExprFunc::lookup(_name);
 
         // check that function exists and that the function has the right number of arguments
-        if (checkCondition(_func, "Function " + _name + " has no definition", error) &&
-            checkCondition(nargs >= _func->minArgs(), "Too few args for function " + _name, error) &&
+        if (checkCondition(_func, ErrorCode::UndeclaredFunction, { _name }, error) &&
+            checkCondition(nargs >= _func->minArgs(), ErrorCode::FunctionTooFewArguments, { _name }, error) &&
             checkCondition(
-                nargs <= _func->maxArgs() || _func->maxArgs() < 0, "Too many args for function " + _name, error)) {
+                nargs <= _func->maxArgs() || _func->maxArgs() < 0, ErrorCode::FunctionTooManyArguments, { _name }, error)) {
 
             const ExprFuncX* funcx = _func->funcx();
             ExprType type = funcx->prep(this, wantScalar, envBuilder);
@@ -584,7 +583,7 @@ bool ExprFuncNode::checkArg(int arg, ExprType type, ExprVarEnvBuilder& envBuilde
         }
         return true;
     }
-    child(arg)->addError("Expected " + type.toString() + " for argument, got " + childType.toString());
+    child(arg)->addError(ErrorCode::ArgumentTypeMismatch, { type.toString(), childType.toString()});
     return false;
 }
 }

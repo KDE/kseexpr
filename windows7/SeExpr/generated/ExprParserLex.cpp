@@ -1,6 +1,6 @@
-#line 2 "ExprParserLexIn.cpp"
+#line 1 "ExprParserLexIn.cpp"
 
-#line 4 "ExprParserLexIn.cpp"
+#line 3 "ExprParserLexIn.cpp"
 
 #define  SeExprYY_INT_ALIGNED short int
 
@@ -8,8 +8,8 @@
 
 #define FLEX_SCANNER
 #define SeExprYY_FLEX_MAJOR_VERSION 2
-#define SeExprYY_FLEX_MINOR_VERSION 5
-#define SeExprYY_FLEX_SUBMINOR_VERSION 37
+#define SeExprYY_FLEX_MINOR_VERSION 6
+#define SeExprYY_FLEX_SUBMINOR_VERSION 4
 #if SeExprYY_FLEX_SUBMINOR_VERSION > 0
 #define FLEX_BETA
 #endif
@@ -84,65 +84,61 @@ typedef unsigned int flex_uint32_t;
 #define UINT32_MAX             (4294967295U)
 #endif
 
+#ifndef SIZE_MAX
+#define SIZE_MAX               (~(size_t)0)
+#endif
+
 #endif /* ! C99 */
 
 #endif /* ! FLEXINT_H */
 
-#ifdef __cplusplus
+/* begin standard C++ headers. */
 
-/* The "const" storage-class-modifier is valid. */
-#define SeExprYY_USE_CONST
-
-#else	/* ! __cplusplus */
-
-/* C99 requires __STDC__ to be defined as 1. */
-#if defined (__STDC__)
-
-#define SeExprYY_USE_CONST
-
-#endif	/* defined (__STDC__) */
-#endif	/* ! __cplusplus */
-
-#ifdef SeExprYY_USE_CONST
+/* TODO: this is always defined, so inline it */
 #define SeExpr2const const
+
+#if defined(__GNUC__) && __GNUC__ >= 3
+#define SeExpr2noreturn __attribute__((__noreturn__))
 #else
-#define SeExpr2const
+#define SeExpr2noreturn
 #endif
 
 /* Returned upon end-of-file. */
 #define SeExprYY_NULL 0
 
-/* Promotes a possibly negative, possibly signed char to an unsigned
- * integer for use as an array index.  If the signed char is negative,
- * we want to instead treat it as an 8-bit unsigned char, hence the
- * double cast.
+/* Promotes a possibly negative, possibly signed char to an
+ *   integer in range [0..255] for use as an array index.
  */
-#define SeExprYY_SC_TO_UI(c) ((unsigned int) (unsigned char) c)
+#define SeExprYY_SC_TO_UI(c) ((SeExprYY_CHAR) (c))
 
 /* Enter a start condition.  This macro really ought to take a parameter,
  * but we do it the disgusting crufty way forced on us by the ()-less
  * definition of BEGIN.
  */
 #define BEGIN (SeExpr2_start) = 1 + 2 *
-
 /* Translate the current start state into a value that can be later handed
  * to BEGIN to return to the state.  The SeExprYYSTATE alias is for lex
  * compatibility.
  */
 #define SeExprYY_START (((SeExpr2_start) - 1) / 2)
 #define SeExprYYSTATE SeExprYY_START
-
 /* Action number for EOF rule of a given start state. */
 #define SeExprYY_STATE_EOF(state) (SeExprYY_END_OF_BUFFER + state + 1)
-
 /* Special action meaning "start processing a new file". */
-#define SeExprYY_NEW_FILE SeExpr2restart(SeExpr2in  )
-
+#define SeExprYY_NEW_FILE SeExpr2restart( SeExpr2in  )
 #define SeExprYY_END_OF_BUFFER_CHAR 0
 
 /* Size of default input buffer. */
 #ifndef SeExprYY_BUF_SIZE
+#ifdef __ia64__
+/* On IA-64, the buffer size is 16k, not 8k.
+ * Moreover, SeExprYY_BUF_SIZE is 2*SeExprYY_READ_BUF_SIZE in the general case.
+ * Ditto for the __ia64__ case accordingly.
+ */
+#define SeExprYY_BUF_SIZE 32768
+#else
 #define SeExprYY_BUF_SIZE 16384
+#endif /* __ia64__ */
 #endif
 
 /* The state buf must be large enough to hold one state per character in the main buffer.
@@ -159,15 +155,16 @@ typedef struct SeExpr2_buffer_state *SeExprYY_BUFFER_STATE;
 typedef size_t SeExpr2_size_t;
 #endif
 
-extern SeExpr2_size_t SeExpr2leng;
+extern int SeExpr2leng;
 
 extern FILE *SeExpr2in, *SeExpr2out;
 
 #define EOB_ACT_CONTINUE_SCAN 0
 #define EOB_ACT_END_OF_FILE 1
 #define EOB_ACT_LAST_MATCH 2
-
+    
     #define SeExprYY_LESS_LINENO(n)
+    #define SeExprYY_LINENO_REWIND_TO(ptr)
     
 /* Return all but the first "n" matched characters back to the input stream. */
 #define SeExpr2less(n) \
@@ -182,7 +179,6 @@ extern FILE *SeExpr2in, *SeExpr2out;
 		SeExprYY_DO_BEFORE_ACTION; /* set up SeExpr2text again */ \
 		} \
 	while ( 0 )
-
 #define unput(c) SeExpr2unput( c, (SeExpr2text_ptr)  )
 
 #ifndef SeExprYY_STRUCT_SeExprYY_BUFFER_STATE
@@ -197,12 +193,12 @@ struct SeExpr2_buffer_state
 	/* Size of input buffer in bytes, not including room for EOB
 	 * characters.
 	 */
-	SeExpr2_size_t SeExpr2_buf_size;
+	int SeExpr2_buf_size;
 
 	/* Number of characters read into SeExpr2_ch_buf, not including EOB
 	 * characters.
 	 */
-	SeExpr2_size_t SeExpr2_n_chars;
+	int SeExpr2_n_chars;
 
 	/* Whether we "own" the buffer - i.e., we know we created it,
 	 * and can realloc() it to grow it, and should free() it to
@@ -225,7 +221,7 @@ struct SeExpr2_buffer_state
 
     int SeExpr2_bs_lineno; /**< The line count. */
     int SeExpr2_bs_column; /**< The column count. */
-    
+
 	/* Whether to try to fill the input buffer when we reach the
 	 * end of it.
 	 */
@@ -253,7 +249,7 @@ struct SeExpr2_buffer_state
 /* Stack of input buffers. */
 static size_t SeExpr2_buffer_stack_top = 0; /**< index of top of stack. */
 static size_t SeExpr2_buffer_stack_max = 0; /**< capacity of stack. */
-static SeExprYY_BUFFER_STATE * SeExpr2_buffer_stack = 0; /**< Stack as an array. */
+static SeExprYY_BUFFER_STATE * SeExpr2_buffer_stack = NULL; /**< Stack as an array. */
 
 /* We provide macros for accessing buffer states in case in the
  * future we want to put the buffer states in a more general
@@ -264,7 +260,6 @@ static SeExprYY_BUFFER_STATE * SeExpr2_buffer_stack = 0; /**< Stack as an array.
 #define SeExprYY_CURRENT_BUFFER ( (SeExpr2_buffer_stack) \
                           ? (SeExpr2_buffer_stack)[(SeExpr2_buffer_stack_top)] \
                           : NULL)
-
 /* Same as previous macro, but useful when we know that the buffer stack is not
  * NULL or when we need an lvalue. For internal use only.
  */
@@ -272,11 +267,11 @@ static SeExprYY_BUFFER_STATE * SeExpr2_buffer_stack = 0; /**< Stack as an array.
 
 /* SeExpr2_hold_char holds the character lost when SeExpr2text is formed. */
 static char SeExpr2_hold_char;
-static SeExpr2_size_t SeExpr2_n_chars;		/* number of characters read into SeExpr2_ch_buf */
-SeExpr2_size_t SeExpr2leng;
+static int SeExpr2_n_chars;		/* number of characters read into SeExpr2_ch_buf */
+int SeExpr2leng;
 
 /* Points to current character in buffer. */
-static char *SeExpr2_c_buf_p = (char *) 0;
+static char *SeExpr2_c_buf_p = NULL;
 static int SeExpr2_init = 0;		/* whether we need to initialize */
 static int SeExpr2_start = 0;	/* start state number */
 
@@ -285,85 +280,81 @@ static int SeExpr2_start = 0;	/* start state number */
  */
 static int SeExpr2_did_buffer_switch_on_eof;
 
-void SeExpr2restart (FILE *input_file  );
-void SeExpr2_switch_to_buffer (SeExprYY_BUFFER_STATE new_buffer  );
-SeExprYY_BUFFER_STATE SeExpr2_create_buffer (FILE *file,int size  );
-void SeExpr2_delete_buffer (SeExprYY_BUFFER_STATE b  );
-void SeExpr2_flush_buffer (SeExprYY_BUFFER_STATE b  );
-void SeExpr2push_buffer_state (SeExprYY_BUFFER_STATE new_buffer  );
-void SeExpr2pop_buffer_state (void );
+void SeExpr2restart ( FILE *input_file  );
+void SeExpr2_switch_to_buffer ( SeExprYY_BUFFER_STATE new_buffer  );
+SeExprYY_BUFFER_STATE SeExpr2_create_buffer ( FILE *file, int size  );
+void SeExpr2_delete_buffer ( SeExprYY_BUFFER_STATE b  );
+void SeExpr2_flush_buffer ( SeExprYY_BUFFER_STATE b  );
+void SeExpr2push_buffer_state ( SeExprYY_BUFFER_STATE new_buffer  );
+void SeExpr2pop_buffer_state ( void );
 
-static void SeExpr2ensure_buffer_stack (void );
-static void SeExpr2_load_buffer_state (void );
-static void SeExpr2_init_buffer (SeExprYY_BUFFER_STATE b,FILE *file  );
+static void SeExpr2ensure_buffer_stack ( void );
+static void SeExpr2_load_buffer_state ( void );
+static void SeExpr2_init_buffer ( SeExprYY_BUFFER_STATE b, FILE *file  );
+#define SeExprYY_FLUSH_BUFFER SeExpr2_flush_buffer( SeExprYY_CURRENT_BUFFER )
 
-#define SeExprYY_FLUSH_BUFFER SeExpr2_flush_buffer(SeExprYY_CURRENT_BUFFER )
+SeExprYY_BUFFER_STATE SeExpr2_scan_buffer ( char *base, SeExpr2_size_t size  );
+SeExprYY_BUFFER_STATE SeExpr2_scan_string ( const char *SeExpr2_str  );
+SeExprYY_BUFFER_STATE SeExpr2_scan_bytes ( const char *bytes, int len  );
 
-SeExprYY_BUFFER_STATE SeExpr2_scan_buffer (char *base,SeExpr2_size_t size  );
-SeExprYY_BUFFER_STATE SeExpr2_scan_string (SeExpr2const char *SeExpr2_str  );
-SeExprYY_BUFFER_STATE SeExpr2_scan_bytes (SeExpr2const char *bytes,SeExpr2_size_t len  );
-
-void *SeExpr2alloc (SeExpr2_size_t  );
-void *SeExpr2realloc (void *,SeExpr2_size_t  );
-void SeExpr2free (void *  );
+void *SeExpr2alloc ( SeExpr2_size_t  );
+void *SeExpr2realloc ( void *, SeExpr2_size_t  );
+void SeExpr2free ( void *  );
 
 #define SeExpr2_new_buffer SeExpr2_create_buffer
-
 #define SeExpr2_set_interactive(is_interactive) \
 	{ \
 	if ( ! SeExprYY_CURRENT_BUFFER ){ \
         SeExpr2ensure_buffer_stack (); \
 		SeExprYY_CURRENT_BUFFER_LVALUE =    \
-            SeExpr2_create_buffer(SeExpr2in,SeExprYY_BUF_SIZE ); \
+            SeExpr2_create_buffer( SeExpr2in, SeExprYY_BUF_SIZE ); \
 	} \
 	SeExprYY_CURRENT_BUFFER_LVALUE->SeExpr2_is_interactive = is_interactive; \
 	}
-
 #define SeExpr2_set_bol(at_bol) \
 	{ \
 	if ( ! SeExprYY_CURRENT_BUFFER ){\
         SeExpr2ensure_buffer_stack (); \
 		SeExprYY_CURRENT_BUFFER_LVALUE =    \
-            SeExpr2_create_buffer(SeExpr2in,SeExprYY_BUF_SIZE ); \
+            SeExpr2_create_buffer( SeExpr2in, SeExprYY_BUF_SIZE ); \
 	} \
 	SeExprYY_CURRENT_BUFFER_LVALUE->SeExpr2_at_bol = at_bol; \
 	}
-
 #define SeExprYY_AT_BOL() (SeExprYY_CURRENT_BUFFER_LVALUE->SeExpr2_at_bol)
 
 /* Begin user sect3 */
 
-#define SeExpr2wrap() 1
+#define SeExpr2wrap() (/*CONSTCOND*/1)
 #define SeExprYY_SKIP_SeExprYYWRAP
+typedef flex_uint8_t SeExprYY_CHAR;
 
-typedef unsigned char SeExprYY_CHAR;
-
-FILE *SeExpr2in = (FILE *) 0, *SeExpr2out = (FILE *) 0;
+FILE *SeExpr2in = NULL, *SeExpr2out = NULL;
 
 typedef int SeExpr2_state_type;
 
 extern int SeExpr2lineno;
-
 int SeExpr2lineno = 1;
 
 extern char *SeExpr2text;
+#ifdef SeExpr2text_ptr
+#undef SeExpr2text_ptr
+#endif
 #define SeExpr2text_ptr SeExpr2text
 
-static SeExpr2_state_type SeExpr2_get_previous_state (void );
-static SeExpr2_state_type SeExpr2_try_NUL_trans (SeExpr2_state_type current_state  );
-static int SeExpr2_get_next_buffer (void );
-static void SeExpr2_fatal_error (SeExpr2const char msg[]  );
+static SeExpr2_state_type SeExpr2_get_previous_state ( void );
+static SeExpr2_state_type SeExpr2_try_NUL_trans ( SeExpr2_state_type current_state  );
+static int SeExpr2_get_next_buffer ( void );
+static void SeExpr2noreturn SeExpr2_fatal_error ( const char* msg  );
 
 /* Done after the current pattern has been matched and before the
  * corresponding action - sets up SeExpr2text.
  */
 #define SeExprYY_DO_BEFORE_ACTION \
 	(SeExpr2text_ptr) = SeExpr2_bp; \
-	SeExpr2leng = (size_t) (SeExpr2_cp - SeExpr2_bp); \
+	SeExpr2leng = (int) (SeExpr2_cp - SeExpr2_bp); \
 	(SeExpr2_hold_char) = *SeExpr2_cp; \
 	*SeExpr2_cp = '\0'; \
 	(SeExpr2_c_buf_p) = SeExpr2_cp;
-
 #define SeExprYY_NUM_RULES 42
 #define SeExprYY_END_OF_BUFFER 43
 /* This struct is not used in this scanner,
@@ -373,7 +364,7 @@ struct SeExpr2_trans_info
 	flex_int32_t SeExpr2_verify;
 	flex_int32_t SeExpr2_nxt;
 	};
-static SeExpr2const flex_int16_t SeExpr2_accept[160] =
+static const flex_int16_t SeExpr2_accept[160] =
     {   0,
         0,    0,   43,   41,   39,   39,   41,   41,   40,   41,
        41,   41,   41,   41,   41,   41,   41,   41,   31,   41,
@@ -394,7 +385,7 @@ static SeExpr2const flex_int16_t SeExpr2_accept[160] =
        28,    1,   36,    7,    8,   36,    6,   29,    0
     } ;
 
-static SeExpr2const flex_int32_t SeExpr2_ec[256] =
+static const SeExprYY_CHAR SeExpr2_ec[256] =
     {   0,
         1,    1,    1,    1,    1,    1,    1,    1,    2,    3,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
@@ -426,7 +417,7 @@ static SeExpr2const flex_int32_t SeExpr2_ec[256] =
         1,    1,    1,    1,    1
     } ;
 
-static SeExpr2const flex_int32_t SeExpr2_meta[62] =
+static const SeExprYY_CHAR SeExpr2_meta[62] =
     {   0,
         1,    1,    2,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    3,    1,    3,    3,    4,    1,    1,
@@ -437,7 +428,7 @@ static SeExpr2const flex_int32_t SeExpr2_meta[62] =
         1
     } ;
 
-static SeExpr2const flex_int16_t SeExpr2_base[168] =
+static const flex_int16_t SeExpr2_base[168] =
     {   0,
         0,    0,  245,  246,  246,  246,  223,   57,  201,    0,
       221,  232,   53,  219,  218,   43,   50,  217,   54,  216,
@@ -459,7 +450,7 @@ static SeExpr2const flex_int16_t SeExpr2_base[168] =
       160,   79,  165,  168,  171,   74,  174
     } ;
 
-static SeExpr2const flex_int16_t SeExpr2_def[168] =
+static const flex_int16_t SeExpr2_def[168] =
     {   0,
       159,    1,  159,  159,  159,  159,  159,  160,  161,  162,
       159,  159,  163,  159,  159,  159,  159,  159,  159,  159,
@@ -481,7 +472,7 @@ static SeExpr2const flex_int16_t SeExpr2_def[168] =
       159,  159,  159,  159,  159,  159,  159
     } ;
 
-static SeExpr2const flex_int16_t SeExpr2_nxt[308] =
+static const flex_int16_t SeExpr2_nxt[308] =
     {   0,
         4,    5,    6,    7,    8,    9,   10,   11,   12,   13,
        14,   15,   16,   17,   18,   19,   19,    4,    4,   20,
@@ -519,7 +510,7 @@ static SeExpr2const flex_int16_t SeExpr2_nxt[308] =
       159,  159,  159,  159,  159,  159,  159
     } ;
 
-static SeExpr2const flex_int16_t SeExpr2_chk[308] =
+static const flex_int16_t SeExpr2_chk[308] =
     {   0,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
@@ -571,26 +562,29 @@ int SeExpr2_flex_debug = 0;
 #define SeExprYY_MORE_ADJ 0
 #define SeExprYY_RESTORE_SeExprYY_MORE_OFFSET
 char *SeExpr2text;
-#line 1 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParserLex.l"
+#line 1 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
 /*
- Copyright Disney Enterprises, Inc.  All rights reserved.
-
- Licensed under the Apache License, Version 2.0 (the "License");
- you may not use this file except in compliance with the License
- and the following modification to it: Section 6 Trademarks.
- deleted and replaced with:
-
- 6. Trademarks. This License does not grant permission to use the
- trade names, trademarks, service marks, or product names of the
- Licensor and its affiliates, except as required for reproducing
- the content of the NOTICE file.
-
- You may obtain a copy of the License at
- http://www.apache.org/licenses/LICENSE-2.0
+* Copyright Disney Enterprises, Inc.  All rights reserved.
+* Copyright (C) 2020 L. E. Segovia <amy@amyspark.me>
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License
+* and the following modification to it: Section 6 Trademarks.
+* deleted and replaced with:
+*
+* 6. Trademarks. This License does not grant permission to use the
+* trade names, trademarks, service marks, or product names of the
+* Licensor and its affiliates, except as required for reproducing
+* the content of the NOTICE file.
+*
+* You may obtain a copy of the License at
+* http://www.apache.org/licenses/LICENSE-2.0
 */
 /* Don't generate SeExpr2wrap since everything is in one string */
 /* Don't generate unput since it's unused and gcc complains... */
-#line 24 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParserLex.l"
+/* Don't generate input since it's unused too -- amyspark */
+#define SeExprYY_NO_INPUT 1
+#line 26 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
 #ifndef MAKEDEPEND
 #    include <ctype.h>
 #    include <string.h>
@@ -635,7 +629,8 @@ int SeExpr2pos();
     columnNumber+=SeExpr2leng;\
     SeExpr2lloc.last_column=columnNumber;SeExpr2lloc.last_line=lineNumber;}
 
-#line 639 "ExprParserLexIn.cpp"
+#line 632 "ExprParserLexIn.cpp"
+#line 633 "ExprParserLexIn.cpp"
 
 #define INITIAL 0
 
@@ -651,36 +646,36 @@ int SeExpr2pos();
 #define SeExprYY_EXTRA_TYPE void *
 #endif
 
-static int SeExpr2_init_globals (void );
+static int SeExpr2_init_globals ( void );
 
 /* Accessor methods to globals.
    These are made visible to non-reentrant scanners for convenience. */
 
-int SeExpr2lex_destroy (void );
+int SeExpr2lex_destroy ( void );
 
-int SeExpr2get_debug (void );
+int SeExpr2get_debug ( void );
 
-void SeExpr2set_debug (int debug_flag  );
+void SeExpr2set_debug ( int debug_flag  );
 
-SeExprYY_EXTRA_TYPE SeExpr2get_extra (void );
+SeExprYY_EXTRA_TYPE SeExpr2get_extra ( void );
 
-void SeExpr2set_extra (SeExprYY_EXTRA_TYPE user_defined  );
+void SeExpr2set_extra ( SeExprYY_EXTRA_TYPE user_defined  );
 
-FILE *SeExpr2get_in (void );
+FILE *SeExpr2get_in ( void );
 
-void SeExpr2set_in  (FILE * in_str  );
+void SeExpr2set_in  ( FILE * _in_str  );
 
-FILE *SeExpr2get_out (void );
+FILE *SeExpr2get_out ( void );
 
-void SeExpr2set_out  (FILE * out_str  );
+void SeExpr2set_out  ( FILE * _out_str  );
 
-SeExpr2_size_t SeExpr2get_leng (void );
+			int SeExpr2get_leng ( void );
 
-char *SeExpr2get_text (void );
+char *SeExpr2get_text ( void );
 
-int SeExpr2get_lineno (void );
+int SeExpr2get_lineno ( void );
 
-void SeExpr2set_lineno (int line_number  );
+void SeExpr2set_lineno ( int _line_number  );
 
 /* Macros after this point can all be overridden by user definitions in
  * section 1.
@@ -688,33 +683,41 @@ void SeExpr2set_lineno (int line_number  );
 
 #ifndef SeExprYY_SKIP_SeExprYYWRAP
 #ifdef __cplusplus
-extern "C" int SeExpr2wrap (void );
+extern "C" int SeExpr2wrap ( void );
 #else
-extern int SeExpr2wrap (void );
+extern int SeExpr2wrap ( void );
 #endif
+#endif
+
+#ifndef SeExprYY_NO_UNPUT
+    
 #endif
 
 #ifndef SeExpr2text_ptr
-static void SeExpr2_flex_strncpy (char *,SeExpr2const char *,int );
+static void SeExpr2_flex_strncpy ( char *, const char *, int );
 #endif
 
 #ifdef SeExprYY_NEED_STRLEN
-static int SeExpr2_flex_strlen (SeExpr2const char * );
+static int SeExpr2_flex_strlen ( const char * );
 #endif
 
 #ifndef SeExprYY_NO_INPUT
-
 #ifdef __cplusplus
-static int SeExpr2input (void );
+static int SeExpr2input ( void );
 #else
-static int input (void );
+static int input ( void );
 #endif
 
 #endif
 
 /* Amount of stuff to slurp up with each read. */
 #ifndef SeExprYY_READ_BUF_SIZE
+#ifdef __ia64__
+/* On IA-64, the buffer size is 16k, not 8k */
+#define SeExprYY_READ_BUF_SIZE 16384
+#else
 #define SeExprYY_READ_BUF_SIZE 8192
+#endif /* __ia64__ */
 #endif
 
 /* Copy whatever the last rule matched to the standard output. */
@@ -722,7 +725,7 @@ static int input (void );
 /* This used to be an fputs(), but since the string might contain NUL's,
  * we now use fwrite().
  */
-#define ECHO do { if (fwrite( SeExpr2text, SeExpr2leng, 1, SeExpr2out )) {} } while (0)
+#define ECHO do { if (fwrite( SeExpr2text, (size_t) SeExpr2leng, 1, SeExpr2out )) {} } while (0)
 #endif
 
 /* Gets input and stuffs it into "buf".  number of characters read, or SeExprYY_NULL,
@@ -733,7 +736,7 @@ static int input (void );
 	if ( SeExprYY_CURRENT_BUFFER_LVALUE->SeExpr2_is_interactive ) \
 		{ \
 		int c = '*'; \
-		size_t n; \
+		int n; \
 		for ( n = 0; n < max_size && \
 			     (c = getc( SeExpr2in )) != EOF && c != '\n'; ++n ) \
 			buf[n] = (char) c; \
@@ -746,7 +749,7 @@ static int input (void );
 	else \
 		{ \
 		errno=0; \
-		while ( (result = fread(buf, 1, max_size, SeExpr2in))==0 && ferror(SeExpr2in)) \
+		while ( (result = (int) fread(buf, 1, (SeExpr2_size_t) max_size, SeExpr2in)) == 0 && ferror(SeExpr2in)) \
 			{ \
 			if( errno != EINTR) \
 				{ \
@@ -801,7 +804,7 @@ extern int SeExpr2lex (void);
 
 /* Code executed at the end of each rule. */
 #ifndef SeExprYY_BREAK
-#define SeExprYY_BREAK break;
+#define SeExprYY_BREAK /*LINTED*/break;
 #endif
 
 #define SeExprYY_RULE_SETUP \
@@ -811,14 +814,10 @@ extern int SeExpr2lex (void);
  */
 SeExprYY_DECL
 {
-	register SeExpr2_state_type SeExpr2_current_state;
-	register char *SeExpr2_cp, *SeExpr2_bp;
-	register int SeExpr2_act;
+	SeExpr2_state_type SeExpr2_current_state;
+	char *SeExpr2_cp, *SeExpr2_bp;
+	int SeExpr2_act;
     
-#line 75 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParserLex.l"
-
-#line 821 "ExprParserLexIn.cpp"
-
 	if ( !(SeExpr2_init) )
 		{
 		(SeExpr2_init) = 1;
@@ -839,13 +838,18 @@ SeExprYY_DECL
 		if ( ! SeExprYY_CURRENT_BUFFER ) {
 			SeExpr2ensure_buffer_stack ();
 			SeExprYY_CURRENT_BUFFER_LVALUE =
-				SeExpr2_create_buffer(SeExpr2in,SeExprYY_BUF_SIZE );
+				SeExpr2_create_buffer( SeExpr2in, SeExprYY_BUF_SIZE );
 		}
 
-		SeExpr2_load_buffer_state( );
+		SeExpr2_load_buffer_state(  );
 		}
 
-	while ( 1 )		/* loops until end-of-file is reached */
+	{
+#line 77 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
+
+#line 850 "ExprParserLexIn.cpp"
+
+	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
 		SeExpr2_cp = (SeExpr2_c_buf_p);
 
@@ -861,7 +865,7 @@ SeExprYY_DECL
 SeExpr2_match:
 		do
 			{
-			register SeExprYY_CHAR SeExpr2_c = SeExpr2_ec[SeExprYY_SC_TO_UI(*SeExpr2_cp)];
+			SeExprYY_CHAR SeExpr2_c = SeExpr2_ec[SeExprYY_SC_TO_UI(*SeExpr2_cp)] ;
 			if ( SeExpr2_accept[SeExpr2_current_state] )
 				{
 				(SeExpr2_last_accepting_state) = SeExpr2_current_state;
@@ -871,9 +875,9 @@ SeExpr2_match:
 				{
 				SeExpr2_current_state = (int) SeExpr2_def[SeExpr2_current_state];
 				if ( SeExpr2_current_state >= 160 )
-					SeExpr2_c = SeExpr2_meta[(unsigned int) SeExpr2_c];
+					SeExpr2_c = SeExpr2_meta[SeExpr2_c];
 				}
-			SeExpr2_current_state = SeExpr2_nxt[SeExpr2_base[SeExpr2_current_state] + (unsigned int) SeExpr2_c];
+			SeExpr2_current_state = SeExpr2_nxt[SeExpr2_base[SeExpr2_current_state] + SeExpr2_c];
 			++SeExpr2_cp;
 			}
 		while ( SeExpr2_base[SeExpr2_current_state] != 246 );
@@ -902,162 +906,162 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 SeExprYY_RULE_SETUP
-#line 76 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParserLex.l"
+#line 78 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
 
 	SeExprYY_BREAK
 case 2:
 SeExprYY_RULE_SETUP
-#line 78 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParserLex.l"
+#line 80 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
 { return EXTERN; }
 	SeExprYY_BREAK
 case 3:
 SeExprYY_RULE_SETUP
-#line 79 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParserLex.l"
+#line 81 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
 { return DEF; }
 	SeExprYY_BREAK
 case 4:
 SeExprYY_RULE_SETUP
-#line 80 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParserLex.l"
+#line 82 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
 { return FLOATPOINT; }
 	SeExprYY_BREAK
 case 5:
 SeExprYY_RULE_SETUP
-#line 81 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParserLex.l"
+#line 83 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
 { return STRING; }
 	SeExprYY_BREAK
 case 6:
 SeExprYY_RULE_SETUP
-#line 82 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParserLex.l"
+#line 84 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
 { return LIFETIME_CONSTANT; }
 	SeExprYY_BREAK
 case 7:
 SeExprYY_RULE_SETUP
-#line 83 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParserLex.l"
+#line 85 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
 { return LIFETIME_UNIFORM; }
 	SeExprYY_BREAK
 case 8:
 SeExprYY_RULE_SETUP
-#line 84 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParserLex.l"
+#line 86 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
 { return LIFETIME_VARYING; }
 	SeExprYY_BREAK
 case 9:
 SeExprYY_RULE_SETUP
-#line 85 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParserLex.l"
+#line 87 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
 { return LIFETIME_ERROR; }
 	SeExprYY_BREAK
 case 10:
 SeExprYY_RULE_SETUP
-#line 87 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParserLex.l"
+#line 89 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
 { return IF; }
 	SeExprYY_BREAK
 case 11:
 SeExprYY_RULE_SETUP
-#line 88 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParserLex.l"
+#line 90 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
 { return ELSE; }
 	SeExprYY_BREAK
 case 12:
 SeExprYY_RULE_SETUP
-#line 90 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParserLex.l"
+#line 92 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
 { return OR; }
 	SeExprYY_BREAK
 case 13:
 SeExprYY_RULE_SETUP
-#line 91 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParserLex.l"
+#line 93 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
 { return AND; }
 	SeExprYY_BREAK
 case 14:
 SeExprYY_RULE_SETUP
-#line 92 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParserLex.l"
+#line 94 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
 { return EQ; }
 	SeExprYY_BREAK
 case 15:
 SeExprYY_RULE_SETUP
-#line 93 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParserLex.l"
+#line 95 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
 { return NE; }
 	SeExprYY_BREAK
 case 16:
 SeExprYY_RULE_SETUP
-#line 94 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParserLex.l"
+#line 96 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
 { return SEEXPR_LE; }
 	SeExprYY_BREAK
 case 17:
 SeExprYY_RULE_SETUP
-#line 95 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParserLex.l"
+#line 97 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
 { return SEEXPR_GE; }
 	SeExprYY_BREAK
 case 18:
 SeExprYY_RULE_SETUP
-#line 96 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParserLex.l"
+#line 98 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
 { return ARROW; }
 	SeExprYY_BREAK
 case 19:
 SeExprYY_RULE_SETUP
-#line 97 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParserLex.l"
+#line 99 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
 { return AddEq; }
 	SeExprYY_BREAK
 case 20:
 SeExprYY_RULE_SETUP
-#line 98 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParserLex.l"
+#line 100 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
 { return SubEq; }
 	SeExprYY_BREAK
 case 21:
 SeExprYY_RULE_SETUP
-#line 99 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParserLex.l"
+#line 101 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
 { return MultEq; }
 	SeExprYY_BREAK
 case 22:
 SeExprYY_RULE_SETUP
-#line 100 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParserLex.l"
+#line 102 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
 { return DivEq; }
 	SeExprYY_BREAK
 case 23:
 SeExprYY_RULE_SETUP
-#line 101 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParserLex.l"
+#line 103 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
 { return ModEq; }
 	SeExprYY_BREAK
 case 24:
 SeExprYY_RULE_SETUP
-#line 102 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParserLex.l"
+#line 104 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
 { return ExpEq; }
 	SeExprYY_BREAK
 case 25:
 SeExprYY_RULE_SETUP
-#line 104 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParserLex.l"
+#line 106 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
 { SeExpr2lval.d = M_PI; return NUMBER; }
 	SeExprYY_BREAK
 case 26:
 SeExprYY_RULE_SETUP
-#line 105 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParserLex.l"
+#line 107 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
 { SeExpr2lval.d = M_E; return NUMBER; }
 	SeExprYY_BREAK
 case 27:
 SeExprYY_RULE_SETUP
-#line 106 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParserLex.l"
+#line 108 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
 { SeExpr2lval.d = 0; return NUMBER; }
 	SeExprYY_BREAK
 case 28:
 SeExprYY_RULE_SETUP
-#line 107 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParserLex.l"
+#line 109 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
 { SeExpr2lval.d = 1; return NUMBER; }
 	SeExprYY_BREAK
 case 29:
 SeExprYY_RULE_SETUP
-#line 108 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParserLex.l"
+#line 110 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
 { SeExpr2lval.d = 2; return NUMBER; }
 	SeExprYY_BREAK
 case 30:
 SeExprYY_RULE_SETUP
-#line 109 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParserLex.l"
+#line 111 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
 { SeExpr2lval.d = 3; return NUMBER; }
 	SeExprYY_BREAK
 case 31:
 SeExprYY_RULE_SETUP
-#line 111 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParserLex.l"
-{ SeExpr2lval.d = atof(SeExpr2text); return NUMBER; }
+#line 113 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
+{ SeExpr2lval.d = crack_atof(SeExpr2text); return NUMBER; }
 	SeExprYY_BREAK
 case 32:
 SeExprYY_RULE_SETUP
-#line 112 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParserLex.l"
+#line 114 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
 { /* match quoted string, allow embedded quote, \" */
 			  SeExpr2lval.s = strdup(&SeExpr2text[1]);
 			  SeExpr2lval.s[strlen(SeExpr2lval.s)-1] = '\0';
@@ -1065,7 +1069,7 @@ SeExprYY_RULE_SETUP
 	SeExprYY_BREAK
 case 33:
 SeExprYY_RULE_SETUP
-#line 116 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParserLex.l"
+#line 118 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
 { /* match quoted string, allow embedded quote, \' */
 			  SeExpr2lval.s = strdup(&SeExpr2text[1]);
 			  SeExpr2lval.s[strlen(SeExpr2lval.s)-1] = '\0';
@@ -1073,53 +1077,53 @@ SeExprYY_RULE_SETUP
 	SeExprYY_BREAK
 case 34:
 SeExprYY_RULE_SETUP
-#line 120 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParserLex.l"
+#line 122 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
 { SeExpr2lval.s = strdup(&SeExpr2text[1]); return VAR; }
 	SeExprYY_BREAK
 case 35:
 SeExprYY_RULE_SETUP
-#line 121 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParserLex.l"
+#line 123 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
 { SeExpr2lval.s = strdup(&SeExpr2text[1]); return VAR; }
 	SeExprYY_BREAK
 case 36:
 SeExprYY_RULE_SETUP
-#line 122 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParserLex.l"
+#line 124 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
 { SeExpr2lval.s = strdup(SeExpr2text); return NAME; }
 	SeExprYY_BREAK
 case 37:
 SeExprYY_RULE_SETUP
-#line 124 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParserLex.l"
+#line 126 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
 /* ignore quoted newline */;
 	SeExprYY_BREAK
 case 38:
 SeExprYY_RULE_SETUP
-#line 125 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParserLex.l"
+#line 127 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
 /* ignore quoted tab */;
 	SeExprYY_BREAK
 case 39:
 /* rule 39 can match eol */
 SeExprYY_RULE_SETUP
-#line 126 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParserLex.l"
+#line 128 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
 /* ignore whitespace */;
 	SeExprYY_BREAK
 case 40:
 SeExprYY_RULE_SETUP
-#line 127 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParserLex.l"
+#line 129 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
 { /* match comment */
                          int startPos=SeExpr2pos(),endPos=SeExpr2pos()+strlen(&SeExpr2text[1])+1;
 			  comments->push_back(std::pair<int,int>(startPos,endPos));}
 	SeExprYY_BREAK
 case 41:
 SeExprYY_RULE_SETUP
-#line 131 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParserLex.l"
+#line 133 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
 { return SeExpr2text[0]; }
 	SeExprYY_BREAK
 case 42:
 SeExprYY_RULE_SETUP
-#line 133 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParserLex.l"
+#line 135 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
 ECHO;
 	SeExprYY_BREAK
-#line 1123 "ExprParserLexIn.cpp"
+#line 1126 "ExprParserLexIn.cpp"
 case SeExprYY_STATE_EOF(INITIAL):
 	SeExpr2terminate();
 
@@ -1197,7 +1201,7 @@ case SeExprYY_STATE_EOF(INITIAL):
 				{
 				(SeExpr2_did_buffer_switch_on_eof) = 0;
 
-				if ( SeExpr2wrap( ) )
+				if ( SeExpr2wrap(  ) )
 					{
 					/* Note: because we've taken care in
 					 * SeExpr2_get_next_buffer() to have set up
@@ -1250,6 +1254,7 @@ case SeExprYY_STATE_EOF(INITIAL):
 			"fatal flex scanner internal error--no action found" );
 	} /* end of action switch */
 		} /* end of scanning one token */
+	} /* end of user's declarations */
 } /* end of SeExpr2lex */
 
 /* SeExpr2_get_next_buffer - try to read in a new buffer
@@ -1261,9 +1266,9 @@ case SeExprYY_STATE_EOF(INITIAL):
  */
 static int SeExpr2_get_next_buffer (void)
 {
-    	register char *dest = SeExprYY_CURRENT_BUFFER_LVALUE->SeExpr2_ch_buf;
-	register char *source = (SeExpr2text_ptr);
-	register int number_to_move, i;
+    	char *dest = SeExprYY_CURRENT_BUFFER_LVALUE->SeExpr2_ch_buf;
+	char *source = (SeExpr2text_ptr);
+	int number_to_move, i;
 	int ret_val;
 
 	if ( (SeExpr2_c_buf_p) > &SeExprYY_CURRENT_BUFFER_LVALUE->SeExpr2_ch_buf[(SeExpr2_n_chars) + 1] )
@@ -1292,7 +1297,7 @@ static int SeExpr2_get_next_buffer (void)
 	/* Try to read more data. */
 
 	/* First move last chars to start of buffer. */
-	number_to_move = (int) ((SeExpr2_c_buf_p) - (SeExpr2text_ptr)) - 1;
+	number_to_move = (int) ((SeExpr2_c_buf_p) - (SeExpr2text_ptr) - 1);
 
 	for ( i = 0; i < number_to_move; ++i )
 		*(dest++) = *(source++);
@@ -1305,7 +1310,7 @@ static int SeExpr2_get_next_buffer (void)
 
 	else
 		{
-			SeExpr2_size_t num_to_read =
+			int num_to_read =
 			SeExprYY_CURRENT_BUFFER_LVALUE->SeExpr2_buf_size - number_to_move - 1;
 
 		while ( num_to_read <= 0 )
@@ -1319,7 +1324,7 @@ static int SeExpr2_get_next_buffer (void)
 
 			if ( b->SeExpr2_is_our_buffer )
 				{
-				SeExpr2_size_t new_size = b->SeExpr2_buf_size * 2;
+				int new_size = b->SeExpr2_buf_size * 2;
 
 				if ( new_size <= 0 )
 					b->SeExpr2_buf_size += b->SeExpr2_buf_size / 8;
@@ -1328,11 +1333,12 @@ static int SeExpr2_get_next_buffer (void)
 
 				b->SeExpr2_ch_buf = (char *)
 					/* Include room in for 2 EOB chars. */
-					SeExpr2realloc((void *) b->SeExpr2_ch_buf,b->SeExpr2_buf_size + 2  );
+					SeExpr2realloc( (void *) b->SeExpr2_ch_buf,
+							 (SeExpr2_size_t) (b->SeExpr2_buf_size + 2)  );
 				}
 			else
 				/* Can't grow it, we don't own it. */
-				b->SeExpr2_ch_buf = 0;
+				b->SeExpr2_ch_buf = NULL;
 
 			if ( ! b->SeExpr2_ch_buf )
 				SeExprYY_FATAL_ERROR(
@@ -1360,7 +1366,7 @@ static int SeExpr2_get_next_buffer (void)
 		if ( number_to_move == SeExprYY_MORE_ADJ )
 			{
 			ret_val = EOB_ACT_END_OF_FILE;
-			SeExpr2restart(SeExpr2in  );
+			SeExpr2restart( SeExpr2in  );
 			}
 
 		else
@@ -1374,12 +1380,15 @@ static int SeExpr2_get_next_buffer (void)
 	else
 		ret_val = EOB_ACT_CONTINUE_SCAN;
 
-	if ((SeExpr2_size_t) ((SeExpr2_n_chars) + number_to_move) > SeExprYY_CURRENT_BUFFER_LVALUE->SeExpr2_buf_size) {
+	if (((SeExpr2_n_chars) + number_to_move) > SeExprYY_CURRENT_BUFFER_LVALUE->SeExpr2_buf_size) {
 		/* Extend the array by 50%, plus the number we really need. */
-		SeExpr2_size_t new_size = (SeExpr2_n_chars) + number_to_move + ((SeExpr2_n_chars) >> 1);
-		SeExprYY_CURRENT_BUFFER_LVALUE->SeExpr2_ch_buf = (char *) SeExpr2realloc((void *) SeExprYY_CURRENT_BUFFER_LVALUE->SeExpr2_ch_buf,new_size  );
+		int new_size = (SeExpr2_n_chars) + number_to_move + ((SeExpr2_n_chars) >> 1);
+		SeExprYY_CURRENT_BUFFER_LVALUE->SeExpr2_ch_buf = (char *) SeExpr2realloc(
+			(void *) SeExprYY_CURRENT_BUFFER_LVALUE->SeExpr2_ch_buf, (SeExpr2_size_t) new_size  );
 		if ( ! SeExprYY_CURRENT_BUFFER_LVALUE->SeExpr2_ch_buf )
 			SeExprYY_FATAL_ERROR( "out of dynamic memory in SeExpr2_get_next_buffer()" );
+		/* "- 2" to take care of EOB's */
+		SeExprYY_CURRENT_BUFFER_LVALUE->SeExpr2_buf_size = (int) (new_size - 2);
 	}
 
 	(SeExpr2_n_chars) += number_to_move;
@@ -1395,14 +1404,14 @@ static int SeExpr2_get_next_buffer (void)
 
     static SeExpr2_state_type SeExpr2_get_previous_state (void)
 {
-	register SeExpr2_state_type SeExpr2_current_state;
-	register char *SeExpr2_cp;
+	SeExpr2_state_type SeExpr2_current_state;
+	char *SeExpr2_cp;
     
 	SeExpr2_current_state = (SeExpr2_start);
 
 	for ( SeExpr2_cp = (SeExpr2text_ptr) + SeExprYY_MORE_ADJ; SeExpr2_cp < (SeExpr2_c_buf_p); ++SeExpr2_cp )
 		{
-		register SeExprYY_CHAR SeExpr2_c = (*SeExpr2_cp ? SeExpr2_ec[SeExprYY_SC_TO_UI(*SeExpr2_cp)] : 1);
+		SeExprYY_CHAR SeExpr2_c = (*SeExpr2_cp ? SeExpr2_ec[SeExprYY_SC_TO_UI(*SeExpr2_cp)] : 1);
 		if ( SeExpr2_accept[SeExpr2_current_state] )
 			{
 			(SeExpr2_last_accepting_state) = SeExpr2_current_state;
@@ -1412,9 +1421,9 @@ static int SeExpr2_get_next_buffer (void)
 			{
 			SeExpr2_current_state = (int) SeExpr2_def[SeExpr2_current_state];
 			if ( SeExpr2_current_state >= 160 )
-				SeExpr2_c = SeExpr2_meta[(unsigned int) SeExpr2_c];
+				SeExpr2_c = SeExpr2_meta[SeExpr2_c];
 			}
-		SeExpr2_current_state = SeExpr2_nxt[SeExpr2_base[SeExpr2_current_state] + (unsigned int) SeExpr2_c];
+		SeExpr2_current_state = SeExpr2_nxt[SeExpr2_base[SeExpr2_current_state] + SeExpr2_c];
 		}
 
 	return SeExpr2_current_state;
@@ -1427,10 +1436,10 @@ static int SeExpr2_get_next_buffer (void)
  */
     static SeExpr2_state_type SeExpr2_try_NUL_trans  (SeExpr2_state_type SeExpr2_current_state )
 {
-	register int SeExpr2_is_jam;
-    	register char *SeExpr2_cp = (SeExpr2_c_buf_p);
+	int SeExpr2_is_jam;
+    	char *SeExpr2_cp = (SeExpr2_c_buf_p);
 
-	register SeExprYY_CHAR SeExpr2_c = 1;
+	SeExprYY_CHAR SeExpr2_c = 1;
 	if ( SeExpr2_accept[SeExpr2_current_state] )
 		{
 		(SeExpr2_last_accepting_state) = SeExpr2_current_state;
@@ -1440,13 +1449,17 @@ static int SeExpr2_get_next_buffer (void)
 		{
 		SeExpr2_current_state = (int) SeExpr2_def[SeExpr2_current_state];
 		if ( SeExpr2_current_state >= 160 )
-			SeExpr2_c = SeExpr2_meta[(unsigned int) SeExpr2_c];
+			SeExpr2_c = SeExpr2_meta[SeExpr2_c];
 		}
-	SeExpr2_current_state = SeExpr2_nxt[SeExpr2_base[SeExpr2_current_state] + (unsigned int) SeExpr2_c];
+	SeExpr2_current_state = SeExpr2_nxt[SeExpr2_base[SeExpr2_current_state] + SeExpr2_c];
 	SeExpr2_is_jam = (SeExpr2_current_state == 159);
 
 		return SeExpr2_is_jam ? 0 : SeExpr2_current_state;
 }
+
+#ifndef SeExprYY_NO_UNPUT
+
+#endif
 
 #ifndef SeExprYY_NO_INPUT
 #ifdef __cplusplus
@@ -1472,7 +1485,7 @@ static int SeExpr2_get_next_buffer (void)
 
 		else
 			{ /* need more input */
-			SeExpr2_size_t offset = (SeExpr2_c_buf_p) - (SeExpr2text_ptr);
+			int offset = (int) ((SeExpr2_c_buf_p) - (SeExpr2text_ptr));
 			++(SeExpr2_c_buf_p);
 
 			switch ( SeExpr2_get_next_buffer(  ) )
@@ -1489,14 +1502,14 @@ static int SeExpr2_get_next_buffer (void)
 					 */
 
 					/* Reset buffer status. */
-					SeExpr2restart(SeExpr2in );
+					SeExpr2restart( SeExpr2in );
 
 					/*FALLTHROUGH*/
 
 				case EOB_ACT_END_OF_FILE:
 					{
-					if ( SeExpr2wrap( ) )
-						return EOF;
+					if ( SeExpr2wrap(  ) )
+						return 0;
 
 					if ( ! (SeExpr2_did_buffer_switch_on_eof) )
 						SeExprYY_NEW_FILE;
@@ -1533,11 +1546,11 @@ static int SeExpr2_get_next_buffer (void)
 	if ( ! SeExprYY_CURRENT_BUFFER ){
         SeExpr2ensure_buffer_stack ();
 		SeExprYY_CURRENT_BUFFER_LVALUE =
-            SeExpr2_create_buffer(SeExpr2in,SeExprYY_BUF_SIZE );
+            SeExpr2_create_buffer( SeExpr2in, SeExprYY_BUF_SIZE );
 	}
 
-	SeExpr2_init_buffer(SeExprYY_CURRENT_BUFFER,input_file );
-	SeExpr2_load_buffer_state( );
+	SeExpr2_init_buffer( SeExprYY_CURRENT_BUFFER, input_file );
+	SeExpr2_load_buffer_state(  );
 }
 
 /** Switch to a different input buffer.
@@ -1565,7 +1578,7 @@ static int SeExpr2_get_next_buffer (void)
 		}
 
 	SeExprYY_CURRENT_BUFFER_LVALUE = new_buffer;
-	SeExpr2_load_buffer_state( );
+	SeExpr2_load_buffer_state(  );
 
 	/* We don't actually know whether we did this switch during
 	 * EOF (SeExpr2wrap()) processing, but the only time this flag
@@ -1593,7 +1606,7 @@ static void SeExpr2_load_buffer_state  (void)
 {
 	SeExprYY_BUFFER_STATE b;
     
-	b = (SeExprYY_BUFFER_STATE) SeExpr2alloc(sizeof( struct SeExpr2_buffer_state )  );
+	b = (SeExprYY_BUFFER_STATE) SeExpr2alloc( sizeof( struct SeExpr2_buffer_state )  );
 	if ( ! b )
 		SeExprYY_FATAL_ERROR( "out of dynamic memory in SeExpr2_create_buffer()" );
 
@@ -1602,13 +1615,13 @@ static void SeExpr2_load_buffer_state  (void)
 	/* SeExpr2_ch_buf has to be 2 characters longer than the size given because
 	 * we need to put in 2 end-of-buffer characters.
 	 */
-	b->SeExpr2_ch_buf = (char *) SeExpr2alloc(b->SeExpr2_buf_size + 2  );
+	b->SeExpr2_ch_buf = (char *) SeExpr2alloc( (SeExpr2_size_t) (b->SeExpr2_buf_size + 2)  );
 	if ( ! b->SeExpr2_ch_buf )
 		SeExprYY_FATAL_ERROR( "out of dynamic memory in SeExpr2_create_buffer()" );
 
 	b->SeExpr2_is_our_buffer = 1;
 
-	SeExpr2_init_buffer(b,file );
+	SeExpr2_init_buffer( b, file );
 
 	return b;
 }
@@ -1627,9 +1640,9 @@ static void SeExpr2_load_buffer_state  (void)
 		SeExprYY_CURRENT_BUFFER_LVALUE = (SeExprYY_BUFFER_STATE) 0;
 
 	if ( b->SeExpr2_is_our_buffer )
-		SeExpr2free((void *) b->SeExpr2_ch_buf  );
+		SeExpr2free( (void *) b->SeExpr2_ch_buf  );
 
-	SeExpr2free((void *) b  );
+	SeExpr2free( (void *) b  );
 }
 
 /* Initializes or reinitializes a buffer.
@@ -1641,7 +1654,7 @@ static void SeExpr2_load_buffer_state  (void)
 {
 	int oerrno = errno;
     
-	SeExpr2_flush_buffer(b );
+	SeExpr2_flush_buffer( b );
 
 	b->SeExpr2_input_file = file;
 	b->SeExpr2_fill_buffer = 1;
@@ -1684,7 +1697,7 @@ static void SeExpr2_load_buffer_state  (void)
 	b->SeExpr2_buffer_status = SeExprYY_BUFFER_NEW;
 
 	if ( b == SeExprYY_CURRENT_BUFFER )
-		SeExpr2_load_buffer_state( );
+		SeExpr2_load_buffer_state(  );
 }
 
 /** Pushes the new state onto the stack. The new state becomes
@@ -1715,7 +1728,7 @@ void SeExpr2push_buffer_state (SeExprYY_BUFFER_STATE new_buffer )
 	SeExprYY_CURRENT_BUFFER_LVALUE = new_buffer;
 
 	/* copied from SeExpr2_switch_to_buffer. */
-	SeExpr2_load_buffer_state( );
+	SeExpr2_load_buffer_state(  );
 	(SeExpr2_did_buffer_switch_on_eof) = 1;
 }
 
@@ -1734,7 +1747,7 @@ void SeExpr2pop_buffer_state (void)
 		--(SeExpr2_buffer_stack_top);
 
 	if (SeExprYY_CURRENT_BUFFER) {
-		SeExpr2_load_buffer_state( );
+		SeExpr2_load_buffer_state(  );
 		(SeExpr2_did_buffer_switch_on_eof) = 1;
 	}
 }
@@ -1752,15 +1765,15 @@ static void SeExpr2ensure_buffer_stack (void)
 		 * scanner will even need a stack. We use 2 instead of 1 to avoid an
 		 * immediate realloc on the next call.
          */
-		num_to_alloc = 1;
+      num_to_alloc = 1; /* After all that talk, this was set to 1 anyways... */
 		(SeExpr2_buffer_stack) = (struct SeExpr2_buffer_state**)SeExpr2alloc
 								(num_to_alloc * sizeof(struct SeExpr2_buffer_state*)
 								);
 		if ( ! (SeExpr2_buffer_stack) )
 			SeExprYY_FATAL_ERROR( "out of dynamic memory in SeExpr2ensure_buffer_stack()" );
-								  
+
 		memset((SeExpr2_buffer_stack), 0, num_to_alloc * sizeof(struct SeExpr2_buffer_state*));
-				
+
 		(SeExpr2_buffer_stack_max) = num_to_alloc;
 		(SeExpr2_buffer_stack_top) = 0;
 		return;
@@ -1769,7 +1782,7 @@ static void SeExpr2ensure_buffer_stack (void)
 	if ((SeExpr2_buffer_stack_top) >= ((SeExpr2_buffer_stack_max)) - 1){
 
 		/* Increase the buffer to prepare for a possible push. */
-		int grow_size = 8 /* arbitrary grow size */;
+		SeExpr2_size_t grow_size = 8 /* arbitrary grow size */;
 
 		num_to_alloc = (SeExpr2_buffer_stack_max) + grow_size;
 		(SeExpr2_buffer_stack) = (struct SeExpr2_buffer_state**)SeExpr2realloc
@@ -1789,7 +1802,7 @@ static void SeExpr2ensure_buffer_stack (void)
  * @param base the character buffer
  * @param size the size in bytes of the character buffer
  * 
- * @return the newly allocated buffer state object. 
+ * @return the newly allocated buffer state object.
  */
 SeExprYY_BUFFER_STATE SeExpr2_scan_buffer  (char * base, SeExpr2_size_t  size )
 {
@@ -1799,23 +1812,23 @@ SeExprYY_BUFFER_STATE SeExpr2_scan_buffer  (char * base, SeExpr2_size_t  size )
 	     base[size-2] != SeExprYY_END_OF_BUFFER_CHAR ||
 	     base[size-1] != SeExprYY_END_OF_BUFFER_CHAR )
 		/* They forgot to leave room for the EOB's. */
-		return 0;
+		return NULL;
 
-	b = (SeExprYY_BUFFER_STATE) SeExpr2alloc(sizeof( struct SeExpr2_buffer_state )  );
+	b = (SeExprYY_BUFFER_STATE) SeExpr2alloc( sizeof( struct SeExpr2_buffer_state )  );
 	if ( ! b )
 		SeExprYY_FATAL_ERROR( "out of dynamic memory in SeExpr2_scan_buffer()" );
 
-	b->SeExpr2_buf_size = size - 2;	/* "- 2" to take care of EOB's */
+	b->SeExpr2_buf_size = (int) (size - 2);	/* "- 2" to take care of EOB's */
 	b->SeExpr2_buf_pos = b->SeExpr2_ch_buf = base;
 	b->SeExpr2_is_our_buffer = 0;
-	b->SeExpr2_input_file = 0;
+	b->SeExpr2_input_file = NULL;
 	b->SeExpr2_n_chars = b->SeExpr2_buf_size;
 	b->SeExpr2_is_interactive = 0;
 	b->SeExpr2_at_bol = 1;
 	b->SeExpr2_fill_buffer = 0;
 	b->SeExpr2_buffer_status = SeExprYY_BUFFER_NEW;
 
-	SeExpr2_switch_to_buffer(b  );
+	SeExpr2_switch_to_buffer( b  );
 
 	return b;
 }
@@ -1828,10 +1841,10 @@ SeExprYY_BUFFER_STATE SeExpr2_scan_buffer  (char * base, SeExpr2_size_t  size )
  * @note If you want to scan bytes that may contain NUL values, then use
  *       SeExpr2_scan_bytes() instead.
  */
-SeExprYY_BUFFER_STATE SeExpr2_scan_string (SeExpr2const char * SeExpr2str )
+SeExprYY_BUFFER_STATE SeExpr2_scan_string (const char * SeExpr2str )
 {
     
-	return SeExpr2_scan_bytes(SeExpr2str,strlen(SeExpr2str) );
+	return SeExpr2_scan_bytes( SeExpr2str, (int) strlen(SeExpr2str) );
 }
 
 /** Setup the input buffer state to scan the given bytes. The next call to SeExpr2lex() will
@@ -1841,7 +1854,7 @@ SeExprYY_BUFFER_STATE SeExpr2_scan_string (SeExpr2const char * SeExpr2str )
  * 
  * @return the newly allocated buffer state object.
  */
-SeExprYY_BUFFER_STATE SeExpr2_scan_bytes  (SeExpr2const char * SeExpr2bytes, SeExpr2_size_t  _SeExpr2bytes_len )
+SeExprYY_BUFFER_STATE SeExpr2_scan_bytes  (const char * SeExpr2bytes, int  _SeExpr2bytes_len )
 {
 	SeExprYY_BUFFER_STATE b;
 	char *buf;
@@ -1849,8 +1862,8 @@ SeExprYY_BUFFER_STATE SeExpr2_scan_bytes  (SeExpr2const char * SeExpr2bytes, SeE
 	int i;
     
 	/* Get memory for full buffer, including space for trailing EOB's. */
-	n = _SeExpr2bytes_len + 2;
-	buf = (char *) SeExpr2alloc(n  );
+	n = (SeExpr2_size_t) (_SeExpr2bytes_len + 2);
+	buf = (char *) SeExpr2alloc( n  );
 	if ( ! buf )
 		SeExprYY_FATAL_ERROR( "out of dynamic memory in SeExpr2_scan_bytes()" );
 
@@ -1859,7 +1872,7 @@ SeExprYY_BUFFER_STATE SeExpr2_scan_bytes  (SeExpr2const char * SeExpr2bytes, SeE
 
 	buf[_SeExpr2bytes_len] = buf[_SeExpr2bytes_len+1] = SeExprYY_END_OF_BUFFER_CHAR;
 
-	b = SeExpr2_scan_buffer(buf,n );
+	b = SeExpr2_scan_buffer( buf, n );
 	if ( ! b )
 		SeExprYY_FATAL_ERROR( "bad buffer in SeExpr2_scan_bytes()" );
 
@@ -1875,9 +1888,9 @@ SeExprYY_BUFFER_STATE SeExpr2_scan_bytes  (SeExpr2const char * SeExpr2bytes, SeE
 #define SeExprYY_EXIT_FAILURE 2
 #endif
 
-static void SeExpr2_fatal_error (SeExpr2const char* msg )
+static void SeExpr2noreturn SeExpr2_fatal_error (const char* msg )
 {
-    	(void) fprintf( stderr, "%s\n", msg );
+			fprintf( stderr, "%s\n", msg );
 	exit( SeExprYY_EXIT_FAILURE );
 }
 
@@ -1905,7 +1918,7 @@ static void SeExpr2_fatal_error (SeExpr2const char* msg )
  */
 int SeExpr2get_lineno  (void)
 {
-        
+    
     return SeExpr2lineno;
 }
 
@@ -1928,7 +1941,7 @@ FILE *SeExpr2get_out  (void)
 /** Get the length of the current token.
  * 
  */
-SeExpr2_size_t SeExpr2get_leng  (void)
+int SeExpr2get_leng  (void)
 {
         return SeExpr2leng;
 }
@@ -1943,29 +1956,29 @@ char *SeExpr2get_text  (void)
 }
 
 /** Set the current line number.
- * @param line_number
+ * @param _line_number line number
  * 
  */
-void SeExpr2set_lineno (int  line_number )
+void SeExpr2set_lineno (int  _line_number )
 {
     
-    SeExpr2lineno = line_number;
+    SeExpr2lineno = _line_number;
 }
 
 /** Set the input stream. This does not discard the current
  * input buffer.
- * @param in_str A readable stream.
+ * @param _in_str A readable stream.
  * 
  * @see SeExpr2_switch_to_buffer
  */
-void SeExpr2set_in (FILE *  in_str )
+void SeExpr2set_in (FILE *  _in_str )
 {
-        SeExpr2in = in_str ;
+        SeExpr2in = _in_str ;
 }
 
-void SeExpr2set_out (FILE *  out_str )
+void SeExpr2set_out (FILE *  _out_str )
 {
-        SeExpr2out = out_str ;
+        SeExpr2out = _out_str ;
 }
 
 int SeExpr2get_debug  (void)
@@ -1973,9 +1986,9 @@ int SeExpr2get_debug  (void)
         return SeExpr2_flex_debug;
 }
 
-void SeExpr2set_debug (int  bdebug )
+void SeExpr2set_debug (int  _bdebug )
 {
-        SeExpr2_flex_debug = bdebug ;
+        SeExpr2_flex_debug = _bdebug ;
 }
 
 static int SeExpr2_init_globals (void)
@@ -1984,10 +1997,10 @@ static int SeExpr2_init_globals (void)
      * This function is called from SeExpr2lex_destroy(), so don't allocate here.
      */
 
-    (SeExpr2_buffer_stack) = 0;
+    (SeExpr2_buffer_stack) = NULL;
     (SeExpr2_buffer_stack_top) = 0;
     (SeExpr2_buffer_stack_max) = 0;
-    (SeExpr2_c_buf_p) = (char *) 0;
+    (SeExpr2_c_buf_p) = NULL;
     (SeExpr2_init) = 0;
     (SeExpr2_start) = 0;
 
@@ -1996,8 +2009,8 @@ static int SeExpr2_init_globals (void)
     SeExpr2in = stdin;
     SeExpr2out = stdout;
 #else
-    SeExpr2in = (FILE *) 0;
-    SeExpr2out = (FILE *) 0;
+    SeExpr2in = NULL;
+    SeExpr2out = NULL;
 #endif
 
     /* For future reference: Set errno on error, since we are called by
@@ -2012,7 +2025,7 @@ int SeExpr2lex_destroy  (void)
     
     /* Pop the buffer stack, destroying each element. */
 	while(SeExprYY_CURRENT_BUFFER){
-		SeExpr2_delete_buffer(SeExprYY_CURRENT_BUFFER  );
+		SeExpr2_delete_buffer( SeExprYY_CURRENT_BUFFER  );
 		SeExprYY_CURRENT_BUFFER_LVALUE = NULL;
 		SeExpr2pop_buffer_state();
 	}
@@ -2033,18 +2046,19 @@ int SeExpr2lex_destroy  (void)
  */
 
 #ifndef SeExpr2text_ptr
-static void SeExpr2_flex_strncpy (char* s1, SeExpr2const char * s2, int n )
+static void SeExpr2_flex_strncpy (char* s1, const char * s2, int n )
 {
-	register int i;
+		
+	int i;
 	for ( i = 0; i < n; ++i )
 		s1[i] = s2[i];
 }
 #endif
 
 #ifdef SeExprYY_NEED_STRLEN
-static int SeExpr2_flex_strlen (SeExpr2const char * s )
+static int SeExpr2_flex_strlen (const char * s )
 {
-	register int n;
+	int n;
 	for ( n = 0; s[n]; ++n )
 		;
 
@@ -2054,11 +2068,12 @@ static int SeExpr2_flex_strlen (SeExpr2const char * s )
 
 void *SeExpr2alloc (SeExpr2_size_t  size )
 {
-	return (void *) malloc( size );
+			return malloc(size);
 }
 
 void *SeExpr2realloc  (void * ptr, SeExpr2_size_t  size )
 {
+		
 	/* The cast to (char *) in the following accommodates both
 	 * implementations that use char* generic pointers, and those
 	 * that use void* generic pointers.  It works with the latter
@@ -2066,18 +2081,17 @@ void *SeExpr2realloc  (void * ptr, SeExpr2_size_t  size )
 	 * any pointer type to void*, and deal with argument conversions
 	 * as though doing an assignment.
 	 */
-	return (void *) realloc( (char *) ptr, size );
+	return realloc(ptr, size);
 }
 
 void SeExpr2free (void * ptr )
 {
-	free( (char *) ptr );	/* see SeExpr2realloc() for (char *) cast */
+			free( (char *) ptr );	/* see SeExpr2realloc() for (char *) cast */
 }
 
 #define SeExprYYTABLES_NAME "SeExpr2tables"
 
-#line 133 "/disney/users/jberlin/projects/seexpr2/src/SeExpr/ExprParserLex.l"
-
+#line 135 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
 
 
 /* Gets index of current token (corresponding to SeExpr2text).

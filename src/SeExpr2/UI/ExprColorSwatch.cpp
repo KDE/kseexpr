@@ -1,6 +1,20 @@
-#include <iostream>
-#include <sstream>
-#include <algorithm>
+/*
+* Copyright Disney Enterprises, Inc.  All rights reserved.
+* Copyright (C) 2020 L. E. Segovia <amy@amyspark.me>
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License
+* and the following modification to it: Section 6 Trademarks.
+* deleted and replaced with:
+*
+* 6. Trademarks. This License does not grant permission to use the
+* trade names, trademarks, service marks, or product names of the
+* Licensor and its affiliates, except as required for reproducing
+* the content of the NOTICE file.
+*
+* You may obtain a copy of the License at
+* http://www.apache.org/licenses/LICENSE-2.0
+*/
 
 #include <QColorDialog>
 #include <QDoubleValidator>
@@ -14,6 +28,7 @@
 #include <QPainter>
 #include <QMenu>
 #include <QLabel>
+#include <QToolButton>
 
 #include <SeExpr2/ExprBuiltins.h>
 #ifdef SEEXPR_USE_QDGUI
@@ -71,8 +86,8 @@ void ExprColorFrame::mouseReleaseEvent(QMouseEvent *event) {
 
 void ExprColorFrame::deleteSwatchMenu(const QPoint &pos) {
     QMenu *menu = new QMenu(this);
-    QAction *deleteAction = menu->addAction("Delete Swatch");
-    menu->addAction("Cancel");
+    QAction *deleteAction = menu->addAction(tr("Delete Swatch"));
+    menu->addAction(tr("Cancel"));
     QAction *action = menu->exec(mapToGlobal(pos));
     if (action == deleteAction) emit deleteSwatch(this);
 }
@@ -89,9 +104,7 @@ ExprColorWidget::ExprColorWidget(SeExpr2::Vec3d value, int index, bool indexLabe
     vbox->addWidget(_colorFrame);
 
     if (indexLabel) {
-        std::stringstream indexSS;
-        indexSS << index;
-        QLabel *label = new QLabel(indexSS.str().c_str());
+        QLabel *label = new QLabel(tr("%1").arg(index));
         vbox->addWidget(label);
     }
 
@@ -108,11 +121,16 @@ ExprColorSwatchWidget::ExprColorSwatchWidget(bool indexLabel, QWidget *parent)
     hboxLayout->setContentsMargins(0, 0, 0, 0);
     setLayout(hboxLayout);
 
-    QPushButton *addBtn = new QPushButton("+");
-    addBtn->setFixedWidth(16);
+    QToolButton *addBtn = new QToolButton;
+    addBtn->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
+    QAction *detailAction = new QAction(tr("&Add..."));
+    QIcon detailIcon = QIcon::fromTheme("addlayer", QIcon::fromTheme("list-add"));
+    detailAction->setIcon(detailIcon);
+    addBtn->setDefaultAction(detailAction);
     addBtn->setFixedHeight(16);
     QVBoxLayout *swatchControlLayout = new QVBoxLayout();
     swatchControlLayout->setContentsMargins(0, 0, 0, 0);
+    swatchControlLayout->setAlignment(Qt::AlignLeft | Qt::AlignCenter);
     QHBoxLayout *addRemoveBtnLayout = new QHBoxLayout();
     addRemoveBtnLayout->setContentsMargins(0, 0, 0, 0);
     addRemoveBtnLayout->setSpacing(0);
@@ -128,7 +146,6 @@ ExprColorSwatchWidget::ExprColorSwatchWidget(bool indexLabel, QWidget *parent)
     _gridLayout->setContentsMargins(0, 0, 0, 0);
     _gridLayout->setSpacing(0);
     paletteLayout->addLayout(_gridLayout);
-    paletteLayout->addStretch();
     colorGrid->setLayout(paletteLayout);
 
     hboxLayout->addWidget(colorGrid);
@@ -136,7 +153,7 @@ ExprColorSwatchWidget::ExprColorSwatchWidget(bool indexLabel, QWidget *parent)
     hboxLayout->addStretch();
 
     // SIGNALS
-    connect(addBtn, SIGNAL(clicked()), this, SLOT(addNewColor()));
+    connect(addBtn, SIGNAL(triggered(QAction *)), this, SLOT(addNewColor()));
 }
 
 void ExprColorSwatchWidget::addNewColor() {

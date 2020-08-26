@@ -1,5 +1,6 @@
 /*
 * Copyright Disney Enterprises, Inc.  All rights reserved.
+* Copyright (C) 2020 L. E. Segovia <amy@amyspark.me>
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License
@@ -71,13 +72,13 @@ class CCurveScene : public QGraphicsScene {
 
     friend class ExprColorCurve;
 
-  public slots:
+  public Q_SLOTS:
     void interpChanged(const int interp);
     void selPosChanged(double pos);
     void selValChanged(const SeExpr2::Vec3d &val);
     void resize(const int width, const int height);
 
-  signals:
+  Q_SIGNALS:
     void cvSelected(double x, const SeExpr2::Vec3d y, const T_INTERP interp);
     void curveChanged();
 
@@ -125,7 +126,7 @@ class ExprCSwatchFrame : public QFrame {
     virtual void paintEvent(QPaintEvent *event);
     virtual void mousePressEvent(QMouseEvent *event);
 
-signals:
+Q_SIGNALS:
     void selValChangedSignal(SeExpr2::Vec3d value);
     void swatchChanged(QColor color);
 
@@ -142,9 +143,9 @@ class ExprColorCurve : public QWidget {
 
   public:
     ExprColorCurve(QWidget *parent = 0,
-                   QString pLabel = "",
-                   QString vLabel = "",
-                   QString iLabel = "",
+                   QString pLabel = QString(),
+                   QString vLabel = QString(),
+                   QString iLabel = QString(),
                    bool expandable = true);
     ~ExprColorCurve() {}
 
@@ -155,17 +156,17 @@ class ExprColorCurve : public QWidget {
 
     CCurveScene *_scene;
 
-  public slots:
+  public Q_SLOTS:
     void cvSelectedSlot(const double pos, const SeExpr2::Vec3d val, const T_INTERP interp);
     void selPosChanged();
     void openDetail();
 
-  signals:
+  Q_SIGNALS:
     void selPosChangedSignal(double pos);
     void selValChangedSignal(SeExpr2::Vec3d val);
     void swatchChanged(QColor color);
 
-  private slots:
+  private Q_SLOTS:
     void internalSwatchChanged(QColor color);
 
   private:

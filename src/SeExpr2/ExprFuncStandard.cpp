@@ -52,7 +52,7 @@ ExprType ExprFuncStandard::prep(ExprFuncNode* node, bool scalarWanted, ExprVarEn
             ExprType childType = node->child(c)->prep(scalarWanted, envBuilder);
             int childDim = childType.dim();
             node->child(c)->checkIsFP(childType, error);
-            node->child(c)->checkCondition(childDim == 1 || childDim == 3, "Expected float or FP[3]", error);
+            node->child(c)->checkCondition(childDim == 1 || childDim == 3, ErrorCode::ExpectedFloatOrFloat3, {}, error);
             retType.setLifetime(childType);
         }
         if (error)

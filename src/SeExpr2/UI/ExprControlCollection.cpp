@@ -1,5 +1,6 @@
 /*
 * Copyright Disney Enterprises, Inc.  All rights reserved.
+* Copyright (C) 2020 L. E. Segovia <amy@amyspark.me>
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License
@@ -18,24 +19,13 @@
 * @brief Manages/creates a bunch of ExprControls by using expression text
 * @author  aselle
 */
-#include <QVBoxLayout>
-#include <QHBoxLayout>
-#include <QToolButton>
+
 #include <QPushButton>
-#include <QRadioButton>
-#include <QFormLayout>
-#include <QDialogButtonBox>
-#include <QColorDialog>
-#include <QLabel>
-#include "ExprEditor.h"
-#include "ExprHighlighter.h"
-#include "ExprCompletionModel.h"
-#include "ExprCurve.h"
-#include "ExprColorCurve.h"
-#include "ExprControl.h"
-#include "ExprControlCollection.h"
-#include "EditableExpression.h"
+
+#include "Debug.h"
 #include "Editable.h"
+#include "ExprAddDialog.h"
+#include "ExprControlCollection.h"
 
 ExprControlCollection::ExprControlCollection(QWidget* parent, bool showAddButton)
     : QWidget(parent), count(0), showAddButton(showAddButton), editableExpression(0) {
@@ -45,7 +35,7 @@ ExprControlCollection::ExprControlCollection(QWidget* parent, bool showAddButton
     controlLayout->insertStretch(-1, 100);
 
     if (showAddButton) {
-        QPushButton* button = new QPushButton("Add Widget");
+        QPushButton* button = new QPushButton(tr("Add new variable"));
         button->setFocusPolicy(Qt::NoFocus);
         QHBoxLayout* buttonLayout = new QHBoxLayout();
         buttonLayout->insertStretch(-1, 100);
@@ -58,276 +48,80 @@ ExprControlCollection::ExprControlCollection(QWidget* parent, bool showAddButton
 
 ExprControlCollection::~ExprControlCollection() { delete editableExpression; }
 
-ExprAddDialog::ExprAddDialog(int& count, QWidget* parent) : QDialog(parent) {
-    QVBoxLayout* verticalLayout;
-    verticalLayout = new QVBoxLayout();
-    verticalLayout->setSpacing(3);
-    verticalLayout->setMargin(3);
-    setLayout(verticalLayout);
-    QHBoxLayout* horizontalLayout = new QHBoxLayout();
-
-    horizontalLayout->addWidget(new QLabel("Variable"));
-    // TODO would be nice to unique this over multiple sessions
-    variableName = new QLineEdit(QString("$var%1").arg(count++));
-
-    horizontalLayout->addWidget(variableName);
-    verticalLayout->addLayout(horizontalLayout);
-
-    tabWidget = new QTabWidget();
-
-    // Curve
-    {
-        QWidget* curveTab = new QWidget();
-        QFormLayout* curveLayout = new QFormLayout(curveTab);
-        curveLayout->setWidget(0, QFormLayout::LabelRole, new QLabel("Lookup"));
-        curveLookup = new QLineEdit("$u");
-        curveLayout->setWidget(0, QFormLayout::FieldRole, curveLookup);
-        tabWidget->addTab(curveTab, QString("Curve"));
-    }
-
-    // Color Curve
-    {
-        QWidget* colorCurveTab = new QWidget();
-        QFormLayout* colorCurveLayout = new QFormLayout(colorCurveTab);
-        colorCurveLayout->setWidget(0, QFormLayout::LabelRole, new QLabel("Lookup"));
-        colorCurveLookup = new QLineEdit("$u");
-        colorCurveLayout->setWidget(0, QFormLayout::FieldRole, colorCurveLookup);
-        tabWidget->addTab(colorCurveTab, QString("Color Curve"));
-    }
-
-    // Integer
-    {
-        QWidget* intTab = new QWidget();
-        QFormLayout* intFormLayout = new QFormLayout(intTab);
-        intFormLayout->setWidget(0, QFormLayout::LabelRole, new QLabel("Default"));
-        intFormLayout->setWidget(1, QFormLayout::LabelRole, new QLabel("Min"));
-        intFormLayout->setWidget(2, QFormLayout::LabelRole, new QLabel("Max"));
-        intDefault = new QLineEdit("0");
-        intFormLayout->setWidget(0, QFormLayout::FieldRole, intDefault);
-        intMin = new QLineEdit("0");
-        intFormLayout->setWidget(1, QFormLayout::FieldRole, intMin);
-        intMax = new QLineEdit("10");
-        intFormLayout->setWidget(2, QFormLayout::FieldRole, intMax);
-        tabWidget->addTab(intTab, QString("Int"));
-    }
-
-    // Float
-    {
-        QWidget* floatTab = new QWidget();
-        QFormLayout* floatFormLayout = new QFormLayout(floatTab);
-        floatFormLayout->setWidget(0, QFormLayout::LabelRole, new QLabel("Default"));
-        floatFormLayout->setWidget(1, QFormLayout::LabelRole, new QLabel("Min"));
-        floatFormLayout->setWidget(2, QFormLayout::LabelRole, new QLabel("Max"));
-        floatDefault = new QLineEdit("0");
-        floatFormLayout->setWidget(0, QFormLayout::FieldRole, floatDefault);
-        floatMin = new QLineEdit("0");
-        floatFormLayout->setWidget(1, QFormLayout::FieldRole, floatMin);
-        floatMax = new QLineEdit("1");
-        floatFormLayout->setWidget(2, QFormLayout::FieldRole, floatMax);
-
-        tabWidget->addTab(floatTab, QString("Float"));
-    }
-
-    // Vector
-    {
-        QWidget* vectorTab = new QWidget();
-        QFormLayout* vectorFormLayout = new QFormLayout(vectorTab);
-        vectorFormLayout->setWidget(0, QFormLayout::LabelRole, new QLabel("Default"));
-        vectorFormLayout->setWidget(1, QFormLayout::LabelRole, new QLabel("Min"));
-        vectorFormLayout->setWidget(2, QFormLayout::LabelRole, new QLabel("Max"));
-        vectorDefault0 = new QLineEdit("0");
-        vectorDefault1 = new QLineEdit("0");
-        vectorDefault2 = new QLineEdit("0");
-        QHBoxLayout* compLayout = new QHBoxLayout();
-        compLayout->addWidget(vectorDefault0);
-        compLayout->addWidget(vectorDefault1);
-        compLayout->addWidget(vectorDefault2);
-        vectorFormLayout->setLayout(0, QFormLayout::FieldRole, compLayout);
-        vectorMin = new QLineEdit("0");
-        vectorFormLayout->setWidget(1, QFormLayout::FieldRole, vectorMin);
-        vectorMax = new QLineEdit("1");
-        vectorFormLayout->setWidget(2, QFormLayout::FieldRole, vectorMax);
-
-        tabWidget->addTab(vectorTab, QString("Vector"));
-    }
-
-    // Color
-    {
-        QWidget* colorTab = new QWidget();
-        QFormLayout* colorLayout = new QFormLayout(colorTab);
-        colorWidget = new QPushButton();
-        colorWidget->setFixedWidth(30);
-        colorWidget->setFixedWidth(30);
-        colorLayout->setWidget(0, QFormLayout::LabelRole, new QLabel("Color"));
-        colorLayout->setWidget(0, QFormLayout::FieldRole, colorWidget);
-        color = Qt::red;
-        QPixmap colorPix(30, 30);
-        colorPix.fill(color);
-        colorWidget->setIcon(QIcon(colorPix));
-        tabWidget->addTab(colorTab, QString("Color"));
-
-        connect(colorWidget, SIGNAL(clicked()), this, SLOT(colorChooseClicked()));
-    }
-
-    // Color Swatch
-    {
-        QWidget* swatchTab = new QWidget();
-        QFormLayout* swatchLayout = new QFormLayout(swatchTab);
-        swatchLookup = new QLineEdit("$u");
-        swatchLayout->setWidget(0, QFormLayout::LabelRole, new QLabel("Lookup"));
-        swatchLayout->setWidget(0, QFormLayout::FieldRole, swatchLookup);
-        rainbowPaletteBtn = new QRadioButton("Rainbow");
-        rainbowPaletteBtn->setChecked(true);
-        grayPaletteBtn = new QRadioButton("Shades of Gray");
-        swatchLayout->setWidget(1, QFormLayout::LabelRole, new QLabel("Colors"));
-        swatchLayout->setWidget(1, QFormLayout::FieldRole, rainbowPaletteBtn);
-        swatchLayout->setWidget(2, QFormLayout::LabelRole, new QLabel(""));
-        swatchLayout->setWidget(2, QFormLayout::FieldRole, grayPaletteBtn);
-        tabWidget->addTab(swatchTab, QString("Swatch"));
-    }
-
-    // String literal
-    {
-        QWidget* stringTab = new QWidget();
-        QFormLayout* stringLayout = new QFormLayout(stringTab);
-        stringTypeWidget = new QComboBox();
-        stringTypeWidget->addItem("string");
-        stringTypeWidget->addItem("file");
-        stringTypeWidget->addItem("directory");
-        stringDefaultWidget = new QLineEdit();
-        stringNameWidget = new QLineEdit("str1");
-
-        stringLayout->setWidget(0, QFormLayout::LabelRole, new QLabel("String Name"));
-        stringLayout->setWidget(0, QFormLayout::FieldRole, stringNameWidget);
-        stringLayout->setWidget(1, QFormLayout::LabelRole, new QLabel("String Type"));
-        stringLayout->setWidget(1, QFormLayout::FieldRole, stringTypeWidget);
-        stringLayout->setWidget(2, QFormLayout::LabelRole, new QLabel("String Default"));
-        stringLayout->setWidget(3, QFormLayout::FieldRole, stringDefaultWidget);
-
-        tabWidget->addTab(stringTab, QString("String"));
-    }
-
-    // Anim Curve
-    {
-        QWidget* curveTab = new QWidget();
-        QFormLayout* curveLayout = new QFormLayout(curveTab);
-        curveLayout->setWidget(0, QFormLayout::LabelRole, new QLabel("Lookup"));
-        curveLayout->setWidget(1, QFormLayout::LabelRole, new QLabel("Link"));
-        animCurveLookup = new QLineEdit("$frame");
-        animCurveLink = new QLineEdit("");
-        curveLayout->setWidget(0, QFormLayout::FieldRole, animCurveLookup);
-        curveLayout->setWidget(1, QFormLayout::FieldRole, animCurveLink);
-        tabWidget->addTab(curveTab, QString("AnimCurve"));
-    }
-
-    // DeepWater
-    {
-        QWidget* deepWaterTab = new QWidget();
-        QFormLayout* deepWaterLayout = new QFormLayout(deepWaterTab);
-        deepWaterLayout->setWidget(0, QFormLayout::LabelRole, new QLabel("Lookup"));
-        deepWaterLookup = new QLineEdit("$u");
-        deepWaterLayout->setWidget(0, QFormLayout::FieldRole, deepWaterLookup);
-        tabWidget->addTab(deepWaterTab, QString("Deep Water"));
-    }
-
-    verticalLayout->addWidget(tabWidget);
-
-    QDialogButtonBox* buttonBox = new QDialogButtonBox();
-    buttonBox->setOrientation(Qt::Horizontal);
-    buttonBox->setStandardButtons(QDialogButtonBox::Cancel | QDialogButtonBox::Ok);
-
-    verticalLayout->addWidget(buttonBox);
-
-    QObject::connect(buttonBox, SIGNAL(accepted()), this, SLOT(accept()));
-    QObject::connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
-
-    tabWidget->setCurrentIndex(0);
-}
-
-void ExprAddDialog::colorChooseClicked() {
-    color = QColorDialog::getColor(color);
-    if (color.isValid()) {
-        QPixmap colorPix(30, 30);
-        colorPix.fill(color);
-        ((QPushButton*)sender())->setIcon(QIcon(colorPix));
-    }
-}
-
-const char* ExprAddDialog::initSwatch() {
-    if (rainbowPaletteBtn->isChecked())
-        return ("[1,0,0],[1,.6,0],[1,1,0],[0,1,0],[0,1,1],[0,0,1],[.6,.1,.6],[1,0,1],[1,1,1],[0,0,0]");
-    else if (grayPaletteBtn->isChecked())
-        return (
-            "[1,1,1],[.9,.9,.9],[.8,.8,.8],[.7,.7,.7],[.6,.6,.6],[.5,.5,.5],[.4,.4,.4],[.3,.3,.3],[.2,.2,.2],[0,0,0]");
-    else
-        return ("[1,1,1],[.5,.5,.5],[0,0,0]");
-}
-
 void ExprControlCollection::addControlDialog() {
     ExprAddDialog* dialog = new ExprAddDialog(count, this);
     if (dialog->exec()) {
         QString s;
         switch (dialog->tabWidget->currentIndex()) {
             case 0:
-                s = QString("%1 = curve(%2,0,0,4,1,1,4);\n").arg(dialog->variableName->text()).arg(
-                    dialog->curveLookup->text());
+                s = QString::fromLatin1("%1 = curve(%2,0,0,4,1,1,4);\n")
+                        .arg(dialog->variableName->text())
+                        .arg(dialog->curveLookup->text());
                 break;
             case 1:
-                s = QString("%1 = ccurve(%2,0,[0,0,0],4,1,[1,1,1],4);\n").arg(dialog->variableName->text()).arg(
-                    dialog->colorCurveLookup->text());
+                s = QString::fromLatin1("%1 = ccurve(%2,0,[0,0,0],4,1,[1,1,1],4);\n")
+                        .arg(dialog->variableName->text())
+                        .arg(dialog->colorCurveLookup->text());
                 break;
             case 2:
-                s = dialog->variableName->text() + " = " + dialog->intDefault->text() + "; # " +
-                    dialog->intMin->text() + "," + dialog->intMax->text() + "\n";
+                s = QString::fromLatin1("%1 = %2; # %3,%4\n")
+                    .arg(dialog->variableName->text())
+                    .arg(dialog->intDefault->text())
+                    .arg(dialog->intMin->text())
+                    .arg(dialog->intMax->text());
                 break;
             case 3:
-                s = QString("%1 = %2; # %3, %4\n")
+                s = QString::fromLatin1("%1 = %2; # %3, %4\n")
                         .arg(dialog->variableName->text())
                         .arg(dialog->floatDefault->text())
-                        .arg(atof(dialog->floatMin->text().toStdString().c_str()), 0, 'f', 3)
-                        .arg(atof(dialog->floatMax->text().toStdString().c_str()), 0, 'f', 3);
+                        .arg(crack_atof(dialog->floatMin->text().toStdString().c_str()), 0, 'f', 3)
+                        .arg(crack_atof(dialog->floatMax->text().toStdString().c_str()), 0, 'f', 3);
                 break;
             case 4:
-                s = QString("%1 = [%2,%3,%4]; # %5, %6\n")
+                s = QString::fromLatin1("%1 = [%2,%3,%4]; # %5, %6\n")
                         .arg(dialog->variableName->text())
                         .arg(dialog->vectorDefault0->text())
                         .arg(dialog->vectorDefault1->text())
                         .arg(dialog->vectorDefault2->text())
-                        .arg(atof(dialog->vectorMin->text().toStdString().c_str()), 0, 'f', 3)
-                        .arg(atof(dialog->vectorMax->text().toStdString().c_str()), 0, 'f', 3);
+                        .arg(crack_atof(dialog->vectorMin->text().toStdString().c_str()), 0, 'f', 3)
+                        .arg(crack_atof(dialog->vectorMax->text().toStdString().c_str()), 0, 'f', 3);
                 break;
             case 5:
-                s = QString("%1 = [%2,%3,%4];\n")
+                s = QString::fromLatin1("%1 = [%2,%3,%4];\n")
                         .arg(dialog->variableName->text())
                         .arg(dialog->color.redF())
                         .arg(dialog->color.greenF())
                         .arg(dialog->color.blueF());
                 break;
             case 6:
-                s = QString("%1 = swatch(%2,%3);\n")
+                s = QString::fromLatin1("%1 = swatch(%2,%3);\n")
                         .arg(dialog->variableName->text())
                         .arg(dialog->swatchLookup->text())
-                        .arg(dialog->initSwatch());
+                        .arg(QString::fromLatin1(dialog->initSwatch()));
                 break;
             case 7:
-                s = QString("\"%1\" #%2 %3\n")
+                s = QString::fromLatin1("\"%1\" #%2 %3\n")
                         .arg(dialog->stringDefaultWidget->text())
                         .arg(dialog->stringTypeWidget->currentText())
                         .arg(dialog->stringNameWidget->text());
                 break;
+#ifdef SEEXPR_ENABLE_ANIMCURVE
             case 8:
-                s = QString("%1 = animCurve(%2,\"constant\",\"constant\",0,\"%3\");")
+                s = QString::fromLatin1("%1 = animCurve(%2,\"constant\",\"constant\",0,\"%3\");")
                         .arg(dialog->variableName->text())
                         .arg(dialog->animCurveLookup->text())
                         .arg(dialog->animCurveLink->text());
                 break;
+#endif
+#ifdef SEEXPR_ENABLE_DEEPWATER
             case 9:
-                s = QString("%1 = deepWater(%2,9,30,0,1,0,5,0,0,[0,0,0],0,0,0);\n")
+                s = QString::fromLatin1("%1 = deepWater(%2,9,30,0,1,0,5,0,0,[0,0,0],0,0,0);\n")
                         .arg(dialog->variableName->text())
                         .arg(dialog->deepWaterLookup->text());
                 break;
+#endif
         }
-        emit insertString(s.toStdString());
+        emit insertString(s);
     }
 }
 
@@ -344,7 +138,7 @@ bool ExprControlCollection::rebuildControls(const QString& expressionText, std::
         const std::vector<std::string>& vars = newEditable->getVariables();
         variables.clear();
         for (size_t k = 0; k < vars.size(); k++) {
-            variables.push_back(("$" + vars[k]).c_str());
+            variables.push_back(QString::fromLatin1("$%1").arg(QString::fromStdString(vars[k])));
         }
     }
 
@@ -384,14 +178,18 @@ bool ExprControlCollection::rebuildControls(const QString& expressionText, std::
                 widget = new CurveControl(i, x);
             else if (ColorCurveEditable* x = dynamic_cast<ColorCurveEditable*>(editable))
                 widget = new CCurveControl(i, x);
-            else if (AnimCurveEditable* x = dynamic_cast<AnimCurveEditable*>(editable)) {
+#ifdef SEEXPR_ENABLE_ANIMCURVE
+            else if (AnimCurveEditable* x = dynamic_cast<AnimCurveEditable*>(editable)) 
                 widget = new AnimCurveControl(i, x);
-            } else if (ColorSwatchEditable* x = dynamic_cast<ColorSwatchEditable*>(editable))
+#endif
+            else if (ColorSwatchEditable* x = dynamic_cast<ColorSwatchEditable*>(editable))
                 widget = new ColorSwatchControl(i, x);
+#ifdef SEEXPR_ENABLE_DEEPWATER
             else if (DeepWaterEditable* x = dynamic_cast<DeepWaterEditable*>(editable))
                 widget = new DeepWaterControl(i, x);
+#endif
             else {
-                std::cerr << "SeExpr editor logic error, cannot find a widget for the given editable" << std::endl;
+                dbgSeExpr << "SeExpr editor logic error, cannot find a widget for the given editable";
             }
             if (widget) {
                 // successfully made widget
@@ -403,7 +201,7 @@ bool ExprControlCollection::rebuildControls(const QString& expressionText, std::
                 connect(widget, SIGNAL(linkColorEdited(int, QColor)), SLOT(linkColorEdited(int, QColor)));
                 connect(widget, SIGNAL(linkColorLink(int)), SLOT(linkColorLink(int)));
             } else {
-                std::cerr << "Expr Editor Logic ERROR did not make widget" << std::endl;
+                dbgSeExpr << "Expr Editor Logic ERROR did not make widget";
             }
         }
     }
@@ -411,6 +209,7 @@ bool ExprControlCollection::rebuildControls(const QString& expressionText, std::
 }
 
 void ExprControlCollection::showEditor(int idx) {
+#ifdef SEEXPR_ENABLE_ANIMCURVE
     if (idx < 0 || idx >= (int)_controls.size()) return;
 
     /* Right now we only launch the anim curve editor.
@@ -419,6 +218,7 @@ void ExprControlCollection::showEditor(int idx) {
     if (!control) return;
 
     control->editGraphClicked();
+#endif
 }
 
 void ExprControlCollection::linkColorLink(int id) {
@@ -440,7 +240,7 @@ void ExprControlCollection::linkColorInput(QColor color) {
 
 void ExprControlCollection::updateText(const int id, QString& text) {
     Q_UNUSED(id);
-    if (editableExpression) text = QString(editableExpression->getEditedExpr().c_str());
+    if (editableExpression) text = QString::fromStdString(editableExpression->getEditedExpr());
 }
 
 void ExprControlCollection::singleControlChanged(int id) { emit controlChanged(id); }

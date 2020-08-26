@@ -1,4 +1,5 @@
 # Copyright Disney Enterprises, Inc.  All rights reserved.
+# Copyright (C) 2020 L. E. Segovia <amy@amyspark.me>
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License
@@ -92,6 +93,14 @@ option(BUILD_DOC "Whether to build the documentation" TRUE)
 option(BUILD_TESTS "Whether to build the tests" TRUE)
 option(ENABLE_SLOW_TESTS "Whether to enable slow tests" FALSE)
 
+if (IS_DIRECTORY "${CMAKE_SOURCE_DIR}/po")
+    find_package(ECM 5.64.0 NO_MODULE)
+    if (ECM_FOUND)
+        set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${CMAKE_MODULE_PATH})
+        option(BUILD_TRANSLATIONS "Whether to include translations" TRUE)
+    endif ()
+endif ()
+
 set(LLVM_LIB "")
 if (ENABLE_LLVM_BACKEND)
     set(LLVM_DIR /usr/share/llvm/cmake CACHE PATH "Where to search for LLVM i.e. ")
@@ -178,9 +187,7 @@ else()
     if (ENABLE_SSE4)
         set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -msse4.1")
     endif()
-    if (NOT APPLE)
-        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -rdynamic")
-    else()
+    if (APPLE)
         set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-date-time")
     endif()
 endif()
@@ -204,7 +211,7 @@ if (ENABLE_QT5)
         include_directories(${Qt5OpenGL_INCLUDE_DIRS})
     endif()
 else()
-    find_package(Qt4 COMPONENTS QtCore QtGui QtOpenGL)
+    find_package(Qt4 4.2.0 COMPONENTS QtCore QtGui QtOpenGL)
     if (Qt4_FOUND)
         message(STATUS "Qt4 Enabled")
         message(STATUS "QT_INCLUDE_DIR = ${QT_INCLUDE_DIR}")
@@ -282,3 +289,6 @@ configure_package_config_file(
 install(FILES "${CMAKE_CURRENT_BINARY_DIR}/seexpr2-config.cmake"
     "${CMAKE_CURRENT_BINARY_DIR}/seexpr2-version.cmake"
     COMPONENT devel DESTINATION ${CMAKE_DIR})
+install(EXPORT ${PROJECT_NAME}Targets
+    NAMESPACE SeExpr2::
+    DESTINATION ${CMAKE_DIR})
