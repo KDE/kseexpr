@@ -378,7 +378,7 @@ Vec3d hsltorgb(const Vec3d& hsl) {
 }
 static const char* hsltorgb_docstring = QT_TRANSLATE_NOOP_UTF8("builtin",
     "color hsltorgb(color hsl)\n"
-    "RGB to HSL color space conversion.\n"
+    "HSL to RGB color space conversion.\n"
     "HSL is Hue, Saturation, Lightness (all in range [0..1] )\n"
     "These functions have also been extended to support rgb and hsl values\n"
     "outside of the range [0..1] in a reasonable way.&nbsp; For any rgb or\n"
