@@ -153,7 +153,8 @@ if (Qt5_FOUND OR QT4_FOUND)
     if (BUILD_TRANSLATIONS)
         include(ECMPoQmTools)
         ecm_install_po_files_as_qm("${CMAKE_SOURCE_DIR}/po")
-        ecm_create_qm_loader(SeExpr2Editor_QM_LOADER seexpr2_qt)
+        # ecm_create_qm_loader(SeExpr2Editor_QM_LOADER seexpr2_qt)
+        set(SeExpr2Editor_QM_LOADER "ECMQmLoader-seexpr2_qt.cpp")
         set(EDITOR_CPPS
             ${EDITOR_CPPS}
             ${SeExpr2Editor_QM_LOADER})
