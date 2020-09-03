@@ -35,7 +35,7 @@ namespace {
             return false;
         }
 #else
-        const QString fullPath = QStandardPaths::locate(QStandardPaths::GenericDataLocation, subPath);
+        const QString fullPath = QStandardPaths::locate(QStandardPaths::DataLocation, subPath);
         if (fullPath.isEmpty()) {
             return false;
         }
@@ -61,7 +61,7 @@ namespace {
 #if defined(Q_OS_ANDROID)
         const auto paths = QStringLiteral("assets:/share/");
 #else
-        const auto paths = QStandardPaths::standardLocations(QStandardPaths::GenericDataLocation);
+        const auto paths = QStandardPaths::standardLocations(QStandardPaths::DataLocation);
 #endif
         dbgSeExpr << "Base paths for translations: " << paths;
 
