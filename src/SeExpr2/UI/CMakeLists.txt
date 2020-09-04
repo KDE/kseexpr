@@ -160,20 +160,9 @@ if (Qt5_FOUND OR QT4_FOUND)
             ${SeExpr2Editor_QM_LOADER})
     endif()
 
-    if (WIN32)
-        add_library(SeExpr2Editor ${EDITOR_CPPS} ${EDITOR_MOC_SRCS}
-                    ${ANIMLIB_SRCS}
-                    ${editor_parser_cpp})
-        generate_export_header(SeExpr2Editor
-                               BASE_NAME SeExpr2Editor
-                               EXPORT_MACRO_NAME SeExpr2Editor
-                               EXPORT_FILE_NAME SeExpr2Editor_Export.h
-                               STATIC_DEFINE SeExpr2Editor_BUILT_AS_STATIC )
-    else()
-        add_library(SeExpr2Editor SHARED ${EDITOR_CPPS} ${EDITOR_MOC_SRCS}
-                    ${ANIMLIB_SRCS}
-                    ${editor_parser_cpp})
-    endif()
+    add_library(SeExpr2Editor SHARED ${EDITOR_CPPS} ${EDITOR_MOC_SRCS}
+                ${ANIMLIB_SRCS}
+                ${editor_parser_cpp})
 
     set_property(TARGET SeExpr2Editor PROPERTY VERSION ${SeExpr2_VERSION})
     set_property(TARGET SeExpr2Editor PROPERTY SOVERSION 3)
