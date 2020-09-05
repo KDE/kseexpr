@@ -152,7 +152,7 @@ TEST(BasicTests, VectorAssignment) {
 TEST(BasicTests, LogicalShortCircuiting) {
     auto testExpr = [&](const char* expr, int expectedOutput, int invocationsExpected) {
         SimpleExpression expr1(expr);
-        if (!expr1.isValid()) throw std::runtime_error(expr1.parseError());
+        if (!expr1.isValid()) throw std::runtime_error(std::to_string(expr1.parseError()));
         invocations = 0;
         Vec<double, 1, true> val(const_cast<double*>(expr1.evalFP()));
         EXPECT_EQ(val[0], expectedOutput);
@@ -248,9 +248,8 @@ TEST(BasicTests, IfThenElse) {
 TEST(BasicTests, NestedTernary) {
     SimpleExpression expr1("1?2:3?4:5");
     if (!expr1.isValid()) {
-        throw std::runtime_error("parse error:\n" + expr1.parseError());
+        throw std::runtime_error("parse error:\n" + std::to_string(expr1.parseError()));
     }
-    if (!expr1.isValid()) throw std::runtime_error(expr1.parseError());
     Vec<double, 1, true> val(const_cast<double*>(expr1.evalFP()));
     EXPECT_EQ(val[0], 2);
     // TODO: put this expr in foo=3?1:2;Cs*foo
@@ -260,7 +259,7 @@ template <int d>
 Vec<double, d> run(const std::string& a) {
     SimpleExpression e(a);
     e.setDesiredReturnType(TypeVec(d));
-    if (!e.isValid()) throw std::runtime_error(e.parseError());
+    if (!e.isValid()) throw std::runtime_error(std::to_string(e.parseError()));
     Vec<const double, d, true> crud(e.evalFP());
     return crud;
 }
