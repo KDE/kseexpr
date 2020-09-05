@@ -10,15 +10,15 @@
 
 %Import QtGui/QtGuimod.sip
 
+%Feature SEEXPR_ENABLE_DEEPWATER
+%Feature SEEXPR_ENABLE_OPENGL_DIALOGS
+
 %MappedType std::string
 {
 %TypeHeaderCode
 #include <iostream>
 #include <string>
 %End
-
-%Feature SEEXPR_ENABLE_DEEPWATER
-%Feature SEEXPR_ENABLE_OPENGL_WIDGETS
 
 %ConvertFromTypeCode
     // convert an std::string to a Python (unicode) string
@@ -71,7 +71,7 @@
 %End
 };
 
-%If (SEEXPR_ENABLE_OPENGL_WIDGETS)
+%If (SEEXPR_ENABLE_OPENGL_DIALOGS)
 class ExprDialog:QDialog{
 %TypeHeaderCode
 #include "ExprDialog.h"
@@ -110,7 +110,9 @@ class ExprEditor:QWidget{
 %End
 
 public:
-    ExprEditor(QWidget* parent /TransferThis/,ExprControlCollection* collection);
+    ExprEditor(QWidget* parent /TransferThis/);
+    virtual void setControlCollectionWidget(ExprControlCollection* widget);
+    ExprControlCollection* controlCollectionWidget() const;
 
 Q_SIGNALS:
     void applyExpression(); // This is when text or controls are manipulated
@@ -123,13 +125,13 @@ public Q_SLOTS:
     void controlChanged(int id);
 
 public:
-    std::string getExpr();
-    void setExpr(const std::string& expression,const bool apply=false);
-    void addError(const int startPos,const int endPos,const std::string& error);
+    QString getExpr();
+    void setExpr(const QString& expression,const bool apply=false);
+    void addError(const int startPos,const int endPos,const QString& error);
     void clearErrors();
     void clearExtraCompleters();
-    void registerExtraFunction(const std::string& name,const std::string& docString);
-    void registerExtraVariable(const std::string& name,const std::string& docString);
+    void registerExtraFunction(const QString& name, const QString& docString);
+    void registerExtraVariable(const QString& name, const QString& docString);
     void updateCompleter();
 };
 
@@ -248,7 +250,7 @@ class ExprColorSwatchWidget:QWidget{
 #include "ExprColorSwatch.h"
 %End
 public:
-    ExprColorSwatchWidget(bool indexLabel = false, QWidget* parent = NULL);
+    ExprColorSwatchWidget(bool indexLabel, QWidget* parent = NULL);
 };
 
 %If (SEEXPR_ENABLE_DEEPWATER)

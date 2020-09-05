@@ -95,9 +95,6 @@ if (Qt5_FOUND OR QT4_FOUND)
         add_definitions(-DSEEXPR_ENABLE_DEEPWATER)
         set(EDITOR_MOC_HDRS ${EDITOR_MOC_HDRS} ExprDeepWater.h)
         set(EDITOR_CPPS ${EDITOR_CPPS} ExprDeepWater.cpp)
-        set(PYQT_EXPORT_DEEPWATER "")
-    else()
-        set(PYQT_EXPORT_DEEPWATER "-x SEEXPR_ENABLE_DEEPWATER")
     endif()
 
     if (ENABLE_ANIMCURVE)
@@ -121,9 +118,6 @@ if (Qt5_FOUND OR QT4_FOUND)
                 ExprGrapher2d.cpp
                 ExprShortEdit.cpp
         )
-        set(PYQT_EXPORT_OPENGL_DIALOGS "")
-    else()
-        set(PYQT_EXPORT_OPENGL_DIALOGS "-x SEEXPR_ENABLE_OPENGL_DIALOGS")
     endif()
 
     if (ENABLE_QT5)
@@ -269,19 +263,31 @@ if (Qt5_FOUND OR QT4_FOUND)
                             ${PYQT_SIP_DIR}
                             ${PYTHON_INCLUDE_DIR})
 
+        set(SIP_EXEC_COMMAND_EDITOR ${SIP_EXEC} -w -c .
+                           ${PYQT_SIP_FLAGS}
+                           -j 1
+                           -I. -I${PYQT_SIP_DIR} -I${SIP_INCLUDE_DIR})
+
+        if (NOT ENABLE_DEEPWATER)
+            set(SIP_EXEC_COMMAND_EDITOR ${SIP_EXEC_COMMAND_EDITOR}
+                -x "SEEXPR_ENABLE_DEEPWATER"
+            )
+        endif()
+        if (NOT ENABLE_OPENGL_DIALOGS)
+            set(SIP_EXEC_COMMAND_EDITOR ${SIP_EXEC_COMMAND_EDITOR}
+                -x "SEEXPR_ENABLE_OPENGL_DIALOGS"
+            )
+        endif()
+
         add_custom_command(OUTPUT sipexpreditor2part0.cpp
                            DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/SeExpr2Editor.sip
                            COMMENT 'Processing SeExpr2Editor.sip'
-                           COMMAND ${SIP_EXEC} -w -c .
-                           ${PYQT_SIP_FLAGS}
-                           -j 1
-                           -I. -I${PYQT_SIP_DIR} -I${SIP_INCLUDE_DIR}
-                           ${PYQT_EXPORT_DEEPWATER}
-                           ${PYQT_EXPORT_OPENGL_DIALOGS}
+                           COMMAND ${SIP_EXEC_COMMAND_EDITOR}
                            ${CMAKE_CURRENT_SOURCE_DIR}/SeExpr2Editor.sip
                            VERBATIM)
 
         add_library(expreditor2 SHARED sipexpreditor2part0.cpp)
+        target_include_directories(expreditor2 PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
         target_link_libraries(expreditor2 SeExpr2Editor ${SEEXPR_LIBRARIES}
                               ${OPENGL_LIBRARY} ${GLUT_LIBRARY} ${PYTHON_LIBRARIES})
 
