@@ -66,7 +66,6 @@ if (Qt5_FOUND OR QT4_FOUND)
             ExprHelp.h
             ExprHighlighter.h
             ExprPopupDoc.h
-            ExprShortEdit.h
             ExprSpecType.h
     )
 

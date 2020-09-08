@@ -176,6 +176,7 @@ public Q_SLOTS:
 
 };
 
+%If(SEEXPR_ENABLE_OPENGL_DIALOGS)
 class ExprShortTextEdit:QTextEdit
 {
 %TypeHeaderCode
@@ -227,6 +228,7 @@ protected Q_SLOTS:
 Q_SIGNALS:
     void exprChanged();
 };
+%End
 
 class ExprCurve:QWidget{
 %TypeHeaderCode
