@@ -24,8 +24,8 @@ set(CMAKE_CXX_STANDARD 14)
 project(SeExpr2)
 
 # "API" version
-set(${PROJECT_NAME}_VERSION "2.0")
-set(${PROJECT_NAME}_MAJOR_VERSION 2)
+set(${PROJECT_NAME}_VERSION "3.4.4.0")
+set(${PROJECT_NAME}_MAJOR_VERSION 3)
 set(${PROJECT_NAME}_MINOR_VERSION 0)
 
 enable_testing()
@@ -290,7 +290,7 @@ configure_file("src/build/seexpr2.pc.in" "seexpr2.pc" @ONLY)
 install(FILES "${CMAKE_CURRENT_BINARY_DIR}/seexpr2.pc"
     COMPONENT devel DESTINATION share/pkgconfig)
 
-write_basic_package_version_file("seexpr2-version.cmake" VERSION ${SeExpr2_VERSION} COMPATIBILITY AnyNewerVersion)
+write_basic_package_version_file("seexpr2-version.cmake" VERSION ${${PROJECT_NAME}_VERSION} COMPATIBILITY SameMajorVersion)
 
 configure_package_config_file(
     "src/build/seexpr2-config.cmake" "seexpr2-config.cmake"
