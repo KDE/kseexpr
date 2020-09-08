@@ -17,10 +17,9 @@ include_directories(${CMAKE_BINARY_DIR}/src/SeExpr2)
 
 set(TEST_DEST "share/test/SeExpr2")
 
-if (GTEST_DIR)
+if (GTEST_FOUND)
     # Google test framework
-    include_directories(AFTER ${GTEST_DIR}/include)
-    find_library(GTEST_LIBRARIES gtest PATHS ${GTEST_DIR}/${CMAKE_INSTALL_LIBDIR})
+    include_directories(AFTER ${GTEST_INCLUDE_DIR})
 
     # Uncomment below to print performance stats
     # add_definitions(-DSEEXPR_PERFORMANCE)
@@ -69,7 +68,7 @@ if (GTEST_DIR)
             "testmain.cpp" "imageTests.cpp"
             ${EXAMPLE_TESTS} ${PAINT3D_TESTS}
             "basic.cpp" "string.cpp")
-        target_link_libraries(testmain2 SeExpr2 ${GTEST_LIBRARIES} ${PNG_LIBRARIES})
+        target_link_libraries(testmain2 SeExpr2 GTest::GTest ${PNG_LIBRARIES})
         install(TARGETS testmain2 DESTINATION ${TEST_DEST})
         install(PROGRAMS imagediff.py DESTINATION ${TEST_DEST})
         add_test(NAME basic COMMAND testmain2 --gtest_filter=BasicTests.*)
@@ -91,10 +90,12 @@ target_link_libraries(dirtSimple SeExpr2 ${PNG_LIBRARIES})
 install(TARGETS dirtSimple DESTINATION ${TEST_DEST})
 add_test(NAME dirtSimple COMMAND dirtSimple)
 
-add_executable(BlockTests "BlockTests.cpp")
-target_link_libraries(BlockTests SeExpr2 ${PNG_LIBRARIES})
-install(TARGETS BlockTests DESTINATION ${TEST_DEST})
-add_test(NAME BlockTests COMMAND BlockTests)
+if (ENABLE_LLVM_BACKEND)
+    add_executable(BlockTests "BlockTests.cpp")
+    target_link_libraries(BlockTests SeExpr2 ${PNG_LIBRARIES})
+    install(TARGETS BlockTests DESTINATION ${TEST_DEST})
+    add_test(NAME BlockTests COMMAND BlockTests)
+endif()
 
 add_executable(VarBlockExample VarBlockExample.cpp)
 target_link_libraries(VarBlockExample SeExpr2)

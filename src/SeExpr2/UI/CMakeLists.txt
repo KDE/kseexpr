@@ -258,7 +258,6 @@ if (Qt5_FOUND OR QT4_FOUND)
 
         set(CMAKE_INSTALL_PYTHON "${PYTHON_SITE}/SeExpr2" )
 
-        set(CMAKE_CXX_FLAGS "-std=c++11")
         include_directories(${SIP_INCLUDE_DIR}
                             ${PYQT_SIP_DIR}
                             ${PYTHON_INCLUDE_DIR})

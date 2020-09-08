@@ -16,6 +16,10 @@
 
 cmake_minimum_required(VERSION 3.8.0)
 
+# option() honors normal variables. Needed for LLVM 10.
+cmake_policy(SET CMP0077 NEW)
+set(CMAKE_CXX_STANDARD 14)
+
 ## project name & version
 project(SeExpr2)
 
@@ -68,7 +72,7 @@ set(CMAKE_DIR "share/cmake/${PROJECT_NAME}")
 set(INCLUDE_DIR "include/${PROJECT_NAME}")
 
 # Configuration options
-# TODO: find GTEST and boost and python the proper ways
+# TODO: find boost and python the proper ways
 set(BOOST_DIR /usr CACHE PATH "where boost is located")
 
 find_package(PythonInterp) # provides Python version check
@@ -82,7 +86,7 @@ else()
     SET (BOOST_PYTHON_LIBNAME ${BOOST_PYTHON3_LIB} CACHE STRING "what library name for boost python")
 endif()
 
-set(GTEST_DIR "" CACHE STRING "Where to find GTEST")
+find_package(GTest)
 option(ENABLE_LLVM_BACKEND "Whether to build with LLVM backend" TRUE)
 option(ENABLE_QT5 "Whether to use Qt5" TRUE)
 option(ENABLE_SSE4 "Whether to use SSE4" TRUE)
@@ -162,6 +166,9 @@ if (ENABLE_LLVM_BACKEND)
         if (LLVM_VERSION VERSION_LESS 3.8.0)
             set(ENABLE_LLVM_BACKEND off)
             message(STATUS "Not building with LLVM, version must be >= 3.8.0")
+        elseif(LLVM_VERSION VERSION_GREATER_EQUAL 10)
+            # LLVM >= 10 moved to C++ 14.
+            set(CMAKE_CXX_STANDARD_REQUIRED ON)
         endif()
 
     else()

@@ -328,7 +328,7 @@ class LLVMEvaluator {
         std::string errorStr;
         llvm::raw_string_ostream raw(errorStr);
         if (llvm::verifyModule(*altModule, &raw)) {
-            parseTree->addError(raw.str());
+            parseTree->addError(ErrorCode::Unknown, { raw.str() });
             return false;
         }
 
