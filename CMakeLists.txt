@@ -159,17 +159,33 @@ if (ENABLE_LLVM_BACKEND)
         endif ()
         message(STATUS "LLVM_VERSION = ${LLVM_VERSION}")
 
+        message(STATUS "Detected processor: ${CMAKE_SYSTEM_PROCESSOR}")
+        if(CMAKE_SYSTEM_PROCESSOR MATCHES "amd64.*|x86_64.*|AMD64.*")
+            set(SeExpr2_PLATFORM_CODEGEN_LIBS 
+                X86CodeGen
+                X86AsmParser)
+        elseif(CMAKE_SYSTEM_PROCESSOR MATCHES "i686.*|i386.*|x86.*")
+            set(SeExpr2_PLATFORM_CODEGEN_LIBS 
+                X86CodeGen
+                X86AsmParser)
+        elseif(CMAKE_SYSTEM_PROCESSOR MATCHES "^(aarch64.*|AARCH64.*|arm64.*|ARM64.*)")
+            set(SeExpr2_PLATFORM_CODEGEN_LIBS 
+                AArch64CodeGen
+                AArch64AsmParser)
+        elseif(CMAKE_SYSTEM_PROCESSOR MATCHES "^(arm.*|ARM.*)")
+            set(SeExpr2_PLATFORM_CODEGEN_LIBS 
+                ARMCodeGen
+                ARMAsmParser)
+        else()
+            message(ERROR "Unknown processor, unable to set LLVM codegen targets")
+        endif()
+
         llvm_map_components_to_libnames(LLVM_LIB
             Interpreter
             MCJIT
             ObjCARCOpts
             Passes
-            X86CodeGen
-            X86AsmParser
-            AArch64CodeGen
-            AArch64AsmParser
-            ARMCodeGen
-            ARMAsmParser
+            ${SeExpr2_PLATFORM_CODEGEN_LIBS}
         )
 
         message(STATUS "LLVM_LIB = ${LLVM_LIB}")
