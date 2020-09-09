@@ -149,9 +149,6 @@ if (ENABLE_LLVM_BACKEND)
         message(STATUS "LLVM_LIBRARY_DIR =" ${LLVM_LIBRARY_DIR})
         link_directories(${LLVM_LIBRARY_DIR})
 
-        #todo infinite loop in this?
-        #llvm_map_components_to_libraries(REQ_LLVM_LIBRARIES jit native)
-
         # construct library name
         if (NOT LLVM_CONFIG_EXECUTABLE STREQUAL "LLVM_CONFIG_EXECUTABLE-NOTFOUND")
             execute_process(
@@ -162,7 +159,19 @@ if (ENABLE_LLVM_BACKEND)
         endif ()
         message(STATUS "LLVM_VERSION = ${LLVM_VERSION}")
 
-        set(LLVM_LIB LLVM)
+        llvm_map_components_to_libnames(LLVM_LIB
+            Interpreter
+            MCJIT
+            ObjCARCOpts
+            Passes
+            X86CodeGen
+            X86AsmParser
+            AArch64CodeGen
+            AArch64AsmParser
+            ARMCodeGen
+            ARMAsmParser
+        )
+
         message(STATUS "LLVM_LIB = ${LLVM_LIB}")
 
         if (LLVM_VERSION VERSION_LESS 3.8.0)
