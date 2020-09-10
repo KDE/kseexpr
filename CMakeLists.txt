@@ -195,11 +195,7 @@ if (ENABLE_LLVM_BACKEND)
         if (LLVM_VERSION VERSION_LESS 3.8.0)
             set(ENABLE_LLVM_BACKEND off)
             message(STATUS "Not building with LLVM, version must be >= 3.8.0")
-        elseif(LLVM_VERSION VERSION_GREATER_EQUAL 10)
-            # LLVM >= 10 moved to C++ 14.
-            set(CMAKE_CXX_STANDARD_REQUIRED ON)
         endif()
-
     else()
          set(ENABLE_LLVM_BACKEND off)
     endif()
@@ -319,7 +315,7 @@ configure_file("src/build/seexpr2.pc.in" "seexpr2.pc" @ONLY)
 install(FILES "${CMAKE_CURRENT_BINARY_DIR}/seexpr2.pc"
     COMPONENT devel DESTINATION share/pkgconfig)
 
-write_basic_package_version_file("seexpr2-version.cmake" VERSION ${${PROJECT_NAME}_VERSION} COMPATIBILITY SameMajorVersion)
+write_basic_package_version_file("seexpr2-version.cmake" VERSION ${${PROJECT_NAME}_VERSION} COMPATIBILITY ExactVersion)
 
 configure_package_config_file(
     "src/build/seexpr2-config.cmake" "seexpr2-config.cmake"
