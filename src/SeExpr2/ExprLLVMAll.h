@@ -20,6 +20,7 @@
 #include "ExprLLVM.h"
 
 #ifdef SEEXPR_ENABLE_LLVM
+#ifndef Q_MOC_RUN /* automoc chokes in Qt classes using llvm/ir/intrinsics.h indirectly*/
 #include <llvm/IR/Constants.h>
 #include <llvm/IR/LLVMContext.h>
 #include <llvm/IR/Module.h>
@@ -49,4 +50,5 @@
 #include <llvm/Support/ManagedStatic.h>
 #include <llvm/Support/TargetSelect.h>
 #include <llvm/Transforms/Utils/Cloning.h>
+#endif
 #endif
