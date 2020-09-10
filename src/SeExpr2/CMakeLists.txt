@@ -132,6 +132,12 @@ install(FILES "${CMAKE_CURRENT_BINARY_DIR}/ExprConfig.h"
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
 
 if (ENABLE_LLVM_BACKEND)
+    if(LLVM_VERSION VERSION_GREATER_EQUAL 10)
+        # LLVM >= 10 moved to C++ 14.  
+        target_compile_features(${SEEXPR_LIBRARIES} PUBLIC cxx_std_14)
+    else()
+        target_compile_features(${SEEXPR_LIBRARIES} PUBLIC cxx_std_11)
+    endif()
     if (NOT WIN32)
         target_link_libraries(SeExpr2 ${LLVM_LIB} "dl" "pthread")
     else ()

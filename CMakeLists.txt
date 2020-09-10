@@ -20,7 +20,9 @@ cmake_minimum_required(VERSION 3.8.0)
 if (POLICY CMP0077)
     cmake_policy(SET CMP0077 NEW)
 endif()
-set(CMAKE_CXX_STANDARD 14)
+# Minimum for SeExpr is 11. LLVM (if used) may need 14.
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 ## project name & version
 project(SeExpr2)
