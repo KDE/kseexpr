@@ -229,6 +229,8 @@ void ExprEditor::addError(const int startPos, const int endPos, const QString& e
     // errorHeight += 25 * lines;
     // // widget should not need to be bigger than this
     // errorWidget->setMaximumHeight(errorHeight);
+    // ensure cursor stays visible if it was hidden by the error widget -- amyspark
+    exprTe->ensureCursorVisible();
 }
 
 void ExprEditor::nextError() {
