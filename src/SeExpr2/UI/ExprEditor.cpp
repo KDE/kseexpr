@@ -101,7 +101,7 @@ ExprEditor::ExprEditor(QWidget* parent)
     // };
     // exprTe->setFont(font);
 
-    exprAndErrors->addWidget(exprTe);
+    exprAndErrors->addWidget(exprTe, 4);
 
     // create error widget
     errorWidget = new QListWidget();
@@ -111,7 +111,7 @@ ExprEditor::ExprEditor(QWidget* parent)
     errorWidget->setMinimumHeight(30);
     connect(errorWidget, SIGNAL(itemSelectionChanged()), SLOT(selectError()));
     clearErrors();
-    exprAndErrors->addWidget(errorWidget);
+    exprAndErrors->addWidget(errorWidget, 1);
 
     // wire up signals
     connect(exprTe, SIGNAL(applyShortcut()), SLOT(sendApply()));
