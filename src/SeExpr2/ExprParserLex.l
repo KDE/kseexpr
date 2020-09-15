@@ -40,6 +40,7 @@
 #include "ExprParser.h"
 #include "ExprNode.h"
 #include "Expression.h"
+#include "Utils.h"
 
 #ifdef SEEXPR_WIN32
 #    define YY_NO_UNISTD_H
@@ -110,7 +111,7 @@ smooth			{ yylval.d = 1; return NUMBER; }
 gaussian		{ yylval.d = 2; return NUMBER; }
 box			{ yylval.d = 3; return NUMBER; }
 
-{REAL}			{ yylval.d = crack_atof(yytext); return NUMBER; }
+{REAL}			{ yylval.d = SeExpr2::Utils::atof(yytext); return NUMBER; }
 \"(\\\"|[^"\n])*\"	{ /* match quoted string, allow embedded quote, \" */
 			  yylval.s = strdup(&yytext[1]);
 			  yylval.s[strlen(yylval.s)-1] = '\0';

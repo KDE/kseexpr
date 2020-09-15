@@ -86,6 +86,24 @@ else()
     set(parser_cpp ExprParser.cpp ExprParserLex.cpp)
 endif()
 
+## Test charconv support
+include(CheckCXXSourceCompiles)
+check_cxx_source_compiles("
+  #include <charconv>
+  #include <string>
+
+  int main()
+  {
+    std::string test{ \"4.5\" };
+    double d;
+    auto [p, ec] = std::from_chars(test.data(), test.data() + test.size(), d);
+    return ec != std::errc();
+  }
+" SeExpr2_HAVE_CHARCONV_WITH_DOUBLES)
+
+check_cxx_source_compiles("
+    [[gnu::target(\"default\")]] int main() { return 4; }
+" SeExpr2_HAVE_DYNAMIC_DISPATCH)
 
 ## Make the SeExpr library with and without LLVM support
 file(GLOB llvm_cpp "*.cpp")
@@ -97,6 +115,14 @@ if (NOT WIN32)
     target_link_libraries(SeExpr2 "dl" "pthread")
 else()
     add_library(SeExpr2 STATIC ${io_cpp} ${core_cpp} ${parser_cpp} ${llvm_cpp})
+endif()
+
+if(SeExpr2_HAVE_CHARCONV_WITH_DOUBLES)
+    target_compile_definitions(SeExpr2 PUBLIC SeExpr2_HAVE_CHARCONV_WITH_DOUBLES)
+endif()
+
+if (SeExpr2_HAVE_DYNAMIC_DISPATCH)
+    target_compile_definitions(SeExpr2 PUBLIC SeExpr2_HAVE_DYNAMIC_DISPATCH)
 endif()
 
 target_include_directories(SeExpr2 INTERFACE

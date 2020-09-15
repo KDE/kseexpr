@@ -21,8 +21,7 @@ if (POLICY CMP0077)
     cmake_policy(SET CMP0077 NEW)
 endif()
 # Minimum for SeExpr is 11. LLVM (if used) may need 14.
-set(CMAKE_CXX_STANDARD 11)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_STANDARD 17)
 
 ## project name & version
 project(SeExpr2)
@@ -216,12 +215,6 @@ else()
     add_definitions(-pthread)
 
     set(CMAKE_POSITION_INDEPENDENT_CODE ON)
-    if (ENABLE_SSE4)
-        check_cxx_compiler_flag("-msse4.1" HAVE_SSE41)
-        if (HAVE_SSE41)
-            set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -msse4.1")
-        endif()
-    endif()
     if (APPLE)
         set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-date-time")
     endif()

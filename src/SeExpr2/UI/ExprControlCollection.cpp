@@ -21,6 +21,7 @@
 */
 
 #include <QPushButton>
+#include <SeExpr2/Utils.h>
 
 #include "Debug.h"
 #include "Editable.h"
@@ -74,8 +75,8 @@ void ExprControlCollection::addControlDialog() {
                 s = QString::fromLatin1("%1 = %2; # %3, %4\n")
                         .arg(dialog->variableName->text())
                         .arg(dialog->floatDefault->text())
-                        .arg(crack_atof(dialog->floatMin->text().toStdString().c_str()), 0, 'f', 3)
-                        .arg(crack_atof(dialog->floatMax->text().toStdString().c_str()), 0, 'f', 3);
+                        .arg(SeExpr2::Utils::atof(dialog->floatMin->text().toStdString()), 0, 'f', 3)
+                        .arg(SeExpr2::Utils::atof(dialog->floatMax->text().toStdString()), 0, 'f', 3);
                 break;
             case 4:
                 s = QString::fromLatin1("%1 = [%2,%3,%4]; # %5, %6\n")
@@ -83,8 +84,8 @@ void ExprControlCollection::addControlDialog() {
                         .arg(dialog->vectorDefault0->text())
                         .arg(dialog->vectorDefault1->text())
                         .arg(dialog->vectorDefault2->text())
-                        .arg(crack_atof(dialog->vectorMin->text().toStdString().c_str()), 0, 'f', 3)
-                        .arg(crack_atof(dialog->vectorMax->text().toStdString().c_str()), 0, 'f', 3);
+                        .arg(SeExpr2::Utils::atof(dialog->vectorMin->text().toStdString()), 0, 'f', 3)
+                        .arg(SeExpr2::Utils::atof(dialog->vectorMax->text().toStdString()), 0, 'f', 3);
                 break;
             case 5:
                 s = QString::fromLatin1("%1 = [%2,%3,%4];\n")
