@@ -25,3 +25,4 @@
 
 #cmakedefine SeExpr2_HAVE_DYNAMIC_DISPATCH
 
+#cmakedefine SeExpr2_ENABLE_PLUGIN_SYSTEM

@@ -155,8 +155,10 @@ void ExprFunc::initInternal() {
     if (Functions) return;
     Functions = new FuncTable;
     SeExpr2::defineBuiltins(defineInternal, defineInternal3);
+#if defined(SeExpr2_ENABLE_PLUGIN_SYSTEM)
     const char* path = getenv("SE_EXPR_PLUGINS");
     if (path) loadPlugins(path);
+#endif
 }
 
 void ExprFunc::define(const char* name, ExprFunc f) {
@@ -200,15 +202,16 @@ SeExpr2::Statistics ExprFunc::statistics() {
     return Functions->statistics();
 }
 
+#if defined(SeExpr2_ENABLE_PLUGIN_SYSTEM)
 #ifndef SEEXPR_WIN32
 
 #if defined(__APPLE__) && !defined(__MAC_10_9)
-static int MatchPluginName(const struct dirent* dir)
+static int MatchPluginName(const struct dirent *dir)
 #else
-static int MatchPluginName(const struct dirent* dir)
+static int MatchPluginName(const struct dirent *dir)
 #endif
 {
-    const char* name = dir->d_name;
+    const char *name = dir->d_name;
     // return true if name matches SeExpr*.so
     return !strncmp(name, "SeExpr", 6) && !strcmp(name + strlen(name) - 3, ".so");
 }
@@ -275,4 +278,5 @@ void ExprFunc::loadPlugin(const char* path) {
     return;
 #endif
 }
+#endif
 }

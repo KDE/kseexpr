@@ -104,6 +104,10 @@ check_cxx_source_compiles("
     [[gnu::target(\"default\")]] int main() { return 4; }
 " SeExpr2_HAVE_DYNAMIC_DISPATCH)
 
+if(ENABLE_PLUGIN_SYSTEM)
+    set(SeExpr2_ENABLE_PLUGIN_SYSTEM 1)
+endif()
+
 ## Make the SeExpr library with and without LLVM support
 file(GLOB llvm_cpp "*.cpp")
 if (NOT WIN32)

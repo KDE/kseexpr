@@ -50,10 +50,12 @@ class ExprFunc {
     static void init();
     //! cleanup all functions
     static void cleanup();
+#if defined(SeExpr2_ENABLE_PLUGIN_SYSTEM)
     //! load all plugins in a given path
     static void loadPlugins(const char* path);
     //! load a given plugin
     static void loadPlugin(const char* path);
+#endif
 
     /* A pointer to the define func is passed to the init method of
        expression plugins.  This should be called instead of calling
