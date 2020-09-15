@@ -40,7 +40,9 @@ set(CMAKE_INSTALL_MESSAGE LAZY)
 include(GNUInstallDirs)
 include(CMakePackageConfigHelpers)
 include(GenerateExportHeader)
-include(src/build/macros.cmake)
+LIST (APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/src/build")
+include(macros)
+include(CheckCXXSourceCompiles)
 
 # Default installation prefix
 if (NOT DEFINED FLAVOR)
@@ -114,7 +116,6 @@ if (ENABLE_LLVM_BACKEND)
 
     find_package(LLVM CONFIG NAMES LLVM CONFIGS LLVM-Config.cmake LLVMConfig.cmake)
     if (LLVM_FOUND)
-        set(SEEXPR_ENABLE_LLVM_BACKEND 1)
         message(STATUS "Using LLVMConfig.cmake in: ${LLVM_DIR}")
         find_program(LLVM_CONFIG_EXECUTABLE NAMES ${LLVM_TOOLS_BINARY_DIR}/llvm-config)
 
@@ -194,17 +195,11 @@ if (ENABLE_LLVM_BACKEND)
         if (LLVM_VERSION VERSION_LESS 3.8.0)
             set(ENABLE_LLVM_BACKEND off)
             message(STATUS "Not building with LLVM, version must be >= 3.8.0")
+        else()
+            set(SEEXPR_ENABLE_LLVM 1)
         endif()
-    else()
-         set(ENABLE_LLVM_BACKEND off)
     endif()
 endif()
-
-# If LLVM is not enabled, set the SEEXPR_ENABLE_LLVM_BACKEND to 0 to fully disable
-# LLVM stuff in the ExprConfig.h sources.
-if (NOT ENABLE_LLVM_BACKEND)
-     set(SEEXPR_ENABLE_LLVM_BACKEND 0)
-endif ()
 
 ## Setup platform specific helper defines build variants
 if (WIN32)

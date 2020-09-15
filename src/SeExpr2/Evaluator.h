@@ -19,7 +19,7 @@
 #include "ExprLLVMAll.h"
 #include "VarBlock.h"
 
-#ifdef SEEXPR_ENABLE_LLVM
+#if defined(SEEXPR_ENABLE_LLVM)
 #include <llvm/Config/llvm-config.h>
 #include <llvm/Support/Compiler.h>
 #endif
@@ -33,7 +33,7 @@ extern "C" void SeExpr2LLVMEvalCustomFunction(int *opDataArg,
                                               const SeExpr2::ExprFuncNode *node);
 
 namespace SeExpr2 {
-#ifdef SEEXPR_ENABLE_LLVM
+#if defined(SEEXPR_ENABLE_LLVM)
 
 LLVM_VALUE promoteToDim(LLVM_VALUE val, unsigned dim, llvm::IRBuilder<> &Builder);
 

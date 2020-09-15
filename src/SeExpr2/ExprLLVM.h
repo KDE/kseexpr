@@ -18,7 +18,7 @@
 
 #include "ExprConfig.h"
 
-#ifdef SEEXPR_ENABLE_LLVM
+#if defined(SEEXPR_ENABLE_LLVM)
 #ifndef Q_MOC_RUN /* automoc chokes in Qt classes using llvm/ir/intrinsics.h indirectly*/
 #include <llvm/IR/IRBuilder.h>
 #endif

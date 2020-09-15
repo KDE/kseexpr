@@ -53,7 +53,7 @@ static Expression::EvaluationStrategy chooseDefaultEvaluationStrategy() {
 #endif
             << std::endl;
     }
-#ifdef SEEXPR_ENABLE_LLVM
+#if defined(SEEXPR_ENABLE_LLVM)
     if (char* env = getenv("SE_EXPR_EVAL")) {
         if (Expression::debugging) std::cerr << "Overriding SeExpr Evaluation Default to be " << env << std::endl;
         return !strcmp(env, "LLVM") ? Expression::UseLLVM : !strcmp(env, "INTERPRETER") ? Expression::UseInterpreter

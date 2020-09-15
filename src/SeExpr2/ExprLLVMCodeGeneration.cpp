@@ -16,7 +16,7 @@
 */
 #include "ExprConfig.h"
 
-#ifdef SEEXPR_ENABLE_LLVM
+#if defined(SEEXPR_ENABLE_LLVM)
 #include "ExprLLVM.h"
 #include "ExprLLVMAll.h"
 #include "ExprNode.h"

@@ -86,8 +86,7 @@ else()
     set(parser_cpp ExprParser.cpp ExprParserLex.cpp)
 endif()
 
-## Test charconv support
-include(CheckCXXSourceCompiles)
+## Test charconv and dynamic dispatch support
 check_cxx_source_compiles("
   #include <charconv>
   #include <string>
@@ -115,14 +114,6 @@ if (NOT WIN32)
     target_link_libraries(SeExpr2 "dl" "pthread")
 else()
     add_library(SeExpr2 STATIC ${io_cpp} ${core_cpp} ${parser_cpp} ${llvm_cpp})
-endif()
-
-if(SeExpr2_HAVE_CHARCONV_WITH_DOUBLES)
-    target_compile_definitions(SeExpr2 PUBLIC SeExpr2_HAVE_CHARCONV_WITH_DOUBLES)
-endif()
-
-if (SeExpr2_HAVE_DYNAMIC_DISPATCH)
-    target_compile_definitions(SeExpr2 PUBLIC SeExpr2_HAVE_DYNAMIC_DISPATCH)
 endif()
 
 target_include_directories(SeExpr2 INTERFACE

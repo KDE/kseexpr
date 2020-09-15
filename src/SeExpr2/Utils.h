@@ -18,6 +18,8 @@
 #include <cmath>
 #include <string>
 
+#include "ExprConfig.h"
+
 #if defined(SeExpr2_HAVE_DYNAMIC_DISPATCH)
 // Enable SSE4.1 functions only with automagic dynamic dispatch available.
 #include <smmintrin.h>
