@@ -1,4 +1,4 @@
-/* A Bison parser, made by GNU Bison 3.6.2.  */
+/* A Bison parser, made by GNU Bison 3.6.4.  */
 
 /* Bison implementation for Yacc-like parsers in C
 
@@ -49,7 +49,7 @@
 #define ExprSpecYYBISON 1
 
 /* Bison version.  */
-#define ExprSpecYYBISON_VERSION "3.6.2"
+#define ExprSpecYYBISON_VERSION "3.6.4"
 
 /* Skeleton name.  */
 #define ExprSpecYYSKELETON_NAME "yacc.c"
@@ -869,7 +869,7 @@ static const ExprSpectype_int8 ExprSpectranslate[] =
 };
 
 #if ExprSpecYYDEBUG
-  /* ExprSpecYYRLINEExprSpecYYN -- Source line where rule number ExprSpecYYN was defined.  */
+  /* ExprSpecYYRLINE[ExprSpecYYN] -- Source line where rule number ExprSpecYYN was defined.  */
 static const ExprSpectype_int16 ExprSpecrline[] =
 {
        0,   321,   321,   322,   327,   328,   332,   333,   338,   339,
@@ -932,7 +932,7 @@ static const ExprSpectype_int16 ExprSpectoknum[] =
 #define ExprSpectable_value_is_error(Yyn) \
   0
 
-  /* ExprSpecYYPACTSTATE-NUM -- Index in ExprSpecYYTABLE of the portion describing
+  /* ExprSpecYYPACT[STATE-NUM] -- Index in ExprSpecYYTABLE of the portion describing
      STATE-NUM.  */
 static const ExprSpectype_int16 ExprSpecpact[] =
 {
@@ -952,7 +952,7 @@ static const ExprSpectype_int16 ExprSpecpact[] =
      -57,    69,   -57,    -1,   -57,     8,   -57,    34,   -57
 };
 
-  /* ExprSpecYYDEFACTSTATE-NUM -- Default reduction number in state STATE-NUM.
+  /* ExprSpecYYDEFACT[STATE-NUM] -- Default reduction number in state STATE-NUM.
      Performed when ExprSpecYYTABLE does not specify something else to do.  Zero
      means the default is an error.  */
 static const ExprSpectype_int8 ExprSpecdefact[] =
@@ -973,21 +973,21 @@ static const ExprSpectype_int8 ExprSpecdefact[] =
       50,    24,    28,     0,    23,     4,    26,     0,    25
 };
 
-  /* ExprSpecYYPGOTONTERM-NUM.  */
+  /* ExprSpecYYPGOTO[NTERM-NUM].  */
 static const ExprSpectype_int8 ExprSpecpgoto[] =
 {
      -57,   -57,   -56,    82,   -11,   -50,   -57,     0,   -29,   -57,
      -23
 };
 
-  /* ExprSpecYYDEFGOTONTERM-NUM.  */
+  /* ExprSpecYYDEFGOTO[NTERM-NUM].  */
 static const ExprSpectype_int16 ExprSpecdefgoto[] =
 {
       -1,    11,   127,   128,    13,    14,   134,    68,    69,    70,
       71
 };
 
-  /* ExprSpecYYTABLEExprSpecYYPACT[STATE-NUM] -- What to do in state STATE-NUM.  If
+  /* ExprSpecYYTABLE[ExprSpecYYPACT[STATE-NUM]] -- What to do in state STATE-NUM.  If
      positive, shift that token.  If negative, reduce the rule whose
      number is the opposite.  If ExprSpecYYTABLE_NINF, syntax error.  */
 static const ExprSpectype_uint8 ExprSpectable[] =
@@ -1138,7 +1138,7 @@ static const ExprSpectype_int16 ExprSpeccheck[] =
       -1,    36,    37
 };
 
-  /* ExprSpecYYSTOSSTATE-NUM -- The (internal number of the) accessing
+  /* ExprSpecYYSTOS[STATE-NUM] -- The (internal number of the) accessing
      symbol of state STATE-NUM.  */
 static const ExprSpectype_int8 ExprSpecstos[] =
 {
@@ -1158,7 +1158,7 @@ static const ExprSpectype_int8 ExprSpecstos[] =
       16,    41,    43,     4,    50,    40,    49,    46,    41
 };
 
-  /* ExprSpecYYR1ExprSpecYYN -- Symbol number of symbol that rule ExprSpecYYN derives.  */
+  /* ExprSpecYYR1[ExprSpecYYN] -- Symbol number of symbol that rule ExprSpecYYN derives.  */
 static const ExprSpectype_int8 ExprSpecr1[] =
 {
        0,    44,    45,    45,    46,    46,    47,    47,    48,    48,
@@ -1169,7 +1169,7 @@ static const ExprSpectype_int8 ExprSpecr1[] =
       51,    51,    51,    51,    52,    52,    53,    53,    54,    54
 };
 
-  /* ExprSpecYYR2ExprSpecYYN -- Number of symbols on the right hand side of rule ExprSpecYYN.  */
+  /* ExprSpecYYR2[ExprSpecYYN] -- Number of symbols on the right hand side of rule ExprSpecYYN.  */
 static const ExprSpectype_int8 ExprSpecr2[] =
 {
        0,     2,     2,     1,     0,     1,     1,     2,     1,     4,

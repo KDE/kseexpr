@@ -1,4 +1,4 @@
-/* A Bison parser, made by GNU Bison 3.6.2.  */
+/* A Bison parser, made by GNU Bison 3.6.4.  */
 
 /* Bison implementation for Yacc-like parsers in C
 
@@ -49,7 +49,7 @@
 #define SeExprYYBISON 1
 
 /* Bison version.  */
-#define SeExprYYBISON_VERSION "3.6.2"
+#define SeExprYYBISON_VERSION "3.6.4"
 
 /* Skeleton name.  */
 #define SeExprYYSKELETON_NAME "yacc.c"
@@ -704,7 +704,7 @@ static const SeExpr2type_int8 SeExpr2translate[] =
 };
 
 #if SeExprYYDEBUG
-  /* SeExprYYRLINESeExprYYN -- Source line where rule number SeExprYYN was defined.  */
+  /* SeExprYYRLINE[SeExprYYN] -- Source line where rule number SeExprYYN was defined.  */
 static const SeExpr2type_int16 SeExpr2rline[] =
 {
        0,   133,   133,   135,   140,   141,   147,   155,   163,   173,
@@ -776,7 +776,7 @@ static const SeExpr2type_int16 SeExpr2toknum[] =
 #define SeExpr2table_value_is_error(Yyn) \
   0
 
-  /* SeExprYYPACTSTATE-NUM -- Index in SeExprYYTABLE of the portion describing
+  /* SeExprYYPACT[STATE-NUM] -- Index in SeExprYYTABLE of the portion describing
      STATE-NUM.  */
 static const SeExpr2type_int16 SeExpr2pact[] =
 {
@@ -801,7 +801,7 @@ static const SeExpr2type_int16 SeExpr2pact[] =
      -76,   143,    10,   -76,   -76,   144,   -76
 };
 
-  /* SeExprYYDEFACTSTATE-NUM -- Default reduction number in state STATE-NUM.
+  /* SeExprYYDEFACT[STATE-NUM] -- Default reduction number in state STATE-NUM.
      Performed when SeExprYYTABLE does not specify something else to do.  Zero
      means the default is an error.  */
 static const SeExpr2type_int8 SeExpr2defact[] =
@@ -827,7 +827,7 @@ static const SeExpr2type_int8 SeExpr2defact[] =
        8,     0,    27,    49,     7,     0,    48
 };
 
-  /* SeExprYYPGOTONTERM-NUM.  */
+  /* SeExprYYPGOTO[NTERM-NUM].  */
 static const SeExpr2type_int16 SeExpr2pgoto[] =
 {
      -76,   -76,   -76,   179,   -14,    -2,   -76,   -76,    66,   -76,
@@ -835,7 +835,7 @@ static const SeExpr2type_int16 SeExpr2pgoto[] =
       65
 };
 
-  /* SeExprYYDEFGOTONTERM-NUM.  */
+  /* SeExprYYDEFGOTO[NTERM-NUM].  */
 static const SeExpr2type_int16 SeExpr2defgoto[] =
 {
       -1,    14,    15,    16,    80,   126,   153,   154,   127,   128,
@@ -843,7 +843,7 @@ static const SeExpr2type_int16 SeExpr2defgoto[] =
       94
 };
 
-  /* SeExprYYTABLESeExprYYPACT[STATE-NUM] -- What to do in state STATE-NUM.  If
+  /* SeExprYYTABLE[SeExprYYPACT[STATE-NUM]] -- What to do in state STATE-NUM.  If
      positive, shift that token.  If negative, reduce the rule whose
      number is the opposite.  If SeExprYYTABLE_NINF, syntax error.  */
 static const SeExpr2type_uint8 SeExpr2table[] =
@@ -994,7 +994,7 @@ static const SeExpr2type_int16 SeExpr2check[] =
       37,    38,    39,    40,    -1,    -1,    -1,    44,    45
 };
 
-  /* SeExprYYSTOSSTATE-NUM -- The (internal number of the) accessing
+  /* SeExprYYSTOS[STATE-NUM] -- The (internal number of the) accessing
      symbol of state STATE-NUM.  */
 static const SeExpr2type_int8 SeExpr2stos[] =
 {
@@ -1019,7 +1019,7 @@ static const SeExpr2type_int8 SeExpr2stos[] =
       47,    62,    46,    66,    47,    63,    47
 };
 
-  /* SeExprYYR1SeExprYYN -- Symbol number of symbol that rule SeExprYYN derives.  */
+  /* SeExprYYR1[SeExprYYN] -- Symbol number of symbol that rule SeExprYYN derives.  */
 static const SeExpr2type_int8 SeExpr2r1[] =
 {
        0,    52,    53,    53,    54,    54,    55,    55,    55,    56,
@@ -1033,7 +1033,7 @@ static const SeExpr2type_int8 SeExpr2r1[] =
       70,    70,    71,    71,    72
 };
 
-  /* SeExprYYR2SeExprYYN -- Number of symbols on the right hand side of rule SeExprYYN.  */
+  /* SeExprYYR2[SeExprYYN] -- Number of symbols on the right hand side of rule SeExprYYN.  */
 static const SeExpr2type_int8 SeExpr2r2[] =
 {
        0,     2,     2,     1,     1,     2,     6,     9,     8,     0,

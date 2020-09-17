@@ -602,6 +602,7 @@ char *yytext;
 #include "ExprParser.h"
 #include "ExprNode.h"
 #include "Expression.h"
+#include "Utils.h"
 
 #ifdef SEEXPR_WIN32
 #    define YY_NO_UNISTD_H
@@ -629,8 +630,8 @@ int yypos();
     columnNumber+=yyleng;\
     yylloc.last_column=columnNumber;yylloc.last_line=lineNumber;}
 
-#line 632 "ExprParserLexIn.cpp"
 #line 633 "ExprParserLexIn.cpp"
+#line 634 "ExprParserLexIn.cpp"
 
 #define INITIAL 0
 
@@ -845,9 +846,9 @@ YY_DECL
 		}
 
 	{
-#line 77 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
+#line 78 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
 
-#line 850 "ExprParserLexIn.cpp"
+#line 851 "ExprParserLexIn.cpp"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -906,162 +907,162 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 78 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
+#line 79 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
 
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 80 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
+#line 81 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
 { return EXTERN; }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 81 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
+#line 82 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
 { return DEF; }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 82 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
+#line 83 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
 { return FLOATPOINT; }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 83 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
+#line 84 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
 { return STRING; }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 84 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
+#line 85 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
 { return LIFETIME_CONSTANT; }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 85 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
+#line 86 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
 { return LIFETIME_UNIFORM; }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 86 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
+#line 87 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
 { return LIFETIME_VARYING; }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 87 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
+#line 88 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
 { return LIFETIME_ERROR; }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 89 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
+#line 90 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
 { return IF; }
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 90 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
+#line 91 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
 { return ELSE; }
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 92 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
+#line 93 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
 { return OR; }
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 93 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
+#line 94 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
 { return AND; }
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 94 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
+#line 95 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
 { return EQ; }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 95 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
+#line 96 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
 { return NE; }
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 96 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
+#line 97 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
 { return SEEXPR_LE; }
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 97 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
+#line 98 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
 { return SEEXPR_GE; }
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 98 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
+#line 99 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
 { return ARROW; }
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 99 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
+#line 100 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
 { return AddEq; }
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 100 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
+#line 101 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
 { return SubEq; }
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 101 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
+#line 102 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
 { return MultEq; }
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 102 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
+#line 103 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
 { return DivEq; }
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 103 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
+#line 104 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
 { return ModEq; }
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 104 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
+#line 105 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
 { return ExpEq; }
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 106 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
+#line 107 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
 { yylval.d = M_PI; return NUMBER; }
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 107 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
+#line 108 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
 { yylval.d = M_E; return NUMBER; }
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 108 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
+#line 109 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
 { yylval.d = 0; return NUMBER; }
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 109 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
+#line 110 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
 { yylval.d = 1; return NUMBER; }
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 110 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
+#line 111 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
 { yylval.d = 2; return NUMBER; }
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 111 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
+#line 112 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
 { yylval.d = 3; return NUMBER; }
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 113 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
-{ yylval.d = crack_atof(yytext); return NUMBER; }
+#line 114 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
+{ yylval.d = SeExpr2::Utils::atof(yytext); return NUMBER; }
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 114 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
+#line 115 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
 { /* match quoted string, allow embedded quote, \" */
 			  yylval.s = strdup(&yytext[1]);
 			  yylval.s[strlen(yylval.s)-1] = '\0';
@@ -1069,7 +1070,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 118 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
+#line 119 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
 { /* match quoted string, allow embedded quote, \' */
 			  yylval.s = strdup(&yytext[1]);
 			  yylval.s[strlen(yylval.s)-1] = '\0';
@@ -1077,53 +1078,53 @@ YY_RULE_SETUP
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 122 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
+#line 123 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
 { yylval.s = strdup(&yytext[1]); return VAR; }
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 123 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
+#line 124 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
 { yylval.s = strdup(&yytext[1]); return VAR; }
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 124 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
+#line 125 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
 { yylval.s = strdup(yytext); return NAME; }
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 126 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
+#line 127 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
 /* ignore quoted newline */;
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
-#line 127 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
+#line 128 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
 /* ignore quoted tab */;
 	YY_BREAK
 case 39:
 /* rule 39 can match eol */
 YY_RULE_SETUP
-#line 128 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
+#line 129 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
 /* ignore whitespace */;
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
-#line 129 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
+#line 130 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
 { /* match comment */
                          int startPos=yypos(),endPos=yypos()+strlen(&yytext[1])+1;
 			  comments->push_back(std::pair<int,int>(startPos,endPos));}
 	YY_BREAK
 case 41:
 YY_RULE_SETUP
-#line 133 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
+#line 134 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
 { return yytext[0]; }
 	YY_BREAK
 case 42:
 YY_RULE_SETUP
-#line 135 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
+#line 136 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
 ECHO;
 	YY_BREAK
-#line 1126 "ExprParserLexIn.cpp"
+#line 1127 "ExprParserLexIn.cpp"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -2091,7 +2092,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 135 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
+#line 136 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
 
 
 /* Gets index of current token (corresponding to yytext).
