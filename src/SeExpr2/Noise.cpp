@@ -84,7 +84,7 @@ template<int d, class T, bool periodic> T noiseHelper(const T *X, const int *per
     T weights[2][d]; // lower and upper weights
     int index[d];
     for (int k = 0; k < d; k++) {
-        T f = SeExpr2::Utils::round(X[k]);
+        T f = SeExpr2::Utils::floor(X[k]);
         index[k] = (int)f;
         if (periodic) {
             index[k] %= period[k];
