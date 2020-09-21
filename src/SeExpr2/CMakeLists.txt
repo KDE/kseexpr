@@ -102,6 +102,7 @@ check_cxx_source_compiles("
 
 check_cxx_source_compiles("
     [[gnu::target(\"default\")]] int main() { return 4; }
+    [[gnu::target(\"sse4.1\")]] int main() { return 5; }
 " SeExpr2_HAVE_DYNAMIC_DISPATCH)
 
 if(ENABLE_PLUGIN_SYSTEM)
