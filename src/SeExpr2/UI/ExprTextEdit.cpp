@@ -115,6 +115,9 @@ void ExprTextEdit::keyPressEvent(QKeyEvent* e) {
     } else if (e->key() == Qt::Key_F4) {
         emit nextError();
         return;
+    } else if (e->key() == Qt::Key_Backspace && e->modifiers() == Qt::ControlModifier) {
+        removeWord();
+        return;
     }
 
     // If the completer is active pass keys it needs down
@@ -230,5 +233,14 @@ void ExprTextEdit::insertCompletion(const QString& completion) {
     tc.movePosition(QTextCursor::Left);
     tc.movePosition(QTextCursor::EndOfWord);
     tc.insertText(completion.right(extra));
+    setTextCursor(tc);
+}
+
+void ExprTextEdit::removeWord() {
+    QTextCursor tc = textCursor();
+    tc.movePosition(QTextCursor::Left);
+    tc.movePosition(QTextCursor::EndOfWord);
+    tc.select(QTextCursor::WordUnderCursor);
+    tc.removeSelectedText();
     setTextCursor(tc);
 }

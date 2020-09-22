@@ -62,6 +62,7 @@ class ExprTextEdit : public QTextEdit {
 
   private Q_SLOTS:
     void insertCompletion(const QString& completion);
+    void removeWord();
   Q_SIGNALS:
     void applyShortcut();
     void nextError();
