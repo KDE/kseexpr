@@ -177,4 +177,16 @@ TEST(StringTests, BinaryOp) {
     EXPECT_TRUE(expr6.returnType().isString() == true);
     EXPECT_TRUE(expr6.isConstant() == true);
     EXPECT_STREQ(expr6.evalStr(), "ok");
+
+    StringExpression expr7("v = 'err' + 'or';\nif ('fo' + 'e' != 'foo') {\n    v = 'ok';\n}\nv");
+    EXPECT_TRUE(expr7.isValid() == true);
+    EXPECT_TRUE(expr7.returnType().isString() == true);
+    EXPECT_TRUE(expr7.isConstant() == true);
+    EXPECT_STREQ(expr7.evalStr(), "ok");
+
+    StringExpression expr8("v = 'ok';\nif ('fo' + 'e' == 'foo') {\n    v = 'error';\n}\nv");
+    EXPECT_TRUE(expr8.isValid() == true);
+    EXPECT_TRUE(expr8.returnType().isString() == true);
+    EXPECT_TRUE(expr8.isConstant() == true);
+    EXPECT_STREQ(expr8.evalStr(), "ok");
 }
