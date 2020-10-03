@@ -171,6 +171,7 @@ LLVM_VALUE createVecValFromAlloca(LLVM_BUILDER Builder, AllocaInst *destPtr, uns
 LLVM_VALUE getFirstElement(LLVM_VALUE V, IRBuilder<> Builder) {
     Type *VTy = V->getType();
     if (VTy->isDoubleTy()) return V;
+    if (VTy->isPointerTy()) return V;
 
     assert(VTy->isVectorTy());
     LLVMContext &llvmContext = Builder.getContext();
@@ -666,7 +667,11 @@ LLVM_VALUE ExprCompareEqNode::codegen(LLVM_BUILDER Builder) LLVM_BODY {
     LLVM_VALUE op2 = getFirstElement(child(1)->codegen(Builder), Builder);
 
     LLVM_VALUE boolVal = 0;
-    switch (_op) {
+
+    const bool isString = child(0)->type().isString();
+
+    if (isString == false) {
+        switch (_op) {
         case '!':
             boolVal = Builder.CreateFCmpONE(op1, op2);
             break;
@@ -675,9 +680,30 @@ LLVM_VALUE ExprCompareEqNode::codegen(LLVM_BUILDER Builder) LLVM_BODY {
             break;
         default:
             assert(false && "Unkown CompareEq op.");
-    }
+        }
+        return Builder.CreateUIToFP(boolVal, op1->getType());
+    } else {
+        // precompute a few things
+        LLVMContext &llvmContext = Builder.getContext();
+        Module *module = llvm_getModule(Builder);
+        Type *doubleTy = Type::getDoubleTy(llvmContext);
+        Function *strcmp = module->getFunction("strcmp");
 
-    return Builder.CreateUIToFP(boolVal, op1->getType());
+        LLVM_VALUE val = Builder.CreateCall(strcmp, {op1, op2}); // val = strcmp(op1, op2);
+        Constant *zero = ConstantInt::get(strcmp->getReturnType(), 0);
+
+        switch (_op) {
+        case '!':
+            boolVal = Builder.CreateICmpNE(val, zero); // boolVal = val == 0;
+            break;
+        case '=':
+            boolVal = Builder.CreateICmpEQ(val, zero); // boolVal = val != 0;
+            break;
+        default:
+            assert(false && "Unkown CompareEq op.");
+        }
+        return Builder.CreateUIToFP(boolVal, doubleTy);
+    }
 }
 
 LLVM_VALUE ExprCompareNode::codegen(LLVM_BUILDER Builder) LLVM_BODY {
