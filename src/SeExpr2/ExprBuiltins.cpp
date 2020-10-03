@@ -1505,14 +1505,51 @@ class PrintFuncX : public ExprFuncSimple {
         int nargs = node->numChildren();
         if (nargs < 1) {
             node->addError(ErrorCode::WrongNumberOfArguments1Plus);
-            return ExprType().Error().Varying();
+            return ExprType().Error();
         }
 
         bool valid = true;
         valid &= node->checkArg(0, ExprType().String().Constant(), envBuilder);
-        for (int i = 1; i < nargs; ++i)
-            valid &=
-                (node->checkArg(i, ExprType().FP(1), envBuilder) || node->checkArg(i, ExprType().FP(3), envBuilder));
+
+        int items = 0;
+        int searchStart = 0;
+        auto format = node->getStrArg(0);
+        while (true) {
+            std::size_t percentStart = format.find('%', searchStart);
+            if (percentStart == std::string::npos)
+                break;
+            if (percentStart + 1 == format.length()) {
+                node->addError(UnexpectedEndOfFormatString);
+                return ExprType().Error();
+            } else if (format[percentStart + 1] == '%') {
+                searchStart = static_cast<int>(percentStart + 2);
+                continue;
+            } else if (format[percentStart + 1] == 'v' || format[percentStart + 1] == 'f') {
+                items++;
+                if (items >= node->numChildren()) {
+                    // TODO: test here, checkArg should not fail
+                    node->addError(WrongNumberOfArgumentsForFormatString);
+                    return ExprType().Error();
+                }
+                else {
+                    valid &= (node->checkArg(items, ExprType().FP(1), envBuilder) || node->checkArg(items, ExprType().FP(3), envBuilder));
+                    searchStart = static_cast<int>(percentStart + 2);
+                }
+            } else {
+                node->addError(InvalidFormatString);
+                return ExprType().Error();
+            }
+        }
+
+        if (!valid) {
+            node->addError(ExpectedFloatOrFloat3);
+            return ExprType().Error();
+        }
+        else if (items != nargs - 1) {
+            node->addError(WrongNumberOfArgumentsForFormatString);
+            return ExprType().Error();
+        }
+
         return ExprType().FP(1).Constant();
     }
 
@@ -1594,8 +1631,9 @@ class PrintFuncX : public ExprFuncSimple {
 
 } printf;
 static const char* printf_docstring = QT_TRANSLATE_NOOP_UTF8("builtin",
-    "printf(string format,[vec0, vec1,  ...])\n"
-    "Prints out a string to STDOUT, Format parameter allowed is %v");
+    "float printf(string format,[vec0, vec1,  ...])\n"
+    "Prints out a string to STDOUT, Format parameters allowed are \"%v\" and \"%f\".\n"
+    "Return parameter is empty, but must be assigned to a variable.");
 
 
 // Format specifier categories for SPrintFuncX

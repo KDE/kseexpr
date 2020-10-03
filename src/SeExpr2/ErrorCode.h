@@ -69,6 +69,12 @@ enum ErrorCode {
     SyntaxError,
     //! Unexpected end of expression
     UnexpectedEndOfExpression,
+    //! Unexpected end of format string
+    UnexpectedEndOfFormatString,
+    //! Invalid format string, only %v or %f is allowed
+    InvalidFormatString,
+    //! Wrong number of arguments for format string
+    WrongNumberOfArgumentsForFormatString,
 
     //! Unknown error (message = %1)
     Unknown,

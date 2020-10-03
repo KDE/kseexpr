@@ -4,7 +4,7 @@ using namespace SeExpr2;
 
 QString ErrorMessages::message(SeExpr2::ErrorCode code)
 {
-    switch(code)
+    switch (code)
     {
         case ErrorCode::None:
             return QString();
@@ -50,6 +50,12 @@ QString ErrorMessages::message(SeExpr2::ErrorCode code)
             return tr("Syntax error near '%1'");
         case ErrorCode::UnexpectedEndOfExpression:
             return tr("Unexpected end of expression near '%1'");
+        case ErrorCode::UnexpectedEndOfFormatString:
+            return tr("Unexpected end of format string");
+        case ErrorCode::InvalidFormatString:
+            return tr("Invalid format string, only %v or %f is allowed");
+        case ErrorCode::WrongNumberOfArgumentsForFormatString:
+            return tr("Wrong number of arguments for format string");
         case ErrorCode::Unknown:
         default:
             return tr("Unknown error (message = %1)");

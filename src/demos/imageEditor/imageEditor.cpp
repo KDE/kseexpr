@@ -34,6 +34,7 @@
 #include <QMessageBox>
 
 #include <SeExpr2/Expression.h>
+#include <SeExpr2/UI/ErrorMessages.h>
 #include <SeExpr2/UI/ExprControlCollection.h>
 #include <SeExpr2/UI/ExprEditor.h>
 #include <SeExpr2/UI/ExprBrowser.h>
@@ -97,7 +98,18 @@ unsigned char *ImageSynthesizer::evaluateExpression(const std::string &exprStr) 
     bool valid = expr.isValid();
     if (!valid) {
         std::cerr << "Invalid expression " << std::endl;
-        std::cerr << expr.parseError() << std::endl;
+        auto message = ErrorMessages::message(expr.parseError());
+        for(auto arg: expr.parseErrorArgs()) {
+            message = message.arg(QString::fromStdString(arg));
+        }
+        std::cerr << "Parse error: " << message.toStdString() << std::endl;
+        for (auto occurrence : expr.getErrors()) {
+            QString message = ErrorMessages::message(occurrence.error);
+            for (auto arg : occurrence.ids) {
+                message = message.arg(QString::fromStdString(arg));
+            }
+            std::cerr << "Prep error: " << message.toStdString() << std::endl;
+        }
         return NULL;
     }
 
