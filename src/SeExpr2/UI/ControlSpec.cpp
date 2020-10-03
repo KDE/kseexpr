@@ -26,6 +26,7 @@
 #include <SeExpr2/ExprNode.h>
 #include <SeExpr2/ExprPatterns.h>
 #include "ControlSpec.h"
+#include "Utils.h"
 
 namespace SeExpr2 {
 
@@ -253,26 +254,23 @@ std::string ExprStrSpec::toString() const {
 const ExprStrSpec* ExprStrSpec::match(const ExprNode* node) {
     if (const ExprStrNode* strnode = isString(node)) {
         std::string comment = findComment(*node);
-        char* name = new char[comment.length() + 1];
-        char* type = new char[comment.length() + 1];
-        int numMatched = sscanf(comment.c_str(), "#%s %s\n", type, name);
+        std::string name{}, type{};
+        bool parsed = SeExpr2::Utils::parseTypeNameComment(comment, type, name);
 
         Type newType;
-        if (numMatched == 2) {
+        if (parsed) {
             bool valid = true;
-            if (!strcmp(type, "string"))
+            if (type == "string")
                 newType = STRING;
-            else if (!strcmp(type, "file"))
+            else if (type == "file")
                 newType = FILE;
-            else if (!strcmp(type, "directory"))
+            else if (type == "directory")
                 newType = DIRECTORY;
             else
                 valid = false;
-            if (valid) return new ExprStrSpec(*strnode, name, newType);
+            if (valid) return new ExprStrSpec(*strnode, name.data(), newType);
         }
-        delete[] name;
-        delete[] type;
     }
-    return 0;
+    return nullptr;
 }
 }

@@ -15,7 +15,10 @@
  * http://www.apache.org/licenses/LICENSE-2.0
  */
 
+#include <cfloat>
 #include <cmath>
+#include <cstdint>
+#include <stdexcept>
 #include <string>
 
 #include "ExprConfig.h"
@@ -31,8 +34,10 @@
 
 namespace SeExpr2 {
     namespace Utils {
-        double_t atof(const char* num);
+        double_t atof(const char *num);
         double_t atof(const std::string &num);
+        int32_t strtol(const char *num);
+        int32_t strtol(const std::string &num);
         SeExpr2_DEFAULT double_t round(double_t val);
         SeExpr2_DEFAULT double_t floor(double_t val);
 
@@ -40,5 +45,5 @@ namespace SeExpr2 {
         SeExpr2_SSE41 double_t round(double_t val);
         SeExpr2_SSE41 double_t floor(double_t val);
 #endif
-    } // namespace Utils
+    } //namespace Utils
 }  // namespace SeExpr2

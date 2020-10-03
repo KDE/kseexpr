@@ -65,8 +65,8 @@ if (Qt5_FOUND OR QT4_FOUND)
             EditableExpression.h
             ExprHelp.h
             ExprHighlighter.h
-            ExprPopupDoc.h
             ExprSpecType.h
+            Utils.h
     )
 
     set(EDITOR_CPPS
@@ -88,6 +88,7 @@ if (Qt5_FOUND OR QT4_FOUND)
             ExprHighlighter.cpp
             ExprPopupDoc.cpp
             ExprTextEdit.cpp
+            Utils.cpp
     )
     
     if (ENABLE_DEEPWATER)

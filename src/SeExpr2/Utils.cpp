@@ -15,10 +15,6 @@
  * http://www.apache.org/licenses/LICENSE-2.0
  */
 
-#include <cmath>
-#include <cstdint>
-#include <cstring>
-
 #include "Utils.h"
 
 #if defined(SeExpr2_HAVE_CHARCONV_WITH_DOUBLES)
@@ -26,29 +22,39 @@
 
 double_t SeExpr2::Utils::atof(const char *num)
 {
-    int64_t v;
+    double_t v;
     auto [p, ec] = std::from_chars(num, num + std::strlen(num), v);
     if (ec == std::errc()) {
         return v;
-    } else if (ec == std::errc::result_out_of_range) {
-        return HUGE_VAL;
     } else {
-        return 0;
+        return HUGE_VAL;
     }
 }
 
 double_t SeExpr2::Utils::atof(const std::string &num)
 {
-    int64_t v;
+    double_t v;
+    auto [p, ec] = std::from_chars(val.data(), val.data() + val.size(), v);
+    if (ec == std::errc()) {
+        return v;
+    } else {
+        return HUGE_VAL;
+    }
+}
+
+int32_t SeExpr2::Utils::strtol(const std::string &num)
+{
+    int32_t v;
     auto [p, ec] = std::from_chars(val.data(), val.data() + val.size(), v);
     if (ec == std::errc()) {
         return v;
     } else if (ec == std::errc::result_out_of_range) {
-        return HUGE_VAL;
+        throw std::out_of_range {"SeExpr2::Utils::strtol: out of range"};
     } else {
-        return 0;
+        throw std::invalid_argument {"SeExpr2::Utils::strtol: impossible to parse the given number"};
     }
 }
+
 #else
 /**
  * Locale-independent atof() - amyspark
@@ -86,7 +92,7 @@ double_t SeExpr2::Utils::atof(const char *num)
             ++num;
             break;
         } else {
-            return sign * int_part;
+            return HUGE_VAL;
         }
         ++num;
     }
@@ -103,7 +109,7 @@ double_t SeExpr2::Utils::atof(const char *num)
                 ++num;
                 break;
             } else {
-                return sign * (int_part + frac_part);
+                return HUGE_VAL;
             }
             ++num;
         }
@@ -121,8 +127,14 @@ double_t SeExpr2::Utils::atof(const char *num)
         }
 
         int e = 0;
-        while (*num != '\0' && *num >= '0' && *num <= '9') {
-            e = e * 10 + *num - '0';
+        while (*num != '\0') {
+            if (*num >= '0' && *num <= '9') {
+                e = e * 10 + *num - '0';
+            }
+            else {
+                return HUGE_VAL;
+            }
+
             ++num;
         }
 
@@ -136,6 +148,21 @@ double_t SeExpr2::Utils::atof(const std::string &num)
 {
     return Utils::atof(num.data());
 }
+
+int32_t SeExpr2::Utils::strtol(const std::string &num)
+{
+    char *ptr {nullptr};
+    // integer numbers only use dots
+    const auto result {std::strtol(num.c_str(), &ptr, 10)};
+    if (ptr == num.c_str())
+        throw std::invalid_argument {"SeExpr2::Utils::atoi: impossible to parse the given number"};
+    else if (ptr != num.end().base())
+        throw std::invalid_argument { "SeExpr2::Utils::atoi: the string had invalid extra characters" };
+    else if (errno == ERANGE)
+        throw std::out_of_range {"SeExpr2::Utils::atoi: out of range"};
+    return result;
+}
+
 #endif // defined(HAVE_CHARCONV_WITH_DOUBLES)
 
 // Dynamically dispatchable functions.

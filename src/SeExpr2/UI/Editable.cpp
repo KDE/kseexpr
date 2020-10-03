@@ -23,13 +23,8 @@
 
 #include "Debug.h"
 #include "Editable.h"
+#include "Utils.h"
 
-#define HACK_LOCALE_BEGIN                                  \
-    char* current_locale = setlocale(LC_NUMERIC, nullptr); \
-    setlocale(LC_NUMERIC, "C");
-#define HACK_LOCALE_END(x)                 \
-    setlocale(LC_NUMERIC, current_locale); \
-    return x;
 
 Editable::Editable(const std::string& name, int startPos, int endPos)
     : name(name), startPos(startPos), endPos(endPos)
@@ -61,24 +56,22 @@ NumberEditable::NumberEditable(const std::string& name, int startPos, int endPos
 
 bool NumberEditable::parseComment(const std::string& comment)
 {
-    HACK_LOCALE_BEGIN
     if (comment.find('.') != std::string::npos || comment.find('e') != std::string::npos) {
         float fmin, fmax;
-        if (sscanf(comment.c_str(), "#%f,%f", &fmin, &fmax) == 2) {
+        if (SeExpr2::Utils::parseRangeComment(comment, fmin, fmax))
+        {
             min = fmin;
             max = fmax;
             isInt = false;
-            HACK_LOCALE_END(true)
         }
     }
     int imin, imax;
-    if (sscanf(comment.c_str(), "#%d,%d", &imin, &imax) == 2) {
+    if (SeExpr2::Utils::parseRangeComment(comment, imin, imax)) {
         min = imin;
         max = imax;
         isInt = true;
-        HACK_LOCALE_END(true)
     }
-    HACK_LOCALE_END(true)
+    return true;
 }
 
 std::string NumberEditable::str() const
@@ -109,17 +102,16 @@ VectorEditable::VectorEditable(const std::string& name, int startPos, int endPos
 
 bool VectorEditable::parseComment(const std::string& comment)
 {
-    HACK_LOCALE_BEGIN
     float fmin, fmax;
-    int numParsed = sscanf(comment.c_str(), "#%f,%f", &fmin, &fmax);
-    if (numParsed == 2) {
+    bool parsed = SeExpr2::Utils::parseRangeComment(comment, fmin, fmax);
+    if (parsed) {
         if (fmin < 0.0 || fmax > 1.0) {
             isColor = false;
         }
         min = fmin;
         max = fmax;
     }
-    HACK_LOCALE_END(true);
+    return true;
 }
 std::string VectorEditable::str() const
 {
@@ -149,15 +141,14 @@ StringEditable::StringEditable(int startPos, int endPos, const std::string& val)
 
 bool StringEditable::parseComment(const std::string& comment)
 {
-    HACK_LOCALE_BEGIN
-    char namebuf[1024], typebuf[1024];
-    int parsed = sscanf(comment.c_str(), "#%s %s", typebuf, namebuf);
-    if (parsed == 2) {
+    std::string namebuf{}, typebuf{};
+    bool parsed = SeExpr2::Utils::parseTypeNameComment(comment, namebuf, typebuf);
+    if (parsed) {
         name = namebuf;
         type = typebuf;
-        HACK_LOCALE_END(true);
+        return true;
     } else {
-        HACK_LOCALE_END(false);
+        return false;
     }
 }
 
@@ -255,11 +246,10 @@ ColorSwatchEditable::ColorSwatchEditable(const std::string& name, int startPos, 
 
 bool ColorSwatchEditable::parseComment(const std::string& comment)
 {
-    char labelbuf[1024];
-    int parsed = sscanf(comment.c_str(), "#%s", labelbuf);
-    if (parsed == 1) {
+    std::string labelbuf{};
+    bool parsed = SeExpr2::Utils::parseLabelComment(comment, labelbuf);
+    if (parsed) {
         labelType = labelbuf;
-        return true;
     }
     return true;
 }
