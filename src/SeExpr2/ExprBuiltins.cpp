@@ -1,5 +1,6 @@
 /*
 * Copyright Disney Enterprises, Inc.  All rights reserved.
+* Copyright (C) 2020 L. E. Segovia <amy@amyspark.me>
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License
@@ -22,6 +23,7 @@
 #include <limits>
 #include <algorithm>
 #include <cfloat>
+#include <random>
 
 #include "ExprFunc.h"
 #include "ExprNode.h"
@@ -403,6 +405,66 @@ static const char* saturate_docstring = QT_TRANSLATE_NOOP_UTF8("builtin",
     "Scale saturation of color by amt.\n"
     "The color is scaled around the rec709 luminance value,\n"
     "and negative results are clamped at zero.\n");
+
+class RandFuncX : public ExprFuncSimple
+{
+    struct Data : public ExprFuncNode::Data {
+        std::mt19937 gen;
+        std::uniform_real_distribution<> dis;
+    };
+
+    ExprType prep(ExprFuncNode *node, bool wantScalar, ExprVarEnvBuilder &envBuilder) const override
+    {
+        bool valid = true;
+        for (auto i = 0; i < node->numChildren(); i++)
+            valid &= node->checkArg(i, ExprType().FP(1).Varying(), envBuilder);
+        return valid ? ExprType().FP(1).Varying() : ExprType().Error();
+    }
+
+    ExprFuncNode::Data *evalConstant(const ExprFuncNode *node, ArgHandle args) const override
+    {
+        auto data = new Data();
+        auto a = 0.0;
+        auto b = 1.0;
+
+        if (args.nargs() >= 1) {
+            a = args.inFp<1>(0)[0];
+        }
+        if (args.nargs() >= 2) {
+            b = args.inFp<1>(1)[0];
+        }
+
+        if (args.nargs() >= 3) {
+            data->gen = std::mt19937(args.inFp<1>(2)[0]);
+        }
+        else{
+            data->gen = std::mt19937(0);
+        }
+
+        data->dis = std::uniform_real_distribution<>(a, b);
+        return data;
+    }
+
+    void eval(ArgHandle args) override
+    {
+        auto data = static_cast<RandFuncX::Data *>(args.data);
+        args.outFp = data->dis(data->gen);
+    }
+
+public:
+    RandFuncX()
+        : ExprFuncSimple(true)
+    {
+    } // Thread Safe
+    virtual ~RandFuncX()
+    {
+    }
+} rand;
+
+static const char *rand_docstring = QT_TRANSLATE_NOOP("builtin",
+    "float rand ( [float min, float max], [float seed] )\n"
+    "Random number between [min, max] (or [0, 1] if unspecified).\n"
+    "If a seed is supplied, it will be used in addition to the internal seeds and may be used to create multiple distinct generators.");
 
 double hash(int n, double* args) {
     // combine args into a single seed
@@ -1865,6 +1927,7 @@ void defineBuiltins(ExprFunc::Define define, ExprFunc::Define3 define3) {
     FUNCNDOC(saturate, 2, 2);
 
     // noise
+    FUNCNDOC(rand, 0, 3);
     FUNCNDOC(hash, 1, -1);
     FUNCNDOC(noise, 1, 4);
     FUNCDOC(snoise);

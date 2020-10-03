@@ -32,7 +32,7 @@
 #include <SeExpr2/Timer.h>
 
 namespace SeExpr2 {
-class RandFuncX : public ExprFuncSimple {
+class ImageSynthRandFuncX : public ExprFuncSimple {
 
     struct Data : public ExprFuncNode::Data {
         std::vector<std::pair<int, int> > ranges;
@@ -55,10 +55,15 @@ class RandFuncX : public ExprFuncSimple {
             args.outFp = 0.5;
     }
 
-  public:
-    RandFuncX() : ExprFuncSimple(true) {}  // Thread Safe
-    virtual ~RandFuncX() {}
-} rand;
+public:
+    ImageSynthRandFuncX()
+        : ExprFuncSimple(true)
+    {
+    } // Thread Safe
+    virtual ~ImageSynthRandFuncX()
+    {
+    }
+} imageSynthRand;
 
 // map(string name, [float format-arg], [float u], [float v], [int channel])
 class MapFuncX : public ExprFuncSimple {
@@ -189,7 +194,8 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
-    ExprFunc::define("rand", ExprFunc(SeExpr2::rand, 0, 3), rand_docstring);
+    // Disney: this function overrides the existing rand() -- amyspark
+    ExprFunc::define("rand", ExprFunc(SeExpr2::imageSynthRand, 0, 3), rand_docstring);
     ExprFunc::define("map", ExprFunc(SeExpr2::map, 1, 4), map_docstring);
     ExprFunc::define("triplanar", ExprFunc(SeExpr2::triplanar, 1, 5), triplanar_docstring);
 
