@@ -273,7 +273,7 @@ ExprCurve::ExprCurve(QWidget *parent, QString pLabel, QString vLabel, QString iL
     _selPosEdit->setValidator(posValidator);
     QString posLabel;
     if (pLabel.isEmpty()) {
-        posLabel = tr("Selected Position:  ");
+        posLabel = tr("Selected Position:");
     } else {
         posLabel = pLabel;
     }
@@ -284,7 +284,7 @@ ExprCurve::ExprCurve(QWidget *parent, QString pLabel, QString vLabel, QString iL
     _selValEdit->setValidator(valValidator);
     QString valLabel;
     if (vLabel.isEmpty()) {
-        valLabel = tr("Selected Value:  ");
+        valLabel = tr("Selected Value:");
     } else {
         valLabel = vLabel;
     }

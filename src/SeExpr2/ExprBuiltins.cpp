@@ -693,10 +693,10 @@ double fbm(int n, const Vec3d* args) {
 static const char* fbm_docstring =  QT_TRANSLATE_NOOP_UTF8("builtin",
     "float fbm(vector v,int octaves=6,float lacunarity=2,float gain=.5)\n"
     "fbm (Fractal Brownian Motion) is a multi-frequency noise function. \n"
-    "The base frequency is the same as the \"noise\" function. The total \n"
-    "number of frequencies is controlled by octaves. The lacunarity is the \n"
-    "spacing between the frequencies - a value of 2 means each octave is \n"
-    "twice the previous frequency. The gain controls how much each \n"
+    "The base frequency is the same as the \"noise\" function. The total "
+    "number of frequencies is controlled by octaves. The lacunarity is the "
+    "spacing between the frequencies - a value of 2 means each octave is "
+    "twice the previous frequency. The gain controls how much each "
     "frequency is scaled relative to the previous frequency.");
 
 Vec3d vfbm(int n, const Vec3d* args) {
@@ -1237,8 +1237,8 @@ double cycle(double index, double loRange, double hiRange) {
 static const char* cycle_docstring = QT_TRANSLATE_NOOP_UTF8("builtin",
     "int cycle(int index, int loRange, int hiRange )\n"
     "Cycles through values between loRange and hiRange based on supplied index.\n"
-    "This is an offset \"mod\" function. The result rotates v such that the\n"
-    "Y axis points in the given up direction");
+    "This is an offset \"mod\" function. "
+    "The result is computed as ``loRange + value % (hiRange-loRange+1)``.");
 
 double pick(int n, double* params) {
     if (n < 3) return 0;
@@ -1311,7 +1311,7 @@ double choose(int n, double* params) {
 }
 static const char* choose_docstring = QT_TRANSLATE_NOOP_UTF8("builtin",
     "float choose(float index,float choice1, float choice2, [...])\n"
-    "Chooses one of the supplied choices based on the index (assumed to be in range [0..1]).");
+    "Chooses one of the supplied choices based on the index (assumed to be in range [0, 1]).");
 
 double wchoose(int n, double* params) {
     if (n < 5) return 0;

@@ -366,7 +366,7 @@ ExprColorCurve::ExprColorCurve(QWidget *parent, QString pLabel, QString vLabel, 
     _selPosEdit->setValidator(posValidator);
     QString posLabel;
     if (pLabel.isEmpty()) {
-        posLabel = tr("Selected Position: ");
+        posLabel = tr("Selected Position:");
     } else {
         posLabel = pLabel;
     }
@@ -377,7 +377,7 @@ ExprColorCurve::ExprColorCurve(QWidget *parent, QString pLabel, QString vLabel, 
     _selValEdit->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Fixed);
     QString valLabel;
     if (vLabel.isEmpty()) {
-        valLabel = tr("Selected Color:  ");
+        valLabel = tr("Selected Color:");
     } else {
         valLabel = vLabel;
     }
