@@ -44,6 +44,7 @@ include(GenerateExportHeader)
 LIST (APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/src/build")
 include(macros)
 include(CheckCXXSourceCompiles)
+include(FeatureSummary)
 
 # Default installation prefix
 if (NOT DEFINED FLAVOR)
@@ -93,15 +94,14 @@ else()
 endif()
 
 find_package(GTest)
-option(ENABLE_LLVM_BACKEND "Whether to build with LLVM backend" TRUE)
+option(ENABLE_LLVM_BACKEND "Whether to build with LLVM backend" FALSE)
 option(ENABLE_QT5 "Whether to use Qt5" TRUE)
-option(ENABLE_SSE4 "Whether to use SSE4" TRUE)
 option(ENABLE_PLUGIN_SYSTEM "Whether to build the plugin system" FALSE)
-option(USE_PYTHON "Whether to compile python libraries" TRUE)
-option(BUILD_UTILS "Whether to build the utilities" TRUE)
-option(BUILD_DEMOS "Whether to build the demos" TRUE)
-option(BUILD_DOC "Whether to build the documentation" TRUE)
-option(BUILD_TESTS "Whether to build the tests" TRUE)
+option(USE_PYTHON "Whether to compile python libraries" FALSE)
+option(BUILD_UTILS "Whether to build the utilities" FALSE)
+option(BUILD_DEMOS "Whether to build the demos" FALSE)
+option(BUILD_DOC "Whether to build the documentation" FALSE)
+option(BUILD_TESTS "Whether to build the tests" FALSE)
 option(ENABLE_SLOW_TESTS "Whether to enable slow tests" FALSE)
 
 find_package(ECM 5.64.0 NO_MODULE)
@@ -322,3 +322,5 @@ install(FILES "${CMAKE_CURRENT_BINARY_DIR}/seexpr2-config.cmake"
 install(EXPORT ${PROJECT_NAME}Targets
     NAMESPACE SeExpr2::
     DESTINATION ${CMAKE_DIR})
+
+feature_summary(WHAT ALL FATAL_ON_MISSING_REQUIRED_PACKAGES)
