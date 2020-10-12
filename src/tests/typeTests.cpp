@@ -17,7 +17,7 @@
 #include <gtest/gtest.h>
 
 #include "typeTests.h"
-#include <SeExpr2/TypeIterator.h>
+#include<KSeExpr/TypeIterator.h>
 
 void TypeTesterExpr::doTest(const std::string &testStr, ExprType expectedResult, ExprType actualResult) {
     setExpr(testStr);

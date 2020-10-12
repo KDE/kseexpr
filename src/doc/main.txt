@@ -16,7 +16,6 @@
  * http://www.apache.org/licenses/LICENSE-2.0
  * \endcond
  * \mainpage SeExpr
- * \image html seexprlogo.png
  * \section maindoc User and Programmer Tutorials
  *  - \subpage userdoc
  *  - \subpage plugins -  Custom Function Plugins
@@ -37,7 +36,7 @@
  * \section useful Useful classes and functions
  *  - Vec - Class to hold and manipulate n-dimensional vectors
  *  - ExprBuiltins.h - Useful builtin functions that are also available in C++
- *  - SeExpr2::Curve - Hermite interpolation curve.
+ *  - KSeExpr::Curve - Hermite interpolation curve.
  *
  * \section internals Internals
  *  - ExprNode - Parse Tree Node

@@ -19,10 +19,10 @@
 #include <iostream>
 #include <cmath>
 #include <typeinfo>
-#include <SeExpr2/ExprNode.h>
-#include <SeExpr2/ExprWalker.h>
-#include <SeExpr2/Expression.h>
-using namespace SeExpr2;
+#include<KSeExpr/ExprNode.h>
+#include<KSeExpr/ExprWalker.h>
+#include<KSeExpr/Expression.h>
+using namespace KSeExpr;
 
 class Expr : public Expression {
   public:

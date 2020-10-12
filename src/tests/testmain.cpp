@@ -17,7 +17,7 @@
 
 #include <stdio.h>
 #include <gtest/gtest.h>
-#include <SeExpr2/ExprFunc.h>
+#include<KSeExpr/ExprFunc.h>
 
 using ::testing::InitGoogleTest;
 
@@ -27,7 +27,7 @@ int main(int argc, char **argv) {
     {
         InitGoogleTest(&argc, argv);
         result = RUN_ALL_TESTS();
-        SeExpr2::ExprFunc::cleanup();
+        KSeExpr::ExprFunc::cleanup();
     }
     return result;
 }

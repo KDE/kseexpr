@@ -24,11 +24,11 @@
 #include <png.h>
 #include <fstream>
 
-#include <SeExpr2/Expression.h>
-#include <SeExpr2/Interpreter.h>
-#include <SeExpr2/Timer.h>
+#include<KSeExpr/Expression.h>
+#include<KSeExpr/Interpreter.h>
+#include<KSeExpr/Timer.h>
 
-namespace SeExpr2 {
+namespace KSeExpr {
 //! Simple image synthesizer expression class to support our function grapher
 class ImageSynthExpr : public Expression {
   public:
@@ -60,7 +60,7 @@ class ImageSynthExpr : public Expression {
 
 double clamp(double x) { return std::max(0., std::min(255., x)); }
 
-using namespace SeExpr2;
+using namespace KSeExpr;
 
 int main(int argc, char* argv[]) {
     if (argc != 5) {

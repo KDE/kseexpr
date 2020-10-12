@@ -22,13 +22,13 @@
 #include <Expression.h>
 #include <typeinfo>
 
-using namespace SeExpr2;
+using namespace KSeExpr;
 
 /**
    @file TypePrinter.cpp
 */
 
-class TypePrintExaminer : public SeExpr2::Examiner<true> {
+class TypePrintExaminer : public KSeExpr::Examiner<true> {
   public:
     virtual bool examine(const ExprNode* examinee);
     virtual void reset() {};

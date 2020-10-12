@@ -33,11 +33,11 @@
 #include <QPushButton>
 #include <QMessageBox>
 
-#include <SeExpr2/Expression.h>
-#include <SeExpr2/UI/ErrorMessages.h>
-#include <SeExpr2/UI/ExprControlCollection.h>
-#include <SeExpr2/UI/ExprEditor.h>
-#include <SeExpr2/UI/ExprBrowser.h>
+#include<KSeExpr/Expression.h>
+#include<KSeExprUI/ErrorMessages.h>
+#include<KSeExprUI/ExprControlCollection.h>
+#include<KSeExprUI/ExprEditor.h>
+#include<KSeExprUI/ExprBrowser.h>
 
 #include "ImageEditorDialog.h"
 
@@ -46,15 +46,15 @@
 double clamp(double x) { return std::max(0., std::min(255., x)); }
 
 // Simple image synthesizer expression class to support demo image editor
-class ImageSynthExpression : public SeExpr2::Expression {
+class ImageSynthExpression : public KSeExpr::Expression {
   public:
     // Constructor that takes the expression to parse
-    ImageSynthExpression(const std::string &expr) : SeExpr2::Expression(expr) {}
+    ImageSynthExpression(const std::string &expr) : KSeExpr::Expression(expr) {}
 
     // Simple variable that just returns its internal value
-    struct Var : public SeExpr2::ExprVarRef {
-        Var(const double val) : SeExpr2::ExprVarRef(SeExpr2::ExprType().FP(1).Varying()), val(val) {}
-        Var() : SeExpr2::ExprVarRef(SeExpr2::ExprType().FP(1).Varying()), val(0.0) {}
+    struct Var : public KSeExpr::ExprVarRef {
+        Var(const double val) : KSeExpr::ExprVarRef(KSeExpr::ExprType().FP(1).Varying()), val(val) {}
+        Var() : KSeExpr::ExprVarRef(KSeExpr::ExprType().FP(1).Varying()), val(0.0) {}
         double val;  // independent variable
         void eval(double *result) { result[0] = val; }
         void eval(const char **result) { assert(false); }
@@ -63,7 +63,7 @@ class ImageSynthExpression : public SeExpr2::Expression {
     mutable std::map<std::string, Var> vars;
 
     // resolve function that only supports one external variable 'x'
-    SeExpr2::ExprVarRef *resolveVar(const std::string &name) const {
+    KSeExpr::ExprVarRef *resolveVar(const std::string &name) const {
         std::map<std::string, Var>::iterator i = vars.find(name);
         if (i != vars.end()) return &i->second;
         return 0;
@@ -124,7 +124,7 @@ unsigned char *ImageSynthesizer::evaluateExpression(const std::string &exprStr) 
         for (int col = 0; col < _width; col++) {
             u = one_over_width * (col + .5);
             v = one_over_height * (row + .5);
-            SeExpr2::Vec3d result = SeExpr2::Vec3dConstRef(expr.evalFP());
+            KSeExpr::Vec3d result = KSeExpr::Vec3dConstRef(expr.evalFP());
             pixel[0] = clamp(result[2] * 256.);
             pixel[1] = clamp(result[1] * 256.);
             pixel[2] = clamp(result[0] * 256.);
@@ -148,13 +148,6 @@ ImageEditorDialog::ImageEditorDialog(QWidget *parent) : QDialog(parent) {
     _imageLabel->setFixedSize(256, 256);
     _imageLabel->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
 
-    // Locate logo image relative to location of the app itself
-    QString imageFile = QCoreApplication::applicationDirPath() + "/../share/doc/SeExpr2/seexprlogo.png";
-    QImage image(imageFile);  // just a fun default
-
-    QPixmap imagePixmap = QPixmap::fromImage(image);
-    imagePixmap = imagePixmap.scaled(256, 256, Qt::KeepAspectRatio);
-    _imageLabel->setPixmap(imagePixmap);
     QWidget *imagePreviewWidget = new QWidget();
     QHBoxLayout *imagePreviewLayout = new QHBoxLayout(imagePreviewWidget);
     imagePreviewLayout->addStretch();
@@ -180,7 +173,7 @@ ImageEditorDialog::ImageEditorDialog(QWidget *parent) : QDialog(parent) {
     browser->addUserExpressionPath("imageEditor");
 #ifdef IMAGE_EDITOR_ROOT
     std::string exPathStr = IMAGE_EDITOR_ROOT;
-    exPathStr += "/share/SeExpr2/expressions";
+    exPathStr += "/share/KSeExpr/expressions";
     browser->addPath("Examples", exPathStr);
 #else
     browser->addPath("Examples", "./src/demos/imageEditor");

@@ -17,32 +17,32 @@
 
 #include <gtest/gtest.h>
 
-#include <SeExpr2/Expression.h>
-#include <SeExpr2/ExprFunc.h>
+#include<KSeExpr/Expression.h>
+#include<KSeExpr/ExprFunc.h>
 
-using namespace SeExpr2;
+using namespace KSeExpr;
 
 
 struct StringFunc : public ExprFuncSimple {
     StringFunc() : ExprFuncSimple(true) {
     }
 
-    struct StringData : public SeExpr2::ExprFuncNode::Data, public std::string
+    struct StringData : public KSeExpr::ExprFuncNode::Data, public std::string
     {
     };
 
     virtual ExprType prep(ExprFuncNode* node, bool scalarWanted, ExprVarEnvBuilder& envBuilder) const {
         bool constant = true;
         for (int i = 0, iend = node->numChildren(); i < iend; ++i) {
-            SeExpr2::ExprType t = node->child(i)->prep(!scalarWanted, envBuilder);
+            KSeExpr::ExprType t = node->child(i)->prep(!scalarWanted, envBuilder);
             if (t.isString() == false) {
-                return SeExpr2::ExprType().Error().Varying();
+                return KSeExpr::ExprType().Error().Varying();
             }
             if (t.isLifetimeConstant() == false) {
                 constant = false;
             }
         }
-        return constant == true ? SeExpr2::ExprType().String().Constant() : SeExpr2::ExprType().String().Varying();
+        return constant == true ? KSeExpr::ExprType().String().Constant() : KSeExpr::ExprType().String().Varying();
     }
 
     virtual ExprFuncNode::Data* evalConstant(const ExprFuncNode* node, ArgHandle args) const {

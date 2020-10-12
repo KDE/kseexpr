@@ -14,12 +14,12 @@
 * You may obtain a copy of the License at
 * http://www.apache.org/licenses/LICENSE-2.0
 */
-#include <SeExpr2/Expression.h>
+#include<KSeExpr/Expression.h>
 #include <cstdlib>
 #include <cstdio>
 #include <cstring>
 
-using namespace SeExpr2;
+using namespace KSeExpr;
 
 /**
    @file asciiGraph.cpp

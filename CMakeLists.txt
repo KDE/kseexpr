@@ -25,7 +25,7 @@ endif()
 set(CMAKE_CXX_STANDARD 14)
 
 ## project name & version
-project(SeExpr2)
+project(KSeExpr)
 
 # "API" version
 set(${PROJECT_NAME}_VERSION "3.4.4.0")
@@ -41,7 +41,7 @@ set(CMAKE_INSTALL_MESSAGE LAZY)
 include(GNUInstallDirs)
 include(CMakePackageConfigHelpers)
 include(GenerateExportHeader)
-LIST (APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/src/build")
+LIST (APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/src/cmake")
 include(macros)
 include(CheckCXXSourceCompiles)
 include(FeatureSummary)
@@ -170,19 +170,19 @@ if (ENABLE_LLVM_BACKEND)
 
         message(STATUS "Detected processor: ${CMAKE_SYSTEM_PROCESSOR}")
         if(CMAKE_SYSTEM_PROCESSOR MATCHES "amd64.*|x86_64.*|AMD64.*")
-            set(SeExpr2_PLATFORM_CODEGEN_LIBS 
+            set(KSeExpr_PLATFORM_CODEGEN_LIBS 
                 X86CodeGen
                 X86AsmParser)
         elseif(CMAKE_SYSTEM_PROCESSOR MATCHES "i686.*|i386.*|x86.*")
-            set(SeExpr2_PLATFORM_CODEGEN_LIBS 
+            set(KSeExpr_PLATFORM_CODEGEN_LIBS 
                 X86CodeGen
                 X86AsmParser)
         elseif(CMAKE_SYSTEM_PROCESSOR MATCHES "^(aarch64.*|AARCH64.*|arm64.*|ARM64.*)")
-            set(SeExpr2_PLATFORM_CODEGEN_LIBS 
+            set(KSeExpr_PLATFORM_CODEGEN_LIBS 
                 AArch64CodeGen
                 AArch64AsmParser)
         elseif(CMAKE_SYSTEM_PROCESSOR MATCHES "^(arm.*|ARM.*)")
-            set(SeExpr2_PLATFORM_CODEGEN_LIBS 
+            set(KSeExpr_PLATFORM_CODEGEN_LIBS 
                 ARMCodeGen
                 ARMAsmParser)
         else()
@@ -194,7 +194,7 @@ if (ENABLE_LLVM_BACKEND)
             MCJIT
             ObjCARCOpts
             Passes
-            ${SeExpr2_PLATFORM_CODEGEN_LIBS}
+            ${KSeExpr_PLATFORM_CODEGEN_LIBS}
         )
 
         message(STATUS "LLVM_LIB = ${LLVM_LIB}")
@@ -280,17 +280,17 @@ endif()
 
 ## Make modules able to see seexpr library
 # Setup environment variable to link seexpr
-set(SEEXPR_LIBRARIES SeExpr2)
-set(SEEXPR_LLVM_LIBRARIES SeExpr2LLVM)
-set(SEEXPR_EDITOR_LIBRARIES SeExpr2Editor)
+set(SEEXPR_LIBRARIES KSeExpr)
+set(SEEXPR_LLVM_LIBRARIES KSeExprLLVM)
+set(SEEXPR_EDITOR_LIBRARIES KSeExprUI)
 
 # make it so seexpr can be found
 include_directories(BEFORE ${CMAKE_SOURCE_DIR}/src)
 
 ## Traverse subdirectories
-add_subdirectory(src/SeExpr2)
-add_subdirectory(src/SeExpr2/UI)
-add_subdirectory(src/py)
+add_subdirectory(src/KSeExpr)
+add_subdirectory(src/KSeExprUI)
+add_subdirectory(src/KSeExprPy)
 if (${BUILD_UTILS})
     add_subdirectory(src/utils)
 endif ()
@@ -306,21 +306,21 @@ endif ()
 
 # cmake packaging -- this is done after adding subdirectories so that
 # all exported targets are found by export() below.
-configure_file("src/build/seexpr2.pc.in" "seexpr2.pc" @ONLY)
-install(FILES "${CMAKE_CURRENT_BINARY_DIR}/seexpr2.pc"
+configure_file("src/cmake/kseexpr.pc.in" "kseexpr.pc" @ONLY)
+install(FILES "${CMAKE_CURRENT_BINARY_DIR}/kseexpr.pc"
     COMPONENT devel DESTINATION share/pkgconfig)
 
-write_basic_package_version_file("seexpr2-version.cmake" VERSION ${${PROJECT_NAME}_VERSION} COMPATIBILITY ExactVersion)
+write_basic_package_version_file("kseexpr-version.cmake" VERSION ${${PROJECT_NAME}_VERSION} COMPATIBILITY ExactVersion)
 
 configure_package_config_file(
-    "src/build/seexpr2-config.cmake" "seexpr2-config.cmake"
+    "src/cmake/kseexpr-config.cmake" "kseexpr-config.cmake"
     INSTALL_DESTINATION ${CMAKE_DIR}
     PATH_VARS CMAKE_INSTALL_PREFIX CMAKE_INSTALL_LIBDIR CMAKE_INSTALL_INCLUDEDIR)
-install(FILES "${CMAKE_CURRENT_BINARY_DIR}/seexpr2-config.cmake"
-    "${CMAKE_CURRENT_BINARY_DIR}/seexpr2-version.cmake"
+install(FILES "${CMAKE_CURRENT_BINARY_DIR}/kseexpr-config.cmake"
+    "${CMAKE_CURRENT_BINARY_DIR}/kseexpr-version.cmake"
     COMPONENT devel DESTINATION ${CMAKE_DIR})
 install(EXPORT ${PROJECT_NAME}Targets
-    NAMESPACE SeExpr2::
+    NAMESPACE ${PROJECT_NAME}::
     DESTINATION ${CMAKE_DIR})
 
 feature_summary(WHAT ALL FATAL_ON_MISSING_REQUIRED_PACKAGES)

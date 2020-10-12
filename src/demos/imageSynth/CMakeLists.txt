@@ -26,6 +26,6 @@ if (PNG_FOUND)
     add_executable(imageSynthPaint3d2 "imageSynthForPaint3d.cpp")
     target_link_libraries(imageSynthPaint3d2 ${PNG_LIBRARIES} ${SEEXPR_LIBRARIES})
     install(TARGETS imageSynthPaint3d2 DESTINATION bin)
-    install(DIRECTORY examples DESTINATION share/SeExpr2/demos/imageSynth
+    install(DIRECTORY examples DESTINATION share/KSeExpr/demos/imageSynth
             USE_SOURCE_PERMISSIONS)
 endif()

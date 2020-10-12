@@ -27,14 +27,14 @@
 
 #include <png.h>
 
-#include <SeExpr2/Expression.h>
+#include<KSeExpr/Expression.h>
 #include <functional>
 
-#include <SeExpr2/VarBlock.h>
+#include<KSeExpr/VarBlock.h>
 
-#include <SeExpr2/ExprFunc.h>
-#include <SeExpr2/ExprFuncX.h>
-#include <SeExpr2/Timer.h>  // performance timing
+#include<KSeExpr/ExprFunc.h>
+#include<KSeExpr/ExprFuncX.h>
+#include<KSeExpr/Timer.h>  // performance timing
 #include <memory>
 #include <vector>
 
@@ -44,7 +44,7 @@ double clamp(double x) { return std::max(0., std::min(255., x)); }
 
 #undef USE_OLD_VARS
 
-namespace SeExpr2 {
+namespace KSeExpr {
 
 class RandFuncX : public ExprFuncSimple {
 
@@ -142,7 +142,7 @@ ExprFunc mapStub(mapStubX, 1, 5);
 ExprFunc triplanar(triplanarX, 1, 5);
 }
 
-using namespace SeExpr2;
+using namespace KSeExpr;
 
 //! Simple image synthesizer expression class to test example expressions
 class ImageSynthExpr : public Expression {
@@ -501,7 +501,7 @@ TEST(perf, noexpr) {
 }
 
 static int forceStaticInitializationToMakeTimingBetter = []() {
-    SeExpr2::ExprFunc::init();  // force static initialize
+    KSeExpr::ExprFunc::init();  // force static initialize
     #if 0
     ImageSynthExpr e("deepTMA(P,1,1,1,1,1,1,1,1,1,1,1,1,1)");
     if (!e.isValid()) {

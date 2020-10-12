@@ -21,7 +21,7 @@
 #include <sstream>
 
 using namespace std;
-using namespace SeExpr2;
+using namespace KSeExpr;
 
 class llvmexpr : public Expression {
   public:

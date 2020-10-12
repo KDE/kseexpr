@@ -15,14 +15,14 @@
  http://www.apache.org/licenses/LICENSE-2.0
 */
 
-#include <SeExpr2/Expression.h>
-#include <SeExpr2/Vec.h>
+#include<KSeExpr/Expression.h>
+#include<KSeExpr/Vec.h>
 
 #include <cstdlib>
 #include <cstdio>
 #include <cstring>
 
-using namespace SeExpr2;
+using namespace KSeExpr;
 int main() {
     Expression e("1+2");
 

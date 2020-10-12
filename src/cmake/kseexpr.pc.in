@@ -1,0 +1,10 @@
+# pkg-config file for KSeExpr
+prefix=@CMAKE_INSTALL_PREFIX@
+libdir=${prefix}/@CMAKE_INSTALL_LIBDIR@
+includedir=${prefix}/include
+
+Name: KSeExpr
+Description: KSeExpr - An embeddable expression evaluation engine
+Version: 3.4.4.0
+Cflags: -I${includedir}
+Libs: -L${libdir}

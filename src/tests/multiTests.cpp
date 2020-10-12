@@ -19,7 +19,7 @@
 #include "ExprMultiExpr.h"
 
 using ::testing::ElementsAre;
-using namespace SeExpr2;
+using namespace KSeExpr;
 
 TEST(MultiTests, ParabolaCubicE1) {
     Expressions ee;

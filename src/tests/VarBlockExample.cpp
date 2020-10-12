@@ -1,13 +1,13 @@
-#include <SeExpr2/Expression.h>
-#include <SeExpr2/VarBlock.h>
-#include <SeExpr2/Timer.h>
+#include<KSeExpr/Expression.h>
+#include<KSeExpr/VarBlock.h>
+#include<KSeExpr/Timer.h>
 #include <iostream>
 
-struct Expr : public SeExpr2::Expression {
+struct Expr : public KSeExpr::Expression {
     Expr(const std::string& s) : Expression(s) {}
 
-    struct SimpleVar : public SeExpr2::ExprVarRef {
-        SimpleVar() : ExprVarRef(SeExpr2::ExprType().FP(3).Varying()) { v[0] = v[1] = v[2] = 0; }
+    struct SimpleVar : public KSeExpr::ExprVarRef {
+        SimpleVar() : ExprVarRef(KSeExpr::ExprType().FP(3).Varying()) { v[0] = v[1] = v[2] = 0; }
         double v[3];
         void eval(const char**) override {}
         void eval(double* result) override {
@@ -17,22 +17,22 @@ struct Expr : public SeExpr2::Expression {
 
     mutable SimpleVar singleII, singleII2;
 
-    mutable SeExpr2::VarBlockCreator creator;
-    SeExpr2::ExprVarRef* resolveVar(const std::string& name) const override {
+    mutable KSeExpr::VarBlockCreator creator;
+    KSeExpr::ExprVarRef* resolveVar(const std::string& name) const override {
         if (name == "singleII") return &singleII;
         if (name == "singleII2") return &singleII2;
         return creator.resolveVar(name);
     }
 };
 
-// More concise type thing i.e. predefined SeExpr2::Vec3Varying
+// More concise type thing i.e. predefined KSeExpr::Vec3Varying
 // Direct varying use enum type instead of bool.
 // For loop auto unroll.
 // Variable access using varRef!!! for paint3d u,v in map and rand()
 
 void run(int way) {
     std::string exprStr;
-    SeExpr2::PrintTiming timer("way " + std::to_string(way));
+    KSeExpr::PrintTiming timer("way " + std::to_string(way));
     switch (way) {
         case 0:
             exprStr = "singleII+singleII2";
@@ -50,11 +50,11 @@ void run(int way) {
     e.singleII2.v[0] = 5.5;
     e.singleII2.v[1] = 210.;
     e.singleII2.v[2] = 2100.;
-    int singleI = e.creator.registerVariable("singleI", SeExpr2::ExprType().FP(3).Uniform());
-    int singleI2 = e.creator.registerVariable("singleI2", SeExpr2::ExprType().FP(3).Uniform());
-    int P = e.creator.registerVariable("P", SeExpr2::ExprType().FP(3).Varying());
-    int Cd = e.creator.registerVariable("Cd", SeExpr2::ExprType().FP(3).Varying());
-    int faceId = e.creator.registerVariable("faceId", SeExpr2::ExprType().FP(1).Varying());
+    int singleI = e.creator.registerVariable("singleI", KSeExpr::ExprType().FP(3).Uniform());
+    int singleI2 = e.creator.registerVariable("singleI2", KSeExpr::ExprType().FP(3).Uniform());
+    int P = e.creator.registerVariable("P", KSeExpr::ExprType().FP(3).Varying());
+    int Cd = e.creator.registerVariable("Cd", KSeExpr::ExprType().FP(3).Varying());
+    int faceId = e.creator.registerVariable("faceId", KSeExpr::ExprType().FP(1).Varying());
 
     if (!e.isValid()) {
         std::cerr << "Parse Error:\n" << e.parseError() << std::endl;

@@ -25,7 +25,7 @@
 #include "TypeBuilder.h"
 #include "TypePrinter.h"
 
-using namespace SeExpr2;
+using namespace KSeExpr;
 
 //! Simple expression class to print out all intermediate types
 class TypePrinterExpr : public TypeBuilderExpr {
@@ -40,7 +40,7 @@ class TypePrinterExpr : public TypeBuilderExpr {
 
   private:
     TypePrintExaminer _examiner;
-    SeExpr2::ConstWalker _walker;
+    KSeExpr::ConstWalker _walker;
 
   protected:
     ExprVarRef* resolveVar(const std::string& name) const {

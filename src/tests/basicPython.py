@@ -4,10 +4,10 @@ import sys
 import unittest
 
 try:
-    import SeExprPy
+    import KSeExprPy
 except ImportError:
     sys.stderr.write(
-        'WARNING: SeExprPy is not importable: Python support is disabled\n')
+        'WARNING: KSeExprPy is not importable: Python support is disabled\n')
     sys.exit(0)
 
 
@@ -30,26 +30,26 @@ class SeExprTestCase(unittest.TestCase):
     """Basic SeExpr python tests"""
 
     def test_core_namespace(self):
-        self.assertTrue(hasattr(SeExprPy, 'core'))
+        self.assertTrue(hasattr(KSeExprPy, 'core'))
 
     def test_utils_namespace(self):
-        self.assertTrue(hasattr(SeExprPy, 'utils'))
+        self.assertTrue(hasattr(KSeExprPy, 'utils'))
 
     def test_AST(self, expr=MAP_EXPR):
-        ast = SeExprPy.AST(expr)
-        edits = SeExprPy.Edits(expr)
+        ast = KSeExprPy.AST(expr)
+        edits = KSeExprPy.Edits(expr)
         maps = []
 
         def collect_maps(node, childs):
             # check node is a call
-            if node.type == SeExprPy.ASTType.Call:
+            if node.type == KSeExprPy.ASTType.Call:
                 # check if the call is map
                 if node.value == 'map':
                     # check if the first argument is a string
-                    if childs[0].type == SeExprPy.ASTType.String:
+                    if childs[0].type == KSeExprPy.ASTType.String:
                         maps.append(childs[0].value)
 
-        SeExprPy.traverseCallback(ast.root(), collect_maps)
+        KSeExprPy.traverseCallback(ast.root(), collect_maps)
 
         expect_maps = ['a.png', 'b.png', 'c.png']
         self.assertEqual(expect_maps, maps)

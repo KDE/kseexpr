@@ -16,7 +16,7 @@
 find_package(Doxygen)
 if (DOXYGEN_FOUND AND NOT WIN32)
     configure_file("Doxyfile.in" "Doxyfile" @ONLY)
-    file(GLOB (DOCUMENTED_FILES ../SeExpr2/*.h))
+    file(GLOB (DOCUMENTED_FILES ../KSeExpr/*.h))
 
     set(DOXYGEN ${DOXYGEN_EXECUTABLE})
     add_custom_command(

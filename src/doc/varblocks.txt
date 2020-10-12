@@ -20,7 +20,7 @@ Copyright Disney Enterprises, Inc.  All rights reserved.
 Within your custom expression class, you would skip the usual resolveVar() and resolveFunc() implementations:
 
 <pre>
-class MyExpr:public SeExpr2::Expression {
+class MyExpr:public KSeExpr::Expression {
 
 // These are now optional:
 //   resolveVar()
@@ -35,7 +35,7 @@ class MyExpr:public SeExpr2::Expression {
 void f(const std::string& s, MyParticleData* p, int outputDim=3){
 
     // set up the bindings for each of the particle attributes
-    SeExpr2::VarBlockCreator blockCreator;
+    KSeExpr::VarBlockCreator blockCreator;
     std::vector<int> variableHandles;
     std::vector<MyParticleAttr> attrs;
     for(int i=0; i<p->numAttrs(); i++) {
@@ -58,7 +58,7 @@ void f(const std::string& s, MyParticleData* p, int outputDim=3){
     if(!e.isValid()) throw std::runtime_error(e.parseError()):
 
     // create the variable block, set up pointers to data
-    SeExpr2::VarBlock block = blockCreator.create();
+    KSeExpr::VarBlock block = blockCreator.create();
     for(int i=0; i<p->numAttrs(); i++) {
         block.Pointer(variableHandles[i]) = p->data<double>(attrs[i]);
     }

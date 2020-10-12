@@ -27,7 +27,7 @@
 #include "ExprNode.h"
 #include "ExprFunc.h"
 
-using namespace SeExpr2;
+using namespace KSeExpr;
 
 /**
    @file TypeBuilder.h

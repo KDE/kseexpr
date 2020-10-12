@@ -15,15 +15,15 @@
  http://www.apache.org/licenses/LICENSE-2.0
 */
 
-#include <SeExpr2/Expression.h>
-#include <SeExpr2/ExprWalker.h>
-#include <SeExpr2/ExprPatterns.h>
+#include<KSeExpr/Expression.h>
+#include<KSeExpr/ExprWalker.h>
+#include<KSeExpr/ExprPatterns.h>
 
 #include <cstdlib>
 #include <cstdio>
 #include <cstring>
 
-using namespace SeExpr2;
+using namespace KSeExpr;
 
 /// Examiner that builds a list of all variable references
 class VarListExaminer : public ConstExaminer {

@@ -13,9 +13,9 @@
 # You may obtain a copy of the License at
 # http://www.apache.org/licenses/LICENSE-2.0
 
-include_directories(${CMAKE_BINARY_DIR}/src/SeExpr2)
+include_directories(${CMAKE_BINARY_DIR}/src/KSeExpr)
 
-set(TEST_DEST "share/test/SeExpr2")
+set(TEST_DEST "share/test/KSeExpr")
 
 if (GTEST_FOUND)
     # Google test framework
@@ -41,7 +41,7 @@ if (GTEST_FOUND)
 
         # generate test cases for example developer expressions
         set (GENERATE_SCRIPT "${CMAKE_CURRENT_SOURCE_DIR}/genImageTestFile.py")
-        set (EXAMPLE_DIR ${CMAKE_INSTALL_PREFIX}/share/SeExpr2/demos/imageSynth/examples)
+        set (EXAMPLE_DIR ${CMAKE_INSTALL_PREFIX}/share/KSeExpr/demos/imageSynth/examples)
         if (EXISTS ${EXAMPLE_DIR})
             set (EXAMPLE_TESTS "testSeExprExamples.cpp")
             add_custom_command(
@@ -68,7 +68,7 @@ if (GTEST_FOUND)
             "testmain.cpp" "imageTests.cpp"
             ${EXAMPLE_TESTS} ${PAINT3D_TESTS}
             "basic.cpp" "string.cpp")
-        target_link_libraries(testmain2 SeExpr2 GTest::GTest ${PNG_LIBRARIES})
+        target_link_libraries(testmain2 KSeExpr GTest::GTest ${PNG_LIBRARIES})
         install(TARGETS testmain2 DESTINATION ${TEST_DEST})
         install(PROGRAMS imagediff.py DESTINATION ${TEST_DEST})
         add_test(NAME basic COMMAND testmain2)
@@ -86,19 +86,19 @@ add_test(NAME basicPython
          COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/basicPython.py)
 
 add_executable(dirtSimple "dirtSimple.cpp")
-target_link_libraries(dirtSimple SeExpr2 ${PNG_LIBRARIES})
+target_link_libraries(dirtSimple KSeExpr ${PNG_LIBRARIES})
 install(TARGETS dirtSimple DESTINATION ${TEST_DEST})
 add_test(NAME dirtSimple COMMAND dirtSimple)
 
 if (ENABLE_LLVM_BACKEND)
     add_executable(BlockTests "BlockTests.cpp")
-    target_link_libraries(BlockTests SeExpr2 ${PNG_LIBRARIES})
+    target_link_libraries(BlockTests KSeExpr ${PNG_LIBRARIES})
     install(TARGETS BlockTests DESTINATION ${TEST_DEST})
     add_test(NAME BlockTests COMMAND BlockTests)
 endif()
 
 add_executable(VarBlockExample VarBlockExample.cpp)
-target_link_libraries(VarBlockExample SeExpr2)
+target_link_libraries(VarBlockExample KSeExpr)
 install(TARGETS VarBlockExample DESTINATION ${TEST_DEST})
 
 if (ENABLE_SLOW_TESTS)

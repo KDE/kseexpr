@@ -26,8 +26,8 @@ if not seexpr1 or not seexpr2:
     sys.exit(0)
 
 versionKeys="v1","v2-interp","v2-llvm"
-versions={"v2-llvm": "SE_EXPR_EVAL=LLVM "+os.path.join(seexpr2,"share","test","SeExpr2","testmain2"),
-        "v2-interp": "SE_EXPR_EVAL=INTERPRETER "+os.path.join(seexpr2,"share","test","SeExpr2","testmain2"),
+versions={"v2-llvm": "SE_EXPR_EVAL=LLVM "+os.path.join(seexpr2,"share","test","KSeExpr","testmain2"),
+        "v2-interp": "SE_EXPR_EVAL=INTERPRETER "+os.path.join(seexpr2,"share","test","KSeExpr","testmain2"),
         "v1": os.path.join(seexpr1,"share","test","SeExpr","testmain")}
 
 

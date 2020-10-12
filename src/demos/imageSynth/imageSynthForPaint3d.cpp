@@ -24,14 +24,14 @@
 #include <png.h>
 #include <fstream>
 
-#include <SeExpr2/Expression.h>
-#include <SeExpr2/Vec.h>
-#include <SeExpr2/Interpreter.h>
-#include <SeExpr2/ExprFunc.h>
-#include <SeExpr2/ExprFuncX.h>
-#include <SeExpr2/Timer.h>
+#include<KSeExpr/Expression.h>
+#include<KSeExpr/Vec.h>
+#include<KSeExpr/Interpreter.h>
+#include<KSeExpr/ExprFunc.h>
+#include<KSeExpr/ExprFuncX.h>
+#include<KSeExpr/Timer.h>
 
-namespace SeExpr2 {
+namespace KSeExpr {
 class ImageSynthRandFuncX : public ExprFuncSimple {
 
     struct Data : public ExprFuncNode::Data {
@@ -136,7 +136,7 @@ static const char* rand_docstring = "rand\n";
 static const char* map_docstring = "map\n";
 static const char* triplanar_docstring = "triplanar\n";
 
-using namespace SeExpr2;
+using namespace KSeExpr;
 
 //! Simple image synthesizer expression class to support our function grapher
 class ImageSynthExpr : public Expression {
@@ -195,9 +195,9 @@ int main(int argc, char* argv[]) {
     }
 
     // Disney: this function overrides the existing rand() -- amyspark
-    ExprFunc::define("rand", ExprFunc(SeExpr2::imageSynthRand, 0, 3), rand_docstring);
-    ExprFunc::define("map", ExprFunc(SeExpr2::map, 1, 4), map_docstring);
-    ExprFunc::define("triplanar", ExprFunc(SeExpr2::triplanar, 1, 5), triplanar_docstring);
+    ExprFunc::define("rand", ExprFunc(KSeExpr::imageSynthRand, 0, 3), rand_docstring);
+    ExprFunc::define("map", ExprFunc(KSeExpr::map, 1, 4), map_docstring);
+    ExprFunc::define("triplanar", ExprFunc(KSeExpr::triplanar, 1, 5), triplanar_docstring);
 
     // parse arguments
     const char* imageFile = argv[1];

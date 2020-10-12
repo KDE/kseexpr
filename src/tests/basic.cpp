@@ -17,11 +17,11 @@
 
 #include <functional>
 #include <gtest/gtest.h>
-#include <SeExpr2/Expression.h>
-#include <SeExpr2/ExprFunc.h>
-#include <SeExpr2/Vec.h>
+#include<KSeExpr/Expression.h>
+#include<KSeExpr/ExprFunc.h>
+#include<KSeExpr/Vec.h>
 
-using namespace SeExpr2;
+using namespace KSeExpr;
 
 static int invocations = 0;
 static double countInvocations(double x) {

@@ -13,14 +13,14 @@
 # You may obtain a copy of the License at
 # http://www.apache.org/licenses/LICENSE-2.0
 
-include_directories(${CMAKE_BINARY_DIR}/src/SeExpr2)
+include_directories(${CMAKE_BINARY_DIR}/src/KSeExpr)
 
 add_executable(asciiGraph2 "asciiGraph.cpp")
-target_link_libraries(asciiGraph2 SeExpr2)
+target_link_libraries(asciiGraph2 KSeExpr)
 install(TARGETS asciiGraph2 DESTINATION ${CMAKE_INSTALL_BINDIR})
 
 add_executable(asciiCalc2 "asciiCalculator.cpp")
-target_link_libraries(asciiCalc2 SeExpr2)
+target_link_libraries(asciiCalc2 KSeExpr)
 install(TARGETS asciiCalc2 DESTINATION ${CMAKE_INSTALL_BINDIR})
 
 # TODO re-enable

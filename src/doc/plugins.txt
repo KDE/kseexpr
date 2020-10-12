@@ -52,10 +52,10 @@ The steps are:<br>
 Here's a trivial example, myfunc.cpp:<br>
 <br>
 <div style="margin-left: 40px;"><tt><span
- style="font-family: monospace;">#include "SeExpr2/ExprFunc.h"</span></tt><br
+ style="font-family: monospace;">#include "KSeExpr/ExprFunc.h"</span></tt><br
  style="font-family: monospace;">
 <tt><span style="font-family: monospace;">
-#include "SeExpr2/ExprBuiltins.h"</span></tt><br
+#include "KSeExpr/ExprBuiltins.h"</span></tt><br
  style="font-family: monospace;">
 <br style="font-family: monospace;">
 <tt><span style="font-family: monospace;">double myfunc(double a,
@@ -86,7 +86,7 @@ Here's a sample Makefile:<br>
 <div style="margin-left: 40px;"><tt><span
  style="font-family: monospace;">myf</span></tt><tt><span
  style="font-family: monospace;">unc.so : myfunc.cpp</span></tt><tt><span
- style="font-family: monospace;"> $(shell pathfinder find_first "lib64/libSeExpr2.so")</span></tt><br>
+ style="font-family: monospace;"> $(shell pathfinder find_first "lib64/libKSeExpr.so")</span></tt><br>
 <tt><span style="font-family: monospace;">&nbsp;&nbsp;&nbsp; $(CXX) -O2
 -I$(shell pathfinder find_package SeExpr)/include -shared -o $@ $^</span></tt><br>
 </div>
@@ -97,14 +97,14 @@ Or, you can just run the compiler directly:<br>
 -I$(shell pathfinder find_package SeExpr)/include -shared -o myfunc.so</span></tt><tt><span
  style="font-family: monospace;"> </span></tt><tt><span
  style="font-family: monospace;"> myfunc.cpp </span></tt><tt><span
- style="font-family: monospace;"> $(shell pathfinder find_first "lib64/libSeExpr2.so")</span></tt><br>
+ style="font-family: monospace;"> $(shell pathfinder find_first "lib64/libKSeExpr.so")</span></tt><br>
 </div>
 <br>
 Note: there are both static (.a) and dynamic (.so) versions of the
 expression library available.&nbsp; If you link with the static
 version, your plugin will be slightly larger, but you'll be insulated
 from changes to the expression library.&nbsp; To use the static
-version, just change libSeExpr2.so to libSeExpr2.a on the command line
+version, just change libKSeExpr.so to libKSeExpr.a on the command line
 above.<br>
 <h3>4. Add the plugin to the $SE_EXPR_PLUGINS path.</h3>
 The $SE_EXPR_PLUGINS environment variable contains a colon-separated
@@ -249,13 +249,13 @@ of arguments:<br>
 ExprFunc(foo, 4, -1)); // require at least 4 args</span></tt><br>
 </div>
 <h2>Detailed Example</h2>
-<tt><span style="font-family: monospace;">#include "SeExpr2/ExprFunc.h"<br>
-#include "SeExpr2/ExprBuiltins.h"<br>
+<tt><span style="font-family: monospace;">#include "KSeExpr/ExprFunc.h"<br>
+#include "KSeExpr/ExprBuiltins.h"<br>
 </span></tt><tt><span style="font-family: monospace;"><br>
 <span style="font-weight: bold;">// provide access to SeExpr built-in
 functions</span><br style="font-weight: bold;">
 </span></tt><tt><span style="font-family: monospace;">using namespace
-SeExpr2; <br>
+KSeExpr; <br>
 <br>
 <span style="font-weight: bold;">// wrapper to allow calling noise with
 1 argument</span><br style="font-weight: bold;">
@@ -334,11 +334,11 @@ fmod((invert(p2) + 100) * 3 + t2, 1)) *<br>
 }<br>
 <br>
 extern "C" void SeExprPluginInitV2(</span></tt><tt><span
- style="font-family: monospace;">SeExpr2::ExprFunc::Define</span></tt><tt><span
+ style="font-family: monospace;">KSeExpr::ExprFunc::Define</span></tt><tt><span
  style="font-family: monospace;"> define)<br>
 {<br>
 &nbsp;&nbsp;&nbsp; define("wood", wood);<br>
-&nbsp;&nbsp;&nbsp; define("brick3d", SeExpr2::ExprFunc(brick3d, 1,
+&nbsp;&nbsp;&nbsp; define("brick3d", KSeExpr::ExprFunc(brick3d, 1,
 2));<br>
 }<br>
 <br>

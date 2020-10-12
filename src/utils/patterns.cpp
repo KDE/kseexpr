@@ -24,7 +24,7 @@
 #include "ExprFunc.h"
 #include "ControlSpec.h"
 
-using namespace SeExpr2;
+using namespace KSeExpr;
 /**
    @file assignmentPatterns.cpp
 */
@@ -71,8 +71,8 @@ class PatternExpr : public Expression {
     };
 
   private:
-    SeExpr2::SpecExaminer _examiner;
-    SeExpr2::ConstWalker _walker;
+    KSeExpr::SpecExaminer _examiner;
+    KSeExpr::ConstWalker _walker;
 
     template <typename Examiner>
     void printSpecs(Examiner examiner) {
@@ -97,7 +97,7 @@ int main(int argc, char* argv[]) {
     PatternExpr expr;
     std::string str;
 
-    std::cout << "SeExpr2 Basic Pattern Matcher:";
+    std::cout << "KSeExpr Basic Pattern Matcher:";
 
     while (true) {
         std::cout << std::endl << "> ";

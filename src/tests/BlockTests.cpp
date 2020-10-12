@@ -1,8 +1,8 @@
 
-#include <SeExpr2/Expression.h>
-#include <SeExpr2/VarBlock.h>
+#include<KSeExpr/Expression.h>
+#include<KSeExpr/VarBlock.h>
 
-using namespace SeExpr2;
+using namespace KSeExpr;
 
 void printVec(const std::string& name, const std::vector<double>& v) {
     std::cerr << name << " data is at " << v.data() << " -- ";

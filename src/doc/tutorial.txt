@@ -91,12 +91,12 @@ we'd get
 First we subclass Expression and give it a constructor, typically one that
 takes an expression string.
 <pre>
-class GrapherExpr:public SeExpr2::Expression
+class GrapherExpr:public KSeExpr::Expression
 {
 public:
     //! Constructor that takes the expression to parse
     GrapherExpr(const std::string& expr)
-        :SeExpr2::Expression(expr)
+        :KSeExpr::Expression(expr)
     {}
 ...
 };
@@ -108,13 +108,13 @@ additional variables.  Variables on some applications may be very dynamic. In
 this case, however, we only need 'x', so we make a ExprVarRef  subclass
 
 <pre>
-class GrapherExpr:public SeExpr2::Expression
+class GrapherExpr:public KSeExpr::Expression
 {
 ...
     //! Simple variable that just returns its internal value
-    struct SimpleVar:public SeExpr2::ExprVarRef
+    struct SimpleVar:public KSeExpr::ExprVarRef
     {
-        SimpleVar() : SeExpr2::ExprVarRef(SeExpr2::ExprType().FP(1).Varying()), val(0.0) {}
+        SimpleVar() : KSeExpr::ExprVarRef(KSeExpr::ExprType().FP(1).Varying()), val(0.0) {}
         double val; // independent variable
         void eval(double* result) {result[0] = val;}
         void eval(const char** result) {}
@@ -129,7 +129,7 @@ useful to use the same ExprVarRef from multiple expressions!  For example, if
 you have 10 expressions that all have access to the same variables, this is
 an important optimization.
 <pre>
-class GrapherExpr:public SeExpr2::Expression
+class GrapherExpr:public KSeExpr::Expression
 {
 ...
     mutable SimpleVar x;
@@ -142,7 +142,7 @@ expressions. To make it bindable we need to override the resolveVar() function
 as follows:
 <pre>
     //! resolve function that only supports one external variable 'x'
-    SeExpr2::ExprVarRef* resolveVar(const std::string& name) const
+    KSeExpr::ExprVarRef* resolveVar(const std::string& name) const
     {
         if(name == "x") return &x;
         return 0;
@@ -158,7 +158,7 @@ independent variables that are used and calling evaluate().  What it has to do
 depends very much on the application. In this case we only need to set the
 independent variable x as:
 <pre>
-class GrapherExpr:public SeExpr2::Expression
+class GrapherExpr:public KSeExpr::Expression
 {
 ...
     void setX(double x_input)

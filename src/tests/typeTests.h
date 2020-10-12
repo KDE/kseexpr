@@ -28,7 +28,7 @@
 #include "TypeBuilder.h"
 #include "TypePrinter.h"
 
-using namespace SeExpr2;
+using namespace KSeExpr;
 
 /**
    @file typeTests.h
@@ -41,7 +41,7 @@ class TypeTesterExpr : public TypeBuilderExpr {
     typedef ExprType (*FindResultThree)(const ExprType &, const ExprType &, const ExprType &);
 
     TypePrintExaminer _examiner;
-    SeExpr2::ConstWalker _walker;
+    KSeExpr::ConstWalker _walker;
 
     TypeTesterExpr() : TypeBuilderExpr(), _walker(&_examiner) {};
 

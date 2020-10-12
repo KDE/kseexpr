@@ -28,7 +28,7 @@ fpData=open("data.csv","w")
 fpLog=open("data.log","w")
 
 
-v2=os.path.join(os.environ["RP_seexpr2"],"share/test/SeExpr2/")
+v2=os.path.join(os.environ["RP_seexpr2"],"share/test/KSeExpr/")
 v1 = os.path.join(os.environ["RP_SeExpr"],"share/test/SeExpr/")
 #print v1
 filterExpr=""

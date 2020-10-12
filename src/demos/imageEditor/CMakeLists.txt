@@ -65,4 +65,4 @@ endif()
 endif()
 
 install(FILES fbm.se noisecolor1.se noisecolor2.se noise.se raytrace.se sinc.se
-        DESTINATION share/SeExpr2/expressions)
+        DESTINATION share/KSeExpr/expressions)

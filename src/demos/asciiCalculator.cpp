@@ -15,16 +15,16 @@
 * http://www.apache.org/licenses/LICENSE-2.0
 */
 
-#include <SeExpr2/Expression.h>
-#include <SeExpr2/ExprFunc.h>
-#include <SeExpr2/Vec.h>
+#include<KSeExpr/Expression.h>
+#include<KSeExpr/ExprFunc.h>
+#include<KSeExpr/Vec.h>
 #include <cstdlib>
 #include <cstdio>
 #include <cstring>
 
 #define STACK_DEPTH 256
 
-using namespace SeExpr2;
+using namespace KSeExpr;
 
 /**
    @file asciiCalculator.cpp

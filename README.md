@@ -1,4 +1,4 @@
-# SeExpr - An embeddable expression evaluation engine
+# KSeExpr - An embeddable expression evaluation engine
 
 This repository hosts the fork of [Disney Animation's SeExpr expression 
 library](https://wdas.github.io/SeExpr), that is used in [Krita](https://invent.kde.org/graphics/krita).
@@ -19,12 +19,12 @@ Prerequisites:
 * Qt >= 5.9
 
 ```bash
-$ mkdir seexpr
-$ cd seexpr
+$ mkdir kseexpr
+$ cd kseexpr
 $ git clone https://invent.kde.org/graphics/seexpr.git src
 $ mkdir build
 $ cd build
-$ cmake ../src -DENABLE_LLVM_BACKEND=OFF -DENABLE_SSE4=OFF -DBUILD_DOC=OFF -DBUILD_TESTS=OFF -DBUILD_UTILS=OFF -DUSE_PYTHON=OFF
+$ cmake ../src
 $ cmake --build . --target install
 ```
 
@@ -52,8 +52,8 @@ If you want optional stuff (not used in Krita):
 Then, on your shell, issue the following commands:
 
 ```bash
-$ mkdir seexpr
-$ cd seexpr
+$ mkdir kseexpr
+$ cd kseexpr
 $ git clone https://invent.kde.org/graphics/seexpr.git src
 $ mkdir build
 $ cd build
@@ -86,18 +86,17 @@ The original Doxygen-based documentation provided by Disney is at:
 ## Source code overview
 
 ```
-docker/     Original Disney Dockerfiles for CI
-packaging/  Krita packaging scripts
-po/         (only on release tarballs) Translations supplied by the KDE i18n team
+packaging/   Krita packaging scripts
+po/          (only on release tarballs) Translations supplied by the KDE i18n team
 src/
-  build/    CMake helper macros
-  demos/    Demo Applications
-  doc/      Doxygen generation
-  py/       Python library bindings
-  SeExpr2/  Library code
-    UI/       User Interface components for editing
-  tests/    Regression Tests
-  utils/    Various example tools
+  build/     CMake helper macros
+  demos/     Demo Applications
+  doc/       Doxygen generation
+  KSeExpr/   Library code
+  KSeExprPy/ Python library bindings
+  KSeExprUI/ User Interface components for editing
+  tests/     Regression Tests
+  utils/     Various example tools
 ```
 
 ## License

@@ -232,10 +232,6 @@ We'll create the image label in the constructor and add it to the top left of th
     _imageLabel = new QLabel();
     _imageLabel->setFixedSize(256,256);
     _imageLabel->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter );
-    QImage image("./src/doc/html/seexprlogo.png"); // just a fun default
-    QPixmap imagePixmap = QPixmap::fromImage(image);
-    imagePixmap = imagePixmap.scaled(256, 256, Qt::KeepAspectRatio);
-    _imageLabel->setPixmap(imagePixmap);
 
     leftLayout->addWidget(_imageLabel);
     leftLayout->addWidget(scrollArea,1);
@@ -268,10 +264,10 @@ public:
     struct Var:public ExprVarRef
     {
         Var(const double val)
-            : SeExpr2::ExprVarRef(SeExpr2::ExprType().FP(1).Varying()),
+            : KSeExpr::ExprVarRef(KSeExpr::ExprType().FP(1).Varying()),
               val(val) {}
         Var()
-            : SeExpr2::ExprVarRef(SeExpr2::ExprType().FP(1).Varying()),
+            : KSeExpr::ExprVarRef(KSeExpr::ExprType().FP(1).Varying()),
               val(0.0) {}
 
         double val; // independent variable
