@@ -23,11 +23,8 @@ add_executable(asciiCalc2 "asciiCalculator.cpp")
 target_link_libraries(asciiCalc2 KSeExpr)
 install(TARGETS asciiCalc2 DESTINATION ${CMAKE_INSTALL_BINDIR})
 
-# TODO re-enable
 add_subdirectory(imageSynth)
 add_subdirectory(imageEditor)
-#add_subdirectory(segraph)
-#add_subdirectory(rman)
 
 #if (ENABLE_LLVM_BACKEND)
 #     add_executable(llvmtest "llvmtest.cpp")
