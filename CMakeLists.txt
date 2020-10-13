@@ -241,16 +241,6 @@ if (ENABLE_QT5)
         include_directories(${Qt5Gui_INCLUDE_DIRS})
         include_directories(${Qt5OpenGL_INCLUDE_DIRS})
     endif()
-else()
-    find_package(Qt4 4.2.0 COMPONENTS QtCore QtGui QtOpenGL)
-    if (Qt4_FOUND)
-        message(STATUS "Qt4 Enabled")
-        message(STATUS "QT_INCLUDE_DIR = ${QT_INCLUDE_DIR}")
-        include_directories(${QT_INCLUDE_DIR}
-                            ${QT_INCLUDE_DIR}/QtCore
-                            ${QT_INCLUDE_DIR}/QtGui
-                            ${QT_INCLUDE_DIR}/QtOpenGL)
-    endif()
 endif()
 
 ## Make modules able to see seexpr library

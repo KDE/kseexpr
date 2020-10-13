@@ -18,7 +18,7 @@ if (EXISTS "/usr/share/apps/cmake/modules")
     list(APPEND CMAKE_MODULE_PATH "/usr/share/apps/cmake/modules")
 endif()
 
-if (Qt5_FOUND OR QT4_FOUND)
+if (Qt5_FOUND)
     # Adding Krita's definitions to make headers automatically compatible. -amyspark
     add_definitions(
         -DQT_USE_QSTRINGBUILDER
@@ -86,11 +86,7 @@ if (Qt5_FOUND OR QT4_FOUND)
             Utils.cpp
     )
 
-    if (ENABLE_QT5)
-        qt5_wrap_cpp(EDITOR_MOC_SRCS ${EDITOR_MOC_HDRS})
-    else()
-        qt4_wrap_cpp(EDITOR_MOC_SRCS ${EDITOR_MOC_HDRS})
-    endif()
+    qt5_wrap_cpp(EDITOR_MOC_SRCS ${EDITOR_MOC_HDRS})
 
     if (BUILD_TRANSLATIONS)
         include(ECMPoQmTools)
@@ -119,18 +115,11 @@ if (Qt5_FOUND OR QT4_FOUND)
     )
     target_link_libraries(KSeExprUI PUBLIC KSeExpr)
 
-    if (ENABLE_QT5)
-        target_link_libraries(KSeExprUI PRIVATE
-            Qt5::Core
-            Qt5::Gui
-            Qt5::Widgets
-        )
-    else()
-        target_link_libraries(KSeExprUI PRIVATE
-            ${QT_QTCORE_LIBRARY}
-            ${QT_QTGUI_LIBRARY}
-        )
-    endif()
+    target_link_libraries(KSeExprUI PRIVATE
+        Qt5::Core
+        Qt5::Gui
+        Qt5::Widgets
+    )
 
     ## Install library and includes
     install(TARGETS KSeExprUI EXPORT ${PROJECT_NAME}Targets DESTINATION ${CMAKE_INSTALL_LIBDIR})
@@ -159,19 +148,12 @@ if (Qt5_FOUND OR QT4_FOUND)
         get_build_info(sip-inc SIP_INCLUDE_DIR)
 
         if (NOT DEFINED PYQT_SIP_FLAGS)
-            if (ENABLE_QT5)
-                get_build_info(pyqt5-sip-flags PYQT_SIP_FLAGS)
-            else()
-                get_build_info(pyqt4-sip-flags PYQT_SIP_FLAGS)
-            endif()
+            get_build_info(pyqt5-sip-flags PYQT_SIP_FLAGS)
             separate_arguments(PYQT_SIP_FLAGS)
         endif()
 
         if (NOT DEFINED PYQT_SIP_DIR)
-            get_build_info(pyqt4-sip PYQT_SIP_DIR)
-            if (NOT DEFINED PYQT_SIP_DIR)
-               message(FATAL_ERROR "PYQT_SIP_DIR must be defined")
-            endif()
+            message(FATAL_ERROR "PYQT_SIP_DIR must be defined")
         endif()
 
         set(CMAKE_INSTALL_PYTHON "${PYTHON_SITE}/KSeExpr" )
@@ -197,26 +179,11 @@ if (Qt5_FOUND OR QT4_FOUND)
         target_link_libraries(expreditor2 KSeExprUI ${SEEXPR_LIBRARIES}
                               ${OPENGL_LIBRARY} ${GLUT_LIBRARY} ${PYTHON_LIBRARIES})
 
-        if (ENABLE_QT5)
-            target_link_libraries(expreditor2 KSeExprUI
-                                  Qt5::Core
-                                  Qt5::Gui
-                                  Qt5::Widgets
-            )
-        else()
-            target_link_libraries(expreditor2 KSeExprUI
-                                  ${QT_QTCORE_LIBRARY}
-                                  ${QT_QTGUI_LIBRARY}
-            )
-        endif()
-
-        if (ENABLE_EXPRDIALOG)
-            if (ENABLE_QT5)
-                target_link_libraries(expreditor2 PRIVATE Qt5::OpenGL)
-            else()
-                target_link_libraries(expreditor2 PRIVATE ${QT_QTOPENGL_LIBRARY})
-            endif()
-        endif()
+        target_link_libraries(expreditor2 KSeExprUI
+                                Qt5::Core
+                                Qt5::Gui
+                                Qt5::Widgets
+        )
 
         # No prefix on python module name
         set_target_properties(expreditor2 PROPERTIES PREFIX "")
