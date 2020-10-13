@@ -572,7 +572,7 @@ char *yytext;
 #endif  // #if __cplusplus > 199711L
 
 #include "ExprSpecType.h"
-#include <SeExpr2/Utils.h>
+#include<KSeExpr/Utils.h>
 
 #ifdef SEEXPR_WIN32
 #    define YY_NO_UNISTD_H
@@ -589,7 +589,7 @@ static int lineNumber=0; // not used
 static std::vector<std::pair<int,int> >* comments=0;
 
 extern char* specRegisterToken(char* tok);
-namespace SeExpr2 {
+namespace KSeExpr {
 void specResetCounters(std::vector<std::pair<int,int> >& commentsIn){
     columnNumber=lineNumber=0;
     comments=&commentsIn;
@@ -988,7 +988,7 @@ YY_RULE_SETUP
 case 23:
 YY_RULE_SETUP
 #line 109 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParserLex.l"
-{ yylval.d = SeExpr2::Utils::atof(yytext); return NUMBER; }
+{ yylval.d = KSeExpr::Utils::atof(yytext); return NUMBER; }
 	YY_BREAK
 case 24:
 YY_RULE_SETUP

@@ -32,23 +32,23 @@
    version 2.2 of Bison.  */
 
 /* DO NOT RELY ON FEATURES THAT ARE NOT DOCUMENTED in the manual,
-   especially those whose name start with SeExprYY_ or SeExpr2_.  They are
+   especially those whose name start with SeExprYY_ or KSeExpr_.  They are
    private implementation details that can be changed or removed.  */
 
-#ifndef SeExprYY_SEEXPR2_Y_TAB_H_INCLUDED
-# define SeExprYY_SEEXPR2_Y_TAB_H_INCLUDED
+#ifndef SeExprYY_KSEEXPR_Y_TAB_H_INCLUDED
+# define SeExprYY_KSEEXPR_Y_TAB_H_INCLUDED
 /* Debug traces.  */
 #ifndef SeExprYYDEBUG
 # define SeExprYYDEBUG 0
 #endif
 #if SeExprYYDEBUG
-extern int SeExpr2debug;
+extern int KSeExprdebug;
 #endif
 
 /* Token kinds.  */
 #ifndef SeExprYYTOKENTYPE
 # define SeExprYYTOKENTYPE
-  enum SeExpr2tokentype
+  enum KSeExprtokentype
   {
     SeExprYYEMPTY = -2,
     SeExprYYEOF = 0,                     /* "end of file"  */
@@ -83,7 +83,7 @@ extern int SeExpr2debug;
     SEEXPR_GE = 284,               /* SEEXPR_GE  */
     UNARY = 285                    /* UNARY  */
   };
-  typedef enum SeExpr2tokentype SeExpr2token_kind_t;
+  typedef enum KSeExprtokentype KSeExprtoken_kind_t;
 #endif
 
 /* Value type.  */
@@ -92,18 +92,18 @@ union SeExprYYSTYPE
 {
 #line 78 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
 
-    SeExpr2::ExprNode* n; /* a node is returned for all non-terminals to
+    KSeExpr::ExprNode* n; /* a node is returned for all non-terminals to
 		      build the parse tree from the leaves up. */
     double d;      // return value for number tokens
     char* s;       /* return value for name tokens.  Note: the string
 		      is allocated with strdup() in the lexer and must
 		      be freed with free() */
     struct {
-        SeExpr2::ExprType::Type     type;
+        KSeExpr::ExprType::Type     type;
         int                  dim;
-        SeExpr2::ExprType::Lifetime lifetime;
+        KSeExpr::ExprType::Lifetime lifetime;
     } t;  // return value for types
-    SeExpr2::ExprType::Lifetime l; // return value for lifetime qualifiers
+    KSeExpr::ExprType::Lifetime l; // return value for lifetime qualifiers
 
 #line 109 "y.tab.h"
 
@@ -128,8 +128,8 @@ struct SeExprYYLTYPE
 #endif
 
 
-extern SeExprYYSTYPE SeExpr2lval;
-extern SeExprYYLTYPE SeExpr2lloc;
-int SeExpr2parse (void);
+extern SeExprYYSTYPE KSeExprlval;
+extern SeExprYYLTYPE KSeExprlloc;
+int KSeExprparse (void);
 
-#endif /* !SeExprYY_SEEXPR2_Y_TAB_H_INCLUDED  */
+#endif /* !SeExprYY_KSEEXPR_Y_TAB_H_INCLUDED  */

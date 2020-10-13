@@ -91,8 +91,8 @@
     #define UNUSED(x) (void)(x)
     #endif
 #endif
-#include <SeExpr2/Platform.h>
-#include <SeExpr2/Mutex.h>
+#include<KSeExpr/Platform.h>
+#include<KSeExpr/Mutex.h>
 #include "ExprSpecType.h"
 #include "Editable.h"
 #ifdef SEEXPR_ENABLE_DEEPWATER
@@ -2408,7 +2408,7 @@ static void ExprSpecerror(const char* /*msg*/)
     if (e != end) ParseError += "...";
 }
 
-namespace SeExpr2 {
+namespace KSeExpr {
 extern void specResetCounters(std::vector<std::pair<int,int> >& comments);
 }
 
@@ -2435,7 +2435,7 @@ bool ExprSpecParse(std::vector<Editable*>& outputEditables,
     ParseStr=str;
 
     // setup and startup parser
-    SeExpr2::specResetCounters(comments); // reset lineNumber and columnNumber in scanner
+    KSeExpr::specResetCounters(comments); // reset lineNumber and columnNumber in scanner
     ExprSpec_buffer_state* buffer = ExprSpec_scan_string(str); // setup lexer
     ParseResult = 0;
     int resultCode = ExprSpecparse(); // parser (don't care if it is a parse error)

@@ -1058,7 +1058,7 @@ YY_RULE_SETUP
 case 31:
 YY_RULE_SETUP
 #line 114 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
-{ yylval.d = SeExpr2::Utils::atof(yytext); return NUMBER; }
+{ yylval.d = KSeExpr::Utils::atof(yytext); return NUMBER; }
 	YY_BREAK
 case 32:
 YY_RULE_SETUP

@@ -95,12 +95,12 @@ typedef unsigned int flex_uint32_t;
 /* begin standard C++ headers. */
 
 /* TODO: this is always defined, so inline it */
-#define SeExpr2const const
+#define KSeExprconst const
 
 #if defined(__GNUC__) && __GNUC__ >= 3
-#define SeExpr2noreturn __attribute__((__noreturn__))
+#define KSeExprnoreturn __attribute__((__noreturn__))
 #else
-#define SeExpr2noreturn
+#define KSeExprnoreturn
 #endif
 
 /* Returned upon end-of-file. */
@@ -115,17 +115,17 @@ typedef unsigned int flex_uint32_t;
  * but we do it the disgusting crufty way forced on us by the ()-less
  * definition of BEGIN.
  */
-#define BEGIN (SeExpr2_start) = 1 + 2 *
+#define BEGIN (KSeExpr_start) = 1 + 2 *
 /* Translate the current start state into a value that can be later handed
  * to BEGIN to return to the state.  The SeExprYYSTATE alias is for lex
  * compatibility.
  */
-#define SeExprYY_START (((SeExpr2_start) - 1) / 2)
+#define SeExprYY_START (((KSeExpr_start) - 1) / 2)
 #define SeExprYYSTATE SeExprYY_START
 /* Action number for EOF rule of a given start state. */
 #define SeExprYY_STATE_EOF(state) (SeExprYY_END_OF_BUFFER + state + 1)
 /* Special action meaning "start processing a new file". */
-#define SeExprYY_NEW_FILE SeExpr2restart( SeExpr2in  )
+#define SeExprYY_NEW_FILE KSeExprrestart( KSeExprin  )
 #define SeExprYY_END_OF_BUFFER_CHAR 0
 
 /* Size of default input buffer. */
@@ -143,21 +143,21 @@ typedef unsigned int flex_uint32_t;
 
 /* The state buf must be large enough to hold one state per character in the main buffer.
  */
-#define SeExprYY_STATE_BUF_SIZE   ((SeExprYY_BUF_SIZE + 2) * sizeof(SeExpr2_state_type))
+#define SeExprYY_STATE_BUF_SIZE   ((SeExprYY_BUF_SIZE + 2) * sizeof(KSeExpr_state_type))
 
 #ifndef SeExprYY_TYPEDEF_SeExprYY_BUFFER_STATE
 #define SeExprYY_TYPEDEF_SeExprYY_BUFFER_STATE
-typedef struct SeExpr2_buffer_state *SeExprYY_BUFFER_STATE;
+typedef struct KSeExpr_buffer_state *SeExprYY_BUFFER_STATE;
 #endif
 
 #ifndef SeExprYY_TYPEDEF_SeExprYY_SIZE_T
 #define SeExprYY_TYPEDEF_SeExprYY_SIZE_T
-typedef size_t SeExpr2_size_t;
+typedef size_t KSeExpr_size_t;
 #endif
 
-extern int SeExpr2leng;
+extern int KSeExprleng;
 
-extern FILE *SeExpr2in, *SeExpr2out;
+extern FILE *KSeExprin, *KSeExprout;
 
 #define EOB_ACT_CONTINUE_SCAN 0
 #define EOB_ACT_END_OF_FILE 1
@@ -167,67 +167,67 @@ extern FILE *SeExpr2in, *SeExpr2out;
     #define SeExprYY_LINENO_REWIND_TO(ptr)
     
 /* Return all but the first "n" matched characters back to the input stream. */
-#define SeExpr2less(n) \
+#define KSeExprless(n) \
 	do \
 		{ \
-		/* Undo effects of setting up SeExpr2text. */ \
-        int SeExpr2less_macro_arg = (n); \
-        SeExprYY_LESS_LINENO(SeExpr2less_macro_arg);\
-		*SeExpr2_cp = (SeExpr2_hold_char); \
+		/* Undo effects of setting up KSeExprtext. */ \
+        int KSeExprless_macro_arg = (n); \
+        SeExprYY_LESS_LINENO(KSeExprless_macro_arg);\
+		*KSeExpr_cp = (KSeExpr_hold_char); \
 		SeExprYY_RESTORE_SeExprYY_MORE_OFFSET \
-		(SeExpr2_c_buf_p) = SeExpr2_cp = SeExpr2_bp + SeExpr2less_macro_arg - SeExprYY_MORE_ADJ; \
-		SeExprYY_DO_BEFORE_ACTION; /* set up SeExpr2text again */ \
+		(KSeExpr_c_buf_p) = KSeExpr_cp = KSeExpr_bp + KSeExprless_macro_arg - SeExprYY_MORE_ADJ; \
+		SeExprYY_DO_BEFORE_ACTION; /* set up KSeExprtext again */ \
 		} \
 	while ( 0 )
-#define unput(c) SeExpr2unput( c, (SeExpr2text_ptr)  )
+#define unput(c) KSeExprunput( c, (KSeExprtext_ptr)  )
 
 #ifndef SeExprYY_STRUCT_SeExprYY_BUFFER_STATE
 #define SeExprYY_STRUCT_SeExprYY_BUFFER_STATE
-struct SeExpr2_buffer_state
+struct KSeExpr_buffer_state
 	{
-	FILE *SeExpr2_input_file;
+	FILE *KSeExpr_input_file;
 
-	char *SeExpr2_ch_buf;		/* input buffer */
-	char *SeExpr2_buf_pos;		/* current position in input buffer */
+	char *KSeExpr_ch_buf;		/* input buffer */
+	char *KSeExpr_buf_pos;		/* current position in input buffer */
 
 	/* Size of input buffer in bytes, not including room for EOB
 	 * characters.
 	 */
-	int SeExpr2_buf_size;
+	int KSeExpr_buf_size;
 
-	/* Number of characters read into SeExpr2_ch_buf, not including EOB
+	/* Number of characters read into KSeExpr_ch_buf, not including EOB
 	 * characters.
 	 */
-	int SeExpr2_n_chars;
+	int KSeExpr_n_chars;
 
 	/* Whether we "own" the buffer - i.e., we know we created it,
 	 * and can realloc() it to grow it, and should free() it to
 	 * delete it.
 	 */
-	int SeExpr2_is_our_buffer;
+	int KSeExpr_is_our_buffer;
 
 	/* Whether this is an "interactive" input source; if so, and
 	 * if we're using stdio for input, then we want to use getc()
 	 * instead of fread(), to make sure we stop fetching input after
 	 * each newline.
 	 */
-	int SeExpr2_is_interactive;
+	int KSeExpr_is_interactive;
 
 	/* Whether we're considered to be at the beginning of a line.
 	 * If so, '^' rules will be active on the next match, otherwise
 	 * not.
 	 */
-	int SeExpr2_at_bol;
+	int KSeExpr_at_bol;
 
-    int SeExpr2_bs_lineno; /**< The line count. */
-    int SeExpr2_bs_column; /**< The column count. */
+    int KSeExpr_bs_lineno; /**< The line count. */
+    int KSeExpr_bs_column; /**< The column count. */
 
 	/* Whether to try to fill the input buffer when we reach the
 	 * end of it.
 	 */
-	int SeExpr2_fill_buffer;
+	int KSeExpr_fill_buffer;
 
-	int SeExpr2_buffer_status;
+	int KSeExpr_buffer_status;
 
 #define SeExprYY_BUFFER_NEW 0
 #define SeExprYY_BUFFER_NORMAL 1
@@ -238,8 +238,8 @@ struct SeExpr2_buffer_state
 	 * possible backing-up.
 	 *
 	 * When we actually see the EOF, we change the status to "new"
-	 * (via SeExpr2restart()), so that the user can continue scanning by
-	 * just pointing SeExpr2in at a new input file.
+	 * (via KSeExprrestart()), so that the user can continue scanning by
+	 * just pointing KSeExprin at a new input file.
 	 */
 #define SeExprYY_BUFFER_EOF_PENDING 2
 
@@ -247,9 +247,9 @@ struct SeExpr2_buffer_state
 #endif /* !SeExprYY_STRUCT_SeExprYY_BUFFER_STATE */
 
 /* Stack of input buffers. */
-static size_t SeExpr2_buffer_stack_top = 0; /**< index of top of stack. */
-static size_t SeExpr2_buffer_stack_max = 0; /**< capacity of stack. */
-static SeExprYY_BUFFER_STATE * SeExpr2_buffer_stack = NULL; /**< Stack as an array. */
+static size_t KSeExpr_buffer_stack_top = 0; /**< index of top of stack. */
+static size_t KSeExpr_buffer_stack_max = 0; /**< capacity of stack. */
+static SeExprYY_BUFFER_STATE * KSeExpr_buffer_stack = NULL; /**< Stack as an array. */
 
 /* We provide macros for accessing buffer states in case in the
  * future we want to put the buffer states in a more general
@@ -257,114 +257,114 @@ static SeExprYY_BUFFER_STATE * SeExpr2_buffer_stack = NULL; /**< Stack as an arr
  *
  * Returns the top of the stack, or NULL.
  */
-#define SeExprYY_CURRENT_BUFFER ( (SeExpr2_buffer_stack) \
-                          ? (SeExpr2_buffer_stack)[(SeExpr2_buffer_stack_top)] \
+#define SeExprYY_CURRENT_BUFFER ( (KSeExpr_buffer_stack) \
+                          ? (KSeExpr_buffer_stack)[(KSeExpr_buffer_stack_top)] \
                           : NULL)
 /* Same as previous macro, but useful when we know that the buffer stack is not
  * NULL or when we need an lvalue. For internal use only.
  */
-#define SeExprYY_CURRENT_BUFFER_LVALUE (SeExpr2_buffer_stack)[(SeExpr2_buffer_stack_top)]
+#define SeExprYY_CURRENT_BUFFER_LVALUE (KSeExpr_buffer_stack)[(KSeExpr_buffer_stack_top)]
 
-/* SeExpr2_hold_char holds the character lost when SeExpr2text is formed. */
-static char SeExpr2_hold_char;
-static int SeExpr2_n_chars;		/* number of characters read into SeExpr2_ch_buf */
-int SeExpr2leng;
+/* KSeExpr_hold_char holds the character lost when KSeExprtext is formed. */
+static char KSeExpr_hold_char;
+static int KSeExpr_n_chars;		/* number of characters read into KSeExpr_ch_buf */
+int KSeExprleng;
 
 /* Points to current character in buffer. */
-static char *SeExpr2_c_buf_p = NULL;
-static int SeExpr2_init = 0;		/* whether we need to initialize */
-static int SeExpr2_start = 0;	/* start state number */
+static char *KSeExpr_c_buf_p = NULL;
+static int KSeExpr_init = 0;		/* whether we need to initialize */
+static int KSeExpr_start = 0;	/* start state number */
 
-/* Flag which is used to allow SeExpr2wrap()'s to do buffer switches
- * instead of setting up a fresh SeExpr2in.  A bit of a hack ...
+/* Flag which is used to allow KSeExprwrap()'s to do buffer switches
+ * instead of setting up a fresh KSeExprin.  A bit of a hack ...
  */
-static int SeExpr2_did_buffer_switch_on_eof;
+static int KSeExpr_did_buffer_switch_on_eof;
 
-void SeExpr2restart ( FILE *input_file  );
-void SeExpr2_switch_to_buffer ( SeExprYY_BUFFER_STATE new_buffer  );
-SeExprYY_BUFFER_STATE SeExpr2_create_buffer ( FILE *file, int size  );
-void SeExpr2_delete_buffer ( SeExprYY_BUFFER_STATE b  );
-void SeExpr2_flush_buffer ( SeExprYY_BUFFER_STATE b  );
-void SeExpr2push_buffer_state ( SeExprYY_BUFFER_STATE new_buffer  );
-void SeExpr2pop_buffer_state ( void );
+void KSeExprrestart ( FILE *input_file  );
+void KSeExpr_switch_to_buffer ( SeExprYY_BUFFER_STATE new_buffer  );
+SeExprYY_BUFFER_STATE KSeExpr_create_buffer ( FILE *file, int size  );
+void KSeExpr_delete_buffer ( SeExprYY_BUFFER_STATE b  );
+void KSeExpr_flush_buffer ( SeExprYY_BUFFER_STATE b  );
+void KSeExprpush_buffer_state ( SeExprYY_BUFFER_STATE new_buffer  );
+void KSeExprpop_buffer_state ( void );
 
-static void SeExpr2ensure_buffer_stack ( void );
-static void SeExpr2_load_buffer_state ( void );
-static void SeExpr2_init_buffer ( SeExprYY_BUFFER_STATE b, FILE *file  );
-#define SeExprYY_FLUSH_BUFFER SeExpr2_flush_buffer( SeExprYY_CURRENT_BUFFER )
+static void KSeExprensure_buffer_stack ( void );
+static void KSeExpr_load_buffer_state ( void );
+static void KSeExpr_init_buffer ( SeExprYY_BUFFER_STATE b, FILE *file  );
+#define SeExprYY_FLUSH_BUFFER KSeExpr_flush_buffer( SeExprYY_CURRENT_BUFFER )
 
-SeExprYY_BUFFER_STATE SeExpr2_scan_buffer ( char *base, SeExpr2_size_t size  );
-SeExprYY_BUFFER_STATE SeExpr2_scan_string ( const char *SeExpr2_str  );
-SeExprYY_BUFFER_STATE SeExpr2_scan_bytes ( const char *bytes, int len  );
+SeExprYY_BUFFER_STATE KSeExpr_scan_buffer ( char *base, KSeExpr_size_t size  );
+SeExprYY_BUFFER_STATE KSeExpr_scan_string ( const char *KSeExpr_str  );
+SeExprYY_BUFFER_STATE KSeExpr_scan_bytes ( const char *bytes, int len  );
 
-void *SeExpr2alloc ( SeExpr2_size_t  );
-void *SeExpr2realloc ( void *, SeExpr2_size_t  );
-void SeExpr2free ( void *  );
+void *KSeExpralloc ( KSeExpr_size_t  );
+void *KSeExprrealloc ( void *, KSeExpr_size_t  );
+void KSeExprfree ( void *  );
 
-#define SeExpr2_new_buffer SeExpr2_create_buffer
-#define SeExpr2_set_interactive(is_interactive) \
+#define KSeExpr_new_buffer KSeExpr_create_buffer
+#define KSeExpr_set_interactive(is_interactive) \
 	{ \
 	if ( ! SeExprYY_CURRENT_BUFFER ){ \
-        SeExpr2ensure_buffer_stack (); \
+        KSeExprensure_buffer_stack (); \
 		SeExprYY_CURRENT_BUFFER_LVALUE =    \
-            SeExpr2_create_buffer( SeExpr2in, SeExprYY_BUF_SIZE ); \
+            KSeExpr_create_buffer( KSeExprin, SeExprYY_BUF_SIZE ); \
 	} \
-	SeExprYY_CURRENT_BUFFER_LVALUE->SeExpr2_is_interactive = is_interactive; \
+	SeExprYY_CURRENT_BUFFER_LVALUE->KSeExpr_is_interactive = is_interactive; \
 	}
-#define SeExpr2_set_bol(at_bol) \
+#define KSeExpr_set_bol(at_bol) \
 	{ \
 	if ( ! SeExprYY_CURRENT_BUFFER ){\
-        SeExpr2ensure_buffer_stack (); \
+        KSeExprensure_buffer_stack (); \
 		SeExprYY_CURRENT_BUFFER_LVALUE =    \
-            SeExpr2_create_buffer( SeExpr2in, SeExprYY_BUF_SIZE ); \
+            KSeExpr_create_buffer( KSeExprin, SeExprYY_BUF_SIZE ); \
 	} \
-	SeExprYY_CURRENT_BUFFER_LVALUE->SeExpr2_at_bol = at_bol; \
+	SeExprYY_CURRENT_BUFFER_LVALUE->KSeExpr_at_bol = at_bol; \
 	}
-#define SeExprYY_AT_BOL() (SeExprYY_CURRENT_BUFFER_LVALUE->SeExpr2_at_bol)
+#define SeExprYY_AT_BOL() (SeExprYY_CURRENT_BUFFER_LVALUE->KSeExpr_at_bol)
 
 /* Begin user sect3 */
 
-#define SeExpr2wrap() (/*CONSTCOND*/1)
+#define KSeExprwrap() (/*CONSTCOND*/1)
 #define SeExprYY_SKIP_SeExprYYWRAP
 typedef flex_uint8_t SeExprYY_CHAR;
 
-FILE *SeExpr2in = NULL, *SeExpr2out = NULL;
+FILE *KSeExprin = NULL, *KSeExprout = NULL;
 
-typedef int SeExpr2_state_type;
+typedef int KSeExpr_state_type;
 
-extern int SeExpr2lineno;
-int SeExpr2lineno = 1;
+extern int KSeExprlineno;
+int KSeExprlineno = 1;
 
-extern char *SeExpr2text;
-#ifdef SeExpr2text_ptr
-#undef SeExpr2text_ptr
+extern char *KSeExprtext;
+#ifdef KSeExprtext_ptr
+#undef KSeExprtext_ptr
 #endif
-#define SeExpr2text_ptr SeExpr2text
+#define KSeExprtext_ptr KSeExprtext
 
-static SeExpr2_state_type SeExpr2_get_previous_state ( void );
-static SeExpr2_state_type SeExpr2_try_NUL_trans ( SeExpr2_state_type current_state  );
-static int SeExpr2_get_next_buffer ( void );
-static void SeExpr2noreturn SeExpr2_fatal_error ( const char* msg  );
+static KSeExpr_state_type KSeExpr_get_previous_state ( void );
+static KSeExpr_state_type KSeExpr_try_NUL_trans ( KSeExpr_state_type current_state  );
+static int KSeExpr_get_next_buffer ( void );
+static void KSeExprnoreturn KSeExpr_fatal_error ( const char* msg  );
 
 /* Done after the current pattern has been matched and before the
- * corresponding action - sets up SeExpr2text.
+ * corresponding action - sets up KSeExprtext.
  */
 #define SeExprYY_DO_BEFORE_ACTION \
-	(SeExpr2text_ptr) = SeExpr2_bp; \
-	SeExpr2leng = (int) (SeExpr2_cp - SeExpr2_bp); \
-	(SeExpr2_hold_char) = *SeExpr2_cp; \
-	*SeExpr2_cp = '\0'; \
-	(SeExpr2_c_buf_p) = SeExpr2_cp;
+	(KSeExprtext_ptr) = KSeExpr_bp; \
+	KSeExprleng = (int) (KSeExpr_cp - KSeExpr_bp); \
+	(KSeExpr_hold_char) = *KSeExpr_cp; \
+	*KSeExpr_cp = '\0'; \
+	(KSeExpr_c_buf_p) = KSeExpr_cp;
 #define SeExprYY_NUM_RULES 42
 #define SeExprYY_END_OF_BUFFER 43
 /* This struct is not used in this scanner,
    but its presence is necessary. */
-struct SeExpr2_trans_info
+struct KSeExpr_trans_info
 	{
-	flex_int32_t SeExpr2_verify;
-	flex_int32_t SeExpr2_nxt;
+	flex_int32_t KSeExpr_verify;
+	flex_int32_t KSeExpr_nxt;
 	};
-static const flex_int16_t SeExpr2_accept[160] =
+static const flex_int16_t KSeExpr_accept[160] =
     {   0,
         0,    0,   43,   41,   39,   39,   41,   41,   40,   41,
        41,   41,   41,   41,   41,   41,   41,   41,   31,   41,
@@ -385,7 +385,7 @@ static const flex_int16_t SeExpr2_accept[160] =
        28,    1,   36,    7,    8,   36,    6,   29,    0
     } ;
 
-static const SeExprYY_CHAR SeExpr2_ec[256] =
+static const SeExprYY_CHAR KSeExpr_ec[256] =
     {   0,
         1,    1,    1,    1,    1,    1,    1,    1,    2,    3,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
@@ -417,7 +417,7 @@ static const SeExprYY_CHAR SeExpr2_ec[256] =
         1,    1,    1,    1,    1
     } ;
 
-static const SeExprYY_CHAR SeExpr2_meta[62] =
+static const SeExprYY_CHAR KSeExpr_meta[62] =
     {   0,
         1,    1,    2,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    3,    1,    3,    3,    4,    1,    1,
@@ -428,7 +428,7 @@ static const SeExprYY_CHAR SeExpr2_meta[62] =
         1
     } ;
 
-static const flex_int16_t SeExpr2_base[168] =
+static const flex_int16_t KSeExpr_base[168] =
     {   0,
         0,    0,  245,  246,  246,  246,  223,   57,  201,    0,
       221,  232,   53,  219,  218,   43,   50,  217,   54,  216,
@@ -450,7 +450,7 @@ static const flex_int16_t SeExpr2_base[168] =
       160,   79,  165,  168,  171,   74,  174
     } ;
 
-static const flex_int16_t SeExpr2_def[168] =
+static const flex_int16_t KSeExpr_def[168] =
     {   0,
       159,    1,  159,  159,  159,  159,  159,  160,  161,  162,
       159,  159,  163,  159,  159,  159,  159,  159,  159,  159,
@@ -472,7 +472,7 @@ static const flex_int16_t SeExpr2_def[168] =
       159,  159,  159,  159,  159,  159,  159
     } ;
 
-static const flex_int16_t SeExpr2_nxt[308] =
+static const flex_int16_t KSeExpr_nxt[308] =
     {   0,
         4,    5,    6,    7,    8,    9,   10,   11,   12,   13,
        14,   15,   16,   17,   18,   19,   19,    4,    4,   20,
@@ -510,7 +510,7 @@ static const flex_int16_t SeExpr2_nxt[308] =
       159,  159,  159,  159,  159,  159,  159
     } ;
 
-static const flex_int16_t SeExpr2_chk[308] =
+static const flex_int16_t KSeExpr_chk[308] =
     {   0,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
@@ -548,20 +548,20 @@ static const flex_int16_t SeExpr2_chk[308] =
       159,  159,  159,  159,  159,  159,  159
     } ;
 
-static SeExpr2_state_type SeExpr2_last_accepting_state;
-static char *SeExpr2_last_accepting_cpos;
+static KSeExpr_state_type KSeExpr_last_accepting_state;
+static char *KSeExpr_last_accepting_cpos;
 
-extern int SeExpr2_flex_debug;
-int SeExpr2_flex_debug = 0;
+extern int KSeExpr_flex_debug;
+int KSeExpr_flex_debug = 0;
 
 /* The intent behind this definition is that it'll catch
  * any uses of REJECT which flex missed.
  */
 #define REJECT reject_used_but_not_detected
-#define SeExpr2more() SeExpr2more_used_but_not_detected
+#define KSeExprmore() KSeExprmore_used_but_not_detected
 #define SeExprYY_MORE_ADJ 0
 #define SeExprYY_RESTORE_SeExprYY_MORE_OFFSET
-char *SeExpr2text;
+char *KSeExprtext;
 #line 1 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
 /*
 * Copyright Disney Enterprises, Inc.  All rights reserved.
@@ -580,7 +580,7 @@ char *SeExpr2text;
 * You may obtain a copy of the License at
 * http://www.apache.org/licenses/LICENSE-2.0
 */
-/* Don't generate SeExpr2wrap since everything is in one string */
+/* Don't generate KSeExprwrap since everything is in one string */
 /* Don't generate unput since it's unused and gcc complains... */
 /* Don't generate input since it's unused too -- amyspark */
 #define SeExprYY_NO_INPUT 1
@@ -623,12 +623,12 @@ void SeExprLexerResetState(std::vector<std::pair<int,int> >& commentsIn){
     columnNumber=lineNumber=0;
 }
 
-int SeExpr2pos();
+int KSeExprpos();
 
 #define SeExprYY_USER_ACTION { \
-    SeExpr2lloc.first_line=lineNumber;SeExpr2lloc.first_column=columnNumber; \
-    columnNumber+=SeExpr2leng;\
-    SeExpr2lloc.last_column=columnNumber;SeExpr2lloc.last_line=lineNumber;}
+    KSeExprlloc.first_line=lineNumber;KSeExprlloc.first_column=columnNumber; \
+    columnNumber+=KSeExprleng;\
+    KSeExprlloc.last_column=columnNumber;KSeExprlloc.last_line=lineNumber;}
 
 #line 633 "ExprParserLexIn.cpp"
 #line 634 "ExprParserLexIn.cpp"
@@ -647,36 +647,36 @@ int SeExpr2pos();
 #define SeExprYY_EXTRA_TYPE void *
 #endif
 
-static int SeExpr2_init_globals ( void );
+static int KSeExpr_init_globals ( void );
 
 /* Accessor methods to globals.
    These are made visible to non-reentrant scanners for convenience. */
 
-int SeExpr2lex_destroy ( void );
+int KSeExprlex_destroy ( void );
 
-int SeExpr2get_debug ( void );
+int KSeExprget_debug ( void );
 
-void SeExpr2set_debug ( int debug_flag  );
+void KSeExprset_debug ( int debug_flag  );
 
-SeExprYY_EXTRA_TYPE SeExpr2get_extra ( void );
+SeExprYY_EXTRA_TYPE KSeExprget_extra ( void );
 
-void SeExpr2set_extra ( SeExprYY_EXTRA_TYPE user_defined  );
+void KSeExprset_extra ( SeExprYY_EXTRA_TYPE user_defined  );
 
-FILE *SeExpr2get_in ( void );
+FILE *KSeExprget_in ( void );
 
-void SeExpr2set_in  ( FILE * _in_str  );
+void KSeExprset_in  ( FILE * _in_str  );
 
-FILE *SeExpr2get_out ( void );
+FILE *KSeExprget_out ( void );
 
-void SeExpr2set_out  ( FILE * _out_str  );
+void KSeExprset_out  ( FILE * _out_str  );
 
-			int SeExpr2get_leng ( void );
+			int KSeExprget_leng ( void );
 
-char *SeExpr2get_text ( void );
+char *KSeExprget_text ( void );
 
-int SeExpr2get_lineno ( void );
+int KSeExprget_lineno ( void );
 
-void SeExpr2set_lineno ( int _line_number  );
+void KSeExprset_lineno ( int _line_number  );
 
 /* Macros after this point can all be overridden by user definitions in
  * section 1.
@@ -684,9 +684,9 @@ void SeExpr2set_lineno ( int _line_number  );
 
 #ifndef SeExprYY_SKIP_SeExprYYWRAP
 #ifdef __cplusplus
-extern "C" int SeExpr2wrap ( void );
+extern "C" int KSeExprwrap ( void );
 #else
-extern int SeExpr2wrap ( void );
+extern int KSeExprwrap ( void );
 #endif
 #endif
 
@@ -694,17 +694,17 @@ extern int SeExpr2wrap ( void );
     
 #endif
 
-#ifndef SeExpr2text_ptr
-static void SeExpr2_flex_strncpy ( char *, const char *, int );
+#ifndef KSeExprtext_ptr
+static void KSeExpr_flex_strncpy ( char *, const char *, int );
 #endif
 
 #ifdef SeExprYY_NEED_STRLEN
-static int SeExpr2_flex_strlen ( const char * );
+static int KSeExpr_flex_strlen ( const char * );
 #endif
 
 #ifndef SeExprYY_NO_INPUT
 #ifdef __cplusplus
-static int SeExpr2input ( void );
+static int KSeExprinput ( void );
 #else
 static int input ( void );
 #endif
@@ -726,7 +726,7 @@ static int input ( void );
 /* This used to be an fputs(), but since the string might contain NUL's,
  * we now use fwrite().
  */
-#define ECHO do { if (fwrite( SeExpr2text, (size_t) SeExpr2leng, 1, SeExpr2out )) {} } while (0)
+#define ECHO do { if (fwrite( KSeExprtext, (size_t) KSeExprleng, 1, KSeExprout )) {} } while (0)
 #endif
 
 /* Gets input and stuffs it into "buf".  number of characters read, or SeExprYY_NULL,
@@ -734,23 +734,23 @@ static int input ( void );
  */
 #ifndef SeExprYY_INPUT
 #define SeExprYY_INPUT(buf,result,max_size) \
-	if ( SeExprYY_CURRENT_BUFFER_LVALUE->SeExpr2_is_interactive ) \
+	if ( SeExprYY_CURRENT_BUFFER_LVALUE->KSeExpr_is_interactive ) \
 		{ \
 		int c = '*'; \
 		int n; \
 		for ( n = 0; n < max_size && \
-			     (c = getc( SeExpr2in )) != EOF && c != '\n'; ++n ) \
+			     (c = getc( KSeExprin )) != EOF && c != '\n'; ++n ) \
 			buf[n] = (char) c; \
 		if ( c == '\n' ) \
 			buf[n++] = (char) c; \
-		if ( c == EOF && ferror( SeExpr2in ) ) \
+		if ( c == EOF && ferror( KSeExprin ) ) \
 			SeExprYY_FATAL_ERROR( "input in flex scanner failed" ); \
 		result = n; \
 		} \
 	else \
 		{ \
 		errno=0; \
-		while ( (result = (int) fread(buf, 1, (SeExpr2_size_t) max_size, SeExpr2in)) == 0 && ferror(SeExpr2in)) \
+		while ( (result = (int) fread(buf, 1, (KSeExpr_size_t) max_size, KSeExprin)) == 0 && ferror(KSeExprin)) \
 			{ \
 			if( errno != EINTR) \
 				{ \
@@ -758,19 +758,19 @@ static int input ( void );
 				break; \
 				} \
 			errno=0; \
-			clearerr(SeExpr2in); \
+			clearerr(KSeExprin); \
 			} \
 		}\
 \
 
 #endif
 
-/* No semi-colon after return; correct usage is to write "SeExpr2terminate();" -
+/* No semi-colon after return; correct usage is to write "KSeExprterminate();" -
  * we don't want an extra ';' after the "return" because that will cause
  * some compilers to complain about unreachable statements.
  */
-#ifndef SeExpr2terminate
-#define SeExpr2terminate() return SeExprYY_NULL
+#ifndef KSeExprterminate
+#define KSeExprterminate() return SeExprYY_NULL
 #endif
 
 /* Number of entries by which start-condition stack grows. */
@@ -780,7 +780,7 @@ static int input ( void );
 
 /* Report a fatal error. */
 #ifndef SeExprYY_FATAL_ERROR
-#define SeExprYY_FATAL_ERROR(msg) SeExpr2_fatal_error( msg )
+#define SeExprYY_FATAL_ERROR(msg) KSeExpr_fatal_error( msg )
 #endif
 
 /* end tables serialization structures and prototypes */
@@ -791,12 +791,12 @@ static int input ( void );
 #ifndef SeExprYY_DECL
 #define SeExprYY_DECL_IS_OURS 1
 
-extern int SeExpr2lex (void);
+extern int KSeExprlex (void);
 
-#define SeExprYY_DECL int SeExpr2lex (void)
+#define SeExprYY_DECL int KSeExprlex (void)
 #endif /* !SeExprYY_DECL */
 
-/* Code executed at the beginning of each rule, after SeExpr2text and SeExpr2leng
+/* Code executed at the beginning of each rule, after KSeExprtext and KSeExprleng
  * have been set up.
  */
 #ifndef SeExprYY_USER_ACTION
@@ -815,34 +815,34 @@ extern int SeExpr2lex (void);
  */
 SeExprYY_DECL
 {
-	SeExpr2_state_type SeExpr2_current_state;
-	char *SeExpr2_cp, *SeExpr2_bp;
-	int SeExpr2_act;
+	KSeExpr_state_type KSeExpr_current_state;
+	char *KSeExpr_cp, *KSeExpr_bp;
+	int KSeExpr_act;
     
-	if ( !(SeExpr2_init) )
+	if ( !(KSeExpr_init) )
 		{
-		(SeExpr2_init) = 1;
+		(KSeExpr_init) = 1;
 
 #ifdef SeExprYY_USER_INIT
 		SeExprYY_USER_INIT;
 #endif
 
-		if ( ! (SeExpr2_start) )
-			(SeExpr2_start) = 1;	/* first start state */
+		if ( ! (KSeExpr_start) )
+			(KSeExpr_start) = 1;	/* first start state */
 
-		if ( ! SeExpr2in )
-			SeExpr2in = stdin;
+		if ( ! KSeExprin )
+			KSeExprin = stdin;
 
-		if ( ! SeExpr2out )
-			SeExpr2out = stdout;
+		if ( ! KSeExprout )
+			KSeExprout = stdout;
 
 		if ( ! SeExprYY_CURRENT_BUFFER ) {
-			SeExpr2ensure_buffer_stack ();
+			KSeExprensure_buffer_stack ();
 			SeExprYY_CURRENT_BUFFER_LVALUE =
-				SeExpr2_create_buffer( SeExpr2in, SeExprYY_BUF_SIZE );
+				KSeExpr_create_buffer( KSeExprin, SeExprYY_BUF_SIZE );
 		}
 
-		SeExpr2_load_buffer_state(  );
+		KSeExpr_load_buffer_state(  );
 		}
 
 	{
@@ -852,58 +852,58 @@ SeExprYY_DECL
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
-		SeExpr2_cp = (SeExpr2_c_buf_p);
+		KSeExpr_cp = (KSeExpr_c_buf_p);
 
-		/* Support of SeExpr2text. */
-		*SeExpr2_cp = (SeExpr2_hold_char);
+		/* Support of KSeExprtext. */
+		*KSeExpr_cp = (KSeExpr_hold_char);
 
-		/* SeExpr2_bp points to the position in SeExpr2_ch_buf of the start of
+		/* KSeExpr_bp points to the position in KSeExpr_ch_buf of the start of
 		 * the current run.
 		 */
-		SeExpr2_bp = SeExpr2_cp;
+		KSeExpr_bp = KSeExpr_cp;
 
-		SeExpr2_current_state = (SeExpr2_start);
-SeExpr2_match:
+		KSeExpr_current_state = (KSeExpr_start);
+KSeExpr_match:
 		do
 			{
-			SeExprYY_CHAR SeExpr2_c = SeExpr2_ec[SeExprYY_SC_TO_UI(*SeExpr2_cp)] ;
-			if ( SeExpr2_accept[SeExpr2_current_state] )
+			SeExprYY_CHAR KSeExpr_c = KSeExpr_ec[SeExprYY_SC_TO_UI(*KSeExpr_cp)] ;
+			if ( KSeExpr_accept[KSeExpr_current_state] )
 				{
-				(SeExpr2_last_accepting_state) = SeExpr2_current_state;
-				(SeExpr2_last_accepting_cpos) = SeExpr2_cp;
+				(KSeExpr_last_accepting_state) = KSeExpr_current_state;
+				(KSeExpr_last_accepting_cpos) = KSeExpr_cp;
 				}
-			while ( SeExpr2_chk[SeExpr2_base[SeExpr2_current_state] + SeExpr2_c] != SeExpr2_current_state )
+			while ( KSeExpr_chk[KSeExpr_base[KSeExpr_current_state] + KSeExpr_c] != KSeExpr_current_state )
 				{
-				SeExpr2_current_state = (int) SeExpr2_def[SeExpr2_current_state];
-				if ( SeExpr2_current_state >= 160 )
-					SeExpr2_c = SeExpr2_meta[SeExpr2_c];
+				KSeExpr_current_state = (int) KSeExpr_def[KSeExpr_current_state];
+				if ( KSeExpr_current_state >= 160 )
+					KSeExpr_c = KSeExpr_meta[KSeExpr_c];
 				}
-			SeExpr2_current_state = SeExpr2_nxt[SeExpr2_base[SeExpr2_current_state] + SeExpr2_c];
-			++SeExpr2_cp;
+			KSeExpr_current_state = KSeExpr_nxt[KSeExpr_base[KSeExpr_current_state] + KSeExpr_c];
+			++KSeExpr_cp;
 			}
-		while ( SeExpr2_base[SeExpr2_current_state] != 246 );
+		while ( KSeExpr_base[KSeExpr_current_state] != 246 );
 
-SeExpr2_find_action:
-		SeExpr2_act = SeExpr2_accept[SeExpr2_current_state];
-		if ( SeExpr2_act == 0 )
+KSeExpr_find_action:
+		KSeExpr_act = KSeExpr_accept[KSeExpr_current_state];
+		if ( KSeExpr_act == 0 )
 			{ /* have to back up */
-			SeExpr2_cp = (SeExpr2_last_accepting_cpos);
-			SeExpr2_current_state = (SeExpr2_last_accepting_state);
-			SeExpr2_act = SeExpr2_accept[SeExpr2_current_state];
+			KSeExpr_cp = (KSeExpr_last_accepting_cpos);
+			KSeExpr_current_state = (KSeExpr_last_accepting_state);
+			KSeExpr_act = KSeExpr_accept[KSeExpr_current_state];
 			}
 
 		SeExprYY_DO_BEFORE_ACTION;
 
 do_action:	/* This label is used only to access EOF actions. */
 
-		switch ( SeExpr2_act )
+		switch ( KSeExpr_act )
 	{ /* beginning of action switch */
 			case 0: /* must back up */
 			/* undo the effects of SeExprYY_DO_BEFORE_ACTION */
-			*SeExpr2_cp = (SeExpr2_hold_char);
-			SeExpr2_cp = (SeExpr2_last_accepting_cpos);
-			SeExpr2_current_state = (SeExpr2_last_accepting_state);
-			goto SeExpr2_find_action;
+			*KSeExpr_cp = (KSeExpr_hold_char);
+			KSeExpr_cp = (KSeExpr_last_accepting_cpos);
+			KSeExpr_current_state = (KSeExpr_last_accepting_state);
+			goto KSeExpr_find_action;
 
 case 1:
 SeExprYY_RULE_SETUP
@@ -1028,68 +1028,68 @@ SeExprYY_RULE_SETUP
 case 25:
 SeExprYY_RULE_SETUP
 #line 107 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
-{ SeExpr2lval.d = M_PI; return NUMBER; }
+{ KSeExprlval.d = M_PI; return NUMBER; }
 	SeExprYY_BREAK
 case 26:
 SeExprYY_RULE_SETUP
 #line 108 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
-{ SeExpr2lval.d = M_E; return NUMBER; }
+{ KSeExprlval.d = M_E; return NUMBER; }
 	SeExprYY_BREAK
 case 27:
 SeExprYY_RULE_SETUP
 #line 109 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
-{ SeExpr2lval.d = 0; return NUMBER; }
+{ KSeExprlval.d = 0; return NUMBER; }
 	SeExprYY_BREAK
 case 28:
 SeExprYY_RULE_SETUP
 #line 110 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
-{ SeExpr2lval.d = 1; return NUMBER; }
+{ KSeExprlval.d = 1; return NUMBER; }
 	SeExprYY_BREAK
 case 29:
 SeExprYY_RULE_SETUP
 #line 111 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
-{ SeExpr2lval.d = 2; return NUMBER; }
+{ KSeExprlval.d = 2; return NUMBER; }
 	SeExprYY_BREAK
 case 30:
 SeExprYY_RULE_SETUP
 #line 112 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
-{ SeExpr2lval.d = 3; return NUMBER; }
+{ KSeExprlval.d = 3; return NUMBER; }
 	SeExprYY_BREAK
 case 31:
 SeExprYY_RULE_SETUP
 #line 114 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
-{ SeExpr2lval.d = SeExpr2::Utils::atof(SeExpr2text); return NUMBER; }
+{ KSeExprlval.d = KSeExpr::Utils::atof(KSeExprtext); return NUMBER; }
 	SeExprYY_BREAK
 case 32:
 SeExprYY_RULE_SETUP
 #line 115 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
 { /* match quoted string, allow embedded quote, \" */
-			  SeExpr2lval.s = strdup(&SeExpr2text[1]);
-			  SeExpr2lval.s[strlen(SeExpr2lval.s)-1] = '\0';
+			  KSeExprlval.s = strdup(&KSeExprtext[1]);
+			  KSeExprlval.s[strlen(KSeExprlval.s)-1] = '\0';
                           return STR; }
 	SeExprYY_BREAK
 case 33:
 SeExprYY_RULE_SETUP
 #line 119 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
 { /* match quoted string, allow embedded quote, \' */
-			  SeExpr2lval.s = strdup(&SeExpr2text[1]);
-			  SeExpr2lval.s[strlen(SeExpr2lval.s)-1] = '\0';
+			  KSeExprlval.s = strdup(&KSeExprtext[1]);
+			  KSeExprlval.s[strlen(KSeExprlval.s)-1] = '\0';
                           return STR; }
 	SeExprYY_BREAK
 case 34:
 SeExprYY_RULE_SETUP
 #line 123 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
-{ SeExpr2lval.s = strdup(&SeExpr2text[1]); return VAR; }
+{ KSeExprlval.s = strdup(&KSeExprtext[1]); return VAR; }
 	SeExprYY_BREAK
 case 35:
 SeExprYY_RULE_SETUP
 #line 124 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
-{ SeExpr2lval.s = strdup(&SeExpr2text[1]); return VAR; }
+{ KSeExprlval.s = strdup(&KSeExprtext[1]); return VAR; }
 	SeExprYY_BREAK
 case 36:
 SeExprYY_RULE_SETUP
 #line 125 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
-{ SeExpr2lval.s = strdup(SeExpr2text); return NAME; }
+{ KSeExprlval.s = strdup(KSeExprtext); return NAME; }
 	SeExprYY_BREAK
 case 37:
 SeExprYY_RULE_SETUP
@@ -1111,13 +1111,13 @@ case 40:
 SeExprYY_RULE_SETUP
 #line 130 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
 { /* match comment */
-                         int startPos=SeExpr2pos(),endPos=SeExpr2pos()+strlen(&SeExpr2text[1])+1;
+                         int startPos=KSeExprpos(),endPos=KSeExprpos()+strlen(&KSeExprtext[1])+1;
 			  comments->push_back(std::pair<int,int>(startPos,endPos));}
 	SeExprYY_BREAK
 case 41:
 SeExprYY_RULE_SETUP
 #line 134 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
-{ return SeExpr2text[0]; }
+{ return KSeExprtext[0]; }
 	SeExprYY_BREAK
 case 42:
 SeExprYY_RULE_SETUP
@@ -1126,126 +1126,126 @@ ECHO;
 	SeExprYY_BREAK
 #line 1127 "ExprParserLexIn.cpp"
 case SeExprYY_STATE_EOF(INITIAL):
-	SeExpr2terminate();
+	KSeExprterminate();
 
 	case SeExprYY_END_OF_BUFFER:
 		{
 		/* Amount of text matched not including the EOB char. */
-		int SeExpr2_amount_of_matched_text = (int) (SeExpr2_cp - (SeExpr2text_ptr)) - 1;
+		int KSeExpr_amount_of_matched_text = (int) (KSeExpr_cp - (KSeExprtext_ptr)) - 1;
 
 		/* Undo the effects of SeExprYY_DO_BEFORE_ACTION. */
-		*SeExpr2_cp = (SeExpr2_hold_char);
+		*KSeExpr_cp = (KSeExpr_hold_char);
 		SeExprYY_RESTORE_SeExprYY_MORE_OFFSET
 
-		if ( SeExprYY_CURRENT_BUFFER_LVALUE->SeExpr2_buffer_status == SeExprYY_BUFFER_NEW )
+		if ( SeExprYY_CURRENT_BUFFER_LVALUE->KSeExpr_buffer_status == SeExprYY_BUFFER_NEW )
 			{
 			/* We're scanning a new file or input source.  It's
 			 * possible that this happened because the user
-			 * just pointed SeExpr2in at a new source and called
-			 * SeExpr2lex().  If so, then we have to assure
+			 * just pointed KSeExprin at a new source and called
+			 * KSeExprlex().  If so, then we have to assure
 			 * consistency between SeExprYY_CURRENT_BUFFER and our
 			 * globals.  Here is the right place to do so, because
 			 * this is the first action (other than possibly a
 			 * back-up) that will match for the new input source.
 			 */
-			(SeExpr2_n_chars) = SeExprYY_CURRENT_BUFFER_LVALUE->SeExpr2_n_chars;
-			SeExprYY_CURRENT_BUFFER_LVALUE->SeExpr2_input_file = SeExpr2in;
-			SeExprYY_CURRENT_BUFFER_LVALUE->SeExpr2_buffer_status = SeExprYY_BUFFER_NORMAL;
+			(KSeExpr_n_chars) = SeExprYY_CURRENT_BUFFER_LVALUE->KSeExpr_n_chars;
+			SeExprYY_CURRENT_BUFFER_LVALUE->KSeExpr_input_file = KSeExprin;
+			SeExprYY_CURRENT_BUFFER_LVALUE->KSeExpr_buffer_status = SeExprYY_BUFFER_NORMAL;
 			}
 
-		/* Note that here we test for SeExpr2_c_buf_p "<=" to the position
-		 * of the first EOB in the buffer, since SeExpr2_c_buf_p will
+		/* Note that here we test for KSeExpr_c_buf_p "<=" to the position
+		 * of the first EOB in the buffer, since KSeExpr_c_buf_p will
 		 * already have been incremented past the NUL character
 		 * (since all states make transitions on EOB to the
 		 * end-of-buffer state).  Contrast this with the test
 		 * in input().
 		 */
-		if ( (SeExpr2_c_buf_p) <= &SeExprYY_CURRENT_BUFFER_LVALUE->SeExpr2_ch_buf[(SeExpr2_n_chars)] )
+		if ( (KSeExpr_c_buf_p) <= &SeExprYY_CURRENT_BUFFER_LVALUE->KSeExpr_ch_buf[(KSeExpr_n_chars)] )
 			{ /* This was really a NUL. */
-			SeExpr2_state_type SeExpr2_next_state;
+			KSeExpr_state_type KSeExpr_next_state;
 
-			(SeExpr2_c_buf_p) = (SeExpr2text_ptr) + SeExpr2_amount_of_matched_text;
+			(KSeExpr_c_buf_p) = (KSeExprtext_ptr) + KSeExpr_amount_of_matched_text;
 
-			SeExpr2_current_state = SeExpr2_get_previous_state(  );
+			KSeExpr_current_state = KSeExpr_get_previous_state(  );
 
 			/* Okay, we're now positioned to make the NUL
 			 * transition.  We couldn't have
-			 * SeExpr2_get_previous_state() go ahead and do it
+			 * KSeExpr_get_previous_state() go ahead and do it
 			 * for us because it doesn't know how to deal
 			 * with the possibility of jamming (and we don't
 			 * want to build jamming into it because then it
 			 * will run more slowly).
 			 */
 
-			SeExpr2_next_state = SeExpr2_try_NUL_trans( SeExpr2_current_state );
+			KSeExpr_next_state = KSeExpr_try_NUL_trans( KSeExpr_current_state );
 
-			SeExpr2_bp = (SeExpr2text_ptr) + SeExprYY_MORE_ADJ;
+			KSeExpr_bp = (KSeExprtext_ptr) + SeExprYY_MORE_ADJ;
 
-			if ( SeExpr2_next_state )
+			if ( KSeExpr_next_state )
 				{
 				/* Consume the NUL. */
-				SeExpr2_cp = ++(SeExpr2_c_buf_p);
-				SeExpr2_current_state = SeExpr2_next_state;
-				goto SeExpr2_match;
+				KSeExpr_cp = ++(KSeExpr_c_buf_p);
+				KSeExpr_current_state = KSeExpr_next_state;
+				goto KSeExpr_match;
 				}
 
 			else
 				{
-				SeExpr2_cp = (SeExpr2_c_buf_p);
-				goto SeExpr2_find_action;
+				KSeExpr_cp = (KSeExpr_c_buf_p);
+				goto KSeExpr_find_action;
 				}
 			}
 
-		else switch ( SeExpr2_get_next_buffer(  ) )
+		else switch ( KSeExpr_get_next_buffer(  ) )
 			{
 			case EOB_ACT_END_OF_FILE:
 				{
-				(SeExpr2_did_buffer_switch_on_eof) = 0;
+				(KSeExpr_did_buffer_switch_on_eof) = 0;
 
-				if ( SeExpr2wrap(  ) )
+				if ( KSeExprwrap(  ) )
 					{
 					/* Note: because we've taken care in
-					 * SeExpr2_get_next_buffer() to have set up
-					 * SeExpr2text, we can now set up
-					 * SeExpr2_c_buf_p so that if some total
+					 * KSeExpr_get_next_buffer() to have set up
+					 * KSeExprtext, we can now set up
+					 * KSeExpr_c_buf_p so that if some total
 					 * hoser (like flex itself) wants to
 					 * call the scanner after we return the
 					 * SeExprYY_NULL, it'll still work - another
 					 * SeExprYY_NULL will get returned.
 					 */
-					(SeExpr2_c_buf_p) = (SeExpr2text_ptr) + SeExprYY_MORE_ADJ;
+					(KSeExpr_c_buf_p) = (KSeExprtext_ptr) + SeExprYY_MORE_ADJ;
 
-					SeExpr2_act = SeExprYY_STATE_EOF(SeExprYY_START);
+					KSeExpr_act = SeExprYY_STATE_EOF(SeExprYY_START);
 					goto do_action;
 					}
 
 				else
 					{
-					if ( ! (SeExpr2_did_buffer_switch_on_eof) )
+					if ( ! (KSeExpr_did_buffer_switch_on_eof) )
 						SeExprYY_NEW_FILE;
 					}
 				break;
 				}
 
 			case EOB_ACT_CONTINUE_SCAN:
-				(SeExpr2_c_buf_p) =
-					(SeExpr2text_ptr) + SeExpr2_amount_of_matched_text;
+				(KSeExpr_c_buf_p) =
+					(KSeExprtext_ptr) + KSeExpr_amount_of_matched_text;
 
-				SeExpr2_current_state = SeExpr2_get_previous_state(  );
+				KSeExpr_current_state = KSeExpr_get_previous_state(  );
 
-				SeExpr2_cp = (SeExpr2_c_buf_p);
-				SeExpr2_bp = (SeExpr2text_ptr) + SeExprYY_MORE_ADJ;
-				goto SeExpr2_match;
+				KSeExpr_cp = (KSeExpr_c_buf_p);
+				KSeExpr_bp = (KSeExprtext_ptr) + SeExprYY_MORE_ADJ;
+				goto KSeExpr_match;
 
 			case EOB_ACT_LAST_MATCH:
-				(SeExpr2_c_buf_p) =
-				&SeExprYY_CURRENT_BUFFER_LVALUE->SeExpr2_ch_buf[(SeExpr2_n_chars)];
+				(KSeExpr_c_buf_p) =
+				&SeExprYY_CURRENT_BUFFER_LVALUE->KSeExpr_ch_buf[(KSeExpr_n_chars)];
 
-				SeExpr2_current_state = SeExpr2_get_previous_state(  );
+				KSeExpr_current_state = KSeExpr_get_previous_state(  );
 
-				SeExpr2_cp = (SeExpr2_c_buf_p);
-				SeExpr2_bp = (SeExpr2text_ptr) + SeExprYY_MORE_ADJ;
-				goto SeExpr2_find_action;
+				KSeExpr_cp = (KSeExpr_c_buf_p);
+				KSeExpr_bp = (KSeExprtext_ptr) + SeExprYY_MORE_ADJ;
+				goto KSeExpr_find_action;
 			}
 		break;
 		}
@@ -1256,29 +1256,29 @@ case SeExprYY_STATE_EOF(INITIAL):
 	} /* end of action switch */
 		} /* end of scanning one token */
 	} /* end of user's declarations */
-} /* end of SeExpr2lex */
+} /* end of KSeExprlex */
 
-/* SeExpr2_get_next_buffer - try to read in a new buffer
+/* KSeExpr_get_next_buffer - try to read in a new buffer
  *
  * Returns a code representing an action:
  *	EOB_ACT_LAST_MATCH -
  *	EOB_ACT_CONTINUE_SCAN - continue scanning from current position
  *	EOB_ACT_END_OF_FILE - end of file
  */
-static int SeExpr2_get_next_buffer (void)
+static int KSeExpr_get_next_buffer (void)
 {
-    	char *dest = SeExprYY_CURRENT_BUFFER_LVALUE->SeExpr2_ch_buf;
-	char *source = (SeExpr2text_ptr);
+    	char *dest = SeExprYY_CURRENT_BUFFER_LVALUE->KSeExpr_ch_buf;
+	char *source = (KSeExprtext_ptr);
 	int number_to_move, i;
 	int ret_val;
 
-	if ( (SeExpr2_c_buf_p) > &SeExprYY_CURRENT_BUFFER_LVALUE->SeExpr2_ch_buf[(SeExpr2_n_chars) + 1] )
+	if ( (KSeExpr_c_buf_p) > &SeExprYY_CURRENT_BUFFER_LVALUE->KSeExpr_ch_buf[(KSeExpr_n_chars) + 1] )
 		SeExprYY_FATAL_ERROR(
 		"fatal flex scanner internal error--end of buffer missed" );
 
-	if ( SeExprYY_CURRENT_BUFFER_LVALUE->SeExpr2_fill_buffer == 0 )
+	if ( SeExprYY_CURRENT_BUFFER_LVALUE->KSeExpr_fill_buffer == 0 )
 		{ /* Don't try to fill the buffer, so this is an EOF. */
-		if ( (SeExpr2_c_buf_p) - (SeExpr2text_ptr) - SeExprYY_MORE_ADJ == 1 )
+		if ( (KSeExpr_c_buf_p) - (KSeExprtext_ptr) - SeExprYY_MORE_ADJ == 1 )
 			{
 			/* We matched a single character, the EOB, so
 			 * treat this as a final EOF.
@@ -1298,21 +1298,21 @@ static int SeExpr2_get_next_buffer (void)
 	/* Try to read more data. */
 
 	/* First move last chars to start of buffer. */
-	number_to_move = (int) ((SeExpr2_c_buf_p) - (SeExpr2text_ptr) - 1);
+	number_to_move = (int) ((KSeExpr_c_buf_p) - (KSeExprtext_ptr) - 1);
 
 	for ( i = 0; i < number_to_move; ++i )
 		*(dest++) = *(source++);
 
-	if ( SeExprYY_CURRENT_BUFFER_LVALUE->SeExpr2_buffer_status == SeExprYY_BUFFER_EOF_PENDING )
+	if ( SeExprYY_CURRENT_BUFFER_LVALUE->KSeExpr_buffer_status == SeExprYY_BUFFER_EOF_PENDING )
 		/* don't do the read, it's not guaranteed to return an EOF,
 		 * just force an EOF
 		 */
-		SeExprYY_CURRENT_BUFFER_LVALUE->SeExpr2_n_chars = (SeExpr2_n_chars) = 0;
+		SeExprYY_CURRENT_BUFFER_LVALUE->KSeExpr_n_chars = (KSeExpr_n_chars) = 0;
 
 	else
 		{
 			int num_to_read =
-			SeExprYY_CURRENT_BUFFER_LVALUE->SeExpr2_buf_size - number_to_move - 1;
+			SeExprYY_CURRENT_BUFFER_LVALUE->KSeExpr_buf_size - number_to_move - 1;
 
 		while ( num_to_read <= 0 )
 			{ /* Not enough room in the buffer - grow it. */
@@ -1320,34 +1320,34 @@ static int SeExpr2_get_next_buffer (void)
 			/* just a shorter name for the current buffer */
 			SeExprYY_BUFFER_STATE b = SeExprYY_CURRENT_BUFFER_LVALUE;
 
-			int SeExpr2_c_buf_p_offset =
-				(int) ((SeExpr2_c_buf_p) - b->SeExpr2_ch_buf);
+			int KSeExpr_c_buf_p_offset =
+				(int) ((KSeExpr_c_buf_p) - b->KSeExpr_ch_buf);
 
-			if ( b->SeExpr2_is_our_buffer )
+			if ( b->KSeExpr_is_our_buffer )
 				{
-				int new_size = b->SeExpr2_buf_size * 2;
+				int new_size = b->KSeExpr_buf_size * 2;
 
 				if ( new_size <= 0 )
-					b->SeExpr2_buf_size += b->SeExpr2_buf_size / 8;
+					b->KSeExpr_buf_size += b->KSeExpr_buf_size / 8;
 				else
-					b->SeExpr2_buf_size *= 2;
+					b->KSeExpr_buf_size *= 2;
 
-				b->SeExpr2_ch_buf = (char *)
+				b->KSeExpr_ch_buf = (char *)
 					/* Include room in for 2 EOB chars. */
-					SeExpr2realloc( (void *) b->SeExpr2_ch_buf,
-							 (SeExpr2_size_t) (b->SeExpr2_buf_size + 2)  );
+					KSeExprrealloc( (void *) b->KSeExpr_ch_buf,
+							 (KSeExpr_size_t) (b->KSeExpr_buf_size + 2)  );
 				}
 			else
 				/* Can't grow it, we don't own it. */
-				b->SeExpr2_ch_buf = NULL;
+				b->KSeExpr_ch_buf = NULL;
 
-			if ( ! b->SeExpr2_ch_buf )
+			if ( ! b->KSeExpr_ch_buf )
 				SeExprYY_FATAL_ERROR(
 				"fatal error - scanner input buffer overflow" );
 
-			(SeExpr2_c_buf_p) = &b->SeExpr2_ch_buf[SeExpr2_c_buf_p_offset];
+			(KSeExpr_c_buf_p) = &b->KSeExpr_ch_buf[KSeExpr_c_buf_p_offset];
 
-			num_to_read = SeExprYY_CURRENT_BUFFER_LVALUE->SeExpr2_buf_size -
+			num_to_read = SeExprYY_CURRENT_BUFFER_LVALUE->KSeExpr_buf_size -
 						number_to_move - 1;
 
 			}
@@ -1356,24 +1356,24 @@ static int SeExpr2_get_next_buffer (void)
 			num_to_read = SeExprYY_READ_BUF_SIZE;
 
 		/* Read in more data. */
-		SeExprYY_INPUT( (&SeExprYY_CURRENT_BUFFER_LVALUE->SeExpr2_ch_buf[number_to_move]),
-			(SeExpr2_n_chars), num_to_read );
+		SeExprYY_INPUT( (&SeExprYY_CURRENT_BUFFER_LVALUE->KSeExpr_ch_buf[number_to_move]),
+			(KSeExpr_n_chars), num_to_read );
 
-		SeExprYY_CURRENT_BUFFER_LVALUE->SeExpr2_n_chars = (SeExpr2_n_chars);
+		SeExprYY_CURRENT_BUFFER_LVALUE->KSeExpr_n_chars = (KSeExpr_n_chars);
 		}
 
-	if ( (SeExpr2_n_chars) == 0 )
+	if ( (KSeExpr_n_chars) == 0 )
 		{
 		if ( number_to_move == SeExprYY_MORE_ADJ )
 			{
 			ret_val = EOB_ACT_END_OF_FILE;
-			SeExpr2restart( SeExpr2in  );
+			KSeExprrestart( KSeExprin  );
 			}
 
 		else
 			{
 			ret_val = EOB_ACT_LAST_MATCH;
-			SeExprYY_CURRENT_BUFFER_LVALUE->SeExpr2_buffer_status =
+			SeExprYY_CURRENT_BUFFER_LVALUE->KSeExpr_buffer_status =
 				SeExprYY_BUFFER_EOF_PENDING;
 			}
 		}
@@ -1381,81 +1381,81 @@ static int SeExpr2_get_next_buffer (void)
 	else
 		ret_val = EOB_ACT_CONTINUE_SCAN;
 
-	if (((SeExpr2_n_chars) + number_to_move) > SeExprYY_CURRENT_BUFFER_LVALUE->SeExpr2_buf_size) {
+	if (((KSeExpr_n_chars) + number_to_move) > SeExprYY_CURRENT_BUFFER_LVALUE->KSeExpr_buf_size) {
 		/* Extend the array by 50%, plus the number we really need. */
-		int new_size = (SeExpr2_n_chars) + number_to_move + ((SeExpr2_n_chars) >> 1);
-		SeExprYY_CURRENT_BUFFER_LVALUE->SeExpr2_ch_buf = (char *) SeExpr2realloc(
-			(void *) SeExprYY_CURRENT_BUFFER_LVALUE->SeExpr2_ch_buf, (SeExpr2_size_t) new_size  );
-		if ( ! SeExprYY_CURRENT_BUFFER_LVALUE->SeExpr2_ch_buf )
-			SeExprYY_FATAL_ERROR( "out of dynamic memory in SeExpr2_get_next_buffer()" );
+		int new_size = (KSeExpr_n_chars) + number_to_move + ((KSeExpr_n_chars) >> 1);
+		SeExprYY_CURRENT_BUFFER_LVALUE->KSeExpr_ch_buf = (char *) KSeExprrealloc(
+			(void *) SeExprYY_CURRENT_BUFFER_LVALUE->KSeExpr_ch_buf, (KSeExpr_size_t) new_size  );
+		if ( ! SeExprYY_CURRENT_BUFFER_LVALUE->KSeExpr_ch_buf )
+			SeExprYY_FATAL_ERROR( "out of dynamic memory in KSeExpr_get_next_buffer()" );
 		/* "- 2" to take care of EOB's */
-		SeExprYY_CURRENT_BUFFER_LVALUE->SeExpr2_buf_size = (int) (new_size - 2);
+		SeExprYY_CURRENT_BUFFER_LVALUE->KSeExpr_buf_size = (int) (new_size - 2);
 	}
 
-	(SeExpr2_n_chars) += number_to_move;
-	SeExprYY_CURRENT_BUFFER_LVALUE->SeExpr2_ch_buf[(SeExpr2_n_chars)] = SeExprYY_END_OF_BUFFER_CHAR;
-	SeExprYY_CURRENT_BUFFER_LVALUE->SeExpr2_ch_buf[(SeExpr2_n_chars) + 1] = SeExprYY_END_OF_BUFFER_CHAR;
+	(KSeExpr_n_chars) += number_to_move;
+	SeExprYY_CURRENT_BUFFER_LVALUE->KSeExpr_ch_buf[(KSeExpr_n_chars)] = SeExprYY_END_OF_BUFFER_CHAR;
+	SeExprYY_CURRENT_BUFFER_LVALUE->KSeExpr_ch_buf[(KSeExpr_n_chars) + 1] = SeExprYY_END_OF_BUFFER_CHAR;
 
-	(SeExpr2text_ptr) = &SeExprYY_CURRENT_BUFFER_LVALUE->SeExpr2_ch_buf[0];
+	(KSeExprtext_ptr) = &SeExprYY_CURRENT_BUFFER_LVALUE->KSeExpr_ch_buf[0];
 
 	return ret_val;
 }
 
-/* SeExpr2_get_previous_state - get the state just before the EOB char was reached */
+/* KSeExpr_get_previous_state - get the state just before the EOB char was reached */
 
-    static SeExpr2_state_type SeExpr2_get_previous_state (void)
+    static KSeExpr_state_type KSeExpr_get_previous_state (void)
 {
-	SeExpr2_state_type SeExpr2_current_state;
-	char *SeExpr2_cp;
+	KSeExpr_state_type KSeExpr_current_state;
+	char *KSeExpr_cp;
     
-	SeExpr2_current_state = (SeExpr2_start);
+	KSeExpr_current_state = (KSeExpr_start);
 
-	for ( SeExpr2_cp = (SeExpr2text_ptr) + SeExprYY_MORE_ADJ; SeExpr2_cp < (SeExpr2_c_buf_p); ++SeExpr2_cp )
+	for ( KSeExpr_cp = (KSeExprtext_ptr) + SeExprYY_MORE_ADJ; KSeExpr_cp < (KSeExpr_c_buf_p); ++KSeExpr_cp )
 		{
-		SeExprYY_CHAR SeExpr2_c = (*SeExpr2_cp ? SeExpr2_ec[SeExprYY_SC_TO_UI(*SeExpr2_cp)] : 1);
-		if ( SeExpr2_accept[SeExpr2_current_state] )
+		SeExprYY_CHAR KSeExpr_c = (*KSeExpr_cp ? KSeExpr_ec[SeExprYY_SC_TO_UI(*KSeExpr_cp)] : 1);
+		if ( KSeExpr_accept[KSeExpr_current_state] )
 			{
-			(SeExpr2_last_accepting_state) = SeExpr2_current_state;
-			(SeExpr2_last_accepting_cpos) = SeExpr2_cp;
+			(KSeExpr_last_accepting_state) = KSeExpr_current_state;
+			(KSeExpr_last_accepting_cpos) = KSeExpr_cp;
 			}
-		while ( SeExpr2_chk[SeExpr2_base[SeExpr2_current_state] + SeExpr2_c] != SeExpr2_current_state )
+		while ( KSeExpr_chk[KSeExpr_base[KSeExpr_current_state] + KSeExpr_c] != KSeExpr_current_state )
 			{
-			SeExpr2_current_state = (int) SeExpr2_def[SeExpr2_current_state];
-			if ( SeExpr2_current_state >= 160 )
-				SeExpr2_c = SeExpr2_meta[SeExpr2_c];
+			KSeExpr_current_state = (int) KSeExpr_def[KSeExpr_current_state];
+			if ( KSeExpr_current_state >= 160 )
+				KSeExpr_c = KSeExpr_meta[KSeExpr_c];
 			}
-		SeExpr2_current_state = SeExpr2_nxt[SeExpr2_base[SeExpr2_current_state] + SeExpr2_c];
+		KSeExpr_current_state = KSeExpr_nxt[KSeExpr_base[KSeExpr_current_state] + KSeExpr_c];
 		}
 
-	return SeExpr2_current_state;
+	return KSeExpr_current_state;
 }
 
-/* SeExpr2_try_NUL_trans - try to make a transition on the NUL character
+/* KSeExpr_try_NUL_trans - try to make a transition on the NUL character
  *
  * synopsis
- *	next_state = SeExpr2_try_NUL_trans( current_state );
+ *	next_state = KSeExpr_try_NUL_trans( current_state );
  */
-    static SeExpr2_state_type SeExpr2_try_NUL_trans  (SeExpr2_state_type SeExpr2_current_state )
+    static KSeExpr_state_type KSeExpr_try_NUL_trans  (KSeExpr_state_type KSeExpr_current_state )
 {
-	int SeExpr2_is_jam;
-    	char *SeExpr2_cp = (SeExpr2_c_buf_p);
+	int KSeExpr_is_jam;
+    	char *KSeExpr_cp = (KSeExpr_c_buf_p);
 
-	SeExprYY_CHAR SeExpr2_c = 1;
-	if ( SeExpr2_accept[SeExpr2_current_state] )
+	SeExprYY_CHAR KSeExpr_c = 1;
+	if ( KSeExpr_accept[KSeExpr_current_state] )
 		{
-		(SeExpr2_last_accepting_state) = SeExpr2_current_state;
-		(SeExpr2_last_accepting_cpos) = SeExpr2_cp;
+		(KSeExpr_last_accepting_state) = KSeExpr_current_state;
+		(KSeExpr_last_accepting_cpos) = KSeExpr_cp;
 		}
-	while ( SeExpr2_chk[SeExpr2_base[SeExpr2_current_state] + SeExpr2_c] != SeExpr2_current_state )
+	while ( KSeExpr_chk[KSeExpr_base[KSeExpr_current_state] + KSeExpr_c] != KSeExpr_current_state )
 		{
-		SeExpr2_current_state = (int) SeExpr2_def[SeExpr2_current_state];
-		if ( SeExpr2_current_state >= 160 )
-			SeExpr2_c = SeExpr2_meta[SeExpr2_c];
+		KSeExpr_current_state = (int) KSeExpr_def[KSeExpr_current_state];
+		if ( KSeExpr_current_state >= 160 )
+			KSeExpr_c = KSeExpr_meta[KSeExpr_c];
 		}
-	SeExpr2_current_state = SeExpr2_nxt[SeExpr2_base[SeExpr2_current_state] + SeExpr2_c];
-	SeExpr2_is_jam = (SeExpr2_current_state == 159);
+	KSeExpr_current_state = KSeExpr_nxt[KSeExpr_base[KSeExpr_current_state] + KSeExpr_c];
+	KSeExpr_is_jam = (KSeExpr_current_state == 159);
 
-		return SeExpr2_is_jam ? 0 : SeExpr2_current_state;
+		return KSeExpr_is_jam ? 0 : KSeExpr_current_state;
 }
 
 #ifndef SeExprYY_NO_UNPUT
@@ -1464,7 +1464,7 @@ static int SeExpr2_get_next_buffer (void)
 
 #ifndef SeExprYY_NO_INPUT
 #ifdef __cplusplus
-    static int SeExpr2input (void)
+    static int KSeExprinput (void)
 #else
     static int input  (void)
 #endif
@@ -1472,27 +1472,27 @@ static int SeExpr2_get_next_buffer (void)
 {
 	int c;
     
-	*(SeExpr2_c_buf_p) = (SeExpr2_hold_char);
+	*(KSeExpr_c_buf_p) = (KSeExpr_hold_char);
 
-	if ( *(SeExpr2_c_buf_p) == SeExprYY_END_OF_BUFFER_CHAR )
+	if ( *(KSeExpr_c_buf_p) == SeExprYY_END_OF_BUFFER_CHAR )
 		{
-		/* SeExpr2_c_buf_p now points to the character we want to return.
+		/* KSeExpr_c_buf_p now points to the character we want to return.
 		 * If this occurs *before* the EOB characters, then it's a
 		 * valid NUL; if not, then we've hit the end of the buffer.
 		 */
-		if ( (SeExpr2_c_buf_p) < &SeExprYY_CURRENT_BUFFER_LVALUE->SeExpr2_ch_buf[(SeExpr2_n_chars)] )
+		if ( (KSeExpr_c_buf_p) < &SeExprYY_CURRENT_BUFFER_LVALUE->KSeExpr_ch_buf[(KSeExpr_n_chars)] )
 			/* This was really a NUL. */
-			*(SeExpr2_c_buf_p) = '\0';
+			*(KSeExpr_c_buf_p) = '\0';
 
 		else
 			{ /* need more input */
-			int offset = (int) ((SeExpr2_c_buf_p) - (SeExpr2text_ptr));
-			++(SeExpr2_c_buf_p);
+			int offset = (int) ((KSeExpr_c_buf_p) - (KSeExprtext_ptr));
+			++(KSeExpr_c_buf_p);
 
-			switch ( SeExpr2_get_next_buffer(  ) )
+			switch ( KSeExpr_get_next_buffer(  ) )
 				{
 				case EOB_ACT_LAST_MATCH:
-					/* This happens because SeExpr2_g_n_b()
+					/* This happens because KSeExpr_g_n_b()
 					 * sees that we've accumulated a
 					 * token and flags that we need to
 					 * try matching the token before
@@ -1503,34 +1503,34 @@ static int SeExpr2_get_next_buffer (void)
 					 */
 
 					/* Reset buffer status. */
-					SeExpr2restart( SeExpr2in );
+					KSeExprrestart( KSeExprin );
 
 					/*FALLTHROUGH*/
 
 				case EOB_ACT_END_OF_FILE:
 					{
-					if ( SeExpr2wrap(  ) )
+					if ( KSeExprwrap(  ) )
 						return 0;
 
-					if ( ! (SeExpr2_did_buffer_switch_on_eof) )
+					if ( ! (KSeExpr_did_buffer_switch_on_eof) )
 						SeExprYY_NEW_FILE;
 #ifdef __cplusplus
-					return SeExpr2input();
+					return KSeExprinput();
 #else
 					return input();
 #endif
 					}
 
 				case EOB_ACT_CONTINUE_SCAN:
-					(SeExpr2_c_buf_p) = (SeExpr2text_ptr) + offset;
+					(KSeExpr_c_buf_p) = (KSeExprtext_ptr) + offset;
 					break;
 				}
 			}
 		}
 
-	c = *(unsigned char *) (SeExpr2_c_buf_p);	/* cast for 8-bit char's */
-	*(SeExpr2_c_buf_p) = '\0';	/* preserve SeExpr2text */
-	(SeExpr2_hold_char) = *++(SeExpr2_c_buf_p);
+	c = *(unsigned char *) (KSeExpr_c_buf_p);	/* cast for 8-bit char's */
+	*(KSeExpr_c_buf_p) = '\0';	/* preserve KSeExprtext */
+	(KSeExpr_hold_char) = *++(KSeExpr_c_buf_p);
 
 	return c;
 }
@@ -1541,60 +1541,60 @@ static int SeExpr2_get_next_buffer (void)
  * 
  * @note This function does not reset the start condition to @c INITIAL .
  */
-    void SeExpr2restart  (FILE * input_file )
+    void KSeExprrestart  (FILE * input_file )
 {
     
 	if ( ! SeExprYY_CURRENT_BUFFER ){
-        SeExpr2ensure_buffer_stack ();
+        KSeExprensure_buffer_stack ();
 		SeExprYY_CURRENT_BUFFER_LVALUE =
-            SeExpr2_create_buffer( SeExpr2in, SeExprYY_BUF_SIZE );
+            KSeExpr_create_buffer( KSeExprin, SeExprYY_BUF_SIZE );
 	}
 
-	SeExpr2_init_buffer( SeExprYY_CURRENT_BUFFER, input_file );
-	SeExpr2_load_buffer_state(  );
+	KSeExpr_init_buffer( SeExprYY_CURRENT_BUFFER, input_file );
+	KSeExpr_load_buffer_state(  );
 }
 
 /** Switch to a different input buffer.
  * @param new_buffer The new input buffer.
  * 
  */
-    void SeExpr2_switch_to_buffer  (SeExprYY_BUFFER_STATE  new_buffer )
+    void KSeExpr_switch_to_buffer  (SeExprYY_BUFFER_STATE  new_buffer )
 {
     
 	/* TODO. We should be able to replace this entire function body
 	 * with
-	 *		SeExpr2pop_buffer_state();
-	 *		SeExpr2push_buffer_state(new_buffer);
+	 *		KSeExprpop_buffer_state();
+	 *		KSeExprpush_buffer_state(new_buffer);
      */
-	SeExpr2ensure_buffer_stack ();
+	KSeExprensure_buffer_stack ();
 	if ( SeExprYY_CURRENT_BUFFER == new_buffer )
 		return;
 
 	if ( SeExprYY_CURRENT_BUFFER )
 		{
 		/* Flush out information for old buffer. */
-		*(SeExpr2_c_buf_p) = (SeExpr2_hold_char);
-		SeExprYY_CURRENT_BUFFER_LVALUE->SeExpr2_buf_pos = (SeExpr2_c_buf_p);
-		SeExprYY_CURRENT_BUFFER_LVALUE->SeExpr2_n_chars = (SeExpr2_n_chars);
+		*(KSeExpr_c_buf_p) = (KSeExpr_hold_char);
+		SeExprYY_CURRENT_BUFFER_LVALUE->KSeExpr_buf_pos = (KSeExpr_c_buf_p);
+		SeExprYY_CURRENT_BUFFER_LVALUE->KSeExpr_n_chars = (KSeExpr_n_chars);
 		}
 
 	SeExprYY_CURRENT_BUFFER_LVALUE = new_buffer;
-	SeExpr2_load_buffer_state(  );
+	KSeExpr_load_buffer_state(  );
 
 	/* We don't actually know whether we did this switch during
-	 * EOF (SeExpr2wrap()) processing, but the only time this flag
-	 * is looked at is after SeExpr2wrap() is called, so it's safe
+	 * EOF (KSeExprwrap()) processing, but the only time this flag
+	 * is looked at is after KSeExprwrap() is called, so it's safe
 	 * to go ahead and always set it.
 	 */
-	(SeExpr2_did_buffer_switch_on_eof) = 1;
+	(KSeExpr_did_buffer_switch_on_eof) = 1;
 }
 
-static void SeExpr2_load_buffer_state  (void)
+static void KSeExpr_load_buffer_state  (void)
 {
-    	(SeExpr2_n_chars) = SeExprYY_CURRENT_BUFFER_LVALUE->SeExpr2_n_chars;
-	(SeExpr2text_ptr) = (SeExpr2_c_buf_p) = SeExprYY_CURRENT_BUFFER_LVALUE->SeExpr2_buf_pos;
-	SeExpr2in = SeExprYY_CURRENT_BUFFER_LVALUE->SeExpr2_input_file;
-	(SeExpr2_hold_char) = *(SeExpr2_c_buf_p);
+    	(KSeExpr_n_chars) = SeExprYY_CURRENT_BUFFER_LVALUE->KSeExpr_n_chars;
+	(KSeExprtext_ptr) = (KSeExpr_c_buf_p) = SeExprYY_CURRENT_BUFFER_LVALUE->KSeExpr_buf_pos;
+	KSeExprin = SeExprYY_CURRENT_BUFFER_LVALUE->KSeExpr_input_file;
+	(KSeExpr_hold_char) = *(KSeExpr_c_buf_p);
 }
 
 /** Allocate and initialize an input buffer state.
@@ -1603,35 +1603,35 @@ static void SeExpr2_load_buffer_state  (void)
  * 
  * @return the allocated buffer state.
  */
-    SeExprYY_BUFFER_STATE SeExpr2_create_buffer  (FILE * file, int  size )
+    SeExprYY_BUFFER_STATE KSeExpr_create_buffer  (FILE * file, int  size )
 {
 	SeExprYY_BUFFER_STATE b;
     
-	b = (SeExprYY_BUFFER_STATE) SeExpr2alloc( sizeof( struct SeExpr2_buffer_state )  );
+	b = (SeExprYY_BUFFER_STATE) KSeExpralloc( sizeof( struct KSeExpr_buffer_state )  );
 	if ( ! b )
-		SeExprYY_FATAL_ERROR( "out of dynamic memory in SeExpr2_create_buffer()" );
+		SeExprYY_FATAL_ERROR( "out of dynamic memory in KSeExpr_create_buffer()" );
 
-	b->SeExpr2_buf_size = size;
+	b->KSeExpr_buf_size = size;
 
-	/* SeExpr2_ch_buf has to be 2 characters longer than the size given because
+	/* KSeExpr_ch_buf has to be 2 characters longer than the size given because
 	 * we need to put in 2 end-of-buffer characters.
 	 */
-	b->SeExpr2_ch_buf = (char *) SeExpr2alloc( (SeExpr2_size_t) (b->SeExpr2_buf_size + 2)  );
-	if ( ! b->SeExpr2_ch_buf )
-		SeExprYY_FATAL_ERROR( "out of dynamic memory in SeExpr2_create_buffer()" );
+	b->KSeExpr_ch_buf = (char *) KSeExpralloc( (KSeExpr_size_t) (b->KSeExpr_buf_size + 2)  );
+	if ( ! b->KSeExpr_ch_buf )
+		SeExprYY_FATAL_ERROR( "out of dynamic memory in KSeExpr_create_buffer()" );
 
-	b->SeExpr2_is_our_buffer = 1;
+	b->KSeExpr_is_our_buffer = 1;
 
-	SeExpr2_init_buffer( b, file );
+	KSeExpr_init_buffer( b, file );
 
 	return b;
 }
 
 /** Destroy the buffer.
- * @param b a buffer created with SeExpr2_create_buffer()
+ * @param b a buffer created with KSeExpr_create_buffer()
  * 
  */
-    void SeExpr2_delete_buffer (SeExprYY_BUFFER_STATE  b )
+    void KSeExpr_delete_buffer (SeExprYY_BUFFER_STATE  b )
 {
     
 	if ( ! b )
@@ -1640,36 +1640,36 @@ static void SeExpr2_load_buffer_state  (void)
 	if ( b == SeExprYY_CURRENT_BUFFER ) /* Not sure if we should pop here. */
 		SeExprYY_CURRENT_BUFFER_LVALUE = (SeExprYY_BUFFER_STATE) 0;
 
-	if ( b->SeExpr2_is_our_buffer )
-		SeExpr2free( (void *) b->SeExpr2_ch_buf  );
+	if ( b->KSeExpr_is_our_buffer )
+		KSeExprfree( (void *) b->KSeExpr_ch_buf  );
 
-	SeExpr2free( (void *) b  );
+	KSeExprfree( (void *) b  );
 }
 
 /* Initializes or reinitializes a buffer.
  * This function is sometimes called more than once on the same buffer,
- * such as during a SeExpr2restart() or at EOF.
+ * such as during a KSeExprrestart() or at EOF.
  */
-    static void SeExpr2_init_buffer  (SeExprYY_BUFFER_STATE  b, FILE * file )
+    static void KSeExpr_init_buffer  (SeExprYY_BUFFER_STATE  b, FILE * file )
 
 {
 	int oerrno = errno;
     
-	SeExpr2_flush_buffer( b );
+	KSeExpr_flush_buffer( b );
 
-	b->SeExpr2_input_file = file;
-	b->SeExpr2_fill_buffer = 1;
+	b->KSeExpr_input_file = file;
+	b->KSeExpr_fill_buffer = 1;
 
-    /* If b is the current buffer, then SeExpr2_init_buffer was _probably_
-     * called from SeExpr2restart() or through SeExpr2_get_next_buffer.
+    /* If b is the current buffer, then KSeExpr_init_buffer was _probably_
+     * called from KSeExprrestart() or through KSeExpr_get_next_buffer.
      * In that case, we don't want to reset the lineno or column.
      */
     if (b != SeExprYY_CURRENT_BUFFER){
-        b->SeExpr2_bs_lineno = 1;
-        b->SeExpr2_bs_column = 0;
+        b->KSeExpr_bs_lineno = 1;
+        b->KSeExpr_bs_column = 0;
     }
 
-        b->SeExpr2_is_interactive = file ? (isatty( fileno(file) ) > 0) : 0;
+        b->KSeExpr_is_interactive = file ? (isatty( fileno(file) ) > 0) : 0;
     
 	errno = oerrno;
 }
@@ -1678,27 +1678,27 @@ static void SeExpr2_load_buffer_state  (void)
  * @param b the buffer state to be flushed, usually @c SeExprYY_CURRENT_BUFFER.
  * 
  */
-    void SeExpr2_flush_buffer (SeExprYY_BUFFER_STATE  b )
+    void KSeExpr_flush_buffer (SeExprYY_BUFFER_STATE  b )
 {
     	if ( ! b )
 		return;
 
-	b->SeExpr2_n_chars = 0;
+	b->KSeExpr_n_chars = 0;
 
 	/* We always need two end-of-buffer characters.  The first causes
 	 * a transition to the end-of-buffer state.  The second causes
 	 * a jam in that state.
 	 */
-	b->SeExpr2_ch_buf[0] = SeExprYY_END_OF_BUFFER_CHAR;
-	b->SeExpr2_ch_buf[1] = SeExprYY_END_OF_BUFFER_CHAR;
+	b->KSeExpr_ch_buf[0] = SeExprYY_END_OF_BUFFER_CHAR;
+	b->KSeExpr_ch_buf[1] = SeExprYY_END_OF_BUFFER_CHAR;
 
-	b->SeExpr2_buf_pos = &b->SeExpr2_ch_buf[0];
+	b->KSeExpr_buf_pos = &b->KSeExpr_ch_buf[0];
 
-	b->SeExpr2_at_bol = 1;
-	b->SeExpr2_buffer_status = SeExprYY_BUFFER_NEW;
+	b->KSeExpr_at_bol = 1;
+	b->KSeExpr_buffer_status = SeExprYY_BUFFER_NEW;
 
 	if ( b == SeExprYY_CURRENT_BUFFER )
-		SeExpr2_load_buffer_state(  );
+		KSeExpr_load_buffer_state(  );
 }
 
 /** Pushes the new state onto the stack. The new state becomes
@@ -1707,95 +1707,95 @@ static void SeExpr2_load_buffer_state  (void)
  *  @param new_buffer The new state.
  *  
  */
-void SeExpr2push_buffer_state (SeExprYY_BUFFER_STATE new_buffer )
+void KSeExprpush_buffer_state (SeExprYY_BUFFER_STATE new_buffer )
 {
     	if (new_buffer == NULL)
 		return;
 
-	SeExpr2ensure_buffer_stack();
+	KSeExprensure_buffer_stack();
 
-	/* This block is copied from SeExpr2_switch_to_buffer. */
+	/* This block is copied from KSeExpr_switch_to_buffer. */
 	if ( SeExprYY_CURRENT_BUFFER )
 		{
 		/* Flush out information for old buffer. */
-		*(SeExpr2_c_buf_p) = (SeExpr2_hold_char);
-		SeExprYY_CURRENT_BUFFER_LVALUE->SeExpr2_buf_pos = (SeExpr2_c_buf_p);
-		SeExprYY_CURRENT_BUFFER_LVALUE->SeExpr2_n_chars = (SeExpr2_n_chars);
+		*(KSeExpr_c_buf_p) = (KSeExpr_hold_char);
+		SeExprYY_CURRENT_BUFFER_LVALUE->KSeExpr_buf_pos = (KSeExpr_c_buf_p);
+		SeExprYY_CURRENT_BUFFER_LVALUE->KSeExpr_n_chars = (KSeExpr_n_chars);
 		}
 
 	/* Only push if top exists. Otherwise, replace top. */
 	if (SeExprYY_CURRENT_BUFFER)
-		(SeExpr2_buffer_stack_top)++;
+		(KSeExpr_buffer_stack_top)++;
 	SeExprYY_CURRENT_BUFFER_LVALUE = new_buffer;
 
-	/* copied from SeExpr2_switch_to_buffer. */
-	SeExpr2_load_buffer_state(  );
-	(SeExpr2_did_buffer_switch_on_eof) = 1;
+	/* copied from KSeExpr_switch_to_buffer. */
+	KSeExpr_load_buffer_state(  );
+	(KSeExpr_did_buffer_switch_on_eof) = 1;
 }
 
 /** Removes and deletes the top of the stack, if present.
  *  The next element becomes the new top.
  *  
  */
-void SeExpr2pop_buffer_state (void)
+void KSeExprpop_buffer_state (void)
 {
     	if (!SeExprYY_CURRENT_BUFFER)
 		return;
 
-	SeExpr2_delete_buffer(SeExprYY_CURRENT_BUFFER );
+	KSeExpr_delete_buffer(SeExprYY_CURRENT_BUFFER );
 	SeExprYY_CURRENT_BUFFER_LVALUE = NULL;
-	if ((SeExpr2_buffer_stack_top) > 0)
-		--(SeExpr2_buffer_stack_top);
+	if ((KSeExpr_buffer_stack_top) > 0)
+		--(KSeExpr_buffer_stack_top);
 
 	if (SeExprYY_CURRENT_BUFFER) {
-		SeExpr2_load_buffer_state(  );
-		(SeExpr2_did_buffer_switch_on_eof) = 1;
+		KSeExpr_load_buffer_state(  );
+		(KSeExpr_did_buffer_switch_on_eof) = 1;
 	}
 }
 
 /* Allocates the stack if it does not exist.
  *  Guarantees space for at least one push.
  */
-static void SeExpr2ensure_buffer_stack (void)
+static void KSeExprensure_buffer_stack (void)
 {
-	SeExpr2_size_t num_to_alloc;
+	KSeExpr_size_t num_to_alloc;
     
-	if (!(SeExpr2_buffer_stack)) {
+	if (!(KSeExpr_buffer_stack)) {
 
 		/* First allocation is just for 2 elements, since we don't know if this
 		 * scanner will even need a stack. We use 2 instead of 1 to avoid an
 		 * immediate realloc on the next call.
          */
       num_to_alloc = 1; /* After all that talk, this was set to 1 anyways... */
-		(SeExpr2_buffer_stack) = (struct SeExpr2_buffer_state**)SeExpr2alloc
-								(num_to_alloc * sizeof(struct SeExpr2_buffer_state*)
+		(KSeExpr_buffer_stack) = (struct KSeExpr_buffer_state**)KSeExpralloc
+								(num_to_alloc * sizeof(struct KSeExpr_buffer_state*)
 								);
-		if ( ! (SeExpr2_buffer_stack) )
-			SeExprYY_FATAL_ERROR( "out of dynamic memory in SeExpr2ensure_buffer_stack()" );
+		if ( ! (KSeExpr_buffer_stack) )
+			SeExprYY_FATAL_ERROR( "out of dynamic memory in KSeExprensure_buffer_stack()" );
 
-		memset((SeExpr2_buffer_stack), 0, num_to_alloc * sizeof(struct SeExpr2_buffer_state*));
+		memset((KSeExpr_buffer_stack), 0, num_to_alloc * sizeof(struct KSeExpr_buffer_state*));
 
-		(SeExpr2_buffer_stack_max) = num_to_alloc;
-		(SeExpr2_buffer_stack_top) = 0;
+		(KSeExpr_buffer_stack_max) = num_to_alloc;
+		(KSeExpr_buffer_stack_top) = 0;
 		return;
 	}
 
-	if ((SeExpr2_buffer_stack_top) >= ((SeExpr2_buffer_stack_max)) - 1){
+	if ((KSeExpr_buffer_stack_top) >= ((KSeExpr_buffer_stack_max)) - 1){
 
 		/* Increase the buffer to prepare for a possible push. */
-		SeExpr2_size_t grow_size = 8 /* arbitrary grow size */;
+		KSeExpr_size_t grow_size = 8 /* arbitrary grow size */;
 
-		num_to_alloc = (SeExpr2_buffer_stack_max) + grow_size;
-		(SeExpr2_buffer_stack) = (struct SeExpr2_buffer_state**)SeExpr2realloc
-								((SeExpr2_buffer_stack),
-								num_to_alloc * sizeof(struct SeExpr2_buffer_state*)
+		num_to_alloc = (KSeExpr_buffer_stack_max) + grow_size;
+		(KSeExpr_buffer_stack) = (struct KSeExpr_buffer_state**)KSeExprrealloc
+								((KSeExpr_buffer_stack),
+								num_to_alloc * sizeof(struct KSeExpr_buffer_state*)
 								);
-		if ( ! (SeExpr2_buffer_stack) )
-			SeExprYY_FATAL_ERROR( "out of dynamic memory in SeExpr2ensure_buffer_stack()" );
+		if ( ! (KSeExpr_buffer_stack) )
+			SeExprYY_FATAL_ERROR( "out of dynamic memory in KSeExprensure_buffer_stack()" );
 
 		/* zero only the new slots.*/
-		memset((SeExpr2_buffer_stack) + (SeExpr2_buffer_stack_max), 0, grow_size * sizeof(struct SeExpr2_buffer_state*));
-		(SeExpr2_buffer_stack_max) = num_to_alloc;
+		memset((KSeExpr_buffer_stack) + (KSeExpr_buffer_stack_max), 0, grow_size * sizeof(struct KSeExpr_buffer_state*));
+		(KSeExpr_buffer_stack_max) = num_to_alloc;
 	}
 }
 
@@ -1805,7 +1805,7 @@ static void SeExpr2ensure_buffer_stack (void)
  * 
  * @return the newly allocated buffer state object.
  */
-SeExprYY_BUFFER_STATE SeExpr2_scan_buffer  (char * base, SeExpr2_size_t  size )
+SeExprYY_BUFFER_STATE KSeExpr_scan_buffer  (char * base, KSeExpr_size_t  size )
 {
 	SeExprYY_BUFFER_STATE b;
     
@@ -1815,72 +1815,72 @@ SeExprYY_BUFFER_STATE SeExpr2_scan_buffer  (char * base, SeExpr2_size_t  size )
 		/* They forgot to leave room for the EOB's. */
 		return NULL;
 
-	b = (SeExprYY_BUFFER_STATE) SeExpr2alloc( sizeof( struct SeExpr2_buffer_state )  );
+	b = (SeExprYY_BUFFER_STATE) KSeExpralloc( sizeof( struct KSeExpr_buffer_state )  );
 	if ( ! b )
-		SeExprYY_FATAL_ERROR( "out of dynamic memory in SeExpr2_scan_buffer()" );
+		SeExprYY_FATAL_ERROR( "out of dynamic memory in KSeExpr_scan_buffer()" );
 
-	b->SeExpr2_buf_size = (int) (size - 2);	/* "- 2" to take care of EOB's */
-	b->SeExpr2_buf_pos = b->SeExpr2_ch_buf = base;
-	b->SeExpr2_is_our_buffer = 0;
-	b->SeExpr2_input_file = NULL;
-	b->SeExpr2_n_chars = b->SeExpr2_buf_size;
-	b->SeExpr2_is_interactive = 0;
-	b->SeExpr2_at_bol = 1;
-	b->SeExpr2_fill_buffer = 0;
-	b->SeExpr2_buffer_status = SeExprYY_BUFFER_NEW;
+	b->KSeExpr_buf_size = (int) (size - 2);	/* "- 2" to take care of EOB's */
+	b->KSeExpr_buf_pos = b->KSeExpr_ch_buf = base;
+	b->KSeExpr_is_our_buffer = 0;
+	b->KSeExpr_input_file = NULL;
+	b->KSeExpr_n_chars = b->KSeExpr_buf_size;
+	b->KSeExpr_is_interactive = 0;
+	b->KSeExpr_at_bol = 1;
+	b->KSeExpr_fill_buffer = 0;
+	b->KSeExpr_buffer_status = SeExprYY_BUFFER_NEW;
 
-	SeExpr2_switch_to_buffer( b  );
+	KSeExpr_switch_to_buffer( b  );
 
 	return b;
 }
 
-/** Setup the input buffer state to scan a string. The next call to SeExpr2lex() will
+/** Setup the input buffer state to scan a string. The next call to KSeExprlex() will
  * scan from a @e copy of @a str.
- * @param SeExpr2str a NUL-terminated string to scan
+ * @param KSeExprstr a NUL-terminated string to scan
  * 
  * @return the newly allocated buffer state object.
  * @note If you want to scan bytes that may contain NUL values, then use
- *       SeExpr2_scan_bytes() instead.
+ *       KSeExpr_scan_bytes() instead.
  */
-SeExprYY_BUFFER_STATE SeExpr2_scan_string (const char * SeExpr2str )
+SeExprYY_BUFFER_STATE KSeExpr_scan_string (const char * KSeExprstr )
 {
     
-	return SeExpr2_scan_bytes( SeExpr2str, (int) strlen(SeExpr2str) );
+	return KSeExpr_scan_bytes( KSeExprstr, (int) strlen(KSeExprstr) );
 }
 
-/** Setup the input buffer state to scan the given bytes. The next call to SeExpr2lex() will
+/** Setup the input buffer state to scan the given bytes. The next call to KSeExprlex() will
  * scan from a @e copy of @a bytes.
- * @param SeExpr2bytes the byte buffer to scan
- * @param _SeExpr2bytes_len the number of bytes in the buffer pointed to by @a bytes.
+ * @param KSeExprbytes the byte buffer to scan
+ * @param _KSeExprbytes_len the number of bytes in the buffer pointed to by @a bytes.
  * 
  * @return the newly allocated buffer state object.
  */
-SeExprYY_BUFFER_STATE SeExpr2_scan_bytes  (const char * SeExpr2bytes, int  _SeExpr2bytes_len )
+SeExprYY_BUFFER_STATE KSeExpr_scan_bytes  (const char * KSeExprbytes, int  _KSeExprbytes_len )
 {
 	SeExprYY_BUFFER_STATE b;
 	char *buf;
-	SeExpr2_size_t n;
+	KSeExpr_size_t n;
 	int i;
     
 	/* Get memory for full buffer, including space for trailing EOB's. */
-	n = (SeExpr2_size_t) (_SeExpr2bytes_len + 2);
-	buf = (char *) SeExpr2alloc( n  );
+	n = (KSeExpr_size_t) (_KSeExprbytes_len + 2);
+	buf = (char *) KSeExpralloc( n  );
 	if ( ! buf )
-		SeExprYY_FATAL_ERROR( "out of dynamic memory in SeExpr2_scan_bytes()" );
+		SeExprYY_FATAL_ERROR( "out of dynamic memory in KSeExpr_scan_bytes()" );
 
-	for ( i = 0; i < _SeExpr2bytes_len; ++i )
-		buf[i] = SeExpr2bytes[i];
+	for ( i = 0; i < _KSeExprbytes_len; ++i )
+		buf[i] = KSeExprbytes[i];
 
-	buf[_SeExpr2bytes_len] = buf[_SeExpr2bytes_len+1] = SeExprYY_END_OF_BUFFER_CHAR;
+	buf[_KSeExprbytes_len] = buf[_KSeExprbytes_len+1] = SeExprYY_END_OF_BUFFER_CHAR;
 
-	b = SeExpr2_scan_buffer( buf, n );
+	b = KSeExpr_scan_buffer( buf, n );
 	if ( ! b )
-		SeExprYY_FATAL_ERROR( "bad buffer in SeExpr2_scan_bytes()" );
+		SeExprYY_FATAL_ERROR( "bad buffer in KSeExpr_scan_bytes()" );
 
 	/* It's okay to grow etc. this buffer, and we should throw it
 	 * away when we're done.
 	 */
-	b->SeExpr2_is_our_buffer = 1;
+	b->KSeExpr_is_our_buffer = 1;
 
 	return b;
 }
@@ -1889,26 +1889,26 @@ SeExprYY_BUFFER_STATE SeExpr2_scan_bytes  (const char * SeExpr2bytes, int  _SeEx
 #define SeExprYY_EXIT_FAILURE 2
 #endif
 
-static void SeExpr2noreturn SeExpr2_fatal_error (const char* msg )
+static void KSeExprnoreturn KSeExpr_fatal_error (const char* msg )
 {
 			fprintf( stderr, "%s\n", msg );
 	exit( SeExprYY_EXIT_FAILURE );
 }
 
-/* Redefine SeExpr2less() so it works in section 3 code. */
+/* Redefine KSeExprless() so it works in section 3 code. */
 
-#undef SeExpr2less
-#define SeExpr2less(n) \
+#undef KSeExprless
+#define KSeExprless(n) \
 	do \
 		{ \
-		/* Undo effects of setting up SeExpr2text. */ \
-        int SeExpr2less_macro_arg = (n); \
-        SeExprYY_LESS_LINENO(SeExpr2less_macro_arg);\
-		SeExpr2text[SeExpr2leng] = (SeExpr2_hold_char); \
-		(SeExpr2_c_buf_p) = SeExpr2text + SeExpr2less_macro_arg; \
-		(SeExpr2_hold_char) = *(SeExpr2_c_buf_p); \
-		*(SeExpr2_c_buf_p) = '\0'; \
-		SeExpr2leng = SeExpr2less_macro_arg; \
+		/* Undo effects of setting up KSeExprtext. */ \
+        int KSeExprless_macro_arg = (n); \
+        SeExprYY_LESS_LINENO(KSeExprless_macro_arg);\
+		KSeExprtext[KSeExprleng] = (KSeExpr_hold_char); \
+		(KSeExpr_c_buf_p) = KSeExprtext + KSeExprless_macro_arg; \
+		(KSeExpr_hold_char) = *(KSeExpr_c_buf_p); \
+		*(KSeExpr_c_buf_p) = '\0'; \
+		KSeExprleng = KSeExprless_macro_arg; \
 		} \
 	while ( 0 )
 
@@ -1917,127 +1917,127 @@ static void SeExpr2noreturn SeExpr2_fatal_error (const char* msg )
 /** Get the current line number.
  * 
  */
-int SeExpr2get_lineno  (void)
+int KSeExprget_lineno  (void)
 {
     
-    return SeExpr2lineno;
+    return KSeExprlineno;
 }
 
 /** Get the input stream.
  * 
  */
-FILE *SeExpr2get_in  (void)
+FILE *KSeExprget_in  (void)
 {
-        return SeExpr2in;
+        return KSeExprin;
 }
 
 /** Get the output stream.
  * 
  */
-FILE *SeExpr2get_out  (void)
+FILE *KSeExprget_out  (void)
 {
-        return SeExpr2out;
+        return KSeExprout;
 }
 
 /** Get the length of the current token.
  * 
  */
-int SeExpr2get_leng  (void)
+int KSeExprget_leng  (void)
 {
-        return SeExpr2leng;
+        return KSeExprleng;
 }
 
 /** Get the current token.
  * 
  */
 
-char *SeExpr2get_text  (void)
+char *KSeExprget_text  (void)
 {
-        return SeExpr2text;
+        return KSeExprtext;
 }
 
 /** Set the current line number.
  * @param _line_number line number
  * 
  */
-void SeExpr2set_lineno (int  _line_number )
+void KSeExprset_lineno (int  _line_number )
 {
     
-    SeExpr2lineno = _line_number;
+    KSeExprlineno = _line_number;
 }
 
 /** Set the input stream. This does not discard the current
  * input buffer.
  * @param _in_str A readable stream.
  * 
- * @see SeExpr2_switch_to_buffer
+ * @see KSeExpr_switch_to_buffer
  */
-void SeExpr2set_in (FILE *  _in_str )
+void KSeExprset_in (FILE *  _in_str )
 {
-        SeExpr2in = _in_str ;
+        KSeExprin = _in_str ;
 }
 
-void SeExpr2set_out (FILE *  _out_str )
+void KSeExprset_out (FILE *  _out_str )
 {
-        SeExpr2out = _out_str ;
+        KSeExprout = _out_str ;
 }
 
-int SeExpr2get_debug  (void)
+int KSeExprget_debug  (void)
 {
-        return SeExpr2_flex_debug;
+        return KSeExpr_flex_debug;
 }
 
-void SeExpr2set_debug (int  _bdebug )
+void KSeExprset_debug (int  _bdebug )
 {
-        SeExpr2_flex_debug = _bdebug ;
+        KSeExpr_flex_debug = _bdebug ;
 }
 
-static int SeExpr2_init_globals (void)
+static int KSeExpr_init_globals (void)
 {
         /* Initialization is the same as for the non-reentrant scanner.
-     * This function is called from SeExpr2lex_destroy(), so don't allocate here.
+     * This function is called from KSeExprlex_destroy(), so don't allocate here.
      */
 
-    (SeExpr2_buffer_stack) = NULL;
-    (SeExpr2_buffer_stack_top) = 0;
-    (SeExpr2_buffer_stack_max) = 0;
-    (SeExpr2_c_buf_p) = NULL;
-    (SeExpr2_init) = 0;
-    (SeExpr2_start) = 0;
+    (KSeExpr_buffer_stack) = NULL;
+    (KSeExpr_buffer_stack_top) = 0;
+    (KSeExpr_buffer_stack_max) = 0;
+    (KSeExpr_c_buf_p) = NULL;
+    (KSeExpr_init) = 0;
+    (KSeExpr_start) = 0;
 
 /* Defined in main.c */
 #ifdef SeExprYY_STDINIT
-    SeExpr2in = stdin;
-    SeExpr2out = stdout;
+    KSeExprin = stdin;
+    KSeExprout = stdout;
 #else
-    SeExpr2in = NULL;
-    SeExpr2out = NULL;
+    KSeExprin = NULL;
+    KSeExprout = NULL;
 #endif
 
     /* For future reference: Set errno on error, since we are called by
-     * SeExpr2lex_init()
+     * KSeExprlex_init()
      */
     return 0;
 }
 
-/* SeExpr2lex_destroy is for both reentrant and non-reentrant scanners. */
-int SeExpr2lex_destroy  (void)
+/* KSeExprlex_destroy is for both reentrant and non-reentrant scanners. */
+int KSeExprlex_destroy  (void)
 {
     
     /* Pop the buffer stack, destroying each element. */
 	while(SeExprYY_CURRENT_BUFFER){
-		SeExpr2_delete_buffer( SeExprYY_CURRENT_BUFFER  );
+		KSeExpr_delete_buffer( SeExprYY_CURRENT_BUFFER  );
 		SeExprYY_CURRENT_BUFFER_LVALUE = NULL;
-		SeExpr2pop_buffer_state();
+		KSeExprpop_buffer_state();
 	}
 
 	/* Destroy the stack itself. */
-	SeExpr2free((SeExpr2_buffer_stack) );
-	(SeExpr2_buffer_stack) = NULL;
+	KSeExprfree((KSeExpr_buffer_stack) );
+	(KSeExpr_buffer_stack) = NULL;
 
     /* Reset the globals. This is important in a non-reentrant scanner so the next time
-     * SeExpr2lex() is called, initialization will occur. */
-    SeExpr2_init_globals( );
+     * KSeExprlex() is called, initialization will occur. */
+    KSeExpr_init_globals( );
 
     return 0;
 }
@@ -2046,8 +2046,8 @@ int SeExpr2lex_destroy  (void)
  * Internal utility routines.
  */
 
-#ifndef SeExpr2text_ptr
-static void SeExpr2_flex_strncpy (char* s1, const char * s2, int n )
+#ifndef KSeExprtext_ptr
+static void KSeExpr_flex_strncpy (char* s1, const char * s2, int n )
 {
 		
 	int i;
@@ -2057,7 +2057,7 @@ static void SeExpr2_flex_strncpy (char* s1, const char * s2, int n )
 #endif
 
 #ifdef SeExprYY_NEED_STRLEN
-static int SeExpr2_flex_strlen (const char * s )
+static int KSeExpr_flex_strlen (const char * s )
 {
 	int n;
 	for ( n = 0; s[n]; ++n )
@@ -2067,12 +2067,12 @@ static int SeExpr2_flex_strlen (const char * s )
 }
 #endif
 
-void *SeExpr2alloc (SeExpr2_size_t  size )
+void *KSeExpralloc (KSeExpr_size_t  size )
 {
 			return malloc(size);
 }
 
-void *SeExpr2realloc  (void * ptr, SeExpr2_size_t  size )
+void *KSeExprrealloc  (void * ptr, KSeExpr_size_t  size )
 {
 		
 	/* The cast to (char *) in the following accommodates both
@@ -2085,21 +2085,21 @@ void *SeExpr2realloc  (void * ptr, SeExpr2_size_t  size )
 	return realloc(ptr, size);
 }
 
-void SeExpr2free (void * ptr )
+void KSeExprfree (void * ptr )
 {
-			free( (char *) ptr );	/* see SeExpr2realloc() for (char *) cast */
+			free( (char *) ptr );	/* see KSeExprrealloc() for (char *) cast */
 }
 
-#define SeExprYYTABLES_NAME "SeExpr2tables"
+#define SeExprYYTABLES_NAME "KSeExprtables"
 
 #line 136 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParserLex.l"
 
 
-/* Gets index of current token (corresponding to SeExpr2text).
+/* Gets index of current token (corresponding to KSeExprtext).
    Used for error reporting.
  */
-int SeExpr2pos()
+int KSeExprpos()
 {
-    return SeExpr2_c_buf_p - SeExprYY_CURRENT_BUFFER->SeExpr2_ch_buf - SeExpr2leng;
+    return KSeExpr_c_buf_p - SeExprYY_CURRENT_BUFFER->KSeExpr_ch_buf - KSeExprleng;
 }
 

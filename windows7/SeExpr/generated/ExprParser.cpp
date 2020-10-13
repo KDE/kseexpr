@@ -35,10 +35,10 @@
    simplifying the original so-called "semantic" parser.  */
 
 /* DO NOT RELY ON FEATURES THAT ARE NOT DOCUMENTED in the manual,
-   especially those whose name start with SeExprYY_ or SeExpr2_.  They are
+   especially those whose name start with SeExprYY_ or KSeExpr_.  They are
    private implementation details that can be changed or removed.  */
 
-/* All symbols defined below should begin with SeExpr2 or SeExprYY, to avoid
+/* All symbols defined below should begin with KSeExpr or SeExprYY, to avoid
    infringing on user name space.  This should be done even for local
    variables, as they might otherwise be expanded by user macros.
    There are some unavoidable exceptions within include files to
@@ -65,14 +65,14 @@
 
 
 /* Substitute the variable and function names.  */
-#define SeExpr2parse         SeExpr2parse
-#define SeExpr2lex           SeExpr2lex
-#define SeExpr2error         SeExpr2error
-#define SeExpr2debug         SeExpr2debug
-#define SeExpr2nerrs         SeExpr2nerrs
-#define SeExpr2lval          SeExpr2lval
-#define SeExpr2char          SeExpr2char
-#define SeExpr2lloc          SeExpr2lloc
+#define KSeExprparse         KSeExprparse
+#define KSeExprlex           KSeExprlex
+#define KSeExprerror         KSeExprerror
+#define KSeExprdebug         KSeExprdebug
+#define KSeExprnerrs         KSeExprnerrs
+#define KSeExprlval          KSeExprlval
+#define KSeExprchar          KSeExprchar
+#define KSeExprlloc          KSeExprlloc
 
 /* First part of user prologue.  */
 #line 18 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
@@ -95,27 +95,27 @@
  ******************/
 
 // declarations of functions and data in ExprParser.l
-int SeExpr2lex();
-int SeExpr2pos();
-extern int SeExpr2_start;
-extern char* SeExpr2text;
-struct SeExpr2_buffer_state;
-SeExpr2_buffer_state* SeExpr2_scan_string(const char *str);
-void SeExpr2_delete_buffer(SeExpr2_buffer_state*);
+int KSeExprlex();
+int KSeExprpos();
+extern int KSeExpr_start;
+extern char* KSeExprtext;
+struct KSeExpr_buffer_state;
+KSeExpr_buffer_state* KSeExpr_scan_string(const char *str);
+void KSeExpr_delete_buffer(KSeExpr_buffer_state*);
 
 /*******************
  parser declarations
  *******************/
 
 // forward declaration
-static void SeExpr2error(const char* msg);
+static void KSeExprerror(const char* msg);
 
 // local data
 static const char* ParseStr;    // string being parsed
-static SeExpr2::ErrorCode ParseErrorCode;  // error (set from SeExpr2error)
-static std::string ParseErrorId; // string that failed parsing (set from SeExpr2error)
-static SeExpr2::ExprNode* ParseResult; // must set result here since SeExpr2parse can't return it
-static const SeExpr2::Expression* Expr;// used for parenting created SeExprOp's
+static KSeExpr::ErrorCode ParseErrorCode;  // error (set from KSeExprerror)
+static std::string ParseErrorId; // string that failed parsing (set from KSeExprerror)
+static KSeExpr::ExprNode* ParseResult; // must set result here since KSeExprparse can't return it
+static const KSeExpr::Expression* Expr;// used for parenting created SeExprOp's
 
 /* The list of nodes being built is remembered locally here.
    Eventually (if there are no syntax errors) ownership of the nodes
@@ -123,17 +123,17 @@ static const SeExpr2::Expression* Expr;// used for parenting created SeExprOp's
    However, if there is a syntax error, we must loop through this list
    and free any nodes that were allocated before the error to avoid a
    memory leak. */
-static std::vector<SeExpr2::ExprNode*> ParseNodes;
-inline SeExpr2::ExprNode* Remember(SeExpr2::ExprNode* n,const int startPos,const int endPos)
+static std::vector<KSeExpr::ExprNode*> ParseNodes;
+inline KSeExpr::ExprNode* Remember(KSeExpr::ExprNode* n,const int startPos,const int endPos)
     { ParseNodes.push_back(n); n->setPosition(startPos,endPos); return n; }
-inline void Forget(SeExpr2::ExprNode* n)
+inline void Forget(KSeExpr::ExprNode* n)
     { ParseNodes.erase(std::find(ParseNodes.begin(), ParseNodes.end(), n)); }
 /* These are handy node constructors for 0-3 arguments */
-#define NODE(startPos,endPos,name) Remember(new SeExpr2::Expr##name(Expr),startPos,endPos)
-#define NODE1(startPos,endPos,name,a) Remember(new SeExpr2::Expr##name(Expr,a),startPos,endPos)
-#define NODE2(startPos,endPos,name,a,b) Remember(new SeExpr2::Expr##name(Expr,a,b),startPos,endPos)
-#define NODE3(startPos,endPos,name,a,b,c) Remember(new SeExpr2::Expr##name(Expr,a,b,c),startPos,endPos)
-#define NODE4(startPos,endPos,name,a,b,c,t) Remember(new SeExpr2::Expr##name(Expr,a,b,c,t),startPos,endPos)
+#define NODE(startPos,endPos,name) Remember(new KSeExpr::Expr##name(Expr),startPos,endPos)
+#define NODE1(startPos,endPos,name,a) Remember(new KSeExpr::Expr##name(Expr,a),startPos,endPos)
+#define NODE2(startPos,endPos,name,a,b) Remember(new KSeExpr::Expr##name(Expr,a,b),startPos,endPos)
+#define NODE3(startPos,endPos,name,a,b,c) Remember(new KSeExpr::Expr##name(Expr,a,b,c),startPos,endPos)
+#define NODE4(startPos,endPos,name,a,b,c,t) Remember(new KSeExpr::Expr##name(Expr,a,b,c,t),startPos,endPos)
 
 #line 139 "y.tab.c"
 
@@ -160,20 +160,20 @@ inline void Forget(SeExpr2::ExprNode* n)
 
 /* Use api.header.include to #include this header
    instead of duplicating it here.  */
-#ifndef SeExprYY_SEEXPR2_Y_TAB_H_INCLUDED
-# define SeExprYY_SEEXPR2_Y_TAB_H_INCLUDED
+#ifndef SeExprYY_KSEEXPR_Y_TAB_H_INCLUDED
+# define SeExprYY_KSEEXPR_Y_TAB_H_INCLUDED
 /* Debug traces.  */
 #ifndef SeExprYYDEBUG
 # define SeExprYYDEBUG 0
 #endif
 #if SeExprYYDEBUG
-extern int SeExpr2debug;
+extern int KSeExprdebug;
 #endif
 
 /* Token kinds.  */
 #ifndef SeExprYYTOKENTYPE
 # define SeExprYYTOKENTYPE
-  enum SeExpr2tokentype
+  enum KSeExprtokentype
   {
     SeExprYYEMPTY = -2,
     SeExprYYEOF = 0,                     /* "end of file"  */
@@ -208,7 +208,7 @@ extern int SeExpr2debug;
     SEEXPR_GE = 284,               /* SEEXPR_GE  */
     UNARY = 285                    /* UNARY  */
   };
-  typedef enum SeExpr2tokentype SeExpr2token_kind_t;
+  typedef enum KSeExprtokentype KSeExprtoken_kind_t;
 #endif
 
 /* Value type.  */
@@ -217,18 +217,18 @@ union SeExprYYSTYPE
 {
 #line 78 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
 
-    SeExpr2::ExprNode* n; /* a node is returned for all non-terminals to
+    KSeExpr::ExprNode* n; /* a node is returned for all non-terminals to
 		      build the parse tree from the leaves up. */
     double d;      // return value for number tokens
     char* s;       /* return value for name tokens.  Note: the string
 		      is allocated with strdup() in the lexer and must
 		      be freed with free() */
     struct {
-        SeExpr2::ExprType::Type     type;
+        KSeExpr::ExprType::Type     type;
         int                  dim;
-        SeExpr2::ExprType::Lifetime lifetime;
+        KSeExpr::ExprType::Lifetime lifetime;
     } t;  // return value for types
-    SeExpr2::ExprType::Lifetime l; // return value for lifetime qualifiers
+    KSeExpr::ExprType::Lifetime l; // return value for lifetime qualifiers
 
 #line 234 "y.tab.c"
 
@@ -253,13 +253,13 @@ struct SeExprYYLTYPE
 #endif
 
 
-extern SeExprYYSTYPE SeExpr2lval;
-extern SeExprYYLTYPE SeExpr2lloc;
-int SeExpr2parse (void);
+extern SeExprYYSTYPE KSeExprlval;
+extern SeExprYYLTYPE KSeExprlloc;
+int KSeExprparse (void);
 
-#endif /* !SeExprYY_SEEXPR2_Y_TAB_H_INCLUDED  */
+#endif /* !SeExprYY_KSEEXPR_Y_TAB_H_INCLUDED  */
 /* Symbol kind.  */
-enum SeExpr2symbol_kind_t
+enum KSeExprsymbol_kind_t
 {
   SeExprYYSYMBOL_SeExprYYEMPTY = -2,
   SeExprYYSYMBOL_SeExprYYEOF = 0,                      /* "end of file"  */
@@ -336,7 +336,7 @@ enum SeExpr2symbol_kind_t
   SeExprYYSYMBOL_args = 71,                      /* args  */
   SeExprYYSYMBOL_arg = 72                        /* arg  */
 };
-typedef enum SeExpr2symbol_kind_t SeExpr2symbol_kind_t;
+typedef enum KSeExprsymbol_kind_t KSeExprsymbol_kind_t;
 
 
 
@@ -363,41 +363,41 @@ typedef enum SeExpr2symbol_kind_t SeExpr2symbol_kind_t;
    helps avoid bugs in integer arithmetic.  */
 
 #ifdef __INT_LEAST8_MAX__
-typedef __INT_LEAST8_TYPE__ SeExpr2type_int8;
+typedef __INT_LEAST8_TYPE__ KSeExprtype_int8;
 #elif defined SeExprYY_STDINT_H
-typedef int_least8_t SeExpr2type_int8;
+typedef int_least8_t KSeExprtype_int8;
 #else
-typedef signed char SeExpr2type_int8;
+typedef signed char KSeExprtype_int8;
 #endif
 
 #ifdef __INT_LEAST16_MAX__
-typedef __INT_LEAST16_TYPE__ SeExpr2type_int16;
+typedef __INT_LEAST16_TYPE__ KSeExprtype_int16;
 #elif defined SeExprYY_STDINT_H
-typedef int_least16_t SeExpr2type_int16;
+typedef int_least16_t KSeExprtype_int16;
 #else
-typedef short SeExpr2type_int16;
+typedef short KSeExprtype_int16;
 #endif
 
 #if defined __UINT_LEAST8_MAX__ && __UINT_LEAST8_MAX__ <= __INT_MAX__
-typedef __UINT_LEAST8_TYPE__ SeExpr2type_uint8;
+typedef __UINT_LEAST8_TYPE__ KSeExprtype_uint8;
 #elif (!defined __UINT_LEAST8_MAX__ && defined SeExprYY_STDINT_H \
        && UINT_LEAST8_MAX <= INT_MAX)
-typedef uint_least8_t SeExpr2type_uint8;
+typedef uint_least8_t KSeExprtype_uint8;
 #elif !defined __UINT_LEAST8_MAX__ && UCHAR_MAX <= INT_MAX
-typedef unsigned char SeExpr2type_uint8;
+typedef unsigned char KSeExprtype_uint8;
 #else
-typedef short SeExpr2type_uint8;
+typedef short KSeExprtype_uint8;
 #endif
 
 #if defined __UINT_LEAST16_MAX__ && __UINT_LEAST16_MAX__ <= __INT_MAX__
-typedef __UINT_LEAST16_TYPE__ SeExpr2type_uint16;
+typedef __UINT_LEAST16_TYPE__ KSeExprtype_uint16;
 #elif (!defined __UINT_LEAST16_MAX__ && defined SeExprYY_STDINT_H \
        && UINT_LEAST16_MAX <= INT_MAX)
-typedef uint_least16_t SeExpr2type_uint16;
+typedef uint_least16_t KSeExprtype_uint16;
 #elif !defined __UINT_LEAST16_MAX__ && USHRT_MAX <= INT_MAX
-typedef unsigned short SeExpr2type_uint16;
+typedef unsigned short KSeExprtype_uint16;
 #else
-typedef int SeExpr2type_uint16;
+typedef int KSeExprtype_uint16;
 #endif
 
 #ifndef SeExprYYPTRDIFF_T
@@ -439,10 +439,10 @@ typedef int SeExpr2type_uint16;
 
 
 /* Stored state numbers (used for stacks). */
-typedef SeExpr2type_uint8 SeExpr2_state_t;
+typedef KSeExprtype_uint8 KSeExpr_state_t;
 
 /* State numbers in computations.  */
-typedef int SeExpr2_state_fast_t;
+typedef int KSeExpr_state_fast_t;
 
 #ifndef SeExprYY_
 # if defined SeExprYYENABLE_NLS && SeExprYYENABLE_NLS
@@ -481,7 +481,7 @@ typedef int SeExpr2_state_fast_t;
 #endif
 
 #if defined __GNUC__ && ! defined __ICC && 407 <= __GNUC__ * 100 + __GNUC_MINOR__
-/* Suppress an incorrect diagnostic about SeExpr2lval being uninitialized.  */
+/* Suppress an incorrect diagnostic about KSeExprlval being uninitialized.  */
 # define SeExprYY_IGNORE_MAYBE_UNINITIALIZED_BEGIN                            \
     _Pragma ("GCC diagnostic push")                                     \
     _Pragma ("GCC diagnostic ignored \"-Wuninitialized\"")              \
@@ -514,7 +514,7 @@ typedef int SeExpr2_state_fast_t;
 
 #define SeExprYY_ASSERT(E) ((void) (0 && (E)))
 
-#if !defined SeExpr2overflow
+#if !defined KSeExproverflow
 
 /* The parser invokes alloca or malloc; define the necessary symbols.  */
 
@@ -579,28 +579,28 @@ void free (void *); /* INFRINGES ON USER NAME SPACE */
 #   endif
 #  endif
 # endif
-#endif /* !defined SeExpr2overflow */
+#endif /* !defined KSeExproverflow */
 
-#if (! defined SeExpr2overflow \
+#if (! defined KSeExproverflow \
      && (! defined __cplusplus \
          || (defined SeExprYYLTYPE_IS_TRIVIAL && SeExprYYLTYPE_IS_TRIVIAL \
              && defined SeExprYYSTYPE_IS_TRIVIAL && SeExprYYSTYPE_IS_TRIVIAL)))
 
 /* A type that is properly aligned for any stack member.  */
-union SeExpr2alloc
+union KSeExpralloc
 {
-  SeExpr2_state_t SeExpr2ss_alloc;
-  SeExprYYSTYPE SeExpr2vs_alloc;
-  SeExprYYLTYPE SeExpr2ls_alloc;
+  KSeExpr_state_t KSeExprss_alloc;
+  SeExprYYSTYPE KSeExprvs_alloc;
+  SeExprYYLTYPE KSeExprls_alloc;
 };
 
 /* The size of the maximum gap between one aligned stack and the next.  */
-# define SeExprYYSTACK_GAP_MAXIMUM (SeExprYYSIZEOF (union SeExpr2alloc) - 1)
+# define SeExprYYSTACK_GAP_MAXIMUM (SeExprYYSIZEOF (union KSeExpralloc) - 1)
 
 /* The size of an array large to enough to hold all stacks, each with
    N elements.  */
 # define SeExprYYSTACK_BYTES(N) \
-     ((N) * (SeExprYYSIZEOF (SeExpr2_state_t) + SeExprYYSIZEOF (SeExprYYSTYPE) \
+     ((N) * (SeExprYYSIZEOF (KSeExpr_state_t) + SeExprYYSIZEOF (SeExprYYSTYPE) \
              + SeExprYYSIZEOF (SeExprYYLTYPE)) \
       + 2 * SeExprYYSTACK_GAP_MAXIMUM)
 
@@ -614,11 +614,11 @@ union SeExpr2alloc
 # define SeExprYYSTACK_RELOCATE(Stack_alloc, Stack)                           \
     do                                                                  \
       {                                                                 \
-        SeExprYYPTRDIFF_T SeExpr2newbytes;                                         \
-        SeExprYYCOPY (&SeExpr2ptr->Stack_alloc, Stack, SeExpr2size);                    \
-        Stack = &SeExpr2ptr->Stack_alloc;                                    \
-        SeExpr2newbytes = SeExpr2stacksize * SeExprYYSIZEOF (*Stack) + SeExprYYSTACK_GAP_MAXIMUM; \
-        SeExpr2ptr += SeExpr2newbytes / SeExprYYSIZEOF (*SeExpr2ptr);                        \
+        SeExprYYPTRDIFF_T KSeExprnewbytes;                                         \
+        SeExprYYCOPY (&KSeExprptr->Stack_alloc, Stack, KSeExprsize);                    \
+        Stack = &KSeExprptr->Stack_alloc;                                    \
+        KSeExprnewbytes = KSeExprstacksize * SeExprYYSIZEOF (*Stack) + SeExprYYSTACK_GAP_MAXIMUM; \
+        KSeExprptr += KSeExprnewbytes / SeExprYYSIZEOF (*KSeExprptr);                        \
       }                                                                 \
     while (0)
 
@@ -635,9 +635,9 @@ union SeExpr2alloc
 #   define SeExprYYCOPY(Dst, Src, Count)              \
       do                                        \
         {                                       \
-          SeExprYYPTRDIFF_T SeExpr2i;                      \
-          for (SeExpr2i = 0; SeExpr2i < (Count); SeExpr2i++)   \
-            (Dst)[SeExpr2i] = (Src)[SeExpr2i];            \
+          SeExprYYPTRDIFF_T KSeExpri;                      \
+          for (KSeExpri = 0; KSeExpri < (Count); KSeExpri++)   \
+            (Dst)[KSeExpri] = (Src)[KSeExpri];            \
         }                                       \
       while (0)
 #  endif
@@ -662,15 +662,15 @@ union SeExpr2alloc
 
 
 /* SeExprYYTRANSLATE(TOKEN-NUM) -- Symbol number corresponding to TOKEN-NUM
-   as returned by SeExpr2lex, with out-of-bounds checking.  */
+   as returned by KSeExprlex, with out-of-bounds checking.  */
 #define SeExprYYTRANSLATE(SeExprYYX)                                \
   (0 <= (SeExprYYX) && (SeExprYYX) <= SeExprYYMAXUTOK                     \
-   ? SeExprYY_CAST (SeExpr2symbol_kind_t, SeExpr2translate[SeExprYYX])        \
+   ? SeExprYY_CAST (KSeExprsymbol_kind_t, KSeExprtranslate[SeExprYYX])        \
    : SeExprYYSYMBOL_SeExprYYUNDEF)
 
 /* SeExprYYTRANSLATE[TOKEN-NUM] -- Symbol number corresponding to TOKEN-NUM
-   as returned by SeExpr2lex.  */
-static const SeExpr2type_int8 SeExpr2translate[] =
+   as returned by KSeExprlex.  */
+static const KSeExprtype_int8 KSeExprtranslate[] =
 {
        0,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
@@ -705,7 +705,7 @@ static const SeExpr2type_int8 SeExpr2translate[] =
 
 #if SeExprYYDEBUG
   /* SeExprYYRLINE[SeExprYYN] -- Source line where rule number SeExprYYN was defined.  */
-static const SeExpr2type_int16 SeExpr2rline[] =
+static const KSeExprtype_int16 KSeExprrline[] =
 {
        0,   133,   133,   135,   140,   141,   147,   155,   163,   173,
      174,   175,   176,   177,   181,   184,   189,   195,   196,   200,
@@ -720,16 +720,16 @@ static const SeExpr2type_int16 SeExpr2rline[] =
 #endif
 
 /** Accessing symbol of state STATE.  */
-#define SeExprYY_ACCESSING_SYMBOL(State) SeExprYY_CAST (SeExpr2symbol_kind_t, SeExpr2stos[State])
+#define SeExprYY_ACCESSING_SYMBOL(State) SeExprYY_CAST (KSeExprsymbol_kind_t, KSeExprstos[State])
 
 #if SeExprYYDEBUG || 0
 /* The user-facing name of the symbol whose (internal) number is
    SeExprYYSYMBOL.  No bounds checking.  */
-static const char *SeExpr2symbol_name (SeExpr2symbol_kind_t SeExpr2symbol) SeExprYY_ATTRIBUTE_UNUSED;
+static const char *KSeExprsymbol_name (KSeExprsymbol_kind_t KSeExprsymbol) SeExprYY_ATTRIBUTE_UNUSED;
 
 /* SeExprYYTNAME[SYMBOL-NUM] -- String name of the symbol SYMBOL-NUM.
    First, the terminals, then, starting at SeExprYYNTOKENS, nonterminals.  */
-static const char *const SeExpr2tname[] =
+static const char *const KSeExprtname[] =
 {
   "\"end of file\"", "error", "\"invalid token\"", "IF", "ELSE", "EXTERN",
   "DEF", "FLOATPOINT", "STRING", "NAME", "VAR", "STR", "NUMBER",
@@ -746,16 +746,16 @@ static const char *const SeExpr2tname[] =
 };
 
 static const char *
-SeExpr2symbol_name (SeExpr2symbol_kind_t SeExpr2symbol)
+KSeExprsymbol_name (KSeExprsymbol_kind_t KSeExprsymbol)
 {
-  return SeExpr2tname[SeExpr2symbol];
+  return KSeExprtname[KSeExprsymbol];
 }
 #endif
 
 #ifdef SeExprYYPRINT
 /* SeExprYYTOKNUM[NUM] -- (External) token number corresponding to the
    (internal) symbol number NUM (which must be that of a token).  */
-static const SeExpr2type_int16 SeExpr2toknum[] =
+static const KSeExprtype_int16 KSeExprtoknum[] =
 {
        0,   256,   257,   258,   259,   260,   261,   262,   263,   264,
      265,   266,   267,   268,   269,   270,   271,   272,   273,   274,
@@ -768,17 +768,17 @@ static const SeExpr2type_int16 SeExpr2toknum[] =
 
 #define SeExprYYPACT_NINF (-76)
 
-#define SeExpr2pact_value_is_default(Yyn) \
+#define KSeExprpact_value_is_default(Yyn) \
   ((Yyn) == SeExprYYPACT_NINF)
 
 #define SeExprYYTABLE_NINF (-1)
 
-#define SeExpr2table_value_is_error(Yyn) \
+#define KSeExprtable_value_is_error(Yyn) \
   0
 
   /* SeExprYYPACT[STATE-NUM] -- Index in SeExprYYTABLE of the portion describing
      STATE-NUM.  */
-static const SeExpr2type_int16 SeExpr2pact[] =
+static const KSeExprtype_int16 KSeExprpact[] =
 {
       67,     0,     4,    76,    24,    31,   -76,   -76,   115,   115,
      115,   115,   115,   115,    40,    67,   -76,   -76,    77,   -76,
@@ -804,7 +804,7 @@ static const SeExpr2type_int16 SeExpr2pact[] =
   /* SeExprYYDEFACT[STATE-NUM] -- Default reduction number in state STATE-NUM.
      Performed when SeExprYYTABLE does not specify something else to do.  Zero
      means the default is an error.  */
-static const SeExpr2type_int8 SeExpr2defact[] =
+static const KSeExprtype_int8 KSeExprdefact[] =
 {
        0,     0,     0,     0,    75,    74,    77,    76,     0,     0,
        0,     0,     0,     0,     0,     0,     4,     3,     0,    29,
@@ -828,7 +828,7 @@ static const SeExpr2type_int8 SeExpr2defact[] =
 };
 
   /* SeExprYYPGOTO[NTERM-NUM].  */
-static const SeExpr2type_int16 SeExpr2pgoto[] =
+static const KSeExprtype_int16 KSeExprpgoto[] =
 {
      -76,   -76,   -76,   179,   -14,    -2,   -76,   -76,    66,   -76,
      -13,    14,   -75,   -15,    19,   -76,    -4,   -76,    51,   -76,
@@ -836,7 +836,7 @@ static const SeExpr2type_int16 SeExpr2pgoto[] =
 };
 
   /* SeExprYYDEFGOTO[NTERM-NUM].  */
-static const SeExpr2type_int16 SeExpr2defgoto[] =
+static const KSeExprtype_int16 KSeExprdefgoto[] =
 {
       -1,    14,    15,    16,    80,   126,   153,   154,   127,   128,
       17,   164,    18,    19,    20,   179,    21,    51,    92,    93,
@@ -846,7 +846,7 @@ static const SeExpr2type_int16 SeExpr2defgoto[] =
   /* SeExprYYTABLE[SeExprYYPACT[STATE-NUM]] -- What to do in state STATE-NUM.  If
      positive, shift that token.  If negative, reduce the rule whose
      number is the opposite.  If SeExprYYTABLE_NINF, syntax error.  */
-static const SeExpr2type_uint8 SeExpr2table[] =
+static const KSeExprtype_uint8 KSeExprtable[] =
 {
       25,    27,    54,    55,    45,    46,    47,    48,    49,    50,
       81,    23,    24,     1,    56,    69,    70,    71,    74,   162,
@@ -920,7 +920,7 @@ static const SeExpr2type_uint8 SeExpr2table[] =
       68,    69,    70,    71,     0,     0,     0,    72,    73
 };
 
-static const SeExpr2type_int16 SeExpr2check[] =
+static const KSeExprtype_int16 KSeExprcheck[] =
 {
        2,     3,    15,    18,     8,     9,    10,    11,    12,    13,
       24,     7,     8,     3,    18,    38,    39,    40,    22,     9,
@@ -996,7 +996,7 @@ static const SeExpr2type_int16 SeExpr2check[] =
 
   /* SeExprYYSTOS[STATE-NUM] -- The (internal number of the) accessing
      symbol of state STATE-NUM.  */
-static const SeExpr2type_int8 SeExpr2stos[] =
+static const KSeExprtype_int8 KSeExprstos[] =
 {
        0,     3,     5,     6,     9,    10,    11,    12,    23,    36,
       37,    42,    43,    45,    53,    54,    55,    62,    64,    65,
@@ -1020,7 +1020,7 @@ static const SeExpr2type_int8 SeExpr2stos[] =
 };
 
   /* SeExprYYR1[SeExprYYN] -- Symbol number of symbol that rule SeExprYYN derives.  */
-static const SeExpr2type_int8 SeExpr2r1[] =
+static const KSeExprtype_int8 KSeExprr1[] =
 {
        0,    52,    53,    53,    54,    54,    55,    55,    55,    56,
       56,    56,    56,    56,    57,    57,    57,    58,    58,    59,
@@ -1034,7 +1034,7 @@ static const SeExpr2type_int8 SeExpr2r1[] =
 };
 
   /* SeExprYYR2[SeExprYYN] -- Number of symbols on the right hand side of rule SeExprYYN.  */
-static const SeExpr2type_int8 SeExpr2r2[] =
+static const KSeExprtype_int8 KSeExprr2[] =
 {
        0,     2,     2,     1,     1,     2,     6,     9,     8,     0,
        1,     1,     1,     1,     2,     5,     2,     0,     1,     1,
@@ -1050,29 +1050,29 @@ static const SeExpr2type_int8 SeExpr2r2[] =
 
 enum { SeExprYYENOMEM = -2 };
 
-#define SeExpr2errok         (SeExpr2errstatus = 0)
-#define SeExpr2clearin       (SeExpr2char = SeExprYYEMPTY)
+#define KSeExprerrok         (KSeExprerrstatus = 0)
+#define KSeExprclearin       (KSeExprchar = SeExprYYEMPTY)
 
-#define SeExprYYACCEPT        goto SeExpr2acceptlab
-#define SeExprYYABORT         goto SeExpr2abortlab
-#define SeExprYYERROR         goto SeExpr2errorlab
+#define SeExprYYACCEPT        goto KSeExpracceptlab
+#define SeExprYYABORT         goto KSeExprabortlab
+#define SeExprYYERROR         goto KSeExprerrorlab
 
 
-#define SeExprYYRECOVERING()  (!!SeExpr2errstatus)
+#define SeExprYYRECOVERING()  (!!KSeExprerrstatus)
 
 #define SeExprYYBACKUP(Token, Value)                                    \
   do                                                              \
-    if (SeExpr2char == SeExprYYEMPTY)                                        \
+    if (KSeExprchar == SeExprYYEMPTY)                                        \
       {                                                           \
-        SeExpr2char = (Token);                                         \
-        SeExpr2lval = (Value);                                         \
-        SeExprYYPOPSTACK (SeExpr2len);                                       \
-        SeExpr2state = *SeExpr2ssp;                                         \
-        goto SeExpr2backup;                                            \
+        KSeExprchar = (Token);                                         \
+        KSeExprlval = (Value);                                         \
+        SeExprYYPOPSTACK (KSeExprlen);                                       \
+        KSeExprstate = *KSeExprssp;                                         \
+        goto KSeExprbackup;                                            \
       }                                                           \
     else                                                          \
       {                                                           \
-        SeExpr2error (SeExprYY_("syntax error: cannot back up")); \
+        KSeExprerror (SeExprYY_("syntax error: cannot back up")); \
         SeExprYYERROR;                                                  \
       }                                                           \
   while (0)
@@ -1118,7 +1118,7 @@ enum { SeExprYYENOMEM = -2 };
 
 # define SeExprYYDPRINTF(Args)                        \
 do {                                            \
-  if (SeExpr2debug)                                  \
+  if (KSeExprdebug)                                  \
     SeExprYYFPRINTF Args;                             \
 } while (0)
 
@@ -1134,32 +1134,32 @@ do {                                            \
 
 SeExprYY_ATTRIBUTE_UNUSED
 static int
-SeExpr2_location_print_ (FILE *SeExpr2o, SeExprYYLTYPE const * const SeExpr2locp)
+KSeExpr_location_print_ (FILE *KSeExpro, SeExprYYLTYPE const * const KSeExprlocp)
 {
   int res = 0;
-  int end_col = 0 != SeExpr2locp->last_column ? SeExpr2locp->last_column - 1 : 0;
-  if (0 <= SeExpr2locp->first_line)
+  int end_col = 0 != KSeExprlocp->last_column ? KSeExprlocp->last_column - 1 : 0;
+  if (0 <= KSeExprlocp->first_line)
     {
-      res += SeExprYYFPRINTF (SeExpr2o, "%d", SeExpr2locp->first_line);
-      if (0 <= SeExpr2locp->first_column)
-        res += SeExprYYFPRINTF (SeExpr2o, ".%d", SeExpr2locp->first_column);
+      res += SeExprYYFPRINTF (KSeExpro, "%d", KSeExprlocp->first_line);
+      if (0 <= KSeExprlocp->first_column)
+        res += SeExprYYFPRINTF (KSeExpro, ".%d", KSeExprlocp->first_column);
     }
-  if (0 <= SeExpr2locp->last_line)
+  if (0 <= KSeExprlocp->last_line)
     {
-      if (SeExpr2locp->first_line < SeExpr2locp->last_line)
+      if (KSeExprlocp->first_line < KSeExprlocp->last_line)
         {
-          res += SeExprYYFPRINTF (SeExpr2o, "-%d", SeExpr2locp->last_line);
+          res += SeExprYYFPRINTF (KSeExpro, "-%d", KSeExprlocp->last_line);
           if (0 <= end_col)
-            res += SeExprYYFPRINTF (SeExpr2o, ".%d", end_col);
+            res += SeExprYYFPRINTF (KSeExpro, ".%d", end_col);
         }
-      else if (0 <= end_col && SeExpr2locp->first_column < end_col)
-        res += SeExprYYFPRINTF (SeExpr2o, "-%d", end_col);
+      else if (0 <= end_col && KSeExprlocp->first_column < end_col)
+        res += SeExprYYFPRINTF (KSeExpro, "-%d", end_col);
     }
   return res;
  }
 
 #   define SeExprYY_LOCATION_PRINT(File, Loc)          \
-  SeExpr2_location_print_ (File, &(Loc))
+  KSeExpr_location_print_ (File, &(Loc))
 
 #  else
 #   define SeExprYY_LOCATION_PRINT(File, Loc) ((void) 0)
@@ -1169,10 +1169,10 @@ SeExpr2_location_print_ (FILE *SeExpr2o, SeExprYYLTYPE const * const SeExpr2locp
 
 # define SeExprYY_SYMBOL_PRINT(Title, Kind, Value, Location)                    \
 do {                                                                      \
-  if (SeExpr2debug)                                                            \
+  if (KSeExprdebug)                                                            \
     {                                                                     \
       SeExprYYFPRINTF (stderr, "%s ", Title);                                   \
-      SeExpr2_symbol_print (stderr,                                            \
+      KSeExpr_symbol_print (stderr,                                            \
                   Kind, Value, Location); \
       SeExprYYFPRINTF (stderr, "\n");                                           \
     }                                                                     \
@@ -1184,20 +1184,20 @@ do {                                                                      \
 `-----------------------------------*/
 
 static void
-SeExpr2_symbol_value_print (FILE *SeExpr2o,
-                       SeExpr2symbol_kind_t SeExpr2kind, SeExprYYSTYPE const * const SeExpr2valuep, SeExprYYLTYPE const * const SeExpr2locationp)
+KSeExpr_symbol_value_print (FILE *KSeExpro,
+                       KSeExprsymbol_kind_t KSeExprkind, SeExprYYSTYPE const * const KSeExprvaluep, SeExprYYLTYPE const * const KSeExprlocationp)
 {
-  FILE *SeExpr2output = SeExpr2o;
-  SeExprYYUSE (SeExpr2output);
-  SeExprYYUSE (SeExpr2locationp);
-  if (!SeExpr2valuep)
+  FILE *KSeExproutput = KSeExpro;
+  SeExprYYUSE (KSeExproutput);
+  SeExprYYUSE (KSeExprlocationp);
+  if (!KSeExprvaluep)
     return;
 # ifdef SeExprYYPRINT
-  if (SeExpr2kind < SeExprYYNTOKENS)
-    SeExprYYPRINT (SeExpr2o, SeExpr2toknum[SeExpr2kind], *SeExpr2valuep);
+  if (KSeExprkind < SeExprYYNTOKENS)
+    SeExprYYPRINT (KSeExpro, KSeExprtoknum[KSeExprkind], *KSeExprvaluep);
 # endif
   SeExprYY_IGNORE_MAYBE_UNINITIALIZED_BEGIN
-  SeExprYYUSE (SeExpr2kind);
+  SeExprYYUSE (KSeExprkind);
   SeExprYY_IGNORE_MAYBE_UNINITIALIZED_END
 }
 
@@ -1207,39 +1207,39 @@ SeExpr2_symbol_value_print (FILE *SeExpr2o,
 `---------------------------*/
 
 static void
-SeExpr2_symbol_print (FILE *SeExpr2o,
-                 SeExpr2symbol_kind_t SeExpr2kind, SeExprYYSTYPE const * const SeExpr2valuep, SeExprYYLTYPE const * const SeExpr2locationp)
+KSeExpr_symbol_print (FILE *KSeExpro,
+                 KSeExprsymbol_kind_t KSeExprkind, SeExprYYSTYPE const * const KSeExprvaluep, SeExprYYLTYPE const * const KSeExprlocationp)
 {
-  SeExprYYFPRINTF (SeExpr2o, "%s %s (",
-             SeExpr2kind < SeExprYYNTOKENS ? "token" : "nterm", SeExpr2symbol_name (SeExpr2kind));
+  SeExprYYFPRINTF (KSeExpro, "%s %s (",
+             KSeExprkind < SeExprYYNTOKENS ? "token" : "nterm", KSeExprsymbol_name (KSeExprkind));
 
-  SeExprYY_LOCATION_PRINT (SeExpr2o, *SeExpr2locationp);
-  SeExprYYFPRINTF (SeExpr2o, ": ");
-  SeExpr2_symbol_value_print (SeExpr2o, SeExpr2kind, SeExpr2valuep, SeExpr2locationp);
-  SeExprYYFPRINTF (SeExpr2o, ")");
+  SeExprYY_LOCATION_PRINT (KSeExpro, *KSeExprlocationp);
+  SeExprYYFPRINTF (KSeExpro, ": ");
+  KSeExpr_symbol_value_print (KSeExpro, KSeExprkind, KSeExprvaluep, KSeExprlocationp);
+  SeExprYYFPRINTF (KSeExpro, ")");
 }
 
 /*------------------------------------------------------------------.
-| SeExpr2_stack_print -- Print the state stack from its BOTTOM up to its |
+| KSeExpr_stack_print -- Print the state stack from its BOTTOM up to its |
 | TOP (included).                                                   |
 `------------------------------------------------------------------*/
 
 static void
-SeExpr2_stack_print (SeExpr2_state_t *SeExpr2bottom, SeExpr2_state_t *SeExpr2top)
+KSeExpr_stack_print (KSeExpr_state_t *KSeExprbottom, KSeExpr_state_t *KSeExprtop)
 {
   SeExprYYFPRINTF (stderr, "Stack now");
-  for (; SeExpr2bottom <= SeExpr2top; SeExpr2bottom++)
+  for (; KSeExprbottom <= KSeExprtop; KSeExprbottom++)
     {
-      int SeExpr2bot = *SeExpr2bottom;
-      SeExprYYFPRINTF (stderr, " %d", SeExpr2bot);
+      int KSeExprbot = *KSeExprbottom;
+      SeExprYYFPRINTF (stderr, " %d", KSeExprbot);
     }
   SeExprYYFPRINTF (stderr, "\n");
 }
 
 # define SeExprYY_STACK_PRINT(Bottom, Top)                            \
 do {                                                            \
-  if (SeExpr2debug)                                                  \
-    SeExpr2_stack_print ((Bottom), (Top));                           \
+  if (KSeExprdebug)                                                  \
+    KSeExpr_stack_print ((Bottom), (Top));                           \
 } while (0)
 
 
@@ -1248,35 +1248,35 @@ do {                                                            \
 `------------------------------------------------*/
 
 static void
-SeExpr2_reduce_print (SeExpr2_state_t *SeExpr2ssp, SeExprYYSTYPE *SeExpr2vsp, SeExprYYLTYPE *SeExpr2lsp,
-                 int SeExpr2rule)
+KSeExpr_reduce_print (KSeExpr_state_t *KSeExprssp, SeExprYYSTYPE *KSeExprvsp, SeExprYYLTYPE *KSeExprlsp,
+                 int KSeExprrule)
 {
-  int SeExpr2lno = SeExpr2rline[SeExpr2rule];
-  int SeExpr2nrhs = SeExpr2r2[SeExpr2rule];
-  int SeExpr2i;
+  int KSeExprlno = KSeExprrline[KSeExprrule];
+  int KSeExprnrhs = KSeExprr2[KSeExprrule];
+  int KSeExpri;
   SeExprYYFPRINTF (stderr, "Reducing stack by rule %d (line %d):\n",
-             SeExpr2rule - 1, SeExpr2lno);
+             KSeExprrule - 1, KSeExprlno);
   /* The symbols being reduced.  */
-  for (SeExpr2i = 0; SeExpr2i < SeExpr2nrhs; SeExpr2i++)
+  for (KSeExpri = 0; KSeExpri < KSeExprnrhs; KSeExpri++)
     {
-      SeExprYYFPRINTF (stderr, "   $%d = ", SeExpr2i + 1);
-      SeExpr2_symbol_print (stderr,
-                       SeExprYY_ACCESSING_SYMBOL (+SeExpr2ssp[SeExpr2i + 1 - SeExpr2nrhs]),
-                       &SeExpr2vsp[(SeExpr2i + 1) - (SeExpr2nrhs)],
-                       &(SeExpr2lsp[(SeExpr2i + 1) - (SeExpr2nrhs)]));
+      SeExprYYFPRINTF (stderr, "   $%d = ", KSeExpri + 1);
+      KSeExpr_symbol_print (stderr,
+                       SeExprYY_ACCESSING_SYMBOL (+KSeExprssp[KSeExpri + 1 - KSeExprnrhs]),
+                       &KSeExprvsp[(KSeExpri + 1) - (KSeExprnrhs)],
+                       &(KSeExprlsp[(KSeExpri + 1) - (KSeExprnrhs)]));
       SeExprYYFPRINTF (stderr, "\n");
     }
 }
 
 # define SeExprYY_REDUCE_PRINT(Rule)          \
 do {                                    \
-  if (SeExpr2debug)                          \
-    SeExpr2_reduce_print (SeExpr2ssp, SeExpr2vsp, SeExpr2lsp, Rule); \
+  if (KSeExprdebug)                          \
+    KSeExpr_reduce_print (KSeExprssp, KSeExprvsp, KSeExprlsp, Rule); \
 } while (0)
 
 /* Nonzero means print parse trace.  It is left uninitialized so that
    multiple parsers can coexist.  */
-int SeExpr2debug;
+int KSeExprdebug;
 #else /* !SeExprYYDEBUG */
 # define SeExprYYDPRINTF(Args) ((void) 0)
 # define SeExprYY_SYMBOL_PRINT(Title, Kind, Value, Location)
@@ -1311,299 +1311,299 @@ int SeExpr2debug;
 `-----------------------------------------------*/
 
 static void
-SeExpr2destruct (const char *SeExpr2msg,
-            SeExpr2symbol_kind_t SeExpr2kind, SeExprYYSTYPE *SeExpr2valuep, SeExprYYLTYPE *SeExpr2locationp)
+KSeExprdestruct (const char *KSeExprmsg,
+            KSeExprsymbol_kind_t KSeExprkind, SeExprYYSTYPE *KSeExprvaluep, SeExprYYLTYPE *KSeExprlocationp)
 {
-  SeExprYYUSE (SeExpr2valuep);
-  SeExprYYUSE (SeExpr2locationp);
-  if (!SeExpr2msg)
-    SeExpr2msg = "Deleting";
-  SeExprYY_SYMBOL_PRINT (SeExpr2msg, SeExpr2kind, SeExpr2valuep, SeExpr2locationp);
+  SeExprYYUSE (KSeExprvaluep);
+  SeExprYYUSE (KSeExprlocationp);
+  if (!KSeExprmsg)
+    KSeExprmsg = "Deleting";
+  SeExprYY_SYMBOL_PRINT (KSeExprmsg, KSeExprkind, KSeExprvaluep, KSeExprlocationp);
 
   SeExprYY_IGNORE_MAYBE_UNINITIALIZED_BEGIN
-  SeExprYYUSE (SeExpr2kind);
+  SeExprYYUSE (KSeExprkind);
   SeExprYY_IGNORE_MAYBE_UNINITIALIZED_END
 }
 
 
 /* The lookahead symbol.  */
-int SeExpr2char;
+int KSeExprchar;
 
 /* The semantic value of the lookahead symbol.  */
-SeExprYYSTYPE SeExpr2lval;
+SeExprYYSTYPE KSeExprlval;
 /* Location data for the lookahead symbol.  */
-SeExprYYLTYPE SeExpr2lloc
+SeExprYYLTYPE KSeExprlloc
 # if defined SeExprYYLTYPE_IS_TRIVIAL && SeExprYYLTYPE_IS_TRIVIAL
   = { 1, 1, 1, 1 }
 # endif
 ;
 /* Number of syntax errors so far.  */
-int SeExpr2nerrs;
+int KSeExprnerrs;
 
 
 
 
 /*----------.
-| SeExpr2parse.  |
+| KSeExprparse.  |
 `----------*/
 
 int
-SeExpr2parse (void)
+KSeExprparse (void)
 {
-    SeExpr2_state_fast_t SeExpr2state;
+    KSeExpr_state_fast_t KSeExprstate;
     /* Number of tokens to shift before error messages enabled.  */
-    int SeExpr2errstatus;
+    int KSeExprerrstatus;
 
     /* The stacks and their tools:
-       'SeExpr2ss': related to states.
-       'SeExpr2vs': related to semantic values.
-       'SeExpr2ls': related to locations.
+       'KSeExprss': related to states.
+       'KSeExprvs': related to semantic values.
+       'KSeExprls': related to locations.
 
-       Refer to the stacks through separate pointers, to allow SeExpr2overflow
+       Refer to the stacks through separate pointers, to allow KSeExproverflow
        to reallocate them elsewhere.  */
 
     /* Their size.  */
-    SeExprYYPTRDIFF_T SeExpr2stacksize;
+    SeExprYYPTRDIFF_T KSeExprstacksize;
 
     /* The state stack.  */
-    SeExpr2_state_t SeExpr2ssa[SeExprYYINITDEPTH];
-    SeExpr2_state_t *SeExpr2ss;
-    SeExpr2_state_t *SeExpr2ssp;
+    KSeExpr_state_t KSeExprssa[SeExprYYINITDEPTH];
+    KSeExpr_state_t *KSeExprss;
+    KSeExpr_state_t *KSeExprssp;
 
     /* The semantic value stack.  */
-    SeExprYYSTYPE SeExpr2vsa[SeExprYYINITDEPTH];
-    SeExprYYSTYPE *SeExpr2vs;
-    SeExprYYSTYPE *SeExpr2vsp;
+    SeExprYYSTYPE KSeExprvsa[SeExprYYINITDEPTH];
+    SeExprYYSTYPE *KSeExprvs;
+    SeExprYYSTYPE *KSeExprvsp;
 
     /* The location stack.  */
-    SeExprYYLTYPE SeExpr2lsa[SeExprYYINITDEPTH];
-    SeExprYYLTYPE *SeExpr2ls;
-    SeExprYYLTYPE *SeExpr2lsp;
+    SeExprYYLTYPE KSeExprlsa[SeExprYYINITDEPTH];
+    SeExprYYLTYPE *KSeExprls;
+    SeExprYYLTYPE *KSeExprlsp;
 
-  int SeExpr2n;
-  /* The return value of SeExpr2parse.  */
-  int SeExpr2result;
+  int KSeExprn;
+  /* The return value of KSeExprparse.  */
+  int KSeExprresult;
   /* Lookahead token as an internal (translated) token number.  */
-  SeExpr2symbol_kind_t SeExpr2token = SeExprYYSYMBOL_SeExprYYEMPTY;
+  KSeExprsymbol_kind_t KSeExprtoken = SeExprYYSYMBOL_SeExprYYEMPTY;
   /* The variables used to return semantic value and location from the
      action routines.  */
-  SeExprYYSTYPE SeExpr2val;
-  SeExprYYLTYPE SeExpr2loc;
+  SeExprYYSTYPE KSeExprval;
+  SeExprYYLTYPE KSeExprloc;
 
   /* The locations where the error started and ended.  */
-  SeExprYYLTYPE SeExpr2error_range[3];
+  SeExprYYLTYPE KSeExprerror_range[3];
 
 
 
-#define SeExprYYPOPSTACK(N)   (SeExpr2vsp -= (N), SeExpr2ssp -= (N), SeExpr2lsp -= (N))
+#define SeExprYYPOPSTACK(N)   (KSeExprvsp -= (N), KSeExprssp -= (N), KSeExprlsp -= (N))
 
   /* The number of symbols on the RHS of the reduced rule.
      Keep to zero when no symbol should be popped.  */
-  int SeExpr2len = 0;
+  int KSeExprlen = 0;
 
-  SeExpr2nerrs = 0;
-  SeExpr2state = 0;
-  SeExpr2errstatus = 0;
+  KSeExprnerrs = 0;
+  KSeExprstate = 0;
+  KSeExprerrstatus = 0;
 
-  SeExpr2stacksize = SeExprYYINITDEPTH;
-  SeExpr2ssp = SeExpr2ss = SeExpr2ssa;
-  SeExpr2vsp = SeExpr2vs = SeExpr2vsa;
-  SeExpr2lsp = SeExpr2ls = SeExpr2lsa;
+  KSeExprstacksize = SeExprYYINITDEPTH;
+  KSeExprssp = KSeExprss = KSeExprssa;
+  KSeExprvsp = KSeExprvs = KSeExprvsa;
+  KSeExprlsp = KSeExprls = KSeExprlsa;
 
 
   SeExprYYDPRINTF ((stderr, "Starting parse\n"));
 
-  SeExpr2char = SeExprYYEMPTY; /* Cause a token to be read.  */
-  SeExpr2lsp[0] = SeExpr2lloc;
-  goto SeExpr2setstate;
+  KSeExprchar = SeExprYYEMPTY; /* Cause a token to be read.  */
+  KSeExprlsp[0] = KSeExprlloc;
+  goto KSeExprsetstate;
 
 
 /*------------------------------------------------------------.
-| SeExpr2newstate -- push a new state, which is found in SeExpr2state.  |
+| KSeExprnewstate -- push a new state, which is found in KSeExprstate.  |
 `------------------------------------------------------------*/
-SeExpr2newstate:
+KSeExprnewstate:
   /* In all cases, when you get here, the value and location stacks
      have just been pushed.  So pushing a state here evens the stacks.  */
-  SeExpr2ssp++;
+  KSeExprssp++;
 
 
 /*--------------------------------------------------------------------.
-| SeExpr2setstate -- set current state (the top of the stack) to SeExpr2state.  |
+| KSeExprsetstate -- set current state (the top of the stack) to KSeExprstate.  |
 `--------------------------------------------------------------------*/
-SeExpr2setstate:
-  SeExprYYDPRINTF ((stderr, "Entering state %d\n", SeExpr2state));
-  SeExprYY_ASSERT (0 <= SeExpr2state && SeExpr2state < SeExprYYNSTATES);
+KSeExprsetstate:
+  SeExprYYDPRINTF ((stderr, "Entering state %d\n", KSeExprstate));
+  SeExprYY_ASSERT (0 <= KSeExprstate && KSeExprstate < SeExprYYNSTATES);
   SeExprYY_IGNORE_USELESS_CAST_BEGIN
-  *SeExpr2ssp = SeExprYY_CAST (SeExpr2_state_t, SeExpr2state);
+  *KSeExprssp = SeExprYY_CAST (KSeExpr_state_t, KSeExprstate);
   SeExprYY_IGNORE_USELESS_CAST_END
-  SeExprYY_STACK_PRINT (SeExpr2ss, SeExpr2ssp);
+  SeExprYY_STACK_PRINT (KSeExprss, KSeExprssp);
 
-  if (SeExpr2ss + SeExpr2stacksize - 1 <= SeExpr2ssp)
-#if !defined SeExpr2overflow && !defined SeExprYYSTACK_RELOCATE
-    goto SeExpr2exhaustedlab;
+  if (KSeExprss + KSeExprstacksize - 1 <= KSeExprssp)
+#if !defined KSeExproverflow && !defined SeExprYYSTACK_RELOCATE
+    goto KSeExprexhaustedlab;
 #else
     {
       /* Get the current used size of the three stacks, in elements.  */
-      SeExprYYPTRDIFF_T SeExpr2size = SeExpr2ssp - SeExpr2ss + 1;
+      SeExprYYPTRDIFF_T KSeExprsize = KSeExprssp - KSeExprss + 1;
 
-# if defined SeExpr2overflow
+# if defined KSeExproverflow
       {
         /* Give user a chance to reallocate the stack.  Use copies of
            these so that the &'s don't force the real ones into
            memory.  */
-        SeExpr2_state_t *SeExpr2ss1 = SeExpr2ss;
-        SeExprYYSTYPE *SeExpr2vs1 = SeExpr2vs;
-        SeExprYYLTYPE *SeExpr2ls1 = SeExpr2ls;
+        KSeExpr_state_t *KSeExprss1 = KSeExprss;
+        SeExprYYSTYPE *KSeExprvs1 = KSeExprvs;
+        SeExprYYLTYPE *KSeExprls1 = KSeExprls;
 
         /* Each stack pointer address is followed by the size of the
            data in use in that stack, in bytes.  This used to be a
            conditional around just the two extra args, but that might
-           be undefined if SeExpr2overflow is a macro.  */
-        SeExpr2overflow (SeExprYY_("memory exhausted"),
-                    &SeExpr2ss1, SeExpr2size * SeExprYYSIZEOF (*SeExpr2ssp),
-                    &SeExpr2vs1, SeExpr2size * SeExprYYSIZEOF (*SeExpr2vsp),
-                    &SeExpr2ls1, SeExpr2size * SeExprYYSIZEOF (*SeExpr2lsp),
-                    &SeExpr2stacksize);
-        SeExpr2ss = SeExpr2ss1;
-        SeExpr2vs = SeExpr2vs1;
-        SeExpr2ls = SeExpr2ls1;
+           be undefined if KSeExproverflow is a macro.  */
+        KSeExproverflow (SeExprYY_("memory exhausted"),
+                    &KSeExprss1, KSeExprsize * SeExprYYSIZEOF (*KSeExprssp),
+                    &KSeExprvs1, KSeExprsize * SeExprYYSIZEOF (*KSeExprvsp),
+                    &KSeExprls1, KSeExprsize * SeExprYYSIZEOF (*KSeExprlsp),
+                    &KSeExprstacksize);
+        KSeExprss = KSeExprss1;
+        KSeExprvs = KSeExprvs1;
+        KSeExprls = KSeExprls1;
       }
 # else /* defined SeExprYYSTACK_RELOCATE */
       /* Extend the stack our own way.  */
-      if (SeExprYYMAXDEPTH <= SeExpr2stacksize)
-        goto SeExpr2exhaustedlab;
-      SeExpr2stacksize *= 2;
-      if (SeExprYYMAXDEPTH < SeExpr2stacksize)
-        SeExpr2stacksize = SeExprYYMAXDEPTH;
+      if (SeExprYYMAXDEPTH <= KSeExprstacksize)
+        goto KSeExprexhaustedlab;
+      KSeExprstacksize *= 2;
+      if (SeExprYYMAXDEPTH < KSeExprstacksize)
+        KSeExprstacksize = SeExprYYMAXDEPTH;
 
       {
-        SeExpr2_state_t *SeExpr2ss1 = SeExpr2ss;
-        union SeExpr2alloc *SeExpr2ptr =
-          SeExprYY_CAST (union SeExpr2alloc *,
-                   SeExprYYSTACK_ALLOC (SeExprYY_CAST (SeExprYYSIZE_T, SeExprYYSTACK_BYTES (SeExpr2stacksize))));
-        if (! SeExpr2ptr)
-          goto SeExpr2exhaustedlab;
-        SeExprYYSTACK_RELOCATE (SeExpr2ss_alloc, SeExpr2ss);
-        SeExprYYSTACK_RELOCATE (SeExpr2vs_alloc, SeExpr2vs);
-        SeExprYYSTACK_RELOCATE (SeExpr2ls_alloc, SeExpr2ls);
+        KSeExpr_state_t *KSeExprss1 = KSeExprss;
+        union KSeExpralloc *KSeExprptr =
+          SeExprYY_CAST (union KSeExpralloc *,
+                   SeExprYYSTACK_ALLOC (SeExprYY_CAST (SeExprYYSIZE_T, SeExprYYSTACK_BYTES (KSeExprstacksize))));
+        if (! KSeExprptr)
+          goto KSeExprexhaustedlab;
+        SeExprYYSTACK_RELOCATE (KSeExprss_alloc, KSeExprss);
+        SeExprYYSTACK_RELOCATE (KSeExprvs_alloc, KSeExprvs);
+        SeExprYYSTACK_RELOCATE (KSeExprls_alloc, KSeExprls);
 #  undef SeExprYYSTACK_RELOCATE
-        if (SeExpr2ss1 != SeExpr2ssa)
-          SeExprYYSTACK_FREE (SeExpr2ss1);
+        if (KSeExprss1 != KSeExprssa)
+          SeExprYYSTACK_FREE (KSeExprss1);
       }
 # endif
 
-      SeExpr2ssp = SeExpr2ss + SeExpr2size - 1;
-      SeExpr2vsp = SeExpr2vs + SeExpr2size - 1;
-      SeExpr2lsp = SeExpr2ls + SeExpr2size - 1;
+      KSeExprssp = KSeExprss + KSeExprsize - 1;
+      KSeExprvsp = KSeExprvs + KSeExprsize - 1;
+      KSeExprlsp = KSeExprls + KSeExprsize - 1;
 
       SeExprYY_IGNORE_USELESS_CAST_BEGIN
       SeExprYYDPRINTF ((stderr, "Stack size increased to %ld\n",
-                  SeExprYY_CAST (long, SeExpr2stacksize)));
+                  SeExprYY_CAST (long, KSeExprstacksize)));
       SeExprYY_IGNORE_USELESS_CAST_END
 
-      if (SeExpr2ss + SeExpr2stacksize - 1 <= SeExpr2ssp)
+      if (KSeExprss + KSeExprstacksize - 1 <= KSeExprssp)
         SeExprYYABORT;
     }
-#endif /* !defined SeExpr2overflow && !defined SeExprYYSTACK_RELOCATE */
+#endif /* !defined KSeExproverflow && !defined SeExprYYSTACK_RELOCATE */
 
-  if (SeExpr2state == SeExprYYFINAL)
+  if (KSeExprstate == SeExprYYFINAL)
     SeExprYYACCEPT;
 
-  goto SeExpr2backup;
+  goto KSeExprbackup;
 
 
 /*-----------.
-| SeExpr2backup.  |
+| KSeExprbackup.  |
 `-----------*/
-SeExpr2backup:
+KSeExprbackup:
   /* Do appropriate processing given the current state.  Read a
      lookahead token if we need one and don't already have one.  */
 
   /* First try to decide what to do without reference to lookahead token.  */
-  SeExpr2n = SeExpr2pact[SeExpr2state];
-  if (SeExpr2pact_value_is_default (SeExpr2n))
-    goto SeExpr2default;
+  KSeExprn = KSeExprpact[KSeExprstate];
+  if (KSeExprpact_value_is_default (KSeExprn))
+    goto KSeExprdefault;
 
   /* Not known => get a lookahead token if don't already have one.  */
 
   /* SeExprYYCHAR is either empty, or end-of-input, or a valid lookahead.  */
-  if (SeExpr2char == SeExprYYEMPTY)
+  if (KSeExprchar == SeExprYYEMPTY)
     {
       SeExprYYDPRINTF ((stderr, "Reading a token\n"));
-      SeExpr2char = SeExpr2lex ();
+      KSeExprchar = KSeExprlex ();
     }
 
-  if (SeExpr2char <= SeExprYYEOF)
+  if (KSeExprchar <= SeExprYYEOF)
     {
-      SeExpr2char = SeExprYYEOF;
-      SeExpr2token = SeExprYYSYMBOL_SeExprYYEOF;
+      KSeExprchar = SeExprYYEOF;
+      KSeExprtoken = SeExprYYSYMBOL_SeExprYYEOF;
       SeExprYYDPRINTF ((stderr, "Now at end of input.\n"));
     }
-  else if (SeExpr2char == SeExprYYerror)
+  else if (KSeExprchar == SeExprYYerror)
     {
       /* The scanner already issued an error message, process directly
          to error recovery.  But do not keep the error token as
          lookahead, it is too special and may lead us to an endless
          loop in error recovery. */
-      SeExpr2char = SeExprYYUNDEF;
-      SeExpr2token = SeExprYYSYMBOL_SeExprYYerror;
-      SeExpr2error_range[1] = SeExpr2lloc;
-      goto SeExpr2errlab1;
+      KSeExprchar = SeExprYYUNDEF;
+      KSeExprtoken = SeExprYYSYMBOL_SeExprYYerror;
+      KSeExprerror_range[1] = KSeExprlloc;
+      goto KSeExprerrlab1;
     }
   else
     {
-      SeExpr2token = SeExprYYTRANSLATE (SeExpr2char);
-      SeExprYY_SYMBOL_PRINT ("Next token is", SeExpr2token, &SeExpr2lval, &SeExpr2lloc);
+      KSeExprtoken = SeExprYYTRANSLATE (KSeExprchar);
+      SeExprYY_SYMBOL_PRINT ("Next token is", KSeExprtoken, &KSeExprlval, &KSeExprlloc);
     }
 
   /* If the proper action on seeing token SeExprYYTOKEN is to reduce or to
      detect an error, take that action.  */
-  SeExpr2n += SeExpr2token;
-  if (SeExpr2n < 0 || SeExprYYLAST < SeExpr2n || SeExpr2check[SeExpr2n] != SeExpr2token)
-    goto SeExpr2default;
-  SeExpr2n = SeExpr2table[SeExpr2n];
-  if (SeExpr2n <= 0)
+  KSeExprn += KSeExprtoken;
+  if (KSeExprn < 0 || SeExprYYLAST < KSeExprn || KSeExprcheck[KSeExprn] != KSeExprtoken)
+    goto KSeExprdefault;
+  KSeExprn = KSeExprtable[KSeExprn];
+  if (KSeExprn <= 0)
     {
-      if (SeExpr2table_value_is_error (SeExpr2n))
-        goto SeExpr2errlab;
-      SeExpr2n = -SeExpr2n;
-      goto SeExpr2reduce;
+      if (KSeExprtable_value_is_error (KSeExprn))
+        goto KSeExprerrlab;
+      KSeExprn = -KSeExprn;
+      goto KSeExprreduce;
     }
 
   /* Count tokens shifted since error; after three, turn off error
      status.  */
-  if (SeExpr2errstatus)
-    SeExpr2errstatus--;
+  if (KSeExprerrstatus)
+    KSeExprerrstatus--;
 
   /* Shift the lookahead token.  */
-  SeExprYY_SYMBOL_PRINT ("Shifting", SeExpr2token, &SeExpr2lval, &SeExpr2lloc);
-  SeExpr2state = SeExpr2n;
+  SeExprYY_SYMBOL_PRINT ("Shifting", KSeExprtoken, &KSeExprlval, &KSeExprlloc);
+  KSeExprstate = KSeExprn;
   SeExprYY_IGNORE_MAYBE_UNINITIALIZED_BEGIN
-  *++SeExpr2vsp = SeExpr2lval;
+  *++KSeExprvsp = KSeExprlval;
   SeExprYY_IGNORE_MAYBE_UNINITIALIZED_END
-  *++SeExpr2lsp = SeExpr2lloc;
+  *++KSeExprlsp = KSeExprlloc;
 
   /* Discard the shifted token.  */
-  SeExpr2char = SeExprYYEMPTY;
-  goto SeExpr2newstate;
+  KSeExprchar = SeExprYYEMPTY;
+  goto KSeExprnewstate;
 
 
 /*-----------------------------------------------------------.
-| SeExpr2default -- do the default action for the current state.  |
+| KSeExprdefault -- do the default action for the current state.  |
 `-----------------------------------------------------------*/
-SeExpr2default:
-  SeExpr2n = SeExpr2defact[SeExpr2state];
-  if (SeExpr2n == 0)
-    goto SeExpr2errlab;
-  goto SeExpr2reduce;
+KSeExprdefault:
+  KSeExprn = KSeExprdefact[KSeExprstate];
+  if (KSeExprn == 0)
+    goto KSeExprerrlab;
+  goto KSeExprreduce;
 
 
 /*-----------------------------.
-| SeExpr2reduce -- do a reduction.  |
+| KSeExprreduce -- do a reduction.  |
 `-----------------------------*/
-SeExpr2reduce:
-  /* SeExpr2n is the number of a rule to reduce with.  */
-  SeExpr2len = SeExpr2r2[SeExpr2n];
+KSeExprreduce:
+  /* KSeExprn is the number of a rule to reduce with.  */
+  KSeExprlen = KSeExprr2[KSeExprn];
 
   /* If SeExprYYLEN is nonzero, implement the default value of the action:
      '$$ = $1'.
@@ -1613,582 +1613,582 @@ SeExpr2reduce:
      users should not rely upon it.  Assigning to SeExprYYVAL
      unconditionally makes the parser a bit smaller, and it avoids a
      GCC warning that SeExprYYVAL may be used uninitialized.  */
-  SeExpr2val = SeExpr2vsp[1-SeExpr2len];
+  KSeExprval = KSeExprvsp[1-KSeExprlen];
 
   /* Default location. */
-  SeExprYYLLOC_DEFAULT (SeExpr2loc, (SeExpr2lsp - SeExpr2len), SeExpr2len);
-  SeExpr2error_range[1] = SeExpr2loc;
-  SeExprYY_REDUCE_PRINT (SeExpr2n);
-  switch (SeExpr2n)
+  SeExprYYLLOC_DEFAULT (KSeExprloc, (KSeExprlsp - KSeExprlen), KSeExprlen);
+  KSeExprerror_range[1] = KSeExprloc;
+  SeExprYY_REDUCE_PRINT (KSeExprn);
+  switch (KSeExprn)
     {
   case 2:
 #line 133 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
-                                { ParseResult = (SeExpr2vsp[-1].n); ParseResult->setPosition((SeExpr2loc).first_column, (SeExpr2loc).last_column);
-                                  ParseResult->addChild((SeExpr2vsp[0].n)); }
+                                { ParseResult = (KSeExprvsp[-1].n); ParseResult->setPosition((KSeExprloc).first_column, (KSeExprloc).last_column);
+                                  ParseResult->addChild((KSeExprvsp[0].n)); }
 #line 1629 "y.tab.c"
     break;
 
   case 3:
 #line 135 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
-                                { ParseResult = NODE((SeExpr2loc).first_column, (SeExpr2loc).last_column, ModuleNode);
-                                  ParseResult->addChild((SeExpr2vsp[0].n)); }
+                                { ParseResult = NODE((KSeExprloc).first_column, (KSeExprloc).last_column, ModuleNode);
+                                  ParseResult->addChild((KSeExprvsp[0].n)); }
 #line 1636 "y.tab.c"
     break;
 
   case 4:
 #line 140 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
-                                { (SeExpr2val.n) = NODE((SeExpr2loc).first_column, (SeExpr2loc).last_column, ModuleNode); (SeExpr2val.n)->addChild((SeExpr2vsp[0].n)); }
+                                { (KSeExprval.n) = NODE((KSeExprloc).first_column, (KSeExprloc).last_column, ModuleNode); (KSeExprval.n)->addChild((KSeExprvsp[0].n)); }
 #line 1642 "y.tab.c"
     break;
 
   case 5:
 #line 142 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
-                                { (SeExpr2val.n) = (SeExpr2vsp[-1].n); (SeExpr2val.n)->setPosition((SeExpr2loc).first_column, (SeExpr2loc).last_column);
-                                  (SeExpr2val.n)->addChild((SeExpr2vsp[0].n)); }
+                                { (KSeExprval.n) = (KSeExprvsp[-1].n); (KSeExprval.n)->setPosition((KSeExprloc).first_column, (KSeExprloc).last_column);
+                                  (KSeExprval.n)->addChild((KSeExprvsp[0].n)); }
 #line 1649 "y.tab.c"
     break;
 
   case 6:
 #line 148 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
-                                { SeExpr2::ExprType type = SeExpr2::ExprType((SeExpr2vsp[-4].t).type, (SeExpr2vsp[-4].t).dim, (SeExpr2vsp[-4].t).lifetime);
-                                    SeExpr2::ExprPrototypeNode * prototype =
-                                        (SeExpr2::ExprPrototypeNode*)NODE2((SeExpr2loc).first_column, (SeExpr2loc).last_column, PrototypeNode, (SeExpr2vsp[-3].s), type);
-                                  prototype->addArgTypes((SeExpr2vsp[-1].n));
-                                  Forget((SeExpr2vsp[-1].n));
-                                  (SeExpr2val.n) = prototype;
-                                  free((SeExpr2vsp[-3].s)); }
+                                { KSeExpr::ExprType type = KSeExpr::ExprType((KSeExprvsp[-4].t).type, (KSeExprvsp[-4].t).dim, (KSeExprvsp[-4].t).lifetime);
+                                    KSeExpr::ExprPrototypeNode * prototype =
+                                        (KSeExpr::ExprPrototypeNode*)NODE2((KSeExprloc).first_column, (KSeExprloc).last_column, PrototypeNode, (KSeExprvsp[-3].s), type);
+                                  prototype->addArgTypes((KSeExprvsp[-1].n));
+                                  Forget((KSeExprvsp[-1].n));
+                                  (KSeExprval.n) = prototype;
+                                  free((KSeExprvsp[-3].s)); }
 #line 1661 "y.tab.c"
     break;
 
   case 7:
 #line 156 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
-                                { SeExpr2::ExprType type = SeExpr2::ExprType((SeExpr2vsp[-7].t).type, (SeExpr2vsp[-7].t).dim, (SeExpr2vsp[-7].t).lifetime);
-                                  SeExpr2::ExprPrototypeNode * prototype =
-                                      (SeExpr2::ExprPrototypeNode*)NODE2((SeExpr2loc).first_column, (SeExpr2lsp[-3]).last_column, PrototypeNode, (SeExpr2vsp[-6].s), type);
-                                  prototype->addArgs((SeExpr2vsp[-4].n));
-                                  Forget((SeExpr2vsp[-4].n));
-                                  (SeExpr2val.n) = NODE2((SeExpr2loc).first_column, (SeExpr2loc).last_column, LocalFunctionNode, prototype, (SeExpr2vsp[-1].n));
-                                  free((SeExpr2vsp[-6].s)); }
+                                { KSeExpr::ExprType type = KSeExpr::ExprType((KSeExprvsp[-7].t).type, (KSeExprvsp[-7].t).dim, (KSeExprvsp[-7].t).lifetime);
+                                  KSeExpr::ExprPrototypeNode * prototype =
+                                      (KSeExpr::ExprPrototypeNode*)NODE2((KSeExprloc).first_column, (KSeExprlsp[-3]).last_column, PrototypeNode, (KSeExprvsp[-6].s), type);
+                                  prototype->addArgs((KSeExprvsp[-4].n));
+                                  Forget((KSeExprvsp[-4].n));
+                                  (KSeExprval.n) = NODE2((KSeExprloc).first_column, (KSeExprloc).last_column, LocalFunctionNode, prototype, (KSeExprvsp[-1].n));
+                                  free((KSeExprvsp[-6].s)); }
 #line 1673 "y.tab.c"
     break;
 
   case 8:
 #line 164 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
-                                { SeExpr2::ExprPrototypeNode * prototype =
-                                        (SeExpr2::ExprPrototypeNode*)NODE1((SeExpr2loc).first_column, (SeExpr2lsp[-3]).last_column, PrototypeNode, (SeExpr2vsp[-6].s));
-                                  prototype->addArgs((SeExpr2vsp[-4].n));
-                                  Forget((SeExpr2vsp[-4].n));
-                                  (SeExpr2val.n) = NODE2((SeExpr2loc).first_column, (SeExpr2loc).last_column, LocalFunctionNode, prototype, (SeExpr2vsp[-1].n));
-                                  free((SeExpr2vsp[-6].s)); }
+                                { KSeExpr::ExprPrototypeNode * prototype =
+                                        (KSeExpr::ExprPrototypeNode*)NODE1((KSeExprloc).first_column, (KSeExprlsp[-3]).last_column, PrototypeNode, (KSeExprvsp[-6].s));
+                                  prototype->addArgs((KSeExprvsp[-4].n));
+                                  Forget((KSeExprvsp[-4].n));
+                                  (KSeExprval.n) = NODE2((KSeExprloc).first_column, (KSeExprloc).last_column, LocalFunctionNode, prototype, (KSeExprvsp[-1].n));
+                                  free((KSeExprvsp[-6].s)); }
 #line 1684 "y.tab.c"
     break;
 
   case 9:
 #line 173 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
-                                { (SeExpr2val.l) = SeExpr2::ExprType::ltVARYING; }
+                                { (KSeExprval.l) = KSeExpr::ExprType::ltVARYING; }
 #line 1690 "y.tab.c"
     break;
 
   case 10:
 #line 174 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
-                                { (SeExpr2val.l) = SeExpr2::ExprType::ltCONSTANT; }
+                                { (KSeExprval.l) = KSeExpr::ExprType::ltCONSTANT; }
 #line 1696 "y.tab.c"
     break;
 
   case 11:
 #line 175 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
-                                { (SeExpr2val.l) = SeExpr2::ExprType::ltUNIFORM; }
+                                { (KSeExprval.l) = KSeExpr::ExprType::ltUNIFORM; }
 #line 1702 "y.tab.c"
     break;
 
   case 12:
 #line 176 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
-                                { (SeExpr2val.l) = SeExpr2::ExprType::ltVARYING; }
+                                { (KSeExprval.l) = KSeExpr::ExprType::ltVARYING; }
 #line 1708 "y.tab.c"
     break;
 
   case 13:
 #line 177 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
-                                { (SeExpr2val.l) = SeExpr2::ExprType::ltERROR; }
+                                { (KSeExprval.l) = KSeExpr::ExprType::ltERROR; }
 #line 1714 "y.tab.c"
     break;
 
   case 14:
 #line 181 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
-                                 {(SeExpr2val.t).type     = SeExpr2::ExprType::tFP;
-                                  (SeExpr2val.t).dim      = 1;
-                                  (SeExpr2val.t).lifetime = (SeExpr2vsp[0].l); }
+                                 {(KSeExprval.t).type     = KSeExpr::ExprType::tFP;
+                                  (KSeExprval.t).dim      = 1;
+                                  (KSeExprval.t).lifetime = (KSeExprvsp[0].l); }
 #line 1722 "y.tab.c"
     break;
 
   case 15:
 #line 185 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
-                                { (SeExpr2val.t).type = ((SeExpr2vsp[-2].d) > 0 ? SeExpr2::ExprType::tFP : SeExpr2::ExprType::tERROR);
+                                { (KSeExprval.t).type = ((KSeExprvsp[-2].d) > 0 ? KSeExpr::ExprType::tFP : KSeExpr::ExprType::tERROR);
                                   //TODO: This causes an error but does not report it to user. Change this.
-                                  (SeExpr2val.t).dim  = ((SeExpr2vsp[-2].d) > 0 ? (SeExpr2vsp[-2].d) : 0);
-                                  (SeExpr2val.t).lifetime = (SeExpr2vsp[0].l); }
+                                  (KSeExprval.t).dim  = ((KSeExprvsp[-2].d) > 0 ? (KSeExprvsp[-2].d) : 0);
+                                  (KSeExprval.t).lifetime = (KSeExprvsp[0].l); }
 #line 1731 "y.tab.c"
     break;
 
   case 16:
 #line 189 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
-                                { (SeExpr2val.t).type = SeExpr2::ExprType::tSTRING;
-                                  (SeExpr2val.t).dim  = 1;
-                                  (SeExpr2val.t).lifetime = (SeExpr2vsp[0].l); }
+                                { (KSeExprval.t).type = KSeExpr::ExprType::tSTRING;
+                                  (KSeExprval.t).dim  = 1;
+                                  (KSeExprval.t).lifetime = (KSeExprvsp[0].l); }
 #line 1739 "y.tab.c"
     break;
 
   case 17:
 #line 195 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
-                                { (SeExpr2val.n) = NODE((SeExpr2loc).first_column, (SeExpr2loc).last_column, Node); }
+                                { (KSeExprval.n) = NODE((KSeExprloc).first_column, (KSeExprloc).last_column, Node); }
 #line 1745 "y.tab.c"
     break;
 
   case 18:
 #line 196 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
-                                { (SeExpr2val.n) = (SeExpr2vsp[0].n); }
+                                { (KSeExprval.n) = (KSeExprvsp[0].n); }
 #line 1751 "y.tab.c"
     break;
 
   case 19:
 #line 200 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
-                                { (SeExpr2val.n) = NODE((SeExpr2loc).first_column, (SeExpr2loc).last_column, Node);
-                                  SeExpr2::ExprType type = SeExpr2::ExprType((SeExpr2vsp[0].t).type, (SeExpr2vsp[0].t).dim, (SeExpr2vsp[0].t).lifetime);
-                                  SeExpr2::ExprNode* varNode = NODE2((SeExpr2loc).first_column, (SeExpr2loc).last_column, VarNode, "", type);
-                                  (SeExpr2val.n)->addChild(varNode); }
+                                { (KSeExprval.n) = NODE((KSeExprloc).first_column, (KSeExprloc).last_column, Node);
+                                  KSeExpr::ExprType type = KSeExpr::ExprType((KSeExprvsp[0].t).type, (KSeExprvsp[0].t).dim, (KSeExprvsp[0].t).lifetime);
+                                  KSeExpr::ExprNode* varNode = NODE2((KSeExprloc).first_column, (KSeExprloc).last_column, VarNode, "", type);
+                                  (KSeExprval.n)->addChild(varNode); }
 #line 1760 "y.tab.c"
     break;
 
   case 20:
 #line 204 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
-                                { (SeExpr2val.n) = (SeExpr2vsp[-2].n);
-                                  SeExpr2::ExprType type = SeExpr2::ExprType((SeExpr2vsp[0].t).type, (SeExpr2vsp[0].t).dim, (SeExpr2vsp[0].t).lifetime);
-                                  SeExpr2::ExprNode* varNode = NODE2((SeExpr2lsp[0]).first_column, (SeExpr2lsp[0]).last_column, VarNode, "", type);
-                                  (SeExpr2val.n)->addChild(varNode); }
+                                { (KSeExprval.n) = (KSeExprvsp[-2].n);
+                                  KSeExpr::ExprType type = KSeExpr::ExprType((KSeExprvsp[0].t).type, (KSeExprvsp[0].t).dim, (KSeExprvsp[0].t).lifetime);
+                                  KSeExpr::ExprNode* varNode = NODE2((KSeExprlsp[0]).first_column, (KSeExprlsp[0]).last_column, VarNode, "", type);
+                                  (KSeExprval.n)->addChild(varNode); }
 #line 1769 "y.tab.c"
     break;
 
   case 21:
 #line 211 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
-                                { (SeExpr2val.n) = NODE((SeExpr2loc).first_column, (SeExpr2loc).last_column, Node); }
+                                { (KSeExprval.n) = NODE((KSeExprloc).first_column, (KSeExprloc).last_column, Node); }
 #line 1775 "y.tab.c"
     break;
 
   case 22:
 #line 212 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
-                                { (SeExpr2val.n) = (SeExpr2vsp[0].n); }
+                                { (KSeExprval.n) = (KSeExprvsp[0].n); }
 #line 1781 "y.tab.c"
     break;
 
   case 23:
 #line 216 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
-                                 { (SeExpr2val.n) = NODE((SeExpr2loc).first_column, (SeExpr2loc).last_column, Node);
-                                  SeExpr2::ExprType type = SeExpr2::ExprType((SeExpr2vsp[-1].t).type, (SeExpr2vsp[-1].t).dim, (SeExpr2vsp[-1].t).lifetime);
-                                  SeExpr2::ExprNode* varNode = NODE2((SeExpr2loc).first_column, (SeExpr2loc).last_column, VarNode, (SeExpr2vsp[0].s), type);
-                                  (SeExpr2val.n)->addChild(varNode);
-                                  free((SeExpr2vsp[0].s)); }
+                                 { (KSeExprval.n) = NODE((KSeExprloc).first_column, (KSeExprloc).last_column, Node);
+                                  KSeExpr::ExprType type = KSeExpr::ExprType((KSeExprvsp[-1].t).type, (KSeExprvsp[-1].t).dim, (KSeExprvsp[-1].t).lifetime);
+                                  KSeExpr::ExprNode* varNode = NODE2((KSeExprloc).first_column, (KSeExprloc).last_column, VarNode, (KSeExprvsp[0].s), type);
+                                  (KSeExprval.n)->addChild(varNode);
+                                  free((KSeExprvsp[0].s)); }
 #line 1791 "y.tab.c"
     break;
 
   case 24:
 #line 222 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
-                                { (SeExpr2val.n) = (SeExpr2vsp[-3].n);
-                                  SeExpr2::ExprType type = SeExpr2::ExprType((SeExpr2vsp[-1].t).type, (SeExpr2vsp[-1].t).dim, (SeExpr2vsp[-1].t).lifetime);
-                                  SeExpr2::ExprNode* varNode = NODE2((SeExpr2lsp[-1]).first_column, (SeExpr2lsp[0]).last_column, VarNode, (SeExpr2vsp[0].s), type);
-                                  (SeExpr2val.n)->addChild(varNode);
-                                  free((SeExpr2vsp[0].s)); }
+                                { (KSeExprval.n) = (KSeExprvsp[-3].n);
+                                  KSeExpr::ExprType type = KSeExpr::ExprType((KSeExprvsp[-1].t).type, (KSeExprvsp[-1].t).dim, (KSeExprvsp[-1].t).lifetime);
+                                  KSeExpr::ExprNode* varNode = NODE2((KSeExprlsp[-1]).first_column, (KSeExprlsp[0]).last_column, VarNode, (KSeExprvsp[0].s), type);
+                                  (KSeExprval.n)->addChild(varNode);
+                                  free((KSeExprvsp[0].s)); }
 #line 1801 "y.tab.c"
     break;
 
   case 25:
 #line 230 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
-                                { (SeExpr2val.n) = NODE2((SeExpr2loc).first_column,(SeExpr2loc).last_column,BlockNode, (SeExpr2vsp[-1].n), (SeExpr2vsp[0].n)); }
+                                { (KSeExprval.n) = NODE2((KSeExprloc).first_column,(KSeExprloc).last_column,BlockNode, (KSeExprvsp[-1].n), (KSeExprvsp[0].n)); }
 #line 1807 "y.tab.c"
     break;
 
   case 26:
 #line 231 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
-                                { (SeExpr2val.n) = (SeExpr2vsp[0].n); }
+                                { (KSeExprval.n) = (KSeExprvsp[0].n); }
 #line 1813 "y.tab.c"
     break;
 
   case 27:
 #line 236 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
-                                { (SeExpr2val.n) = NODE((SeExpr2loc).first_column,(SeExpr2loc).last_column,Node); /* create empty node */; }
+                                { (KSeExprval.n) = NODE((KSeExprloc).first_column,(KSeExprloc).last_column,Node); /* create empty node */; }
 #line 1819 "y.tab.c"
     break;
 
   case 28:
 #line 237 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
-                                { (SeExpr2val.n) = (SeExpr2vsp[0].n); }
+                                { (KSeExprval.n) = (KSeExprvsp[0].n); }
 #line 1825 "y.tab.c"
     break;
 
   case 29:
 #line 241 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
-                                { (SeExpr2val.n) = NODE1((SeExpr2loc).first_column,(SeExpr2loc).last_column,Node, (SeExpr2vsp[0].n)); /* create var list */}
+                                { (KSeExprval.n) = NODE1((KSeExprloc).first_column,(KSeExprloc).last_column,Node, (KSeExprvsp[0].n)); /* create var list */}
 #line 1831 "y.tab.c"
     break;
 
   case 30:
 #line 242 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
-                                { (SeExpr2val.n) = (SeExpr2vsp[-1].n); (SeExpr2vsp[-1].n)->addChild((SeExpr2vsp[0].n)); /* add to list */}
+                                { (KSeExprval.n) = (KSeExprvsp[-1].n); (KSeExprvsp[-1].n)->addChild((KSeExprvsp[0].n)); /* add to list */}
 #line 1837 "y.tab.c"
     break;
 
   case 31:
 #line 246 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
-                                { (SeExpr2val.n) = (SeExpr2vsp[0].n); }
+                                { (KSeExprval.n) = (KSeExprvsp[0].n); }
 #line 1843 "y.tab.c"
     break;
 
   case 32:
 #line 247 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
-                                { (SeExpr2val.n) = NODE2((SeExpr2loc).first_column,(SeExpr2loc).last_column,AssignNode, (SeExpr2vsp[-3].s), (SeExpr2vsp[-1].n)); free((SeExpr2vsp[-3].s)); }
+                                { (KSeExprval.n) = NODE2((KSeExprloc).first_column,(KSeExprloc).last_column,AssignNode, (KSeExprvsp[-3].s), (KSeExprvsp[-1].n)); free((KSeExprvsp[-3].s)); }
 #line 1849 "y.tab.c"
     break;
 
   case 33:
 #line 248 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
-                                   {SeExpr2::ExprNode* varNode=NODE1((SeExpr2lsp[-3]).first_column,(SeExpr2lsp[-3]).first_column,VarNode, (SeExpr2vsp[-3].s));
-                               SeExpr2::ExprNode* opNode=NODE3((SeExpr2lsp[-1]).first_column,(SeExpr2lsp[-1]).first_column,BinaryOpNode,varNode,(SeExpr2vsp[-1].n),'+');
-                                (SeExpr2val.n) = NODE2((SeExpr2loc).first_column,(SeExpr2loc).last_column,AssignNode, (SeExpr2vsp[-3].s), opNode);free((SeExpr2vsp[-3].s));}
+                                   {KSeExpr::ExprNode* varNode=NODE1((KSeExprlsp[-3]).first_column,(KSeExprlsp[-3]).first_column,VarNode, (KSeExprvsp[-3].s));
+                               KSeExpr::ExprNode* opNode=NODE3((KSeExprlsp[-1]).first_column,(KSeExprlsp[-1]).first_column,BinaryOpNode,varNode,(KSeExprvsp[-1].n),'+');
+                                (KSeExprval.n) = NODE2((KSeExprloc).first_column,(KSeExprloc).last_column,AssignNode, (KSeExprvsp[-3].s), opNode);free((KSeExprvsp[-3].s));}
 #line 1857 "y.tab.c"
     break;
 
   case 34:
 #line 251 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
-                                   {SeExpr2::ExprNode* varNode=NODE1((SeExpr2lsp[-3]).first_column,(SeExpr2lsp[-3]).first_column,VarNode, (SeExpr2vsp[-3].s));
-                               SeExpr2::ExprNode* opNode=NODE3((SeExpr2lsp[-1]).first_column,(SeExpr2lsp[-1]).first_column,BinaryOpNode,varNode,(SeExpr2vsp[-1].n),'-');
-                                (SeExpr2val.n) = NODE2((SeExpr2loc).first_column,(SeExpr2loc).last_column,AssignNode, (SeExpr2vsp[-3].s), opNode);free((SeExpr2vsp[-3].s));}
+                                   {KSeExpr::ExprNode* varNode=NODE1((KSeExprlsp[-3]).first_column,(KSeExprlsp[-3]).first_column,VarNode, (KSeExprvsp[-3].s));
+                               KSeExpr::ExprNode* opNode=NODE3((KSeExprlsp[-1]).first_column,(KSeExprlsp[-1]).first_column,BinaryOpNode,varNode,(KSeExprvsp[-1].n),'-');
+                                (KSeExprval.n) = NODE2((KSeExprloc).first_column,(KSeExprloc).last_column,AssignNode, (KSeExprvsp[-3].s), opNode);free((KSeExprvsp[-3].s));}
 #line 1865 "y.tab.c"
     break;
 
   case 35:
 #line 254 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
-                                    {SeExpr2::ExprNode* varNode=NODE1((SeExpr2lsp[-3]).first_column,(SeExpr2lsp[-3]).first_column,VarNode, (SeExpr2vsp[-3].s));
-                               SeExpr2::ExprNode* opNode=NODE3((SeExpr2lsp[-1]).first_column,(SeExpr2lsp[-1]).first_column,BinaryOpNode,varNode,(SeExpr2vsp[-1].n),'*');
-                                (SeExpr2val.n) = NODE2((SeExpr2loc).first_column,(SeExpr2loc).last_column,AssignNode, (SeExpr2vsp[-3].s), opNode);free((SeExpr2vsp[-3].s));}
+                                    {KSeExpr::ExprNode* varNode=NODE1((KSeExprlsp[-3]).first_column,(KSeExprlsp[-3]).first_column,VarNode, (KSeExprvsp[-3].s));
+                               KSeExpr::ExprNode* opNode=NODE3((KSeExprlsp[-1]).first_column,(KSeExprlsp[-1]).first_column,BinaryOpNode,varNode,(KSeExprvsp[-1].n),'*');
+                                (KSeExprval.n) = NODE2((KSeExprloc).first_column,(KSeExprloc).last_column,AssignNode, (KSeExprvsp[-3].s), opNode);free((KSeExprvsp[-3].s));}
 #line 1873 "y.tab.c"
     break;
 
   case 36:
 #line 257 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
-                                   {SeExpr2::ExprNode* varNode=NODE1((SeExpr2lsp[-3]).first_column,(SeExpr2lsp[-3]).first_column,VarNode, (SeExpr2vsp[-3].s));
-                               SeExpr2::ExprNode* opNode=NODE3((SeExpr2lsp[-1]).first_column,(SeExpr2lsp[-1]).first_column,BinaryOpNode,varNode,(SeExpr2vsp[-1].n),'/');
-                                (SeExpr2val.n) = NODE2((SeExpr2loc).first_column,(SeExpr2loc).last_column,AssignNode, (SeExpr2vsp[-3].s), opNode);free((SeExpr2vsp[-3].s));}
+                                   {KSeExpr::ExprNode* varNode=NODE1((KSeExprlsp[-3]).first_column,(KSeExprlsp[-3]).first_column,VarNode, (KSeExprvsp[-3].s));
+                               KSeExpr::ExprNode* opNode=NODE3((KSeExprlsp[-1]).first_column,(KSeExprlsp[-1]).first_column,BinaryOpNode,varNode,(KSeExprvsp[-1].n),'/');
+                                (KSeExprval.n) = NODE2((KSeExprloc).first_column,(KSeExprloc).last_column,AssignNode, (KSeExprvsp[-3].s), opNode);free((KSeExprvsp[-3].s));}
 #line 1881 "y.tab.c"
     break;
 
   case 37:
 #line 260 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
-                                   {SeExpr2::ExprNode* varNode=NODE1((SeExpr2lsp[-3]).first_column,(SeExpr2lsp[-3]).first_column,VarNode, (SeExpr2vsp[-3].s));
-                               SeExpr2::ExprNode* opNode=NODE3((SeExpr2lsp[-1]).first_column,(SeExpr2lsp[-1]).first_column,BinaryOpNode,varNode,(SeExpr2vsp[-1].n),'^');
-                                (SeExpr2val.n) = NODE2((SeExpr2loc).first_column,(SeExpr2loc).last_column,AssignNode, (SeExpr2vsp[-3].s), opNode);free((SeExpr2vsp[-3].s));}
+                                   {KSeExpr::ExprNode* varNode=NODE1((KSeExprlsp[-3]).first_column,(KSeExprlsp[-3]).first_column,VarNode, (KSeExprvsp[-3].s));
+                               KSeExpr::ExprNode* opNode=NODE3((KSeExprlsp[-1]).first_column,(KSeExprlsp[-1]).first_column,BinaryOpNode,varNode,(KSeExprvsp[-1].n),'^');
+                                (KSeExprval.n) = NODE2((KSeExprloc).first_column,(KSeExprloc).last_column,AssignNode, (KSeExprvsp[-3].s), opNode);free((KSeExprvsp[-3].s));}
 #line 1889 "y.tab.c"
     break;
 
   case 38:
 #line 263 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
-                                   {SeExpr2::ExprNode* varNode=NODE1((SeExpr2lsp[-3]).first_column,(SeExpr2lsp[-3]).first_column,VarNode, (SeExpr2vsp[-3].s));
-                               SeExpr2::ExprNode* opNode=NODE3((SeExpr2lsp[-1]).first_column,(SeExpr2lsp[-1]).first_column,BinaryOpNode,varNode,(SeExpr2vsp[-1].n),'%');
-                                (SeExpr2val.n) = NODE2((SeExpr2loc).first_column,(SeExpr2loc).last_column,AssignNode, (SeExpr2vsp[-3].s), opNode);free((SeExpr2vsp[-3].s));}
+                                   {KSeExpr::ExprNode* varNode=NODE1((KSeExprlsp[-3]).first_column,(KSeExprlsp[-3]).first_column,VarNode, (KSeExprvsp[-3].s));
+                               KSeExpr::ExprNode* opNode=NODE3((KSeExprlsp[-1]).first_column,(KSeExprlsp[-1]).first_column,BinaryOpNode,varNode,(KSeExprvsp[-1].n),'%');
+                                (KSeExprval.n) = NODE2((KSeExprloc).first_column,(KSeExprloc).last_column,AssignNode, (KSeExprvsp[-3].s), opNode);free((KSeExprvsp[-3].s));}
 #line 1897 "y.tab.c"
     break;
 
   case 39:
 #line 266 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
-                                { (SeExpr2val.n) = NODE2((SeExpr2loc).first_column,(SeExpr2loc).last_column,AssignNode, (SeExpr2vsp[-3].s), (SeExpr2vsp[-1].n)); free((SeExpr2vsp[-3].s)); }
+                                { (KSeExprval.n) = NODE2((KSeExprloc).first_column,(KSeExprloc).last_column,AssignNode, (KSeExprvsp[-3].s), (KSeExprvsp[-1].n)); free((KSeExprvsp[-3].s)); }
 #line 1903 "y.tab.c"
     break;
 
   case 40:
 #line 267 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
-                                    {SeExpr2::ExprNode* varNode=NODE1((SeExpr2lsp[-3]).first_column,(SeExpr2lsp[-3]).first_column,VarNode, (SeExpr2vsp[-3].s));
-                               SeExpr2::ExprNode* opNode=NODE3((SeExpr2lsp[-1]).first_column,(SeExpr2lsp[-1]).first_column,BinaryOpNode,varNode,(SeExpr2vsp[-1].n),'+');
-                                (SeExpr2val.n) = NODE2((SeExpr2loc).first_column,(SeExpr2loc).last_column,AssignNode, (SeExpr2vsp[-3].s), opNode);free((SeExpr2vsp[-3].s));}
+                                    {KSeExpr::ExprNode* varNode=NODE1((KSeExprlsp[-3]).first_column,(KSeExprlsp[-3]).first_column,VarNode, (KSeExprvsp[-3].s));
+                               KSeExpr::ExprNode* opNode=NODE3((KSeExprlsp[-1]).first_column,(KSeExprlsp[-1]).first_column,BinaryOpNode,varNode,(KSeExprvsp[-1].n),'+');
+                                (KSeExprval.n) = NODE2((KSeExprloc).first_column,(KSeExprloc).last_column,AssignNode, (KSeExprvsp[-3].s), opNode);free((KSeExprvsp[-3].s));}
 #line 1911 "y.tab.c"
     break;
 
   case 41:
 #line 270 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
-                                    {SeExpr2::ExprNode* varNode=NODE1((SeExpr2lsp[-3]).first_column,(SeExpr2lsp[-3]).first_column,VarNode, (SeExpr2vsp[-3].s));
-                               SeExpr2::ExprNode* opNode=NODE3((SeExpr2lsp[-1]).first_column,(SeExpr2lsp[-1]).first_column,BinaryOpNode,varNode,(SeExpr2vsp[-1].n),'-');
-                                (SeExpr2val.n) = NODE2((SeExpr2loc).first_column,(SeExpr2loc).last_column,AssignNode, (SeExpr2vsp[-3].s), opNode);free((SeExpr2vsp[-3].s));}
+                                    {KSeExpr::ExprNode* varNode=NODE1((KSeExprlsp[-3]).first_column,(KSeExprlsp[-3]).first_column,VarNode, (KSeExprvsp[-3].s));
+                               KSeExpr::ExprNode* opNode=NODE3((KSeExprlsp[-1]).first_column,(KSeExprlsp[-1]).first_column,BinaryOpNode,varNode,(KSeExprvsp[-1].n),'-');
+                                (KSeExprval.n) = NODE2((KSeExprloc).first_column,(KSeExprloc).last_column,AssignNode, (KSeExprvsp[-3].s), opNode);free((KSeExprvsp[-3].s));}
 #line 1919 "y.tab.c"
     break;
 
   case 42:
 #line 273 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
-                                     {SeExpr2::ExprNode* varNode=NODE1((SeExpr2lsp[-3]).first_column,(SeExpr2lsp[-3]).first_column,VarNode, (SeExpr2vsp[-3].s));
-                               SeExpr2::ExprNode* opNode=NODE3((SeExpr2lsp[-1]).first_column,(SeExpr2lsp[-1]).first_column,BinaryOpNode,varNode,(SeExpr2vsp[-1].n),'*');
-                                (SeExpr2val.n) = NODE2((SeExpr2loc).first_column,(SeExpr2loc).last_column,AssignNode, (SeExpr2vsp[-3].s), opNode);free((SeExpr2vsp[-3].s));}
+                                     {KSeExpr::ExprNode* varNode=NODE1((KSeExprlsp[-3]).first_column,(KSeExprlsp[-3]).first_column,VarNode, (KSeExprvsp[-3].s));
+                               KSeExpr::ExprNode* opNode=NODE3((KSeExprlsp[-1]).first_column,(KSeExprlsp[-1]).first_column,BinaryOpNode,varNode,(KSeExprvsp[-1].n),'*');
+                                (KSeExprval.n) = NODE2((KSeExprloc).first_column,(KSeExprloc).last_column,AssignNode, (KSeExprvsp[-3].s), opNode);free((KSeExprvsp[-3].s));}
 #line 1927 "y.tab.c"
     break;
 
   case 43:
 #line 276 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
-                                    {SeExpr2::ExprNode* varNode=NODE1((SeExpr2lsp[-3]).first_column,(SeExpr2lsp[-3]).first_column,VarNode, (SeExpr2vsp[-3].s));
-                               SeExpr2::ExprNode* opNode=NODE3((SeExpr2lsp[-1]).first_column,(SeExpr2lsp[-1]).first_column,BinaryOpNode,varNode,(SeExpr2vsp[-1].n),'/');
-                                (SeExpr2val.n) = NODE2((SeExpr2loc).first_column,(SeExpr2loc).last_column,AssignNode, (SeExpr2vsp[-3].s), opNode);free((SeExpr2vsp[-3].s));}
+                                    {KSeExpr::ExprNode* varNode=NODE1((KSeExprlsp[-3]).first_column,(KSeExprlsp[-3]).first_column,VarNode, (KSeExprvsp[-3].s));
+                               KSeExpr::ExprNode* opNode=NODE3((KSeExprlsp[-1]).first_column,(KSeExprlsp[-1]).first_column,BinaryOpNode,varNode,(KSeExprvsp[-1].n),'/');
+                                (KSeExprval.n) = NODE2((KSeExprloc).first_column,(KSeExprloc).last_column,AssignNode, (KSeExprvsp[-3].s), opNode);free((KSeExprvsp[-3].s));}
 #line 1935 "y.tab.c"
     break;
 
   case 44:
 #line 279 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
-                                    {SeExpr2::ExprNode* varNode=NODE1((SeExpr2lsp[-3]).first_column,(SeExpr2lsp[-3]).first_column,VarNode, (SeExpr2vsp[-3].s));
-                               SeExpr2::ExprNode* opNode=NODE3((SeExpr2lsp[-1]).first_column,(SeExpr2lsp[-1]).first_column,BinaryOpNode,varNode,(SeExpr2vsp[-1].n),'^');
-                                (SeExpr2val.n) = NODE2((SeExpr2loc).first_column,(SeExpr2loc).last_column,AssignNode, (SeExpr2vsp[-3].s), opNode);free((SeExpr2vsp[-3].s));}
+                                    {KSeExpr::ExprNode* varNode=NODE1((KSeExprlsp[-3]).first_column,(KSeExprlsp[-3]).first_column,VarNode, (KSeExprvsp[-3].s));
+                               KSeExpr::ExprNode* opNode=NODE3((KSeExprlsp[-1]).first_column,(KSeExprlsp[-1]).first_column,BinaryOpNode,varNode,(KSeExprvsp[-1].n),'^');
+                                (KSeExprval.n) = NODE2((KSeExprloc).first_column,(KSeExprloc).last_column,AssignNode, (KSeExprvsp[-3].s), opNode);free((KSeExprvsp[-3].s));}
 #line 1943 "y.tab.c"
     break;
 
   case 45:
 #line 282 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
-                                    {SeExpr2::ExprNode* varNode=NODE1((SeExpr2lsp[-3]).first_column,(SeExpr2lsp[-3]).first_column,VarNode, (SeExpr2vsp[-3].s));
-                               SeExpr2::ExprNode* opNode=NODE3((SeExpr2lsp[-1]).first_column,(SeExpr2lsp[-1]).first_column,BinaryOpNode,varNode,(SeExpr2vsp[-1].n),'%');
-                                (SeExpr2val.n) = NODE2((SeExpr2loc).first_column,(SeExpr2loc).last_column,AssignNode, (SeExpr2vsp[-3].s), opNode);free((SeExpr2vsp[-3].s));}
+                                    {KSeExpr::ExprNode* varNode=NODE1((KSeExprlsp[-3]).first_column,(KSeExprlsp[-3]).first_column,VarNode, (KSeExprvsp[-3].s));
+                               KSeExpr::ExprNode* opNode=NODE3((KSeExprlsp[-1]).first_column,(KSeExprlsp[-1]).first_column,BinaryOpNode,varNode,(KSeExprvsp[-1].n),'%');
+                                (KSeExprval.n) = NODE2((KSeExprloc).first_column,(KSeExprloc).last_column,AssignNode, (KSeExprvsp[-3].s), opNode);free((KSeExprvsp[-3].s));}
 #line 1951 "y.tab.c"
     break;
 
   case 46:
 #line 289 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
-                                { (SeExpr2val.n) = NODE3((SeExpr2loc).first_column,(SeExpr2loc).last_column,IfThenElseNode, (SeExpr2vsp[-5].n), (SeExpr2vsp[-2].n), (SeExpr2vsp[0].n)); }
+                                { (KSeExprval.n) = NODE3((KSeExprloc).first_column,(KSeExprloc).last_column,IfThenElseNode, (KSeExprvsp[-5].n), (KSeExprvsp[-2].n), (KSeExprvsp[0].n)); }
 #line 1957 "y.tab.c"
     break;
 
   case 47:
 #line 293 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
-                                { (SeExpr2val.n) = NODE((SeExpr2loc).first_column,(SeExpr2loc).last_column,Node); /* create empty node */ }
+                                { (KSeExprval.n) = NODE((KSeExprloc).first_column,(KSeExprloc).last_column,Node); /* create empty node */ }
 #line 1963 "y.tab.c"
     break;
 
   case 48:
 #line 294 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
-                                { (SeExpr2val.n) = (SeExpr2vsp[-1].n); }
+                                { (KSeExprval.n) = (KSeExprvsp[-1].n); }
 #line 1969 "y.tab.c"
     break;
 
   case 49:
 #line 295 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
-                                { (SeExpr2val.n) = (SeExpr2vsp[0].n); }
+                                { (KSeExprval.n) = (KSeExprvsp[0].n); }
 #line 1975 "y.tab.c"
     break;
 
   case 50:
 #line 300 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
-                                { (SeExpr2val.n) = (SeExpr2vsp[-1].n); }
+                                { (KSeExprval.n) = (KSeExprvsp[-1].n); }
 #line 1981 "y.tab.c"
     break;
 
   case 51:
 #line 301 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
-                                { SeExpr2::ExprNode* newNode = NODE((SeExpr2loc).first_column,(SeExpr2loc).last_column,VecNode); newNode->addChildren((SeExpr2vsp[-1].n)); Forget((SeExpr2vsp[-1].n)); (SeExpr2val.n)=newNode;}
+                                { KSeExpr::ExprNode* newNode = NODE((KSeExprloc).first_column,(KSeExprloc).last_column,VecNode); newNode->addChildren((KSeExprvsp[-1].n)); Forget((KSeExprvsp[-1].n)); (KSeExprval.n)=newNode;}
 #line 1987 "y.tab.c"
     break;
 
   case 52:
 #line 302 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
-                                { (SeExpr2val.n) = NODE2((SeExpr2loc).first_column,(SeExpr2loc).last_column,SubscriptNode, (SeExpr2vsp[-3].n), (SeExpr2vsp[-1].n)); }
+                                { (KSeExprval.n) = NODE2((KSeExprloc).first_column,(KSeExprloc).last_column,SubscriptNode, (KSeExprvsp[-3].n), (KSeExprvsp[-1].n)); }
 #line 1993 "y.tab.c"
     break;
 
   case 53:
 #line 303 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
-                                { (SeExpr2val.n) = NODE3((SeExpr2loc).first_column,(SeExpr2loc).last_column,CondNode, (SeExpr2vsp[-4].n), (SeExpr2vsp[-2].n), (SeExpr2vsp[0].n)); }
+                                { (KSeExprval.n) = NODE3((KSeExprloc).first_column,(KSeExprloc).last_column,CondNode, (KSeExprvsp[-4].n), (KSeExprvsp[-2].n), (KSeExprvsp[0].n)); }
 #line 1999 "y.tab.c"
     break;
 
   case 54:
 #line 304 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
-                                { (SeExpr2val.n) = NODE3((SeExpr2loc).first_column,(SeExpr2loc).last_column,CompareNode, (SeExpr2vsp[-2].n), (SeExpr2vsp[0].n), '|'); }
+                                { (KSeExprval.n) = NODE3((KSeExprloc).first_column,(KSeExprloc).last_column,CompareNode, (KSeExprvsp[-2].n), (KSeExprvsp[0].n), '|'); }
 #line 2005 "y.tab.c"
     break;
 
   case 55:
 #line 305 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
-                                { (SeExpr2val.n) = NODE3((SeExpr2loc).first_column,(SeExpr2loc).last_column,CompareNode, (SeExpr2vsp[-2].n), (SeExpr2vsp[0].n), '&'); }
+                                { (KSeExprval.n) = NODE3((KSeExprloc).first_column,(KSeExprloc).last_column,CompareNode, (KSeExprvsp[-2].n), (KSeExprvsp[0].n), '&'); }
 #line 2011 "y.tab.c"
     break;
 
   case 56:
 #line 306 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
-                                { (SeExpr2val.n) = NODE3((SeExpr2loc).first_column,(SeExpr2loc).last_column,CompareEqNode, (SeExpr2vsp[-2].n), (SeExpr2vsp[0].n),'='); }
+                                { (KSeExprval.n) = NODE3((KSeExprloc).first_column,(KSeExprloc).last_column,CompareEqNode, (KSeExprvsp[-2].n), (KSeExprvsp[0].n),'='); }
 #line 2017 "y.tab.c"
     break;
 
   case 57:
 #line 307 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
-                                { (SeExpr2val.n) = NODE3((SeExpr2loc).first_column,(SeExpr2loc).last_column,CompareEqNode, (SeExpr2vsp[-2].n), (SeExpr2vsp[0].n),'!'); }
+                                { (KSeExprval.n) = NODE3((KSeExprloc).first_column,(KSeExprloc).last_column,CompareEqNode, (KSeExprvsp[-2].n), (KSeExprvsp[0].n),'!'); }
 #line 2023 "y.tab.c"
     break;
 
   case 58:
 #line 308 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
-                                { (SeExpr2val.n) = NODE3((SeExpr2loc).first_column,(SeExpr2loc).last_column,CompareNode, (SeExpr2vsp[-2].n), (SeExpr2vsp[0].n),'<'); }
+                                { (KSeExprval.n) = NODE3((KSeExprloc).first_column,(KSeExprloc).last_column,CompareNode, (KSeExprvsp[-2].n), (KSeExprvsp[0].n),'<'); }
 #line 2029 "y.tab.c"
     break;
 
   case 59:
 #line 309 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
-                                { (SeExpr2val.n) = NODE3((SeExpr2loc).first_column,(SeExpr2loc).last_column,CompareNode, (SeExpr2vsp[-2].n), (SeExpr2vsp[0].n),'>'); }
+                                { (KSeExprval.n) = NODE3((KSeExprloc).first_column,(KSeExprloc).last_column,CompareNode, (KSeExprvsp[-2].n), (KSeExprvsp[0].n),'>'); }
 #line 2035 "y.tab.c"
     break;
 
   case 60:
 #line 310 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
-                                        { (SeExpr2val.n) = NODE3((SeExpr2loc).first_column,(SeExpr2loc).last_column,CompareNode, (SeExpr2vsp[-2].n), (SeExpr2vsp[0].n),'l'); }
+                                        { (KSeExprval.n) = NODE3((KSeExprloc).first_column,(KSeExprloc).last_column,CompareNode, (KSeExprvsp[-2].n), (KSeExprvsp[0].n),'l'); }
 #line 2041 "y.tab.c"
     break;
 
   case 61:
 #line 311 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
-                                        { (SeExpr2val.n) = NODE3((SeExpr2loc).first_column,(SeExpr2loc).last_column,CompareNode, (SeExpr2vsp[-2].n), (SeExpr2vsp[0].n),'g'); }
+                                        { (KSeExprval.n) = NODE3((KSeExprloc).first_column,(KSeExprloc).last_column,CompareNode, (KSeExprvsp[-2].n), (KSeExprvsp[0].n),'g'); }
 #line 2047 "y.tab.c"
     break;
 
   case 62:
 #line 312 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
-                                { (SeExpr2val.n) = (SeExpr2vsp[0].n); }
+                                { (KSeExprval.n) = (KSeExprvsp[0].n); }
 #line 2053 "y.tab.c"
     break;
 
   case 63:
 #line 313 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
-                                { (SeExpr2val.n) = NODE2((SeExpr2loc).first_column,(SeExpr2loc).last_column,UnaryOpNode, (SeExpr2vsp[0].n), '-'); }
+                                { (KSeExprval.n) = NODE2((KSeExprloc).first_column,(KSeExprloc).last_column,UnaryOpNode, (KSeExprvsp[0].n), '-'); }
 #line 2059 "y.tab.c"
     break;
 
   case 64:
 #line 314 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
-                                { (SeExpr2val.n) = NODE2((SeExpr2loc).first_column,(SeExpr2loc).last_column,UnaryOpNode, (SeExpr2vsp[0].n), '!'); }
+                                { (KSeExprval.n) = NODE2((KSeExprloc).first_column,(KSeExprloc).last_column,UnaryOpNode, (KSeExprvsp[0].n), '!'); }
 #line 2065 "y.tab.c"
     break;
 
   case 65:
 #line 315 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
-                                { (SeExpr2val.n) = NODE2((SeExpr2loc).first_column,(SeExpr2loc).last_column,UnaryOpNode, (SeExpr2vsp[0].n), '~'); }
+                                { (KSeExprval.n) = NODE2((KSeExprloc).first_column,(KSeExprloc).last_column,UnaryOpNode, (KSeExprvsp[0].n), '~'); }
 #line 2071 "y.tab.c"
     break;
 
   case 66:
 #line 316 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
-                                { (SeExpr2val.n) = NODE3((SeExpr2loc).first_column,(SeExpr2loc).last_column,BinaryOpNode, (SeExpr2vsp[-2].n), (SeExpr2vsp[0].n), '+'); }
+                                { (KSeExprval.n) = NODE3((KSeExprloc).first_column,(KSeExprloc).last_column,BinaryOpNode, (KSeExprvsp[-2].n), (KSeExprvsp[0].n), '+'); }
 #line 2077 "y.tab.c"
     break;
 
   case 67:
 #line 317 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
-                                { (SeExpr2val.n) = NODE3((SeExpr2loc).first_column,(SeExpr2loc).last_column,BinaryOpNode, (SeExpr2vsp[-2].n), (SeExpr2vsp[0].n), '-'); }
+                                { (KSeExprval.n) = NODE3((KSeExprloc).first_column,(KSeExprloc).last_column,BinaryOpNode, (KSeExprvsp[-2].n), (KSeExprvsp[0].n), '-'); }
 #line 2083 "y.tab.c"
     break;
 
   case 68:
 #line 318 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
-                                { (SeExpr2val.n) = NODE3((SeExpr2loc).first_column,(SeExpr2loc).last_column,BinaryOpNode, (SeExpr2vsp[-2].n), (SeExpr2vsp[0].n), '*'); }
+                                { (KSeExprval.n) = NODE3((KSeExprloc).first_column,(KSeExprloc).last_column,BinaryOpNode, (KSeExprvsp[-2].n), (KSeExprvsp[0].n), '*'); }
 #line 2089 "y.tab.c"
     break;
 
   case 69:
 #line 319 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
-                                { (SeExpr2val.n) = NODE3((SeExpr2loc).first_column,(SeExpr2loc).last_column,BinaryOpNode, (SeExpr2vsp[-2].n), (SeExpr2vsp[0].n), '/'); }
+                                { (KSeExprval.n) = NODE3((KSeExprloc).first_column,(KSeExprloc).last_column,BinaryOpNode, (KSeExprvsp[-2].n), (KSeExprvsp[0].n), '/'); }
 #line 2095 "y.tab.c"
     break;
 
   case 70:
 #line 320 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
-                                { (SeExpr2val.n) = NODE3((SeExpr2loc).first_column,(SeExpr2loc).last_column,BinaryOpNode, (SeExpr2vsp[-2].n), (SeExpr2vsp[0].n), '%'); }
+                                { (KSeExprval.n) = NODE3((KSeExprloc).first_column,(KSeExprloc).last_column,BinaryOpNode, (KSeExprvsp[-2].n), (KSeExprvsp[0].n), '%'); }
 #line 2101 "y.tab.c"
     break;
 
   case 71:
 #line 321 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
-                                { (SeExpr2val.n) = NODE3((SeExpr2loc).first_column,(SeExpr2loc).last_column,BinaryOpNode, (SeExpr2vsp[-2].n), (SeExpr2vsp[0].n), '^'); }
+                                { (KSeExprval.n) = NODE3((KSeExprloc).first_column,(KSeExprloc).last_column,BinaryOpNode, (KSeExprvsp[-2].n), (KSeExprvsp[0].n), '^'); }
 #line 2107 "y.tab.c"
     break;
 
   case 72:
 #line 322 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
-                                { (SeExpr2val.n) = NODE1((SeExpr2loc).first_column,(SeExpr2loc).last_column,FuncNode, (SeExpr2vsp[-3].s));
-				  free((SeExpr2vsp[-3].s)); // free name string
+                                { (KSeExprval.n) = NODE1((KSeExprloc).first_column,(KSeExprloc).last_column,FuncNode, (KSeExprvsp[-3].s));
+				  free((KSeExprvsp[-3].s)); // free name string
 				  // add args directly and discard arg list node
-				  (SeExpr2val.n)->addChildren((SeExpr2vsp[-1].n)); Forget((SeExpr2vsp[-1].n)); }
+				  (KSeExprval.n)->addChildren((KSeExprvsp[-1].n)); Forget((KSeExprvsp[-1].n)); }
 #line 2116 "y.tab.c"
     break;
 
   case 73:
 #line 327 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
-                                { (SeExpr2val.n) = NODE1((SeExpr2loc).first_column,(SeExpr2loc).last_column,FuncNode, (SeExpr2vsp[-3].s));
-				  free((SeExpr2vsp[-3].s)); // free name string
-				  (SeExpr2val.n)->addChild((SeExpr2vsp[-5].n));
+                                { (KSeExprval.n) = NODE1((KSeExprloc).first_column,(KSeExprloc).last_column,FuncNode, (KSeExprvsp[-3].s));
+				  free((KSeExprvsp[-3].s)); // free name string
+				  (KSeExprval.n)->addChild((KSeExprvsp[-5].n));
 				  // add args directly and discard arg list node
-				  (SeExpr2val.n)->addChildren((SeExpr2vsp[-1].n)); Forget((SeExpr2vsp[-1].n)); }
+				  (KSeExprval.n)->addChildren((KSeExprvsp[-1].n)); Forget((KSeExprvsp[-1].n)); }
 #line 2126 "y.tab.c"
     break;
 
   case 74:
 #line 332 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
-                                { (SeExpr2val.n) = NODE1((SeExpr2loc).first_column,(SeExpr2loc).last_column,VarNode, (SeExpr2vsp[0].s)); free((SeExpr2vsp[0].s)); /* free name string */ }
+                                { (KSeExprval.n) = NODE1((KSeExprloc).first_column,(KSeExprloc).last_column,VarNode, (KSeExprvsp[0].s)); free((KSeExprvsp[0].s)); /* free name string */ }
 #line 2132 "y.tab.c"
     break;
 
   case 75:
 #line 333 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
-                                { (SeExpr2val.n) = NODE1((SeExpr2loc).first_column,(SeExpr2loc).last_column,VarNode, (SeExpr2vsp[0].s)); free((SeExpr2vsp[0].s)); /* free name string */ }
+                                { (KSeExprval.n) = NODE1((KSeExprloc).first_column,(KSeExprloc).last_column,VarNode, (KSeExprvsp[0].s)); free((KSeExprvsp[0].s)); /* free name string */ }
 #line 2138 "y.tab.c"
     break;
 
   case 76:
 #line 334 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
-                                { (SeExpr2val.n) = NODE1((SeExpr2loc).first_column,(SeExpr2loc).last_column,NumNode, (SeExpr2vsp[0].d)); /*printf("line %d",@$.last_column);*/}
+                                { (KSeExprval.n) = NODE1((KSeExprloc).first_column,(KSeExprloc).last_column,NumNode, (KSeExprvsp[0].d)); /*printf("line %d",@$.last_column);*/}
 #line 2144 "y.tab.c"
     break;
 
   case 77:
 #line 335 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
-                                { (SeExpr2val.n) = NODE1((SeExpr2loc).first_column,(SeExpr2loc).last_column,StrNode, (SeExpr2vsp[0].s)); free((SeExpr2vsp[0].s)); /* free string */}
+                                { (KSeExprval.n) = NODE1((KSeExprloc).first_column,(KSeExprloc).last_column,StrNode, (KSeExprvsp[0].s)); free((KSeExprvsp[0].s)); /* free string */}
 #line 2150 "y.tab.c"
     break;
 
   case 78:
 #line 339 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
-                                { (SeExpr2val.n) = NODE1((SeExpr2loc).first_column,(SeExpr2loc).last_column,Node,(SeExpr2vsp[0].n)); }
+                                { (KSeExprval.n) = NODE1((KSeExprloc).first_column,(KSeExprloc).last_column,Node,(KSeExprvsp[0].n)); }
 #line 2156 "y.tab.c"
     break;
 
   case 79:
 #line 340 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
-                                { (SeExpr2val.n) = (SeExpr2vsp[-2].n);
-                                  (SeExpr2vsp[-2].n)->addChild((SeExpr2vsp[0].n)); }
+                                { (KSeExprval.n) = (KSeExprvsp[-2].n);
+                                  (KSeExprvsp[-2].n)->addChild((KSeExprvsp[0].n)); }
 #line 2163 "y.tab.c"
     break;
 
   case 80:
 #line 346 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
-                                { (SeExpr2val.n) = NODE((SeExpr2loc).first_column,(SeExpr2loc).last_column,Node); /* create empty node */}
+                                { (KSeExprval.n) = NODE((KSeExprloc).first_column,(KSeExprloc).last_column,Node); /* create empty node */}
 #line 2169 "y.tab.c"
     break;
 
   case 81:
 #line 347 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
-                                { (SeExpr2val.n) = (SeExpr2vsp[0].n); }
+                                { (KSeExprval.n) = (KSeExprvsp[0].n); }
 #line 2175 "y.tab.c"
     break;
 
   case 82:
 #line 352 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
-                                { (SeExpr2val.n) = NODE1((SeExpr2loc).first_column,(SeExpr2loc).last_column,Node, (SeExpr2vsp[0].n)); /* create arg list */}
+                                { (KSeExprval.n) = NODE1((KSeExprloc).first_column,(KSeExprloc).last_column,Node, (KSeExprvsp[0].n)); /* create arg list */}
 #line 2181 "y.tab.c"
     break;
 
   case 83:
 #line 353 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
-                                { (SeExpr2val.n) = (SeExpr2vsp[-2].n); (SeExpr2vsp[-2].n)->addChild((SeExpr2vsp[0].n)); /* add to list */}
+                                { (KSeExprval.n) = (KSeExprvsp[-2].n); (KSeExprvsp[-2].n)->addChild((KSeExprvsp[0].n)); /* add to list */}
 #line 2187 "y.tab.c"
     break;
 
   case 84:
 #line 357 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
-                                { (SeExpr2val.n) = (SeExpr2vsp[0].n); }
+                                { (KSeExprval.n) = (KSeExprvsp[0].n); }
 #line 2193 "y.tab.c"
     break;
 
@@ -2197,212 +2197,212 @@ SeExpr2reduce:
 
       default: break;
     }
-  /* User semantic actions sometimes alter SeExpr2char, and that requires
-     that SeExpr2token be updated with the new translation.  We take the
-     approach of translating immediately before every use of SeExpr2token.
+  /* User semantic actions sometimes alter KSeExprchar, and that requires
+     that KSeExprtoken be updated with the new translation.  We take the
+     approach of translating immediately before every use of KSeExprtoken.
      One alternative is translating here after every semantic action,
      but that translation would be missed if the semantic action invokes
-     SeExprYYABORT, SeExprYYACCEPT, or SeExprYYERROR immediately after altering SeExpr2char or
+     SeExprYYABORT, SeExprYYACCEPT, or SeExprYYERROR immediately after altering KSeExprchar or
      if it invokes SeExprYYBACKUP.  In the case of SeExprYYABORT or SeExprYYACCEPT, an
      incorrect destructor might then be invoked immediately.  In the
      case of SeExprYYERROR or SeExprYYBACKUP, subsequent parser actions might lead
      to an incorrect destructor call or verbose syntax error message
      before the lookahead is translated.  */
-  SeExprYY_SYMBOL_PRINT ("-> $$ =", SeExprYY_CAST (SeExpr2symbol_kind_t, SeExpr2r1[SeExpr2n]), &SeExpr2val, &SeExpr2loc);
+  SeExprYY_SYMBOL_PRINT ("-> $$ =", SeExprYY_CAST (KSeExprsymbol_kind_t, KSeExprr1[KSeExprn]), &KSeExprval, &KSeExprloc);
 
-  SeExprYYPOPSTACK (SeExpr2len);
-  SeExpr2len = 0;
+  SeExprYYPOPSTACK (KSeExprlen);
+  KSeExprlen = 0;
 
-  *++SeExpr2vsp = SeExpr2val;
-  *++SeExpr2lsp = SeExpr2loc;
+  *++KSeExprvsp = KSeExprval;
+  *++KSeExprlsp = KSeExprloc;
 
   /* Now 'shift' the result of the reduction.  Determine what state
      that goes to, based on the state we popped back to and the rule
      number reduced by.  */
   {
-    const int SeExpr2lhs = SeExpr2r1[SeExpr2n] - SeExprYYNTOKENS;
-    const int SeExpr2i = SeExpr2pgoto[SeExpr2lhs] + *SeExpr2ssp;
-    SeExpr2state = (0 <= SeExpr2i && SeExpr2i <= SeExprYYLAST && SeExpr2check[SeExpr2i] == *SeExpr2ssp
-               ? SeExpr2table[SeExpr2i]
-               : SeExpr2defgoto[SeExpr2lhs]);
+    const int KSeExprlhs = KSeExprr1[KSeExprn] - SeExprYYNTOKENS;
+    const int KSeExpri = KSeExprpgoto[KSeExprlhs] + *KSeExprssp;
+    KSeExprstate = (0 <= KSeExpri && KSeExpri <= SeExprYYLAST && KSeExprcheck[KSeExpri] == *KSeExprssp
+               ? KSeExprtable[KSeExpri]
+               : KSeExprdefgoto[KSeExprlhs]);
   }
 
-  goto SeExpr2newstate;
+  goto KSeExprnewstate;
 
 
 /*--------------------------------------.
-| SeExpr2errlab -- here on detecting error.  |
+| KSeExprerrlab -- here on detecting error.  |
 `--------------------------------------*/
-SeExpr2errlab:
+KSeExprerrlab:
   /* Make sure we have latest lookahead translation.  See comments at
      user semantic actions for why this is necessary.  */
-  SeExpr2token = SeExpr2char == SeExprYYEMPTY ? SeExprYYSYMBOL_SeExprYYEMPTY : SeExprYYTRANSLATE (SeExpr2char);
+  KSeExprtoken = KSeExprchar == SeExprYYEMPTY ? SeExprYYSYMBOL_SeExprYYEMPTY : SeExprYYTRANSLATE (KSeExprchar);
   /* If not already recovering from an error, report this error.  */
-  if (!SeExpr2errstatus)
+  if (!KSeExprerrstatus)
     {
-      ++SeExpr2nerrs;
-      SeExpr2error (SeExprYY_("syntax error"));
+      ++KSeExprnerrs;
+      KSeExprerror (SeExprYY_("syntax error"));
     }
 
-  SeExpr2error_range[1] = SeExpr2lloc;
-  if (SeExpr2errstatus == 3)
+  KSeExprerror_range[1] = KSeExprlloc;
+  if (KSeExprerrstatus == 3)
     {
       /* If just tried and failed to reuse lookahead token after an
          error, discard it.  */
 
-      if (SeExpr2char <= SeExprYYEOF)
+      if (KSeExprchar <= SeExprYYEOF)
         {
           /* Return failure if at end of input.  */
-          if (SeExpr2char == SeExprYYEOF)
+          if (KSeExprchar == SeExprYYEOF)
             SeExprYYABORT;
         }
       else
         {
-          SeExpr2destruct ("Error: discarding",
-                      SeExpr2token, &SeExpr2lval, &SeExpr2lloc);
-          SeExpr2char = SeExprYYEMPTY;
+          KSeExprdestruct ("Error: discarding",
+                      KSeExprtoken, &KSeExprlval, &KSeExprlloc);
+          KSeExprchar = SeExprYYEMPTY;
         }
     }
 
   /* Else will try to reuse lookahead token after shifting the error
      token.  */
-  goto SeExpr2errlab1;
+  goto KSeExprerrlab1;
 
 
 /*---------------------------------------------------.
-| SeExpr2errorlab -- error raised explicitly by SeExprYYERROR.  |
+| KSeExprerrorlab -- error raised explicitly by SeExprYYERROR.  |
 `---------------------------------------------------*/
-SeExpr2errorlab:
+KSeExprerrorlab:
   /* Pacify compilers when the user code never invokes SeExprYYERROR and the
-     label SeExpr2errorlab therefore never appears in user code.  */
+     label KSeExprerrorlab therefore never appears in user code.  */
   if (0)
     SeExprYYERROR;
 
   /* Do not reclaim the symbols of the rule whose action triggered
      this SeExprYYERROR.  */
-  SeExprYYPOPSTACK (SeExpr2len);
-  SeExpr2len = 0;
-  SeExprYY_STACK_PRINT (SeExpr2ss, SeExpr2ssp);
-  SeExpr2state = *SeExpr2ssp;
-  goto SeExpr2errlab1;
+  SeExprYYPOPSTACK (KSeExprlen);
+  KSeExprlen = 0;
+  SeExprYY_STACK_PRINT (KSeExprss, KSeExprssp);
+  KSeExprstate = *KSeExprssp;
+  goto KSeExprerrlab1;
 
 
 /*-------------------------------------------------------------.
-| SeExpr2errlab1 -- common code for both syntax error and SeExprYYERROR.  |
+| KSeExprerrlab1 -- common code for both syntax error and SeExprYYERROR.  |
 `-------------------------------------------------------------*/
-SeExpr2errlab1:
-  SeExpr2errstatus = 3;      /* Each real token shifted decrements this.  */
+KSeExprerrlab1:
+  KSeExprerrstatus = 3;      /* Each real token shifted decrements this.  */
 
   /* Pop stack until we find a state that shifts the error token.  */
   for (;;)
     {
-      SeExpr2n = SeExpr2pact[SeExpr2state];
-      if (!SeExpr2pact_value_is_default (SeExpr2n))
+      KSeExprn = KSeExprpact[KSeExprstate];
+      if (!KSeExprpact_value_is_default (KSeExprn))
         {
-          SeExpr2n += SeExprYYSYMBOL_SeExprYYerror;
-          if (0 <= SeExpr2n && SeExpr2n <= SeExprYYLAST && SeExpr2check[SeExpr2n] == SeExprYYSYMBOL_SeExprYYerror)
+          KSeExprn += SeExprYYSYMBOL_SeExprYYerror;
+          if (0 <= KSeExprn && KSeExprn <= SeExprYYLAST && KSeExprcheck[KSeExprn] == SeExprYYSYMBOL_SeExprYYerror)
             {
-              SeExpr2n = SeExpr2table[SeExpr2n];
-              if (0 < SeExpr2n)
+              KSeExprn = KSeExprtable[KSeExprn];
+              if (0 < KSeExprn)
                 break;
             }
         }
 
       /* Pop the current state because it cannot handle the error token.  */
-      if (SeExpr2ssp == SeExpr2ss)
+      if (KSeExprssp == KSeExprss)
         SeExprYYABORT;
 
-      SeExpr2error_range[1] = *SeExpr2lsp;
-      SeExpr2destruct ("Error: popping",
-                  SeExprYY_ACCESSING_SYMBOL (SeExpr2state), SeExpr2vsp, SeExpr2lsp);
+      KSeExprerror_range[1] = *KSeExprlsp;
+      KSeExprdestruct ("Error: popping",
+                  SeExprYY_ACCESSING_SYMBOL (KSeExprstate), KSeExprvsp, KSeExprlsp);
       SeExprYYPOPSTACK (1);
-      SeExpr2state = *SeExpr2ssp;
-      SeExprYY_STACK_PRINT (SeExpr2ss, SeExpr2ssp);
+      KSeExprstate = *KSeExprssp;
+      SeExprYY_STACK_PRINT (KSeExprss, KSeExprssp);
     }
 
   SeExprYY_IGNORE_MAYBE_UNINITIALIZED_BEGIN
-  *++SeExpr2vsp = SeExpr2lval;
+  *++KSeExprvsp = KSeExprlval;
   SeExprYY_IGNORE_MAYBE_UNINITIALIZED_END
 
-  SeExpr2error_range[2] = SeExpr2lloc;
-  ++SeExpr2lsp;
-  SeExprYYLLOC_DEFAULT (*SeExpr2lsp, SeExpr2error_range, 2);
+  KSeExprerror_range[2] = KSeExprlloc;
+  ++KSeExprlsp;
+  SeExprYYLLOC_DEFAULT (*KSeExprlsp, KSeExprerror_range, 2);
 
   /* Shift the error token.  */
-  SeExprYY_SYMBOL_PRINT ("Shifting", SeExprYY_ACCESSING_SYMBOL (SeExpr2n), SeExpr2vsp, SeExpr2lsp);
+  SeExprYY_SYMBOL_PRINT ("Shifting", SeExprYY_ACCESSING_SYMBOL (KSeExprn), KSeExprvsp, KSeExprlsp);
 
-  SeExpr2state = SeExpr2n;
-  goto SeExpr2newstate;
+  KSeExprstate = KSeExprn;
+  goto KSeExprnewstate;
 
 
 /*-------------------------------------.
-| SeExpr2acceptlab -- SeExprYYACCEPT comes here.  |
+| KSeExpracceptlab -- SeExprYYACCEPT comes here.  |
 `-------------------------------------*/
-SeExpr2acceptlab:
-  SeExpr2result = 0;
-  goto SeExpr2return;
+KSeExpracceptlab:
+  KSeExprresult = 0;
+  goto KSeExprreturn;
 
 
 /*-----------------------------------.
-| SeExpr2abortlab -- SeExprYYABORT comes here.  |
+| KSeExprabortlab -- SeExprYYABORT comes here.  |
 `-----------------------------------*/
-SeExpr2abortlab:
-  SeExpr2result = 1;
-  goto SeExpr2return;
+KSeExprabortlab:
+  KSeExprresult = 1;
+  goto KSeExprreturn;
 
 
-#if !defined SeExpr2overflow
+#if !defined KSeExproverflow
 /*-------------------------------------------------.
-| SeExpr2exhaustedlab -- memory exhaustion comes here.  |
+| KSeExprexhaustedlab -- memory exhaustion comes here.  |
 `-------------------------------------------------*/
-SeExpr2exhaustedlab:
-  SeExpr2error (SeExprYY_("memory exhausted"));
-  SeExpr2result = 2;
+KSeExprexhaustedlab:
+  KSeExprerror (SeExprYY_("memory exhausted"));
+  KSeExprresult = 2;
   /* Fall through.  */
 #endif
 
 
 /*-----------------------------------------------------.
-| SeExpr2return -- parsing is finished, return the result.  |
+| KSeExprreturn -- parsing is finished, return the result.  |
 `-----------------------------------------------------*/
-SeExpr2return:
-  if (SeExpr2char != SeExprYYEMPTY)
+KSeExprreturn:
+  if (KSeExprchar != SeExprYYEMPTY)
     {
       /* Make sure we have latest lookahead translation.  See comments at
          user semantic actions for why this is necessary.  */
-      SeExpr2token = SeExprYYTRANSLATE (SeExpr2char);
-      SeExpr2destruct ("Cleanup: discarding lookahead",
-                  SeExpr2token, &SeExpr2lval, &SeExpr2lloc);
+      KSeExprtoken = SeExprYYTRANSLATE (KSeExprchar);
+      KSeExprdestruct ("Cleanup: discarding lookahead",
+                  KSeExprtoken, &KSeExprlval, &KSeExprlloc);
     }
   /* Do not reclaim the symbols of the rule whose action triggered
      this SeExprYYABORT or SeExprYYACCEPT.  */
-  SeExprYYPOPSTACK (SeExpr2len);
-  SeExprYY_STACK_PRINT (SeExpr2ss, SeExpr2ssp);
-  while (SeExpr2ssp != SeExpr2ss)
+  SeExprYYPOPSTACK (KSeExprlen);
+  SeExprYY_STACK_PRINT (KSeExprss, KSeExprssp);
+  while (KSeExprssp != KSeExprss)
     {
-      SeExpr2destruct ("Cleanup: popping",
-                  SeExprYY_ACCESSING_SYMBOL (+*SeExpr2ssp), SeExpr2vsp, SeExpr2lsp);
+      KSeExprdestruct ("Cleanup: popping",
+                  SeExprYY_ACCESSING_SYMBOL (+*KSeExprssp), KSeExprvsp, KSeExprlsp);
       SeExprYYPOPSTACK (1);
     }
-#ifndef SeExpr2overflow
-  if (SeExpr2ss != SeExpr2ssa)
-    SeExprYYSTACK_FREE (SeExpr2ss);
+#ifndef KSeExproverflow
+  if (KSeExprss != KSeExprssa)
+    SeExprYYSTACK_FREE (KSeExprss);
 #endif
 
-  return SeExpr2result;
+  return KSeExprresult;
 }
 
 #line 360 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
 
 
-      /* SeExpr2error - Report an error.  This is called by the parser.
+      /* KSeExprerror - Report an error.  This is called by the parser.
 	 (Note: the "msg" param is useless as it is usually just "parse error".
 	 so it's ignored.)
       */
-static void SeExpr2error(const char* /*msg*/)
+static void KSeExprerror(const char* /*msg*/)
 {
     // find start of line containing error
-    int pos = SeExpr2pos(), lineno = 1, start = 0, end = strlen(ParseStr);
+    int pos = KSeExprpos(), lineno = 1, start = 0, end = strlen(ParseStr);
     bool multiline = 0;
     for (int i = start; i < pos; i++)
 	if (ParseStr[i] == '\n') { start = i + 1; lineno++; multiline=1; }
@@ -2411,7 +2411,7 @@ static void SeExpr2error(const char* /*msg*/)
     for (int i = end; i > pos; i--)
 	if (ParseStr[i] == '\n') { end = i - 1; multiline=1; }
 
-    ParseErrorCode = SeExpr2text[0] ? SeExpr2::ErrorCode::SyntaxError : SeExpr2::ErrorCode::UnexpectedEndOfExpression;
+    ParseErrorCode = KSeExprtext[0] ? KSeExpr::ErrorCode::SyntaxError : KSeExpr::ErrorCode::UnexpectedEndOfExpression;
 
     ParseErrorId = "";
 
@@ -2434,14 +2434,14 @@ extern void SeExprLexerResetState(std::vector<std::pair<int,int> >& comments);
 
 static SeExprInternal2::Mutex mutex;
 
-namespace SeExpr2 {
-bool ExprParse(SeExpr2::ExprNode*& parseTree,
-    SeExpr2::ErrorCode& errorCode,
+namespace KSeExpr {
+bool ExprParse(KSeExpr::ExprNode*& parseTree,
+    KSeExpr::ErrorCode& errorCode,
     std::vector<std::string>& errorIds,
     int& errorStart,
     int& errorEnd,
     std::vector<std::pair<int,int> >& comments,
-    const SeExpr2::Expression* expr,
+    const KSeExpr::Expression* expr,
     const char* str,
     bool wantVec)
 {
@@ -2451,10 +2451,10 @@ bool ExprParse(SeExpr2::ExprNode*& parseTree,
     Expr = expr;
     ParseStr = str;
     SeExprLexerResetState(comments);
-    SeExpr2_buffer_state* buffer = SeExpr2_scan_string(str);
+    KSeExpr_buffer_state* buffer = KSeExpr_scan_string(str);
     ParseResult = 0;
-    int resultCode = SeExpr2parse();
-    SeExpr2_delete_buffer(buffer);
+    int resultCode = KSeExprparse();
+    KSeExpr_delete_buffer(buffer);
 
     if (resultCode == 0) {
         // success
@@ -2466,13 +2466,13 @@ bool ExprParse(SeExpr2::ExprNode*& parseTree,
         // failure
         errorCode = ParseErrorCode;
         errorIds = { ParseErrorId };
-        errorStart=SeExpr2lloc.first_column;
-        errorEnd=SeExpr2lloc.last_column;
+        errorStart=KSeExprlloc.first_column;
+        errorEnd=KSeExprlloc.last_column;
         parseTree = nullptr;
 
         // gather list of nodes with no parent
-        std::vector<SeExpr2::ExprNode*> delnodes;
-        std::vector<SeExpr2::ExprNode*>::iterator iter;
+        std::vector<KSeExpr::ExprNode*> delnodes;
+        std::vector<KSeExpr::ExprNode*>::iterator iter;
         for (iter = ParseNodes.begin(); iter != ParseNodes.end(); iter++) {
             if (!(*iter)->parent()) {
                 delnodes.push_back(*iter);
