@@ -28,9 +28,6 @@
 #include "ExprCurve.h"
 #include "ExprColorCurve.h"
 #include "ExprColorSwatch.h"
-#ifdef SEEXPR_ENABLE_DEEPWATER
-#include "ExprDeepWater.h"
-#endif
 
 typedef GenericCurveEditable<KSeExpr::Vec3d> ColorCurveEditable;
 typedef GenericCurveEditable<double> CurveEditable;
@@ -314,23 +311,5 @@ Q_SLOTS:
   private:
     bool _indexLabel;
 };
-
-#ifdef SEEXPR_ENABLE_DEEPWATER
-/// Control for displaying a deep water spectrum
-class DeepWaterControl : public ExprControl {
-    Q_OBJECT
-
-    /// curve model
-    DeepWaterEditable* _deepWaterEditable{nullptr};
-    /// deep water widget
-    ExprDeepWater* _deepWater{nullptr};
-
-  public:
-    DeepWaterControl(int id, DeepWaterEditable* stringEditable);
-  private
-Q_SLOTS:
-    void deepWaterChanged();
-};
-#endif // SEEXPR_ENABLE_DEEPWATER
 
 #endif

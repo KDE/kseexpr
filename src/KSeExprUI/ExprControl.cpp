@@ -715,22 +715,3 @@ void ColorSwatchControl::buildSwatchWidget() {
     _updating = false;
     hbox->addWidget(_swatch, 4);
 }
-
-#ifdef SEEXPR_ENABLE_DEEPWATER
-
-DeepWaterControl::DeepWaterControl(int id, DeepWaterEditable* editable)
-    : ExprControl(id, editable, false), _deepWaterEditable(editable) {
-    _deepWater = new ExprDeepWater(this);
-    _deepWater->setParams(editable->params);
-
-    hbox->addWidget(_deepWater, 3);
-    connect(_deepWater->_scene, SIGNAL(deepWaterChanged()), SLOT(deepWaterChanged()));
-}
-
-void DeepWaterControl::deepWaterChanged() {
-    if (_deepWater && _deepWaterEditable) {
-        _deepWaterEditable->params = _deepWater->_scene->params;
-        emit controlChanged(_id);
-    }
-}
-#endif

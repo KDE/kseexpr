@@ -36,13 +36,11 @@ if (Qt5_FOUND OR QT4_FOUND)
     BuildParserScanner(KSeExprUI ExprSpecParserLex ExprSpecParser ExprSpec
                        editor_parser_cpp)
 
-    option(ENABLE_DEEPWATER "Whether to build controls for displaying a deep water spectrum" FALSE)
     option(ENABLE_ANIMCURVE "Whether to build controls for anim curves" FALSE)
     option(ENABLE_EXPRMAIN "Whether to build the ExprMain entrypoint" FALSE)
     option(ENABLE_OPENGL_DIALOGS "Whether to build legacy OpenGL widgets (ExprShortEdit, ExprDialog, and ExprGrapher2d)" FALSE)
 
     set(EDITOR_MOC_HDRS
-            Debug.h
             ErrorMessages.h
             ExprAddDialog.h
             ExprBrowser.h
@@ -59,6 +57,7 @@ if (Qt5_FOUND OR QT4_FOUND)
         )
 
     set(EDITOR_ADDITIONAL_HEADERS
+            Debug.h
             BasicExpression.h
             ControlSpec.h
             Editable.h
@@ -90,12 +89,6 @@ if (Qt5_FOUND OR QT4_FOUND)
             ExprTextEdit.cpp
             Utils.cpp
     )
-    
-    if (ENABLE_DEEPWATER)
-        add_definitions(-DSEEXPR_ENABLE_DEEPWATER)
-        set(EDITOR_MOC_HDRS ${EDITOR_MOC_HDRS} ExprDeepWater.h)
-        set(EDITOR_CPPS ${EDITOR_CPPS} ExprDeepWater.cpp)
-    endif()
 
     if (ENABLE_ANIMCURVE)
         add_definitions(-DSEEXPR_ENABLE_ANIMCURVE)
@@ -267,11 +260,6 @@ if (Qt5_FOUND OR QT4_FOUND)
                            -j 1
                            -I. -I${PYQT_SIP_DIR} -I${SIP_INCLUDE_DIR})
 
-        if (NOT ENABLE_DEEPWATER)
-            set(SIP_EXEC_COMMAND_EDITOR ${SIP_EXEC_COMMAND_EDITOR}
-                -x "SEEXPR_ENABLE_DEEPWATER"
-            )
-        endif()
         if (NOT ENABLE_OPENGL_DIALOGS)
             set(SIP_EXEC_COMMAND_EDITOR ${SIP_EXEC_COMMAND_EDITOR}
                 -x "SEEXPR_ENABLE_OPENGL_DIALOGS"

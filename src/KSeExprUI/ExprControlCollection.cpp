@@ -114,13 +114,6 @@ void ExprControlCollection::addControlDialog() {
                         .arg(dialog->animCurveLink->text());
                 break;
 #endif
-#ifdef SEEXPR_ENABLE_DEEPWATER
-            case 9:
-                s = QString::fromLatin1("%1 = deepWater(%2,9,30,0,1,0,5,0,0,[0,0,0],0,0,0);\n")
-                        .arg(dialog->variableName->text())
-                        .arg(dialog->deepWaterLookup->text());
-                break;
-#endif
         }
         emit insertString(s);
     }
@@ -185,10 +178,6 @@ bool ExprControlCollection::rebuildControls(const QString& expressionText, std::
 #endif
             else if (ColorSwatchEditable* x = dynamic_cast<ColorSwatchEditable*>(editable))
                 widget = new ColorSwatchControl(i, x);
-#ifdef SEEXPR_ENABLE_DEEPWATER
-            else if (DeepWaterEditable* x = dynamic_cast<DeepWaterEditable*>(editable))
-                widget = new DeepWaterControl(i, x);
-#endif
             else {
                 dbgSeExpr << "SeExpr editor logic error, cannot find a widget for the given editable";
             }

@@ -10,7 +10,6 @@
 
 %Import QtGui/QtGuimod.sip
 
-%Feature SEEXPR_ENABLE_DEEPWATER
 %Feature SEEXPR_ENABLE_OPENGL_DIALOGS
 
 %MappedType std::string
@@ -254,13 +253,3 @@ class ExprColorSwatchWidget:QWidget{
 public:
     ExprColorSwatchWidget(bool indexLabel, QWidget* parent = NULL);
 };
-
-%If (SEEXPR_ENABLE_DEEPWATER)
-class ExprDeepWater:QWidget{
-%TypeHeaderCode
-#include "ExprDeepWater.h"
-%End
-public:
-    ExprDeepWater(QWidget* parent = NULL);
-};
-%End

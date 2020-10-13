@@ -30,9 +30,6 @@
 #include <animlib/AnimKeyframe.h>
 #endif  // SEEXPR_USE_ANIMLIB
 #endif  // SEEXPR_ENABLE_ANIMCURVE
-#ifdef SEEXPR_ENABLE_DEEPWATER
-#include <ExprDeepWater.h>
-#endif
 
 inline void printVal(std::stringstream& stream, double v)
 {
@@ -182,21 +179,5 @@ public:
     void remove(int index);
     void print();
 };
-
-#ifdef SEEXPR_ENABLE_DEEPWATER
-class DeepWaterEditable : public Editable {
-public:
-    SeDeepWaterParams params;
-
-    DeepWaterEditable(const std::string& name, int startPos, int endPos);
-
-    bool parseComment(const std::string& comment);
-    std::string str() const override;
-    void appendString(std::stringstream& stream) const override;
-    virtual bool controlsMatch(const Editable& other) const override;
-
-    void setParams(const SeDeepWaterParams& paramsIn);
-};
-#endif  // SEEXPR_ENABLE_DEEPWATER
 
 #endif

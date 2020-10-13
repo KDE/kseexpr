@@ -191,17 +191,6 @@ ExprAddDialog::ExprAddDialog(int& count, QWidget* parent) : QDialog(parent) {
         tabWidget->addTab(curveTab, QString(tr("AnimCurve")));
     }
 #endif
-#ifdef SEEXPR_ENABLE_DEEPWATER
-    // DeepWater
-    {
-        QWidget* deepWaterTab = new QWidget();
-        QFormLayout* deepWaterLayout = new QFormLayout(deepWaterTab);
-        deepWaterLayout->setWidget(0, QFormLayout::LabelRole, new QLabel(tr("Lookup")));
-        deepWaterLookup = new QLineEdit(tr("$u"));
-        deepWaterLayout->setWidget(0, QFormLayout::FieldRole, deepWaterLookup);
-        tabWidget->addTab(deepWaterTab, QString(tr("Deep Water")));
-    }
-#endif
 
     verticalLayout->addWidget(tabWidget);
 

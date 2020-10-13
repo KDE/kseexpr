@@ -34,9 +34,6 @@
 #include<KSeExpr/Mutex.h>
 #include "ExprSpecType.h"
 #include "Editable.h"
-#ifdef SEEXPR_ENABLE_DEEPWATER
-#include "ExprDeepWater.h"
-#endif
 #include "Debug.h"
 
 /******************
@@ -231,36 +228,6 @@ static void specRegisterEditable(const char* var,ExprSpecNode* node)
             }
         }
 #endif
-#ifdef SEEXPR_ENABLE_DEEPWATER
-    }else if(ExprSpecDeepWaterNode* n=dynamic_cast<ExprSpecDeepWaterNode*>(node)){
-        if(ExprSpecListNode* args=dynamic_cast<ExprSpecListNode*>(n->args)){
-            if(args->nodes.size()==12){
-                DeepWaterEditable* deepWater=new DeepWaterEditable(var,node->startPos,node->endPos);
-                bool valid=true;
-
-                ExprSpecScalarNode* resolution=dynamic_cast<ExprSpecScalarNode*>(args->nodes[0]);
-                ExprSpecScalarNode* tileSize=dynamic_cast<ExprSpecScalarNode*>(args->nodes[1]);
-                ExprSpecScalarNode* lengthCutoff=dynamic_cast<ExprSpecScalarNode*>(args->nodes[2]);
-                ExprSpecScalarNode* amplitude=dynamic_cast<ExprSpecScalarNode*>(args->nodes[3]);
-                ExprSpecScalarNode* windAngle=dynamic_cast<ExprSpecScalarNode*>(args->nodes[4]);
-                ExprSpecScalarNode* windSpeed=dynamic_cast<ExprSpecScalarNode*>(args->nodes[5]);
-                ExprSpecScalarNode* directionalFactorExponent=dynamic_cast<ExprSpecScalarNode*>(args->nodes[6]);
-                ExprSpecScalarNode* directionalReflectionDamping=dynamic_cast<ExprSpecScalarNode*>(args->nodes[7]);
-                ExprSpecVectorNode* flowDirection=dynamic_cast<ExprSpecVectorNode*>(args->nodes[8]);
-                ExprSpecScalarNode* sharpen=dynamic_cast<ExprSpecScalarNode*>(args->nodes[9]);
-                ExprSpecScalarNode* time=dynamic_cast<ExprSpecScalarNode*>(args->nodes[10]);
-                ExprSpecScalarNode* filterWidth=dynamic_cast<ExprSpecScalarNode*>(args->nodes[11]);
-                if(resolution && tileSize && lengthCutoff && amplitude && windAngle && windSpeed && directionalFactorExponent && directionalReflectionDamping && flowDirection && sharpen && time && filterWidth){
-                    deepWater->setParams(SeDeepWaterParams(resolution->v, tileSize->v, lengthCutoff->v, amplitude->v, windAngle->v, windSpeed->v, directionalFactorExponent->v, directionalReflectionDamping->v, flowDirection->v, sharpen->v, time->v, filterWidth->v));
-                }else{
-                    valid=false;
-                }
-
-                if(valid) editables->push_back(deepWater);
-                else delete deepWater;
-            }
-        }
-#endif
     }else{
         dbgSeExpr <<"SEEXPREDITOR LOGIC ERROR: We didn't recognize the Spec";
     }
@@ -415,10 +382,6 @@ e:
 #ifdef SEEXPR_ENABLE_ANIMCURVE
         }else if($3 && strcmp($1,"animCurve")==0){
             $$=remember(new ExprSpecAnimCurveNode($3));
-#endif
-#ifdef SEEXPR_ENABLE_DEEPWATER
-        }else if($3 && strcmp($1,"deepWater")==0){
-            $$=remember(new ExprSpecDeepWaterNode($3));
 #endif
         }else if($3){
             // function arguments not parse of curve, ccurve, or animCurve

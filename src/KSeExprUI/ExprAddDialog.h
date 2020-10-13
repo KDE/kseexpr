@@ -51,9 +51,6 @@ class ExprAddDialog : public QDialog {
     QLineEdit *animCurveLink;
 #endif
     QLineEdit *swatchLookup;
-#ifdef SEEXPR_ENABLE_DEEPWATER
-    QLineEdit *deepWaterLookup;
-#endif
     QRadioButton *rainbowPaletteBtn;
     QRadioButton *grayPaletteBtn;
     QColor color;

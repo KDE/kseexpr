@@ -86,11 +86,4 @@ struct ExprSpecColorSwatchNode : public ExprSpecNode {
     ExprSpecColorSwatchNode(ExprSpecNode* args) : ExprSpecNode(args->startPos, args->endPos), args(args) {}
 };
 
-#ifdef SEEXPR_ENABLE_DEEPWATER
-struct ExprSpecDeepWaterNode : public ExprSpecNode {
-    ExprSpecNode* args;
-    ExprSpecDeepWaterNode(ExprSpecNode* args) : ExprSpecNode(args->startPos, args->endPos), args(args) {}
-};
-#endif  // SEEXPR_ENABLE_DEEPWATER
-
 #endif
