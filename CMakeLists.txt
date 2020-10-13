@@ -253,25 +253,6 @@ else()
     endif()
 endif()
 
-if (DEFINED DERR_DIR)
-    message(STATUS "DERR_DIR = ${DMSG_DIR}")
-    include_directories(${DERR_DIR}/include)
-    link_directories(${DERR_DIR}/${CMAKE_INSTALL_LIBDIR})
-endif()
-
-if (DEFINED DMSG_DIR)
-    message(STATUS "DMSG_DIR = ${DMSG_DIR}")
-    include_directories(${DMSG_DIR}/include)
-    link_directories(${DMSG_DIR}/${CMAKE_INSTALL_LIBDIR})
-endif()
-
-if (DEFINED QDGUI_DIR)
-    message(STATUS "QDGUI_DIR = ${QDGUI_DIR}")
-    add_definitions(-DSEEXPR_USE_QDGUI)
-    include_directories(${QDGUI_DIR}/include)
-    link_directories(${QDGUI_DIR}/${CMAKE_INSTALL_LIBDIR})
-endif()
-
 ## Make modules able to see seexpr library
 # Setup environment variable to link seexpr
 set(SEEXPR_LIBRARIES KSeExpr)

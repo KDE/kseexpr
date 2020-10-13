@@ -132,18 +132,6 @@ if (Qt5_FOUND OR QT4_FOUND)
         )
     endif()
 
-    if (DEFINED DERR_DIR)
-        target_link_libraries(KSeExprUI PRIVATE DErr)
-    endif()
-
-    if (DEFINED DMSG_DIR)
-        target_link_libraries(KSeExprUI PRIVATE DMsg)
-    endif()
-
-    if (DEFINED QDGUI_DIR)
-        target_link_libraries(KSeExprUI PRIVATE qdcolorwidgets)
-    endif()
-
     ## Install library and includes
     install(TARGETS KSeExprUI EXPORT ${PROJECT_NAME}Targets DESTINATION ${CMAKE_INSTALL_LIBDIR})
     install(

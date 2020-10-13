@@ -30,10 +30,7 @@
 #include <QLabel>
 #include <QToolButton>
 
-#include<KSeExpr/ExprBuiltins.h>
-#ifdef SEEXPR_USE_QDGUI
-#include <qdgui/QdColorPickerDialog.h>
-#endif
+#include <KSeExpr/ExprBuiltins.h>
 
 #include "ExprColorSwatch.h"
 
@@ -66,11 +63,7 @@ void ExprColorFrame::mouseReleaseEvent(QMouseEvent *event) {
         deleteSwatchMenu(event->pos());
     else {
 
-#ifdef SEEXPR_USE_QDGUI
-        QColor color = QdColorPickerDialog::chooseColorFromDialog(_color, this);
-#else
         QColor color = QColorDialog::getColor(_color);
-#endif
 
         if (color.isValid()) {
             _value[0] = color.red() / 255.0;

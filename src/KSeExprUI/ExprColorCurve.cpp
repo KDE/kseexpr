@@ -36,10 +36,7 @@
 #include <QDialogButtonBox>
 #include <QMenu>
 
-#include<KSeExpr/ExprBuiltins.h>
-#ifdef SEEXPR_USE_QDGUI
-#include <qdgui/QdColorPickerDialog.h>
-#endif
+#include <KSeExpr/ExprBuiltins.h>
 
 #include "ExprColorCurve.h"
 
@@ -334,11 +331,7 @@ KSeExpr::Vec3d ExprCSwatchFrame::getValue() const { return _value; }
 
 void ExprCSwatchFrame::mousePressEvent(QMouseEvent *event) {
     Q_UNUSED(event);
-#ifdef SEEXPR_USE_QDGUI
-    QColor color = QdColorPickerDialog::chooseColorFromDialog(_color, this);
-#else
     QColor color = QColorDialog::getColor(_color);
-#endif
     if (color.isValid()) {
         _value[0] = color.red() / 255.0;
         _value[1] = color.green() / 255.0;
