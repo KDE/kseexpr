@@ -263,33 +263,6 @@ Q_SLOTS:
     void curveChanged();
 };
 
-#ifdef SEEXPR_ENABLE_ANIMCURVE
-/// Anim curve control
-class ExprGraphPreview;
-class AnimCurveControl : public ExprControl {
-    Q_OBJECT;
-
-    AnimCurveEditable* _editable{nullptr};
-    ExprGraphPreview* _preview{nullptr};
-
-  public:
-    AnimCurveControl(int id, AnimCurveEditable* curveEditable);
-    typedef void (*AnimCurveCallback)(const std::string&, animlib::AnimCurve& curve);
-    static void setAnimCurveCallback(AnimCurveCallback callback);
-
-  public
-Q_SLOTS:
-    void editGraphClicked();
-
-  private
-Q_SLOTS:
-    void refreshClicked();
-
-  private:
-    static AnimCurveCallback callback;
-};
-#endif
-
 /// A control for editing color swatches
 class ColorSwatchControl : public ExprControl {
     Q_OBJECT

@@ -61,12 +61,6 @@ class ExprControlCollection : public QWidget {
     int numControls() { return _controls.size(); }
 
     void showEditor(int idx);
-#ifdef SEEXPR_ENABLE_ANIMCURVE
-    /// Anim curve callback
-    static void setAnimCurveCallback(AnimCurveControl::AnimCurveCallback callback) {
-        AnimCurveControl::setAnimCurveCallback(callback);
-    }
-#endif
 
   private
 Q_SLOTS:

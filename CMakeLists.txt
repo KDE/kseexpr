@@ -253,13 +253,6 @@ else()
     endif()
 endif()
 
-if (DEFINED ANIMLIB_DIR)
-    message(STATUS "ANIMLIB_DIR = ${ANIMLIB_DIR}")
-    add_definitions(-DSEEXPR_USE_ANIMLIB)
-    include_directories(${ANIMLIB_DIR}/include)
-    link_directories(${ANIMLIB_DIR}/${CMAKE_INSTALL_LIBDIR})
-endif()
-
 if (DEFINED DERR_DIR)
     message(STATUS "DERR_DIR = ${DMSG_DIR}")
     include_directories(${DERR_DIR}/include)

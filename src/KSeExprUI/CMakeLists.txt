@@ -36,7 +36,6 @@ if (Qt5_FOUND OR QT4_FOUND)
     BuildParserScanner(KSeExprUI ExprSpecParserLex ExprSpecParser ExprSpec
                        editor_parser_cpp)
 
-    option(ENABLE_ANIMCURVE "Whether to build controls for anim curves" FALSE)
     option(ENABLE_EXPRMAIN "Whether to build the ExprMain entrypoint" FALSE)
     option(ENABLE_OPENGL_DIALOGS "Whether to build legacy OpenGL widgets (ExprShortEdit, ExprDialog, and ExprGrapher2d)" FALSE)
 
@@ -90,10 +89,6 @@ if (Qt5_FOUND OR QT4_FOUND)
             Utils.cpp
     )
 
-    if (ENABLE_ANIMCURVE)
-        add_definitions(-DSEEXPR_ENABLE_ANIMCURVE)
-    endif()
-
     if (ENABLE_EXPRMAIN)
         set(EDITOR_CPPS ${EDITOR_CPPS} ExprMain.cpp)
     endif()
@@ -119,24 +114,6 @@ if (Qt5_FOUND OR QT4_FOUND)
         qt4_wrap_cpp(EDITOR_MOC_SRCS ${EDITOR_MOC_HDRS})
     endif()
 
-    set(ANIMLIB_SRCS "")
-    if (DEFINED ANIMLIB_DIR)
-        set(CE_MOC_HDRS CE/CECurveListUI.h CE/CEDragHandlers.h CE/CEGraphCurve.h
-            CE/CEGraphKey.h CE/CEGraphSeg.h CE/CEGraphUI.h CE/CEMainUI.h
-            CE/CESegEditUI.h CE/CETool.h)
-
-        set(CE_CPPS CE/CECurveListUI.cpp CE/CEDragHandlers.cpp CE/CEGraphCurve.cpp
-            CE/CEGraphKey.cpp CE/CEGraphSeg.cpp CE/CEGraphUI.cpp CE/CEMainUI.cpp
-            CE/CESegEditUI.cpp CE/CETool.cpp)
-
-        if (ENABLE_QT5)
-            qt5_wrap_cpp(CE_MOC_SRCS ${CE_MOC_HDRS})
-        else()
-            qt4_wrap_cpp(CE_MOC_SRCS ${CE_MOC_HDRS})
-        endif()
-        set(ANIMLIB_SRCS "${CE_CPPS} ${CE_MOC_SRCS}")
-    endif()
-
     if (BUILD_TRANSLATIONS)
         include(ECMPoQmTools)
         ecm_install_po_files_as_qm("${CMAKE_SOURCE_DIR}/po")
@@ -148,7 +125,6 @@ if (Qt5_FOUND OR QT4_FOUND)
     endif()
 
     add_library(KSeExprUI SHARED ${EDITOR_CPPS} ${EDITOR_MOC_SRCS}
-                ${ANIMLIB_SRCS}
                 ${editor_parser_cpp})
 
     set_property(TARGET KSeExprUI PROPERTY VERSION ${KSeExpr_VERSION})
@@ -188,11 +164,6 @@ if (Qt5_FOUND OR QT4_FOUND)
         if (WIN32)
             target_link_libraries(KSeExprUI PRIVATE opengl32)
         endif()
-    endif()
-
-    if (DEFINED ANIMLIB_DIR)
-        include_directories(${CMAKE_CURRENT_SOURCE_DIR}/CE)
-        target_link_libraries(KSeExprUI PRIVATE animlib)
     endif()
 
     if (DEFINED DERR_DIR)

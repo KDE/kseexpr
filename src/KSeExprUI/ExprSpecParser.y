@@ -22,14 +22,6 @@
 #include <string>
 #include <cstring>
 #include <typeinfo>
-#ifdef SEEXPR_ENABLE_ANIMCURVE
-    #ifdef SEEXPR_USE_ANIMLIB
-    #include <animlib/AnimCurve.h>
-    #include <animlib/AnimKeyframe.h>
-    #else
-    #define UNUSED(x) (void)(x)
-    #endif
-#endif
 #include<KSeExpr/Platform.h>
 #include<KSeExpr/Mutex.h>
 #include "ExprSpecType.h"
@@ -172,62 +164,6 @@ static void specRegisterEditable(const char* var,ExprSpecNode* node)
                 else delete swatch;
             }
         }
-#ifdef SEEXPR_ENABLE_ANIMCURVE
-    }else if(ExprSpecAnimCurveNode* n=dynamic_cast<ExprSpecAnimCurveNode*>(node)){
-        if(ExprSpecListNode* args=dynamic_cast<ExprSpecListNode*>(n->args)){
-            // need 3 items for pre inf and post inf and weighting, plus 9 items per key
-            if((args->nodes.size()-4)%9==0){
-                AnimCurveEditable* animCurve=new AnimCurveEditable(var,node->startPos,node->endPos);
-                bool valid=true;
-
-
-#ifdef SEEXPR_USE_ANIMLIB
-                if(ExprSpecStringNode* s=dynamic_cast<ExprSpecStringNode*>(args->nodes[0])){
-                    animCurve->curve.setPreInfinity(animlib::AnimCurve::stringToInfinityType(s->v));
-                }else valid=false;
-                if(ExprSpecStringNode* s=dynamic_cast<ExprSpecStringNode*>(args->nodes[1])){
-                    animCurve->curve.setPostInfinity(animlib::AnimCurve::stringToInfinityType(s->v));
-                }else valid=false;
-                if(ExprSpecScalarNode* v=dynamic_cast<ExprSpecScalarNode*>(args->nodes[2])){
-                    animCurve->curve.setWeighted(bool(v->v));
-                }
-                if(ExprSpecStringNode* v=dynamic_cast<ExprSpecStringNode*>(args->nodes[3])){
-                    animCurve->link=v->v;
-                }
-
-                for(size_t i=4;i<args->nodes.size();i+=9){
-                    ExprSpecScalarNode* xnode=dynamic_cast<ExprSpecScalarNode*>(args->nodes[i]);
-                    ExprSpecScalarNode* ynode=dynamic_cast<ExprSpecScalarNode*>(args->nodes[i+1]);
-                    ExprSpecScalarNode* inWeight=dynamic_cast<ExprSpecScalarNode*>(args->nodes[i+2]);
-                    ExprSpecScalarNode* outWeight=dynamic_cast<ExprSpecScalarNode*>(args->nodes[i+3]);
-                    ExprSpecScalarNode* inAngle=dynamic_cast<ExprSpecScalarNode*>(args->nodes[i+4]);
-                    ExprSpecScalarNode* outAngle=dynamic_cast<ExprSpecScalarNode*>(args->nodes[i+5]);
-                    ExprSpecStringNode* inTangType=dynamic_cast<ExprSpecStringNode*>(args->nodes[i+6]);
-                    ExprSpecStringNode* outTangType=dynamic_cast<ExprSpecStringNode*>(args->nodes[i+7]);
-                    ExprSpecScalarNode* weighted=dynamic_cast<ExprSpecScalarNode*>(args->nodes[i+8]);
-                    if(xnode && ynode && inWeight && outWeight && inAngle && outAngle && inTangType && outTangType ){
-                        animlib::AnimKeyframe key(xnode->v,ynode->v);
-                        key.setInWeight(inWeight->v);
-                        key.setOutWeight(outWeight->v);
-                        key.setInAngle(inAngle->v);
-                        key.setOutAngle(outAngle->v);
-                        key.setInTangentType(animlib::AnimKeyframe::stringToTangentType(inTangType->v));
-                        key.setOutTangentType(animlib::AnimKeyframe::stringToTangentType(outTangType->v));
-                        key.setWeightsLocked(weighted->v);
-                        animCurve->curve.addKey(key);
-                    }else{
-                        valid=false;
-                    }
-                }
-                if(valid) editables->push_back(animCurve);
-                else delete animCurve;
-#else
-                UNUSED(animCurve);
-                UNUSED(valid);
-#endif
-            }
-        }
-#endif
     }else{
         dbgSeExpr <<"SEEXPREDITOR LOGIC ERROR: We didn't recognize the Spec";
     }
@@ -379,10 +315,6 @@ e:
             $$=remember(new ExprSpecCCurveNode($3));
         }else if($3 && strcmp($1,"swatch")==0){
             $$=remember(new ExprSpecColorSwatchNode($3));
-#ifdef SEEXPR_ENABLE_ANIMCURVE
-        }else if($3 && strcmp($1,"animCurve")==0){
-            $$=remember(new ExprSpecAnimCurveNode($3));
-#endif
         }else if($3){
             // function arguments not parse of curve, ccurve, or animCurve
             // check if there are any string args that need to be made into controls

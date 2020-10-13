@@ -106,14 +106,6 @@ void ExprControlCollection::addControlDialog() {
                         .arg(dialog->stringTypeWidget->currentText())
                         .arg(dialog->stringNameWidget->text());
                 break;
-#ifdef SEEXPR_ENABLE_ANIMCURVE
-            case 8:
-                s = QString::fromLatin1("%1 = animCurve(%2,\"constant\",\"constant\",0,\"%3\");")
-                        .arg(dialog->variableName->text())
-                        .arg(dialog->animCurveLookup->text())
-                        .arg(dialog->animCurveLink->text());
-                break;
-#endif
         }
         emit insertString(s);
     }
@@ -172,10 +164,6 @@ bool ExprControlCollection::rebuildControls(const QString& expressionText, std::
                 widget = new CurveControl(i, x);
             else if (ColorCurveEditable* x = dynamic_cast<ColorCurveEditable*>(editable))
                 widget = new CCurveControl(i, x);
-#ifdef SEEXPR_ENABLE_ANIMCURVE
-            else if (AnimCurveEditable* x = dynamic_cast<AnimCurveEditable*>(editable)) 
-                widget = new AnimCurveControl(i, x);
-#endif
             else if (ColorSwatchEditable* x = dynamic_cast<ColorSwatchEditable*>(editable))
                 widget = new ColorSwatchControl(i, x);
             else {
@@ -199,16 +187,7 @@ bool ExprControlCollection::rebuildControls(const QString& expressionText, std::
 }
 
 void ExprControlCollection::showEditor(int idx) {
-#ifdef SEEXPR_ENABLE_ANIMCURVE
-    if (idx < 0 || idx >= (int)_controls.size()) return;
 
-    /* Right now we only launch the anim curve editor.
-     * It would be better to launch them generically. */
-    AnimCurveControl* control = dynamic_cast<AnimCurveControl*>(_controls[idx]);
-    if (!control) return;
-
-    control->editGraphClicked();
-#endif
 }
 
 void ExprControlCollection::linkColorLink(int id) {

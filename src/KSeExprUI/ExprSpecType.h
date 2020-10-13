@@ -74,13 +74,6 @@ struct ExprSpecCCurveNode : public ExprSpecNode {
     ExprSpecCCurveNode(ExprSpecNode* args) : ExprSpecNode(args->startPos, args->endPos), args(args) {}
 };
 
-#ifdef SEEXPR_ENABLE_ANIMCURVE
-struct ExprSpecAnimCurveNode : public ExprSpecNode {
-    ExprSpecNode* args;
-    ExprSpecAnimCurveNode(ExprSpecNode* args) : ExprSpecNode(args->startPos, args->endPos), args(args) {}
-};
-#endif
-
 struct ExprSpecColorSwatchNode : public ExprSpecNode {
     ExprSpecNode* args;
     ExprSpecColorSwatchNode(ExprSpecNode* args) : ExprSpecNode(args->startPos, args->endPos), args(args) {}

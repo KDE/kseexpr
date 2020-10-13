@@ -46,10 +46,6 @@ class ExprAddDialog : public QDialog {
     QLineEdit *vectorMax;
     QLineEdit *curveLookup;
     QLineEdit *colorCurveLookup;
-#ifdef SEEXPR_ENABLE_ANIMCURVE
-    QLineEdit *animCurveLookup;
-    QLineEdit *animCurveLink;
-#endif
     QLineEdit *swatchLookup;
     QRadioButton *rainbowPaletteBtn;
     QRadioButton *grayPaletteBtn;

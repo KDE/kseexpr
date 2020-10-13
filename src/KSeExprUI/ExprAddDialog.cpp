@@ -177,20 +177,6 @@ ExprAddDialog::ExprAddDialog(int& count, QWidget* parent) : QDialog(parent) {
 
         tabWidget->addTab(stringTab, QString(tr("String")));
     }
-#ifdef SEEXPR_ENABLE_ANIMCURVE
-    // Anim Curve
-    {
-        QWidget* curveTab = new QWidget();
-        QFormLayout* curveLayout = new QFormLayout(curveTab);
-        curveLayout->setWidget(0, QFormLayout::LabelRole, new QLabel(tr("Lookup")));
-        curveLayout->setWidget(1, QFormLayout::LabelRole, new QLabel(tr("Link")));
-        animCurveLookup = new QLineEdit(QString::fromLatin1("$frame"));
-        animCurveLink = new QLineEdit(QString());
-        curveLayout->setWidget(0, QFormLayout::FieldRole, animCurveLookup);
-        curveLayout->setWidget(1, QFormLayout::FieldRole, animCurveLink);
-        tabWidget->addTab(curveTab, QString(tr("AnimCurve")));
-    }
-#endif
 
     verticalLayout->addWidget(tabWidget);
 

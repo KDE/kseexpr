@@ -24,12 +24,6 @@
 #include<KSeExpr/Vec.h>
 #include<KSeExpr/Curve.h>
 #include <cstring>
-#ifdef SEEXPR_ENABLE_ANIMCURVE
-#ifdef SEEXPR_USE_ANIMLIB
-#include <animlib/AnimCurve.h>
-#include <animlib/AnimKeyframe.h>
-#endif  // SEEXPR_USE_ANIMLIB
-#endif  // SEEXPR_ENABLE_ANIMCURVE
 
 inline void printVal(std::stringstream& stream, double v)
 {
@@ -138,29 +132,6 @@ struct GenericCurveEditable : public Editable {
 };
 typedef GenericCurveEditable<KSeExpr::Vec3d> ColorCurveEditable;
 typedef GenericCurveEditable<double> CurveEditable;
-
-#ifdef SEEXPR_ENABLE_ANIMCURVE
-class AnimCurveEditable : public Editable {
-public:
-    std::string name;
-    int startPos, endPos;
-#ifdef SEEXPR_USE_ANIMLIB
-    animlib::AnimCurve curve;
-#endif
-    std::string link;
-    std::string animationSystemCurve;
-    std::string newText;
-
-    AnimCurveEditable(const std::string& name, int startPos, int endPos);
-
-    ~AnimCurveEditable();
-
-    bool parseComment(const std::string& comment) override;
-    std::string str() const override;
-    void appendString(std::stringstream& stream) const override;
-    virtual bool controlsMatch(const Editable& other) const override;
-};
-#endif
 
 class ColorSwatchEditable : public Editable {
 public:
