@@ -1,4 +1,8 @@
 #!/usr/bin/env python
+
+# SPDX-FileCopyrightText: 2011-2019 Disney Enterprises, Inc.
+# SPDX-License-Identifier: LicenseRef-Apache-2.0
+
 from __future__ import absolute_import, division, unicode_literals
 import sys
 import unittest

@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2011-2019 Disney Enterprises, Inc.
+# SPDX-FileCopyrightText: 2020 L. E. Segovia <amy@amyspark.me>
+# SPDX-License-Identifier: LicenseRef-Apache-2.0
+
 @PACKAGE_INIT@
 
 set_and_check(KSeExpr_DIR @PACKAGE_CMAKE_INSTALL_PREFIX@)

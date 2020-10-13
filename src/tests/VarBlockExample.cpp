@@ -1,6 +1,9 @@
-#include<KSeExpr/Expression.h>
-#include<KSeExpr/VarBlock.h>
-#include<KSeExpr/Timer.h>
+// SPDX-FileCopyrightText: 2011-2019 Disney Enterprises, Inc.
+// SPDX-License-Identifier: LicenseRef-Apache-2.0
+
+#include <KSeExpr/Expression.h>
+#include <KSeExpr/VarBlock.h>
+#include <KSeExpr/Timer.h>
 #include <iostream>
 
 struct Expr : public KSeExpr::Expression {

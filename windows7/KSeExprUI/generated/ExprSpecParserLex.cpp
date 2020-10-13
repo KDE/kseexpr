@@ -535,23 +535,9 @@ int ExprSpec_flex_debug = 0;
 #define ExprSpecYY_RESTORE_ExprSpecYY_MORE_OFFSET
 char *ExprSpectext;
 #line 1 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
-/*
-* Copyright Disney Enterprises, Inc.  All rights reserved.
-* Copyright (C) 2020 L. E. Segovia <amy@amyspark.me>
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License
-* and the following modification to it: Section 6 Trademarks.
-* deleted and replaced with:
-*
-* 6. Trademarks. This License does not grant permission to use the
-* trade names, trademarks, service marks, or product names of the
-* Licensor and its affiliates, except as required for reproducing
-* the content of the NOTICE file.
-*
-* You may obtain a copy of the License at
-* http://www.apache.org/licenses/LICENSE-2.0
-*/
+// SPDX-FileCopyrightText: 2011-2019 Disney Enterprises, Inc.
+// SPDX-FileCopyrightText: 2020 L. E. Segovia <amy@amyspark.me>
+// SPDX-License-Identifier: LicenseRef-Apache-2.0
 /* Don't generate ExprSpecwrap since everything is in one string */
 /* Don't generate unput since it's unused and gcc complains... */
 /* Don't generate input since it's unused too -- amyspark */
@@ -572,7 +558,7 @@ char *ExprSpectext;
 #endif  // #if __cplusplus > 199711L
 
 #include "ExprSpecType.h"
-#include<KSeExpr/Utils.h>
+#include <KSeExpr/Utils.h>
 
 #ifdef SEEXPR_WIN32
 #    define ExprSpecYY_NO_UNISTD_H

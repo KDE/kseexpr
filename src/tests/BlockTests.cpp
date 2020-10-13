@@ -1,6 +1,8 @@
+// SPDX-FileCopyrightText: 2011-2019 Disney Enterprises, Inc.
+// SPDX-License-Identifier: LicenseRef-Apache-2.0
 
-#include<KSeExpr/Expression.h>
-#include<KSeExpr/VarBlock.h>
+#include <KSeExpr/Expression.h>
+#include <KSeExpr/VarBlock.h>
 
 using namespace KSeExpr;
 

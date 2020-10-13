@@ -1,6 +1,8 @@
+// SPDX-FileCopyrightText: 2020 L. E. Segovia <amy@amyspark.me>
+// SPDX-License-Identifier: LicenseRef-Apache-2.0
 
 #include "Utils.h"
-#include<KSeExpr/Utils.h>
+#include <KSeExpr/Utils.h>
 
 bool KSeExpr::Utils::parseRangeComment(const std::string &comment, double_t &from, double_t &to)
 {

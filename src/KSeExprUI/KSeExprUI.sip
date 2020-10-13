@@ -1,3 +1,6 @@
+// SPDX-FileCopyrightText: 2020 L. E. Segovia <amy@amyspark.me>
+// SPDX-License-Identifier: LicenseRef-Apache-2.0
+
 // %Include Qt/Qtmod.sip
 
 %Module expreditor2

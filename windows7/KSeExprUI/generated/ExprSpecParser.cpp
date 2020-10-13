@@ -83,8 +83,8 @@
 #include <string>
 #include <cstring>
 #include <typeinfo>
-#include<KSeExpr/Platform.h>
-#include<KSeExpr/Mutex.h>
+#include <KSeExpr/Platform.h>
+#include <KSeExpr/Mutex.h>
 #include "ExprSpecType.h"
 #include "Editable.h"
 #include "Debug.h"
