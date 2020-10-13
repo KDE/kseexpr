@@ -10,8 +10,6 @@
 
 %Import QtGui/QtGuimod.sip
 
-%Feature SEEXPR_ENABLE_OPENGL_DIALOGS
-
 %MappedType std::string
 {
 %TypeHeaderCode
@@ -69,31 +67,6 @@
     return 0;
 %End
 };
-
-%If (SEEXPR_ENABLE_OPENGL_DIALOGS)
-class ExprDialog:QDialog{
-%TypeHeaderCode
-#include "ExprDialog.h"
-%End
-public:
-    ExprEditor* editor;
-
-
-    ExprDialog(QWidget* parent /TransferThis/ = NULL);
-    std::string getExpressionString();
-    void setExpressionString(const QString&);
-    void show();
-
-Q_SIGNALS:
-    void preview();
-    void expressionApplied();
-
-public Q_SLOTS:
-    void applyExpression();
-    void clearExpression();
-    
-};
-%End
 
 class ExprControlCollection:QWidget{
 %TypeHeaderCode
@@ -174,60 +147,6 @@ public Q_SLOTS:
     void saveLocalExpressionAs();
 
 };
-
-%If(SEEXPR_ENABLE_OPENGL_DIALOGS)
-class ExprShortTextEdit:QTextEdit
-{
-%TypeHeaderCode
-#include "ExprShortEdit.h"
-%End
-
-public:
-    ExprShortTextEdit(QWidget* parent);
-
-Q_SIGNALS:
-    void textChanged();
-};
-
-
-class ExprShortEdit:QWidget
-{
-%TypeHeaderCode
-#include "ExprShortEdit.h"
-%End
-
-public:
-    ExprShortEdit(QWidget* parent);
-    std::string getExpressionString() const;
-    void setExpressionString(const QString&);
-    void clearExtraCompleters();
-    void registerExtraFunction(const QString& name,const QString& docString);
-    void registerExtraVariable(const QString& name,const QString& docString);
-    void setSimple(bool enabled);
-    void updateCompleter();
-    void setDetailsMenu(QMenu *menu);
-    void setSearchPath(const QString& context, const QString& path);
-    void setVerticalScrollBarPolicy(Qt::ScrollBarPolicy policy);
-    virtual void hideErrors(bool hidden, const std::string &err);
-    void showDetails(int idx);
-
-    QToolButton* expandButton;
-    ExprShortTextEdit* edit;
-
-protected Q_SLOTS:
-    virtual void detailPressed();
-    virtual void expandPressed();
-    virtual void textFinished();
-    virtual void handleTextEdited();
-    virtual void controlChanged(int id);
-    virtual void rebuildControls();
-    virtual void expressionApplied();
-    virtual void dialogClosed();
-
-Q_SIGNALS:
-    void exprChanged();
-};
-%End
 
 class ExprCurve:QWidget{
 %TypeHeaderCode

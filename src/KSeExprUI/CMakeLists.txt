@@ -36,8 +36,6 @@ if (Qt5_FOUND OR QT4_FOUND)
     BuildParserScanner(KSeExprUI ExprSpecParserLex ExprSpecParser ExprSpec
                        editor_parser_cpp)
 
-    option(ENABLE_OPENGL_DIALOGS "Whether to build legacy OpenGL widgets (ExprShortEdit, ExprDialog, and ExprGrapher2d)" FALSE)
-
     set(EDITOR_MOC_HDRS
             ErrorMessages.h
             ExprAddDialog.h
@@ -88,21 +86,6 @@ if (Qt5_FOUND OR QT4_FOUND)
             Utils.cpp
     )
 
-    if (ENABLE_OPENGL_DIALOGS)
-        # Other package dependencies...
-        find_package(OpenGL)
-        set(EDITOR_MOC_HDRS ${EDITOR_MOC_HDRS}
-                ExprDialog.h
-                ExprGrapher2d.h
-                ExprShortEdit.h
-        )
-        set(EDITOR_CPPS ${EDITOR_CPPS}
-                ExprDialog.cpp
-                ExprGrapher2d.cpp
-                ExprShortEdit.cpp
-        )
-    endif()
-
     if (ENABLE_QT5)
         qt5_wrap_cpp(EDITOR_MOC_SRCS ${EDITOR_MOC_HDRS})
     else()
@@ -147,18 +130,6 @@ if (Qt5_FOUND OR QT4_FOUND)
             ${QT_QTCORE_LIBRARY}
             ${QT_QTGUI_LIBRARY}
         )
-    endif()
-
-    if (ENABLE_OPENGL_DIALOGS)
-        if (ENABLE_QT5)
-            target_link_libraries(KSeExpr PRIVATE Qt5::OpenGL)
-        else()
-            target_link_libraries(KSeExpr PRIVATE ${QT_QTOPENGL_LIBRARY})
-        endif()
-        target_link_libraries(KSeExprUI PRIVATE ${OPENGL_LIBRARY} ${GLUT_LIBRARY})
-        if (WIN32)
-            target_link_libraries(KSeExprUI PRIVATE opengl32)
-        endif()
     endif()
 
     if (DEFINED DERR_DIR)
@@ -225,12 +196,6 @@ if (Qt5_FOUND OR QT4_FOUND)
                            ${PYQT_SIP_FLAGS}
                            -j 1
                            -I. -I${PYQT_SIP_DIR} -I${SIP_INCLUDE_DIR})
-
-        if (NOT ENABLE_OPENGL_DIALOGS)
-            set(SIP_EXEC_COMMAND_EDITOR ${SIP_EXEC_COMMAND_EDITOR}
-                -x "SEEXPR_ENABLE_OPENGL_DIALOGS"
-            )
-        endif()
 
         add_custom_command(OUTPUT sipexpreditor2part0.cpp
                            DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/KSeExprUI.sip
