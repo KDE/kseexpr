@@ -33,7 +33,7 @@ if (Qt5_FOUND OR QT4_FOUND)
         add_compile_options($<$<COMPILE_LANGUAGE:CXX>:-Wno-suggest-override> -Wextra)
     endif()
 
-    BuildParserScanner(ExprSpecParserLex ExprSpecParser ExprSpec
+    BuildParserScanner(KSeExprUI ExprSpecParserLex ExprSpecParser ExprSpec
                        editor_parser_cpp)
 
     option(ENABLE_DEEPWATER "Whether to build controls for displaying a deep water spectrum" FALSE)

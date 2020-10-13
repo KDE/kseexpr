@@ -82,7 +82,7 @@ extern int ExprSpecdebug;
 #if ! defined ExprSpecYYSTYPE && ! defined ExprSpecYYSTYPE_IS_DECLARED
 union ExprSpecYYSTYPE
 {
-#line 279 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 279 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
 
     ExprSpecNode* n;
     double d;      // return value for number tokens

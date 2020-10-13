@@ -32,23 +32,23 @@
    version 2.2 of Bison.  */
 
 /* DO NOT RELY ON FEATURES THAT ARE NOT DOCUMENTED in the manual,
-   especially those whose name start with SeExprYY_ or KSeExpr_.  They are
+   especially those whose name start with SeExprYY_ or SeExpr_.  They are
    private implementation details that can be changed or removed.  */
 
-#ifndef SeExprYY_KSEEXPR_Y_TAB_H_INCLUDED
-# define SeExprYY_KSEEXPR_Y_TAB_H_INCLUDED
+#ifndef SeExprYY_SEEXPR_Y_TAB_H_INCLUDED
+# define SeExprYY_SEEXPR_Y_TAB_H_INCLUDED
 /* Debug traces.  */
 #ifndef SeExprYYDEBUG
 # define SeExprYYDEBUG 0
 #endif
 #if SeExprYYDEBUG
-extern int KSeExprdebug;
+extern int SeExprdebug;
 #endif
 
 /* Token kinds.  */
 #ifndef SeExprYYTOKENTYPE
 # define SeExprYYTOKENTYPE
-  enum KSeExprtokentype
+  enum SeExprtokentype
   {
     SeExprYYEMPTY = -2,
     SeExprYYEOF = 0,                     /* "end of file"  */
@@ -83,14 +83,14 @@ extern int KSeExprdebug;
     SEEXPR_GE = 284,               /* SEEXPR_GE  */
     UNARY = 285                    /* UNARY  */
   };
-  typedef enum KSeExprtokentype KSeExprtoken_kind_t;
+  typedef enum SeExprtokentype SeExprtoken_kind_t;
 #endif
 
 /* Value type.  */
 #if ! defined SeExprYYSTYPE && ! defined SeExprYYSTYPE_IS_DECLARED
 union SeExprYYSTYPE
 {
-#line 78 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/ExprParser.y"
+#line 78 "@@PATH@@/src/KSeExpr/ExprParser.y"
 
     KSeExpr::ExprNode* n; /* a node is returned for all non-terminals to
 		      build the parse tree from the leaves up. */
@@ -128,8 +128,8 @@ struct SeExprYYLTYPE
 #endif
 
 
-extern SeExprYYSTYPE KSeExprlval;
-extern SeExprYYLTYPE KSeExprlloc;
-int KSeExprparse (void);
+extern SeExprYYSTYPE SeExprlval;
+extern SeExprYYLTYPE SeExprlloc;
+int SeExprparse (void);
 
-#endif /* !SeExprYY_KSEEXPR_Y_TAB_H_INCLUDED  */
+#endif /* !SeExprYY_SEEXPR_Y_TAB_H_INCLUDED  */

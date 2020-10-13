@@ -27,64 +27,7 @@ set_source_files_properties("ExprBuiltins.cpp" PROPERTIES COMPILE_DEFINITIONS "_
 # Allow flex/bison to find the current directory
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
-## find our parser generators
-find_package(BISON)
-find_package(FLEX)
-find_program(SED_EXE sed)
-
-if (NOT BISON_FOUND OR
-    NOT FLEX_FOUND OR
-    (SED_EXE STREQUAL "SED_EXE-NOTFOUND"))
-    # don't have flex/bison/sed, use pregenerated versions
-    message(STATUS "Using pregenerated parser files")
-    file(COPY ${CMAKE_SOURCE_DIR}/windows7/SeExpr/generated/
-        DESTINATION .
-        USE_SOURCE_PERMISSIONS)
-    file(COPY ${CMAKE_SOURCE_DIR}/windows7/SeExpr/UI/generated/
-        DESTINATION UI
-        USE_SOURCE_PERMISSIONS) 
-    set(parser_cpp ExprParser.cpp ExprParserLex.cpp)
-    
-else()
-    ## build the parser from the flex/yacc sources
-    add_custom_command(
-        SOURCE "ExprParserLex.l"
-        COMMAND "flex"
-        ARGS "-oExprParserLexIn.cpp" "${CMAKE_CURRENT_SOURCE_DIR}/ExprParserLex.l"
-        OUTPUT ExprParserLexIn.cpp
-        DEPENDS ExprParserLex.l)
-    
-    add_custom_command(
-        SOURCE "ExprParserLexIn.cpp"
-        COMMAND "sed"
-        ARGS -e "'s/SeExprwrap(n)/SeExprwrap()/g'" -e "'s/yy/KSeExpr/g'" -e "'s/YY/SeExprYY/g'"  ExprParserLexIn.cpp | tee ExprParserLex.cpp ${CMAKE_CURRENT_SOURCE_DIR}/generated/ExprParserLex.cpp > /dev/null
-        OUTPUT ExprParserLex.cpp
-        DEPENDS ExprParserLexIn.cpp)
-    
-    add_custom_command(
-        SOURCE "ExprParser.y"
-        COMMAND "bison"
-        ARGS "--defines" "--verbose" "--fixed-output-files" "-p" "KSeExpr" "${CMAKE_CURRENT_SOURCE_DIR}/ExprParser.y"
-        OUTPUT y.tab.c y.tab.h
-        DEPENDS ExprParser.y)
-    
-    add_custom_command(
-        SOURCE "y.tab.h"
-        COMMAND "sed"
-        ARGS -e "'s/yy/KSeExpr/g'" -e "'s/YY/SeExprYY/g'" y.tab.h | tee  ExprParser.tab.h ${CMAKE_CURRENT_SOURCE_DIR}/generated/ExprParser.tab.h > /dev/null
-        OUTPUT ExprParser.tab.h
-        DEPENDS y.tab.h)
-    
-    add_custom_command(
-        SOURCE "y.tab.c"
-        COMMAND "sed"
-        ARGS -e "'s/yy/KSeExpr/g'" -e "'s/YY/SeExprYY/g'" y.tab.c | tee ExprParser.cpp  "${CMAKE_CURRENT_SOURCE_DIR}/generated/ExprParser.cpp" > /dev/null
-        OUTPUT ExprParser.cpp
-        DEPENDS y.tab.c ExprParser.tab.h)
-
-    ## set build files
-    set(parser_cpp ExprParser.cpp ExprParserLex.cpp)
-endif()
+BuildParserScanner(KSeExpr ExprParserLex ExprParser SeExpr parser_cpp)
 
 ## Test charconv and dynamic dispatch support
 check_cxx_source_compiles("
@@ -143,7 +86,6 @@ install(TARGETS KSeExpr DESTINATION ${CMAKE_INSTALL_LIBDIR}
 install(DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/"
         COMPONENT devel DESTINATION ${INCLUDE_DIR}
         FILES_MATCHING PATTERN "*.h"
-        PATTERN "UI/*" EXCLUDE
         PATTERN "generated/*" EXCLUDE
 )
 

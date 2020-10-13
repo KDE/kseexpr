@@ -103,6 +103,7 @@ option(BUILD_DEMOS "Whether to build the demos" FALSE)
 option(BUILD_DOC "Whether to build the documentation" FALSE)
 option(BUILD_TESTS "Whether to build the tests" FALSE)
 option(ENABLE_SLOW_TESTS "Whether to enable slow tests" FALSE)
+option(USE_PREGENERATED_FILES "Whether to use the bundled pregenerated parser files" FALSE)
 
 find_package(ECM 5.64.0 NO_MODULE)
 if (ECM_FOUND)

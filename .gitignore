@@ -4,7 +4,6 @@
 /build
 /Linux-*
 /Darwin-*
-/src/KSeExpr/parser
 /src/SeExprEditor/generated
 /env*
 CMakeCache.txt

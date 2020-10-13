@@ -32,7 +32,7 @@ $ cmake --build . --target install
 
 If you want optional stuff (not used in Krita):
 * Ninja
-* For building the parser, otherwise the pregenerated files will be used:
+* For building the parser, otherwise specify `-DUSE_PREGENERATED_FILES=OFF`:
   * bison
   * flex
 * For LLVM support, otherwise specify `-DENABLE_LLVM_BACKEND=OFF`:

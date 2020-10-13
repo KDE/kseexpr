@@ -1,15 +1,52 @@
 
-macro(BuildParserScanner FLEX_L_PREFIX BISON_Y_PREFIX PARSER_PREFIX GENERATED_CPPS)
-  ## find our parser generators
-  find_program(BISON_EXE bison)
-  find_program(FLEX_EXE flex)
+macro(localize_path SRC DST)
+  file(READ 
+    ${SRC}
+    _TMP_FILE
+  )
+  string(REPLACE
+    "@@PATH@@/"
+    "${CMAKE_SOURCE_DIR}"
+    _TMP_FILE_2
+    "${_TMP_FILE}"
+  )
+  file(GENERATE
+    OUTPUT ${DST}
+    CONTENT "${_TMP_FILE_2}"
+  )
+endmacro()
+
+macro(BuildParserScanner TGT FLEX_L_PREFIX BISON_Y_PREFIX PARSER_PREFIX GENERATED_CPPS)
+  find_package(BISON)
+  find_package(FLEX)
   find_program(SED_EXE sed)
 
-  if((BISON_EXE STREQUAL "BISON_EXE-NOTFOUND") OR (FLEX_EXE STREQUAL "FLEX_EXE-NOTFOUND")  OR (SED_EXE STREQUAL "SED_EXE-NOTFOUND"))
+  if(USE_PREGENERATED_FILES OR
+      NOT BISON_FOUND OR
+      NOT FLEX_FOUND OR
+      (SED_EXE STREQUAL "SED_EXE-NOTFOUND")
+  )
+    message(STATUS "Using pregenerated parser files for ${TGT}")
     # don't have flex/bison/sed, use pregenerated versions
-    # they should have been copied in the KSeExpr project 
+    localize_path(
+      ${CMAKE_SOURCE_DIR}/windows7/${TGT}/generated/${FLEX_L_PREFIX}.cpp
+      ${CMAKE_CURRENT_BINARY_DIR}/${FLEX_L_PREFIX}.cpp
+    )
+    localize_path(
+      ${CMAKE_SOURCE_DIR}/windows7/${TGT}/generated/${FLEX_L_PREFIX}In.cpp
+      ${CMAKE_CURRENT_BINARY_DIR}/${FLEX_L_PREFIX}In.cpp
+    )
+    localize_path(
+      ${CMAKE_SOURCE_DIR}/windows7/${TGT}/generated/${BISON_Y_PREFIX}.cpp
+      ${CMAKE_CURRENT_BINARY_DIR}/${BISON_Y_PREFIX}.cpp
+    )
+    localize_path(
+      ${CMAKE_SOURCE_DIR}/windows7/${TGT}/generated/${BISON_Y_PREFIX}.tab.h
+      ${CMAKE_CURRENT_BINARY_DIR}/${BISON_Y_PREFIX}.tab.h
+    )
+
     set (${GENERATED_CPPS} ${FLEX_L_PREFIX}.cpp ${BISON_Y_PREFIX}.cpp)
-  else ((BISON_EXE STREQUAL "BISON_EXE-NOTFOUND") OR (FLEX_EXE STREQUAL "FLEX_EXE-NOTFOUND")  OR (SED_EXE STREQUAL "SED_EXE-NOTFOUND"))
+  else ()
     ## build the parser from the flex/yacc sources
     
     ADD_CUSTOM_COMMAND(
@@ -54,8 +91,6 @@ macro(BuildParserScanner FLEX_L_PREFIX BISON_Y_PREFIX PARSER_PREFIX GENERATED_CP
     
     ## set build files
     set (${GENERATED_CPPS} ${FLEX_L_PREFIX}.cpp ${BISON_Y_PREFIX}.cpp)
-    #add_custom_target(run ALL DEPENDS ${${GENERATED_CPPS}})
-  endif( (BISON_EXE STREQUAL "BISON_EXE-NOTFOUND") OR (FLEX_EXE STREQUAL "FLEX_EXE-NOTFOUND")  OR (SED_EXE STREQUAL "SED_EXE-NOTFOUND"))
-  
-
+    message(STATUS "${TGT} parser files: ${${GENERATED_CPPS}}")
+  endif()
 endmacro()

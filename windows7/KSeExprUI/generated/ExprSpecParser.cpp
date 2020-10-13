@@ -75,7 +75,7 @@
 #define ExprSpeclloc          ExprSpeclloc
 
 /* First part of user prologue.  */
-#line 18 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 18 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
 
 #include <algorithm>
 #include <vector>
@@ -408,7 +408,7 @@ extern int ExprSpecdebug;
 #if ! defined ExprSpecYYSTYPE && ! defined ExprSpecYYSTYPE_IS_DECLARED
 union ExprSpecYYSTYPE
 {
-#line 279 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 279 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
 
     ExprSpecNode* n;
     double d;      // return value for number tokens
@@ -1755,49 +1755,49 @@ ExprSpecreduce:
   switch (ExprSpecn)
     {
   case 2:
-#line 321 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 321 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 { ParseResult = 0; }
 #line 1761 "y.tab.c"
     break;
 
   case 3:
-#line 322 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 322 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 { ParseResult = 0; }
 #line 1767 "y.tab.c"
     break;
 
   case 4:
-#line 327 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 327 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
 #line 1773 "y.tab.c"
     break;
 
   case 5:
-#line 328 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 328 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
 #line 1779 "y.tab.c"
     break;
 
   case 6:
-#line 332 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 332 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
 #line 1785 "y.tab.c"
     break;
 
   case 7:
-#line 333 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 333 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
 #line 1791 "y.tab.c"
     break;
 
   case 8:
-#line 338 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 338 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
 #line 1797 "y.tab.c"
     break;
 
   case 9:
-#line 339 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 339 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 {
         specRegisterVariable((ExprSpecvsp[-3].s));
         specRegisterEditable((ExprSpecvsp[-3].s),(ExprSpecvsp[-1].n));
@@ -1806,43 +1806,43 @@ ExprSpecreduce:
     break;
 
   case 10:
-#line 343 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 343 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
 #line 1812 "y.tab.c"
     break;
 
   case 11:
-#line 344 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 344 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
 #line 1818 "y.tab.c"
     break;
 
   case 12:
-#line 345 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 345 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
 #line 1824 "y.tab.c"
     break;
 
   case 13:
-#line 346 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 346 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
 #line 1830 "y.tab.c"
     break;
 
   case 14:
-#line 347 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 347 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
 #line 1836 "y.tab.c"
     break;
 
   case 15:
-#line 348 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 348 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
 #line 1842 "y.tab.c"
     break;
 
   case 16:
-#line 349 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 349 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 {
         specRegisterVariable((ExprSpecvsp[-3].s));
         specRegisterEditable((ExprSpecvsp[-3].s),(ExprSpecvsp[-1].n));
@@ -1851,73 +1851,73 @@ ExprSpecreduce:
     break;
 
   case 17:
-#line 353 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 353 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 {  (ExprSpecval.n) = 0; }
 #line 1857 "y.tab.c"
     break;
 
   case 18:
-#line 354 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 354 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 {  (ExprSpecval.n) = 0; }
 #line 1863 "y.tab.c"
     break;
 
   case 19:
-#line 355 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 355 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 {  (ExprSpecval.n) = 0; }
 #line 1869 "y.tab.c"
     break;
 
   case 20:
-#line 356 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 356 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 {  (ExprSpecval.n) = 0; }
 #line 1875 "y.tab.c"
     break;
 
   case 21:
-#line 357 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 357 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 {  (ExprSpecval.n) = 0; }
 #line 1881 "y.tab.c"
     break;
 
   case 22:
-#line 358 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 358 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 {  (ExprSpecval.n) = 0; }
 #line 1887 "y.tab.c"
     break;
 
   case 23:
-#line 363 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 363 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
     { (ExprSpecval.n) = 0; }
 #line 1893 "y.tab.c"
     break;
 
   case 24:
-#line 367 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 367 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                         { (ExprSpecval.n) = 0; }
 #line 1899 "y.tab.c"
     break;
 
   case 25:
-#line 368 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 368 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                             { (ExprSpecval.n) = 0;}
 #line 1905 "y.tab.c"
     break;
 
   case 26:
-#line 369 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 369 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0;}
 #line 1911 "y.tab.c"
     break;
 
   case 27:
-#line 374 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 374 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
 #line 1917 "y.tab.c"
     break;
 
   case 28:
-#line 375 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 375 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 {
         if(SPEC_IS_NUMBER((ExprSpecvsp[-5].n)) && SPEC_IS_NUMBER((ExprSpecvsp[-3].n)) && SPEC_IS_NUMBER((ExprSpecvsp[-1].n))){
             (ExprSpecval.n)=remember(new ExprSpecVectorNode((ExprSpecloc).first_column,(ExprSpecloc).last_column,(ExprSpecvsp[-5].n),(ExprSpecvsp[-3].n),(ExprSpecvsp[-1].n)));
@@ -1927,73 +1927,73 @@ ExprSpecreduce:
     break;
 
   case 29:
-#line 380 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 380 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
 #line 1933 "y.tab.c"
     break;
 
   case 30:
-#line 381 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 381 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
 #line 1939 "y.tab.c"
     break;
 
   case 31:
-#line 382 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 382 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
 #line 1945 "y.tab.c"
     break;
 
   case 32:
-#line 383 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 383 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
 #line 1951 "y.tab.c"
     break;
 
   case 33:
-#line 384 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 384 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
 #line 1957 "y.tab.c"
     break;
 
   case 34:
-#line 385 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 385 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
 #line 1963 "y.tab.c"
     break;
 
   case 35:
-#line 386 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 386 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
 #line 1969 "y.tab.c"
     break;
 
   case 36:
-#line 387 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 387 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
 #line 1975 "y.tab.c"
     break;
 
   case 37:
-#line 388 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 388 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
 #line 1981 "y.tab.c"
     break;
 
   case 38:
-#line 389 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 389 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
 #line 1987 "y.tab.c"
     break;
 
   case 39:
-#line 390 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 390 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = (ExprSpecvsp[0].n); }
 #line 1993 "y.tab.c"
     break;
 
   case 40:
-#line 391 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 391 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 {
         if(SPEC_IS_NUMBER((ExprSpecvsp[0].n))){
             ExprSpecScalarNode* node=(ExprSpecScalarNode*)(ExprSpecvsp[0].n);
@@ -2007,55 +2007,55 @@ ExprSpecreduce:
     break;
 
   case 41:
-#line 400 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 400 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
 #line 2013 "y.tab.c"
     break;
 
   case 42:
-#line 401 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 401 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
 #line 2019 "y.tab.c"
     break;
 
   case 43:
-#line 402 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 402 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
 #line 2025 "y.tab.c"
     break;
 
   case 44:
-#line 403 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 403 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
 #line 2031 "y.tab.c"
     break;
 
   case 45:
-#line 404 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 404 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
 #line 2037 "y.tab.c"
     break;
 
   case 46:
-#line 405 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 405 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
 #line 2043 "y.tab.c"
     break;
 
   case 47:
-#line 406 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 406 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
 #line 2049 "y.tab.c"
     break;
 
   case 48:
-#line 407 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 407 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
 #line 2055 "y.tab.c"
     break;
 
   case 49:
-#line 408 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 408 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 {
         if((ExprSpecvsp[-1].n) && strcmp((ExprSpecvsp[-3].s),"curve")==0){
             (ExprSpecval.n)=remember(new ExprSpecCurveNode((ExprSpecvsp[-1].n)));
@@ -2089,43 +2089,43 @@ ExprSpecreduce:
     break;
 
   case 50:
-#line 437 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 437 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                   {(ExprSpecval.n) = 0; }
 #line 2095 "y.tab.c"
     break;
 
   case 51:
-#line 438 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 438 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 {  (ExprSpecval.n) = 0; }
 #line 2101 "y.tab.c"
     break;
 
   case 52:
-#line 439 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 439 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 {  (ExprSpecval.n) = 0; }
 #line 2107 "y.tab.c"
     break;
 
   case 53:
-#line 440 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 440 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n)=remember(new ExprSpecScalarNode((ExprSpecloc).first_column,(ExprSpecloc).last_column,(ExprSpecvsp[0].d))); }
 #line 2113 "y.tab.c"
     break;
 
   case 54:
-#line 445 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 445 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0;}
 #line 2119 "y.tab.c"
     break;
 
   case 55:
-#line 446 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 446 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = (ExprSpecvsp[0].n);}
 #line 2125 "y.tab.c"
     break;
 
   case 56:
-#line 451 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 451 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
         {
        // ignore first argument unless it is a string (because we parse strings in weird ways)
        ExprSpecListNode* list=new ExprSpecListNode((ExprSpecloc).last_column,(ExprSpecloc).last_column);
@@ -2139,7 +2139,7 @@ ExprSpecreduce:
     break;
 
   case 57:
-#line 460 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 460 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                  {
 
       if((ExprSpecvsp[-2].n) && (ExprSpecvsp[0].n) && ((SPEC_IS_NUMBER((ExprSpecvsp[0].n)) || SPEC_IS_VECTOR((ExprSpecvsp[0].n)) || SPEC_IS_STR((ExprSpecvsp[0].n))))){
@@ -2153,13 +2153,13 @@ ExprSpecreduce:
     break;
 
   case 58:
-#line 472 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 472 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = (ExprSpecvsp[0].n);}
 #line 2159 "y.tab.c"
     break;
 
   case 59:
-#line 473 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 473 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 {
         ExprSpecStringNode* str=new ExprSpecStringNode((ExprSpecloc).first_column,(ExprSpecloc).last_column,(ExprSpecvsp[0].s));
         //specRegisterEditable("<UNKNOWN>",str);
@@ -2369,7 +2369,7 @@ ExprSpecreturn:
   return ExprSpecresult;
 }
 
-#line 481 "/disney/users/jberlin/projects/seexpr2/src/SeExpr2/UI/ExprSpecParser.y"
+#line 481 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
 
 
 /* ExprSpecerror - Report an error.  This is called by the parser.
