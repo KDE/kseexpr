@@ -36,7 +36,6 @@ if (Qt5_FOUND OR QT4_FOUND)
     BuildParserScanner(KSeExprUI ExprSpecParserLex ExprSpecParser ExprSpec
                        editor_parser_cpp)
 
-    option(ENABLE_EXPRMAIN "Whether to build the ExprMain entrypoint" FALSE)
     option(ENABLE_OPENGL_DIALOGS "Whether to build legacy OpenGL widgets (ExprShortEdit, ExprDialog, and ExprGrapher2d)" FALSE)
 
     set(EDITOR_MOC_HDRS
@@ -88,10 +87,6 @@ if (Qt5_FOUND OR QT4_FOUND)
             ExprTextEdit.cpp
             Utils.cpp
     )
-
-    if (ENABLE_EXPRMAIN)
-        set(EDITOR_CPPS ${EDITOR_CPPS} ExprMain.cpp)
-    endif()
 
     if (ENABLE_OPENGL_DIALOGS)
         # Other package dependencies...
