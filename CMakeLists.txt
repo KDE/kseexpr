@@ -110,52 +110,25 @@ set(LLVM_LIB "")
 if (ENABLE_LLVM_BACKEND)
     set(LLVM_DIR /usr/share/llvm/cmake CACHE PATH "Where to search for LLVM i.e. ")
 
-    find_package(LLVM CONFIG NAMES LLVM CONFIGS LLVM-Config.cmake LLVMConfig.cmake)
-    if (LLVM_FOUND)
+    find_package(LLVM)
+    if (NOT LLVM_FOUND OR LLVM_VERSION VERSION_LESS 3.8.0)
+        set(ENABLE_LLVM_BACKEND off)
+        message(STATUS "Not building with LLVM, version must be >= 3.8.0")
+    else()
+        set(SEEXPR_ENABLE_LLVM 1)
+
         message(STATUS "Using LLVMConfig.cmake in: ${LLVM_DIR}")
-        find_program(LLVM_CONFIG_EXECUTABLE NAMES ${LLVM_TOOLS_BINARY_DIR}/llvm-config)
-
-        # Uncomment to use clang++
-        #set(CMAKE_CXX_COMPILER clang++)
-        #set(CMAKE_C_COMPILER clang)
-
         set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${LLVM_DIR}")
         include(LLVM-Config)
         include(LLVMConfig)
         include(HandleLLVMOptions)
 
         message(STATUS "LLVM_DEFINITIONS =" ${LLVM_DEFINITIONS})
-        add_definitions(${LLVM_DEFINITIONS})
-
-        if (NOT LLVM_CONFIG_EXECUTABLE STREQUAL "LLVM_CONFIG_EXECUTABLE-NOTFOUND")
-            execute_process(
-                COMMAND ${LLVM_CONFIG_EXECUTABLE} --includedir
-                OUTPUT_VARIABLE LLVM_INCLUDE_DIR OUTPUT_STRIP_TRAILING_WHITESPACE)
-        else ()
-            set(LLVM_INCLUDE_DIR ${LLVM_INCLUDE_DIRS})
-        endif ()
-        message(STATUS "LLVM_INCLUDE_DIR =" ${LLVM_INCLUDE_DIR})
-        include_directories(${LLVM_INCLUDE_DIR})
-
-        if (NOT LLVM_CONFIG_EXECUTABLE STREQUAL "LLVM_CONFIG_EXECUTABLE-NOTFOUND")
-            execute_process(
-                COMMAND ${LLVM_CONFIG_EXECUTABLE} --libdir
-                OUTPUT_VARIABLE LLVM_LIBRARY_DIR OUTPUT_STRIP_TRAILING_WHITESPACE)
-        else ()
-            set(LLVM_LIBRARY_DIR ${LLVM_LIBRARY_DIRS})
-        endif ()
+        message(STATUS "LLVM_INCLUDE_DIRS =" ${LLVM_INCLUDE_DIRS})
         message(STATUS "LLVM_LIBRARY_DIR =" ${LLVM_LIBRARY_DIR})
-        link_directories(${LLVM_LIBRARY_DIR})
+        message(STATUS "LLVM_PACKAGE_VERSION =" ${LLVM_PACKAGE_VERSION})
 
-        # construct library name
-        if (NOT LLVM_CONFIG_EXECUTABLE STREQUAL "LLVM_CONFIG_EXECUTABLE-NOTFOUND")
-            execute_process(
-                COMMAND ${LLVM_CONFIG_EXECUTABLE} --version
-                OUTPUT_VARIABLE LLVM_VERSION OUTPUT_STRIP_TRAILING_WHITESPACE)
-        else ()
-            set(LLVM_VERSION ${LLVM_PACKAGE_VERSION})
-        endif ()
-        message(STATUS "LLVM_VERSION = ${LLVM_VERSION}")
+        # construct library names
 
         message(STATUS "Detected processor: ${CMAKE_SYSTEM_PROCESSOR}")
         if(CMAKE_SYSTEM_PROCESSOR MATCHES "amd64.*|x86_64.*|AMD64.*")
@@ -178,22 +151,21 @@ if (ENABLE_LLVM_BACKEND)
             message(ERROR "Unknown processor, unable to set LLVM codegen targets")
         endif()
 
-        llvm_map_components_to_libnames(LLVM_LIB
-            Interpreter
-            MCJIT
-            ObjCARCOpts
-            Passes
-            ${KSeExpr_PLATFORM_CODEGEN_LIBS}
-        )
+        if (LLVM IN_LIST LLVM_AVAILABLE_LIBS)
+            message(STATUS "Shared libLLVM is available, using it.")
+            set(LLVM_LIB LLVM)
+        else()
+            message(STATUS "Shared libLLVM is not available, falling back to static linkage.")
+            llvm_map_components_to_libnames(LLVM_LIB
+                Interpreter
+                MCJIT
+                ObjCARCOpts
+                Passes
+                ${KSeExpr_PLATFORM_CODEGEN_LIBS}
+            )
+        endif()
 
         message(STATUS "LLVM_LIB = ${LLVM_LIB}")
-
-        if (LLVM_VERSION VERSION_LESS 3.8.0)
-            set(ENABLE_LLVM_BACKEND off)
-            message(STATUS "Not building with LLVM, version must be >= 3.8.0")
-        else()
-            set(SEEXPR_ENABLE_LLVM 1)
-        endif()
     endif()
 endif()
 
