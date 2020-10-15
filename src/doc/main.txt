@@ -36,7 +36,7 @@
 
 /**
 \page mytut Simple ASCII Grapher Tutorial
-\htmlinclude tutorial.txt
+\htmlinclude tutorial.html
 */
 /**
 \page uitut Image Editor Tutorial
