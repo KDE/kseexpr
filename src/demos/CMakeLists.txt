@@ -1,8 +1,6 @@
 # SPDX-FileCopyrightText: 2011-2019 Disney Enterprises, Inc.
 # SPDX-License-Identifier: LicenseRef-Apache-2.0
 
-include_directories(${CMAKE_BINARY_DIR}/src/KSeExpr)
-
 add_executable(asciiGraph2 "asciiGraph.cpp")
 target_link_libraries(asciiGraph2 KSeExpr)
 install(TARGETS asciiGraph2 DESTINATION ${CMAKE_INSTALL_BINDIR})

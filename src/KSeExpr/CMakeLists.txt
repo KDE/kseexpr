@@ -1,4 +1,5 @@
 # SPDX-FileCopyrightText: 2011-2019 Disney Enterprises, Inc.
+# SPDX-FileCopyrightText: 2020 L. E. Segovia <amy@amyspark.me>
 # SPDX-License-Identifier: LicenseRef-Apache-2.0
 
 # Source files for llvm supported library and interpreter library
@@ -12,10 +13,6 @@ set_source_files_properties("ExprBuiltins.cpp" PROPERTIES COMPILE_DEFINITIONS "_
 #add_definitions(-DSEEXPR_DEBUG)
 #add_definitions(-DSEEXPR_PERFORMANCE)
 
-# Allow flex/bison to find the current directory
-include_directories(${CMAKE_CURRENT_SOURCE_DIR})
-
-BuildParserScanner(KSeExpr ExprParserLex ExprParser SeExpr parser_cpp)
 
 ## Test charconv and dynamic dispatch support
 check_cxx_source_compiles("
@@ -40,7 +37,8 @@ if(ENABLE_PLUGIN_SYSTEM)
     set(KSeExpr_ENABLE_PLUGIN_SYSTEM 1)
 endif()
 
-## Make the SeExpr library with and without LLVM support
+BuildParserScanner(KSeExpr ExprParserLex ExprParser SeExpr parser_cpp)
+
 file(GLOB llvm_cpp "*.cpp")
 if (NOT WIN32)
     add_library(KSeExpr SHARED ${io_cpp} ${core_cpp} ${parser_cpp} ${llvm_cpp})
@@ -52,8 +50,10 @@ else()
     add_library(KSeExpr STATIC ${io_cpp} ${core_cpp} ${parser_cpp} ${llvm_cpp})
 endif()
 
-target_include_directories(KSeExpr INTERFACE
-    $<INSTALL_INTERFACE:include>
+target_include_directories(KSeExpr 
+    PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
+    PRIVATE $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
+    INTERFACE $<INSTALL_INTERFACE:include>
 )
 
 set_property(TARGET KSeExpr PROPERTY VERSION ${KSeExpr_VERSION})

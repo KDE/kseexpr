@@ -439,14 +439,12 @@ WARN_LOGFILE           =
 # directories like "/usr/src/myproject". Separate the files or directories 
 # with spaces.
 
-INPUT                  = @CMAKE_CURRENT_SOURCE_DIR@/../KSeExpr \
-			 @CMAKE_CURRENT_SOURCE_DIR@/../KSeExprUI \
-			 @CMAKE_CURRENT_SOURCE_DIR@/../demos \
-			 @CMAKE_CURRENT_SOURCE_DIR@/../demos/imageEditor \
-			 @CMAKE_CURRENT_SOURCE_DIR@/../demos/imageSynth \
-			 @CMAKE_CURRENT_SOURCE_DIR@/../demos/rman2 \
-			 @CMAKE_CURRENT_SOURCE_DIR@/../demos/segraph \
-                         @CMAKE_CURRENT_SOURCE_DIR@                       
+INPUT                  = @CMAKE_SOURCE_DIR@/src/KSeExpr     \
+			 @CMAKE_SOURCE_DIR@/src/KSeExprUI               \
+			 @CMAKE_SOURCE_DIR@/src/demos                   \
+			 @CMAKE_SOURCE_DIR@/src/demos/imageEditor       \
+			 @CMAKE_SOURCE_DIR@/src/demos/imageSynth        \
+			 @CMAKE_SOURCE_DIR@/src/doc                     
                        
 
 # If the value of the INPUT tag contains directories, you can use the 

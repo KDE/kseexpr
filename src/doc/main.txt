@@ -31,7 +31,6 @@
  *  - ExprParser - Entry point to bison/flex parser
  *
  * \section Other
- *  - \subpage license
  *  - <a class="el" href="./v1/index.html">Older Documentation (v1-v2)</a>
  */
 

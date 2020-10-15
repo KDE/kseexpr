@@ -29,7 +29,7 @@ set(CMAKE_INSTALL_MESSAGE LAZY)
 include(GNUInstallDirs)
 include(CMakePackageConfigHelpers)
 include(GenerateExportHeader)
-LIST (APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/src/cmake")
+LIST (APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
 include(macros)
 include(CheckCXXSourceCompiles)
 include(FeatureSummary)
@@ -231,14 +231,14 @@ endif ()
 
 # cmake packaging -- this is done after adding subdirectories so that
 # all exported targets are found by export() below.
-configure_file("src/cmake/kseexpr.pc.in" "kseexpr.pc" @ONLY)
+configure_file("cmake/kseexpr.pc.in" "kseexpr.pc" @ONLY)
 install(FILES "${CMAKE_CURRENT_BINARY_DIR}/kseexpr.pc"
     COMPONENT devel DESTINATION share/pkgconfig)
 
 write_basic_package_version_file("kseexpr-version.cmake" VERSION ${${PROJECT_NAME}_VERSION} COMPATIBILITY ExactVersion)
 
 configure_package_config_file(
-    "src/cmake/kseexpr-config.cmake" "kseexpr-config.cmake"
+    "cmake/kseexpr-config.cmake" "kseexpr-config.cmake"
     INSTALL_DESTINATION ${CMAKE_DIR}
     PATH_VARS CMAKE_INSTALL_PREFIX CMAKE_INSTALL_LIBDIR CMAKE_INSTALL_INCLUDEDIR)
 install(FILES "${CMAKE_CURRENT_BINARY_DIR}/kseexpr-config.cmake"

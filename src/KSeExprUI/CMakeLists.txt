@@ -1,4 +1,5 @@
 # SPDX-FileCopyrightText: 2011-2019 Disney Enterprises, Inc.
+# SPDX-FileCopyrightText: 2020 L. E. Segovia <amy@amyspark.me>
 # SPDX-License-Identifier: LicenseRef-Apache-2.0
 
 if (EXISTS "/usr/share/apps/cmake/modules")
@@ -97,8 +98,8 @@ if (Qt5_FOUND)
                  COMPATIBLE_INTERFACE_STRING ${KSeExpr_MAJOR_VERSION})
 
     target_include_directories(KSeExprUI
-        PRIVATE ${CMAKE_BINARY_DIR}/src/KSeExpr
-        PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}
+        PRIVATE $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
+        PRIVATE $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
         INTERFACE $<INSTALL_INTERFACE:include>
     )
     target_link_libraries(KSeExprUI PUBLIC KSeExpr)
@@ -126,7 +127,7 @@ if (Qt5_FOUND)
 
         macro(get_build_info NAME STORAGE)
             execute_process(
-                COMMAND ${PYTHON_EXECUTABLE} ${PROJECT_SOURCE_DIR}/src/cmake/build-info ${NAME}
+                COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_SOURCE_DIR}/cmake/build-info ${NAME}
                 OUTPUT_VARIABLE ${STORAGE}
                 OUTPUT_STRIP_TRAILING_WHITESPACE)
         endmacro()
