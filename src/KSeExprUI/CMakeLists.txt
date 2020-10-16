@@ -104,7 +104,7 @@ if (Qt5_FOUND)
     )
     target_link_libraries(KSeExprUI PUBLIC KSeExpr)
 
-    target_link_libraries(KSeExprUI PRIVATE
+    target_link_libraries(KSeExprUI PUBLIC
         Qt5::Core
         Qt5::Gui
         Qt5::Widgets
@@ -165,14 +165,7 @@ if (Qt5_FOUND)
 
         add_library(expreditor2 SHARED sipexpreditor2part0.cpp)
         target_include_directories(expreditor2 PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
-        target_link_libraries(expreditor2 KSeExprUI ${SEEXPR_LIBRARIES}
-                              ${OPENGL_LIBRARY} ${GLUT_LIBRARY} ${PYTHON_LIBRARIES})
-
-        target_link_libraries(expreditor2 KSeExprUI
-                                Qt5::Core
-                                Qt5::Gui
-                                Qt5::Widgets
-        )
+        target_link_libraries(expreditor2 KSeExprUI ${SEEXPR_LIBRARIES} ${PYTHON_LIBRARIES})
 
         # No prefix on python module name
         set_target_properties(expreditor2 PROPERTIES PREFIX "")

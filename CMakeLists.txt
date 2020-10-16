@@ -17,8 +17,6 @@ project(KSeExpr)
 
 # "API" version
 set(${PROJECT_NAME}_VERSION "3.4.4.0")
-set(${PROJECT_NAME}_MAJOR_VERSION 3)
-set(${PROJECT_NAME}_MINOR_VERSION 0)
 
 enable_testing()
 
@@ -191,16 +189,8 @@ if (NOT CMAKE_BUILD_TYPE)
 endif()
 
 if (ENABLE_QT5)
-    find_package(Qt5 COMPONENTS Core Gui OpenGL)
-    if (Qt5_FOUND)
-        message(STATUS "Qt5 Enabled")
-        message(STATUS "Qt5Core_INCLUDE_DIRS = ${Qt5Core_INCLUDE_DIRS}")
-        message(STATUS "Qt5Gui_INCLUDE_DIRS = ${Qt5Gui_INCLUDE_DIRS}")
-        message(STATUS "Qt5OpenGL_INCLUDE_DIRS = ${Qt5OpenGL_INCLUDE_DIRS}")
-        include_directories(${Qt5Core_INCLUDE_DIRS})
-        include_directories(${Qt5Gui_INCLUDE_DIRS})
-        include_directories(${Qt5OpenGL_INCLUDE_DIRS})
-    endif()
+    find_package(Qt5 5.9.0 COMPONENTS Core Gui Widgets REQUIRED)
+    message(STATUS "Qt5 Enabled")
 endif()
 
 ## Make modules able to see seexpr library
@@ -215,19 +205,21 @@ include_directories(BEFORE ${CMAKE_SOURCE_DIR}/src)
 ## Traverse subdirectories
 add_subdirectory(src/KSeExpr)
 add_subdirectory(src/KSeExprUI)
-add_subdirectory(src/KSeExprPy)
-if (${BUILD_UTILS})
+if (USE_PYTHON)
+    add_subdirectory(src/KSeExprPy)
+endif()
+if (BUILD_UTILS)
     add_subdirectory(src/utils)
-endif ()
-if (${BUILD_DEMOS})
+endif()
+if (BUILD_DEMOS)
     add_subdirectory(src/demos)
-endif ()
-if (${BUILD_DOC})
+endif()
+if (BUILD_DOC)
     add_subdirectory(src/doc)
-endif ()
-if (${BUILD_TESTS})
+endif()
+if (BUILD_TESTS)
     add_subdirectory(src/tests)
-endif ()
+endif()
 
 # cmake packaging -- this is done after adding subdirectories so that
 # all exported targets are found by export() below.
