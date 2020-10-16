@@ -14,7 +14,7 @@
 #include "ExprNode.h"
 #include "ExprBuiltins.h"
 
-#include "Mutex.h"
+#include <mutex>
 
 namespace {
 // FuncTable - table of pre-defined functions
@@ -93,15 +93,15 @@ namespace KSeExpr {
 
 std::vector<void*> ExprFunc::dynlib;
 
-static SeExprInternal2::Mutex mutex;
+static std::mutex mutex;
 
 void ExprFunc::init() {
-    SeExprInternal2::AutoMutex locker(mutex);
+    std::lock_guard<std::mutex> locker(mutex);
     initInternal();
 }
 
 void ExprFunc::cleanup() {
-    SeExprInternal2::AutoMutex locker(mutex);
+    std::lock_guard<std::mutex> locker(mutex);
     delete Functions;
     Functions = nullptr;
 #ifdef SEEXPR_WIN32
@@ -177,13 +177,13 @@ std::string ExprFunc::getDocString(const char* functionName) {
 }
 
 size_t ExprFunc::sizeInBytes() {
-    SeExprInternal2::AutoMutex locker(mutex);
+    std::lock_guard<std::mutex> locker(mutex);
     if (!Functions) initInternal();
     return Functions->sizeInBytes();
 }
 
 KSeExpr::Statistics ExprFunc::statistics() {
-    SeExprInternal2::AutoMutex locker(mutex);
+    std::lock_guard<std::mutex> locker(mutex);
     if (!Functions) initInternal();
     return Functions->statistics();
 }

@@ -13,7 +13,7 @@
 #include "ExprNode.h"
 #include "ExprParser.h"
 #include "Expression.h"
-#include "Mutex.h"
+#include <mutex>
 
 /******************
  lexer declarations
@@ -382,7 +382,7 @@ static void yyerror(const char* /*msg*/)
 
 extern void SeExprLexerResetState(std::vector<std::pair<int,int> >& comments);
 
-static SeExprInternal2::Mutex mutex;
+static std::mutex mutex;
 
 namespace KSeExpr {
 bool ExprParse(KSeExpr::ExprNode*& parseTree,
@@ -395,7 +395,7 @@ bool ExprParse(KSeExpr::ExprNode*& parseTree,
     const char* str,
     bool wantVec)
 {
-    SeExprInternal2::AutoMutex locker(mutex);
+    std::lock_guard<std::mutex> locker(mutex);
 
     // glue around crippled C interface - ugh!
     Expr = expr;

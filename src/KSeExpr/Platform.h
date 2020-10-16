@@ -79,7 +79,6 @@
 #include <alloca.h>
 #endif
 #include <string.h>
-#include <pthread.h>
 #include <inttypes.h>
 #endif  // defined(_WIN32)...
 

@@ -173,7 +173,6 @@ if (WIN32)
     add_definitions(-D_CRT_SECURE_NO_WARNINGS)
 else()
     add_definitions(-Wall -Wextra -Wno-unused-parameter)
-    add_definitions(-pthread)
 
     set(CMAKE_POSITION_INDEPENDENT_CODE ON)
     if (APPLE)

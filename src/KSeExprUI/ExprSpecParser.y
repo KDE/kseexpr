@@ -8,8 +8,8 @@
 #include <string>
 #include <cstring>
 #include <typeinfo>
+#include <mutex>
 #include <KSeExpr/Platform.h>
-#include <KSeExpr/Mutex.h>
 #include "ExprSpecType.h"
 #include "Editable.h"
 #include "Debug.h"
@@ -408,7 +408,7 @@ extern void specResetCounters(std::vector<std::pair<int,int> >& comments);
    along.
  */
 
-static SeExprInternal2::Mutex mutex;
+static std::mutex mutex;
 
 /// Main entry point to parser
 bool ExprSpecParse(std::vector<Editable*>& outputEditables,
@@ -416,7 +416,7 @@ bool ExprSpecParse(std::vector<Editable*>& outputEditables,
     std::vector<std::pair<int,int> >& comments,
     const char* str)
 {
-    SeExprInternal2::AutoMutex locker(mutex);
+    std::lock_guard<std::mutex> locker(mutex);
 
     /// Make inputs/outputs accessible to parser actions
     editables=&outputEditables;
