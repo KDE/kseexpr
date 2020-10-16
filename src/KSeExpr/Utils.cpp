@@ -1,6 +1,7 @@
 // SPDX-FileCopyrightText: 2020 L. E. Segovia <amy@amyspark.me>
 // SPDX-License-Identifier: LicenseRef-Apache-2.0
 
+#include <cerrno>
 #include "Utils.h"
 
 #if defined(KSeExpr_HAVE_CHARCONV_WITH_DOUBLES)
