@@ -203,7 +203,9 @@ include_directories(BEFORE ${CMAKE_SOURCE_DIR}/src)
 
 ## Traverse subdirectories
 add_subdirectory(src/KSeExpr)
-add_subdirectory(src/KSeExprUI)
+if (ENABLE_QT5)
+    add_subdirectory(src/KSeExprUI)
+endif()
 if (USE_PYTHON)
     add_subdirectory(src/KSeExprPy)
 endif()
