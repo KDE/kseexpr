@@ -54,10 +54,6 @@ set(KSeExpr_SOURCES
 
 set_source_files_properties("ExprBuiltins.cpp" PROPERTIES COMPILE_DEFINITIONS "__STDC_LIMIT_MACROS")
 
-# Uncomment below to print debug messages / performance stats
-#add_definitions(-DSEEXPR_DEBUG)
-#add_definitions(-DSEEXPR_PERFORMANCE)
-
 
 ## Test charconv and dynamic dispatch support
 check_cxx_source_compiles("

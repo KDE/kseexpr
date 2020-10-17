@@ -9,9 +9,6 @@ if (GTEST_FOUND)
     # Google test framework
     include_directories(AFTER ${GTEST_INCLUDE_DIR})
 
-    # Uncomment below to print performance stats
-    # add_definitions(-DSEEXPR_PERFORMANCE)
-
     if (DEFINED PNG_DIR)
         message(STATUS "PNG_DIR = ${PNG_DIR}")
         include_directories(${PNG_DIR}/include)

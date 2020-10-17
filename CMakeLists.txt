@@ -90,6 +90,7 @@ option(BUILD_DOC "Whether to build the documentation" FALSE)
 option(BUILD_TESTS "Whether to build the tests" FALSE)
 option(ENABLE_SLOW_TESTS "Whether to enable slow tests" FALSE)
 option(USE_PREGENERATED_FILES "Whether to use the bundled pregenerated parser files" FALSE)
+option(ENABLE_PERFORMANCE_STATS "Whether to print performance stats across KSeExpr" FALSE)
 
 find_package(ECM 5.64.0 NO_MODULE)
 if (ECM_FOUND)
@@ -200,6 +201,10 @@ set(SEEXPR_EDITOR_LIBRARIES KSeExprUI)
 
 # make it so seexpr can be found
 include_directories(BEFORE ${CMAKE_SOURCE_DIR}/src)
+
+if (ENABLE_PERFORMANCE_STATS)
+    add_definitions(-DSEEXPR_PERFORMANCE)
+endif()
 
 ## Traverse subdirectories
 add_subdirectory(src/KSeExpr)
