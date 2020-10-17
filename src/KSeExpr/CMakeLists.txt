@@ -3,9 +3,59 @@
 # SPDX-License-Identifier: LicenseRef-Apache-2.0
 
 # Source files for llvm supported library and interpreter library
-file(GLOB io_cpp "*.cpp")
-file(GLOB to_remove "ExprLLVMCodeGeneration.cpp")
-list(REMOVE_ITEM io_cpp ${to_remove})
+set(KSeExpr_HEADERS
+        Context.h
+        ContextUtils.h
+        Curve.h
+        ErrorCode.h
+        Evaluator.h
+        ExprBuiltins.h
+        ExprEnv.h
+        Expression.h
+        ExprFunc.h
+        ExprFuncStandard.h
+        ExprFuncX.h
+        ExprLLVM.h
+        ExprLLVMAll.h
+        ExprMultiExpr.h
+        ExprNode.h
+        ExprParser.h
+        ExprPatterns.h
+        ExprType.h
+        ExprWalker.h
+        Interpreter.h
+        Noise.h
+        NoiseTables.h
+        Platform.h
+        SeContext.h
+        SeExprMacros.h
+        StringUtils.h
+        Timer.h
+        Utils.h
+        VarBlock.h
+        Vec.h
+    )
+
+set(KSeExpr_SOURCES
+        Context.cpp
+        ContextUtils.cpp
+        Curve.cpp
+        ExprBuiltins.cpp
+        ExprEnv.cpp
+        Expression.cpp
+        ExprFunc.cpp
+        ExprFuncStandard.cpp
+        ExprFuncX.cpp
+        ExprLLVMCodeGeneration.cpp
+        ExprMultiExpr.cpp
+        ExprNode.cpp
+        ExprWalker.cpp
+        Interpreter.cpp
+        Noise.cpp
+        SeContext.cpp
+        Timer.cpp
+        Utils.cpp
+    )
 
 set_source_files_properties("ExprBuiltins.cpp" PROPERTIES COMPILE_DEFINITIONS "__STDC_LIMIT_MACROS")
 
@@ -39,15 +89,12 @@ endif()
 
 BuildParserScanner(KSeExpr ExprParserLex ExprParser SeExpr parser_cpp)
 
-file(GLOB llvm_cpp "*.cpp")
+add_library(KSeExpr SHARED ${KSeExpr_SOURCES} ${parser_cpp})
 if (NOT WIN32)
-    add_library(KSeExpr SHARED ${io_cpp} ${core_cpp} ${parser_cpp} ${llvm_cpp})
     if (NOT APPLE)
         set_source_files_properties(interpreter.cpp PROPERTIES COMPILE_OPTIONS "-rdynamic")
     endif()
     target_link_libraries(KSeExpr "dl")
-else()
-    add_library(KSeExpr STATIC ${io_cpp} ${core_cpp} ${parser_cpp} ${llvm_cpp})
 endif()
 
 target_include_directories(KSeExpr 
@@ -71,17 +118,14 @@ install(FILES "${CMAKE_CURRENT_BINARY_DIR}/kseexpr_export.h"
 install(TARGETS KSeExpr DESTINATION ${CMAKE_INSTALL_LIBDIR}
         EXPORT ${PROJECT_NAME}Targets)
 
-install(DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/"
-        COMPONENT devel DESTINATION ${INCLUDE_DIR}
-        FILES_MATCHING PATTERN "*.h"
-        PATTERN "generated/*" EXCLUDE
+install(
+    FILES ${KSeExpr_HEADERS} ${KSeExpr_LLVM_HEADERS}
+    DESTINATION ${INCLUDE_DIR}
 )
 
 configure_file("ExprConfig.h.in" "ExprConfig.h")
 install(FILES "${CMAKE_CURRENT_BINARY_DIR}/ExprConfig.h"
         COMPONENT devel DESTINATION ${INCLUDE_DIR})
-
-include_directories(${CMAKE_CURRENT_BINARY_DIR})
 
 if (ENABLE_LLVM_BACKEND)
     add_definitions(${LLVM_DEFINITIONS})
