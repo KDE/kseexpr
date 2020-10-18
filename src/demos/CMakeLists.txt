@@ -11,9 +11,3 @@ install(TARGETS asciiCalc2 DESTINATION ${CMAKE_INSTALL_BINDIR})
 
 add_subdirectory(imageSynth)
 add_subdirectory(imageEditor)
-
-#if (ENABLE_LLVM_BACKEND)
-#     add_executable(llvmtest "llvmtest.cpp")
-#     target_link_libraries(llvmtest ${SEEXPR_LIBRARIES})
-#     install(TARGETS llvmtest DESTINATION ${CMAKE_INSTALL_BINDIR})
-#endif()

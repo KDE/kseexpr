@@ -5,7 +5,6 @@
 # Source files for llvm supported library and interpreter library
 set(KSeExpr_HEADERS
         Context.h
-        ContextUtils.h
         Curve.h
         ErrorCode.h
         Evaluator.h
@@ -27,8 +26,6 @@ set(KSeExpr_HEADERS
         Noise.h
         NoiseTables.h
         Platform.h
-        SeContext.h
-        SeExprMacros.h
         StringUtils.h
         Timer.h
         Utils.h
@@ -38,7 +35,6 @@ set(KSeExpr_HEADERS
 
 set(KSeExpr_SOURCES
         Context.cpp
-        ContextUtils.cpp
         Curve.cpp
         ExprBuiltins.cpp
         ExprEnv.cpp
@@ -52,7 +48,6 @@ set(KSeExpr_SOURCES
         ExprWalker.cpp
         Interpreter.cpp
         Noise.cpp
-        SeContext.cpp
         Timer.cpp
         Utils.cpp
     )
@@ -111,21 +106,22 @@ set_property(TARGET KSeExpr APPEND PROPERTY
              COMPATIBLE_INTERFACE_STRING ${KSeExpr_MAJOR_VERSION})
 
 generate_export_header(KSeExpr)
-install(FILES "${CMAKE_CURRENT_BINARY_DIR}/kseexpr_export.h"
-        COMPONENT devel DESTINATION ${INCLUDE_DIR})
-
-## Install binary and includes
-install(TARGETS KSeExpr DESTINATION ${CMAKE_INSTALL_LIBDIR}
-        EXPORT ${PROJECT_NAME}Targets)
-
-install(
-    FILES ${KSeExpr_HEADERS} ${KSeExpr_LLVM_HEADERS}
-    DESTINATION ${INCLUDE_DIR}
-)
 
 configure_file("ExprConfig.h.in" "ExprConfig.h")
-install(FILES "${CMAKE_CURRENT_BINARY_DIR}/ExprConfig.h"
-        COMPONENT devel DESTINATION ${INCLUDE_DIR})
+
+## Install binary and includes
+install(TARGETS KSeExpr
+    DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    EXPORT ${PROJECT_NAME}Targets
+)
+
+install(FILES
+    ${KSeExpr_HEADERS}
+    ${KSeExpr_LLVM_HEADERS}
+    "${CMAKE_CURRENT_BINARY_DIR}/kseexpr_export.h"
+    "${CMAKE_CURRENT_BINARY_DIR}/ExprConfig.h"
+    DESTINATION ${INCLUDE_DIR}
+)
 
 if (ENABLE_LLVM_BACKEND)
     add_definitions(${LLVM_DEFINITIONS})
