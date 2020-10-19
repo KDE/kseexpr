@@ -1,5 +1,7 @@
 # SPDX-FileCopyrightText: 2011-2019 Disney Enterprises, Inc.
 # SPDX-License-Identifier: LicenseRef-Apache-2.0
+# SPDX-FileCopyrightText: 2020 L. E. Segovia <amy@amyspark.me>
+# SPDX-License-Identifier: GPL-3.0-or-later
 
 $scale =3.000;  # 1, 100
 $blend =0.503; #.001, 1

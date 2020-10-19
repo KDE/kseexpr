@@ -1,6 +1,7 @@
 // SPDX-FileCopyrightText: 2011-2019 Disney Enterprises, Inc.
-// SPDX-FileCopyrightText: 2020 L. E. Segovia <amy@amyspark.me>
 // SPDX-License-Identifier: LicenseRef-Apache-2.0
+// SPDX-FileCopyrightText: 2020 L. E. Segovia <amy@amyspark.me>
+// SPDX-License-Identifier: GPL-3.0-or-later
 /*
 * @file ExprControlCollection.cpp
 * @brief Manages/creates a bunch of ExprControls by using expression text

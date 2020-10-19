@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: 2011-2019 Disney Enterprises, Inc.
-# SPDX-FileCopyrightText: 2020 L. E. Segovia <amy@amyspark.me>
 # SPDX-License-Identifier: LicenseRef-Apache-2.0
+# SPDX-FileCopyrightText: 2020 L. E. Segovia <amy@amyspark.me>
+# SPDX-License-Identifier: GPL-3.0-or-later
 
 # Doxyfile 1.8.20
 
@@ -870,10 +871,8 @@ INPUT_ENCODING         = UTF-8
 # C comment), *.py, *.pyw, *.f90, *.f95, *.f03, *.f08, *.f18, *.f, *.for, *.vhd,
 # *.vhdl, *.ucf, *.qsf and *.ice.
 
-FILE_PATTERNS          = *.txt \
-                         *.h \
-                         *.cpp \
-                         *.html
+FILE_PATTERNS          = *.h \
+                         *.cpp
 
 # The RECURSIVE tag can be used to specify whether or not subdirectories should
 # be searched for input files as well.

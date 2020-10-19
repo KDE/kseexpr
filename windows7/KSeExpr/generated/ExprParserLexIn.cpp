@@ -564,8 +564,9 @@ int yy_flex_debug = 0;
 char *yytext;
 #line 1 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
 // SPDX-FileCopyrightText: 2011-2019 Disney Enterprises, Inc.
-// SPDX-FileCopyrightText: 2020 L. E. Segovia <amy@amyspark.me>
 // SPDX-License-Identifier: LicenseRef-Apache-2.0
+// SPDX-FileCopyrightText: 2020 L. E. Segovia <amy@amyspark.me>
+// SPDX-License-Identifier: GPL-3.0-or-later
 /* Don't generate yywrap since everything is in one string */
 /* Don't generate unput since it's unused and gcc complains... */
 /* Don't generate input since it's unused too -- amyspark */

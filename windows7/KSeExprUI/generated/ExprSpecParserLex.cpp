@@ -534,16 +534,19 @@ int ExprSpec_flex_debug = 0;
 #define ExprSpecYY_MORE_ADJ 0
 #define ExprSpecYY_RESTORE_ExprSpecYY_MORE_OFFSET
 char *ExprSpectext;
-#line 1 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
-// SPDX-FileCopyrightText: 2011-2019 Disney Enterprises, Inc.
-// SPDX-FileCopyrightText: 2020 L. E. Segovia <amy@amyspark.me>
-// SPDX-License-Identifier: LicenseRef-Apache-2.0
+#line 1 "@@PATH@@src/KSeExprUI/ExprSpecParserLex.l"
+/**
+ * SPDX-FileCopyrightText: 2011-2019 Disney Enterprises, Inc.
+ * SPDX-License-Identifier: LicenseRef-Apache-2.0
+ * SPDX-FileCopyrightText: 2020 L. E. Segovia <amy@amyspark.me>
+ * SPDX-License-Identifier: GPL-3.0-or-later
+ */
 /* Don't generate ExprSpecwrap since everything is in one string */
 /* Don't generate unput since it's unused and gcc complains... */
 /* Don't generate input since it's unused too -- amyspark */
 #define ExprSpecYY_NO_INPUT 1
 /* Don't worry about interactive and using isatty(). Fixes Windows compile. */
-#line 29 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
+#line 18 "@@PATH@@src/KSeExprUI/ExprSpecParserLex.l"
 #ifndef MAKEDEPEND
 #    include <ctype.h>
 #    include <string.h>
@@ -590,8 +593,8 @@ int ExprSpecpos(); // forward declare
     columnNumber+=ExprSpecleng;\
     ExprSpeclloc.last_column=columnNumber;ExprSpeclloc.last_line=lineNumber;} 
 
-#line 607 "ExprSpecParserLexIn.cpp"
-#line 608 "ExprSpecParserLexIn.cpp"
+#line 596 "ExprSpecParserLexIn.cpp"
+#line 597 "ExprSpecParserLexIn.cpp"
 
 #define INITIAL 0
 
@@ -806,9 +809,9 @@ ExprSpecYY_DECL
 		}
 
 	{
-#line 82 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
+#line 71 "@@PATH@@src/KSeExprUI/ExprSpecParserLex.l"
 
-#line 825 "ExprSpecParserLexIn.cpp"
+#line 814 "ExprSpecParserLexIn.cpp"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -863,122 +866,122 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 ExprSpecYY_RULE_SETUP
-#line 83 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
+#line 72 "@@PATH@@src/KSeExprUI/ExprSpecParserLex.l"
 
 	ExprSpecYY_BREAK
 case 2:
 ExprSpecYY_RULE_SETUP
-#line 85 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
+#line 74 "@@PATH@@src/KSeExprUI/ExprSpecParserLex.l"
 { return IF; }
 	ExprSpecYY_BREAK
 case 3:
 ExprSpecYY_RULE_SETUP
-#line 86 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
+#line 75 "@@PATH@@src/KSeExprUI/ExprSpecParserLex.l"
 { return ELSE; }
 	ExprSpecYY_BREAK
 case 4:
 ExprSpecYY_RULE_SETUP
-#line 88 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
+#line 77 "@@PATH@@src/KSeExprUI/ExprSpecParserLex.l"
 { return OR; }
 	ExprSpecYY_BREAK
 case 5:
 ExprSpecYY_RULE_SETUP
-#line 89 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
+#line 78 "@@PATH@@src/KSeExprUI/ExprSpecParserLex.l"
 { return AND; }
 	ExprSpecYY_BREAK
 case 6:
 ExprSpecYY_RULE_SETUP
-#line 90 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
+#line 79 "@@PATH@@src/KSeExprUI/ExprSpecParserLex.l"
 { return EQ; }
 	ExprSpecYY_BREAK
 case 7:
 ExprSpecYY_RULE_SETUP
-#line 91 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
+#line 80 "@@PATH@@src/KSeExprUI/ExprSpecParserLex.l"
 { return NE; }
 	ExprSpecYY_BREAK
 case 8:
 ExprSpecYY_RULE_SETUP
-#line 92 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
+#line 81 "@@PATH@@src/KSeExprUI/ExprSpecParserLex.l"
 { return LE; }
 	ExprSpecYY_BREAK
 case 9:
 ExprSpecYY_RULE_SETUP
-#line 93 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
+#line 82 "@@PATH@@src/KSeExprUI/ExprSpecParserLex.l"
 { return GE; }
 	ExprSpecYY_BREAK
 case 10:
 ExprSpecYY_RULE_SETUP
-#line 94 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
+#line 83 "@@PATH@@src/KSeExprUI/ExprSpecParserLex.l"
 { return ARROW; }
 	ExprSpecYY_BREAK
 case 11:
 ExprSpecYY_RULE_SETUP
-#line 95 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
+#line 84 "@@PATH@@src/KSeExprUI/ExprSpecParserLex.l"
 { return AddEq; }
 	ExprSpecYY_BREAK
 case 12:
 ExprSpecYY_RULE_SETUP
-#line 96 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
+#line 85 "@@PATH@@src/KSeExprUI/ExprSpecParserLex.l"
 { return SubEq; }
 	ExprSpecYY_BREAK
 case 13:
 ExprSpecYY_RULE_SETUP
-#line 97 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
+#line 86 "@@PATH@@src/KSeExprUI/ExprSpecParserLex.l"
 { return MultEq; }
 	ExprSpecYY_BREAK
 case 14:
 ExprSpecYY_RULE_SETUP
-#line 98 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
+#line 87 "@@PATH@@src/KSeExprUI/ExprSpecParserLex.l"
 { return DivEq; }
 	ExprSpecYY_BREAK
 case 15:
 ExprSpecYY_RULE_SETUP
-#line 99 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
+#line 88 "@@PATH@@src/KSeExprUI/ExprSpecParserLex.l"
 { return ModEq; }
 	ExprSpecYY_BREAK
 case 16:
 ExprSpecYY_RULE_SETUP
-#line 100 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
+#line 89 "@@PATH@@src/KSeExprUI/ExprSpecParserLex.l"
 { return ExpEq; }
 	ExprSpecYY_BREAK
 case 17:
 ExprSpecYY_RULE_SETUP
-#line 102 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
+#line 91 "@@PATH@@src/KSeExprUI/ExprSpecParserLex.l"
 { ExprSpeclval.d = M_PI; return NUMBER; }
 	ExprSpecYY_BREAK
 case 18:
 ExprSpecYY_RULE_SETUP
-#line 103 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
+#line 92 "@@PATH@@src/KSeExprUI/ExprSpecParserLex.l"
 { ExprSpeclval.d = M_E; return NUMBER; }
 	ExprSpecYY_BREAK
 case 19:
 ExprSpecYY_RULE_SETUP
-#line 104 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
+#line 93 "@@PATH@@src/KSeExprUI/ExprSpecParserLex.l"
 { ExprSpeclval.d = 0; return NUMBER; }
 	ExprSpecYY_BREAK
 case 20:
 ExprSpecYY_RULE_SETUP
-#line 105 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
+#line 94 "@@PATH@@src/KSeExprUI/ExprSpecParserLex.l"
 { ExprSpeclval.d = 1; return NUMBER; }
 	ExprSpecYY_BREAK
 case 21:
 ExprSpecYY_RULE_SETUP
-#line 106 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
+#line 95 "@@PATH@@src/KSeExprUI/ExprSpecParserLex.l"
 { ExprSpeclval.d = 2; return NUMBER; }
 	ExprSpecYY_BREAK
 case 22:
 ExprSpecYY_RULE_SETUP
-#line 107 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
+#line 96 "@@PATH@@src/KSeExprUI/ExprSpecParserLex.l"
 { ExprSpeclval.d = 3; return NUMBER; }
 	ExprSpecYY_BREAK
 case 23:
 ExprSpecYY_RULE_SETUP
-#line 109 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
+#line 98 "@@PATH@@src/KSeExprUI/ExprSpecParserLex.l"
 { ExprSpeclval.d = KSeExpr::Utils::atof(ExprSpectext); return NUMBER; }
 	ExprSpecYY_BREAK
 case 24:
 ExprSpecYY_RULE_SETUP
-#line 110 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
+#line 99 "@@PATH@@src/KSeExprUI/ExprSpecParserLex.l"
 { /* match quoted string, allow embedded quote, \" */
 			  ExprSpeclval.s = specRegisterToken(&ExprSpectext[1]); 
 			  ExprSpeclval.s[strlen(ExprSpeclval.s)-1] = '\0';
@@ -986,7 +989,7 @@ ExprSpecYY_RULE_SETUP
 	ExprSpecYY_BREAK
 case 25:
 ExprSpecYY_RULE_SETUP
-#line 114 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
+#line 103 "@@PATH@@src/KSeExprUI/ExprSpecParserLex.l"
 { /* match quoted string, allow embedded quote, \' */
 			  ExprSpeclval.s = specRegisterToken(&ExprSpectext[1]); 
 			  ExprSpeclval.s[strlen(ExprSpeclval.s)-1] = '\0';
@@ -994,53 +997,53 @@ ExprSpecYY_RULE_SETUP
 	ExprSpecYY_BREAK
 case 26:
 ExprSpecYY_RULE_SETUP
-#line 118 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
+#line 107 "@@PATH@@src/KSeExprUI/ExprSpecParserLex.l"
 { ExprSpeclval.s = specRegisterToken(&ExprSpectext[1]); return VAR; }
 	ExprSpecYY_BREAK
 case 27:
 ExprSpecYY_RULE_SETUP
-#line 119 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
+#line 108 "@@PATH@@src/KSeExprUI/ExprSpecParserLex.l"
 { ExprSpeclval.s = specRegisterToken(&ExprSpectext[1]); return VAR; }
 	ExprSpecYY_BREAK
 case 28:
 ExprSpecYY_RULE_SETUP
-#line 120 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
+#line 109 "@@PATH@@src/KSeExprUI/ExprSpecParserLex.l"
 { ExprSpeclval.s = specRegisterToken(ExprSpectext); return NAME; }
 	ExprSpecYY_BREAK
 case 29:
 ExprSpecYY_RULE_SETUP
-#line 122 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
+#line 111 "@@PATH@@src/KSeExprUI/ExprSpecParserLex.l"
 /* ignore quoted newline */;
 	ExprSpecYY_BREAK
 case 30:
 ExprSpecYY_RULE_SETUP
-#line 123 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
+#line 112 "@@PATH@@src/KSeExprUI/ExprSpecParserLex.l"
 /* ignore quoted tab */;
 	ExprSpecYY_BREAK
 case 31:
 /* rule 31 can match eol */
 ExprSpecYY_RULE_SETUP
-#line 124 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
+#line 113 "@@PATH@@src/KSeExprUI/ExprSpecParserLex.l"
 /* ignore whitespace */;
 	ExprSpecYY_BREAK
 case 32:
 ExprSpecYY_RULE_SETUP
-#line 125 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
+#line 114 "@@PATH@@src/KSeExprUI/ExprSpecParserLex.l"
 { /* match comment */ 
                          int startPos=ExprSpecpos(),endPos=ExprSpecpos()+strlen(&ExprSpectext[1])+1;
                           comments->push_back(std::pair<int,int>(startPos,endPos));}
 	ExprSpecYY_BREAK
 case 33:
 ExprSpecYY_RULE_SETUP
-#line 130 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
+#line 119 "@@PATH@@src/KSeExprUI/ExprSpecParserLex.l"
 { return ExprSpectext[0]; }
 	ExprSpecYY_BREAK
 case 34:
 ExprSpecYY_RULE_SETUP
-#line 132 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
+#line 121 "@@PATH@@src/KSeExprUI/ExprSpecParserLex.l"
 ECHO;
 	ExprSpecYY_BREAK
-#line 1057 "ExprSpecParserLexIn.cpp"
+#line 1046 "ExprSpecParserLexIn.cpp"
 case ExprSpecYY_STATE_EOF(INITIAL):
 	ExprSpecterminate();
 
@@ -2009,7 +2012,7 @@ void ExprSpecfree (void * ptr )
 
 #define ExprSpecYYTABLES_NAME "ExprSpectables"
 
-#line 132 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
+#line 121 "@@PATH@@src/KSeExprUI/ExprSpecParserLex.l"
 
 
 /* Gets index of current token (corresponding to ExprSpectext).  

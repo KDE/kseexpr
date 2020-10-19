@@ -98,7 +98,16 @@ src/
 
 ## License
 
-Apache-2.0 with section 6 rewrite. Please see the [LICENSE](LICENSE) for more details.
+KSeExpr is made available subject to the terms of the [GNU General Public License v3.0 or later](LICENSES/GPL-3.0-or-later.txt).
+
+It is based on code from SeExpr, which is (C) Disney Enterprises, Inc. and made available under the Apache 2.0 License with section 6 rewrite. Please see the [LICENSE](LICENSES/LicenseRef-Apache-2.0.txt) for more details.
+
+The translation loader is a modified version of the one provided by k18n under the [BSD 3-Clause "New" or "Revised" License](LICENSES/BSD-3-Clause.txt).
+
+The `crack_atof` function by Tian Bo (in Utils.cpp) is licensed under the [MIT](LICENSES/MIT.txt).
+
+The packaging scripts come from Krita and are licensed under the [GNU General Public License v2.0](LICENSES/GPL-2.0.txt).
+
 
 ## Original SeExpr Developers
 

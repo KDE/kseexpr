@@ -1,9 +1,6 @@
 SeExpr is the embeddable expression engine. It is:
     Copyright 2011-2019 Disney Enterprises, Inc.  All rights reserved.
 
-KSeExpr is the embeddable expression engine fork for Krita. It is:
-    Copyright (C) 2020 L. E. Segovia and Contributors
-
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License
 and the following modification to it: Section 6 Trademarks.

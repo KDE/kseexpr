@@ -1,6 +1,7 @@
 // SPDX-FileCopyrightText: 2011-2019 Disney Enterprises, Inc.
-// SPDX-FileCopyrightText: 2020 L. E. Segovia <amy@amyspark.me>
 // SPDX-License-Identifier: LicenseRef-Apache-2.0
+// SPDX-FileCopyrightText: 2020 L. E. Segovia <amy@amyspark.me>
+// SPDX-License-Identifier: GPL-3.0-or-later
 /*
 * @file ExprTextEditor.h
 * @brief This provides an expression editor for SeExpr syntax with auto ui features

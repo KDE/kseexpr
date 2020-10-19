@@ -75,7 +75,7 @@
 #define ExprSpeclloc          ExprSpeclloc
 
 /* First part of user prologue.  */
-#line 18 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
+#line 8 "@@PATH@@src/KSeExprUI/ExprSpecParser.y"
 
 #include <algorithm>
 #include <vector>
@@ -239,7 +239,7 @@ static void specRegisterEditable(const char* var,ExprSpecNode* node)
 static void ExprSpecerror(const char* msg);
 
 
-#line 340 "y.tab.c"
+#line 243 "y.tab.c"
 
 # ifndef ExprSpecYY_CAST
 #  ifdef __cplusplus
@@ -311,13 +311,13 @@ extern int ExprSpecdebug;
 #if ! defined ExprSpecYYSTYPE && ! defined ExprSpecYYSTYPE_IS_DECLARED
 union ExprSpecYYSTYPE
 {
-#line 279 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
+#line 172 "@@PATH@@src/KSeExprUI/ExprSpecParser.y"
 
     ExprSpecNode* n;
     double d;      // return value for number tokens
     char* s;       /* return value for name tokens.  Note: UNLIKE the regular parser, this is not strdup()'dthe string */
 
-#line 418 "y.tab.c"
+#line 321 "y.tab.c"
 
 };
 typedef union ExprSpecYYSTYPE ExprSpecYYSTYPE;
@@ -775,12 +775,12 @@ static const ExprSpectype_int8 ExprSpectranslate[] =
   /* ExprSpecYYRLINE[ExprSpecYYN] -- Source line where rule number ExprSpecYYN was defined.  */
 static const ExprSpectype_int16 ExprSpecrline[] =
 {
-       0,   321,   321,   322,   327,   328,   332,   333,   338,   339,
-     343,   344,   345,   346,   347,   348,   349,   353,   354,   355,
-     356,   357,   358,   362,   367,   368,   369,   374,   375,   380,
-     381,   382,   383,   384,   385,   386,   387,   388,   389,   390,
-     391,   400,   401,   402,   403,   404,   405,   406,   407,   408,
-     437,   438,   439,   440,   445,   446,   451,   460,   472,   473
+       0,   214,   214,   215,   220,   221,   225,   226,   231,   232,
+     236,   237,   238,   239,   240,   241,   242,   246,   247,   248,
+     249,   250,   251,   255,   260,   261,   262,   267,   268,   273,
+     274,   275,   276,   277,   278,   279,   280,   281,   282,   283,
+     284,   293,   294,   295,   296,   297,   298,   299,   300,   301,
+     322,   323,   324,   325,   330,   331,   336,   345,   357,   358
 };
 #endif
 
@@ -1658,245 +1658,245 @@ ExprSpecreduce:
   switch (ExprSpecn)
     {
   case 2:
-#line 321 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
+#line 214 "@@PATH@@src/KSeExprUI/ExprSpecParser.y"
                                 { ParseResult = 0; }
-#line 1761 "y.tab.c"
+#line 1664 "y.tab.c"
     break;
 
   case 3:
-#line 322 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
+#line 215 "@@PATH@@src/KSeExprUI/ExprSpecParser.y"
                                 { ParseResult = 0; }
-#line 1767 "y.tab.c"
+#line 1670 "y.tab.c"
     break;
 
   case 4:
-#line 327 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
+#line 220 "@@PATH@@src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 1773 "y.tab.c"
+#line 1676 "y.tab.c"
     break;
 
   case 5:
-#line 328 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
+#line 221 "@@PATH@@src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 1779 "y.tab.c"
+#line 1682 "y.tab.c"
     break;
 
   case 6:
-#line 332 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
+#line 225 "@@PATH@@src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 1785 "y.tab.c"
+#line 1688 "y.tab.c"
     break;
 
   case 7:
-#line 333 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
+#line 226 "@@PATH@@src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 1791 "y.tab.c"
+#line 1694 "y.tab.c"
     break;
 
   case 8:
-#line 338 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
+#line 231 "@@PATH@@src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 1797 "y.tab.c"
+#line 1700 "y.tab.c"
     break;
 
   case 9:
-#line 339 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
+#line 232 "@@PATH@@src/KSeExprUI/ExprSpecParser.y"
                                 {
         specRegisterVariable((ExprSpecvsp[-3].s));
         specRegisterEditable((ExprSpecvsp[-3].s),(ExprSpecvsp[-1].n));
       }
-#line 1806 "y.tab.c"
+#line 1709 "y.tab.c"
     break;
 
   case 10:
-#line 343 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
+#line 236 "@@PATH@@src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 1812 "y.tab.c"
+#line 1715 "y.tab.c"
     break;
 
   case 11:
-#line 344 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
+#line 237 "@@PATH@@src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 1818 "y.tab.c"
+#line 1721 "y.tab.c"
     break;
 
   case 12:
-#line 345 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
+#line 238 "@@PATH@@src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 1824 "y.tab.c"
+#line 1727 "y.tab.c"
     break;
 
   case 13:
-#line 346 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
+#line 239 "@@PATH@@src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 1830 "y.tab.c"
+#line 1733 "y.tab.c"
     break;
 
   case 14:
-#line 347 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
+#line 240 "@@PATH@@src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 1836 "y.tab.c"
+#line 1739 "y.tab.c"
     break;
 
   case 15:
-#line 348 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
+#line 241 "@@PATH@@src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 1842 "y.tab.c"
+#line 1745 "y.tab.c"
     break;
 
   case 16:
-#line 349 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
+#line 242 "@@PATH@@src/KSeExprUI/ExprSpecParser.y"
                                 {
         specRegisterVariable((ExprSpecvsp[-3].s));
         specRegisterEditable((ExprSpecvsp[-3].s),(ExprSpecvsp[-1].n));
       }
-#line 1851 "y.tab.c"
+#line 1754 "y.tab.c"
     break;
 
   case 17:
-#line 353 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
+#line 246 "@@PATH@@src/KSeExprUI/ExprSpecParser.y"
                                 {  (ExprSpecval.n) = 0; }
-#line 1857 "y.tab.c"
+#line 1760 "y.tab.c"
     break;
 
   case 18:
-#line 354 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
+#line 247 "@@PATH@@src/KSeExprUI/ExprSpecParser.y"
                                 {  (ExprSpecval.n) = 0; }
-#line 1863 "y.tab.c"
+#line 1766 "y.tab.c"
     break;
 
   case 19:
-#line 355 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
+#line 248 "@@PATH@@src/KSeExprUI/ExprSpecParser.y"
                                 {  (ExprSpecval.n) = 0; }
-#line 1869 "y.tab.c"
+#line 1772 "y.tab.c"
     break;
 
   case 20:
-#line 356 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
+#line 249 "@@PATH@@src/KSeExprUI/ExprSpecParser.y"
                                 {  (ExprSpecval.n) = 0; }
-#line 1875 "y.tab.c"
+#line 1778 "y.tab.c"
     break;
 
   case 21:
-#line 357 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
+#line 250 "@@PATH@@src/KSeExprUI/ExprSpecParser.y"
                                 {  (ExprSpecval.n) = 0; }
-#line 1881 "y.tab.c"
+#line 1784 "y.tab.c"
     break;
 
   case 22:
-#line 358 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
+#line 251 "@@PATH@@src/KSeExprUI/ExprSpecParser.y"
                                 {  (ExprSpecval.n) = 0; }
-#line 1887 "y.tab.c"
+#line 1790 "y.tab.c"
     break;
 
   case 23:
-#line 363 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
+#line 256 "@@PATH@@src/KSeExprUI/ExprSpecParser.y"
     { (ExprSpecval.n) = 0; }
-#line 1893 "y.tab.c"
+#line 1796 "y.tab.c"
     break;
 
   case 24:
-#line 367 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
+#line 260 "@@PATH@@src/KSeExprUI/ExprSpecParser.y"
                         { (ExprSpecval.n) = 0; }
-#line 1899 "y.tab.c"
+#line 1802 "y.tab.c"
     break;
 
   case 25:
-#line 368 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
+#line 261 "@@PATH@@src/KSeExprUI/ExprSpecParser.y"
                             { (ExprSpecval.n) = 0;}
-#line 1905 "y.tab.c"
+#line 1808 "y.tab.c"
     break;
 
   case 26:
-#line 369 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
+#line 262 "@@PATH@@src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0;}
-#line 1911 "y.tab.c"
+#line 1814 "y.tab.c"
     break;
 
   case 27:
-#line 374 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
+#line 267 "@@PATH@@src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 1917 "y.tab.c"
+#line 1820 "y.tab.c"
     break;
 
   case 28:
-#line 375 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
+#line 268 "@@PATH@@src/KSeExprUI/ExprSpecParser.y"
                                 {
         if(SPEC_IS_NUMBER((ExprSpecvsp[-5].n)) && SPEC_IS_NUMBER((ExprSpecvsp[-3].n)) && SPEC_IS_NUMBER((ExprSpecvsp[-1].n))){
             (ExprSpecval.n)=remember(new ExprSpecVectorNode((ExprSpecloc).first_column,(ExprSpecloc).last_column,(ExprSpecvsp[-5].n),(ExprSpecvsp[-3].n),(ExprSpecvsp[-1].n)));
         }else (ExprSpecval.n)=0;
       }
-#line 1927 "y.tab.c"
+#line 1830 "y.tab.c"
     break;
 
   case 29:
-#line 380 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
+#line 273 "@@PATH@@src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 1933 "y.tab.c"
+#line 1836 "y.tab.c"
     break;
 
   case 30:
-#line 381 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
+#line 274 "@@PATH@@src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 1939 "y.tab.c"
+#line 1842 "y.tab.c"
     break;
 
   case 31:
-#line 382 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
+#line 275 "@@PATH@@src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 1945 "y.tab.c"
+#line 1848 "y.tab.c"
     break;
 
   case 32:
-#line 383 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
+#line 276 "@@PATH@@src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 1951 "y.tab.c"
+#line 1854 "y.tab.c"
     break;
 
   case 33:
-#line 384 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
+#line 277 "@@PATH@@src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 1957 "y.tab.c"
+#line 1860 "y.tab.c"
     break;
 
   case 34:
-#line 385 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
+#line 278 "@@PATH@@src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 1963 "y.tab.c"
+#line 1866 "y.tab.c"
     break;
 
   case 35:
-#line 386 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
+#line 279 "@@PATH@@src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 1969 "y.tab.c"
+#line 1872 "y.tab.c"
     break;
 
   case 36:
-#line 387 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
+#line 280 "@@PATH@@src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 1975 "y.tab.c"
+#line 1878 "y.tab.c"
     break;
 
   case 37:
-#line 388 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
+#line 281 "@@PATH@@src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 1981 "y.tab.c"
+#line 1884 "y.tab.c"
     break;
 
   case 38:
-#line 389 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
+#line 282 "@@PATH@@src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 1987 "y.tab.c"
+#line 1890 "y.tab.c"
     break;
 
   case 39:
-#line 390 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
+#line 283 "@@PATH@@src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = (ExprSpecvsp[0].n); }
-#line 1993 "y.tab.c"
+#line 1896 "y.tab.c"
     break;
 
   case 40:
-#line 391 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
+#line 284 "@@PATH@@src/KSeExprUI/ExprSpecParser.y"
                                 {
         if(SPEC_IS_NUMBER((ExprSpecvsp[0].n))){
             ExprSpecScalarNode* node=(ExprSpecScalarNode*)(ExprSpecvsp[0].n);
@@ -1906,59 +1906,59 @@ ExprSpecreduce:
             (ExprSpecval.n)=(ExprSpecvsp[0].n);
         }else (ExprSpecval.n)=0;
       }
-#line 2007 "y.tab.c"
+#line 1910 "y.tab.c"
     break;
 
   case 41:
-#line 400 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
+#line 293 "@@PATH@@src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 2013 "y.tab.c"
+#line 1916 "y.tab.c"
     break;
 
   case 42:
-#line 401 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
+#line 294 "@@PATH@@src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 2019 "y.tab.c"
+#line 1922 "y.tab.c"
     break;
 
   case 43:
-#line 402 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
+#line 295 "@@PATH@@src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 2025 "y.tab.c"
+#line 1928 "y.tab.c"
     break;
 
   case 44:
-#line 403 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
+#line 296 "@@PATH@@src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 2031 "y.tab.c"
+#line 1934 "y.tab.c"
     break;
 
   case 45:
-#line 404 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
+#line 297 "@@PATH@@src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 2037 "y.tab.c"
+#line 1940 "y.tab.c"
     break;
 
   case 46:
-#line 405 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
+#line 298 "@@PATH@@src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 2043 "y.tab.c"
+#line 1946 "y.tab.c"
     break;
 
   case 47:
-#line 406 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
+#line 299 "@@PATH@@src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 2049 "y.tab.c"
+#line 1952 "y.tab.c"
     break;
 
   case 48:
-#line 407 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
+#line 300 "@@PATH@@src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 2055 "y.tab.c"
+#line 1958 "y.tab.c"
     break;
 
   case 49:
-#line 408 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
+#line 301 "@@PATH@@src/KSeExprUI/ExprSpecParser.y"
                                 {
         if((ExprSpecvsp[-1].n) && strcmp((ExprSpecvsp[-3].s),"curve")==0){
             (ExprSpecval.n)=remember(new ExprSpecCurveNode((ExprSpecvsp[-1].n)));
@@ -1980,47 +1980,47 @@ ExprSpecreduce:
             (ExprSpecval.n)=0;
         }else (ExprSpecval.n)=0;
       }
-#line 2089 "y.tab.c"
+#line 1984 "y.tab.c"
     break;
 
   case 50:
-#line 437 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
+#line 322 "@@PATH@@src/KSeExprUI/ExprSpecParser.y"
                                   {(ExprSpecval.n) = 0; }
-#line 2095 "y.tab.c"
+#line 1990 "y.tab.c"
     break;
 
   case 51:
-#line 438 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
+#line 323 "@@PATH@@src/KSeExprUI/ExprSpecParser.y"
                                 {  (ExprSpecval.n) = 0; }
-#line 2101 "y.tab.c"
+#line 1996 "y.tab.c"
     break;
 
   case 52:
-#line 439 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
+#line 324 "@@PATH@@src/KSeExprUI/ExprSpecParser.y"
                                 {  (ExprSpecval.n) = 0; }
-#line 2107 "y.tab.c"
+#line 2002 "y.tab.c"
     break;
 
   case 53:
-#line 440 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
+#line 325 "@@PATH@@src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n)=remember(new ExprSpecScalarNode((ExprSpecloc).first_column,(ExprSpecloc).last_column,(ExprSpecvsp[0].d))); }
-#line 2113 "y.tab.c"
+#line 2008 "y.tab.c"
     break;
 
   case 54:
-#line 445 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
+#line 330 "@@PATH@@src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0;}
-#line 2119 "y.tab.c"
+#line 2014 "y.tab.c"
     break;
 
   case 55:
-#line 446 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
+#line 331 "@@PATH@@src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = (ExprSpecvsp[0].n);}
-#line 2125 "y.tab.c"
+#line 2020 "y.tab.c"
     break;
 
   case 56:
-#line 451 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
+#line 336 "@@PATH@@src/KSeExprUI/ExprSpecParser.y"
         {
        // ignore first argument unless it is a string (because we parse strings in weird ways)
        ExprSpecListNode* list=new ExprSpecListNode((ExprSpecloc).last_column,(ExprSpecloc).last_column);
@@ -2030,11 +2030,11 @@ ExprSpecreduce:
        remember(list);
        (ExprSpecval.n)=list;
    }
-#line 2139 "y.tab.c"
+#line 2034 "y.tab.c"
     break;
 
   case 57:
-#line 460 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
+#line 345 "@@PATH@@src/KSeExprUI/ExprSpecParser.y"
                  {
 
       if((ExprSpecvsp[-2].n) && (ExprSpecvsp[0].n) && ((SPEC_IS_NUMBER((ExprSpecvsp[0].n)) || SPEC_IS_VECTOR((ExprSpecvsp[0].n)) || SPEC_IS_STR((ExprSpecvsp[0].n))))){
@@ -2044,28 +2044,28 @@ ExprSpecreduce:
           (ExprSpecval.n)=0;
       }
     }
-#line 2153 "y.tab.c"
+#line 2048 "y.tab.c"
     break;
 
   case 58:
-#line 472 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
+#line 357 "@@PATH@@src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = (ExprSpecvsp[0].n);}
-#line 2159 "y.tab.c"
+#line 2054 "y.tab.c"
     break;
 
   case 59:
-#line 473 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
+#line 358 "@@PATH@@src/KSeExprUI/ExprSpecParser.y"
                                 {
         ExprSpecStringNode* str=new ExprSpecStringNode((ExprSpecloc).first_column,(ExprSpecloc).last_column,(ExprSpecvsp[0].s));
         //specRegisterEditable("<UNKNOWN>",str);
         // TODO: move string stuff out
         (ExprSpecval.n) = remember(str);
       }
-#line 2170 "y.tab.c"
+#line 2065 "y.tab.c"
     break;
 
 
-#line 2174 "y.tab.c"
+#line 2069 "y.tab.c"
 
       default: break;
     }
@@ -2264,7 +2264,7 @@ ExprSpecreturn:
   return ExprSpecresult;
 }
 
-#line 481 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
+#line 366 "@@PATH@@src/KSeExprUI/ExprSpecParser.y"
 
 
 /* ExprSpecerror - Report an error.  This is called by the parser.

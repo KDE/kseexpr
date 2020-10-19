@@ -82,7 +82,7 @@ extern int ExprSpecdebug;
 #if ! defined ExprSpecYYSTYPE && ! defined ExprSpecYYSTYPE_IS_DECLARED
 union ExprSpecYYSTYPE
 {
-#line 279 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
+#line 172 "@@PATH@@src/KSeExprUI/ExprSpecParser.y"
 
     ExprSpecNode* n;
     double d;      // return value for number tokens

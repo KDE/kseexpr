@@ -90,7 +90,7 @@ extern int SeExprdebug;
 #if ! defined SeExprYYSTYPE && ! defined SeExprYYSTYPE_IS_DECLARED
 union SeExprYYSTYPE
 {
-#line 78 "@@PATH@@/src/KSeExpr/ExprParser.y"
+#line 66 "@@PATH@@src/KSeExpr/ExprParser.y"
 
     KSeExpr::ExprNode* n; /* a node is returned for all non-terminals to
 		      build the parse tree from the leaves up. */
