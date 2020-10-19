@@ -33,19 +33,19 @@ macro(BuildParserScanner TGT FLEX_L_PREFIX BISON_Y_PREFIX PARSER_PREFIX GENERATE
     message(STATUS "Using pregenerated parser files for ${TGT}")
     # don't have flex/bison/sed, use pregenerated versions
     localize_path(
-      ${CMAKE_SOURCE_DIR}/windows7/${TGT}/generated/${FLEX_L_PREFIX}.cpp
+      ${CMAKE_SOURCE_DIR}/generated/${TGT}/${FLEX_L_PREFIX}.cpp
       ${CMAKE_CURRENT_BINARY_DIR}/${FLEX_L_PREFIX}.cpp
     )
     localize_path(
-      ${CMAKE_SOURCE_DIR}/windows7/${TGT}/generated/${FLEX_L_PREFIX}In.cpp
+      ${CMAKE_SOURCE_DIR}/generated/${TGT}/${FLEX_L_PREFIX}In.cpp
       ${CMAKE_CURRENT_BINARY_DIR}/${FLEX_L_PREFIX}In.cpp
     )
     localize_path(
-      ${CMAKE_SOURCE_DIR}/windows7/${TGT}/generated/${BISON_Y_PREFIX}.cpp
+      ${CMAKE_SOURCE_DIR}/generated/${TGT}/${BISON_Y_PREFIX}.cpp
       ${CMAKE_CURRENT_BINARY_DIR}/${BISON_Y_PREFIX}.cpp
     )
     localize_path(
-      ${CMAKE_SOURCE_DIR}/windows7/${TGT}/generated/${BISON_Y_PREFIX}.tab.h
+      ${CMAKE_SOURCE_DIR}/generated/${TGT}/${BISON_Y_PREFIX}.tab.h
       ${CMAKE_CURRENT_BINARY_DIR}/${BISON_Y_PREFIX}.tab.h
     )
 
