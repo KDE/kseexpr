@@ -37,11 +37,6 @@ If you want optional stuff (not used in Krita):
   * flex
 * For LLVM support, otherwise specify `-DENABLE_LLVM_BACKEND=OFF`:
   * LLVM >= 3.8.0
-* For the Python bindings, otherwise specify `-DUSE_PYTHON=OFF`:
-  * boost::python
-  * python2.7 or python3
-  * PyQt5
-  * SIP
 * For building the documentation, otherwise specify `-DBUILD_DOC=OFF`:
   * doxygen
 * For building the tests, otherwise specify `-DBUILD_TESTS=OFF`:
@@ -86,6 +81,9 @@ The original Doxygen-based documentation provided by Disney is at:
 ## Source code overview
 
 ```
+cmake/       CMake boilerplate and macros
+generated/   Pregenerated parser files
+LICENSES/    SPDX licenses
 packaging/   Krita packaging scripts
 po/          (only on release tarballs) Translations supplied by the KDE i18n team
 src/
@@ -93,7 +91,6 @@ src/
   demos/     Demo Applications
   doc/       Doxygen generation
   KSeExpr/   Library code
-  KSeExprPy/ Python library bindings
   KSeExprUI/ User Interface components for editing
   tests/     Regression Tests
   utils/     Various example tools
