@@ -193,7 +193,7 @@ void Expression::parse() const {
 void Expression::prep() const {
     if (_prepped) return;
 #ifdef SEEXPR_PERFORMANCE
-    PrintTiming timer("[ PREP     ] v2 prep time: ");
+    PerformanceTimer timer("[ PREP     ] v2 prep time: ");
 #endif
     _prepped = true;
     parseIfNeeded();

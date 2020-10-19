@@ -15,7 +15,7 @@
 #include <KSeExpr/Interpreter.h>
 #include <KSeExpr/ExprFunc.h>
 #include <KSeExpr/ExprFuncX.h>
-#include <KSeExpr/Timer.h>
+#include <KSeExpr/PerformanceTimer.h>
 
 namespace KSeExpr {
 class ImageSynthRandFuncX : public ExprFuncSimple {
@@ -240,7 +240,7 @@ int main(int argc, char* argv[]) {
     unsigned char* pixel = image;
 
     {
-        PrintTiming timer("eval time: ");
+        PerformanceTimer timer("eval time: ");
         for (int row = 0; row < height; row++) {
             for (int col = 0; col < width; col++) {
                 u = one_over_width * (col + .5);

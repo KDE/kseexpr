@@ -12,7 +12,7 @@
 
 #include <KSeExpr/Expression.h>
 #include <KSeExpr/Interpreter.h>
-#include <KSeExpr/Timer.h>
+#include <KSeExpr/PerformanceTimer.h>
 
 namespace KSeExpr {
 //! Simple image synthesizer expression class to support our function grapher
@@ -94,7 +94,7 @@ int main(int argc, char* argv[]) {
     unsigned char* image = new unsigned char[width * height * 4];
 
     {
-        PrintTiming evalTime("eval time");
+        PerformanceTimer evalTime("eval time");
         double one_over_width = 1. / width, one_over_height = 1. / height;
         double& u = expr.vars["u"].val;
         double& v = expr.vars["v"].val;

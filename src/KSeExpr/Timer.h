@@ -1,46 +1,38 @@
-// SPDX-FileCopyrightText: 2011-2019 Disney Enterprises, Inc.
 // SPDX-FileCopyrightText: 2020 L. E. Segovia <amy@amyspark.me>
-// SPDX-License-Identifier: LicenseRef-Apache-2.0
+// SPDX-License-Identifier: GPL-3.0-or-later
 
-#ifdef __APPLE__
-#include <libkern/OSAtomic.h>
-#include <sys/types.h>
-#endif
+#include <cassert>
+#include <chrono>
 
-#include "Platform.h"
-
-#if defined(WINDOWS) && defined(_MSC_VER)
-typedef __int64 Time;
-#elif __APPLE__
-typedef struct timeval Time;
-#else
-typedef timespec Time;
-#endif
-
-namespace KSeExpr {
-class Timer {
-private:
-#if defined(WINDOWS) && defined(_MSC_VER)
-    Time time();
-    Time ticksPerSeconds;
-#endif
-    Time startTime, stopTime;
-    bool started;
+namespace KSeExpr
+{
+class Timer
+{
+    using Time = std::time_t;
 
 public:
-    Timer();
-    void start();
-    long elapsedTime();
+    Timer() = default;
+    void start()
+    {
+        started = true;
+        startTime = std::chrono::steady_clock::now();
+    }
+
+    void stop()
+    {
+        started = false;
+    }
+
+    std::chrono::steady_clock::rep elapsedTime()
+    {
+        if (!started) start();
+        stopTime = std::chrono::steady_clock::now();
+        return std::chrono::duration_cast<std::chrono::milliseconds>(stopTime - startTime).count();
+    }
+
+private:
+    std::chrono::steady_clock::time_point startTime, stopTime;
+    bool started {false};
 };
 
-class PrintTiming {
-  public:
-    PrintTiming(const std::string& s);
-    ~PrintTiming();
-
-  private:
-    Timer _timer;
-    const std::string _s;
-};
-
-}  // namespace KSeExpr
+} // namespace KSeExpr

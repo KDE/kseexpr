@@ -26,6 +26,7 @@ set(KSeExpr_HEADERS
         Noise.h
         NoiseTables.h
         Platform.h
+        PerformanceTimer.h
         StringUtils.h
         Timer.h
         Utils.h
@@ -48,7 +49,6 @@ set(KSeExpr_SOURCES
         ExprWalker.cpp
         Interpreter.cpp
         Noise.cpp
-        Timer.cpp
         Utils.cpp
     )
 

@@ -3,7 +3,7 @@
 
 #include <KSeExpr/Expression.h>
 #include <KSeExpr/VarBlock.h>
-#include <KSeExpr/Timer.h>
+#include <KSeExpr/PerformanceTimer.h>
 #include <iostream>
 
 struct Expr : public KSeExpr::Expression {
@@ -35,7 +35,7 @@ struct Expr : public KSeExpr::Expression {
 
 void run(int way) {
     std::string exprStr;
-    KSeExpr::PrintTiming timer("way " + std::to_string(way));
+    KSeExpr::PerformanceTimer timer("way " + std::to_string(way));
     switch (way) {
         case 0:
             exprStr = "singleII+singleII2";

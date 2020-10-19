@@ -20,7 +20,7 @@
 
 #include <KSeExpr/ExprFunc.h>
 #include <KSeExpr/ExprFuncX.h>
-#include <KSeExpr/Timer.h>  // performance timing
+#include <KSeExpr/PerformanceTimer.h>  // performance timing
 #include <memory>
 #include <vector>
 
@@ -237,7 +237,7 @@ bool TestImage::generateImageWithoutExpression(TFUNC func) {
     unsigned char* pixel = image.data();
 
 #ifdef SEEXPR_PERFORMANCE
-    PrintTiming timer("[ EVAL     ] v2 eval time: ");
+    PerformanceTimer timer("[ EVAL     ] v2 eval time: ");
 #endif
     Timer evalTiming;
     evalTiming.start();
@@ -378,7 +378,7 @@ bool TestImage::generateImage(const std::string& exprStr) {
     unsigned char* pixel = image.data();
 
 #ifdef SEEXPR_PERFORMANCE
-    PrintTiming timer("[ EVAL     ] v2 eval time: ");
+    PerformanceTimer timer("[ EVAL     ] v2 eval time: ");
 #endif
     Timer evalTiming;
     evalTiming.start();
