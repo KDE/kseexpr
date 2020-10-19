@@ -1,8 +1,8 @@
 // SPDX-FileCopyrightText: 2020 L. E. Segovia <amy@amyspark.me>
 // SPDX-License-Identifier: LicenseRef-Apache-2.0
 
-#include <cerrno>
 #include "Utils.h"
+#include <cerrno>
 
 #if defined(KSeExpr_HAVE_CHARCONV_WITH_DOUBLES)
 #include <charconv>
@@ -85,12 +85,12 @@ double_t KSeExpr::Utils::atof(const char *num)
     }
 
     if (has_frac) {
-        double_t frac_exp = 0.1;
+        double_t frac_exp = 0.1; // NOLINT readability-magic-numbers
 
         while (*num != '\0') {
             if (*num >= '0' && *num <= '9') {
                 frac_part += frac_exp * (*num - '0');
-                frac_exp *= 0.1;
+                frac_exp *= 0.1; // NOLINT readability-magic-numbers
             } else if (*num == 'e') {
                 has_exp = true;
                 ++num;
@@ -116,16 +116,15 @@ double_t KSeExpr::Utils::atof(const char *num)
         int e = 0;
         while (*num != '\0') {
             if (*num >= '0' && *num <= '9') {
-                e = e * 10 + *num - '0';
-            }
-            else {
+                e = e * 10 + *num - '0'; // NOLINT readability-magic-numbers
+            } else {
                 return HUGE_VAL;
             }
 
             ++num;
         }
 
-        exp_part = pow(exp_sign * e, 10);
+        exp_part = pow(exp_sign * e, 10); // NOLINT readability-magic-numbers
     }
 
     return sign * (int_part + frac_part) * exp_part;
@@ -144,7 +143,7 @@ int32_t KSeExpr::Utils::strtol(const std::string &num)
     if (ptr == num.c_str())
         throw std::invalid_argument {"KSeExpr::Utils::atoi: impossible to parse the given number"};
     else if (ptr != num.end().base())
-        throw std::invalid_argument { "KSeExpr::Utils::atoi: the string had invalid extra characters" };
+        throw std::invalid_argument {"KSeExpr::Utils::atoi: the string had invalid extra characters"};
     else if (errno == ERANGE)
         throw std::out_of_range {"KSeExpr::Utils::atoi: out of range"};
     return result;
@@ -181,5 +180,5 @@ KSeExpr_SSE41 double_t floor(double_t val)
     return _mm_cvtsd_f64(_mm_floor_sd(_mm_set_sd(0.0), _mm_set_sd(val)));
 }
 #endif
-}
-}
+} // namespace Utils
+} // namespace KSeExpr
