@@ -1,60 +1,63 @@
 // SPDX-FileCopyrightText: 2011-2019 Disney Enterprises, Inc.
+// SPDX-FileCopyrightText: 2020 L. E. Segovia <amy@amyspark.me>
 // SPDX-License-Identifier: LicenseRef-Apache-2.0
-#include "Expression.h"
-#include "ExprBuiltins.h"
-#include <cfloat>
-#include <cassert>
 #include <algorithm>
+#include <cassert>
+#include <cfloat>
 
 #include "Curve.h"
+#include "ExprBuiltins.h"
+#include "Expression.h"
 
-namespace KSeExpr {
-
-template <>
-double Curve<double>::comp(const double& val, const int) {
+namespace KSeExpr
+{
+template<> double Curve<double>::comp(const double &val, const int)
+{
     return val;
 }
 
-template <>
-double Curve<Vec3d>::comp(const Vec3d& val, const int i) {
+template<> double Curve<Vec3d>::comp(const Vec3d &val, const int i)
+{
     return val[i];
 }
 
-template <class T>
-bool Curve<T>::cvLessThan(const CV& cv1, const CV& cv2) {
+template<class T> bool Curve<T>::cvLessThan(const CV &cv1, const CV &cv2)
+{
     return cv1._pos < cv2._pos;
 }
 
-template <class T>
+template<class T>
 Curve<T>::Curve()
-    : cacheCV(0), prepared(false) {
+    : cacheCV(0)
+    , prepared(false)
+{
     _cvData.push_back(CV(-FLT_MAX, T(), kNone));
     _cvData.push_back(CV(FLT_MAX, T(), kNone));
 }
 
-template <class T>
-void Curve<T>::addPoint(double position, const T& val, InterpType type) {
+template<class T> void Curve<T>::addPoint(double position, const T &val, InterpType type)
+{
     prepared = false;
     _cvData.push_back(CV(position, val, type));
 }
 
-template <class T>
-void Curve<T>::preparePoints() {
+template<class T> void Curve<T>::preparePoints()
+{
     prepared = true;
     cacheCV = 0;
     // sort
     std::sort(_cvData.begin(), _cvData.end(), cvLessThan);
 
     // Setup boundary conditions on sentinel values
-    CV& end = *(_cvData.end() - 1);
-    CV& begin = *(_cvData.begin());
-    int realCVs = static_cast<int>(_cvData.size()) - 2;
+    CV &end = *(_cvData.end() - 1);
+    CV &begin = *(_cvData.begin());
+    auto realCVs = _cvData.size() - 2;
     assert(realCVs >= 0);
     if (realCVs > 0) {
         begin._val = _cvData[1]._val;
         begin._deriv = T();
         begin._interp = kNone;
-        int lastIndex = static_cast<int>(_cvData.size()) - 1;
+        auto lastIndex = _cvData.size() - 1;
         end._val = _cvData[lastIndex - 1]._val;
         end._deriv = T();
         end._interp = kNone;
@@ -86,120 +89,117 @@ void Curve<T>::preparePoints() {
 
 // TODO: this function and the next could be merged with template magic
 //       but it might be simpler to just have two copies!
-template <class T>
-T Curve<T>::getValue(const double param) const {
+template<class T> T Curve<T>::getValue(const double param) const
+{
     assert(prepared);
     // find the cv data point index just greater than the desired param
     const int numPoints = static_cast<int>(_cvData.size());
-    const CV* cvDataBegin = &_cvData[0];
-    int index =
-        static_cast<int>(std::upper_bound(cvDataBegin, cvDataBegin + numPoints, CV(param, T(), kLinear), cvLessThan) - cvDataBegin);
+    const CV *cvDataBegin = &_cvData[0];
+    int index = static_cast<int>(std::upper_bound(cvDataBegin, cvDataBegin + numPoints, CV(param, T(), kLinear), cvLessThan) - cvDataBegin);
     index = std::max(1, std::min(index, numPoints - 1));
 
-    const float t0 = static_cast<float>(_cvData[index - 1]._pos);
+    const auto t0 = _cvData[index - 1]._pos;
     const T k0 = _cvData[index - 1]._val;
     const InterpType interp = _cvData[index - 1]._interp;
-    const float t1 = static_cast<float>(_cvData[index]._pos);
+    const auto t1 = _cvData[index]._pos;
     const T k1 = _cvData[index]._val;
     switch (interp) {
-        case kNone:
-            return k0;
-            break;
-        case kLinear: {
-            double u = (param - t0) / (t1 - t0);
-            return k0 + u * (k1 - k0);
-        } break;
-        case kSmooth: {
-            double u = (param - t0) / (t1 - t0);
-            return k0 * (u - 1) * (u - 1) * (2 * u + 1) + k1 * u * u * (3 - 2 * u);
-        } break;
-        case kSpline:
-        case kMonotoneSpline: {
-            double x = param - _cvData[index - 1]._pos;                // xstart
-            double h = _cvData[index]._pos - _cvData[index - 1]._pos;  // xend-xstart
-            T y = _cvData[index - 1]._val;                             // f(xstart)
-            T delta = _cvData[index]._val - _cvData[index - 1]._val;   // f(xend)-f(xstart)
-            T d1 = _cvData[index - 1]._deriv;                          // f'(xstart)
-            T d2 = _cvData[index]._deriv;                              // f'(xend)
-            return (x * (delta * (3 * h - 2 * x) * x + h * (-h + x) * (-(d1 * h) + (d1 + d2) * x))) / (h * h * h) + y;
-        } break;
-        default:
-            assert(false);
-            return T();
-            break;
+    case kNone:
+        return k0;
+        break;
+    case kLinear: {
+        double u = (param - t0) / (t1 - t0);
+        return k0 + u * (k1 - k0);
+    } break;
+    case kSmooth: {
+        double u = (param - t0) / (t1 - t0);
+        return k0 * (u - 1) * (u - 1) * (2 * u + 1) + k1 * u * u * (3 - 2 * u);
+    } break;
+    case kSpline:
+    case kMonotoneSpline: {
+        double x = param - _cvData[index - 1]._pos;               // xstart
+        double h = _cvData[index]._pos - _cvData[index - 1]._pos; // xend-xstart
+        T y = _cvData[index - 1]._val;                            // f(xstart)
+        T delta = _cvData[index]._val - _cvData[index - 1]._val;  // f(xend)-f(xstart)
+        T d1 = _cvData[index - 1]._deriv;                         // f'(xstart)
+        T d2 = _cvData[index]._deriv;                             // f'(xend)
+        return (x * (delta * (3 * h - 2 * x) * x + h * (-h + x) * (-(d1 * h) + (d1 + d2) * x))) / (h * h * h) + y;
+    } break;
+    default:
+        assert(false);
+        return T();
+        break;
     }
 }
 
 // TODO: this function and the previous could be merged with template magic
 //       but it might be simpler to just have two copies!
-template <class T>
-double Curve<T>::getChannelValue(const double param, int channel) const {
+template<class T> double Curve<T>::getChannelValue(const double param, int channel) const
+{
     assert(prepared);
     // find the cv data point index just greater than the desired param
     const int numPoints = static_cast<int>(_cvData.size());
-    const CV* cvDataBegin = &_cvData[0];
-    int index =
-        static_cast<int>(std::upper_bound(cvDataBegin, cvDataBegin + numPoints, CV(param, T(), kLinear), cvLessThan) - cvDataBegin);
+    const CV *cvDataBegin = &_cvData[0];
+    int index = static_cast<int>(std::upper_bound(cvDataBegin, cvDataBegin + numPoints, CV(param, T(), kLinear), cvLessThan) - cvDataBegin);
     index = std::max(1, std::min(index, numPoints - 1));
 
-    const float t0 = static_cast<float>(_cvData[index - 1]._pos);
+    const auto t0 = _cvData[index - 1]._pos;
     const double k0 = comp(_cvData[index - 1]._val, channel);
     const InterpType interp = _cvData[index - 1]._interp;
-    const float t1 = static_cast<float>(_cvData[index]._pos);
+    const auto t1 = _cvData[index]._pos;
     const double k1 = comp(_cvData[index]._val, channel);
     switch (interp) {
-        case kNone:
-            return k0;
-            break;
-        case kLinear: {
+    case kNone:
+        return k0;
+        break;
+    case kLinear: {
+        double u = (param - t0) / (t1 - t0);
+        return k0 + u * (k1 - k0);
+    } break;
+    case kSmooth:
+        // standard cubic interpolation
+        {
             double u = (param - t0) / (t1 - t0);
-            return k0 + u * (k1 - k0);
-        } break;
-        case kSmooth:
-            // standard cubic interpolation
-            {
-                double u = (param - t0) / (t1 - t0);
-                return k0 * (u - 1) * (u - 1) * (2 * u + 1) + k1 * u * u * (3 - 2 * u);
-            }
-            break;
-        case kSpline:
-        case kMonotoneSpline: {
-            double x = param - _cvData[index - 1]._pos;                // xstart
-            double h = _cvData[index]._pos - _cvData[index - 1]._pos;  // xend-xstart
-            double y = comp(_cvData[index - 1]._val, channel);         // f(xtart)
-            double delta =
-                comp(_cvData[index]._val, channel) - comp(_cvData[index - 1]._val, channel);  // f(xend)-f(xtart)
-            double d1 = comp(_cvData[index - 1]._deriv, channel);                             // f'(xtart)
-            double d2 = comp(_cvData[index]._deriv, channel);                                 // f'(xend)
+            return k0 * (u - 1) * (u - 1) * (2 * u + 1) + k1 * u * u * (3 - 2 * u);
+        }
+        break;
+    case kSpline:
+    case kMonotoneSpline: {
+        double x = param - _cvData[index - 1]._pos;                                                 // xstart
+        double h = _cvData[index]._pos - _cvData[index - 1]._pos;                                   // xend-xstart
+        double y = comp(_cvData[index - 1]._val, channel);                                          // f(xtart)
+        double delta = comp(_cvData[index]._val, channel) - comp(_cvData[index - 1]._val, channel); // f(xend)-f(xtart)
+        double d1 = comp(_cvData[index - 1]._deriv, channel);                                       // f'(xtart)
+        double d2 = comp(_cvData[index]._deriv, channel);                                           // f'(xend)
 
-            return (x * (delta * (3 * h - 2 * x) * x + h * (-h + x) * (-(d1 * h) + (d1 + d2) * x))) / (h * h * h) + y;
-        } break;
-        default:
-            assert(false);
-            return 0;
-            break;
+        return (x * (delta * (3 * h - 2 * x) * x + h * (-h + x) * (-(d1 * h) + (d1 + d2) * x))) / (h * h * h) + y;
+    } break;
+    default:
+        assert(false);
+        return 0;
+        break;
     }
 }
 
-template <class T>
-typename Curve<T>::CV Curve<T>::getLowerBoundCV(const double param) const {
+template<class T> typename Curve<T>::CV Curve<T>::getLowerBoundCV(const double param) const
+{
     assert(prepared);
-    const CV* cvDataBegin = &_cvData[0];
+    const CV *cvDataBegin = &_cvData[0];
     int numPoints = static_cast<int>(_cvData.size());
-    int index =
-        static_cast<int>(std::upper_bound(cvDataBegin, cvDataBegin + numPoints, CV(param, T(), kLinear), cvLessThan) - cvDataBegin);
+    int index = static_cast<int>(std::upper_bound(cvDataBegin, cvDataBegin + numPoints, CV(param, T(), kLinear), cvLessThan) - cvDataBegin);
     index = std::max(1, std::min(index, numPoints - 1));
-    if (index - 1 > 0) return _cvData[index - 1];
+    if (index - 1 > 0)
+        return _cvData[index - 1];
     return _cvData[index];
 }
 
-template <class T>
-bool Curve<T>::interpTypeValid(InterpType interp) {
+template<class T> bool Curve<T>::interpTypeValid(InterpType interp)
+{
     return interp == kNone || interp == kLinear || interp == kSmooth || interp == kSpline || interp == kMonotoneSpline;
 }
 
-template <>
-inline void Curve<double>::clampCurveSegment(const double& delta, double& d1, double& d2) {
+template<> inline void Curve<double>::clampCurveSegment(const double &delta, double &d1, double &d2)
+{
     if (delta == 0)
         d1 = d2 = 0;
     else {
@@ -208,8 +208,8 @@ inline void Curve<double>::clampCurveSegment(const double& delta, double& d1, do
     }
 }
 
-template <>
-void Curve<Vec3d>::clampCurveSegment(const Vec3d& delta, Vec3d& d1, Vec3d& d2) {
+template<> void Curve<Vec3d>::clampCurveSegment(const Vec3d &delta, Vec3d &d1, Vec3d &d2)
+{
     for (int i = 0; i < 3; i++) {
         if (delta[i] == 0)
             d1[i] = d2[i] = 0;
@@ -222,4 +222,4 @@ void Curve<Vec3d>::clampCurveSegment(const Vec3d& delta, Vec3d& d1, Vec3d& d2) {
 
 template class Curve<Vec3d>;
 template class Curve<double>;
-}
+} // namespace KSeExpr
