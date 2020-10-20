@@ -18,7 +18,7 @@ if (DOXYGEN_FOUND AND NOT WIN32)
     add_custom_target(doc ALL DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/doxygen.txt)
 
     install(DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/html/" DESTINATION ${DOC_DIR})
-    install(FILES userdoc.txt DESTINATION ${DOC_DIR} RENAME SeExpressions.html)
+    install(FILES userdoc.html DESTINATION ${DOC_DIR} RENAME SeExpressions.html)
 
     file(GLOB "*.png" PNG_FILES)
     install(FILES ${PNG_FILES} DESTINATION ${DOC_DIR})

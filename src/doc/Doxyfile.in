@@ -888,7 +888,6 @@ RECURSIVE              = NO
 # run.
 
 EXCLUDE                =  @CMAKE_SOURCE_DIR@/src/doc/uitutorial.txt \
-                          @CMAKE_SOURCE_DIR@/src/doc/plugins.txt    \
                           @CMAKE_SOURCE_DIR@/src/doc/CMakeLists.txt \
 
 # The EXCLUDE_SYMLINKS tag can be used to select whether or not files or

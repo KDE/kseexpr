@@ -74,10 +74,6 @@ check_cxx_source_compiles("
     [[gnu::target(\"sse4.1\")]] int main() { return 5; }
 " KSeExpr_HAVE_DYNAMIC_DISPATCH)
 
-if(ENABLE_PLUGIN_SYSTEM)
-    set(KSeExpr_ENABLE_PLUGIN_SYSTEM 1)
-endif()
-
 BuildParserScanner(KSeExpr ExprParserLex ExprParser SeExpr parser_cpp)
 
 add_library(KSeExpr SHARED ${KSeExpr_SOURCES} ${parser_cpp})

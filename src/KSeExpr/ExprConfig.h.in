@@ -10,5 +10,3 @@
 #cmakedefine KSeExpr_HAVE_CHARCONV_WITH_DOUBLES
 
 #cmakedefine KSeExpr_HAVE_DYNAMIC_DISPATCH
-
-#cmakedefine KSeExpr_ENABLE_PLUGIN_SYSTEM
