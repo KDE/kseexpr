@@ -75,7 +75,7 @@
 #define SeExprlloc          SeExprlloc
 
 /* First part of user prologue.  */
-#line 6 "@@PATH@@src/KSeExpr/ExprParser.y"
+#line 6 "@@PATH@@/src/KSeExpr/ExprParser.y"
 
 #ifndef MAKEDEPEND
 #include <algorithm>
@@ -215,7 +215,7 @@ extern int SeExprdebug;
 #if ! defined SeExprYYSTYPE && ! defined SeExprYYSTYPE_IS_DECLARED
 union SeExprYYSTYPE
 {
-#line 66 "@@PATH@@src/KSeExpr/ExprParser.y"
+#line 66 "@@PATH@@/src/KSeExpr/ExprParser.y"
 
     KSeExpr::ExprNode* n; /* a node is returned for all non-terminals to
 		      build the parse tree from the leaves up. */
@@ -1622,34 +1622,34 @@ SeExprreduce:
   switch (SeExprn)
     {
   case 2:
-#line 121 "@@PATH@@src/KSeExpr/ExprParser.y"
+#line 121 "@@PATH@@/src/KSeExpr/ExprParser.y"
                                 { ParseResult = (SeExprvsp[-1].n); ParseResult->setPosition((SeExprloc).first_column, (SeExprloc).last_column);
                                   ParseResult->addChild((SeExprvsp[0].n)); }
 #line 1629 "y.tab.c"
     break;
 
   case 3:
-#line 123 "@@PATH@@src/KSeExpr/ExprParser.y"
+#line 123 "@@PATH@@/src/KSeExpr/ExprParser.y"
                                 { ParseResult = NODE((SeExprloc).first_column, (SeExprloc).last_column, ModuleNode);
                                   ParseResult->addChild((SeExprvsp[0].n)); }
 #line 1636 "y.tab.c"
     break;
 
   case 4:
-#line 128 "@@PATH@@src/KSeExpr/ExprParser.y"
+#line 128 "@@PATH@@/src/KSeExpr/ExprParser.y"
                                 { (SeExprval.n) = NODE((SeExprloc).first_column, (SeExprloc).last_column, ModuleNode); (SeExprval.n)->addChild((SeExprvsp[0].n)); }
 #line 1642 "y.tab.c"
     break;
 
   case 5:
-#line 130 "@@PATH@@src/KSeExpr/ExprParser.y"
+#line 130 "@@PATH@@/src/KSeExpr/ExprParser.y"
                                 { (SeExprval.n) = (SeExprvsp[-1].n); (SeExprval.n)->setPosition((SeExprloc).first_column, (SeExprloc).last_column);
                                   (SeExprval.n)->addChild((SeExprvsp[0].n)); }
 #line 1649 "y.tab.c"
     break;
 
   case 6:
-#line 136 "@@PATH@@src/KSeExpr/ExprParser.y"
+#line 136 "@@PATH@@/src/KSeExpr/ExprParser.y"
                                 { KSeExpr::ExprType type = KSeExpr::ExprType((SeExprvsp[-4].t).type, (SeExprvsp[-4].t).dim, (SeExprvsp[-4].t).lifetime);
                                     KSeExpr::ExprPrototypeNode * prototype =
                                         (KSeExpr::ExprPrototypeNode*)NODE2((SeExprloc).first_column, (SeExprloc).last_column, PrototypeNode, (SeExprvsp[-3].s), type);
@@ -1661,7 +1661,7 @@ SeExprreduce:
     break;
 
   case 7:
-#line 144 "@@PATH@@src/KSeExpr/ExprParser.y"
+#line 144 "@@PATH@@/src/KSeExpr/ExprParser.y"
                                 { KSeExpr::ExprType type = KSeExpr::ExprType((SeExprvsp[-7].t).type, (SeExprvsp[-7].t).dim, (SeExprvsp[-7].t).lifetime);
                                   KSeExpr::ExprPrototypeNode * prototype =
                                       (KSeExpr::ExprPrototypeNode*)NODE2((SeExprloc).first_column, (SeExprlsp[-3]).last_column, PrototypeNode, (SeExprvsp[-6].s), type);
@@ -1673,7 +1673,7 @@ SeExprreduce:
     break;
 
   case 8:
-#line 152 "@@PATH@@src/KSeExpr/ExprParser.y"
+#line 152 "@@PATH@@/src/KSeExpr/ExprParser.y"
                                 { KSeExpr::ExprPrototypeNode * prototype =
                                         (KSeExpr::ExprPrototypeNode*)NODE1((SeExprloc).first_column, (SeExprlsp[-3]).last_column, PrototypeNode, (SeExprvsp[-6].s));
                                   prototype->addArgs((SeExprvsp[-4].n));
@@ -1684,37 +1684,37 @@ SeExprreduce:
     break;
 
   case 9:
-#line 161 "@@PATH@@src/KSeExpr/ExprParser.y"
+#line 161 "@@PATH@@/src/KSeExpr/ExprParser.y"
                                 { (SeExprval.l) = KSeExpr::ExprType::ltVARYING; }
 #line 1690 "y.tab.c"
     break;
 
   case 10:
-#line 162 "@@PATH@@src/KSeExpr/ExprParser.y"
+#line 162 "@@PATH@@/src/KSeExpr/ExprParser.y"
                                 { (SeExprval.l) = KSeExpr::ExprType::ltCONSTANT; }
 #line 1696 "y.tab.c"
     break;
 
   case 11:
-#line 163 "@@PATH@@src/KSeExpr/ExprParser.y"
+#line 163 "@@PATH@@/src/KSeExpr/ExprParser.y"
                                 { (SeExprval.l) = KSeExpr::ExprType::ltUNIFORM; }
 #line 1702 "y.tab.c"
     break;
 
   case 12:
-#line 164 "@@PATH@@src/KSeExpr/ExprParser.y"
+#line 164 "@@PATH@@/src/KSeExpr/ExprParser.y"
                                 { (SeExprval.l) = KSeExpr::ExprType::ltVARYING; }
 #line 1708 "y.tab.c"
     break;
 
   case 13:
-#line 165 "@@PATH@@src/KSeExpr/ExprParser.y"
+#line 165 "@@PATH@@/src/KSeExpr/ExprParser.y"
                                 { (SeExprval.l) = KSeExpr::ExprType::ltERROR; }
 #line 1714 "y.tab.c"
     break;
 
   case 14:
-#line 169 "@@PATH@@src/KSeExpr/ExprParser.y"
+#line 169 "@@PATH@@/src/KSeExpr/ExprParser.y"
                                  {(SeExprval.t).type     = KSeExpr::ExprType::tFP;
                                   (SeExprval.t).dim      = 1;
                                   (SeExprval.t).lifetime = (SeExprvsp[0].l); }
@@ -1722,7 +1722,7 @@ SeExprreduce:
     break;
 
   case 15:
-#line 173 "@@PATH@@src/KSeExpr/ExprParser.y"
+#line 173 "@@PATH@@/src/KSeExpr/ExprParser.y"
                                 { (SeExprval.t).type = ((SeExprvsp[-2].d) > 0 ? KSeExpr::ExprType::tFP : KSeExpr::ExprType::tERROR);
                                   //TODO: This causes an error but does not report it to user. Change this.
                                   (SeExprval.t).dim  = ((SeExprvsp[-2].d) > 0 ? (SeExprvsp[-2].d) : 0);
@@ -1731,7 +1731,7 @@ SeExprreduce:
     break;
 
   case 16:
-#line 177 "@@PATH@@src/KSeExpr/ExprParser.y"
+#line 177 "@@PATH@@/src/KSeExpr/ExprParser.y"
                                 { (SeExprval.t).type = KSeExpr::ExprType::tSTRING;
                                   (SeExprval.t).dim  = 1;
                                   (SeExprval.t).lifetime = (SeExprvsp[0].l); }
@@ -1739,19 +1739,19 @@ SeExprreduce:
     break;
 
   case 17:
-#line 183 "@@PATH@@src/KSeExpr/ExprParser.y"
+#line 183 "@@PATH@@/src/KSeExpr/ExprParser.y"
                                 { (SeExprval.n) = NODE((SeExprloc).first_column, (SeExprloc).last_column, Node); }
 #line 1745 "y.tab.c"
     break;
 
   case 18:
-#line 184 "@@PATH@@src/KSeExpr/ExprParser.y"
+#line 184 "@@PATH@@/src/KSeExpr/ExprParser.y"
                                 { (SeExprval.n) = (SeExprvsp[0].n); }
 #line 1751 "y.tab.c"
     break;
 
   case 19:
-#line 188 "@@PATH@@src/KSeExpr/ExprParser.y"
+#line 188 "@@PATH@@/src/KSeExpr/ExprParser.y"
                                 { (SeExprval.n) = NODE((SeExprloc).first_column, (SeExprloc).last_column, Node);
                                   KSeExpr::ExprType type = KSeExpr::ExprType((SeExprvsp[0].t).type, (SeExprvsp[0].t).dim, (SeExprvsp[0].t).lifetime);
                                   KSeExpr::ExprNode* varNode = NODE2((SeExprloc).first_column, (SeExprloc).last_column, VarNode, "", type);
@@ -1760,7 +1760,7 @@ SeExprreduce:
     break;
 
   case 20:
-#line 192 "@@PATH@@src/KSeExpr/ExprParser.y"
+#line 192 "@@PATH@@/src/KSeExpr/ExprParser.y"
                                 { (SeExprval.n) = (SeExprvsp[-2].n);
                                   KSeExpr::ExprType type = KSeExpr::ExprType((SeExprvsp[0].t).type, (SeExprvsp[0].t).dim, (SeExprvsp[0].t).lifetime);
                                   KSeExpr::ExprNode* varNode = NODE2((SeExprlsp[0]).first_column, (SeExprlsp[0]).last_column, VarNode, "", type);
@@ -1769,19 +1769,19 @@ SeExprreduce:
     break;
 
   case 21:
-#line 199 "@@PATH@@src/KSeExpr/ExprParser.y"
+#line 199 "@@PATH@@/src/KSeExpr/ExprParser.y"
                                 { (SeExprval.n) = NODE((SeExprloc).first_column, (SeExprloc).last_column, Node); }
 #line 1775 "y.tab.c"
     break;
 
   case 22:
-#line 200 "@@PATH@@src/KSeExpr/ExprParser.y"
+#line 200 "@@PATH@@/src/KSeExpr/ExprParser.y"
                                 { (SeExprval.n) = (SeExprvsp[0].n); }
 #line 1781 "y.tab.c"
     break;
 
   case 23:
-#line 204 "@@PATH@@src/KSeExpr/ExprParser.y"
+#line 204 "@@PATH@@/src/KSeExpr/ExprParser.y"
                                  { (SeExprval.n) = NODE((SeExprloc).first_column, (SeExprloc).last_column, Node);
                                   KSeExpr::ExprType type = KSeExpr::ExprType((SeExprvsp[-1].t).type, (SeExprvsp[-1].t).dim, (SeExprvsp[-1].t).lifetime);
                                   KSeExpr::ExprNode* varNode = NODE2((SeExprloc).first_column, (SeExprloc).last_column, VarNode, (SeExprvsp[0].s), type);
@@ -1791,7 +1791,7 @@ SeExprreduce:
     break;
 
   case 24:
-#line 210 "@@PATH@@src/KSeExpr/ExprParser.y"
+#line 210 "@@PATH@@/src/KSeExpr/ExprParser.y"
                                 { (SeExprval.n) = (SeExprvsp[-3].n);
                                   KSeExpr::ExprType type = KSeExpr::ExprType((SeExprvsp[-1].t).type, (SeExprvsp[-1].t).dim, (SeExprvsp[-1].t).lifetime);
                                   KSeExpr::ExprNode* varNode = NODE2((SeExprlsp[-1]).first_column, (SeExprlsp[0]).last_column, VarNode, (SeExprvsp[0].s), type);
@@ -1801,55 +1801,55 @@ SeExprreduce:
     break;
 
   case 25:
-#line 218 "@@PATH@@src/KSeExpr/ExprParser.y"
+#line 218 "@@PATH@@/src/KSeExpr/ExprParser.y"
                                 { (SeExprval.n) = NODE2((SeExprloc).first_column,(SeExprloc).last_column,BlockNode, (SeExprvsp[-1].n), (SeExprvsp[0].n)); }
 #line 1807 "y.tab.c"
     break;
 
   case 26:
-#line 219 "@@PATH@@src/KSeExpr/ExprParser.y"
+#line 219 "@@PATH@@/src/KSeExpr/ExprParser.y"
                                 { (SeExprval.n) = (SeExprvsp[0].n); }
 #line 1813 "y.tab.c"
     break;
 
   case 27:
-#line 224 "@@PATH@@src/KSeExpr/ExprParser.y"
+#line 224 "@@PATH@@/src/KSeExpr/ExprParser.y"
                                 { (SeExprval.n) = NODE((SeExprloc).first_column,(SeExprloc).last_column,Node); /* create empty node */; }
 #line 1819 "y.tab.c"
     break;
 
   case 28:
-#line 225 "@@PATH@@src/KSeExpr/ExprParser.y"
+#line 225 "@@PATH@@/src/KSeExpr/ExprParser.y"
                                 { (SeExprval.n) = (SeExprvsp[0].n); }
 #line 1825 "y.tab.c"
     break;
 
   case 29:
-#line 229 "@@PATH@@src/KSeExpr/ExprParser.y"
+#line 229 "@@PATH@@/src/KSeExpr/ExprParser.y"
                                 { (SeExprval.n) = NODE1((SeExprloc).first_column,(SeExprloc).last_column,Node, (SeExprvsp[0].n)); /* create var list */}
 #line 1831 "y.tab.c"
     break;
 
   case 30:
-#line 230 "@@PATH@@src/KSeExpr/ExprParser.y"
+#line 230 "@@PATH@@/src/KSeExpr/ExprParser.y"
                                 { (SeExprval.n) = (SeExprvsp[-1].n); (SeExprvsp[-1].n)->addChild((SeExprvsp[0].n)); /* add to list */}
 #line 1837 "y.tab.c"
     break;
 
   case 31:
-#line 234 "@@PATH@@src/KSeExpr/ExprParser.y"
+#line 234 "@@PATH@@/src/KSeExpr/ExprParser.y"
                                 { (SeExprval.n) = (SeExprvsp[0].n); }
 #line 1843 "y.tab.c"
     break;
 
   case 32:
-#line 235 "@@PATH@@src/KSeExpr/ExprParser.y"
+#line 235 "@@PATH@@/src/KSeExpr/ExprParser.y"
                                 { (SeExprval.n) = NODE2((SeExprloc).first_column,(SeExprloc).last_column,AssignNode, (SeExprvsp[-3].s), (SeExprvsp[-1].n)); free((SeExprvsp[-3].s)); }
 #line 1849 "y.tab.c"
     break;
 
   case 33:
-#line 236 "@@PATH@@src/KSeExpr/ExprParser.y"
+#line 236 "@@PATH@@/src/KSeExpr/ExprParser.y"
                                    {KSeExpr::ExprNode* varNode=NODE1((SeExprlsp[-3]).first_column,(SeExprlsp[-3]).first_column,VarNode, (SeExprvsp[-3].s));
                                KSeExpr::ExprNode* opNode=NODE3((SeExprlsp[-1]).first_column,(SeExprlsp[-1]).first_column,BinaryOpNode,varNode,(SeExprvsp[-1].n),'+');
                                 (SeExprval.n) = NODE2((SeExprloc).first_column,(SeExprloc).last_column,AssignNode, (SeExprvsp[-3].s), opNode);free((SeExprvsp[-3].s));}
@@ -1857,7 +1857,7 @@ SeExprreduce:
     break;
 
   case 34:
-#line 239 "@@PATH@@src/KSeExpr/ExprParser.y"
+#line 239 "@@PATH@@/src/KSeExpr/ExprParser.y"
                                    {KSeExpr::ExprNode* varNode=NODE1((SeExprlsp[-3]).first_column,(SeExprlsp[-3]).first_column,VarNode, (SeExprvsp[-3].s));
                                KSeExpr::ExprNode* opNode=NODE3((SeExprlsp[-1]).first_column,(SeExprlsp[-1]).first_column,BinaryOpNode,varNode,(SeExprvsp[-1].n),'-');
                                 (SeExprval.n) = NODE2((SeExprloc).first_column,(SeExprloc).last_column,AssignNode, (SeExprvsp[-3].s), opNode);free((SeExprvsp[-3].s));}
@@ -1865,7 +1865,7 @@ SeExprreduce:
     break;
 
   case 35:
-#line 242 "@@PATH@@src/KSeExpr/ExprParser.y"
+#line 242 "@@PATH@@/src/KSeExpr/ExprParser.y"
                                     {KSeExpr::ExprNode* varNode=NODE1((SeExprlsp[-3]).first_column,(SeExprlsp[-3]).first_column,VarNode, (SeExprvsp[-3].s));
                                KSeExpr::ExprNode* opNode=NODE3((SeExprlsp[-1]).first_column,(SeExprlsp[-1]).first_column,BinaryOpNode,varNode,(SeExprvsp[-1].n),'*');
                                 (SeExprval.n) = NODE2((SeExprloc).first_column,(SeExprloc).last_column,AssignNode, (SeExprvsp[-3].s), opNode);free((SeExprvsp[-3].s));}
@@ -1873,7 +1873,7 @@ SeExprreduce:
     break;
 
   case 36:
-#line 245 "@@PATH@@src/KSeExpr/ExprParser.y"
+#line 245 "@@PATH@@/src/KSeExpr/ExprParser.y"
                                    {KSeExpr::ExprNode* varNode=NODE1((SeExprlsp[-3]).first_column,(SeExprlsp[-3]).first_column,VarNode, (SeExprvsp[-3].s));
                                KSeExpr::ExprNode* opNode=NODE3((SeExprlsp[-1]).first_column,(SeExprlsp[-1]).first_column,BinaryOpNode,varNode,(SeExprvsp[-1].n),'/');
                                 (SeExprval.n) = NODE2((SeExprloc).first_column,(SeExprloc).last_column,AssignNode, (SeExprvsp[-3].s), opNode);free((SeExprvsp[-3].s));}
@@ -1881,7 +1881,7 @@ SeExprreduce:
     break;
 
   case 37:
-#line 248 "@@PATH@@src/KSeExpr/ExprParser.y"
+#line 248 "@@PATH@@/src/KSeExpr/ExprParser.y"
                                    {KSeExpr::ExprNode* varNode=NODE1((SeExprlsp[-3]).first_column,(SeExprlsp[-3]).first_column,VarNode, (SeExprvsp[-3].s));
                                KSeExpr::ExprNode* opNode=NODE3((SeExprlsp[-1]).first_column,(SeExprlsp[-1]).first_column,BinaryOpNode,varNode,(SeExprvsp[-1].n),'^');
                                 (SeExprval.n) = NODE2((SeExprloc).first_column,(SeExprloc).last_column,AssignNode, (SeExprvsp[-3].s), opNode);free((SeExprvsp[-3].s));}
@@ -1889,7 +1889,7 @@ SeExprreduce:
     break;
 
   case 38:
-#line 251 "@@PATH@@src/KSeExpr/ExprParser.y"
+#line 251 "@@PATH@@/src/KSeExpr/ExprParser.y"
                                    {KSeExpr::ExprNode* varNode=NODE1((SeExprlsp[-3]).first_column,(SeExprlsp[-3]).first_column,VarNode, (SeExprvsp[-3].s));
                                KSeExpr::ExprNode* opNode=NODE3((SeExprlsp[-1]).first_column,(SeExprlsp[-1]).first_column,BinaryOpNode,varNode,(SeExprvsp[-1].n),'%');
                                 (SeExprval.n) = NODE2((SeExprloc).first_column,(SeExprloc).last_column,AssignNode, (SeExprvsp[-3].s), opNode);free((SeExprvsp[-3].s));}
@@ -1897,13 +1897,13 @@ SeExprreduce:
     break;
 
   case 39:
-#line 254 "@@PATH@@src/KSeExpr/ExprParser.y"
+#line 254 "@@PATH@@/src/KSeExpr/ExprParser.y"
                                 { (SeExprval.n) = NODE2((SeExprloc).first_column,(SeExprloc).last_column,AssignNode, (SeExprvsp[-3].s), (SeExprvsp[-1].n)); free((SeExprvsp[-3].s)); }
 #line 1903 "y.tab.c"
     break;
 
   case 40:
-#line 255 "@@PATH@@src/KSeExpr/ExprParser.y"
+#line 255 "@@PATH@@/src/KSeExpr/ExprParser.y"
                                     {KSeExpr::ExprNode* varNode=NODE1((SeExprlsp[-3]).first_column,(SeExprlsp[-3]).first_column,VarNode, (SeExprvsp[-3].s));
                                KSeExpr::ExprNode* opNode=NODE3((SeExprlsp[-1]).first_column,(SeExprlsp[-1]).first_column,BinaryOpNode,varNode,(SeExprvsp[-1].n),'+');
                                 (SeExprval.n) = NODE2((SeExprloc).first_column,(SeExprloc).last_column,AssignNode, (SeExprvsp[-3].s), opNode);free((SeExprvsp[-3].s));}
@@ -1911,7 +1911,7 @@ SeExprreduce:
     break;
 
   case 41:
-#line 258 "@@PATH@@src/KSeExpr/ExprParser.y"
+#line 258 "@@PATH@@/src/KSeExpr/ExprParser.y"
                                     {KSeExpr::ExprNode* varNode=NODE1((SeExprlsp[-3]).first_column,(SeExprlsp[-3]).first_column,VarNode, (SeExprvsp[-3].s));
                                KSeExpr::ExprNode* opNode=NODE3((SeExprlsp[-1]).first_column,(SeExprlsp[-1]).first_column,BinaryOpNode,varNode,(SeExprvsp[-1].n),'-');
                                 (SeExprval.n) = NODE2((SeExprloc).first_column,(SeExprloc).last_column,AssignNode, (SeExprvsp[-3].s), opNode);free((SeExprvsp[-3].s));}
@@ -1919,7 +1919,7 @@ SeExprreduce:
     break;
 
   case 42:
-#line 261 "@@PATH@@src/KSeExpr/ExprParser.y"
+#line 261 "@@PATH@@/src/KSeExpr/ExprParser.y"
                                      {KSeExpr::ExprNode* varNode=NODE1((SeExprlsp[-3]).first_column,(SeExprlsp[-3]).first_column,VarNode, (SeExprvsp[-3].s));
                                KSeExpr::ExprNode* opNode=NODE3((SeExprlsp[-1]).first_column,(SeExprlsp[-1]).first_column,BinaryOpNode,varNode,(SeExprvsp[-1].n),'*');
                                 (SeExprval.n) = NODE2((SeExprloc).first_column,(SeExprloc).last_column,AssignNode, (SeExprvsp[-3].s), opNode);free((SeExprvsp[-3].s));}
@@ -1927,7 +1927,7 @@ SeExprreduce:
     break;
 
   case 43:
-#line 264 "@@PATH@@src/KSeExpr/ExprParser.y"
+#line 264 "@@PATH@@/src/KSeExpr/ExprParser.y"
                                     {KSeExpr::ExprNode* varNode=NODE1((SeExprlsp[-3]).first_column,(SeExprlsp[-3]).first_column,VarNode, (SeExprvsp[-3].s));
                                KSeExpr::ExprNode* opNode=NODE3((SeExprlsp[-1]).first_column,(SeExprlsp[-1]).first_column,BinaryOpNode,varNode,(SeExprvsp[-1].n),'/');
                                 (SeExprval.n) = NODE2((SeExprloc).first_column,(SeExprloc).last_column,AssignNode, (SeExprvsp[-3].s), opNode);free((SeExprvsp[-3].s));}
@@ -1935,7 +1935,7 @@ SeExprreduce:
     break;
 
   case 44:
-#line 267 "@@PATH@@src/KSeExpr/ExprParser.y"
+#line 267 "@@PATH@@/src/KSeExpr/ExprParser.y"
                                     {KSeExpr::ExprNode* varNode=NODE1((SeExprlsp[-3]).first_column,(SeExprlsp[-3]).first_column,VarNode, (SeExprvsp[-3].s));
                                KSeExpr::ExprNode* opNode=NODE3((SeExprlsp[-1]).first_column,(SeExprlsp[-1]).first_column,BinaryOpNode,varNode,(SeExprvsp[-1].n),'^');
                                 (SeExprval.n) = NODE2((SeExprloc).first_column,(SeExprloc).last_column,AssignNode, (SeExprvsp[-3].s), opNode);free((SeExprvsp[-3].s));}
@@ -1943,7 +1943,7 @@ SeExprreduce:
     break;
 
   case 45:
-#line 270 "@@PATH@@src/KSeExpr/ExprParser.y"
+#line 270 "@@PATH@@/src/KSeExpr/ExprParser.y"
                                     {KSeExpr::ExprNode* varNode=NODE1((SeExprlsp[-3]).first_column,(SeExprlsp[-3]).first_column,VarNode, (SeExprvsp[-3].s));
                                KSeExpr::ExprNode* opNode=NODE3((SeExprlsp[-1]).first_column,(SeExprlsp[-1]).first_column,BinaryOpNode,varNode,(SeExprvsp[-1].n),'%');
                                 (SeExprval.n) = NODE2((SeExprloc).first_column,(SeExprloc).last_column,AssignNode, (SeExprvsp[-3].s), opNode);free((SeExprvsp[-3].s));}
@@ -1951,163 +1951,163 @@ SeExprreduce:
     break;
 
   case 46:
-#line 277 "@@PATH@@src/KSeExpr/ExprParser.y"
+#line 277 "@@PATH@@/src/KSeExpr/ExprParser.y"
                                 { (SeExprval.n) = NODE3((SeExprloc).first_column,(SeExprloc).last_column,IfThenElseNode, (SeExprvsp[-5].n), (SeExprvsp[-2].n), (SeExprvsp[0].n)); }
 #line 1957 "y.tab.c"
     break;
 
   case 47:
-#line 281 "@@PATH@@src/KSeExpr/ExprParser.y"
+#line 281 "@@PATH@@/src/KSeExpr/ExprParser.y"
                                 { (SeExprval.n) = NODE((SeExprloc).first_column,(SeExprloc).last_column,Node); /* create empty node */ }
 #line 1963 "y.tab.c"
     break;
 
   case 48:
-#line 282 "@@PATH@@src/KSeExpr/ExprParser.y"
+#line 282 "@@PATH@@/src/KSeExpr/ExprParser.y"
                                 { (SeExprval.n) = (SeExprvsp[-1].n); }
 #line 1969 "y.tab.c"
     break;
 
   case 49:
-#line 283 "@@PATH@@src/KSeExpr/ExprParser.y"
+#line 283 "@@PATH@@/src/KSeExpr/ExprParser.y"
                                 { (SeExprval.n) = (SeExprvsp[0].n); }
 #line 1975 "y.tab.c"
     break;
 
   case 50:
-#line 288 "@@PATH@@src/KSeExpr/ExprParser.y"
+#line 288 "@@PATH@@/src/KSeExpr/ExprParser.y"
                                 { (SeExprval.n) = (SeExprvsp[-1].n); }
 #line 1981 "y.tab.c"
     break;
 
   case 51:
-#line 289 "@@PATH@@src/KSeExpr/ExprParser.y"
+#line 289 "@@PATH@@/src/KSeExpr/ExprParser.y"
                                 { KSeExpr::ExprNode* newNode = NODE((SeExprloc).first_column,(SeExprloc).last_column,VecNode); newNode->addChildren((SeExprvsp[-1].n)); Forget((SeExprvsp[-1].n)); (SeExprval.n)=newNode;}
 #line 1987 "y.tab.c"
     break;
 
   case 52:
-#line 290 "@@PATH@@src/KSeExpr/ExprParser.y"
+#line 290 "@@PATH@@/src/KSeExpr/ExprParser.y"
                                 { (SeExprval.n) = NODE2((SeExprloc).first_column,(SeExprloc).last_column,SubscriptNode, (SeExprvsp[-3].n), (SeExprvsp[-1].n)); }
 #line 1993 "y.tab.c"
     break;
 
   case 53:
-#line 291 "@@PATH@@src/KSeExpr/ExprParser.y"
+#line 291 "@@PATH@@/src/KSeExpr/ExprParser.y"
                                 { (SeExprval.n) = NODE3((SeExprloc).first_column,(SeExprloc).last_column,CondNode, (SeExprvsp[-4].n), (SeExprvsp[-2].n), (SeExprvsp[0].n)); }
 #line 1999 "y.tab.c"
     break;
 
   case 54:
-#line 292 "@@PATH@@src/KSeExpr/ExprParser.y"
+#line 292 "@@PATH@@/src/KSeExpr/ExprParser.y"
                                 { (SeExprval.n) = NODE3((SeExprloc).first_column,(SeExprloc).last_column,CompareNode, (SeExprvsp[-2].n), (SeExprvsp[0].n), '|'); }
 #line 2005 "y.tab.c"
     break;
 
   case 55:
-#line 293 "@@PATH@@src/KSeExpr/ExprParser.y"
+#line 293 "@@PATH@@/src/KSeExpr/ExprParser.y"
                                 { (SeExprval.n) = NODE3((SeExprloc).first_column,(SeExprloc).last_column,CompareNode, (SeExprvsp[-2].n), (SeExprvsp[0].n), '&'); }
 #line 2011 "y.tab.c"
     break;
 
   case 56:
-#line 294 "@@PATH@@src/KSeExpr/ExprParser.y"
+#line 294 "@@PATH@@/src/KSeExpr/ExprParser.y"
                                 { (SeExprval.n) = NODE3((SeExprloc).first_column,(SeExprloc).last_column,CompareEqNode, (SeExprvsp[-2].n), (SeExprvsp[0].n),'='); }
 #line 2017 "y.tab.c"
     break;
 
   case 57:
-#line 295 "@@PATH@@src/KSeExpr/ExprParser.y"
+#line 295 "@@PATH@@/src/KSeExpr/ExprParser.y"
                                 { (SeExprval.n) = NODE3((SeExprloc).first_column,(SeExprloc).last_column,CompareEqNode, (SeExprvsp[-2].n), (SeExprvsp[0].n),'!'); }
 #line 2023 "y.tab.c"
     break;
 
   case 58:
-#line 296 "@@PATH@@src/KSeExpr/ExprParser.y"
+#line 296 "@@PATH@@/src/KSeExpr/ExprParser.y"
                                 { (SeExprval.n) = NODE3((SeExprloc).first_column,(SeExprloc).last_column,CompareNode, (SeExprvsp[-2].n), (SeExprvsp[0].n),'<'); }
 #line 2029 "y.tab.c"
     break;
 
   case 59:
-#line 297 "@@PATH@@src/KSeExpr/ExprParser.y"
+#line 297 "@@PATH@@/src/KSeExpr/ExprParser.y"
                                 { (SeExprval.n) = NODE3((SeExprloc).first_column,(SeExprloc).last_column,CompareNode, (SeExprvsp[-2].n), (SeExprvsp[0].n),'>'); }
 #line 2035 "y.tab.c"
     break;
 
   case 60:
-#line 298 "@@PATH@@src/KSeExpr/ExprParser.y"
+#line 298 "@@PATH@@/src/KSeExpr/ExprParser.y"
                                         { (SeExprval.n) = NODE3((SeExprloc).first_column,(SeExprloc).last_column,CompareNode, (SeExprvsp[-2].n), (SeExprvsp[0].n),'l'); }
 #line 2041 "y.tab.c"
     break;
 
   case 61:
-#line 299 "@@PATH@@src/KSeExpr/ExprParser.y"
+#line 299 "@@PATH@@/src/KSeExpr/ExprParser.y"
                                         { (SeExprval.n) = NODE3((SeExprloc).first_column,(SeExprloc).last_column,CompareNode, (SeExprvsp[-2].n), (SeExprvsp[0].n),'g'); }
 #line 2047 "y.tab.c"
     break;
 
   case 62:
-#line 300 "@@PATH@@src/KSeExpr/ExprParser.y"
+#line 300 "@@PATH@@/src/KSeExpr/ExprParser.y"
                                 { (SeExprval.n) = (SeExprvsp[0].n); }
 #line 2053 "y.tab.c"
     break;
 
   case 63:
-#line 301 "@@PATH@@src/KSeExpr/ExprParser.y"
+#line 301 "@@PATH@@/src/KSeExpr/ExprParser.y"
                                 { (SeExprval.n) = NODE2((SeExprloc).first_column,(SeExprloc).last_column,UnaryOpNode, (SeExprvsp[0].n), '-'); }
 #line 2059 "y.tab.c"
     break;
 
   case 64:
-#line 302 "@@PATH@@src/KSeExpr/ExprParser.y"
+#line 302 "@@PATH@@/src/KSeExpr/ExprParser.y"
                                 { (SeExprval.n) = NODE2((SeExprloc).first_column,(SeExprloc).last_column,UnaryOpNode, (SeExprvsp[0].n), '!'); }
 #line 2065 "y.tab.c"
     break;
 
   case 65:
-#line 303 "@@PATH@@src/KSeExpr/ExprParser.y"
+#line 303 "@@PATH@@/src/KSeExpr/ExprParser.y"
                                 { (SeExprval.n) = NODE2((SeExprloc).first_column,(SeExprloc).last_column,UnaryOpNode, (SeExprvsp[0].n), '~'); }
 #line 2071 "y.tab.c"
     break;
 
   case 66:
-#line 304 "@@PATH@@src/KSeExpr/ExprParser.y"
+#line 304 "@@PATH@@/src/KSeExpr/ExprParser.y"
                                 { (SeExprval.n) = NODE3((SeExprloc).first_column,(SeExprloc).last_column,BinaryOpNode, (SeExprvsp[-2].n), (SeExprvsp[0].n), '+'); }
 #line 2077 "y.tab.c"
     break;
 
   case 67:
-#line 305 "@@PATH@@src/KSeExpr/ExprParser.y"
+#line 305 "@@PATH@@/src/KSeExpr/ExprParser.y"
                                 { (SeExprval.n) = NODE3((SeExprloc).first_column,(SeExprloc).last_column,BinaryOpNode, (SeExprvsp[-2].n), (SeExprvsp[0].n), '-'); }
 #line 2083 "y.tab.c"
     break;
 
   case 68:
-#line 306 "@@PATH@@src/KSeExpr/ExprParser.y"
+#line 306 "@@PATH@@/src/KSeExpr/ExprParser.y"
                                 { (SeExprval.n) = NODE3((SeExprloc).first_column,(SeExprloc).last_column,BinaryOpNode, (SeExprvsp[-2].n), (SeExprvsp[0].n), '*'); }
 #line 2089 "y.tab.c"
     break;
 
   case 69:
-#line 307 "@@PATH@@src/KSeExpr/ExprParser.y"
+#line 307 "@@PATH@@/src/KSeExpr/ExprParser.y"
                                 { (SeExprval.n) = NODE3((SeExprloc).first_column,(SeExprloc).last_column,BinaryOpNode, (SeExprvsp[-2].n), (SeExprvsp[0].n), '/'); }
 #line 2095 "y.tab.c"
     break;
 
   case 70:
-#line 308 "@@PATH@@src/KSeExpr/ExprParser.y"
+#line 308 "@@PATH@@/src/KSeExpr/ExprParser.y"
                                 { (SeExprval.n) = NODE3((SeExprloc).first_column,(SeExprloc).last_column,BinaryOpNode, (SeExprvsp[-2].n), (SeExprvsp[0].n), '%'); }
 #line 2101 "y.tab.c"
     break;
 
   case 71:
-#line 309 "@@PATH@@src/KSeExpr/ExprParser.y"
+#line 309 "@@PATH@@/src/KSeExpr/ExprParser.y"
                                 { (SeExprval.n) = NODE3((SeExprloc).first_column,(SeExprloc).last_column,BinaryOpNode, (SeExprvsp[-2].n), (SeExprvsp[0].n), '^'); }
 #line 2107 "y.tab.c"
     break;
 
   case 72:
-#line 310 "@@PATH@@src/KSeExpr/ExprParser.y"
+#line 310 "@@PATH@@/src/KSeExpr/ExprParser.y"
                                 { (SeExprval.n) = NODE1((SeExprloc).first_column,(SeExprloc).last_column,FuncNode, (SeExprvsp[-3].s));
 				  free((SeExprvsp[-3].s)); // free name string
 				  // add args directly and discard arg list node
@@ -2116,7 +2116,7 @@ SeExprreduce:
     break;
 
   case 73:
-#line 315 "@@PATH@@src/KSeExpr/ExprParser.y"
+#line 315 "@@PATH@@/src/KSeExpr/ExprParser.y"
                                 { (SeExprval.n) = NODE1((SeExprloc).first_column,(SeExprloc).last_column,FuncNode, (SeExprvsp[-3].s));
 				  free((SeExprvsp[-3].s)); // free name string
 				  (SeExprval.n)->addChild((SeExprvsp[-5].n));
@@ -2126,68 +2126,68 @@ SeExprreduce:
     break;
 
   case 74:
-#line 320 "@@PATH@@src/KSeExpr/ExprParser.y"
+#line 320 "@@PATH@@/src/KSeExpr/ExprParser.y"
                                 { (SeExprval.n) = NODE1((SeExprloc).first_column,(SeExprloc).last_column,VarNode, (SeExprvsp[0].s)); free((SeExprvsp[0].s)); /* free name string */ }
 #line 2132 "y.tab.c"
     break;
 
   case 75:
-#line 321 "@@PATH@@src/KSeExpr/ExprParser.y"
+#line 321 "@@PATH@@/src/KSeExpr/ExprParser.y"
                                 { (SeExprval.n) = NODE1((SeExprloc).first_column,(SeExprloc).last_column,VarNode, (SeExprvsp[0].s)); free((SeExprvsp[0].s)); /* free name string */ }
 #line 2138 "y.tab.c"
     break;
 
   case 76:
-#line 322 "@@PATH@@src/KSeExpr/ExprParser.y"
+#line 322 "@@PATH@@/src/KSeExpr/ExprParser.y"
                                 { (SeExprval.n) = NODE1((SeExprloc).first_column,(SeExprloc).last_column,NumNode, (SeExprvsp[0].d)); /*printf("line %d",@$.last_column);*/}
 #line 2144 "y.tab.c"
     break;
 
   case 77:
-#line 323 "@@PATH@@src/KSeExpr/ExprParser.y"
+#line 323 "@@PATH@@/src/KSeExpr/ExprParser.y"
                                 { (SeExprval.n) = NODE1((SeExprloc).first_column,(SeExprloc).last_column,StrNode, (SeExprvsp[0].s)); free((SeExprvsp[0].s)); /* free string */}
 #line 2150 "y.tab.c"
     break;
 
   case 78:
-#line 327 "@@PATH@@src/KSeExpr/ExprParser.y"
+#line 327 "@@PATH@@/src/KSeExpr/ExprParser.y"
                                 { (SeExprval.n) = NODE1((SeExprloc).first_column,(SeExprloc).last_column,Node,(SeExprvsp[0].n)); }
 #line 2156 "y.tab.c"
     break;
 
   case 79:
-#line 328 "@@PATH@@src/KSeExpr/ExprParser.y"
+#line 328 "@@PATH@@/src/KSeExpr/ExprParser.y"
                                 { (SeExprval.n) = (SeExprvsp[-2].n);
                                   (SeExprvsp[-2].n)->addChild((SeExprvsp[0].n)); }
 #line 2163 "y.tab.c"
     break;
 
   case 80:
-#line 334 "@@PATH@@src/KSeExpr/ExprParser.y"
+#line 334 "@@PATH@@/src/KSeExpr/ExprParser.y"
                                 { (SeExprval.n) = NODE((SeExprloc).first_column,(SeExprloc).last_column,Node); /* create empty node */}
 #line 2169 "y.tab.c"
     break;
 
   case 81:
-#line 335 "@@PATH@@src/KSeExpr/ExprParser.y"
+#line 335 "@@PATH@@/src/KSeExpr/ExprParser.y"
                                 { (SeExprval.n) = (SeExprvsp[0].n); }
 #line 2175 "y.tab.c"
     break;
 
   case 82:
-#line 340 "@@PATH@@src/KSeExpr/ExprParser.y"
+#line 340 "@@PATH@@/src/KSeExpr/ExprParser.y"
                                 { (SeExprval.n) = NODE1((SeExprloc).first_column,(SeExprloc).last_column,Node, (SeExprvsp[0].n)); /* create arg list */}
 #line 2181 "y.tab.c"
     break;
 
   case 83:
-#line 341 "@@PATH@@src/KSeExpr/ExprParser.y"
+#line 341 "@@PATH@@/src/KSeExpr/ExprParser.y"
                                 { (SeExprval.n) = (SeExprvsp[-2].n); (SeExprvsp[-2].n)->addChild((SeExprvsp[0].n)); /* add to list */}
 #line 2187 "y.tab.c"
     break;
 
   case 84:
-#line 345 "@@PATH@@src/KSeExpr/ExprParser.y"
+#line 345 "@@PATH@@/src/KSeExpr/ExprParser.y"
                                 { (SeExprval.n) = (SeExprvsp[0].n); }
 #line 2193 "y.tab.c"
     break;
@@ -2392,7 +2392,7 @@ SeExprreturn:
   return SeExprresult;
 }
 
-#line 348 "@@PATH@@src/KSeExpr/ExprParser.y"
+#line 348 "@@PATH@@/src/KSeExpr/ExprParser.y"
 
 
       /* SeExprerror - Report an error.  This is called by the parser.

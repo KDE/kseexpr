@@ -585,7 +585,6 @@ char *yytext;
 #define register      // Deprecated in C++11.
 #endif  // #if __cplusplus > 199711L
 
-#include "Platform.h"
 #include "ExprParser.h"
 #include "ExprNode.h"
 #include "Expression.h"

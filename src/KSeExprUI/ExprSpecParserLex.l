@@ -15,13 +15,10 @@
 %option never-interactive
 
 %{
-#ifndef MAKEDEPEND
-#    include <ctype.h>
-#    include <string.h>
-#    include <string>
-#define _USE_MATH_DEFINES
-#    include <math.h>
-#endif
+#include <cctype>
+#include <cstring>
+#include <cmath>
+#include <vector>
 
 // If c++11 don't use register designator, lex and yacc need to go...
 #if __cplusplus > 199711L

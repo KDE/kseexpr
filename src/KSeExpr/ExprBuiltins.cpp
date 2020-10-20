@@ -17,7 +17,6 @@
 #include "Vec.h"
 #include "Curve.h"
 #include "ExprBuiltins.h"
-#include "Platform.h"
 #include "Noise.h"
 #include "Interpreter.h"
 
@@ -1777,13 +1776,13 @@ public:
             const std::string& spec = result.substr(specStart, specEnd - specStart + 1);
             int fragLen = -1;
             if (std::string::npos != _intSpec.find(result[specEnd]))
-                fragLen = SEEXPR2_snprintf(fragment, 255, spec.c_str(), 
+                fragLen = snprintf(fragment, 255, spec.c_str(), 
                                    int(args.inFp<1>(exprArg++)[0]));
             else if (std::string::npos != _doubleSpec.find(result[specEnd]))
-                fragLen = SEEXPR2_snprintf(fragment, 255, spec.c_str(), 
+                fragLen = snprintf(fragment, 255, spec.c_str(), 
                                    args.inFp<1>(exprArg++)[0]);
             else if (std::string::npos != _strSpec.find(result[specEnd]))
-                fragLen = SEEXPR2_snprintf(fragment, 255, spec.c_str(), 
+                fragLen = snprintf(fragment, 255, spec.c_str(), 
                                    args.inStr(exprArg++));
             assert(fragLen >= 0);
 

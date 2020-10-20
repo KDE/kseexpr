@@ -26,7 +26,6 @@ set(KSeExpr_HEADERS
         Interpreter.h
         Noise.h
         NoiseTables.h
-        Platform.h
         PerformanceTimer.h
         StringUtils.h
         Timer.h

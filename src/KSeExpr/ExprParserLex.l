@@ -11,21 +11,20 @@
 %option nounput
 /* Don't generate input since it's unused too -- amyspark */
 %option noinput
+/* Don't worry about interactive and using isatty(). Fixes Windows compile. */
+%option never-interactive
+
 %{
-#ifndef MAKEDEPEND
-#    include <ctype.h>
-#    include <string.h>
-#    include <string>
-#    include <math.h>
-#    include <vector>
-#endif
+#include <cctype>
+#include <cstring>
+#include <cmath>
+#include <vector>
 
 // If c++11 don't use register designator, lex and yacc need to go...
 #if __cplusplus > 199711L
 #define register      // Deprecated in C++11.
 #endif  // #if __cplusplus > 199711L
 
-#include "Platform.h"
 #include "ExprParser.h"
 #include "ExprNode.h"
 #include "Expression.h"

@@ -10,7 +10,6 @@
 #include <iostream>
 #include <numeric>
 
-#include "Platform.h"
 
 //#############################################################################
 // Template Metaprogramming Helpers

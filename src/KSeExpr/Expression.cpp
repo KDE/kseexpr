@@ -18,7 +18,6 @@
 #include "Expression.h"
 #include "ExprType.h"
 #include "ExprEnv.h"
-#include "Platform.h"
 
 #include "Evaluator.h"
 #include "ExprWalker.h"

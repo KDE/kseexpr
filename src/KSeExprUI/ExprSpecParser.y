@@ -13,7 +13,6 @@
 #include <cstring>
 #include <typeinfo>
 #include <mutex>
-#include <KSeExpr/Platform.h>
 #include "ExprSpecType.h"
 #include "Editable.h"
 #include "Debug.h"

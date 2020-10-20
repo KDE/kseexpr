@@ -7,7 +7,6 @@
 #define ExprBuiltins_h
 
 #include "ExprFunc.h"
-#include "Platform.h"
 
 /// Translation macros - for UI extraction
 /// These macros *need* a context for lupdate to not complain

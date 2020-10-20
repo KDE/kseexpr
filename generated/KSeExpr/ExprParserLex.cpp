@@ -562,7 +562,7 @@ int SeExpr_flex_debug = 0;
 #define SeExprYY_MORE_ADJ 0
 #define SeExprYY_RESTORE_SeExprYY_MORE_OFFSET
 char *SeExprtext;
-#line 1 "@@PATH@@src/KSeExpr/ExprParserLex.l"
+#line 1 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
 /**
  * SPDX-FileCopyrightText: 2011-2019 Disney Enterprises, Inc.
  * SPDX-License-Identifier: LicenseRef-Apache-2.0
@@ -573,21 +573,18 @@ char *SeExprtext;
 /* Don't generate unput since it's unused and gcc complains... */
 /* Don't generate input since it's unused too -- amyspark */
 #define SeExprYY_NO_INPUT 1
-#line 15 "@@PATH@@src/KSeExpr/ExprParserLex.l"
-#ifndef MAKEDEPEND
-#    include <ctype.h>
-#    include <string.h>
-#    include <string>
-#    include <math.h>
-#    include <vector>
-#endif
+/* Don't worry about interactive and using isatty(). Fixes Windows compile. */
+#line 18 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
+#include <cctype>
+#include <cstring>
+#include <cmath>
+#include <vector>
 
 // If c++11 don't use register designator, lex and yacc need to go...
 #if __cplusplus > 199711L
 #define register      // Deprecated in C++11.
 #endif  // #if __cplusplus > 199711L
 
-#include "Platform.h"
 #include "ExprParser.h"
 #include "ExprNode.h"
 #include "Expression.h"
@@ -619,8 +616,8 @@ int SeExprpos();
     columnNumber+=SeExprleng;\
     SeExprlloc.last_column=columnNumber;SeExprlloc.last_line=lineNumber;}
 
-#line 622 "ExprParserLexIn.cpp"
-#line 623 "ExprParserLexIn.cpp"
+#line 619 "ExprParserLexIn.cpp"
+#line 620 "ExprParserLexIn.cpp"
 
 #define INITIAL 0
 
@@ -835,9 +832,9 @@ SeExprYY_DECL
 		}
 
 	{
-#line 67 "@@PATH@@src/KSeExpr/ExprParserLex.l"
+#line 66 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
 
-#line 840 "ExprParserLexIn.cpp"
+#line 837 "ExprParserLexIn.cpp"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -870,16 +867,12 @@ SeExpr_match:
 			SeExpr_current_state = SeExpr_nxt[SeExpr_base[SeExpr_current_state] + SeExpr_c];
 			++SeExpr_cp;
 			}
-		while ( SeExpr_base[SeExpr_current_state] != 246 );
+		while ( SeExpr_current_state != 159 );
+		SeExpr_cp = (SeExpr_last_accepting_cpos);
+		SeExpr_current_state = (SeExpr_last_accepting_state);
 
 SeExpr_find_action:
 		SeExpr_act = SeExpr_accept[SeExpr_current_state];
-		if ( SeExpr_act == 0 )
-			{ /* have to back up */
-			SeExpr_cp = (SeExpr_last_accepting_cpos);
-			SeExpr_current_state = (SeExpr_last_accepting_state);
-			SeExpr_act = SeExpr_accept[SeExpr_current_state];
-			}
 
 		SeExprYY_DO_BEFORE_ACTION;
 
@@ -896,162 +889,162 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 SeExprYY_RULE_SETUP
-#line 68 "@@PATH@@src/KSeExpr/ExprParserLex.l"
+#line 67 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
 
 	SeExprYY_BREAK
 case 2:
 SeExprYY_RULE_SETUP
-#line 70 "@@PATH@@src/KSeExpr/ExprParserLex.l"
+#line 69 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
 { return EXTERN; }
 	SeExprYY_BREAK
 case 3:
 SeExprYY_RULE_SETUP
-#line 71 "@@PATH@@src/KSeExpr/ExprParserLex.l"
+#line 70 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
 { return DEF; }
 	SeExprYY_BREAK
 case 4:
 SeExprYY_RULE_SETUP
-#line 72 "@@PATH@@src/KSeExpr/ExprParserLex.l"
+#line 71 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
 { return FLOATPOINT; }
 	SeExprYY_BREAK
 case 5:
 SeExprYY_RULE_SETUP
-#line 73 "@@PATH@@src/KSeExpr/ExprParserLex.l"
+#line 72 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
 { return STRING; }
 	SeExprYY_BREAK
 case 6:
 SeExprYY_RULE_SETUP
-#line 74 "@@PATH@@src/KSeExpr/ExprParserLex.l"
+#line 73 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
 { return LIFETIME_CONSTANT; }
 	SeExprYY_BREAK
 case 7:
 SeExprYY_RULE_SETUP
-#line 75 "@@PATH@@src/KSeExpr/ExprParserLex.l"
+#line 74 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
 { return LIFETIME_UNIFORM; }
 	SeExprYY_BREAK
 case 8:
 SeExprYY_RULE_SETUP
-#line 76 "@@PATH@@src/KSeExpr/ExprParserLex.l"
+#line 75 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
 { return LIFETIME_VARYING; }
 	SeExprYY_BREAK
 case 9:
 SeExprYY_RULE_SETUP
-#line 77 "@@PATH@@src/KSeExpr/ExprParserLex.l"
+#line 76 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
 { return LIFETIME_ERROR; }
 	SeExprYY_BREAK
 case 10:
 SeExprYY_RULE_SETUP
-#line 79 "@@PATH@@src/KSeExpr/ExprParserLex.l"
+#line 78 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
 { return IF; }
 	SeExprYY_BREAK
 case 11:
 SeExprYY_RULE_SETUP
-#line 80 "@@PATH@@src/KSeExpr/ExprParserLex.l"
+#line 79 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
 { return ELSE; }
 	SeExprYY_BREAK
 case 12:
 SeExprYY_RULE_SETUP
-#line 82 "@@PATH@@src/KSeExpr/ExprParserLex.l"
+#line 81 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
 { return OR; }
 	SeExprYY_BREAK
 case 13:
 SeExprYY_RULE_SETUP
-#line 83 "@@PATH@@src/KSeExpr/ExprParserLex.l"
+#line 82 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
 { return AND; }
 	SeExprYY_BREAK
 case 14:
 SeExprYY_RULE_SETUP
-#line 84 "@@PATH@@src/KSeExpr/ExprParserLex.l"
+#line 83 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
 { return EQ; }
 	SeExprYY_BREAK
 case 15:
 SeExprYY_RULE_SETUP
-#line 85 "@@PATH@@src/KSeExpr/ExprParserLex.l"
+#line 84 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
 { return NE; }
 	SeExprYY_BREAK
 case 16:
 SeExprYY_RULE_SETUP
-#line 86 "@@PATH@@src/KSeExpr/ExprParserLex.l"
+#line 85 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
 { return SEEXPR_LE; }
 	SeExprYY_BREAK
 case 17:
 SeExprYY_RULE_SETUP
-#line 87 "@@PATH@@src/KSeExpr/ExprParserLex.l"
+#line 86 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
 { return SEEXPR_GE; }
 	SeExprYY_BREAK
 case 18:
 SeExprYY_RULE_SETUP
-#line 88 "@@PATH@@src/KSeExpr/ExprParserLex.l"
+#line 87 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
 { return ARROW; }
 	SeExprYY_BREAK
 case 19:
 SeExprYY_RULE_SETUP
-#line 89 "@@PATH@@src/KSeExpr/ExprParserLex.l"
+#line 88 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
 { return AddEq; }
 	SeExprYY_BREAK
 case 20:
 SeExprYY_RULE_SETUP
-#line 90 "@@PATH@@src/KSeExpr/ExprParserLex.l"
+#line 89 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
 { return SubEq; }
 	SeExprYY_BREAK
 case 21:
 SeExprYY_RULE_SETUP
-#line 91 "@@PATH@@src/KSeExpr/ExprParserLex.l"
+#line 90 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
 { return MultEq; }
 	SeExprYY_BREAK
 case 22:
 SeExprYY_RULE_SETUP
-#line 92 "@@PATH@@src/KSeExpr/ExprParserLex.l"
+#line 91 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
 { return DivEq; }
 	SeExprYY_BREAK
 case 23:
 SeExprYY_RULE_SETUP
-#line 93 "@@PATH@@src/KSeExpr/ExprParserLex.l"
+#line 92 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
 { return ModEq; }
 	SeExprYY_BREAK
 case 24:
 SeExprYY_RULE_SETUP
-#line 94 "@@PATH@@src/KSeExpr/ExprParserLex.l"
+#line 93 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
 { return ExpEq; }
 	SeExprYY_BREAK
 case 25:
 SeExprYY_RULE_SETUP
-#line 96 "@@PATH@@src/KSeExpr/ExprParserLex.l"
+#line 95 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
 { SeExprlval.d = M_PI; return NUMBER; }
 	SeExprYY_BREAK
 case 26:
 SeExprYY_RULE_SETUP
-#line 97 "@@PATH@@src/KSeExpr/ExprParserLex.l"
+#line 96 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
 { SeExprlval.d = M_E; return NUMBER; }
 	SeExprYY_BREAK
 case 27:
 SeExprYY_RULE_SETUP
-#line 98 "@@PATH@@src/KSeExpr/ExprParserLex.l"
+#line 97 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
 { SeExprlval.d = 0; return NUMBER; }
 	SeExprYY_BREAK
 case 28:
 SeExprYY_RULE_SETUP
-#line 99 "@@PATH@@src/KSeExpr/ExprParserLex.l"
+#line 98 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
 { SeExprlval.d = 1; return NUMBER; }
 	SeExprYY_BREAK
 case 29:
 SeExprYY_RULE_SETUP
-#line 100 "@@PATH@@src/KSeExpr/ExprParserLex.l"
+#line 99 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
 { SeExprlval.d = 2; return NUMBER; }
 	SeExprYY_BREAK
 case 30:
 SeExprYY_RULE_SETUP
-#line 101 "@@PATH@@src/KSeExpr/ExprParserLex.l"
+#line 100 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
 { SeExprlval.d = 3; return NUMBER; }
 	SeExprYY_BREAK
 case 31:
 SeExprYY_RULE_SETUP
-#line 103 "@@PATH@@src/KSeExpr/ExprParserLex.l"
+#line 102 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
 { SeExprlval.d = KSeExpr::Utils::atof(SeExprtext); return NUMBER; }
 	SeExprYY_BREAK
 case 32:
 SeExprYY_RULE_SETUP
-#line 104 "@@PATH@@src/KSeExpr/ExprParserLex.l"
+#line 103 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
 { /* match quoted string, allow embedded quote, \" */
 			  SeExprlval.s = strdup(&SeExprtext[1]);
 			  SeExprlval.s[strlen(SeExprlval.s)-1] = '\0';
@@ -1059,7 +1052,7 @@ SeExprYY_RULE_SETUP
 	SeExprYY_BREAK
 case 33:
 SeExprYY_RULE_SETUP
-#line 108 "@@PATH@@src/KSeExpr/ExprParserLex.l"
+#line 107 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
 { /* match quoted string, allow embedded quote, \' */
 			  SeExprlval.s = strdup(&SeExprtext[1]);
 			  SeExprlval.s[strlen(SeExprlval.s)-1] = '\0';
@@ -1067,53 +1060,53 @@ SeExprYY_RULE_SETUP
 	SeExprYY_BREAK
 case 34:
 SeExprYY_RULE_SETUP
-#line 112 "@@PATH@@src/KSeExpr/ExprParserLex.l"
+#line 111 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
 { SeExprlval.s = strdup(&SeExprtext[1]); return VAR; }
 	SeExprYY_BREAK
 case 35:
 SeExprYY_RULE_SETUP
-#line 113 "@@PATH@@src/KSeExpr/ExprParserLex.l"
+#line 112 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
 { SeExprlval.s = strdup(&SeExprtext[1]); return VAR; }
 	SeExprYY_BREAK
 case 36:
 SeExprYY_RULE_SETUP
-#line 114 "@@PATH@@src/KSeExpr/ExprParserLex.l"
+#line 113 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
 { SeExprlval.s = strdup(SeExprtext); return NAME; }
 	SeExprYY_BREAK
 case 37:
 SeExprYY_RULE_SETUP
-#line 116 "@@PATH@@src/KSeExpr/ExprParserLex.l"
+#line 115 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
 /* ignore quoted newline */;
 	SeExprYY_BREAK
 case 38:
 SeExprYY_RULE_SETUP
-#line 117 "@@PATH@@src/KSeExpr/ExprParserLex.l"
+#line 116 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
 /* ignore quoted tab */;
 	SeExprYY_BREAK
 case 39:
 /* rule 39 can match eol */
 SeExprYY_RULE_SETUP
-#line 118 "@@PATH@@src/KSeExpr/ExprParserLex.l"
+#line 117 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
 /* ignore whitespace */;
 	SeExprYY_BREAK
 case 40:
 SeExprYY_RULE_SETUP
-#line 119 "@@PATH@@src/KSeExpr/ExprParserLex.l"
+#line 118 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
 { /* match comment */
                          int startPos=SeExprpos(),endPos=SeExprpos()+strlen(&SeExprtext[1])+1;
 			  comments->push_back(std::pair<int,int>(startPos,endPos));}
 	SeExprYY_BREAK
 case 41:
 SeExprYY_RULE_SETUP
-#line 123 "@@PATH@@src/KSeExpr/ExprParserLex.l"
+#line 122 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
 { return SeExprtext[0]; }
 	SeExprYY_BREAK
 case 42:
 SeExprYY_RULE_SETUP
-#line 125 "@@PATH@@src/KSeExpr/ExprParserLex.l"
+#line 124 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
 ECHO;
 	SeExprYY_BREAK
-#line 1116 "ExprParserLexIn.cpp"
+#line 1109 "ExprParserLexIn.cpp"
 case SeExprYY_STATE_EOF(INITIAL):
 	SeExprterminate();
 
@@ -1180,7 +1173,8 @@ case SeExprYY_STATE_EOF(INITIAL):
 
 			else
 				{
-				SeExpr_cp = (SeExpr_c_buf_p);
+				SeExpr_cp = (SeExpr_last_accepting_cpos);
+				SeExpr_current_state = (SeExpr_last_accepting_state);
 				goto SeExpr_find_action;
 				}
 			}
@@ -1658,7 +1652,7 @@ static void SeExpr_load_buffer_state  (void)
         b->SeExpr_bs_column = 0;
     }
 
-        b->SeExpr_is_interactive = file ? (isatty( fileno(file) ) > 0) : 0;
+        b->SeExpr_is_interactive = 0;
     
 	errno = oerrno;
 }
@@ -2081,7 +2075,7 @@ void SeExprfree (void * ptr )
 
 #define SeExprYYTABLES_NAME "SeExprtables"
 
-#line 125 "@@PATH@@src/KSeExpr/ExprParserLex.l"
+#line 124 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
 
 
 /* Gets index of current token (corresponding to SeExprtext).
