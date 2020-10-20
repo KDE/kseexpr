@@ -1860,13 +1860,11 @@ void defineBuiltins(ExprFunc::Define define, ExprFunc::Define3 define3) {
     FUNCDOC(sqrt);
     FUNCDOC(tan);
     FUNCDOC(tanh);
-#ifndef SEEXPR_WIN32
     FUNCDOC(cbrt);
     FUNCDOC(asinh);
     FUNCDOC(acosh);
     FUNCDOC(atanh);
     FUNCDOC(trunc);
-#endif
 // local functions (KSeExpr namespace)
 //#undef FUNC
 #undef FUNCDOC
