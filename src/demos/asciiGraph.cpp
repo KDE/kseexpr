@@ -6,8 +6,9 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 #include <KSeExpr/Expression.h>
-#include <cstdlib>
+#include <cassert>
 #include <cstdio>
+#include <cstdlib>
 #include <cstring>
 
 using namespace KSeExpr;
@@ -16,36 +17,55 @@ using namespace KSeExpr;
    @file asciiGraph.cpp
 */
 //! Simple expression class to support our function grapher
-class GrapherExpr : public Expression {
-  public:
+class GrapherExpr : public Expression
+{
+public:
     //! Constructor that takes the expression to parse
-    GrapherExpr(const std::string& expr) : Expression(expr) {}
+    GrapherExpr(const std::string &expr)
+        : Expression(expr)
+    {
+    }
 
     //! set the independent variable
-    void setX(double x_input) { x.val = x_input; }
+    void setX(double x_input)
+    {
+        x.val = x_input;
+    }
 
-  private:
+private:
     //! Simple variable that just returns its internal value
     struct SimpleVar : public ExprVarRef {
-        SimpleVar() : ExprVarRef(ExprType().FP(1).Varying()), val(0.0) {}
+        SimpleVar()
+            : ExprVarRef(ExprType().FP(1).Varying())
+        {
+        }
 
-        double val;  // independent variable
-        void eval(double* result) { result[0] = val; }
+        double val{0.0}; // independent variable
+        void eval(double *result) override
+        {
+            result[0] = val;
+        }
 
-        void eval(const char** result) {}
+        void eval(const char **) override
+        {
+            assert(false);
+        }
     };
 
     //! independent variable
     mutable SimpleVar x;
 
     //! resolve function that only supports one external variable 'x'
-    ExprVarRef* resolveVar(const std::string& name) const {
-        if (name == "x") return &x;
-        return 0;
+    ExprVarRef *resolveVar(const std::string &name) const override
+    {
+        if (name == "x")
+            return &x;
+        return nullptr;
     }
 };
 
-int main(int argc, char* argv[]) {
+int main(int argc, char *argv[])
+{
     std::string exprStr =
         "\
                          $val=.5*PI*x;\
@@ -60,25 +80,27 @@ int main(int argc, char* argv[]) {
         std::cerr << "expression failed " << expr.parseError() << std::endl;
         exit(1);
     } else if (!expr.returnType().isFP(1)) {
-        std::cerr << "Expected expression of type " << ExprType().FP(1).Varying().toString() << " got "
-                  << expr.returnType().toString() << std::endl;
+        std::cerr << "Expected expression of type " << ExprType().FP(1).Varying().toString() << " got " << expr.returnType().toString() << std::endl;
         exit(1);
     }
 
-    double xmin = -10, xmax = 10, ymin = -10, ymax = 10;
-    int w = 60, h = 30;
-    char* buffer = new char[w * h];
-    memset(buffer, (int)' ', w * h);
+    double xmin = -10; // NOLINT readability-magic-numbers
+    double xmax = 10;  // NOLINT readability-magic-numbers
+    double ymin = -10; // NOLINT readability-magic-numbers
+    double ymax = 10;  // NOLINT readability-magic-numbers
+    int w = 60;        // NOLINT readability-magic-numbers
+    int h = 30;        // NOLINT readability-magic-numbers
+    auto buffer = std::vector<char>(w * h, ' ');
 
     // draw x axis
-    int j_zero = (-ymin) / (ymax - ymin) * h;
+    int j_zero = static_cast<int>((-ymin) / (ymax - ymin) * h);
     if (j_zero >= 0 && j_zero < h) {
         for (int i = 0; i < w; i++) {
             buffer[i + j_zero * w] = '-';
         }
     }
     // draw y axis
-    int i_zero = (-xmin) / (xmax - xmin) * w;
+    int i_zero = static_cast<int>((-xmin) / (xmax - xmin) * w);
     if (i_zero >= 0 && i_zero < w) {
         for (int j = 0; j < h; j++) {
             buffer[i_zero + j * w] = '|';
@@ -95,15 +117,16 @@ int main(int argc, char* argv[]) {
             double x = double(dx + i) / double(w) * (xmax - xmin) + xmin;
             // prep the expression engine for evaluation
             expr.setX(x);
-            const double* val = expr.evalFP();
+            const double *val = expr.evalFP();
             // evaluate and pull scalar value - currently does not work
             // TODO: fix eval and then use actual call
             // Vec3d val=0.0;//expr.evaluate();
             double y = val[0];
             // transform from logical to device coordinate
-            int j = (y - ymin) / (ymax - ymin) * h;
+            int j = static_cast<int>((y - ymin) / (ymax - ymin) * h);
             // store to the buffer
-            if (j >= 0 && j < h) buffer[i + j * w] = '#';
+            if (j >= 0 && j < h)
+                buffer[i + j * w] = '#';
         }
     }
 
