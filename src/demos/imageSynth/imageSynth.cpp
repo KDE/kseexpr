@@ -6,61 +6,87 @@
 /**
    @file imageSynth.cpp
 */
-#include <map>
-#include <cstdlib>
 #include <cstdio>
+#include <cstdlib>
 #include <cstring>
-#include <png.h>
 #include <fstream>
+#include <map>
+#include <png.h>
+
 
 #include <KSeExpr/Expression.h>
 #include <KSeExpr/Interpreter.h>
 #include <KSeExpr/PerformanceTimer.h>
 
-namespace KSeExpr {
+namespace KSeExpr
+{
 //! Simple image synthesizer expression class to support our function grapher
-class ImageSynthExpr : public Expression {
-  public:
+class ImageSynthExpr : public Expression
+{
+public:
     //! Constructor that takes the expression to parse
-    ImageSynthExpr(const std::string& expr) : Expression(expr) {}
+    ImageSynthExpr(const std::string &expr)
+        : Expression(expr)
+    {
+    }
 
     //! Simple variable that just returns its internal value
     struct Var : public ExprVarRef {
-        Var(const double val) : ExprVarRef(ExprType().FP(1).Varying()), val(val) {}
+        Var(const double val)
+            : ExprVarRef(ExprType().FP(1).Varying())
+            , val(val)
+        {
+        }
 
-        Var() : ExprVarRef(ExprType().FP(1).Varying()), val(0.0) {}
+        Var()
+            : ExprVarRef(ExprType().FP(1).Varying())
+        {
+        }
 
-        double val;  // independent variable
-        void eval(double* result) { result[0] = val; }
+        double val {0.0}; // independent variable
+        void eval(double *result) override
+        {
+            result[0] = val;
+        }
 
-        void eval(const char** result) { assert(false); }
+        void eval(const char **) override
+        {
+            assert(false);
+        }
     };
     //! variable map
     mutable std::map<std::string, Var> vars;
 
     //! resolve function that only supports one external variable 'x'
-    ExprVarRef* resolveVar(const std::string& name) const {
-        std::map<std::string, Var>::iterator i = vars.find(name);
-        if (i != vars.end()) return &i->second;
-        return 0;
+    ExprVarRef *resolveVar(const std::string &name) const override
+    {
+        auto i = vars.find(name);
+        if (i != vars.end())
+            return &i->second;
+        return nullptr;
     }
 };
-}
+} // namespace KSeExpr
 
-double clamp(double x) { return std::max(0., std::min(255., x)); }
+constexpr double clamp(double x)
+{
+    return std::max(0., std::min(255., x)); // NOLINT readability-magic-numbers
+}
 
 using namespace KSeExpr;
 
-int main(int argc, char* argv[]) {
-    if (argc != 5) {
+int main(int argc, char *argv[])
+{
+    if (argc != 5) { // NOLINT readability-magic-numbers
         std::cerr << "Usage: " << argv[0] << " <image file> <width> <height> <exprFile>" << std::endl;
         return 1;
     }
 
     // parse arguments
-    const char* imageFile = argv[1];
-    const char* exprFile = argv[4];
-    int width = atoi(argv[2]), height = atoi(argv[3]);
+    const char *imageFile = argv[1];
+    const char *exprFile = argv[4];
+    size_t width = std::strtol(argv[2], nullptr, 10);  // NOLINT readability-magic-numbers
+    size_t height = std::strtol(argv[3], nullptr, 10); // NOLINT readability-magic-numbers
     if (width < 0 || height < 0) {
         std::cerr << "invalid width/height" << std::endl;
         return 1;
@@ -94,59 +120,54 @@ int main(int argc, char* argv[]) {
 
     // evaluate expression
     std::cerr << "Evaluating expresion...from " << exprFile << std::endl;
-    unsigned char* image = new unsigned char[width * height * 4];
+    std::vector<unsigned char> image(width * height * 4);
 
     {
         PerformanceTimer evalTime("eval time");
-        double one_over_width = 1. / width, one_over_height = 1. / height;
-        double& u = expr.vars["u"].val;
-        double& v = expr.vars["v"].val;
-        unsigned char* pixel = image;
-        for (int row = 0; row < height; row++) {
-            for (int col = 0; col < width; col++) {
-                u = one_over_width * (col + .5);
-                v = one_over_height * (row + .5);
+        double one_over_width = 1. / width;
+        double one_over_height = 1. / height;
+        double &u = expr.vars["u"].val;
+        double &v = expr.vars["v"].val;
+        for (size_t row {}; row < height; row++) {
+            for (size_t col {}; col < width; col++) {
+                auto i = (row * width + col) * 4;
+                u = one_over_width * (col + .5);  // NOLINT readability-magic-numbers
+                v = one_over_height * (row + .5); // NOLINT readability-magic-numbers
 
-                const double* result = expr.evalFP();
+                const double *result = expr.evalFP();
 
                 // expr._interpreter->print();
-                pixel[0] = clamp(result[0] * 256.);
-                pixel[1] = clamp(result[1] * 256.);
-                pixel[2] = clamp(result[2] * 256.);
-                pixel[3] = 255;
-                pixel += 4;
+                image[i] = clamp(result[0] * 256.);     // NOLINT readability-magic-numbers
+                image[i + 1] = clamp(result[1] * 256.); // NOLINT readability-magic-numbers
+                image[i + 2] = clamp(result[2] * 256.); // NOLINT readability-magic-numbers
+                image[i + 3] = 255;                     // NOLINT readability-magic-numbers
             }
         }
-    }  // timer
+    } // timer
 
     // write image as png
     std::cerr << "Writing image..." << imageFile << std::endl;
-    FILE* fp = fopen(imageFile, "wb");
+    std::unique_ptr<std::FILE, decltype(&std::fclose)> fp {fopen(imageFile, "wb"), &std::fclose};
     if (!fp) {
         perror("fopen");
         return 1;
     }
-    png_structp png_ptr;
-    png_infop info_ptr;
-    png_ptr = png_create_write_struct(PNG_LIBPNG_VER_STRING, 0, 0, 0);
-    info_ptr = png_create_info_struct(png_ptr);
-    png_init_io(png_ptr, fp);
-    int color_type = PNG_COLOR_TYPE_RGBA;
+    png_structp png_ptr {png_create_write_struct(PNG_LIBPNG_VER_STRING, nullptr, nullptr, nullptr)};
+    png_infop info_ptr {png_create_info_struct(png_ptr)};
+    png_init_io(png_ptr, fp.get());
     png_set_IHDR(png_ptr,
                  info_ptr,
                  width,
                  height,
-                 8,
-                 color_type,
+                 8, // NOLINT readability-magic-numbers
+                 PNG_COLOR_TYPE_RGBA,
                  PNG_INTERLACE_NONE,
                  PNG_COMPRESSION_TYPE_DEFAULT,
                  PNG_FILTER_TYPE_DEFAULT);
-    const unsigned char* ptrs[height];
-    for (int i = 0; i < height; i++) {
+    std::vector<png_byte *> ptrs(height);
+    for (size_t i {}; i < height; i++) {
         ptrs[i] = &image[width * i * 4];
     }
-    png_set_rows(png_ptr, info_ptr, (png_byte**)ptrs);
-    png_write_png(png_ptr, info_ptr, PNG_TRANSFORM_IDENTITY, 0);
-
-    fclose(fp);
+    png_set_rows(png_ptr, info_ptr, ptrs.data());
+    png_write_png(png_ptr, info_ptr, PNG_TRANSFORM_IDENTITY, nullptr);
 }
