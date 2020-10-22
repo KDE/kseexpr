@@ -3,19 +3,20 @@
 // SPDX-FileCopyrightText: 2020 L. E. Segovia <amy@amyspark.me>
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#ifndef ExprEnv_h
-#define ExprEnv_h
+#pragma once
 
-#include <vector>
-#include <map>
 #include <cassert>
-#include <memory>
-
-#include "ExprType.h"
-#include "ExprLLVM.h"
 #include <iostream>
+#include <memory>
+#include <map>
+#include <utility>
+#include <vector>
 
-namespace KSeExpr {
+#include "ExprLLVM.h"
+#include "ExprType.h"
+
+namespace KSeExpr
+{
 class ExprVarRef;
 class ExprLocalVar;
 class ExprNode;
@@ -23,68 +24,104 @@ class ExprLocalFunctionNode;
 class Interpreter;
 
 //! ExprLocalVar reference, all local variables in seexpr are subclasses of this or this itself
-class ExprLocalVar {
-  protected:
+class ExprLocalVar
+{
+private:
     ExprType _type;
-    ExprLocalVar* _phi;
-    mutable LLVM_VALUE _varPtr;
+    ExprLocalVar *_phi {nullptr};
+    mutable LLVM_VALUE _varPtr {0};
 
-  public:
-    ExprLocalVar(const ExprType& type) : _type(type), _phi(0), _varPtr(0) {}
+public:
+    ExprLocalVar(ExprType type)
+        : _type(std::move(type))
+    {
+    }
 
-    virtual ~ExprLocalVar() {}
+    virtual ~ExprLocalVar() = default;
+    ExprLocalVar(ExprLocalVar &) = default;
+    ExprLocalVar(ExprLocalVar &&) = default;
+    ExprLocalVar &operator=(const ExprLocalVar &) = default;
+    ExprLocalVar &operator=(ExprLocalVar &&) = default;
 
     //! get the primary representative phi node (i.e. the global parent of a dependent phi node)
-    const ExprLocalVar* getPhi() const { return _phi; }
+    const ExprLocalVar *getPhi() const
+    {
+        return _phi;
+    }
     //! returns type of the variable
-    ExprType type() const { return _type; }
+    ExprType type() const
+    {
+        return _type;
+    }
+
+    //! setter for variable type
+    virtual void setType(const ExprType &type)
+    {
+        _type = type;
+    }
     //! sets the representative phi node (like a brute force set unioning operation) phi is the set representative
-    virtual void setPhi(ExprLocalVar* phi) { _phi = phi; }
+    virtual void setPhi(ExprLocalVar *phi)
+    {
+        _phi = phi;
+    }
 
     //! LLVM value that has been allocated
-    virtual LLVM_VALUE codegen(LLVM_BUILDER, const std::string& name, LLVM_VALUE referenceType) LLVM_BODY;
+    virtual LLVM_VALUE codegen(LLVM_BUILDER, const std::string &, LLVM_VALUE) LLVM_BODY;
 
     //! LLVM value that has been pre-done
-    virtual LLVM_VALUE varPtr() { return _varPtr; }
+    virtual LLVM_VALUE varPtr()
+    {
+        return _varPtr;
+    }
 
     //! Allocates variable for interpreter
-    int buildInterpreter(Interpreter* interpreter) const;
+    int buildInterpreter(Interpreter *interpreter) const;
 };
 
 //! ExprLocalVar join (merge) references. Remembers which variables are possible assigners to this
 // This is basically like single assignment form inspired. hence the phi node nomenclature.
-class ExprLocalVarPhi : public ExprLocalVar {
-  public:
-    ExprLocalVarPhi(ExprType condLife, ExprLocalVar* thenVar, ExprLocalVar* elseVar)
-        : ExprLocalVar(ExprType()), _thenVar(thenVar), _elseVar(elseVar) {
+class ExprLocalVarPhi : public ExprLocalVar
+{
+public:
+    ExprLocalVarPhi(const ExprType &condLife, ExprLocalVar *thenVar, ExprLocalVar *elseVar)
+        : ExprLocalVar(ExprType())
+        , _thenVar(thenVar)
+        , _elseVar(elseVar)
+    {
         // find the compatible common-denominator lifetime
-        ExprType firstType = _thenVar->type(), secondType = _elseVar->type();
+        ExprType firstType = _thenVar->type();
+        ExprType secondType = _elseVar->type();
         if (ExprType::valuesCompatible(_thenVar->type(), _elseVar->type())) {
-            _type = ((firstType.isFP(1) ? secondType : firstType).setLifetime(firstType, secondType));
+            setType(((firstType.isFP(1) ? secondType : firstType).setLifetime(firstType, secondType)));
         }
         // lifetime should be the minimum (error=0,varying=1,uniform=2,constant=3).
         // i.e. you can only guarantee something is constant if the condition, ifvar, and else var are the same
-        _type.setLifetime(firstType, secondType, condLife);
+        setType(type().setLifetime(firstType, secondType, condLife));
     }
 
-    bool valid() const { return !_type.isError(); }
+    bool valid() const
+    {
+        return !type().isError();
+    }
 
-    void setPhi(ExprLocalVar* phi) {
-        _phi = phi;
+    void setPhi(ExprLocalVar *phi) override
+    {
+        ExprLocalVar::setPhi(phi);
         _thenVar->setPhi(phi);
         _elseVar->setPhi(phi);
     }
 
-    ExprNode* _condNode;
-    ExprLocalVar* _thenVar, *_elseVar;
+    ExprNode *_condNode {nullptr};
+    ExprLocalVar *_thenVar {nullptr}, *_elseVar {nullptr};
 };
 
 //! Variable scope for tracking variable lookup
-class ExprVarEnv {
-  private:
-    typedef std::map<std::string, std::unique_ptr<ExprLocalVar>> VarDictType;
+class ExprVarEnv
+{
+private:
+    using VarDictType = std::map<std::string, std::unique_ptr<ExprLocalVar>>;
     VarDictType _map;
-    typedef std::map<std::string, ExprLocalFunctionNode*> FuncDictType;
+    using FuncDictType = std::map<std::string, ExprLocalFunctionNode *>;
     FuncDictType _functions;
 
     //! Variables that have been superceded (and thus are inaccessible)
@@ -92,87 +129,117 @@ class ExprVarEnv {
     std::vector<std::unique_ptr<ExprLocalVar>> shadowedVariables;
 
     //! Keep track of all merged variables in
-    std::vector<std::vector<std::pair<std::string, ExprLocalVarPhi*>>> _mergedVariables;
+    std::vector<std::vector<std::pair<std::string, ExprLocalVarPhi *>>> _mergedVariables;
 
     //! Parent variable environment has all variablesf rom previou scope (for lookup)
-    ExprVarEnv* _parent;
+    ExprVarEnv *_parent {nullptr};
 
-  protected:
-    ExprVarEnv(ExprVarEnv& other);
-    ExprVarEnv& operator=(ExprVarEnv& other);
+protected:
+    ExprVarEnv(ExprVarEnv &other);
+    ExprVarEnv &operator=(const ExprVarEnv &other);
 
-  public:
+public:
     // TODO: figure out when anotherOwns is needed
     //! Create a scope with no parent
-    ExprVarEnv() : _parent(0) {};
+    ExprVarEnv() = default;
 
-    ~ExprVarEnv();
+    ~ExprVarEnv() = default;
+
+    ExprVarEnv(ExprVarEnv &&) = default;
+    ExprVarEnv& operator=(ExprVarEnv&&) = default;
 
     //! Resets the scope (deletes all variables) and sets parent
-    void resetAndSetParent(ExprVarEnv* parent);
+    void resetAndSetParent(ExprVarEnv *parent);
     //! Find a function by name (recursive to parents)
-    ExprLocalFunctionNode* findFunction(const std::string& name);
+    ExprLocalFunctionNode *findFunction(const std::string &name);
     //! Find a variable name by name (recursive to parents)
-    ExprLocalVar* find(const std::string& name);
+    ExprLocalVar *find(const std::string &name);
     //! Find a const variable reference name by name (recursive to parents)
-    ExprLocalVar const* lookup(const std::string& name) const;
+    ExprLocalVar const *lookup(const std::string &name) const;
     //! Add a function
-    void addFunction(const std::string& name, ExprLocalFunctionNode* prototype);
+    void addFunction(const std::string &name, ExprLocalFunctionNode *prototype);
     //! Add a variable refernece
-    void add(const std::string& name, std::unique_ptr<ExprLocalVar> var);
+    void add(const std::string &name, std::unique_ptr<ExprLocalVar> var);
     //! Add all variables into scope by name, but modify their lifetimes to the given type's lifetime
     //    void add(ExprVarEnv & env,const ExprType & modifyingType);
     //! Checks if each branch shares the same items and the same types!
     // static bool branchesMatch(const ExprVarEnv & env1, const ExprVarEnv & env2);
-    size_t mergeBranches(const ExprType& type, ExprVarEnv& env1, ExprVarEnv& env2);
+    size_t mergeBranches(const ExprType &type, ExprVarEnv &env1, ExprVarEnv &env2);
     // Code generate merges.
-    LLVM_VALUE codegenMerges(LLVM_BUILDER builder, int mergeIndex) LLVM_BODY;
+    LLVM_VALUE codegenMerges(LLVM_BUILDER, int) LLVM_BODY; // NOLINT
     // Query merges
-    std::vector<std::pair<std::string, ExprLocalVarPhi*>>& merge(size_t index) { return _mergedVariables[index]; }
+    std::vector<std::pair<std::string, ExprLocalVarPhi *>> &merge(size_t index)
+    {
+        return _mergedVariables[index];
+    }
 };
 
 //! Variable scope builder is used by the type checking and code gen to track visiblity of variables and changing of
-//scopes
+// scopes
 // It is inspired by IRBuilder's notion of a basic block insertion point
-class ExprVarEnvBuilder {
-  public:
+class ExprVarEnvBuilder
+{
+public:
     //! Creates an empty builder with one current scope entry
-    ExprVarEnvBuilder() { reset(); }
+    ExprVarEnvBuilder()
+    {
+        reset();
+    }
     //! Reset to factory state (one empty environment that is current)
-    void reset() {
+    void reset()
+    {
         std::unique_ptr<ExprVarEnv> newEnv(new ExprVarEnv);
         _currentEnv = newEnv.get();
         all.emplace_back(std::move(newEnv));
     }
     //! Return the current variable scope
-    ExprVarEnv* current() { return _currentEnv; }
+    ExprVarEnv *current()
+    {
+        return _currentEnv;
+    }
     //! Set a new current variable scope
-    void setCurrent(ExprVarEnv* env) { _currentEnv = env; }
+    void setCurrent(ExprVarEnv *env)
+    {
+        _currentEnv = env;
+    }
     //! Create a descendant scope from the provided parent, does not clobber current
-    ExprVarEnv* createDescendant(ExprVarEnv* parent) {
+    ExprVarEnv *createDescendant(ExprVarEnv *parent)
+    {
         std::unique_ptr<ExprVarEnv> newEnv(new ExprVarEnv);
         newEnv->resetAndSetParent(parent);
         all.emplace_back(std::move(newEnv));
         return all.back().get();
     }
 
-  private:
+private:
     //! All owned symbol tables
     std::vector<std::unique_ptr<ExprVarEnv>> all;
     //! The current symbol table (should be a pointer owned by all)
-    ExprVarEnv* _currentEnv;
+    ExprVarEnv *_currentEnv {nullptr};
 };
 
 //! Evaluation result.
 struct ExprEvalResult {
-    ExprEvalResult() : n(0), fp(0), str(0) {}
-    ExprEvalResult(int n, double* fp) : n(n), fp(fp), str(0) {}
-    ExprEvalResult(const char** c) : n(1), fp(0), str(c) {}
-    ExprEvalResult(int n, double* fp, const char** c) : n(n), fp(fp), str(c) {}
+    ExprEvalResult() = default;
+    ExprEvalResult(int n, double *fp)
+        : n(n)
+        , fp(fp)
+    {
+    }
+    ExprEvalResult(const char **c)
+        : n(1)
+        , str(c)
+    {
+    }
+    ExprEvalResult(int n, double *fp, const char **c)
+        : n(n)
+        , fp(fp)
+        , str(c)
+    {
+    }
 
-    int n;
-    double* fp;
-    const char** str;
+    int n {0};
+    double *fp {nullptr};
+    const char **str {nullptr};
 };
-}
-#endif
+} // namespace KSeExpr
