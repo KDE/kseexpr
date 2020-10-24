@@ -48,7 +48,6 @@ if (Qt5_FOUND)
             ControlSpec.h
             Editable.h
             EditableExpression.h
-            ExprHelp.h
             ExprHighlighter.h
             ExprSpecType.h
             Utils.h
