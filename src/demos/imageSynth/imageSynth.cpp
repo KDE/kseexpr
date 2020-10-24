@@ -12,7 +12,7 @@
 #include <fstream>
 #include <map>
 #include <png.h>
-
+#include <vector>
 
 #include <KSeExpr/Expression.h>
 #include <KSeExpr/Interpreter.h>
