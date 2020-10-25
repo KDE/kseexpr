@@ -83,11 +83,24 @@ ExprScalarAssignSpec::ExprScalarAssignSpec(const ExprAssignNode &node)
 {
     _name = node.name();
     std::string comment = findComment(node);
-    // TODO: handle integer case
-    int numParsed = sscanf(comment.c_str(), "#%lf,%lf\n", &_min, &_max);
-    if (numParsed != 2) {
-        _min = 0;
-        _max = 1;
+    if (comment.find('.') != std::string::npos || comment.find('e') != std::string::npos) {
+        float fmin = NAN;
+        float fmax = NAN;
+        if (KSeExpr::Utils::parseRangeComment(comment, fmin, fmax)) {
+            _min = fmin;
+            _max = fmax;
+            return;
+        }
+    } else {
+        int imin = 0;
+        int imax = 0;
+        if (KSeExpr::Utils::parseRangeComment(comment, imin, imax)) {
+            _min = imin;
+            _max = imax;
+        } else {
+            _min = 0;
+            _max = 1;
+        }
     }
 }
 
@@ -116,11 +129,18 @@ ExprVectorAssignSpec::ExprVectorAssignSpec(const ExprAssignNode &node)
 {
     _name = node.name();
     std::string comment = findComment(node);
-    int numParsed = sscanf(comment.c_str(), "#%lf,%lf\n", &_min, &_max);
-    if (numParsed != 2) {
-        _min = 0;
-        _max = 1;
+    if (comment.find('.') != std::string::npos || comment.find('e') != std::string::npos) {
+        float fmin = NAN;
+        float fmax = NAN;
+        if (KSeExpr::Utils::parseRangeComment(comment, fmin, fmax)) {
+            _min = fmin;
+            _max = fmax;
+            return;
+        }
     }
+    _min = 0;
+    _max = 1;
+}
 
 std::string ExprVectorAssignSpec::toString() const
 {
