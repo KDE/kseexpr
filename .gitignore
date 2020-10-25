@@ -4,12 +4,9 @@
 /build
 /Linux-*
 /Darwin-*
-/src/SeExprEditor/generated
-/env*
-CMakeCache.txt
 CMakeLists.txt.user
-CMakeSettings.json
 .vs
 .vscode
 packaging/seexpr-*
+packaging/kseexpr-*
 po
