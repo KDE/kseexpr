@@ -18,7 +18,7 @@ class ErrorMessages : public QObject
 public:
     static QString message(KSeExpr::ErrorCode code);
 private:
-    Q_OBJECT;
+    Q_OBJECT
 };
 
 #endif

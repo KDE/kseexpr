@@ -22,7 +22,7 @@ typedef GenericCurveEditable<double> CurveEditable;
 
 /// Base class for all controls for Expressions
 class ExprControl : public QWidget {
-    Q_OBJECT;
+    Q_OBJECT
 
   protected:
     int _id;
@@ -174,7 +174,7 @@ class VectorControl : public ExprControl {
     /// All three line edit widgets (for each component)
     ExprLineEdit* _edits[3]{nullptr};
     ExprCSwatchFrame* _swatch{nullptr};
-    ;
+
     /// All three channel sliders (for each component)
     ExprChannelSlider* _sliders[3]{nullptr};
 

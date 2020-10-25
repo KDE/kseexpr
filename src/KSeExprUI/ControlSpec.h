@@ -3,32 +3,35 @@
 // SPDX-FileCopyrightText: 2020 L. E. Segovia <amy@amyspark.me>
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#ifndef ControlSpec_h
-#define ControlSpec_h
+#pragma once
 
-#ifndef MAKEDEPEND
-#include <string.h>
+#include <cstdio>
 #include <string>
 #include <vector>
-#endif
-#include <cstdio>
 
-#include <KSeExpr/ExprWalker.h>
-#include <KSeExpr/ExprNode.h>
 #include <KSeExpr/Curve.h>
+#include <KSeExpr/ExprNode.h>
+#include <KSeExpr/ExprWalker.h>
 
-namespace KSeExpr {
-
+namespace KSeExpr
+{
 //! Generic Expression control specification
-class ControlSpec {
-  public:
-    ControlSpec(const ExprNode& node) : _start(node.startPos()), _end(node.endPos()) {};
-    virtual ~ControlSpec() {};
+class ControlSpec
+{
+public:
+    ControlSpec(const ExprNode &node)
+        : _start(node.startPos())
+        , _end(node.endPos()) {};
+    virtual ~ControlSpec() = default;
+    ControlSpec &operator=(const ControlSpec &) = default;
+    ControlSpec &operator=(ControlSpec &&) = default;
+    ControlSpec(const ControlSpec &) = default;
+    ControlSpec(ControlSpec &&) = default;
 
     //! Generates a replacement string based on changes to the spec
     virtual std::string toString() const = 0;
 
-  protected:
+protected:
     //! Name of control
     std::string _name;
     //! Start position of text in original source
@@ -38,16 +41,18 @@ class ControlSpec {
 };
 
 //! Variable equals scalar control specification
-class ExprScalarAssignSpec : public ControlSpec {
-  public:
-    ExprScalarAssignSpec(const ExprAssignNode& node);
-    virtual std::string toString() const;
-    inline double value() const {
+class ExprScalarAssignSpec : public ControlSpec
+{
+public:
+    ExprScalarAssignSpec(const ExprAssignNode &node);
+    std::string toString() const override;
+    inline double value() const
+    {
         return _val;
     };
-    static const ExprScalarAssignSpec* match(const ExprNode* node);
+    static const ExprScalarAssignSpec *match(const ExprNode *node);
 
-  private:
+private:
     //! Range of values
     double _min, _max;
     //! Current Value
@@ -55,16 +60,18 @@ class ExprScalarAssignSpec : public ControlSpec {
 };
 
 //! Variable equals vector control specification
-class ExprVectorAssignSpec : public ControlSpec {
-  public:
-    ExprVectorAssignSpec(const ExprAssignNode& node);
-    virtual std::string toString() const;
-    inline const Vec3d& value() const {
+class ExprVectorAssignSpec : public ControlSpec
+{
+public:
+    ExprVectorAssignSpec(const ExprAssignNode &node);
+    std::string toString() const override;
+    inline const Vec3d &value() const
+    {
         return _val;
     };
-    static const ExprVectorAssignSpec* match(const ExprNode* node);
+    static const ExprVectorAssignSpec *match(const ExprNode *node);
 
-  private:
+private:
     //! Range of values
     double _min, _max;
     //! Current Value
@@ -72,63 +79,69 @@ class ExprVectorAssignSpec : public ControlSpec {
 };
 
 //! Curve assignment expression. Assignment of curve to a variable.
-template <class T>
-class ExprCurveAssignSpec : public ControlSpec {
+template<class T> class ExprCurveAssignSpec : public ControlSpec
+{
+public:
+    ExprCurveAssignSpec(const ExprAssignNode &node);
+    std::string toString() const override;
+    static const ExprCurveAssignSpec *match(const ExprNode *node);
 
-  public:
-    ExprCurveAssignSpec(const ExprAssignNode& node);
-    virtual std::string toString() const;
-    static const ExprCurveAssignSpec* match(const ExprNode* node);
-
-  private:
+private:
     //! Lookup subexpression text
     std::string _lookupText;
     //! Control points of curve spline
     std::vector<typename Curve<T>::CV> _vec;
 };
 
-class ExprStrSpec : public ControlSpec {
-    enum Type {
-        STRING,
-        FILE,
-        DIRECTORY
-    };
+class ExprStrSpec : public ControlSpec
+{
+    enum Type { STRING, FILE, DIRECTORY };
 
-  public:
+public:
     //! Takes name and type comments and takes ownership of them!
-    ExprStrSpec(const ExprStrNode& node, char* name, Type type) : ControlSpec(node), _str(node.str()), _type(type) {
+    ExprStrSpec(const ExprStrNode &node, const char *name, Type type)
+        : ControlSpec(node)
+        , _str(node.str())
+        , _type(type)
+    {
         _name = name;
     }
 
-    virtual std::string toString() const;
-    static const ExprStrSpec* match(const ExprNode* node);
+    std::string toString() const override;
+    static const ExprStrSpec *match(const ExprNode *node);
 
-  private:
+private:
     std::string _str;
     Type _type;
 };
 
 /// Examiner that builds a list of specs potentially used in widgets (for qdgui)
-class SpecExaminer : public Examiner<true> {
-
-  public:
+class SpecExaminer : public Examiner<true>
+{
+public:
     ~SpecExaminer();
+    SpecExaminer &operator=(const SpecExaminer &) = default;
+    SpecExaminer &operator=(SpecExaminer &&) = default;
+    SpecExaminer(const SpecExaminer &) = default;
+    SpecExaminer(SpecExaminer &&) = default;
 
-    virtual bool examine(const ExprNode* examinee);
-    virtual void reset() {
+    bool examine(const ExprNode *examinee) override;
+    void reset() override
+    {
         _specList.clear();
     };
-    inline int length() const {
+    inline int length() const
+    {
         return _specList.size();
     };
-    inline const ControlSpec* spec(int i) const {
+    inline const ControlSpec *spec(int i) const
+    {
         return _specList[i];
     };
-    inline std::vector<const ControlSpec*>::const_iterator begin() const;
-    inline std::vector<const ControlSpec*>::const_iterator const end() const;
+    inline std::vector<const ControlSpec *>::const_iterator begin() const;
+    inline std::vector<const ControlSpec *>::const_iterator end() const;
 
-  private:
-    std::vector<const ControlSpec*> _specList;
+private:
+    std::vector<const ControlSpec *> _specList;
 };
-}
-#endif
+} // namespace KSeExpr

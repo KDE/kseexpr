@@ -3,20 +3,21 @@
 // SPDX-FileCopyrightText: 2020 L. E. Segovia <amy@amyspark.me>
 // SPDX-License-Identifier: GPL-3.0-or-later
 /*
-* @file ExprHighlighter.h
-* @brief A Qt syntax highlighter for the SeExpr language
-* @author  aselle, amyspark
-*/
+ * @file ExprHighlighter.h
+ * @brief A Qt syntax highlighter for the SeExpr language
+ * @author  aselle, amyspark
+ */
 
-#ifndef _ExprHighlighter_h_
-#define _ExprHighlighter_h_
+#pragma once
 
 #include <QPalette>
 #include <QSyntaxHighlighter>
-#include <QTextEdit>
 #include <QTextDocument>
+#include <QTextEdit>
 
-class ExprHighlighter : public QSyntaxHighlighter {
+
+class ExprHighlighter : public QSyntaxHighlighter
+{
     struct HighlightingRule {
         QRegExp pattern;
         QTextCharFormat format;
@@ -30,12 +31,11 @@ class ExprHighlighter : public QSyntaxHighlighter {
     int lightness;
 
 public:
-    ExprHighlighter(QTextDocument* parent);
-    ExprHighlighter(QTextEdit* edit);
+    ExprHighlighter(QTextDocument *parent);
+    ExprHighlighter(QTextEdit *edit);
 
-    void fixStyle(const QPalette& palette);
+    void fixStyle(const QPalette &palette);
 
     void init();
-    void highlightBlock(const QString& text);
+    void highlightBlock(const QString &text) override;
 };
-#endif

@@ -3,21 +3,19 @@
 // SPDX-FileCopyrightText: 2020 L. E. Segovia <amy@amyspark.me>
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#ifndef _ExprPopupDoc_h_
-#define _ExprPopupDoc_h_
+#pragma once
 
 #include <QWidget>
 
 class QLabel;
-class ExprPopupDoc : public QWidget {
-    Q_OBJECT;
+class ExprPopupDoc : public QWidget
+{
+    Q_OBJECT
 
-  public:
-    QLabel* label;
-    ExprPopupDoc(QWidget* parent, const QPoint& cr, const QString& msg);
+public:
+    QLabel *label;
+    ExprPopupDoc(QWidget *parent, const QPoint &cr, const QString &msg);
 
-  protected:
-    void mousePressEvent(QMouseEvent* event);
+protected:
+    void mousePressEvent(QMouseEvent *event) override;
 };
-
-#endif

@@ -21,7 +21,7 @@
 ///   This is typically used by an ExprEditor or a ExprShortEdit widget
 ///   This widget also is responsible for finding all user local variables (for use in autocomplete)
 class ExprControlCollection : public QWidget {
-    Q_OBJECT;
+    Q_OBJECT
 
     int _linkedId;
     int count;

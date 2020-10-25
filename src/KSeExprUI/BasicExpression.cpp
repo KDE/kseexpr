@@ -4,35 +4,45 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 /*
-* @file BasicExpression.cpp
-* @brief A basic expression context for the expression previewer
-* @author  aselle
-*/
+ * @file BasicExpression.cpp
+ * @brief A basic expression context for the expression previewer
+ * @author  aselle
+ */
 
 #include "BasicExpression.h"
 
-BasicExpression::BasicExpression(const std::string& expr, const KSeExpr::ExprType& type)
-    : Expression(expr, type), dummyFunc(dummyFuncX, 0, 16) {}
+BasicExpression::BasicExpression(const std::string &expr, const KSeExpr::ExprType &type)
+    : Expression(expr, type)
+    , dummyFunc(dummyFuncX, 0, 16)
+{
+}
 
-BasicExpression::~BasicExpression() { clearVars(); }
+BasicExpression::~BasicExpression()
+{
+    clearVars();
+}
 
-template <class T_MAP>
-void deleteAndClear(T_MAP& map) {
-    for (typename T_MAP::iterator i = map.begin(); i != map.end(); ++i) delete i->second;
+template<class T_MAP> void deleteAndClear(T_MAP &map)
+{
+    for (const auto& i: map)
+        delete i.second;
     map.clear();
 }
 
-void BasicExpression::clearVars() {
+void BasicExpression::clearVars()
+{
     deleteAndClear(varmap);
     funcmap.clear();
 }
 
-void BasicExpression::setExpr(const std::string& str) {
+void BasicExpression::setExpr(const std::string &str)
+{
     clearVars();
     Expression::setExpr(str);
 }
 
-KSeExpr::ExprVarRef* BasicExpression::resolveVar(const std::string& name) const {
+KSeExpr::ExprVarRef *BasicExpression::resolveVar(const std::string &name) const
+{
     if (name == "u")
         return &u;
     else if (name == "v")
@@ -41,7 +51,7 @@ KSeExpr::ExprVarRef* BasicExpression::resolveVar(const std::string& name) const 
         return &P;
     else {
         // make a variable to resolve any unknown
-        VARMAP::iterator i = varmap.find(name);
+        auto i = varmap.find(name);
         if (i != varmap.end())
             return i->second;
         else {
@@ -51,9 +61,11 @@ KSeExpr::ExprVarRef* BasicExpression::resolveVar(const std::string& name) const 
     }
 }
 
-KSeExpr::ExprFunc* BasicExpression::resolveFunc(const std::string& name) const {
+KSeExpr::ExprFunc *BasicExpression::resolveFunc(const std::string &name) const
+{
     // check if it is builtin so we get proper behavior
-    if (KSeExpr::ExprFunc::lookup(name)) return 0;
+    if (KSeExpr::ExprFunc::lookup(name))
+        return nullptr;
 
     funcmap[name] = true;
     return &dummyFunc;

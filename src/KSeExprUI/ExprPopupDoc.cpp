@@ -4,18 +4,19 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 #include "ExprPopupDoc.h"
-#include <QLabel>
 #include <QHBoxLayout>
+#include <QLabel>
 
-ExprPopupDoc::ExprPopupDoc(QWidget* parent, const QPoint& placecr, const QString& msg) {
+
+ExprPopupDoc::ExprPopupDoc(QWidget *parent, const QPoint &placecr, const QString &msg)
+{
     Q_UNUSED(parent);
     label = new QLabel(msg);
-    QHBoxLayout* layout = new QHBoxLayout;
+    auto *layout = new QHBoxLayout;
     setLayout(layout);
     layout->addWidget(label);
 
-    setWindowFlags(Qt::Window | Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint | Qt::CustomizeWindowHint |
-                   Qt::X11BypassWindowManagerHint);
+    setWindowFlags(Qt::Window | Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint | Qt::CustomizeWindowHint | Qt::X11BypassWindowManagerHint);
     setAttribute(Qt::WA_ShowWithoutActivating);
     setFocusPolicy(Qt::NoFocus);
     move(placecr);
@@ -23,7 +24,8 @@ ExprPopupDoc::ExprPopupDoc(QWidget* parent, const QPoint& placecr, const QString
     show();
 }
 
-void ExprPopupDoc::mousePressEvent(QMouseEvent* event) {
+void ExprPopupDoc::mousePressEvent(QMouseEvent *event)
+{
     Q_UNUSED(event);
     hide();
 }

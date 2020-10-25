@@ -174,7 +174,7 @@ bool ExprControlCollection::rebuildControls(const QString& expressionText, std::
     return newVariables;
 }
 
-void ExprControlCollection::showEditor(int idx) {
+void ExprControlCollection::showEditor(int) {
 
 }
 

@@ -135,7 +135,7 @@ ExprControl::ExprControl(int id, Editable* editable, bool showColorLink)
     }
 }
 
-void ExprControl::resizeEvent(QResizeEvent *event)
+void ExprControl::resizeEvent(QResizeEvent *)
 {
     QString editableLabel = QString::fromStdString(_editable->name);
     QFontMetrics _labelSize(_label->font());
@@ -439,9 +439,9 @@ public:
     std::vector<float> x, y;
     std::vector<float> cpx, cpy;
     float xmin, xmax, ymin, ymax, dx, dy;
-    ;
+
     float win_xmin, win_xmax, win_ymin, win_ymax, win_dx, win_dy;
-    ;
+
     ExprGraphPreview(QWidget* parent = 0) : QWidget(parent) {
         win_xmin = -1.;
         win_xmax = 2.;

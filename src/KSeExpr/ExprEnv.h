@@ -32,8 +32,8 @@ private:
     mutable LLVM_VALUE _varPtr {0};
 
 public:
-    ExprLocalVar(ExprType type)
-        : _type(std::move(type))
+    ExprLocalVar(const ExprType &type)
+        : _type(type)
     {
     }
 

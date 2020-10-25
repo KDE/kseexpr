@@ -18,12 +18,11 @@
 #include "ExprAddDialog.h"
 
 ExprAddDialog::ExprAddDialog(int& count, QWidget* parent) : QDialog(parent) {
-    QVBoxLayout* verticalLayout;
-    verticalLayout = new QVBoxLayout();
+    auto *verticalLayout = new QVBoxLayout();
     verticalLayout->setSpacing(3);
     verticalLayout->setMargin(3);
     setLayout(verticalLayout);
-    QHBoxLayout* horizontalLayout = new QHBoxLayout();
+    auto *horizontalLayout = new QHBoxLayout();
 
     horizontalLayout->addWidget(new QLabel(tr("Variable")));
     // TODO would be nice to unique this over multiple sessions
@@ -36,8 +35,8 @@ ExprAddDialog::ExprAddDialog(int& count, QWidget* parent) : QDialog(parent) {
 
     // Curve
     {
-        QWidget* curveTab = new QWidget();
-        QFormLayout* curveLayout = new QFormLayout(curveTab);
+        auto *curveTab = new QWidget();
+        auto *curveLayout = new QFormLayout(curveTab);
         curveLayout->setWidget(0, QFormLayout::LabelRole, new QLabel(tr("Lookup")));
         curveLookup = new QLineEdit(tr("$u"));
         curveLayout->setWidget(0, QFormLayout::FieldRole, curveLookup);
@@ -46,8 +45,8 @@ ExprAddDialog::ExprAddDialog(int& count, QWidget* parent) : QDialog(parent) {
 
     // Color Curve
     {
-        QWidget* colorCurveTab = new QWidget();
-        QFormLayout* colorCurveLayout = new QFormLayout(colorCurveTab);
+        auto *colorCurveTab = new QWidget();
+        auto *colorCurveLayout = new QFormLayout(colorCurveTab);
         colorCurveLayout->setWidget(0, QFormLayout::LabelRole, new QLabel(tr("Lookup")));
         colorCurveLookup = new QLineEdit(tr("$u"));
         colorCurveLayout->setWidget(0, QFormLayout::FieldRole, colorCurveLookup);
@@ -56,8 +55,8 @@ ExprAddDialog::ExprAddDialog(int& count, QWidget* parent) : QDialog(parent) {
 
     // Integer
     {
-        QWidget* intTab = new QWidget();
-        QFormLayout* intFormLayout = new QFormLayout(intTab);
+        auto *intTab = new QWidget();
+        auto *intFormLayout = new QFormLayout(intTab);
         intFormLayout->setWidget(0, QFormLayout::LabelRole, new QLabel(tr("Default")));
         intFormLayout->setWidget(1, QFormLayout::LabelRole, new QLabel(tr("Min")));
         intFormLayout->setWidget(2, QFormLayout::LabelRole, new QLabel(tr("Max")));
@@ -72,8 +71,8 @@ ExprAddDialog::ExprAddDialog(int& count, QWidget* parent) : QDialog(parent) {
 
     // Float
     {
-        QWidget* floatTab = new QWidget();
-        QFormLayout* floatFormLayout = new QFormLayout(floatTab);
+        auto *floatTab = new QWidget();
+        auto *floatFormLayout = new QFormLayout(floatTab);
         floatFormLayout->setWidget(0, QFormLayout::LabelRole, new QLabel(tr("Default")));
         floatFormLayout->setWidget(1, QFormLayout::LabelRole, new QLabel(tr("Min")));
         floatFormLayout->setWidget(2, QFormLayout::LabelRole, new QLabel(tr("Max")));
@@ -89,15 +88,15 @@ ExprAddDialog::ExprAddDialog(int& count, QWidget* parent) : QDialog(parent) {
 
     // Vector
     {
-        QWidget* vectorTab = new QWidget();
-        QFormLayout* vectorFormLayout = new QFormLayout(vectorTab);
+        auto *vectorTab = new QWidget();
+        auto *vectorFormLayout = new QFormLayout(vectorTab);
         vectorFormLayout->setWidget(0, QFormLayout::LabelRole, new QLabel(tr("Default")));
         vectorFormLayout->setWidget(1, QFormLayout::LabelRole, new QLabel(tr("Min")));
         vectorFormLayout->setWidget(2, QFormLayout::LabelRole, new QLabel(tr("Max")));
         vectorDefault0 = new QLineEdit(tr("0"));
         vectorDefault1 = new QLineEdit(tr("0"));
         vectorDefault2 = new QLineEdit(tr("0"));
-        QHBoxLayout* compLayout = new QHBoxLayout();
+        auto *compLayout = new QHBoxLayout();
         compLayout->addWidget(vectorDefault0);
         compLayout->addWidget(vectorDefault1);
         compLayout->addWidget(vectorDefault2);
@@ -112,8 +111,8 @@ ExprAddDialog::ExprAddDialog(int& count, QWidget* parent) : QDialog(parent) {
 
     // Color
     {
-        QWidget* colorTab = new QWidget();
-        QFormLayout* colorLayout = new QFormLayout(colorTab);
+        auto *colorTab = new QWidget();
+        auto *colorLayout = new QFormLayout(colorTab);
         colorWidget = new QPushButton();
         colorWidget->setFixedWidth(30);
         colorWidget->setFixedWidth(30);
@@ -130,8 +129,8 @@ ExprAddDialog::ExprAddDialog(int& count, QWidget* parent) : QDialog(parent) {
 
     // Color Swatch
     {
-        QWidget* swatchTab = new QWidget();
-        QFormLayout* swatchLayout = new QFormLayout(swatchTab);
+        auto *swatchTab = new QWidget();
+        auto *swatchLayout = new QFormLayout(swatchTab);
         swatchLookup = new QLineEdit(tr("$u"));
         swatchLayout->setWidget(0, QFormLayout::LabelRole, new QLabel(tr("Lookup")));
         swatchLayout->setWidget(0, QFormLayout::FieldRole, swatchLookup);
@@ -147,8 +146,8 @@ ExprAddDialog::ExprAddDialog(int& count, QWidget* parent) : QDialog(parent) {
 
     // String literal
     {
-        QWidget* stringTab = new QWidget();
-        QFormLayout* stringLayout = new QFormLayout(stringTab);
+        auto *stringTab = new QWidget();
+        auto *stringLayout = new QFormLayout(stringTab);
         stringTypeWidget = new QComboBox();
         stringTypeWidget->addItem(tr("string"));
         stringTypeWidget->addItem(tr("file"));
@@ -168,7 +167,7 @@ ExprAddDialog::ExprAddDialog(int& count, QWidget* parent) : QDialog(parent) {
 
     verticalLayout->addWidget(tabWidget);
 
-    QDialogButtonBox* buttonBox = new QDialogButtonBox();
+    auto* buttonBox = new QDialogButtonBox();
     buttonBox->setOrientation(Qt::Horizontal);
     buttonBox->setStandardButtons(QDialogButtonBox::Cancel | QDialogButtonBox::Ok);
 
@@ -185,11 +184,11 @@ void ExprAddDialog::colorChooseClicked() {
     if (color.isValid()) {
         QPixmap colorPix(30, 30);
         colorPix.fill(color);
-        ((QPushButton*)sender())->setIcon(QIcon(colorPix));
+        (dynamic_cast<QPushButton*>(sender()))->setIcon(QIcon(colorPix));
     }
 }
 
-const char* ExprAddDialog::initSwatch() {
+const char* ExprAddDialog::initSwatch() const {
     if (rainbowPaletteBtn->isChecked())
         return ("[1,0,0],[1,.6,0],[1,1,0],[0,1,0],[0,1,1],[0,0,1],[.6,.1,.6],[1,0,1],[1,1,1],[0,0,0]");
     else if (grayPaletteBtn->isChecked())
