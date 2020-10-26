@@ -3,13 +3,6 @@
 # SPDX-FileCopyrightText: 2020 L. E. Segovia <amy@amyspark.me>
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-# Set application root dir for use inside the source code.
-add_definitions(-DIMAGE_EDITOR_ROOT="${CMAKE_INSTALL_PREFIX}")
-
-if (NOT PNG_DIR)
-    find_package(PNG)
-endif()
-
 if(ENABLE_QT5 AND PNG_FOUND)
     set(imageEditor_MOC_HDRS ImageEditorDialog.h)
     set(imageEditor_CPPS imageEditor.cpp)
@@ -24,9 +17,10 @@ if(ENABLE_QT5 AND PNG_FOUND)
                                        ${SEEXPR_LIBRARIES}
                                        ${SEEXPR_EDITOR_LIBRARIES})
 
-    include_directories(SYSTEM ${PNG_INCLUDE_DIR})
+    # Set application root dir for use inside the source code.
+    target_compile_definitions(imageEditor2 PRIVATE IMAGE_EDITOR_ROOT="${CMAKE_INSTALL_PREFIX}")
+    target_include_directories(imageEditor2 PRIVATE ${PNG_INCLUDE_DIR})
     target_link_libraries(imageEditor2 ${PNG_LIBRARIES})
-
     install(TARGETS imageEditor2 DESTINATION ${CMAKE_INSTALL_BINDIR})
 
     install(FILES fbm.se noisecolor1.se noisecolor2.se noise.se raytrace.se sinc.se

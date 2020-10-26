@@ -3,7 +3,6 @@
 # SPDX-FileCopyrightText: 2020 L. E. Segovia <amy@amyspark.me>
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-find_package(Doxygen)
 if (DOXYGEN_FOUND AND NOT WIN32)
     configure_file("Doxyfile.in" "Doxyfile" @ONLY)
     file(GLOB (DOCUMENTED_FILES ../KSeExpr/*.h))

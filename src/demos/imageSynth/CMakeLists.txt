@@ -3,17 +3,14 @@
 # SPDX-FileCopyrightText: 2020 L. E. Segovia <amy@amyspark.me>
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-if (NOT PNG_DIR)
-    find_package(PNG QUIET)
-endif()
 if (PNG_FOUND)
-    include_directories(SYSTEM ${PNG_INCLUDE_DIR})
-
     add_executable(imageSynth2 "imageSynth.cpp")
+    target_include_directories(imageSynth2 PRIVATE ${PNG_INCLUDE_DIR})
     target_link_libraries(imageSynth2 ${PNG_LIBRARIES} ${SEEXPR_LIBRARIES})
     install(TARGETS imageSynth2 DESTINATION bin)
 
     add_executable(imageSynthPaint3d2 "imageSynthForPaint3d.cpp")
+    target_include_directories(imageSynthPaint3d2 PRIVATE ${PNG_INCLUDE_DIR})
     target_link_libraries(imageSynthPaint3d2 ${PNG_LIBRARIES} ${SEEXPR_LIBRARIES})
     install(TARGETS imageSynthPaint3d2 DESTINATION bin)
     install(DIRECTORY examples DESTINATION share/KSeExpr/demos/imageSynth

@@ -21,10 +21,6 @@ macro(localize_path SRC DST)
 endmacro()
 
 macro(BuildParserScanner TGT FLEX_L_PREFIX BISON_Y_PREFIX PARSER_PREFIX GENERATED_CPPS)
-  find_package(BISON)
-  find_package(FLEX)
-  find_program(SED_EXE sed)
-
   if(USE_PREGENERATED_FILES OR
       NOT BISON_FOUND OR
       NOT FLEX_FOUND OR

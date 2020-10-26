@@ -14,10 +14,12 @@ endif()
 set(CMAKE_CXX_STANDARD 14)
 
 ## project name & version
-project(KSeExpr)
+project(KSeExpr
+    VERSION "3.4.4.0"
+    DESCRIPTION "An embeddable expression evaluation engine for Krita"
+)
 
-# "API" version
-set(${PROJECT_NAME}_VERSION "3.4.4.0")
+message(STATUS "Welcome to ${CMAKE_PROJECT_NAME} ${CMAKE_PROJECT_VERSION} !")
 
 enable_testing()
 
@@ -67,22 +69,62 @@ set(INCLUDE_DIR "include/${PROJECT_NAME}")
 
 # Configuration options
 option(ENABLE_LLVM_BACKEND "Whether to build with LLVM backend" FALSE)
+add_feature_info(LLVMBackend ENABLE_LLVM_BACKEND "Build the LLVM backend of KSeExpr")
 option(ENABLE_QT5 "Whether to use Qt5" TRUE)
+add_feature_info(KSeExprUI ENABLE_QT5 "Build the KSeExprUI widget library")
 option(BUILD_UTILS "Whether to build the utilities" FALSE)
+add_feature_info(Utils BUILD_UTILS "Build the utilities")
 option(BUILD_DEMOS "Whether to build the demos" FALSE)
+add_feature_info(Demos BUILD_DEMOS "Build the demos")
 option(BUILD_DOC "Whether to build the documentation" FALSE)
+add_feature_info(Docs BUILD_DOC "Build the documentation")
 option(BUILD_TESTS "Whether to build the tests" FALSE)
+add_feature_info(Tests BUILD_TESTS "Build the tests")
 option(ENABLE_SLOW_TESTS "Whether to enable slow tests" FALSE)
+add_feature_info(SlowTests ENABLE_SLOW_TESTS "Enables slow tests")
 option(USE_PREGENERATED_FILES "Whether to use the bundled pregenerated parser files" FALSE)
+add_feature_info(PregeneratedFiles USE_PREGENERATED_FILES "Build the language parser using the bundled, pregenerated files")
 option(ENABLE_PERFORMANCE_STATS "Whether to print performance stats across KSeExpr" FALSE)
+add_feature_info(PerformanceStats ENABLE_PERFORMANCE_STATS "Print performance stats across KSeExpr")
 
 # Package lookup
 
+find_package(Doxygen)
+set_package_properties(Doxygen PROPERTIES
+                       TYPE OPTIONAL
+                       PURPOSE "Needed to build the documentation")
 find_package(ECM 5.64.0 NO_MODULE)
+set_package_properties(ECM PROPERTIES
+                       TYPE OPTIONAL
+                       PURPOSE "Enables translations (if bundled) and automatic sanitizer support")
 find_package(GTest)
+set_package_properties(GTest PROPERTIES
+                       TYPE OPTIONAL
+                       PURPOSE "Needed for building the tests")
 find_package(LLVM)
-find_package(Python3)
+set_package_properties(LLVM PROPERTIES
+                       TYPE OPTIONAL
+                       PURPOSE "Needed for building the LLVM-based script backend")
 find_package(PNG)
+set_package_properties(PNG PROPERTIES
+                       TYPE OPTIONAL
+                       PURPOSE "Needed to support image file output in demos and tests")
+find_package(Python3)
+set_package_properties(Python3 PROPERTIES
+                       TYPE OPTIONAL
+                       PURPOSE "Needed for running some tests")
+find_package(BISON)
+set_package_properties(BISON PROPERTIES
+                       TYPE OPTIONAL
+                       PURPOSE "Needed to build KSeExpr's language parser from source")
+find_package(FLEX)
+set_package_properties(FLEX PROPERTIES
+                       TYPE OPTIONAL
+                       PURPOSE "Needed to build KSeExpr's language parser from source")
+find_program(SED_EXE sed)
+set_package_properties(SED_EXE PROPERTIES
+                       TYPE OPTIONAL
+                       PURPOSE "Needed to build KSeExpr's language parser from source")
 
 if (ECM_FOUND)
     set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${CMAKE_MODULE_PATH})
@@ -177,6 +219,9 @@ endif()
 
 if (ENABLE_QT5)
     find_package(Qt5 5.9.0 COMPONENTS Core Gui Widgets REQUIRED)
+    set_package_properties(Qt5 PROPERTIES
+                            TYPE REQUIRED
+                            PURPOSE "Required if you're building KSeExprUI")
     message(STATUS "Qt5 Enabled")
 endif()
 
