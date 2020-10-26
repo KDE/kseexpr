@@ -66,21 +66,6 @@ set(CMAKE_DIR "share/cmake/${PROJECT_NAME}")
 set(INCLUDE_DIR "include/${PROJECT_NAME}")
 
 # Configuration options
-# TODO: find boost and python the proper ways
-set(BOOST_DIR /usr CACHE PATH "where boost is located")
-
-find_package(PythonInterp) # provides Python version check
-find_package(PythonLibs)
-
-if(PYTHON_VERSION_MAJOR LESS 3)
-    set(BOOST_PYTHON_LIBNAME boost_python CACHE STRING "what library name for boost python")
-else()
-    # try to find boost_python3 in a way compatible with most distributions
-    find_library(BOOST_PYTHON3_LIB NAMES "boost_python3" "boost_python3${PYTHON_VERSION_MINOR}")
-    SET (BOOST_PYTHON_LIBNAME ${BOOST_PYTHON3_LIB} CACHE STRING "what library name for boost python")
-endif()
-
-find_package(GTest)
 option(ENABLE_LLVM_BACKEND "Whether to build with LLVM backend" FALSE)
 option(ENABLE_QT5 "Whether to use Qt5" TRUE)
 option(BUILD_UTILS "Whether to build the utilities" FALSE)
@@ -93,9 +78,12 @@ option(ENABLE_PERFORMANCE_STATS "Whether to print performance stats across KSeEx
 
 # Package lookup
 
-find_package(GTest)
-
 find_package(ECM 5.64.0 NO_MODULE)
+find_package(GTest)
+find_package(LLVM)
+find_package(Python3)
+find_package(PNG)
+
 if (ECM_FOUND)
     set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${CMAKE_MODULE_PATH})
     if (FLAVOR STREQUAL "debug")
@@ -108,11 +96,7 @@ if (ECM_FOUND)
     endif ()
 endif ()
 
-set(LLVM_LIB "")
 if (ENABLE_LLVM_BACKEND)
-    set(LLVM_DIR /usr/share/llvm/cmake CACHE PATH "Where to search for LLVM i.e. ")
-
-    find_package(LLVM)
     if (NOT LLVM_FOUND OR LLVM_VERSION VERSION_LESS 3.8.0)
         set(ENABLE_LLVM_BACKEND off)
         message(STATUS "Not building with LLVM, version must be >= 3.8.0")
