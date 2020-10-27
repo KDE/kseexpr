@@ -5,16 +5,19 @@
 
 #pragma once
 
-#include <map>
 #include <string>
+#include <unordered_map>
 
-namespace KSeExpr {
 
-class Context {
-  public:
+namespace KSeExpr
+{
+class Context
+{
+public:
     /// Lookup a Context parameter by name.
-    bool lookupParameter(const std::string& parameterName, std::string& value) const {
-        ParameterMap::const_iterator it = _parameters.find(parameterName);
+    bool lookupParameter(const std::string &parameterName, std::string &value) const
+    {
+        auto it = _parameters.find(parameterName);
         if (it != _parameters.end()) {
             value = it->second;
             return true;
@@ -24,36 +27,49 @@ class Context {
             return false;
     }
     /// Set a parameter. NOTE: this must be done when no threads are accessing lookupParameter for safety
-    void setParameter(const std::string& parameterName, const std::string& value);
+    void setParameter(const std::string &parameterName, const std::string &value);
     /// Create a context that is a child of this context
-    Context* createChildContext() const;
+    Context *createChildContext() const;
 
     // Parent access uses pointers as it is acceptable to set/get a NULL parent
-    void setParent(const Context* context) { _parent = context; }
-    const Context* getParent() const { return _parent; }
+    void setParent(const Context *context)
+    {
+        _parent = context;
+    }
+    const Context *getParent() const
+    {
+        return _parent;
+    }
 
-    bool hasContext(const Context* context) const {
-        if (this == context) return true;
-        if (_parent) return _parent->hasContext(context);
+    bool hasContext(const Context *context) const
+    {
+        if (this == context)
+            return true;
+        if (_parent)
+            return _parent->hasContext(context);
         return false;
     }
 
     /// The global default context of the seexpr
-    static Context& global();
+    static Context &global();
 
-  private:
+    ~Context() = default;
+
     /// Private constructor and un-implemented default/copy/assignment
     /// (it is required that we derive from the global context via createChildContext)
-    Context(const Context&);
-    Context& operator=(const Context&);
+    Context(const Context &) = delete;
+    Context(Context &&) = delete;
+    Context &operator=(const Context &) = delete;
+    Context &operator=(Context &&) = delete;
 
-    Context(const Context* parent);
+private:
+    Context(const Context *parent);
+
     /// The parent scope
-    const Context* _parent;
+    const Context *_parent{nullptr};
 
-    // TODO: Use std::map until C++11 is ubiq.
-    typedef std::map<std::string, std::string> ParameterMap;
+    using ParameterMap = std::unordered_map<std::string, std::string>;
     /// Attribute/value pairs
     ParameterMap _parameters;
 };
-}
+} // namespace KSeExpr
