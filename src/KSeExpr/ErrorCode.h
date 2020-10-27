@@ -1,8 +1,7 @@
 // SPDX-FileCopyrightText: 2020 L. E. Segovia <amy@amyspark.me>
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#ifndef ErrorCode_h
-#define ErrorCode_h
+#pragma once
 
 namespace KSeExpr {
 enum ErrorCode {
@@ -64,6 +63,4 @@ enum ErrorCode {
     //! Unknown error (message = %1)
     Unknown,
 };
-}
-
-#endif
+} // namespace KSeExpr
