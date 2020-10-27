@@ -9,7 +9,7 @@ macro(localize_path SRC DST)
     _TMP_FILE
   )
   string(REPLACE
-    "@@PATH@@/"
+    "@@PATH@@"
     "${CMAKE_SOURCE_DIR}"
     _TMP_FILE_2
     "${_TMP_FILE}"
