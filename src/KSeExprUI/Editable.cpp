@@ -197,7 +197,7 @@ void ColorSwatchEditable::appendString(std::stringstream &stream) const
     }
 }
 
-bool ColorSwatchEditable::controlsMatch(const Editable &other) const
+bool ColorSwatchEditable::controlsMatch(const Editable &) const
 {
     // TODO: determine when controls match
     return false;

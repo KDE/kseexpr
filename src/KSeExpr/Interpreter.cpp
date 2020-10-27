@@ -62,7 +62,7 @@ void Interpreter::print(int pc) const {
         Dl_info info;
         if (dladdr((void*)ops[i].first, &info)) name = info.dli_sname;
 #endif
-        fprintf(stderr, "%s %s %p (", pc == (int)i ? "-->" : "   ", name, ops[i].first);
+        fprintf(stderr, "%s %s %p (", pc == (int)i ? "-->" : "   ", name, (void*)ops[i].first);
         int nextGuy = (i == ops.size() - 1 ? static_cast<int>(opData.size()) : ops[i + 1].second);
         for (int k = ops[i].second; k < nextGuy; k++) {
             fprintf(stderr, " %d", opData[k]);

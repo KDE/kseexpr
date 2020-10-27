@@ -339,7 +339,7 @@ Vec3d ExprVecNode::value() const {
     };
 
     return Vec3d(0.0);
-};
+}
 
 ExprType ExprUnaryOpNode::prep(bool wantScalar, ExprVarEnvBuilder& envBuilder) {
     bool error = false;

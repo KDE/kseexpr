@@ -9,31 +9,13 @@
 #include <cmath>
 #include <iostream>
 #include <numeric>
+#include <type_traits>
 
 
 //#############################################################################
 // Template Metaprogramming Helpers
 namespace KSeExpr
 {
-//! Static assert error case (false)
-template<bool b, class T> struct seexpr_static_assert {
-};
-//! Static assert success case
-template<class T> struct seexpr_static_assert<true, T> {
-    using TYPE = T;
-};
-
-//! Enable_if success case (can find the type TYPE)
-template<bool c, class T = void> struct my_enable_if {
-    using TYPE = T;
-};
-//! Enable_if failure case (substitution failure is not an error)
-template<class T> struct my_enable_if<false, T> {
-#if defined(_MSC_VER)
-    using TYPE = void;
-#endif
-};
-
 //! Static conditional type true case
 template<bool c, class T1, class T2> struct static_if {
     using TYPE = T1;
@@ -43,27 +25,10 @@ template<class T1, class T2> struct static_if<false, T1, T2> {
     using TYPE = T2;
 };
 
-//#############################################################################
-// Reduction class (helps prevent linear data dependency on reduce unroll)
-template<class T, size_t d> struct Reducer {
-    static T sum(const std::array<T, d> &data)
-    {
-        return std::accumulate(data.cbegin(), data.cend(), static_cast<T>(0));
-    }
-};
-
 //! Vec class, generic dimension vector class
 //! can also point to data if the template argument ref is true
 template<class T, size_t d, bool ref = false> class Vec
 {
-    // static error types
-    struct INVALID_WITH_VECTOR_VALUE {
-    };
-    struct INVALID_WITH_VECTOR_REFERENCE {
-    };
-    struct INVALID_WITH_DIMENSION {
-    };
-
     //! internal data (either an explicit arary or a pointer to raw data)
     typename static_if<ref, T *, std::array<T, d>>::TYPE x;
 
@@ -72,8 +37,9 @@ public:
     using T_VEC_REF = Vec<T, d, true>;
 
     //! Initialize vector value using raw memory
-    template<class T2> static Vec<T, d, false> copy(T2 *raw, INVALID_WITH_VECTOR_REFERENCE u = (typename my_enable_if<!ref, INVALID_WITH_VECTOR_REFERENCE>::TYPE()))
+    template<class T2> static Vec<T, d, false> copy(T2 *raw)
     {
+        static_assert(!ref, "Cannot be used with vector references");
         Vec<T, d, false> ret;
         for (size_t k = 0; k < d; k++)
             ret[k] = static_cast<T>(raw[k]);
@@ -81,44 +47,50 @@ public:
     }
 
     //! Initialize vector to be reference to plain raw data
-    explicit Vec(T *raw, INVALID_WITH_VECTOR_VALUE u = (typename my_enable_if<ref, INVALID_WITH_VECTOR_VALUE>::TYPE()))
+    explicit Vec(T *raw)
         : x(raw)
     {
+        static_assert(ref, "Constructor cannot be used with vector values");
     }
 
     //! Empty constructor (this is invalid for a reference type)
-    Vec(INVALID_WITH_VECTOR_REFERENCE u = (typename my_enable_if<!ref, INVALID_WITH_VECTOR_REFERENCE>::TYPE()))
+    Vec()
     {
+        static_assert(!ref, "Constructor cannot be used with vector references");
     }
 
     //! Convenience constant vector initialization (valid for any d)
-    Vec(T v0, INVALID_WITH_VECTOR_REFERENCE u = (typename my_enable_if<!ref, INVALID_WITH_VECTOR_REFERENCE>::TYPE()))
+    Vec(T v0)
     {
+        static_assert(!ref, "Constructor cannot be used with vector references");
         for (size_t k = 0; k < d; k++)
             x[k] = v0;
     }
 
     //! Convenience 2 vector initialization (only for d==2)
-    Vec(T v1, T v2, INVALID_WITH_VECTOR_REFERENCE u = (typename my_enable_if<!ref, INVALID_WITH_VECTOR_REFERENCE>::TYPE()))
+    Vec(T v1, T v2)
     {
-        typename seexpr_static_assert<d == 2, INVALID_WITH_DIMENSION>::TYPE();
+        static_assert(!ref, "Constructor cannot be used with vector references");
+        static_assert(d == 2, "Invalid constructor for dimension");
         x[0] = v1;
         x[1] = v2;
     }
 
     //! Convenience 3 vector initialization (only for d==3)
-    Vec(T v1, T v2, T v3, INVALID_WITH_VECTOR_REFERENCE u = (typename my_enable_if<!ref, INVALID_WITH_VECTOR_REFERENCE>::TYPE()))
+    Vec(T v1, T v2, T v3)
     {
-        typename seexpr_static_assert<d == 3, INVALID_WITH_DIMENSION>::TYPE();
+        static_assert(!ref, "Constructor cannot be used with vector references");
+        static_assert(d == 3, "Invalid constructor for dimension");
         x[0] = v1;
         x[1] = v2;
         x[2] = v3;
     }
 
     //! Convenience 4 vector initialization (only for d==4)
-    Vec(T v1, T v2, T v3, T v4, INVALID_WITH_VECTOR_REFERENCE u = (typename my_enable_if<!ref, INVALID_WITH_VECTOR_REFERENCE>::TYPE()))
+    Vec(T v1, T v2, T v3, T v4)
     {
-        typename seexpr_static_assert<d == 4, INVALID_WITH_DIMENSION>::TYPE();
+        static_assert(!ref, "Constructor cannot be used with vector references");
+        static_assert(d == 4, "Invalid constructor for dimension");
         x[0] = v1;
         x[1] = v2;
         x[2] = v3;
@@ -128,11 +100,11 @@ public:
     // for value it copies
     //! Copy construct. Only valid if we are not going to be a reference data!
     // Vec(const Vec&)
-    //{typename static_assert<!ref,INVALID_WITH_VECTOR_REFERENCE>::TYPE();}
 
     //! Copy construct. Only valid if we are not going to be reference data!
-    template<class T2, bool refother> Vec(const Vec<T2, d, refother> &other, INVALID_WITH_VECTOR_REFERENCE u = (typename my_enable_if<!ref && refother != ref, INVALID_WITH_VECTOR_REFERENCE>::TYPE()))
+    template<class T2, bool refother> Vec(const Vec<T2, d, refother> &other)
     {
+        static_assert(!ref, "Cannot be used with vector references");
         *this = other;
     }
 
@@ -174,7 +146,7 @@ public:
         std::array<T, d> data;
         for (size_t k = 0; k < d; k++)
             data[k] = x[k] * x[k];
-        return Reducer<T, d>::sum(data);
+        return std::accumulate(data.cbegin(), data.cend(), static_cast<T>(0));
     }
 
     //! Euclidean (2) norm
@@ -322,20 +294,19 @@ public:
         std::array<T, d> data;
         for (size_t k = 0; k < d; k++)
             data[k] = x[k] * o[k];
-        return Reducer<T, d>::sum(data);
+        return std::accumulate(data.cbegin(), data.cend(), static_cast<T>(0));
     }
 
     /** Cross product. */
     template<bool refother> T_VEC_VALUE cross(const Vec<T, 3, refother> &o) const
     {
-        typename seexpr_static_assert<d == 3, INVALID_WITH_DIMENSION>::TYPE();
-        return T_VEC_VALUE(x[1] * o[2] - x[2] * o[1], x[2] * o[0] - x[0] * o[2], x[0] * o[1] - x[1] * o[0]);
+        static_assert(d == 3, "Invalid constructor for dimension");        return T_VEC_VALUE(x[1] * o[2] - x[2] * o[1], x[2] * o[0] - x[0] * o[2], x[0] * o[1] - x[1] * o[0]);
     }
 
     /** Return a vector orthogonal to the current vector. */
     T_VEC_VALUE orthogonal() const
     {
-        typename seexpr_static_assert<d == 3, INVALID_WITH_DIMENSION>::TYPE();
+        static_assert(d == 3, "Invalid constructor for dimension");
         return T_VEC_VALUE(x[1] + x[2], x[2] - x[0], -x[0] - x[1]);
     }
 
@@ -345,7 +316,7 @@ public:
      */
     template<bool refother> T angle(const Vec<T, 3, refother> &o) const
     {
-        typename seexpr_static_assert<d == 3, INVALID_WITH_DIMENSION>::TYPE();
+        static_assert(d == 3, "Invalid constructor for dimension");
         T l = length() * o.length();
         if (l == 0)
             return 0;
@@ -358,7 +329,7 @@ public:
      */
     template<bool refother> T_VEC_VALUE rotateBy(const Vec<T, 3, refother> &axis, T angle) const
     {
-        typename seexpr_static_assert<d == 3, INVALID_WITH_DIMENSION>::TYPE();
+        static_assert(d == 3, "Invalid constructor for dimension");
         double c = cos(angle);
         double s = sin(angle);
         return c * (*this) + (1 - c) * dot(axis) * axis - s * cross(axis);

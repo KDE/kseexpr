@@ -355,13 +355,13 @@ static void yyerror(const char* /*msg*/)
 {
     // find start of line containing error
     int pos = yypos(), lineno = 1, start = 0, end = strlen(ParseStr);
-    bool multiline = 0;
+
     for (int i = start; i < pos; i++)
-	if (ParseStr[i] == '\n') { start = i + 1; lineno++; multiline=1; }
+	if (ParseStr[i] == '\n') { start = i + 1; lineno++; }
 
     // find end of line containing error
     for (int i = end; i > pos; i--)
-	if (ParseStr[i] == '\n') { end = i - 1; multiline=1; }
+	if (ParseStr[i] == '\n') { end = i - 1; }
 
     ParseErrorCode = yytext[0] ? KSeExpr::ErrorCode::SyntaxError : KSeExpr::ErrorCode::UnexpectedEndOfExpression;
 

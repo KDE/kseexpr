@@ -69,7 +69,7 @@ QVariant ExprCompletionModel::data(const QModelIndex &index, int role) const
 
     if (!index.isValid())
         return QVariant();
-    auto row = index.row();
+    auto row = static_cast<size_t>(index.row());
     auto column = index.column();
 
     auto functions_offset = builtins.size();
@@ -112,7 +112,7 @@ QVariant ExprCompletionModel::data(const QModelIndex &index, int role) const
                 return QVariant(variables_comment[index]);
         } else if (role == Qt::ForegroundRole)
             return variableColor;
-    } else if (row < local_variables_offset + (int)local_variables.size()) {
+    } else if (row < local_variables_offset + local_variables.size()) {
         auto index = row - local_variables_offset;
         if (role == Qt::DisplayRole || role == Qt::EditRole) {
             if (column == 0)

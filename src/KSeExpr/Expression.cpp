@@ -75,7 +75,7 @@ bool TypePrintExaminer::examine(const ExprNode* examinee) {
               << " type=" << examinee->type().toString() << std::endl;
 
     return true;
-};
+}
 
 Expression::Expression(Expression::EvaluationStrategy evaluationStrategy)
     : _wantVec(true), _expression(""), _evaluationStrategy(evaluationStrategy), _context(&Context::global()),
