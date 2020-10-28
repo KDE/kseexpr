@@ -3,15 +3,16 @@
 // SPDX-FileCopyrightText: 2020 L. E. Segovia <amy@amyspark.me>
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#include "ExprNode.h"
-#include "Interpreter.h"
-#include "VarBlock.h"
 #include <iostream>
 #include <cstdio>
 #include <algorithm>
 #ifndef SEEXPR_WIN32
 #include <dlfcn.h>
 #endif
+
+#include "ExprNode.h"
+#include "Interpreter.h"
+#include "VarBlock.h"
 
 // TODO: optimize to write to location directly on a CondNode
 namespace KSeExpr {
@@ -54,15 +55,17 @@ void Interpreter::eval(VarBlock* block, bool debug) {
     }
 }
 
-void Interpreter::print(int pc) const {
+void Interpreter::print(int pc) const
+{
     std::cerr << "---- ops     ----------------------" << std::endl;
     for (size_t i = 0; i < ops.size(); i++) {
-        const char* name = "";
+        const char *name = "";
 #ifndef SEEXPR_WIN32
         Dl_info info;
-        if (dladdr((void*)ops[i].first, &info)) name = info.dli_sname;
+        if (dladdr((void *)ops[i].first, &info))
+            name = info.dli_sname;
 #endif
-        fprintf(stderr, "%s %s %p (", pc == (int)i ? "-->" : "   ", name, (void*)ops[i].first);
+        fprintf(stderr, "%s %s %p (", pc == (int)i ? "-->" : "   ", name, (void *)ops[i].first);
         int nextGuy = (i == ops.size() - 1 ? static_cast<int>(opData.size()) : ops[i + 1].second);
         for (int k = ops[i].second; k < nextGuy; k++) {
             fprintf(stderr, " %d", opData[k]);
@@ -72,19 +75,18 @@ void Interpreter::print(int pc) const {
     std::cerr << "---- opdata  ----------------------" << std::endl;
     for (size_t k = 0; k < opData.size(); k++) {
         std::cerr << "opData[" << k << "]= " << opData[k] << std::endl;
-        ;
     }
     std::cerr << "----- fp --------------------------" << std::endl;
     for (size_t k = 0; k < d.size(); k++) {
         std::cerr << "fp[" << k << "]= " << d[k] << std::endl;
-        ;
     }
     std::cerr << "---- str     ----------------------" << std::endl;
     std::cerr << "s[0] reserved for datablock = " << reinterpret_cast<size_t>(s[0]) << std::endl;
     std::cerr << "s[1] is indirectIndex = " << reinterpret_cast<size_t>(s[1]) << std::endl;
     for (size_t k = 2; k < s.size(); k++) {
         std::cerr << "s[" << k << "]= 0x" << s[k];
-        if (s[k]) std::cerr << " '" << s[k][0] << s[k][1] << s[k][2] << s[k][3] << "...'";
+        if (s[k])
+            std::cerr << " '" << s[k][0] << s[k][1] << s[k][2] << s[k][3] << "...'";
         std::cerr << std::endl;
     }
 }
@@ -134,7 +136,7 @@ static Interpreter::OpF getTemplatizedOp2(int i) {
             assert(false && "Invalid dynamic parameter (not supported template)");
             break;
     }
-    return 0;
+    return nullptr;
 }
 
 namespace {
@@ -152,7 +154,7 @@ struct BinaryStringOp {
         // Maybe make this behaviour configurable ?
         size_t len1 = strlen(in1);
         size_t len2 = strlen(in2);
-        if (out == 0 || len1 + len2 + 1 > strlen(out))
+        if (out == nullptr || len1 + len2 + 1 > strlen(out))
         {
             delete [] out;
             out = new char [len1 + len2 + 1];
@@ -343,7 +345,7 @@ struct JmpRelative {
 //! Evaluates an external variable
 struct EvalVar {
     static int f(int* opData, double* fp, char** c, std::vector<int>& callStack) {
-        ExprVarRef* ref = reinterpret_cast<ExprVarRef*>(c[opData[0]]);
+        auto* ref = reinterpret_cast<ExprVarRef*>(c[opData[0]]);
         if (ref->type().isFP()) {
             ref->eval(fp + opData[1]);
         } else {
@@ -374,7 +376,7 @@ struct EvalVarBlockIndirect {
             int stride = opData[2];
             int outputVarBlockOffset = opData[0];
             int destIndex = opData[1];
-            size_t indirectIndex = reinterpret_cast<size_t>(c[1]);
+            auto indirectIndex = reinterpret_cast<size_t>(c[1]);
             double* basePointer =
                 reinterpret_cast<double**>(c[0])[outputVarBlockOffset] + (uniform ? 0 : (stride * indirectIndex));
             double* destPointer = fp + destIndex;
@@ -440,7 +442,7 @@ struct StrCompareEqOp {
         return 1;
     }
 };
-}
+} // namespace
 
 namespace {
 int ProcedureReturn(int* opData, double* fp, char** c, std::vector<int>& callStack) {
@@ -555,8 +557,11 @@ int ExprVecNode::buildInterpreter(Interpreter* interpreter) const {
 }
 
 int ExprBinaryOpNode::buildInterpreter(Interpreter* interpreter) const {
-    const ExprNode* child0 = child(0), *child1 = child(1);
-    int dim0 = child0->type().dim(), dim1 = child1->type().dim(), dimout = type().dim();
+    const ExprNode * child0 = child(0);
+    const ExprNode *child1 = child(1);
+    int dim0 = child0->type().dim();
+    int dim1 = child1->type().dim();
+    int dimout = type().dim();
     int op0 = child0->buildInterpreter(interpreter);
     int op1 = child1->buildInterpreter(interpreter);
     if (dimout > 1) {
@@ -670,7 +675,8 @@ int ExprUnaryOpNode::buildInterpreter(Interpreter* interpreter) const {
 }
 
 int ExprSubscriptNode::buildInterpreter(Interpreter* interpreter) const {
-    const ExprNode* child0 = child(0), *child1 = child(1);
+    const ExprNode * child0 = child(0);
+    const ExprNode *child1 = child(1);
     int dimin = child0->type().dim();
     int op0 = child0->buildInterpreter(interpreter);
     int op1 = child1->buildInterpreter(interpreter);
@@ -687,7 +693,7 @@ int ExprSubscriptNode::buildInterpreter(Interpreter* interpreter) const {
 int ExprVarNode::buildInterpreter(Interpreter* interpreter) const {
     if (const ExprLocalVar* var = _localVar) {
         // if (const ExprLocalVar* phi = var->getPhi()) var = phi;
-        Interpreter::VarToLoc::iterator i = interpreter->varToLoc.find(var);
+        auto i = interpreter->varToLoc.find(var);
         if (i != interpreter->varToLoc.end())
             return i->second;
         else
@@ -778,7 +784,7 @@ int ExprIfThenElseNode::buildInterpreter(Interpreter* interpreter) const {
     // Allocate spots for all the join variables
     // they are before in the sequence of operands, but it doesn't matter
     // NOTE: at this point the variables thenVar and elseVar have not been codegen'd
-    for (auto& it : merges) {
+    for (const auto & it : merges) {
         ExprLocalVarPhi* finalVar = it.second;
         if (finalVar->valid()) {
             finalVar->buildInterpreter(interpreter);
@@ -793,7 +799,7 @@ int ExprIfThenElseNode::buildInterpreter(Interpreter* interpreter) const {
 
     // Then block (build interpreter and copy variables out then jump to end)
     child(1)->buildInterpreter(interpreter);
-    for (auto& it : merges) {
+    for (const auto & it : merges) {
         ExprLocalVarPhi* finalVar = it.second;
         if (finalVar->valid()) {
             copyVarToPromotedPosition(interpreter, finalVar->_thenVar, finalVar);
@@ -806,7 +812,7 @@ int ExprIfThenElseNode::buildInterpreter(Interpreter* interpreter) const {
     // Else block (build interpreter, copy variables out and then we're at end)
     int child2PC = interpreter->nextPC();
     child(2)->buildInterpreter(interpreter);
-    for (auto& it : merges) {
+    for (const auto & it : merges) {
         ExprLocalVarPhi* finalVar = it.second;
         if (finalVar->valid()) {
             copyVarToPromotedPosition(interpreter, finalVar->_elseVar, finalVar);
@@ -821,7 +827,8 @@ int ExprIfThenElseNode::buildInterpreter(Interpreter* interpreter) const {
 }
 
 int ExprCompareNode::buildInterpreter(Interpreter* interpreter) const {
-    const ExprNode* child0 = child(0), *child1 = child(1);
+    const ExprNode * child0 = child(0);
+    const ExprNode *child1 = child(1);
     assert(type().dim() == 1 && type().isFP());
 
     if (_op == '&' || _op == '|') {
@@ -899,8 +906,8 @@ int ExprPrototypeNode::buildInterpreter(Interpreter* interpreter) const {
     // set up parents
     _interpreterOps.clear();
     for (int c = 0; c < numChildren(); c++) {
-        if (const ExprVarNode* childVarNode = dynamic_cast<const ExprVarNode*>(child(c))) {
-            ExprType childType = childVarNode->type();
+        if (const auto* childVarNode = dynamic_cast<const ExprVarNode*>(child(c))) {
+            const ExprType& childType = childVarNode->type();
             if (childType.isFP()) {
                 int operand = interpreter->allocFP(childType.dim());
                 _interpreterOps.push_back(operand);
@@ -917,12 +924,14 @@ int ExprPrototypeNode::buildInterpreter(Interpreter* interpreter) const {
 }
 
 int ExprCompareEqNode::buildInterpreter(Interpreter* interpreter) const {
-    const ExprNode* child0 = child(0), *child1 = child(1);
+    const ExprNode * child0 = child(0);
+    const ExprNode *child1 = child(1);
     int op0 = child0->buildInterpreter(interpreter);
     int op1 = child1->buildInterpreter(interpreter);
 
     if (child0->type().isFP()) {
-        int dim0 = child0->type().dim(), dim1 = child1->type().dim();
+        int dim0 = child0->type().dim();
+        int dim1 = child1->type().dim();
         int dimCompare = std::max(dim0, dim1);
         if (dimCompare > 1) {
             if (dim0 == 1) {
@@ -1043,4 +1052,4 @@ int ExprModuleNode::buildInterpreter(Interpreter* interpreter) const {
     }
     return lastIdx;
 }
-}
+} // namespace KSeExpr

@@ -3,9 +3,10 @@
 // SPDX-FileCopyrightText: 2020 L. E. Segovia <amy@amyspark.me>
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#ifndef _Interpreter_h_
-#define _Interpreter_h_
+#pragma once
 
+#include "VarBlock.h"
+#include <cassert>
 #include <vector>
 #include <stack>
 
@@ -36,27 +37,27 @@ class Interpreter {
     std::vector<int> opData;
 
     /// Not needed for eval only building
-    typedef std::map<const ExprLocalVar*, int> VarToLoc;
-    VarToLoc varToLoc;
+    using VarToLoc = std::map<const ExprLocalVar *, int>;
+    VarToLoc varToLoc{};
 
     /// Op function pointer arguments are (int* currOpData,double* currD,char** c,std::stack<int>& callStackurrS)
-    typedef int (*OpF)(int*, double*, char**, std::vector<int>&);
+    using OpF = int (*)(int *, double *, char **, std::vector<int> &);
 
     std::vector<std::pair<OpF, int> > ops;
     std::vector<int> callStack;
 
   private:
-    bool _startedOp;
-    int _pcStart;
+    bool _startedOp{};
+    int _pcStart{};
 
   public:
-    Interpreter() : _startedOp(false) {
+    Interpreter() {
         s.push_back(nullptr);  // reserved for double** of variable block
         s.push_back(nullptr);  // reserved for double** of variable block
     }
 
     /// Return the position that the next instruction will be placed at
-    int nextPC() { return static_cast<int>(ops.size()); }
+    int nextPC() const { return static_cast<int>(ops.size()); }
 
     ///! adds an operator to the program (pointing to the data at the current location)
     int addOp(OpF op) {
@@ -65,7 +66,7 @@ class Interpreter {
         }
         _startedOp = true;
         int pc = static_cast<int>(ops.size());
-        ops.push_back(std::make_pair(op, static_cast<int>(opData.size())));
+        ops.emplace_back(op, static_cast<int>(opData.size()));
         return pc;
     }
 
@@ -151,8 +152,6 @@ T_FUNCTYPE getTemplatizedOp(int i) {
             assert(false && "Invalid dynamic parameter (not supported template)");
             break;
     }
-    return 0;
+    return nullptr;
 }
-}
-
-#endif
+} // namespace KSeExpr
