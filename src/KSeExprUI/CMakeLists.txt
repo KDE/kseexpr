@@ -87,8 +87,13 @@ if (Qt5_FOUND)
             ${KSeExprUI_QM_LOADER})
     endif()
 
-    add_library(KSeExprUI SHARED ${EDITOR_CPPS} ${EDITOR_MOC_SRCS}
+    if (NOT WIN32)
+        add_library(KSeExprUI SHARED ${EDITOR_CPPS} ${EDITOR_MOC_SRCS}
+                    ${editor_parser_cpp})
+    else ()
+        add_library(KSeExprUI STATIC ${EDITOR_CPPS} ${EDITOR_MOC_SRCS}
                 ${editor_parser_cpp})
+    endif ()
 
     set_property(TARGET KSeExprUI PROPERTY VERSION ${KSeExpr_VERSION})
     set_property(TARGET KSeExprUI PROPERTY SOVERSION 3)

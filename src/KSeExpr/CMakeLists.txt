@@ -76,15 +76,17 @@ check_cxx_source_compiles("
 
 BuildParserScanner(KSeExpr ExprParserLex ExprParser SeExpr parser_cpp)
 
-add_library(KSeExpr SHARED ${KSeExpr_SOURCES} ${parser_cpp})
 if (NOT WIN32)
+    add_library(KSeExpr SHARED ${KSeExpr_SOURCES} ${parser_cpp})
     if (NOT APPLE)
         set_source_files_properties(interpreter.cpp PROPERTIES COMPILE_OPTIONS "-rdynamic")
     endif()
     target_link_libraries(KSeExpr "dl")
+else()
+    add_library(KSeExpr STATIC ${KSeExpr_SOURCES} ${parser_cpp})
 endif()
 
-target_include_directories(KSeExpr 
+target_include_directories(KSeExpr
     PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
     PRIVATE $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
     INTERFACE $<INSTALL_INTERFACE:include>
@@ -122,7 +124,7 @@ if (ENABLE_LLVM_BACKEND)
     target_link_directories(${SEEXPR_LIBRARIES} PUBLIC ${LLVM_LIBRARY_DIR})
 
     if(LLVM_VERSION VERSION_GREATER_EQUAL 10)
-        # LLVM >= 10 moved to C++ 14.  
+        # LLVM >= 10 moved to C++ 14.
         target_compile_features(${SEEXPR_LIBRARIES} PUBLIC cxx_std_14)
     else()
         target_compile_features(${SEEXPR_LIBRARIES} PUBLIC cxx_std_11)

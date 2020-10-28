@@ -160,19 +160,19 @@ if (ENABLE_LLVM_BACKEND)
 
         message(STATUS "Detected processor: ${CMAKE_SYSTEM_PROCESSOR}")
         if(CMAKE_SYSTEM_PROCESSOR MATCHES "amd64.*|x86_64.*|AMD64.*")
-            set(KSeExpr_PLATFORM_CODEGEN_LIBS 
+            set(KSeExpr_PLATFORM_CODEGEN_LIBS
                 X86CodeGen
                 X86AsmParser)
         elseif(CMAKE_SYSTEM_PROCESSOR MATCHES "i686.*|i386.*|x86.*")
-            set(KSeExpr_PLATFORM_CODEGEN_LIBS 
+            set(KSeExpr_PLATFORM_CODEGEN_LIBS
                 X86CodeGen
                 X86AsmParser)
         elseif(CMAKE_SYSTEM_PROCESSOR MATCHES "^(aarch64.*|AARCH64.*|arm64.*|ARM64.*)")
-            set(KSeExpr_PLATFORM_CODEGEN_LIBS 
+            set(KSeExpr_PLATFORM_CODEGEN_LIBS
                 AArch64CodeGen
                 AArch64AsmParser)
         elseif(CMAKE_SYSTEM_PROCESSOR MATCHES "^(arm.*|ARM.*)")
-            set(KSeExpr_PLATFORM_CODEGEN_LIBS 
+            set(KSeExpr_PLATFORM_CODEGEN_LIBS
                 ARMCodeGen
                 ARMAsmParser)
         else()
@@ -201,6 +201,7 @@ endif()
 if (WIN32)
     add_definitions(-DSEEXPR_WIN32)
     add_definitions(-D_CRT_SECURE_NO_WARNINGS)
+    add_compile_definitions(_USE_MATH_DEFINES)
 else()
     add_definitions(-Wall -Wextra -Wno-unused-parameter)
 

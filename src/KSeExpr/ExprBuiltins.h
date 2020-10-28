@@ -6,6 +6,11 @@
 #ifndef ExprBuiltins_h
 #define ExprBuiltins_h
 
+#if !defined(_USE_MATH_DEFINES)
+#define _USE_MATH_DEFINES
+#endif
+#include <cmath>
+
 #include "ExprFunc.h"
 
 /// Translation macros - for UI extraction

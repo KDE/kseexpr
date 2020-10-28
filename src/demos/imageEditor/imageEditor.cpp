@@ -8,7 +8,6 @@
 */
 
 #include <iostream>
-#include <png.h>
 #include <string>
 
 #include <QApplication>

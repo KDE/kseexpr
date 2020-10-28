@@ -142,7 +142,7 @@ int32_t KSeExpr::Utils::strtol(const std::string &num)
     const auto result {std::strtol(num.c_str(), &ptr, 10)};
     if (ptr == num.c_str())
         throw std::invalid_argument {"KSeExpr::Utils::atoi: impossible to parse the given number"};
-    else if (ptr != num.end().base())
+    else if (ptr != num.c_str() + num.size())
         throw std::invalid_argument {"KSeExpr::Utils::atoi: the string had invalid extra characters"};
     else if (errno == ERANGE)
         throw std::out_of_range {"KSeExpr::Utils::atoi: out of range"};

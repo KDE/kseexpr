@@ -4,7 +4,9 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 #include <cassert>
+#if !defined(_USE_MATH_DEFINES)
 #define _USE_MATH_DEFINES
+#endif
 #include <cmath>
 #include <cstdlib>
 #include <limits>
@@ -1727,7 +1729,7 @@ public:
                 continue;
             }
 
-            const size_t specEnd = format.find_first_of(_intSpec + _doubleSpec + _strSpec, 
+            const size_t specEnd = format.find_first_of(_intSpec + _doubleSpec + _strSpec,
                                                         specStart);
             if (specEnd == std::string::npos) {
                 node->addError(ErrorCode::IncompleteFormatSpecifier);
@@ -1771,18 +1773,18 @@ public:
                 continue;
             }
 
-            const size_t specEnd = result.find_first_of(_intSpec + _doubleSpec + _strSpec, 
+            const size_t specEnd = result.find_first_of(_intSpec + _doubleSpec + _strSpec,
                                                         specStart);
             const std::string& spec = result.substr(specStart, specEnd - specStart + 1);
             int fragLen = -1;
             if (std::string::npos != _intSpec.find(result[specEnd]))
-                fragLen = snprintf(fragment, 255, spec.c_str(), 
+                fragLen = snprintf(fragment, 255, spec.c_str(),
                                    int(args.inFp<1>(exprArg++)[0]));
             else if (std::string::npos != _doubleSpec.find(result[specEnd]))
-                fragLen = snprintf(fragment, 255, spec.c_str(), 
+                fragLen = snprintf(fragment, 255, spec.c_str(),
                                    args.inFp<1>(exprArg++)[0]);
             else if (std::string::npos != _strSpec.find(result[specEnd]))
-                fragLen = snprintf(fragment, 255, spec.c_str(), 
+                fragLen = snprintf(fragment, 255, spec.c_str(),
                                    args.inStr(exprArg++));
             assert(fragLen >= 0);
 
