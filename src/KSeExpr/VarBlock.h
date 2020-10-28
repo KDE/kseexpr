@@ -3,15 +3,14 @@
 // SPDX-FileCopyrightText: 2020 L. E. Segovia <amy@amyspark.me>
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#ifndef VarBlock_h
-#define VarBlock_h
+#pragma once
 
-#include "Expression.h"
 #include "ExprType.h"
+#include "Expression.h"
 #include "Vec.h"
 
-namespace KSeExpr {
-
+namespace KSeExpr
+{
 class ExprNode;
 class ExprVarNode;
 class ExprFunc;
@@ -19,16 +18,23 @@ class ExprFunc;
 class VarBlockCreator;
 
 /// A thread local evaluation context. Just allocate and fill in with data.
-class VarBlock {
-  private:
+class VarBlock
+{
+private:
     /// Allocate an VarBlock
-    VarBlock(int size, bool makeThreadSafe) : indirectIndex(0), threadSafe(makeThreadSafe), _dataPtrs(size) {}
+    VarBlock(int size, bool makeThreadSafe)
+        : indirectIndex(0)
+        , threadSafe(makeThreadSafe)
+        , _dataPtrs(size)
+    {
+    }
 
-  public:
+public:
     friend class VarBlockCreator;
 
     /// Move semantics is the only allowed way to change the structure
-    VarBlock(VarBlock&& other) {
+    VarBlock(VarBlock &&other) noexcept
+    {
         threadSafe = other.threadSafe;
         d = std::move(other.d);
         s = std::move(other.s);
@@ -36,15 +42,22 @@ class VarBlock {
         indirectIndex = other.indirectIndex;
     }
 
-    ~VarBlock() {}
+    ~VarBlock() = default;
 
     /// Don't allow copying and operator='ing'
-    VarBlock(const VarBlock&) = delete;
-    VarBlock& operator=(const VarBlock&) = delete;
+    VarBlock(const VarBlock &) = delete;
+    VarBlock &operator=(const VarBlock &) = delete;
+    VarBlock &operator=(VarBlock &&other) = delete;
 
     /// Get a reference to the data block pointer which can be modified
-    double*& Pointer(uint32_t variableOffset) { return reinterpret_cast<double*&>(_dataPtrs[variableOffset]); }
-    char**& CharPointer(uint32_t variableOffset) { return reinterpret_cast<char**&>(_dataPtrs[variableOffset]); }
+    double *&Pointer(uint32_t variableOffset)
+    {
+        return reinterpret_cast<double *&>(_dataPtrs[variableOffset]);
+    }
+    char **&CharPointer(uint32_t variableOffset)
+    {
+        return reinterpret_cast<char **&>(_dataPtrs[variableOffset]);
+    }
 
     /// indirect index to add to pointer based data
     // i.e.  _dataPtrs[someAttributeOffset][indirectIndex]
@@ -57,37 +70,59 @@ class VarBlock {
     std::vector<double> d;
 
     /// copy of Interpreter's str data
-    std::vector<char*> s;
+    std::vector<char *> s;
 
     /// Raw data of the data block pointer (used by compiler)
-    char** data() { return _dataPtrs.data(); }
+    char **data()
+    {
+        return _dataPtrs.data();
+    }
 
-  private:
+private:
     /// This stores double* or char** ptrs to variables
-    std::vector<char*> _dataPtrs;
+    std::vector<char *> _dataPtrs;
 };
 
 /// A class that lets you register for the variables used by one or more expressions
 // This does not register actual data only types of the data. It can create
 // a VarBlock which allows registering actual variable data
-class VarBlockCreator {
-  public:
+class VarBlockCreator
+{
+public:
     /// Internally implemented var ref used by SeExpr
-    class Ref : public ExprVarRef {
+    class Ref : public ExprVarRef
+    {
         uint32_t _offset;
         uint32_t _stride;
 
-      public:
-        uint32_t offset() const { return _offset; }
-        uint32_t stride() const { return _stride; }
-        Ref(const ExprType& type, uint32_t offset, uint32_t stride)
-            : ExprVarRef(type), _offset(offset), _stride(stride) {}
-        void eval(double*) override { assert(false); }
-        void eval(const char**) override { assert(false); }
+    public:
+        uint32_t offset() const
+        {
+            return _offset;
+        }
+        uint32_t stride() const
+        {
+            return _stride;
+        }
+        Ref(const ExprType &type, uint32_t offset, uint32_t stride)
+            : ExprVarRef(type)
+            , _offset(offset)
+            , _stride(stride)
+        {
+        }
+        void eval(double *) override
+        {
+            assert(false);
+        }
+        void eval(const char **) override
+        {
+            assert(false);
+        }
     };
 
     /// Register a variable and return a handle
-    int registerVariable(const std::string& name, const ExprType type) {
+    int registerVariable(const std::string &name, const ExprType &type)
+    {
         if (_vars.find(name) != _vars.end()) {
             throw std::runtime_error("Already registered a variable named " + name);
         } else {
@@ -107,22 +142,23 @@ class VarBlockCreator {
     ///     If false or not specified, the old behavior occurs (var block
     ///     will only hold variables sources and optionally output data,
     ///     and the interpreter will work on its internal data)
-    VarBlock create(bool makeThreadSafe = false) {
+    VarBlock create(bool makeThreadSafe = false) const
+    {
         return VarBlock(_nextOffset, makeThreadSafe);
     }
 
     /// Resolve the variable using anything in the data block (call from resolveVar in Expr subclass)
-    ExprVarRef* resolveVar(const std::string& name) const {
+    ExprVarRef *resolveVar(const std::string &name) const
+    {
         auto it = _vars.find(name);
-        if (it != _vars.end()) return const_cast<Ref*>(&it->second);
+        if (it != _vars.end())
+            return const_cast<Ref*>(&it->second);
         return nullptr;
     }
 
-  private:
-    int _nextOffset = 0;
+private:
+    int _nextOffset {};
     std::map<std::string, Ref> _vars;
 };
 
-}  // namespace
-
-#endif
+} // namespace KSeExpr
