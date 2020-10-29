@@ -4,10 +4,8 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 #include <gtest/gtest.h>
-#include <gmock.h>
-#include "ExprMultiExpr.h"
+#include <KSeExpr/ExprMultiExpr.h>
 
-using ::testing::ElementsAre;
 using namespace KSeExpr;
 
 TEST(MultiTests, ParabolaCubicE1) {
@@ -41,10 +39,9 @@ TEST(MultiTests, ParabolaCubicE1) {
         double myints[] = {2.0, 3.0, 4.0};
         ee.setLoopVariable(vSHandle, myints, 3);
         std::vector<double> xCubed = ee.evalFP(Scubic);
-        EXPECT_THAT(xCubed, ElementsAre(128, 192, 256));
-        // EXPECT_EQ(xCubed[0], 128);
-        // EXPECT_EQ(xCubed[1], 192);
-        // EXPECT_EQ(xCubed[2], 256);
+        EXPECT_EQ(xCubed[0], 128);
+        EXPECT_EQ(xCubed[1], 192);
+        EXPECT_EQ(xCubed[2], 256);
 
         //       std::vector<double> xe1 = ee.evalFP(Se1);
         //       std::cout << xe1[0] << ","

@@ -1094,8 +1094,6 @@ struct VarCodeGeneration {
         if (dim == 1) {
             ret = Builder.CreateLoad(returnValue);
         } else {
-            // TODO: I don't really see how this requires dim==3... this assert should be removable
-            assert(dim == 3 && "future work.");
             ret = createVecValFromAlloca(Builder, returnValue, dim);
         }
 

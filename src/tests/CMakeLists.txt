@@ -4,7 +4,7 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 
-if (GTEST_FOUND AND PNG_FOUND AND Python3_FOUND)
+if (GTest_FOUND AND PNG_FOUND AND Python3_FOUND)
     message("-- Found PNG library: " ${PNG_LIBRARIES})
     message("-- Found Python executable: " ${Python3_EXECUTABLE})
 
@@ -32,6 +32,12 @@ if (GTEST_FOUND AND PNG_FOUND AND Python3_FOUND)
     target_link_libraries(testmain2 KSeExpr GTest::GTest ${PNG_LIBRARIES})
     install(TARGETS testmain2 DESTINATION ${TEST_DEST})
     add_test(NAME basic COMMAND testmain2)
+
+    add_executable(multiTests "multiTests.cpp")
+    target_include_directories(multiTests PRIVATE ${GTEST_INCLUDE_DIR})
+    target_link_libraries(multiTests KSeExpr GTest::GTest GTest::Main)
+    install(TARGETS multiTests DESTINATION ${TEST_DEST})
+    add_test(NAME multiTests COMMAND multiTests)
 
     add_executable(dirtSimple "dirtSimple.cpp")
     target_include_directories(dirtSimple PRIVATE ${PNG_INCLUDE_DIR})
