@@ -23,15 +23,24 @@ if (GTest_FOUND AND PNG_FOUND AND Python3_FOUND)
             DEPENDS ${GENERATE_SCRIPT} ${EXAMPLE_DIR})
     endif()
 
-    add_executable(testmain2
-        "testmain.cpp" "imageTests.cpp"
-        ${EXAMPLE_TESTS} ${PAINT3D_TESTS}
-        "basic.cpp" "string.cpp")
-    target_include_directories(testmain2 PRIVATE ${PNG_INCLUDE_DIR})
-    target_include_directories(testmain2 PRIVATE ${GTEST_INCLUDE_DIR})
-    target_link_libraries(testmain2 KSeExpr GTest::GTest ${PNG_LIBRARIES})
-    install(TARGETS testmain2 DESTINATION ${TEST_DEST})
-    add_test(NAME basic COMMAND testmain2)
+    add_executable(basicTests "basic.cpp")
+    target_include_directories(basicTests PRIVATE ${GTEST_INCLUDE_DIR})
+    target_link_libraries(basicTests KSeExpr GTest::GTest GTest::Main)
+    install(TARGETS basicTests DESTINATION ${TEST_DEST})
+    add_test(NAME basicTests COMMAND basicTests)
+
+    add_executable(imageTests "imageTests.cpp" ${EXAMPLE_TESTS})
+    target_include_directories(imageTests PRIVATE ${PNG_INCLUDE_DIR})
+    target_include_directories(imageTests PRIVATE ${GTEST_INCLUDE_DIR})
+    target_link_libraries(imageTests KSeExpr GTest::GTest GTest::Main ${PNG_LIBRARIES})
+    install(TARGETS imageTests DESTINATION ${TEST_DEST})
+    add_test(NAME imageTests COMMAND imageTests)
+
+    add_executable(stringTests "string.cpp")
+    target_include_directories(stringTests PRIVATE ${GTEST_INCLUDE_DIR})
+    target_link_libraries(stringTests KSeExpr GTest::GTest GTest::Main)
+    install(TARGETS stringTests DESTINATION ${TEST_DEST})
+    add_test(NAME stringTests COMMAND stringTests)
 
     add_executable(typeTests "typeTests.cpp")
     target_include_directories(typeTests PRIVATE ${GTEST_INCLUDE_DIR})
