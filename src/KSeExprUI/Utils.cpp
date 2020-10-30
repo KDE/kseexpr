@@ -10,15 +10,17 @@ bool KSeExpr::Utils::parseRangeComment(const std::string &comment, double_t &fro
         return false;
     }
 
-    auto div = comment.find_first_of(' ');
+    auto trimmed_comment = trim(comment.substr(1, std::string::npos));
+
+    auto div = trimmed_comment.find_first_of(' ');
 
     if (div == std::string::npos) {
         return false;
     }
 
-    std::string first {trim(comment.substr(1, div - 1))};
+    std::string first {trim(trimmed_comment.substr(1, div))};
 
-    std::string second {trim(comment.substr(div + 1, std::string::npos))};
+    std::string second {trim(trimmed_comment.substr(div + 1, std::string::npos))};
 
     auto i = KSeExpr::Utils::atof(first);
 
@@ -38,15 +40,17 @@ bool KSeExpr::Utils::parseRangeComment(const std::string &comment, float_t &from
         return false;
     }
 
-    auto div = comment.find_first_of(' ');
+    auto trimmed_comment = trim(comment.substr(1, std::string::npos));
+
+    auto div = trimmed_comment.find_first_of(' ');
 
     if (div == std::string::npos) {
         return false;
     }
 
-    std::string first {trim(comment.substr(1, div - 1))};
+    std::string first {trim(trimmed_comment.substr(1, div))};
 
-    std::string second {trim(comment.substr(div + 1, std::string::npos))};
+    std::string second {trim(trimmed_comment.substr(div + 1, std::string::npos))};
 
     auto i = static_cast<float_t>(KSeExpr::Utils::atof(first));
 
@@ -66,15 +70,17 @@ bool KSeExpr::Utils::parseRangeComment(const std::string &comment, int32_t &from
         return false;
     }
 
-    auto div = comment.find_first_of(' ');
+    auto trimmed_comment = trim(comment.substr(1, std::string::npos));
+
+    auto div = trimmed_comment.find_first_of(' ');
 
     if (div == std::string::npos) {
         return false;
     }
 
-    std::string first {trim(comment.substr(1, div - 1))};
+    std::string first {trim(trimmed_comment.substr(0, div))};
 
-    std::string second {trim(comment.substr(div + 1, std::string::npos))};
+    std::string second {trim(trimmed_comment.substr(div + 1, std::string::npos))};
 
     try {
         auto i = KSeExpr::Utils::strtol(first);
@@ -96,15 +102,17 @@ bool KSeExpr::Utils::parseTypeNameComment(const std::string &comment, std::strin
         return false;
     }
 
-    auto div = comment.find_first_of(' ');
+    auto trimmed_comment = trim(comment.substr(1, std::string::npos));
+
+    auto div = trimmed_comment.find_first_of(' ');
 
     if (div == std::string::npos) {
         return false;
     }
 
-    auto first = comment.substr(1, div - 1);
+    auto first = trimmed_comment.substr(1, div);
 
-    auto second = comment.substr(div + 1, std::string::npos);
+    auto second = trimmed_comment.substr(div + 1, std::string::npos);
 
     type.replace(0, type.size(), first);
 
@@ -119,7 +127,9 @@ bool KSeExpr::Utils::parseLabelComment(const std::string &comment, std::string &
         return false;
     }
 
-    auto first = comment.substr(1, std::string::npos);
+    auto trimmed_comment = trim(comment.substr(1, std::string::npos));
+
+    auto first = trimmed_comment.substr(1, std::string::npos);
 
     label.replace(0, label.size(), first);
 

@@ -21,7 +21,7 @@ namespace KSeExpr
             const auto begin {s.find_first_not_of(' ')};
             const auto end {s.find_last_not_of(' ')};
             if (begin != std::string::npos && end != std::string::npos)
-                return s.substr(begin, end);
+                return s.substr(begin, end + 1);
             return s; // empty string
         }
     } // namespace Utils
