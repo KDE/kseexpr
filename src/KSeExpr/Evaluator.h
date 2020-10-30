@@ -5,6 +5,7 @@
 
 #include "ExprConfig.h"
 #include "ExprLLVMAll.h"
+#include "ExprNode.h"
 #include "VarBlock.h"
 
 #if defined(SEEXPR_ENABLE_LLVM)
@@ -178,8 +179,8 @@ class LLVMEvaluator {
             for (auto &arg : F->args()) arg.setName(names[idx++]);
         }
 
-        unsigned int dimDesired = (unsigned)desiredReturnType.dim();
-        unsigned int dimGenerated = parseTree->type().dim();
+        auto dimDesired = desiredReturnType.dim();
+        auto dimGenerated = parseTree->type().dim();
         {
             BasicBlock *BB = BasicBlock::Create(*_llvmContext, "entry", F);
             IRBuilder<> Builder(BB);
@@ -190,22 +191,51 @@ class LLVMEvaluator {
             // return values through parameter.
             Value *firstArg = &*F->arg_begin();
             if (desireFP) {
-                if (dimGenerated > 1) {
-                    Value *newLastVal = promoteToDim(lastVal, dimDesired, Builder);
-                    assert(newLastVal->getType()->getVectorNumElements() >= dimDesired);
-                    for (unsigned i = 0; i < dimDesired; ++i) {
-                        Value *idx = ConstantInt::get(Type::getInt64Ty(*_llvmContext), i);
-                        Value *val = Builder.CreateExtractElement(newLastVal, idx);
-                        Value *ptr = Builder.CreateInBoundsGEP(firstArg, idx);
-                        Builder.CreateStore(val, ptr);
+                Value *newLastVal = promoteToDim(lastVal, dimDesired, Builder);
+                if (newLastVal->getType()->isVectorTy()) {
+                    // Output is vector - copy values (if possible)
+
+                    assert(dimDesired >= 1 && "error. dim of FP is less than 1.");
+
+                    assert(dimGenerated >= 1 && "error. dim of FP is less than 1.");
+
+                    assert(dimGenerated == 1 || dimGenerated >= dimDesired && "error: unable to match between FP of differing dimensions");
+
+                    if (newLastVal->getType()->getVectorNumElements() >= dimDesired) {
+                        for (unsigned i = 0; i < dimDesired; ++i) {
+                            Value *idx = ConstantInt::get(Type::getInt64Ty(*_llvmContext), i);
+                            Value *val = Builder.CreateExtractElement(newLastVal, idx);
+                            Value *ptr = Builder.CreateInBoundsGEP(firstArg, idx);
+                            Builder.CreateStore(val, ptr);
+                        }
+                    } else {
+                        for (unsigned i = 0; i < dimDesired; ++i) {
+                            Value *idx = ConstantInt::get(Type::getInt64Ty(*_llvmContext), i);
+                            Value *original_idx = ConstantInt::get(Type::getInt64Ty(*_llvmContext), 0);
+                            Value *val = Builder.CreateExtractElement(newLastVal, original_idx);
+                            Value *ptr = Builder.CreateInBoundsGEP(firstArg, idx);
+                            Builder.CreateStore(val, ptr);
+                        }
                     }
-                } else if (dimGenerated == 1) {
-                    for (unsigned i = 0; i < dimDesired; ++i) {
-                        Value *ptr = Builder.CreateConstInBoundsGEP1_32(nullptr, firstArg, i);
-                        Builder.CreateStore(lastVal, ptr);
+                }
+                else {
+                    if (dimGenerated > 1) {
+                        Value *newLastVal = promoteToDim(lastVal, dimDesired, Builder);
+                        assert(newLastVal->getType()->getVectorNumElements() >= dimDesired);
+                        for (unsigned i = 0; i < dimDesired; ++i) {
+                            Value *idx = ConstantInt::get(Type::getInt64Ty(*_llvmContext), i);
+                            Value *val = Builder.CreateExtractElement(newLastVal, idx);
+                            Value *ptr = Builder.CreateInBoundsGEP(firstArg, idx);
+                            Builder.CreateStore(val, ptr);
+                        }
+                    } else if (dimGenerated == 1) {
+                        for (unsigned i = 0; i < dimDesired; ++i) {
+                            Value *ptr = Builder.CreateConstInBoundsGEP1_32(nullptr, firstArg, i);
+                            Builder.CreateStore(lastVal, ptr);
+                        }
+                    } else {
+                        assert(false && "error. dim of FP is less than 1.");
                     }
-                } else {
-                    assert(false && "error. dim of FP is less than 1.");
                 }
             } else {
                 Builder.CreateStore(lastVal, firstArg);
