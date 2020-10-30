@@ -5,8 +5,9 @@
 
 #include <gtest/gtest.h>
 
+#include "KSeExpr/ExprType.h"
 #include "typeTests.h"
-#include <KSeExpr/TypeIterator.h>
+#include "TypeIterator.h"
 
 void TypeTesterExpr::doTest(const std::string &testStr, ExprType expectedResult, ExprType actualResult) {
     setExpr(testStr);
@@ -160,7 +161,7 @@ TEST(TypeTests, UnaryInversion) {
 
 TEST(TypeTests, VectorIndex2) {
     TypeTesterExpr expr;
-    expr.testTwoVars("$x[$y]", numericToScalar);
+    expr.doTest("$F3[$v]", ExprType().FP(1).Varying(), ExprType().FP(1).Varying());
 }
 
 // Seg fault after testing types varying String and varying String

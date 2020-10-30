@@ -6,9 +6,9 @@
 #ifndef _TypePrinter_h_
 #define _TypePrinter_h_
 
-#include <ExprNode.h>
-#include <ExprWalker.h>
-#include <Expression.h>
+#include <KSeExpr/ExprNode.h>
+#include <KSeExpr/ExprWalker.h>
+#include <KSeExpr/Expression.h>
 #include <typeinfo>
 
 using namespace KSeExpr;
@@ -19,8 +19,8 @@ using namespace KSeExpr;
 
 class TypePrintExaminer : public KSeExpr::Examiner<true> {
   public:
-    virtual bool examine(const ExprNode* examinee);
-    virtual void reset() {};
+    bool examine(const ExprNode* examinee) override;
+    void reset() override {};
 };
 
 bool TypePrintExaminer::examine(const ExprNode* examinee) {

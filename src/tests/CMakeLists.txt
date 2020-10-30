@@ -33,6 +33,12 @@ if (GTest_FOUND AND PNG_FOUND AND Python3_FOUND)
     install(TARGETS testmain2 DESTINATION ${TEST_DEST})
     add_test(NAME basic COMMAND testmain2)
 
+    add_executable(typeTests "typeTests.cpp")
+    target_include_directories(typeTests PRIVATE ${GTEST_INCLUDE_DIR})
+    target_link_libraries(typeTests KSeExpr GTest::GTest GTest::Main)
+    install(TARGETS typeTests DESTINATION ${TEST_DEST})
+    add_test(NAME typeTests COMMAND typeTests)
+
     add_executable(multiTests "multiTests.cpp")
     target_include_directories(multiTests PRIVATE ${GTEST_INCLUDE_DIR})
     target_link_libraries(multiTests KSeExpr GTest::GTest GTest::Main)

@@ -6,14 +6,14 @@
 #ifndef TYPEBUILDER_H
 #define TYPEBUILDER_H
 
-#include <Expression.h>
-#include <cstdlib>
+#include <KSeExpr/Expression.h>
+#include <KSeExpr/ExprFunc.h>
+#include <KSeExpr/ExprNode.h>
 #include <cstdio>
-#include <iostream>
+#include <cstdlib>
 #include <cstring>
+#include <iostream>
 
-#include "ExprNode.h"
-#include "ExprFunc.h"
 
 using namespace KSeExpr;
 
@@ -33,12 +33,12 @@ class TypeBuilderExpr : public Expression {
             return ExprType().FP(1).Varying();
         };
         // TODO: fix -- just a no-op function to get code to compile.
-        virtual ExprType prep(ExprFuncNode* node, bool scalarWanted, ExprVarEnv& env) const {
+        ExprType prep(ExprFuncNode* node, bool scalarWanted, ExprVarEnvBuilder & env) const override {
             return ExprType().None();
         };
 
         // TODO: fix -- just a no-op function to get code to compile.
-        virtual int buildInterpreter(const ExprFuncNode* node, Interpreter* interpreter) const {
+        int buildInterpreter(const ExprFuncNode* node, Interpreter* interpreter) const override {
             return 0;
         };
 
@@ -56,10 +56,10 @@ class TypeBuilderExpr : public Expression {
         };
 
         // TODO: fix -- just a no-op function to get code to compile.
-        virtual void eval(double* result) {};
+        void eval(double* result) override {};
 
         // TODO: fix -- just a no-op function to get code to compile.
-        virtual void eval(const char** resultStr) {};
+        void eval(const char** resultStr) override {};
     };
 
     //! Empty constructor
@@ -80,7 +80,7 @@ class TypeBuilderExpr : public Expression {
           z(ExprType().FP(1).Varying()) {};
 
     //! resolve function
-    ExprVarRef* resolveVar(const std::string& name) const {
+    ExprVarRef* resolveVar(const std::string& name) const override {
         if (name == "F1") return &F1;
         if (name == "F2") return &F2;
         if (name == "F3") return &F3;
@@ -96,14 +96,14 @@ class TypeBuilderExpr : public Expression {
         if (name == "z") return &z;
 
         /*else*/
-        return 0;
+        return nullptr;
     };
 
-    ExprFunc* resolveFunc(const std::string& name) const {
+    ExprFunc* resolveFunc(const std::string& name) const override {
         if (name == "func")
             return &func;
         else
-            return 0;
+            return nullptr;
         /* else             return &dummyFunc; */
     };
 

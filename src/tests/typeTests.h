@@ -3,16 +3,15 @@
 // SPDX-FileCopyrightText: 2020 L. E. Segovia <amy@amyspark.me>
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#ifndef TYPETESTS_H
-#define TYPETESTS_H
+#pragma once
 
 #include <cstdlib>
 #include <cstdio>
 #include <cstring>
 
-#include <Expression.h>
-#include <ExprNode.h>
-#include <ExprFunc.h>
+#include <KSeExpr/ExprFunc.h>
+#include <KSeExpr/ExprNode.h>
+#include <KSeExpr/Expression.h>
 
 #include "TypeBuilder.h"
 #include "TypePrinter.h"
@@ -25,9 +24,9 @@ using namespace KSeExpr;
 //! Simple expression class to check all final types of tests
 class TypeTesterExpr : public TypeBuilderExpr {
   public:
-    typedef ExprType (*FindResultOne)(const ExprType &);
-    typedef ExprType (*FindResultTwo)(const ExprType &, const ExprType &);
-    typedef ExprType (*FindResultThree)(const ExprType &, const ExprType &, const ExprType &);
+    using FindResultOne = ExprType (*)(const ExprType &);
+    using FindResultTwo = ExprType (*)(const ExprType &, const ExprType &);
+    using FindResultThree = ExprType (*)(const ExprType &, const ExprType &, const ExprType &);
 
     TypePrintExaminer _examiner;
     KSeExpr::ConstWalker _walker;
@@ -36,11 +35,11 @@ class TypeTesterExpr : public TypeBuilderExpr {
 
     TypeTesterExpr(const std::string &e) : TypeBuilderExpr(e), _walker(&_examiner) {};
 
-    virtual ExprVarRef *resolveVar(const std::string &name) const {
+    ExprVarRef *resolveVar(const std::string &name) const override {
         return TypeBuilderExpr::resolveVar(name);
     };
 
-    ExprFunc *resolveFunc(const std::string &name) const {
+    ExprFunc *resolveFunc(const std::string &name) const override {
         return TypeBuilderExpr::resolveFunc(name);
     };
 
@@ -54,5 +53,3 @@ class TypeTesterExpr : public TypeBuilderExpr {
                      // DoubleWholeTypeIterator::ProcType proc);
                      ExprType (*proc)(const ExprType &, const ExprType &));
 };
-
-#endif  // TYPETESTS_H

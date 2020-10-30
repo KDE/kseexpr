@@ -6,13 +6,13 @@
 #ifndef TYPEITERATOR_H
 #define TYPEITERATOR_H
 
-#include <Expression.h>
-#include <cstdlib>
+#include <KSeExpr/ExprFunc.h>
+#include <KSeExpr/ExprNode.h>
+#include <KSeExpr/Expression.h>
 #include <cstdio>
+#include <cstdlib>
 #include <cstring>
 
-#include "ExprNode.h"
-#include "ExprFunc.h"
 #include "TypeBuilder.h"
 
 class TypeTesterExpr;  // forward declaration for parent pointer
@@ -269,7 +269,7 @@ class TripleTypeIterator {
 
 class SingleWholeTypeIterator {
   public:
-    typedef ExprType (*ProcType)(const ExprType &);
+    using ProcType = ExprType (*)(const ExprType &);
 
     SingleWholeTypeIterator(const std::string &var, const ProcType proc, TypeTesterExpr *parent)
         : _primary(var, parent), _lifetime(var, parent), _proc(proc), _switch(false) {};
@@ -297,7 +297,7 @@ class SingleWholeTypeIterator {
         return _proc(current());
     };
 
-    inline const std::string givenString() const {
+    inline std::string givenString() const {
         return current().toString();
     };
 
@@ -321,7 +321,7 @@ class SingleWholeTypeIterator {
 
 class DoubleWholeTypeIterator {
   public:
-    typedef ExprType (*ProcType)(const ExprType &, const ExprType &);
+    using ProcType = ExprType (*)(const ExprType &, const ExprType &);
 
     DoubleWholeTypeIterator(const std::string &var1,
                             const std::string &var2,
@@ -351,7 +351,7 @@ class DoubleWholeTypeIterator {
         return _proc(first(), second());
     };
 
-    inline const std::string givenString() const {
+    inline std::string givenString() const {
         return (first().toString() + " " + second().toString());
     };
 
@@ -382,7 +382,7 @@ class DoubleWholeTypeIterator {
 
 class TripleWholeTypeIterator {
   public:
-    typedef ExprType (*ProcType)(const ExprType &, const ExprType &, const ExprType &);
+    using ProcType = ExprType (*)(const ExprType &, const ExprType &, const ExprType &);
 
     TripleWholeTypeIterator(const std::string &var1,
                             const std::string &var2,
@@ -413,7 +413,7 @@ class TripleWholeTypeIterator {
         return _proc(first(), second(), third());
     };
 
-    inline const std::string givenString() const {
+    inline std::string givenString() const {
         return (first().toString() + " " + second().toString() + " " + third().toString());
     };
 
