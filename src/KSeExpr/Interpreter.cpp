@@ -84,11 +84,13 @@ void Interpreter::print(int pc) const
     std::cerr << "s[0] reserved for datablock = " << reinterpret_cast<size_t>(s[0]) << std::endl;
     std::cerr << "s[1] is indirectIndex = " << reinterpret_cast<size_t>(s[1]) << std::endl;
     for (size_t k = 2; k < s.size(); k++) {
-        std::cerr << "s[" << k << "]= 0x" << s[k];
-        if (s[k])
-            std::cerr << " '" << s[k][0] << s[k][1] << s[k][2] << s[k][3] << "...'";
+        std::cerr << "s[" << k << "]= " << (void *)(s[k]);
+        if (s[k]) {
+            fprintf(stderr, " '%c%c%c%c...'", s[k][0], s[k][1], s[k][2], s[k][3]);
+        }
         std::cerr << std::endl;
     }
+    std::fflush(stderr);
 }
 
 // template Interpreter::OpF* getTemplatizedOp<Promote<1> >(int);
