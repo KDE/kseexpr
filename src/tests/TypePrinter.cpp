@@ -3,16 +3,16 @@
 // SPDX-FileCopyrightText: 2020 L. E. Segovia <amy@amyspark.me>
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#include <Expression.h>
 #include <cstdlib>
 #include <cstdio>
 #include <cstring>
+#include <KSeExpr/Expression.h>
+#include <KSeExpr/TypePrinter.h>
 
 #include "ExprWalker.h"
 #include "ExprNode.h"
 #include "ExprFunc.h"
 #include "TypeBuilder.h"
-#include "TypePrinter.h"
 
 using namespace KSeExpr;
 
@@ -32,11 +32,11 @@ class TypePrinterExpr : public TypeBuilderExpr {
     KSeExpr::ConstWalker _walker;
 
   protected:
-    ExprVarRef* resolveVar(const std::string& name) const {
+    ExprVarRef* resolveVar(const std::string& name) const override {
         return TypeBuilderExpr::resolveVar(name);
     };
 
-    ExprFunc* resolveFunc(const std::string& name) const { return TypeBuilderExpr::resolveFunc(name); }
+    ExprFunc* resolveFunc(const std::string& name) const override { return TypeBuilderExpr::resolveFunc(name); }
 };
 
 void get_or_quit(std::string& str) {

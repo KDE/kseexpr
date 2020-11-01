@@ -3,85 +3,104 @@
 // SPDX-FileCopyrightText: 2020 L. E. Segovia <amy@amyspark.me>
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#include <KSeExpr/Expression.h>
-#include <KSeExpr/ExprWalker.h>
 #include <KSeExpr/ExprPatterns.h>
+#include <KSeExpr/ExprWalker.h>
+#include <KSeExpr/Expression.h>
 
-#include <cstdlib>
 #include <cstdio>
+#include <cstdlib>
 #include <cstring>
 
 using namespace KSeExpr;
 
 /// Examiner that builds a list of all variable references
-class VarListExaminer : public ConstExaminer {
-
-  public:
-    virtual bool examine(T_NODE* examinee) {
-        if (const ExprVarNode* var = isVariable(examinee)) {
+class VarListExaminer : public ConstExaminer
+{
+public:
+    bool examine(T_NODE *examinee) override
+    {
+        if (const ExprVarNode *var = isVariable(examinee)) {
             _varList.push_back(var);
             return false;
         };
         return true;
     }
-    virtual void reset() {
+    void post(T_NODE *examinee) override {};
+    void reset() override
+    {
         _varList.clear();
     };
-    inline int length() const {
+    inline int length() const
+    {
         return _varList.size();
     };
-    inline const ExprVarNode* var(int i) const {
+    inline const ExprVarNode *var(int i) const
+    {
         return _varList[i];
     };
 
-  private:
-    std::vector<const ExprVarNode*> _varList;
+private:
+    std::vector<const ExprVarNode *> _varList;
 };
 
 /**
    @file listVar.cpp
 */
 //! Simple expression class to list out variable uses
-class ListVarExpr : public Expression {
-  public:
+class ListVarExpr : public Expression
+{
+public:
     //! Constructor that takes the expression to parse
-    ListVarExpr(const std::string& expr) : Expression(expr), _hasWalked(false), examiner(), walker(&examiner) {};
+    ListVarExpr(const std::string &expr)
+        : Expression(expr)
+        , examiner()
+        , walker(&examiner) {};
 
     //! Empty constructor
-    ListVarExpr() : Expression(), _hasWalked(false), examiner(), walker(&examiner) {};
+    ListVarExpr()
+        : Expression()
+        , examiner()
+        , walker(&examiner) {};
 
-    void walk() {
+    void walk()
+    {
         _hasWalked = true;
         walker.walk(_parseTree);
     };
 
-    bool hasWalked() {
+    bool hasWalked() const
+    {
         return _hasWalked;
     };
 
-    int count() const {
+    int count() const
+    {
         if (isValid() && _hasWalked) {
             return examiner.length();
         };
         return 0;
     };
 
-  private:
-    bool _hasWalked;
+private:
+    bool _hasWalked{};
     VarListExaminer examiner;
     ConstWalker walker;
 
     //! resolve function that only supports one external variable 'x'
-    ExprVarRef* resolveVar(const std::string& name) const {
-        return 0;
+    ExprVarRef *resolveVar(const std::string &name) const override
+    {
+        return nullptr;
     };
 };
 
-void quit(const std::string& str) {
-    if (str == "quit" || str == "q") exit(0);
+void quit(const std::string &str)
+{
+    if (str == "quit" || str == "q")
+        exit(0);
 };
 
-int main(int argc, char* argv[]) {
+int main(int argc, char *argv[])
+{
     ListVarExpr expr;
     std::string str;
 

@@ -29,6 +29,7 @@ set(KSeExpr_HEADERS
         PerformanceTimer.h
         StringUtils.h
         Timer.h
+        TypePrinter.h
         Utils.h
         VarBlock.h
         Vec.h

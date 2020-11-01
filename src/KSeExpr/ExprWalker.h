@@ -20,7 +20,7 @@ class Examiner {
       using T_NODE = typename conditional_const<ExprNode, constnode>::type;
 
       virtual bool examine(T_NODE *examinee) = 0;
-      virtual void post(T_NODE *examinee) {}; // TODO: make this pure virt
+      virtual void post(T_NODE *examinee) = 0;
       virtual void reset() = 0;
 };
 

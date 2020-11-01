@@ -12,9 +12,9 @@
 #include <KSeExpr/ExprFunc.h>
 #include <KSeExpr/ExprNode.h>
 #include <KSeExpr/Expression.h>
+#include <KSeExpr/TypePrinter.h>
 
 #include "TypeBuilder.h"
-#include "TypePrinter.h"
 
 using namespace KSeExpr;
 

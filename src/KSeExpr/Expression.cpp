@@ -3,27 +3,24 @@
 // SPDX-FileCopyrightText: 2020 L. E. Segovia <amy@amyspark.me>
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#ifndef MAKEDEPEND
-#include <iostream>
-#include <math.h>
-#include <stack>
 #include <algorithm>
+#include <cmath>
+#include <cstdio>
+#include <iostream>
 #include <sstream>
-#endif
-
-#include "ExprConfig.h"
-#include "ExprNode.h"
-#include "ExprParser.h"
-#include "ExprFunc.h"
-#include "Expression.h"
-#include "ExprType.h"
-#include "ExprEnv.h"
+#include <stack>
+#include <typeinfo>
 
 #include "Evaluator.h"
+#include "ExprConfig.h"
+#include "ExprEnv.h"
+#include "ExprFunc.h"
+#include "ExprNode.h"
+#include "ExprParser.h"
+#include "ExprType.h"
 #include "ExprWalker.h"
-
-#include <cstdio>
-#include <typeinfo>
+#include "Expression.h"
+#include "TypePrinter.h"
 
 namespace KSeExpr {
 
@@ -53,29 +50,6 @@ static Expression::EvaluationStrategy chooseDefaultEvaluationStrategy() {
 #endif
 }
 Expression::EvaluationStrategy Expression::defaultEvaluationStrategy = chooseDefaultEvaluationStrategy();
-
-class TypePrintExaminer : public KSeExpr::Examiner<true> {
-  public:
-    virtual bool examine(const KSeExpr::ExprNode* examinee);
-    virtual void reset() {}
-
-    virtual ~TypePrintExaminer() {}
-};
-
-bool TypePrintExaminer::examine(const ExprNode* examinee) {
-    const ExprNode* curr = examinee;
-    int depth = 0;
-    char buf[1024];
-    while (curr != nullptr) {
-        depth++;
-        curr = curr->parent();
-    }
-    sprintf(buf, "%*s", depth * 2, " ");
-    std::cout << buf << "'" << examinee->toString() << "' " << typeid(*examinee).name()
-              << " type=" << examinee->type().toString() << std::endl;
-
-    return true;
-}
 
 Expression::Expression(Expression::EvaluationStrategy evaluationStrategy)
     : _wantVec(true), _expression(""), _evaluationStrategy(evaluationStrategy), _context(&Context::global()),
