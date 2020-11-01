@@ -169,7 +169,8 @@ double remap(double x, double source, double range, double falloff, double inter
 
     if (falloff == 0) return fabs(x - source) < range;
 
-    double a, b;
+    double a = NAN;
+    double b = NAN;
     if (x > source) {
         a = source + range;
         b = a + falloff;
@@ -244,7 +245,8 @@ Vec3d midhsi(int n, const Vec3d* args) {
         // remap from [0..1] to [-1..1]
         m = m * 2 - 1;
         // add falloff (if specified)
-        double falloff = 1, interp = 0;
+        double falloff = 1;
+        double interp = 0;
         if (n >= 6) falloff = args[5][0];
         if (n >= 7) interp = args[6][0];
         if (m < 0)
@@ -274,19 +276,21 @@ Vec3d rgbtohsl(const Vec3d& rgb) {
     // RGB to HSL color space conversion
     // This is based on Foley, Van Dam (2nd ed; p. 595)
     // but extended to allow rgb values outside of 0..1
-    double R, G, B, H, S, L, x, y, sum, diff;
-    R = rgb[0];
-    G = rgb[1];
-    B = rgb[2];
-    x = R < G ? (R < B ? R : B) : (G < B ? G : B);  // min(R,G,B)
-    y = R > G ? (R > B ? R : B) : (G > B ? G : B);  // max(R,G,B)
+    double H = NAN;
+    double S = NAN;
+    double L = NAN;
+    double R = rgb[0];
+    double G = rgb[1];
+    double B = rgb[2];
+    double x = R < G ? (R < B ? R : B) : (G < B ? G : B);  // min(R,G,B)
+    double y = R > G ? (R > B ? R : B) : (G > B ? G : B);  // max(R,G,B)
 
     // compute lightness = avg of min and max rgb vals
-    sum = x + y;
-    diff = y - x;
+    double sum = x + y;
+    double diff = y - x;
     L = sum / 2;
     if (diff < 1e-6)  // achromatic
-        return Vec3d(0, 0, L);
+        return {0, 0, L};
 
     // compute saturation
     if (L <= .5) {
@@ -311,7 +315,7 @@ Vec3d rgbtohsl(const Vec3d& rgb) {
     H *= 1 / 6.;
     H -= floor(H);  // make sure hue is in range 0..1
 
-    return Vec3d(H, S, L);
+    return {H, S, L};
 }
 static const char* rgbtohsl_docstring = QT_TRANSLATE_NOOP_UTF8("builtin",
     "color rgbtohsl(color rgb)\n"
@@ -339,12 +343,12 @@ Vec3d hsltorgb(const Vec3d& hsl) {
     // HSL to RGB color space conversion
     // This is based on Foley, Van Dam (2nd ed; p. 596)
     // but extended to allow rgb values outside of 0..1
-    double H, S, L, R, G, B, x, y;
-    H = hsl[0];
-    S = hsl[1];
-    L = hsl[2];
+    double y = NAN;
+    double H = hsl[0];
+    double S = hsl[1];
+    double L = hsl[2];
     if (S <= 0)  // achromatic
-        return Vec3d(L, L, L);
+        return {L, L, L};
 
     // find min/max rgb values
     if (L < 0.5) {
@@ -358,13 +362,13 @@ Vec3d hsltorgb(const Vec3d& hsl) {
         else
             y = L + S - L * S;
     }
-    x = 2 * L - y;
+    double x = 2 * L - y;
 
     // reconstruct rgb from min,max,hue
-    R = hslvalue(x, y, H + (1 / 3.));
-    G = hslvalue(x, y, H);
-    B = hslvalue(x, y, H - (1 / 3.));
-    return Vec3d(R, G, B);
+    double R = hslvalue(x, y, H + (1 / 3.));
+    double G = hslvalue(x, y, H);
+    double B = hslvalue(x, y, H - (1 / 3.));
+    return {R, G, B};
 }
 static const char* hsltorgb_docstring = QT_TRANSLATE_NOOP_UTF8("builtin",
     "color hsltorgb(color hsl)\n"
@@ -396,12 +400,14 @@ static const char* saturate_docstring = QT_TRANSLATE_NOOP_UTF8("builtin",
 
 class RandFuncX : public ExprFuncSimple
 {
-    struct Data : public ExprFuncNode::Data {
+    // The default seed of the Mersenne Twister is as predictable as 0 - amyspark
+
+    struct Data : public ExprFuncNode::Data { // NOLINT cert-msc32-c
         std::mt19937 gen;
         std::uniform_real_distribution<> dis;
     };
 
-    ExprType prep(ExprFuncNode *node, bool wantScalar, ExprVarEnvBuilder &envBuilder) const override
+    ExprType prep(ExprFuncNode *node, bool, ExprVarEnvBuilder &envBuilder) const override
     {
         bool valid = true;
         for (auto i = 0; i < node->numChildren(); i++)
@@ -409,9 +415,9 @@ class RandFuncX : public ExprFuncSimple
         return valid ? ExprType().FP(1).Varying() : ExprType().Error();
     }
 
-    ExprFuncNode::Data *evalConstant(const ExprFuncNode *node, ArgHandle args) const override
+    ExprFuncNode::Data *evalConstant(const ExprFuncNode *, ArgHandle args) const override
     {
-        auto data = new Data();
+        auto *data = new Data();
         auto a = 0.0;
         auto b = 1.0;
 
@@ -426,7 +432,7 @@ class RandFuncX : public ExprFuncSimple
             data->gen = std::mt19937(args.inFp<1>(2)[0]);
         }
         else{
-            data->gen = std::mt19937(0);
+            data->gen = std::mt19937(0); // NOLINT cert-msc32-c
         }
 
         data->dis = std::uniform_real_distribution<>(a, b);
@@ -435,18 +441,15 @@ class RandFuncX : public ExprFuncSimple
 
     void eval(ArgHandle args) override
     {
-        auto data = static_cast<RandFuncX::Data *>(args.data);
+        auto *data = dynamic_cast<RandFuncX::Data *>(args.data);
         args.outFp = data->dis(data->gen);
     }
 
 public:
-    RandFuncX()
+    RandFuncX() noexcept
         : ExprFuncSimple(true)
     {
     } // Thread Safe
-    virtual ~RandFuncX()
-    {
-    }
 } rand;
 
 static const char *rand_docstring = QT_TRANSLATE_NOOP("builtin",
@@ -464,7 +467,8 @@ double hash(int n, double* args) {
         uint32_t s = (uint32_t)(frac * UINT32_MAX) ^ (uint32_t)exp;
 
         // blend with seed (constants from Numerical Recipes, attrib. from Knuth)
-        static const uint32_t M = 1664525, C = 1013904223;
+        static const uint32_t M = 1664525;
+        static const uint32_t C = 1013904223;
         seed = seed * M + s + C;
     }
 
@@ -475,7 +479,7 @@ double hash(int n, double* args) {
     seed ^= (seed >> 18);
 
     // permute
-    static unsigned char p[256] = {
+    static std::array<uint8_t, 256> p{
         148, 201, 203, 34,  85,  225, 163, 200, 174, 137, 51,  24,  19,  252, 107, 173, 110, 251, 149, 69,  180, 152,
         141, 132, 22,  20,  147, 219, 37,  46,  154, 114, 59,  49,  155, 161, 239, 77,  47,  10,  70,  227, 53,  235,
         30,  188, 143, 73,  88,  193, 214, 194, 18,  120, 176, 36,  212, 84,  211, 142, 167, 57,  153, 71,  159, 151,
@@ -490,8 +494,8 @@ double hash(int n, double* args) {
         231, 248, 78,  162, 13,  186, 63,  66,  131, 202, 35,  144, 222, 223};
     union {
         uint32_t i;
-        unsigned char c[4];
-    } u1, u2;
+        std::array<uint8_t, 4> c;
+    } u1{}, u2{};
     u1.i = seed;
     u2.c[3] = p[u1.c[0]];
     u2.c[2] = p[(u1.c[1] + u2.c[3]) & 0xff];
@@ -510,30 +514,31 @@ double noise(int n, const Vec3d* args) {
     if (n < 1) return 0;
     if (n == 1) {
         // 1 arg = vector arg
-        double result;
-        double p[3] = {args[0][0], args[0][1], args[0][2]};
-        Noise<3, 1>(p, &result);
+        double result = NAN;
+        std::array<double, 3>p{args[0][0], args[0][1], args[0][2]};
+        Noise<3, 1>(p.data(), &result);
         return .5 * result + .5;
     }
     // scalar args
     if (n > 4) n = 4;
-    double p[4];
+    std::array<double, 4> p{};
     for (int i = 0; i < n; i++) p[i] = args[i][0];
-    double result;
+    double result = NAN;
     switch (n) {
         case 1:
-            Noise<1, 1>(p, &result);
+            Noise<1, 1>(p.data(), &result);
             break;
         case 2:
-            Noise<2, 1>(p, &result);
+            Noise<2, 1>(p.data(), &result);
             break;
         case 3:
-            Noise<3, 1>(p, &result);
+            Noise<3, 1>(p.data(), &result);
             break;
         case 4:
-            Noise<4, 1>(p, &result);
+            Noise<4, 1>(p.data(), &result);
             break;
         default:
+
             result = 0;
             break;
     }
@@ -547,9 +552,9 @@ static const char* noise_docstring = QT_TRANSLATE_NOOP_UTF8("builtin",
     "Original perlin noise at location (C2 interpolant)");
 
 double snoise(const Vec3d& p) {
-    double result;
-    double args[3] = {p[0], p[1], p[2]};
-    Noise<3, 1>(args, &result);
+    double result = NAN;
+    std::array<double, 3> args{p[0], p[1], p[2]};
+    Noise<3, 1>(args.data(), &result);
     return result;
 }
 static const char* snoise_docstring = QT_TRANSLATE_NOOP_UTF8("builtin",
@@ -558,8 +563,8 @@ static const char* snoise_docstring = QT_TRANSLATE_NOOP_UTF8("builtin",
 
 Vec3d vnoise(const Vec3d& p) {
     Vec3d result;
-    double args[3] = {p[0], p[1], p[2]};
-    Noise<3, 3>(args, &result[0]);
+    std::array<double, 3> args{p[0], p[1], p[2]};
+    Noise<3, 3>(args.data(), &result[0]);
     return result;
 }
 static const char* vnoise_docstring = QT_TRANSLATE_NOOP_UTF8("builtin",
@@ -571,20 +576,20 @@ static const char* cnoise_docstring = QT_TRANSLATE_NOOP_UTF8("builtin",
     "color cnoise ( vector v)\n"
     "color noise formed with original perlin noise at location (C2 interpolant)");
 
-double snoise4(int n, const Vec3d* args) {
-    double result;
-    double procargs[4] = {args[0][0], args[0][1], args[0][2], args[1][0]};
-    Noise<4, 1>(procargs, &result);
+double snoise4(int, const Vec3d* args) {
+    double result = NAN;
+    std::array<double, 4> procargs{args[0][0], args[0][1], args[0][2], args[1][0]};
+    Noise<4, 1>(procargs.data(), &result);
     return result;
 }
 static const char* snoise4_docstring = QT_TRANSLATE_NOOP_UTF8("builtin",
     "float snoise4 ( vector v,float t)\n"
     "4D signed noise w/ range -1 to 1 formed with original perlin noise at location (C2 interpolant)");
 
-Vec3d vnoise4(int n, const Vec3d* args) {
+Vec3d vnoise4(int, const Vec3d* args) {
     Vec3d result;
-    double procargs[4] = {args[0][0], args[0][1], args[0][2], args[1][0]};
-    Noise<4, 3>(procargs, &result[0]);
+    std::array<double, 4> procargs{args[0][0], args[0][1], args[0][2], args[1][0]};
+    Noise<4, 3>(procargs.data(), &result[0]);
     return result;
 }
 static const char* vnoise4_docstring = QT_TRANSLATE_NOOP_UTF8("builtin",
@@ -618,8 +623,8 @@ double turbulence(int n, const Vec3d* args) {
     }
 
     double result = 0;
-    double P[3] = {p[0], p[1], p[2]};
-    FBM<3, 1, true>(P, &result, octaves, lacunarity, gain);
+    std::array<double, 3> P {p[0], p[1], p[2]};
+    FBM<3, 1, true>(P.data(), &result, octaves, lacunarity, gain);
     return .5 * result + .5;
 }
 
@@ -645,8 +650,8 @@ Vec3d vturbulence(int n, const Vec3d* args) {
     }
 
     Vec3d result;
-    double P[3] = {p[0], p[1], p[2]};
-    FBM<3, 3, true>(P, &result[0], octaves, lacunarity, gain);
+    std::array<double, 3> P {p[0], p[1], p[2]};
+    FBM<3, 3, true>(P.data(), &result[0], octaves, lacunarity, gain);
     return result;
 }
 
@@ -674,8 +679,8 @@ double fbm(int n, const Vec3d* args) {
     }
 
     double result = 0.0;
-    double P[3] = {p[0], p[1], p[2]};
-    FBM<3, 1, false>(P, &result, octaves, lacunarity, gain);
+    std::array<double, 3> P {p[0], p[1], p[2]};
+    FBM<3, 1, false>(P.data(), &result, octaves, lacunarity, gain);
     return .5 * result + .5;
 }
 static const char* fbm_docstring =  QT_TRANSLATE_NOOP_UTF8("builtin",
@@ -709,8 +714,8 @@ Vec3d vfbm(int n, const Vec3d* args) {
     }
 
     Vec3d result = 0.0;
-    double P[3] = {p[0], p[1], p[2]};
-    FBM<3, 3, false>(P, &result[0], octaves, lacunarity, gain);
+    std::array<double, 3> P{p[0], p[1], p[2]};
+    FBM<3, 3, false>(P.data(), &result[0], octaves, lacunarity, gain);
     return result;
 }
 static const char* vfbm_docstring = QT_TRANSLATE_NOOP_UTF8("builtin", "vector vfbm(vector vint octaves=6,float lacunarity=2,float gain=.5)");
@@ -741,8 +746,8 @@ double fbm4(int n, const Vec3d* args) {
     }
 
     double result = 0.0;
-    double P[4] = {p[0], p[1], p[2], time};
-    FBM<4, 1, false>(P, &result, octaves, lacunarity, gain);
+    std::array<double, 4> P {p[0], p[1], p[2], time};
+    FBM<4, 1, false>(P.data(), &result, octaves, lacunarity, gain);
     return .5 * result + .5;
 }
 static const char* fbm4_docstring = QT_TRANSLATE_NOOP_UTF8("builtin",
@@ -780,8 +785,8 @@ Vec3d vfbm4(int n, const Vec3d* args) {
     }
 
     Vec3d result = 0.0;
-    double P[4] = {p[0], p[1], p[2], time};
-    FBM<4, 3, false>(P, &result[0], octaves, lacunarity, gain);
+    std::array<double, 4> P{p[0], p[1], p[2], time};
+    FBM<4, 3, false>(P.data(), &result[0], octaves, lacunarity, gain);
     return result;
 }
 static const char* vfbm4_docstring = QT_TRANSLATE_NOOP_UTF8("builtin", "vector vfbm4(vector v,float time,int octaves=6,float lacunarity=2,float gain=.5)");
@@ -793,9 +798,9 @@ Vec3d cfbm4(int n, const Vec3d* args) { return vfbm4(n, args) * .5 + Vec3d(.5); 
 static const char* cfbm4_docstring = QT_TRANSLATE_NOOP_UTF8("builtin", "color cfbm4(vector v,float time,int octaves=6,float lacunarity=2,float gain=.5)");
 
 double cellnoise(const Vec3d& p) {
-    double result;
-    double args[3] = {p[0], p[1], p[2]};
-    CellNoise<3, 1>(args, &result);
+    double result = NAN;
+    std::array<double, 3> args{p[0], p[1], p[2]};
+    CellNoise<3, 1>(args.data(), &result);
     return result;
 }
 static const char* cellnoise_docstring = QT_TRANSLATE_NOOP_UTF8("builtin",
@@ -805,8 +810,8 @@ static const char* cellnoise_docstring = QT_TRANSLATE_NOOP_UTF8("builtin",
 
 Vec3d ccellnoise(const Vec3d& p) {
     Vec3d result;
-    double args[3] = {p[0], p[1], p[2]};
-    CellNoise<3, 3>(args, &result[0]);
+    std::array<double, 3> args{p[0], p[1], p[2]};
+    CellNoise<3, 3>(args.data(), &result[0]);
     return result;
 }
 static const char* ccellnoise_docstring = QT_TRANSLATE_NOOP_UTF8("builtin",
@@ -815,39 +820,41 @@ static const char* ccellnoise_docstring = QT_TRANSLATE_NOOP_UTF8("builtin",
     "This is the same as the prman cellnoise function.");
 
 double pnoise(const Vec3d& p, const Vec3d& period) {
-    double result;
-    double args[3] = {p[0], p[1], p[2]};
-    int pargs[3] = {std::max((int)1, (int)period[0]),
-                    std::max((int)1, (int)period[1]),
-                    std::max((int)1, (int)period[2])};
-    PNoise<3, 1>(args, pargs, &result);
+    double result = NAN;
+    std::array<double, 3> args{p[0], p[1], p[2]};
+    std::array<int, 3> pargs{
+        std::max((int)1, (int)period[0]),
+        std::max((int)1, (int)period[1]),
+        std::max((int)1, (int)period[2])
+    };
+    PNoise<3, 1>(args.data(), pargs.data(), &result);
     return result;
 }
 static const char* pnoise_docstring = QT_TRANSLATE_NOOP_UTF8("builtin",
     "float pnoise ( vector v, vector period )\n"
     "periodic noise");
 struct VoronoiPointData : public ExprFuncNode::Data {
-    Vec3d points[27];
+    std::array<Vec3d, 27> points;
     Vec3d cell;
-    double jitter;
-    VoronoiPointData() : jitter(-1) {}
+    double jitter{-1};
+    VoronoiPointData() = default;
 };
 
 static Vec3d* voronoi_points(VoronoiPointData& data, const Vec3d& cell, double jitter) {
-    if (cell == data.cell && jitter == data.jitter) return data.points;
+    if (cell == data.cell && jitter == data.jitter) return data.points.data();
     data.cell = cell;
     data.jitter = jitter;
 
     int n = 0;
-    for (double i = -1; i <= 1; i++) {
-        for (double j = -1; j <= 1; j++) {
-            for (double k = -1; k <= 1; k++, n++) {
+    for (int i = -1; i <= 1; i++) {
+        for (int j = -1; j <= 1; j++) {
+            for (int k = -1; k <= 1; k++, n++) {
                 Vec3d testcell = cell + Vec3d(i, j, k);
                 data.points[n] = testcell + jitter * (ccellnoise(testcell) - Vec3d(.5));
             }
         }
     }
-    return data.points;
+    return data.points.data();
 }
 
 static void voronoi_f1_3d(VoronoiPointData& data, const Vec3d& p, double jitter, double& f1, Vec3d& pos1) {
@@ -933,16 +940,18 @@ Vec3d voronoiFn(VoronoiPointData& data, int n, const Vec3d* args) {
     }
 
     if (fbmScale > 0) {
-        Vec3d fbmArgs[4];
+        std::array<Vec3d, 4> fbmArgs;
         fbmArgs[0] = 2 * p;
         fbmArgs[1] = fbmOctaves;
         fbmArgs[2] = fbmLacunarity;
         fbmArgs[3] = fbmGain;
-        p += fbmScale * vfbm(4, fbmArgs);
+        p += fbmScale * vfbm(4, fbmArgs.data());
     }
 
-    double f1, f2;
-    Vec3d pos1, pos2;
+    double f1 = NAN;
+    double f2 = NAN;
+    Vec3d pos1;
+    Vec3d pos2;
     if (type >= 3)
         voronoi_f1f2_3d(data, p, jitter, f1, pos1, f2, pos2);
     else
@@ -1005,16 +1014,18 @@ Vec3d cvoronoiFn(VoronoiPointData& data, int n, const Vec3d* args) {
     }
 
     if (fbmScale > 0) {
-        Vec3d fbmArgs[4];
+        std::array<Vec3d, 4> fbmArgs;
         fbmArgs[0] = 2 * p;
         fbmArgs[1] = fbmOctaves;
         fbmArgs[2] = fbmLacunarity;
         fbmArgs[3] = fbmGain;
-        p += fbmScale * vfbm(4, fbmArgs);
+        p += fbmScale * vfbm(4, fbmArgs.data());
     }
 
-    double f1, f2;
-    Vec3d pos1, pos2;
+    double f1 = NAN;
+    double f2 = NAN;
+    Vec3d pos1;
+    Vec3d pos2;
     if (type >= 3)
         voronoi_f1f2_3d(data, p, jitter, f1, pos1, f2, pos2);
     else
@@ -1074,15 +1085,15 @@ Vec3d pvoronoiFn(VoronoiPointData& data, int n, const Vec3d* args) {
     }
 
     if (fbmScale > 0) {
-        Vec3d fbmArgs[4];
+        std::array<Vec3d, 4> fbmArgs;
         fbmArgs[0] = 2 * p;
         fbmArgs[1] = fbmOctaves;
         fbmArgs[2] = fbmLacunarity;
         fbmArgs[3] = fbmGain;
-        p += fbmScale * vfbm(4, fbmArgs);
+        p += fbmScale * vfbm(4, fbmArgs.data());
     }
 
-    double f1;
+    double f1 = NAN;
     Vec3d pos1;
     voronoi_f1_3d(data, p, jitter, f1, pos1);
     return pos1;
@@ -1094,10 +1105,10 @@ const static char* pvoronoi_docstring = QT_TRANSLATE_NOOP_UTF8("builtin",
 
 class CachedVoronoiFunc : public ExprFuncSimple {
   public:
-    typedef Vec3d VoronoiFunc(VoronoiPointData& data, int n, const Vec3d* args);
-    CachedVoronoiFunc(VoronoiFunc* vfunc) : ExprFuncSimple(true), _vfunc(vfunc) {}
+    using VoronoiFunc = Vec3d (VoronoiPointData &, int, const Vec3d *);
+    CachedVoronoiFunc(VoronoiFunc* vfunc) noexcept : ExprFuncSimple(true), _vfunc(vfunc) {}
 
-    virtual ExprType prep(ExprFuncNode* node, bool scalarWanted, ExprVarEnvBuilder& envBuilder) const {
+    ExprType prep(ExprFuncNode* node, bool, ExprVarEnvBuilder& envBuilder) const override {
         // check number of arguments
         int nargs = node->numChildren();
         if (nargs < 1 || nargs > 7) {
@@ -1111,24 +1122,22 @@ class CachedVoronoiFunc : public ExprFuncSimple {
         return valid ? ExprType().FP(3).Varying() : ExprType().Error();
     }
 
-    virtual ExprFuncNode::Data* evalConstant(const ExprFuncNode* node, ArgHandle args) const {
+    ExprFuncNode::Data* evalConstant(const ExprFuncNode*, ArgHandle) const override {
         return new VoronoiPointData();
     }
 
-    virtual void eval(ArgHandle args) {
-        VoronoiPointData* data = static_cast<VoronoiPointData*>(args.data);
+    void eval(ArgHandle args) override {
+        auto* data = dynamic_cast<VoronoiPointData*>(args.data);
         int nargs = args.nargs();
-        Vec3d* sevArgs = (Vec3d*)alloca(sizeof(Vec3d) * nargs);
+        auto sevArgs = std::vector<Vec3d>(nargs);
 
         for (int i = 0; i < nargs; i++)
             for (int j = 0; j < 3; j++) sevArgs[i][j] = args.inFp<3>(i)[j];
 
-        Vec3d result = _vfunc(*data, nargs, sevArgs);
+        Vec3d result = _vfunc(*data, nargs, sevArgs.data());
         double* out = &args.outFp;
         for (int i = 0; i < 3; i++) out[i] = result[i];
     }
-
-    virtual ~CachedVoronoiFunc() {}
 
   private:
     VoronoiFunc* _vfunc;
@@ -1171,7 +1180,7 @@ static const char* norm_docstring = QT_TRANSLATE_NOOP_UTF8("builtin",
     "vector scaled to unit length");
 
 Vec3d cross(const Vec3d& a, const Vec3d& b) {
-    return Vec3d(a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0]);
+    return {a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0]};
 }
 static const char* cross_docstring = QT_TRANSLATE_NOOP_UTF8("builtin",
     "vector cross(vector a,vector b)\n"
@@ -1195,9 +1204,9 @@ Vec3d rotate(int n, const Vec3d* args) {
     if (n != 3) return 0.0;
     const Vec3d& P = args[0];
     const Vec3d& axis = args[1];
-    float angle = static_cast<float>(args[2][0]);
+    auto angle = static_cast<float>(args[2][0]);
     double len = axis.length();
-    if (!len) return P;
+    if (len == 0.0) return P;
     return P.rotateBy(axis / len, angle);
 }
 static const char* rotate_docstring = QT_TRANSLATE_NOOP_UTF8("builtin",
@@ -1239,8 +1248,9 @@ double pick(int n, double* params) {
     if (numWeights > range) numWeights = range;
 
     // build cutoff points based on weights
-    double* cutoffs = (double*)alloca(sizeof(double) * range);
-    double* weights = (double*)alloca(sizeof(double) * range);
+    // note: n is user-controlled; replaced with vector() - amyspark
+    auto cutoffs = std::vector<double>(range);
+    auto weights = std::vector<double>(range);
     double total = 0;
     for (int i = 0; i < range; i++) {
         double weight = i < numWeights ? params[i + 3] : 1;
@@ -1255,7 +1265,8 @@ double pick(int n, double* params) {
     index *= total;
 
     // bsearch cutoff table to find index that spans value
-    int lo = 0, hi = range - 1;
+    int lo = 0;
+    int hi = range - 1;
     while (lo < hi) {
         int m = (lo + hi) / 2;
         if (index <= cutoffs[m])
@@ -1309,8 +1320,9 @@ double wchoose(int n, double* params) {
     int nvals = (n - 1) / 2;  // nweights = nvals
 
     // build cutoff points based on weights
-    double* cutoffs = (double*)alloca(sizeof(double) * nvals);
-    double* weights = (double*)alloca(sizeof(double) * nvals);
+    // note: n is user-controlled; replaced with vector() - amyspark
+    auto cutoffs = std::vector<double>(nvals);
+    auto weights = std::vector<double>(nvals);
     double total = 0;
     for (int i = 0; i < nvals; i++) {
         double weight = params[i * 2 + 2];
@@ -1325,7 +1337,8 @@ double wchoose(int n, double* params) {
     key *= total;
 
     // bsearch cutoff table to find index that spans value
-    int lo = 0, hi = nvals - 1;
+    int lo = 0;
+    int hi = nvals - 1;
     while (lo < hi) {
         int m = (lo + hi) / 2;
         if (key <= cutoffs[m])
@@ -1358,7 +1371,7 @@ double spline(int n, double* params) {
     if (u == 0) return params[2];
     if (u == 1) return params[n - 2];
     int nsegs = n - 4;
-    double seg;
+    double seg = NAN;
     u = modf(u * nsegs, &seg);
     double* p = &params[int(seg) + 1];
     double u2 = u * u;
@@ -1374,14 +1387,14 @@ static const char* spline_docstring = QT_TRANSLATE_NOOP_UTF8("builtin",
 template <class T>
 struct CurveData : public ExprFuncNode::Data {
     Curve<T> curve;
-    virtual ~CurveData() {}
+    ~CurveData() override = default;
 };
 
 class CurveFuncX : public ExprFuncSimple {
   public:
-    CurveFuncX() : ExprFuncSimple(true) {}
+    CurveFuncX() noexcept : ExprFuncSimple(true) {}
 
-    virtual ExprType prep(ExprFuncNode* node, bool scalarWanted, ExprVarEnvBuilder& envBuilder) const {
+    ExprType prep(ExprFuncNode* node, bool, ExprVarEnvBuilder& envBuilder) const override {
         // check number of arguments
         int nargs = node->numChildren();
         if ((nargs - 1) % 3) {
@@ -1399,16 +1412,16 @@ class CurveFuncX : public ExprFuncSimple {
         return valid ? ExprType().FP(1).Varying() : ExprType().Error();
     }
 
-    virtual ExprFuncNode::Data* evalConstant(const ExprFuncNode* node, ArgHandle args) const {
-        CurveData<double>* data = new CurveData<double>;
+    ExprFuncNode::Data* evalConstant(const ExprFuncNode*, ArgHandle args) const override {
+        auto* data = new CurveData<double>;
         for (int i = 1; i < args.nargs() - 2; i += 3) {
             double pos = args.inFp<1>(i)[0];
             double val = args.inFp<1>(i + 1)[0];
             double interpDouble = args.inFp<1>(i + 2)[0];
             int interpInt = (int)interpDouble;
-            Curve<double>::InterpType interpolant = (Curve<double>::InterpType)interpInt;
+            auto interpolant = (Curve<double>::InterpType)interpInt;
             if (!Curve<double>::interpTypeValid(interpolant)) {
-                // TODO: fix error checking!
+                assert(false && "ExprFuncNode ERROR: invalid interpolant type!");
             }
             data->curve.addPoint(pos, val, interpolant);
         }
@@ -1416,8 +1429,8 @@ class CurveFuncX : public ExprFuncSimple {
         return data;
     }
 
-    virtual void eval(ArgHandle args) {
-        CurveData<double>* data = static_cast<CurveData<double>*>(args.data);
+    void eval(ArgHandle args) override {
+        auto* data = dynamic_cast<CurveData<double>*>(args.data);
         double param = args.inFp<1>(0)[0];
         args.outFp = data->curve.getValue(param);
     }
@@ -1431,7 +1444,7 @@ static const char* curve_docstring = QT_TRANSLATE_NOOP_UTF8("builtin",
     "4-monotone (non oscillating spline)");
 
 class CCurveFuncX : public ExprFuncSimple {
-    virtual ExprType prep(ExprFuncNode* node, bool wantScalar, ExprVarEnvBuilder& envBuilder) const {
+    ExprType prep(ExprFuncNode* node, bool, ExprVarEnvBuilder& envBuilder) const override {
         // check number of arguments
         int nargs = node->numChildren();
         if ((nargs - 1) % 3) {
@@ -1449,14 +1462,14 @@ class CCurveFuncX : public ExprFuncSimple {
         return valid ? ExprType().FP(3).Varying() : ExprType().Error();
     }
 
-    virtual ExprFuncNode::Data* evalConstant(const ExprFuncNode* node, ArgHandle args) const {
-        CurveData<Vec3d>* data = new CurveData<Vec3d>;
+    ExprFuncNode::Data* evalConstant(const ExprFuncNode*, ArgHandle args) const override {
+        auto* data = new CurveData<Vec3d>;
         for (int i = 1; i < args.nargs() - 2; i += 3) {
             double pos = args.inFp<1>(i)[0];
             Vec3dRef val(&args.inFp<3>(i + 1)[0]);
             double interpDouble = args.inFp<1>(i + 2)[0];
             int interpInt = (int)interpDouble;
-            Curve<Vec3d>::InterpType interpolant = (Curve<Vec3d>::InterpType)interpInt;
+            auto interpolant = (Curve<Vec3d>::InterpType)interpInt;
             if (!Curve<Vec3d>::interpTypeValid(interpolant)) {
                 // TODO: fix error checking!
             }
@@ -1466,8 +1479,8 @@ class CCurveFuncX : public ExprFuncSimple {
         return data;
     }
 
-    virtual void eval(ArgHandle args) {
-        CurveData<Vec3d>* data = static_cast<CurveData<Vec3d>*>(args.data);
+    void eval(ArgHandle args) override {
+        auto* data = dynamic_cast<CurveData<Vec3d>*>(args.data);
         double param = args.inFp<1>(0)[0];
         Vec3d result = data->curve.getValue(param);
         double* out = &args.outFp;
@@ -1475,8 +1488,7 @@ class CCurveFuncX : public ExprFuncSimple {
     }
 
   public:
-    CCurveFuncX() : ExprFuncSimple(true) {}  // Thread Safe
-    virtual ~CCurveFuncX() {}
+    CCurveFuncX() noexcept: ExprFuncSimple(true) {}  // Thread Safe
 } ccurve;
 static const char* ccurve_docstring = QT_TRANSLATE_NOOP_UTF8("builtin",
     "color curve(float param,float pos0,color val0,int interp0,float pos1,color val1,int interp1,[...])\n\n"
@@ -1487,17 +1499,17 @@ static const char* ccurve_docstring = QT_TRANSLATE_NOOP_UTF8("builtin",
 
 class GetVar : public ExprFuncSimple {
     struct Data : public ExprFuncNode::Data {
-        typedef void (*func)(double* in, double* out);
+        using func = void (*)(double *, double *);
         Data(func fIn, int dim) : f(fIn), dim(dim) {}
         func f;
         int dim;
     };
 
-    virtual ExprType prep(ExprFuncNode* node, bool wantScalar, ExprVarEnvBuilder& envBuilder) const {
+    ExprType prep(ExprFuncNode* node, bool wantScalar, ExprVarEnvBuilder& envBuilder) const override {
         bool valid = true;
         valid &= node->checkArg(0, ExprType().String().Constant(), envBuilder);
         std::string varName = node->getStrArg(0);
-        ExprVarNode* varNode = new ExprVarNode(node->expr(), varName.c_str());
+        auto* varNode = new ExprVarNode(node->expr(), varName.c_str());
         ExprType varType = varNode->prep(wantScalar, envBuilder);
         if (varType.isValid()) {
             node->removeLastChild();  // remove the useless default argument from the arugment list
@@ -1512,7 +1524,7 @@ class GetVar : public ExprFuncSimple {
         return varType.isValid() ? varType : ExprType().Error();
     }
 
-    virtual ExprFuncNode::Data* evalConstant(const ExprFuncNode* node, ArgHandle args) const {
+    ExprFuncNode::Data* evalConstant(const ExprFuncNode* node, ArgHandle) const override {
         return new Data(node->type().isFP() ? getTemplatizedOp<Assign, Data::func>(node->type().dim()) : nullptr,
                         node->type().dim());
     }
@@ -1524,8 +1536,8 @@ class GetVar : public ExprFuncSimple {
         }
     };
 
-    virtual void eval(ArgHandle args) {
-        Data* data = static_cast<Data*>(args.data);
+    void eval(ArgHandle args) override {
+        Data* data = dynamic_cast<Data*>(args.data);
         assert(data);
         double* out = &args.outFp;
         // for(int i=0;i<data->dim;i++) std::cerr<<" "<<args.inFp<1>(0)[i];
@@ -1537,8 +1549,7 @@ class GetVar : public ExprFuncSimple {
     }
 
   public:
-    GetVar() : ExprFuncSimple(true) {}  // Thread Safe
-    virtual ~GetVar() {}
+    GetVar() noexcept : ExprFuncSimple(true) {}  // Thread Safe
 } getVar;
 static const char* getVar_docstring = QT_TRANSLATE_NOOP_UTF8("builtin",
     "getVar(string varName,vector defaultValue)\n"
@@ -1551,7 +1562,7 @@ class PrintFuncX : public ExprFuncSimple {
     };
 
   public:
-    virtual ExprType prep(ExprFuncNode* node, bool wantScalar, ExprVarEnvBuilder& envBuilder) const {
+    ExprType prep(ExprFuncNode* node, bool, ExprVarEnvBuilder& envBuilder) const override {
         int nargs = node->numChildren();
         if (nargs < 1) {
             node->addError(ErrorCode::WrongNumberOfArguments1Plus);
@@ -1603,7 +1614,7 @@ class PrintFuncX : public ExprFuncSimple {
         return ExprType().FP(1).Constant();
     }
 
-    virtual ExprFuncNode::Data* evalConstant(const ExprFuncNode* node, ArgHandle args) const {
+    ExprFuncNode::Data* evalConstant(const ExprFuncNode*, ArgHandle args) const override {
         // parse format string
         unsigned int bakeStart = 0;
         int searchStart = 0;
@@ -1614,7 +1625,7 @@ class PrintFuncX : public ExprFuncSimple {
         std::vector<std::pair<int, int> >& ranges = data->ranges;
 
         int items = 0;
-        while (1) {
+        while (true) {
             std::size_t percentStart = format.find('%', searchStart);
             if (percentStart == std::string::npos) break;
             if (percentStart + 1 == format.length()) {
@@ -1628,8 +1639,8 @@ class PrintFuncX : public ExprFuncSimple {
                 char c = format[percentStart + 1];
                 int code = (c == 'v') ? -1 : -2;
                 needed++;
-                if (bakeStart != percentStart) ranges.push_back(std::pair<int, int>(bakeStart, static_cast<int>(percentStart)));
-                ranges.push_back(std::pair<int, int>(code, code));
+                if (bakeStart != percentStart) ranges.emplace_back(bakeStart, static_cast<int>(percentStart));
+                ranges.emplace_back(code, code);
                 items++;
                 searchStart = static_cast<int>(percentStart + 2);
                 bakeStart = searchStart;
@@ -1642,7 +1653,7 @@ class PrintFuncX : public ExprFuncSimple {
                 assert(false);
             }
         }
-        if (bakeStart != format.length()) ranges.push_back(std::pair<int, int>(bakeStart, static_cast<int>(format.length())));
+        if (bakeStart != format.length()) ranges.emplace_back(bakeStart, static_cast<int>(format.length()));
 
         if (items != args.nargs() - 1) {
             // node->addError("Wrong number of arguments for format string");
@@ -1656,8 +1667,8 @@ class PrintFuncX : public ExprFuncSimple {
         return data;
     }
 
-    virtual void eval(ArgHandle args) {
-        Data* data = (Data*)args.data;
+    void eval(ArgHandle args) override {
+        Data* data = dynamic_cast<Data*>(args.data);
         int item = 1;
         for (unsigned int i = 0; i < data->ranges.size(); i++) {
             const std::pair<int, int>& range = data->ranges[i];
@@ -1677,7 +1688,7 @@ class PrintFuncX : public ExprFuncSimple {
         args.outFp = 0;
     }
 
-    PrintFuncX() : ExprFuncSimple(false) {}  // not thread safe
+    PrintFuncX() noexcept : ExprFuncSimple(false) {}  // not thread safe
 
 } printf;
 static const char* printf_docstring = QT_TRANSLATE_NOOP_UTF8("builtin",
@@ -1686,21 +1697,21 @@ static const char* printf_docstring = QT_TRANSLATE_NOOP_UTF8("builtin",
     "Return parameter is empty, but must be assigned to a variable.");
 
 
-// Format specifier categories for SPrintFuncX
-static const std::string _intSpec("diouxXc");
-static const std::string _doubleSpec("eEfFgGaA");
-static const std::string _strSpec("s");
-
 class SPrintFuncX : public ExprFuncSimple
 {
     struct StringData : public KSeExpr::ExprFuncNode::Data, public std::string
     {
     };
 
-public:
-    SPrintFuncX() : ExprFuncSimple(false) {}  // not thread safe
+    // Format specifier categories for SPrintFuncX
+    std::string _intSpec {"diouxXc"};
+    std::string _doubleSpec {"eEfFgGaA"};
+    std::string _strSpec {"s"};
 
-    virtual ExprType prep(ExprFuncNode* node, bool wantScalar, ExprVarEnvBuilder& envBuilder) const
+public:
+    SPrintFuncX() noexcept : ExprFuncSimple(false) {}  // not thread safe
+
+    ExprType prep(ExprFuncNode* node, bool, ExprVarEnvBuilder& envBuilder) const override
     {
         int nargs = node->numChildren();
         if (nargs < 1) {
@@ -1712,12 +1723,12 @@ public:
             return ExprType().Error().Constant();
         }
 
-        const std::string& format = static_cast<const ExprStrNode*>(node->child(0))->str();
+        const std::string& format = dynamic_cast<const ExprStrNode*>(node->child(0))->str();
 
         static const std::string strSpec("s");
         size_t searchStart = 0;
         size_t exprArg = 1;
-        while (1) {
+        while (true) {
             const size_t specStart = format.find('%', searchStart);
             if (specStart == std::string::npos) break;
             if (specStart + 1 == format.length()) {
@@ -1729,8 +1740,7 @@ public:
                 continue;
             }
 
-            const size_t specEnd = format.find_first_of(_intSpec + _doubleSpec + _strSpec,
-                                                        specStart);
+            const size_t specEnd = format.find_first_of(std::string(_intSpec).append(_doubleSpec).append(_strSpec), specStart);
             if (specEnd == std::string::npos) {
                 node->addError(ErrorCode::IncompleteFormatSpecifier);
                 return ExprType().Error().Constant();
@@ -1751,20 +1761,20 @@ public:
         return ExprType().String().Constant();
     }
 
-    virtual ExprFuncNode::Data* evalConstant(const ExprFuncNode* node, ArgHandle args) const
+    ExprFuncNode::Data* evalConstant(const ExprFuncNode*, ArgHandle) const override
     {
         return new StringData();
     }
 
-    virtual void eval(ArgHandle args)
+    void eval(ArgHandle args) override
     {
-        StringData& result = *reinterpret_cast<StringData*>(args.data);
+        auto result = *dynamic_cast<StringData*>(args.data);
         result.assign(args.inStr(0));
 
-        char fragment[255];
+        std::array<char, 255> fragment{};
         size_t searchStart = 0;
         size_t exprArg = 1;
-        while (1) {
+        while (true) {
             const size_t specStart = result.find('%', searchStart);
             if (specStart == std::string::npos) break;
             if (result[specStart + 1] == '%') {
@@ -1773,22 +1783,19 @@ public:
                 continue;
             }
 
-            const size_t specEnd = result.find_first_of(_intSpec + _doubleSpec + _strSpec,
-                                                        specStart);
+            const size_t specEnd = result.find_first_of(std::string(_intSpec).append(_doubleSpec).append(_strSpec), specStart);
             const std::string& spec = result.substr(specStart, specEnd - specStart + 1);
             int fragLen = -1;
             if (std::string::npos != _intSpec.find(result[specEnd]))
-                fragLen = snprintf(fragment, 255, spec.c_str(),
+                fragLen = snprintf(fragment.data(), 255, spec.c_str(),
                                    int(args.inFp<1>(exprArg++)[0]));
             else if (std::string::npos != _doubleSpec.find(result[specEnd]))
-                fragLen = snprintf(fragment, 255, spec.c_str(),
-                                   args.inFp<1>(exprArg++)[0]);
+                fragLen = snprintf(fragment.data(), 255, spec.c_str(), args.inFp<1>(exprArg++)[0]);
             else if (std::string::npos != _strSpec.find(result[specEnd]))
-                fragLen = snprintf(fragment, 255, spec.c_str(),
-                                   args.inStr(exprArg++));
+                fragLen = snprintf(fragment.data(), 255, spec.c_str(), args.inStr(exprArg++));
             assert(fragLen >= 0);
 
-            result.replace(specStart, spec.size(), fragment);
+            result.replace(specStart, spec.size(), fragment.data());
             searchStart += fragLen + 1;
         };
 
@@ -1838,7 +1845,7 @@ static const char* testfunc_docstring="fdsA";
 
 #endif
 
-void defineBuiltins(ExprFunc::Define define, ExprFunc::Define3 define3) {
+void defineBuiltins(ExprFunc::Define, ExprFunc::Define3 define3) {
 // functions from math.h (global namespace)
 //#define FUNC(func)	  define(#func, ExprFunc(::func))
 #define FUNCADOC(name, func) define3(name, ExprFunc(::func), func##_docstring)
@@ -1969,4 +1976,4 @@ void defineBuiltins(ExprFunc::Define define, ExprFunc::Define3 define3) {
 
     FUNCNDOC(sprintf, 1, -1);
 }
-}
+} // namespace KSeExpr

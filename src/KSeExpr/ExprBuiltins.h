@@ -85,7 +85,7 @@ Vec3d norm(const Vec3d& a);
 Vec3d cross(const Vec3d& a, const Vec3d& b);
 double angle(const Vec3d& a, const Vec3d& b);
 Vec3d ortho(const Vec3d& a, const Vec3d& b);
-Vec3d up(const Vec3d& vec, const Vec3d& upvec);
+Vec3d up(const Vec3d& P, const Vec3d& upvec);
 
 // variations
 double cycle(double index, double loRange, double hiRange);
@@ -96,6 +96,6 @@ double spline(int n, double* params);
 
 // add builtins to expression function table
 void defineBuiltins(ExprFunc::Define define, ExprFunc::Define3 define3);
-}
+} // namespace KSeExpr
 
 #endif
