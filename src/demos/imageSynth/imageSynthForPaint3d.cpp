@@ -269,9 +269,9 @@ int main(int argc, char *argv[])
     // parse arguments
     const char *imageFile = argv[1];
     const char *exprFile = argv[4];
-    size_t width = std::strtol(argv[2], nullptr, 10);  // NOLINT readability-magic-numbers
-    size_t height = std::strtol(argv[3], nullptr, 10); // NOLINT readability-magic-numbers
-    if (width < 0 || height < 0) {
+    size_t width = std::strtoul(argv[2], nullptr, 10);  // NOLINT readability-magic-numbers
+    size_t height = std::strtoul(argv[3], nullptr, 10); // NOLINT readability-magic-numbers
+    if (!width || !height) {
         std::cerr << "invalid width/height" << std::endl;
         return 1;
     }
