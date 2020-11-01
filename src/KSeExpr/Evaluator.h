@@ -409,25 +409,35 @@ class LLVMEvaluator {
 };
 
 #else  // no LLVM support
-class LLVMEvaluator {
-  public:
-    void unsupported() { throw std::runtime_error("LLVM is not enabled in build"); }
-    const char *evalStr(VarBlock *varBlock) {
-        unsupported();
-        return "";
+class LLVMEvaluator
+{
+public:
+    static void unsupported()
+    {
+        assert(false && "LLVM is not enabled in build");
     }
-    const double *evalFP(VarBlock *varBlock) {
+    static const char *evalStr(VarBlock *)
+    {
         unsupported();
-        return 0;
+        return nullptr;
     }
-    bool prepLLVM(ExprNode *parseTree, ExprType desiredReturnType) {
+    static const double *evalFP(VarBlock *)
+    {
+        unsupported();
+        return nullptr;
+    }
+    static bool prepLLVM(ExprNode *, ExprType)
+    {
         unsupported();
         return false;
     }
-    void evalMultiple(VarBlock *varBlock, int outputVarBlockOffset, size_t rangeStart, size_t rangeEnd) {
+    static void evalMultiple(VarBlock *, int, size_t, size_t)
+    {
         unsupported();
     }
-    void debugPrint() {}
+    void debugPrint()
+    {
+    }
 };
 #endif
 
