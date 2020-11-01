@@ -17,16 +17,16 @@
 #include "ExprControlCollection.h"
 
 ExprControlCollection::ExprControlCollection(QWidget* parent, bool showAddButton)
-    : QWidget(parent), count(0), showAddButton(showAddButton), editableExpression(0) {
+    : QWidget(parent), showAddButton(showAddButton) {
     controlLayout = new QVBoxLayout();
     controlLayout->setMargin(0);
     controlLayout->setSpacing(0);
     controlLayout->insertStretch(-1, 100);
 
     if (showAddButton) {
-        QPushButton* button = new QPushButton(tr("Add new variable"));
+        auto* button = new QPushButton(tr("Add new variable"));
         button->setFocusPolicy(Qt::NoFocus);
-        QHBoxLayout* buttonLayout = new QHBoxLayout();
+        auto *buttonLayout = new QHBoxLayout();
         buttonLayout->insertStretch(-1, 100);
         buttonLayout->addWidget(button, 0);
         controlLayout->addLayout(buttonLayout);
@@ -38,7 +38,7 @@ ExprControlCollection::ExprControlCollection(QWidget* parent, bool showAddButton
 ExprControlCollection::~ExprControlCollection() { delete editableExpression; }
 
 void ExprControlCollection::addControlDialog() {
-    ExprAddDialog* dialog = new ExprAddDialog(count, this);
+    auto *dialog = new ExprAddDialog(count, this);
     if (dialog->exec()) {
         QString s;
         switch (dialog->tabWidget->currentIndex()) {
@@ -101,7 +101,7 @@ void ExprControlCollection::addControlDialog() {
 
 bool ExprControlCollection::rebuildControls(const QString& expressionText, std::vector<QString>& variables) {
     // parse a new editable expression so  we can check if we need to make new controls
-    EditableExpression* newEditable = new EditableExpression;
+    auto *newEditable = new EditableExpression;
     newEditable->setExpr(expressionText.toStdString());
 
     // check for new variables
@@ -111,8 +111,8 @@ bool ExprControlCollection::rebuildControls(const QString& expressionText, std::
     if (newVariables) {
         const std::vector<std::string>& vars = newEditable->getVariables();
         variables.clear();
-        for (size_t k = 0; k < vars.size(); k++) {
-            variables.push_back(QString::fromLatin1("$%1").arg(QString::fromStdString(vars[k])));
+        for (const auto & var : vars) {
+            variables.push_back(QString::fromLatin1("$%1").arg(QString::fromStdString(var)));
         }
     }
 
@@ -126,9 +126,9 @@ bool ExprControlCollection::rebuildControls(const QString& expressionText, std::
         // controls did not match
 
         // delete old controls
-        for (unsigned int i = 0; i < _controls.size(); i++) {
-            controlLayout->removeWidget(_controls[i]);
-            delete _controls[i];
+        for (auto & _control : _controls) {
+            controlLayout->removeWidget(_control);
+            delete _control;
         }
         _linkedId = -1;
         _controls.clear();
@@ -140,22 +140,22 @@ bool ExprControlCollection::rebuildControls(const QString& expressionText, std::
         // build new controls
         for (size_t i = 0; i < editableExpression->size(); i++) {
             Editable* editable = (*editableExpression)[i];
-            ExprControl* widget = 0;
+            ExprControl* widget = nullptr;
             // Create control "factory" (but since its only used here...)
-            if (NumberEditable* x = dynamic_cast<NumberEditable*>(editable))
+            if (auto* x = dynamic_cast<NumberEditable*>(editable))
                 widget = new NumberControl(i, x);
-            else if (VectorEditable* x = dynamic_cast<VectorEditable*>(editable))
+            else if (auto *x = dynamic_cast<VectorEditable *>(editable))
                 widget = new VectorControl(i, x);
-            else if (StringEditable* x = dynamic_cast<StringEditable*>(editable))
+            else if (auto *x = dynamic_cast<StringEditable *>(editable))
                 widget = new StringControl(i, x);
-            else if (CurveEditable* x = dynamic_cast<CurveEditable*>(editable))
+            else if (auto *x = dynamic_cast<CurveEditable *>(editable))
                 widget = new CurveControl(i, x);
-            else if (ColorCurveEditable* x = dynamic_cast<ColorCurveEditable*>(editable))
+            else if (auto *x = dynamic_cast<ColorCurveEditable *>(editable))
                 widget = new CCurveControl(i, x);
-            else if (ColorSwatchEditable* x = dynamic_cast<ColorSwatchEditable*>(editable))
+            else if (auto *x = dynamic_cast<ColorSwatchEditable *>(editable))
                 widget = new ColorSwatchControl(i, x);
             else {
-                dbgSeExpr << "SeExpr editor logic error, cannot find a widget for the given editable";
+                dbgSeExpr << "KSeExpr editor logic error, cannot find a widget for the given editable";
             }
             if (widget) {
                 // successfully made widget
@@ -180,8 +180,8 @@ void ExprControlCollection::showEditor(int) {
 
 void ExprControlCollection::linkColorLink(int id) {
     _linkedId = id;
-    for (unsigned int i = 0; i < _controls.size(); i++) {
-        _controls[i]->linkDisconnect(_linkedId);
+    for (auto & _control : _controls) {
+        _control->linkDisconnect(_linkedId);
     }
 }
 
@@ -195,8 +195,7 @@ void ExprControlCollection::linkColorInput(QColor color) {
     _controls[_linkedId]->setColor(color);
 }
 
-void ExprControlCollection::updateText(const int id, QString& text) {
-    Q_UNUSED(id);
+void ExprControlCollection::updateText(const int, QString& text) {
     if (editableExpression) text = QString::fromStdString(editableExpression->getEditedExpr());
 }
 
