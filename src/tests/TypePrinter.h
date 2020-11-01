@@ -9,7 +9,6 @@
 #include <KSeExpr/ExprNode.h>
 #include <KSeExpr/ExprWalker.h>
 #include <KSeExpr/Expression.h>
-#include <typeinfo>
 
 using namespace KSeExpr;
 

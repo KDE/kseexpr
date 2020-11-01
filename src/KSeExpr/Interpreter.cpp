@@ -145,7 +145,7 @@ namespace {
 
 //! Binary operator for strings. Currently only handle '+'
 struct BinaryStringOp {
-    static int f(int* opData, double* fp, char** c, std::vector<int>& callStack) {
+    static int f(int* opData, double*, char** c, std::vector<int>&) {
         // get the operand data
         char*& out = *(char**)c[opData[0]];
         char* in1 = c[opData[1]];
@@ -185,7 +185,7 @@ struct BinaryOp {
         return a - floor(a / b) * b;
     }
 
-    static int f(int* opData, double* fp, char** c, std::vector<int>& callStack) {
+    static int f(int* opData, double* fp, char**, std::vector<int>& ) {
         double* in1 = fp + opData[0];
         double* in2 = fp + opData[1];
         double* out = fp + opData[2];
@@ -243,7 +243,7 @@ struct BinaryOp {
 /// Computes a unary op on a FP[d]
 template <char op, int d>
 struct UnaryOp {
-    static int f(int* opData, double* fp, char** c, std::vector<int>& callStack) {
+    static int f(int* opData, double* fp, char**, std::vector<int>&) {
         double* in = fp + opData[0];
         double* out = fp + opData[1];
         for (int k = 0; k < d; k++) {
@@ -270,7 +270,7 @@ struct UnaryOp {
 //! Subscripts
 template <int d>
 struct Subscript {
-    static int f(int* opData, double* fp, char** c, std::vector<int>& callStack) {
+    static int f(int* opData, double* fp, char**, std::vector<int>&) {
         int tuple = opData[0];
         int subscript = int(fp[opData[1]]);
         int out = opData[2];
@@ -285,7 +285,7 @@ struct Subscript {
 //! build a vector tuple from a bunch of numbers
 template <int d>
 struct Tuple {
-    static int f(int* opData, double* fp, char** c, std::vector<int>& callStack) {
+    static int f(int* opData, double* fp, char**, std::vector<int>&) {
         int out = opData[d];
         for (int k = 0; k < d; k++) {
             fp[out + k] = fp[opData[k]];
@@ -297,7 +297,7 @@ struct Tuple {
 //! Assign a floating point to another (NOTE: if src and dest have different dimensions, use Promote)
 template <int d>
 struct AssignOp {
-    static int f(int* opData, double* fp, char** c, std::vector<int>& callStack) {
+    static int f(int* opData, double* fp, char**, std::vector<int>&) {
         int in = opData[0];
         int out = opData[1];
         for (int k = 0; k < d; k++) {
@@ -309,7 +309,7 @@ struct AssignOp {
 
 //! Assigns a string from one position to another
 struct AssignStrOp {
-    static int f(int* opData, double* fp, char** c, std::vector<int>& callStack) {
+    static int f(int* opData, double*, char** c, std::vector<int>&) {
         int in = opData[0];
         int out = opData[1];
         c[out] = c[in];
@@ -319,7 +319,7 @@ struct AssignStrOp {
 
 //! Jumps relative to current executing pc if cond is true
 struct CondJmpRelativeIfFalse {
-    static int f(int* opData, double* fp, char** c, std::vector<int>& callStack) {
+    static int f(int* opData, double* fp, char**, std::vector<int>&) {
         bool cond = (bool)fp[opData[0]];
         if (!cond)
             return opData[1];
@@ -330,7 +330,7 @@ struct CondJmpRelativeIfFalse {
 
 //! Jumps relative to current executing pc if cond is true
 struct CondJmpRelativeIfTrue {
-    static int f(int* opData, double* fp, char** c, std::vector<int>& callStack) {
+    static int f(int* opData, double* fp, char**, std::vector<int>&) {
         bool cond = (bool)fp[opData[0]];
         if (cond)
             return opData[1];
@@ -341,12 +341,12 @@ struct CondJmpRelativeIfTrue {
 
 //! Jumps relative to current executing pc unconditionally
 struct JmpRelative {
-    static int f(int* opData, double* fp, char** c, std::vector<int>& callStack) { return opData[0]; }
+    static int f(int* opData, double*, char**, std::vector<int>&) { return opData[0]; }
 };
 
 //! Evaluates an external variable
 struct EvalVar {
-    static int f(int* opData, double* fp, char** c, std::vector<int>& callStack) {
+    static int f(int* opData, double* fp, char** c, std::vector<int>&) {
         auto* ref = reinterpret_cast<ExprVarRef*>(c[opData[0]]);
         if (ref->type().isFP()) {
             ref->eval(fp + opData[1]);
@@ -373,7 +373,7 @@ struct EvalVarBlock {
 //! Evaluates an external variable using a variable block
 template <char uniform, int dim>
 struct EvalVarBlockIndirect {
-    static int f(int* opData, double* fp, char** c, std::vector<int>& callStack) {
+    static int f(int* opData, double* fp, char** c, std::vector<int>&) {
         if (c[0]) {
             int stride = opData[2];
             int outputVarBlockOffset = opData[0];
@@ -394,7 +394,7 @@ struct EvalVarBlockIndirect {
 
 template <char op, int d>
 struct CompareEqOp {
-    static int f(int* opData, double* fp, char** c, std::vector<int>& callStack) {
+    static int f(int* opData, double* fp, char**, std::vector<int>&) {
         bool result = true;
         double* in0 = fp + opData[0];
         double* in1 = fp + opData[1];
@@ -420,7 +420,7 @@ struct CompareEqOp {
 
 template <char op>
 struct CompareEqOp<op, 3> {
-    static int f(int* opData, double* fp, char** c, std::vector<int>& callStack) {
+    static int f(int* opData, double* fp, char**, std::vector<int>&) {
         bool eq = fp[opData[0]] == fp[opData[1]] && fp[opData[0] + 1] == fp[opData[1] + 1] &&
                   fp[opData[0] + 2] == fp[opData[1] + 2];
         if (op == '=') fp[opData[2]] = eq;
@@ -432,7 +432,7 @@ struct CompareEqOp<op, 3> {
 template <char op, int d>
 struct StrCompareEqOp {
     // TODO: this should rely on tokenization and not use strcmp
-    static int f(int* opData, double* fp, char** c, std::vector<int>& callStack) {
+    static int f(int* opData, double* fp, char** c, std::vector<int>&) {
         switch (op) {
             case '=':
                 fp[opData[2]] = strcmp(c[opData[0]], c[opData[1]]) == 0;
@@ -447,7 +447,7 @@ struct StrCompareEqOp {
 } // namespace
 
 namespace {
-int ProcedureReturn(int* opData, double* fp, char** c, std::vector<int>& callStack) {
+int ProcedureReturn(int* opData, double*, char**, std::vector<int>& callStack) {
     int newPC = callStack.back();
     callStack.pop_back();
     return newPC - opData[0];
@@ -455,7 +455,7 @@ int ProcedureReturn(int* opData, double* fp, char** c, std::vector<int>& callSta
 }
 
 namespace {
-int ProcedureCall(int* opData, double* fp, char** c, std::vector<int>& callStack) {
+int ProcedureCall(int* opData, double*, char**, std::vector<int>& callStack) {
     callStack.push_back(opData[0]);
     return opData[1];
 }

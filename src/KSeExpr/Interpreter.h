@@ -17,7 +17,7 @@ class ExprLocalVar;
 template <int d>
 struct Promote {
     // TODO: this needs a name that is prefixed by Se!
-    static int f(int* opData, double* fp, char** c, std::vector<int>& callStack) {
+    static int f(int* opData, double* fp, char**, std::vector<int>&) {
         int posIn = opData[0];
         int posOut = opData[1];
         for (int k = posOut; k < posOut + d; k++) fp[k] = fp[posIn];

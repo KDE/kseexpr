@@ -3,16 +3,17 @@
 // SPDX-FileCopyrightText: 2020 L. E. Segovia <amy@amyspark.me>
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#ifndef _ExprFuncStandard_h_
-#define _ExprFuncStandard_h_
+#pragma once
 
-#include "Vec.h"
 #include "ExprFuncX.h"
+#include "Vec.h"
 
-namespace KSeExpr {
 
-class ExprFuncStandard : public ExprFuncX {
-  public:
+namespace KSeExpr
+{
+class ExprFuncStandard : public ExprFuncX
+{
+public:
     enum FuncType {
         NONE = 0,
         // scalar args and result
@@ -36,20 +37,20 @@ class ExprFuncStandard : public ExprFuncX {
         FUNCNVV
     };
 
-    typedef double Func0();
-    typedef double Func1(double);
-    typedef double Func2(double, double);
-    typedef double Func3(double, double, double);
-    typedef double Func4(double, double, double, double);
-    typedef double Func5(double, double, double, double, double);
-    typedef double Func6(double, double, double, double, double, double);
-    typedef double Func1v(const Vec3d&);
-    typedef double Func2v(const Vec3d&, const Vec3d&);
-    typedef Vec3d Func1vv(const Vec3d&);
-    typedef Vec3d Func2vv(const Vec3d&, const Vec3d&);
-    typedef double Funcn(int n, double* params);
-    typedef double Funcnv(int n, const Vec3d* params);
-    typedef Vec3d Funcnvv(int n, const Vec3d* params);
+    using Func0 = double();
+    using Func1 = double(double);
+    using Func2 = double(double, double);
+    using Func3 = double(double, double, double);
+    using Func4 = double(double, double, double, double);
+    using Func5 = double(double, double, double, double, double);
+    using Func6 = double(double, double, double, double, double, double);
+    using Func1v = double(const Vec3d &);
+    using Func2v = double(const Vec3d &, const Vec3d &);
+    using Func1vv = Vec3d(const Vec3d &);
+    using Func2vv = Vec3d(const Vec3d &, const Vec3d &);
+    using Funcn = double(int, double *);
+    using Funcnv = double(int, const Vec3d *);
+    using Funcnvv = Vec3d(int, const Vec3d *);
 
 #if 0
     Func0* func0() const { return (Func0*)_func; }
@@ -69,7 +70,12 @@ class ExprFuncStandard : public ExprFuncX {
 #endif
 
     //! No argument function
-    ExprFuncStandard(FuncType funcType, void* f) : ExprFuncX(true), _funcType(funcType), _func(f) {}
+    ExprFuncStandard(FuncType funcType, void *f)
+        : ExprFuncX(true)
+        , _funcType(funcType)
+        , _func(f)
+    {
+    }
 #if 0
     //! User defined function with prototype double f(double)
     ExprFunc(Func1* f)
@@ -125,18 +131,25 @@ class ExprFuncStandard : public ExprFuncX {
     {};
 #endif
 
-  public:
-    ExprFuncStandard() : ExprFuncX(true) {}
+public:
+    ExprFuncStandard()
+        : ExprFuncX(true)
+    {
+    }
 
-    virtual ExprType prep(ExprFuncNode* node, bool scalarWanted, ExprVarEnvBuilder& envBuilder) const;
-    virtual int buildInterpreter(const ExprFuncNode* node, Interpreter* interpreter) const;
-    void* getFuncPointer() const { return _func; }
-    FuncType getFuncType() const { return _funcType; }
+    ExprType prep(ExprFuncNode *node, bool scalarWanted, ExprVarEnvBuilder &envBuilder) const override;
+    int buildInterpreter(const ExprFuncNode *node, Interpreter *interpreter) const override;
+    void *getFuncPointer() const
+    {
+        return _func;
+    }
+    FuncType getFuncType() const
+    {
+        return _funcType;
+    }
 
-  private:
-    FuncType _funcType;
-    void* _func;  // blind func style
+private:
+    FuncType _funcType {};
+    void *_func {nullptr}; // blind func style
 };
-}
-
-#endif
+} // namespace KSeExpr

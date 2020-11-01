@@ -3,48 +3,78 @@
 // SPDX-FileCopyrightText: 2020 L. E. Segovia <amy@amyspark.me>
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#include "ExprMultiExpr.h"
 #include <algorithm>
 #include <set>
 
-namespace KSeExpr {
-class GlobalVal : public ExprVarRef {
-  public:
-    GlobalVal(const std::string &varName, const KSeExpr::ExprType &et) : ExprVarRef(et), varName(varName) {}
+#include "ExprMultiExpr.h"
+
+namespace KSeExpr
+{
+class GlobalVal : public ExprVarRef
+{
+public:
+    GlobalVal(const std::string &varName, const KSeExpr::ExprType &et)
+        : ExprVarRef(et)
+        , varName(varName)
+    {
+    }
     std::set<DExpression *> users;
     std::string varName;
 };
 
 struct GlobalFP : public GlobalVal {
-    GlobalFP(const std::string &varName, int dim) : GlobalVal(varName, ExprType().FP(dim).Varying()) {
+    GlobalFP(const std::string &varName, int dim)
+        : GlobalVal(varName, ExprType().FP(dim).Varying())
+    {
         val.assign(dim, 0);
     }
 
     std::vector<double> val;
-    void eval(double *result) {
-        for (int i = 0; i < type().dim(); i++) result[i] = val[i];
+    void eval(double *result) override
+    {
+        for (int i = 0; i < type().dim(); i++)
+            result[i] = val[i];
     }
-    void eval(const char **result) { assert(false); }
-    bool isVec() { return type().dim() > 1; }
+    void eval(const char **) override
+    {
+        assert(false);
+    }
+    bool isVec()
+    {
+        return type().dim() > 1;
+    }
 };
 
 struct GlobalStr : public GlobalVal {
-    GlobalStr(const std::string &varName) : GlobalVal(varName, ExprType().String().Varying()), val(0) {}
+    GlobalStr(const std::string &varName)
+        : GlobalVal(varName, ExprType().String().Varying())
+    {
+    }
 
-    const char *val;
-    void eval(double *result) { assert(false); }
-    void eval(const char **result) { *result = val; }
-    bool isVec() { return 0; }
+    const char *val{nullptr};
+    void eval(double *) override
+    {
+        assert(false);
+    }
+    void eval(const char **result) override
+    {
+        *result = val;
+    }
+    bool isVec()
+    {
+        return false;
+    }
 };
-}
+} // namespace KSeExpr
 
-namespace {
-
-std::set<KSeExpr::DExpression *> getAffectedExpr(KSeExpr::GlobalVal *gv) {
+namespace
+{
+std::set<KSeExpr::DExpression *> getAffectedExpr(KSeExpr::GlobalVal *gv)
+{
     std::set<KSeExpr::DExpression *> ret;
 
     std::set<KSeExpr::DExpression *> workList = gv->users;
-    while (workList.size()) {
+    while (!workList.empty()) {
         KSeExpr::DExpression *de = *workList.begin();
         workList.erase(de);
         ret.insert(de);
@@ -54,12 +84,13 @@ std::set<KSeExpr::DExpression *> getAffectedExpr(KSeExpr::GlobalVal *gv) {
     return ret;
 }
 
-std::set<KSeExpr::DExpression *> getTransitiveOperandExpr(KSeExpr::DExpression *expr) {
+std::set<KSeExpr::DExpression *> getTransitiveOperandExpr(KSeExpr::DExpression *expr)
+{
     std::set<KSeExpr::DExpression *> ret;
 
     std::set<KSeExpr::DExpression *> workList;
     workList.insert(expr);
-    while (workList.size()) {
+    while (!workList.empty()) {
         KSeExpr::DExpression *de = *workList.begin();
         workList.erase(de);
         ret.insert(de);
@@ -71,16 +102,14 @@ std::set<KSeExpr::DExpression *> getTransitiveOperandExpr(KSeExpr::DExpression *
 
 std::set<KSeExpr::DExpression *> tmpOperandExprs;
 std::set<KSeExpr::GlobalVal *> tmpOperandVars;
-}
+} // namespace
 
-namespace KSeExpr {
-
-DExpression::DExpression(const std::string &varName,
-                         Expressions &context,
-                         const std::string &e,
-                         const ExprType &type,
-                         EvaluationStrategy be)
-    : Expression(e, type, be), dContext(context) {
+namespace KSeExpr
+{
+DExpression::DExpression(const std::string &varName, Expressions &context, const std::string &e, const ExprType &type, EvaluationStrategy be)
+    : Expression(e, type, be)
+    , dContext(context)
+{
     if (type.isFP())
         val = new GlobalFP(varName, type.dim());
     else if (type.isString())
@@ -95,49 +124,60 @@ DExpression::DExpression(const std::string &varName,
     operandVars = tmpOperandVars;
 }
 
-const std::string &DExpression::name() const { return val->varName; }
-
-ExprVarRef *DExpression::resolveVar(const std::string &name) const {
-    // first time resolve var from all exprs & vars
-    // then resolve var from used exprs & vars
-    for (std::set<DExpression *>::iterator I = operandExprs.begin(), E = operandExprs.end(); I != E; ++I)
-        if ((*I)->name() == name) {
-            tmpOperandExprs.insert(*I);
-            (*I)->val->users.insert(const_cast<DExpression *>(this));
-            return (*I)->val;
-        }
-
-    for (std::set<GlobalVal *>::iterator I = operandVars.begin(), E = operandVars.end(); I != E; ++I)
-        if ((*I)->varName == name) {
-            tmpOperandVars.insert(*I);
-            (*I)->users.insert(const_cast<DExpression *>(this));
-            return *I;
-        }
-
-    addError(ErrorCode::UndeclaredVariable, { name },  0, 0);
-    return 0;
+const std::string &DExpression::name() const
+{
+    return val->varName;
 }
 
-void DExpression::eval() {
+ExprVarRef *DExpression::resolveVar(const std::string &name) const
+{
+    // first time resolve var from all exprs & vars
+    // then resolve var from used exprs & vars
+    for (auto *operandExpr : operandExprs) {
+        if (operandExpr->name() == name) {
+            tmpOperandExprs.insert(operandExpr);
+            operandExpr->val->users.insert(const_cast<DExpression *>(this));
+            return operandExpr->val;
+        }
+    }
+
+    for (auto *operandVar : operandVars) {
+        if (operandVar->varName == name) {
+            tmpOperandVars.insert(operandVar);
+            operandVar->users.insert(const_cast<DExpression *>(this));
+            return operandVar;
+        }
+    }
+
+    addError(ErrorCode::UndeclaredVariable, {name}, 0, 0);
+    return nullptr;
+}
+
+void DExpression::eval()
+{
     if (_desiredReturnType.isFP()) {
         const double *ret = evalFP();
-        GlobalFP *fpVal = dynamic_cast<GlobalFP *>(val);
+        auto *fpVal = dynamic_cast<GlobalFP *>(val);
         fpVal->val.assign(ret, ret + fpVal->val.size());
         return;
     }
 
     assert(_desiredReturnType.isString());
-    GlobalStr *strVal = dynamic_cast<GlobalStr *>(val);
+    auto *strVal = dynamic_cast<GlobalStr *>(val);
     strVal->val = evalStr();
 }
 
-Expressions::~Expressions() {
-    for (std::set<DExpression *>::iterator I = AllExprs.begin(), E = AllExprs.end(); I != E; ++I) delete *I;
+Expressions::~Expressions()
+{
+    for (auto *AllExpr : AllExprs)
+        delete AllExpr;
 
-    for (std::set<GlobalVal *>::iterator I = AllExternalVars.begin(), E = AllExternalVars.end(); I != E; ++I) delete *I;
+    for (auto *AllExternalVar : AllExternalVars)
+        delete AllExternalVar;
 }
 
-VariableHandle Expressions::addExternalVariable(const std::string &variableName, ExprType seTy) {
+VariableHandle Expressions::addExternalVariable(const std::string &variableName, ExprType seTy)
+{
     std::pair<std::set<GlobalVal *>::iterator, bool> ret;
 
     if (seTy.isFP())
@@ -150,16 +190,19 @@ VariableHandle Expressions::addExternalVariable(const std::string &variableName,
     return ret.first;
 }
 
-ExprHandle Expressions::addExpression(const std::string &varName, ExprType seTy, const std::string &expr) {
+ExprHandle Expressions::addExpression(const std::string &varName, ExprType seTy, const std::string &expr)
+{
     std::pair<std::set<DExpression *>::iterator, bool> ret;
     ret = AllExprs.insert(new DExpression(varName, *this, expr, seTy));
     return ret.first;
 }
 
-VariableSetHandle Expressions::getLoopVarSetHandle(VariableHandle vh) {
+VariableSetHandle Expressions::getLoopVarSetHandle(VariableHandle vh)
+{
     GlobalVal *thisvar = *vh;
-    unsigned initSize = static_cast<unsigned>(thisvar->users.size());
-    if (!initSize) return AllExternalVars.end();
+    auto initSize = static_cast<unsigned>(thisvar->users.size());
+    if (!initSize)
+        return AllExternalVars.end();
 
     std::set<DExpression *> ret = getAffectedExpr(thisvar);
     exprToEval.insert(ret.begin(), ret.end());
@@ -167,54 +210,66 @@ VariableSetHandle Expressions::getLoopVarSetHandle(VariableHandle vh) {
     return vh;
 }
 
-void Expressions::setLoopVariable(VariableSetHandle handle, double *values, unsigned dim) {
-    if (handle == AllExternalVars.end()) return;
+void Expressions::setLoopVariable(VariableSetHandle handle, double *values, unsigned dim)
+{
+    if (handle == AllExternalVars.end())
+        return;
 
-    GlobalFP *thisvar = dynamic_cast<GlobalFP *>(*handle);
+    auto *thisvar = dynamic_cast<GlobalFP *>(*handle);
     assert(thisvar && "set value to variable with incompatible types.");
 
     assert(dim == thisvar->val.size());
-    for (unsigned i = 0; i < dim; ++i) thisvar->val[i] = values[i];
+    for (unsigned i = 0; i < dim; ++i)
+        thisvar->val[i] = values[i];
 }
 
-void Expressions::setLoopVariable(VariableSetHandle handle, const char *values) {
-    if (handle == AllExternalVars.end()) return;
+void Expressions::setLoopVariable(VariableSetHandle handle, const char *values)
+{
+    if (handle == AllExternalVars.end())
+        return;
 
-    GlobalStr *thisvar = dynamic_cast<GlobalStr *>(*handle);
+    auto *thisvar = dynamic_cast<GlobalStr *>(*handle);
     assert(thisvar && "set value to variable with incompatible types.");
     thisvar->val = values;
 }
 
-void Expressions::setVariable(VariableHandle handle, double *values, unsigned dim) {
-    GlobalFP *thisvar = dynamic_cast<GlobalFP *>(*handle);
+void Expressions::setVariable(VariableHandle handle, double *values, unsigned dim)
+{
+    auto *thisvar = dynamic_cast<GlobalFP *>(*handle);
     assert(thisvar && "set value to variable with incompatible types.");
 
     assert(dim == thisvar->val.size());
-    for (unsigned i = 0; i < dim; ++i) thisvar->val[i] = values[i];
+    for (unsigned i = 0; i < dim; ++i)
+        thisvar->val[i] = values[i];
 
     // eval loop invariant now.
     std::set<DExpression *> ret = getAffectedExpr(thisvar);
-    for (std::set<DExpression *>::iterator I = ret.begin(), E = ret.end(); I != E; ++I) (*I)->eval();
+    for (auto *I : ret)
+        I->eval();
 }
 
-void Expressions::setVariable(VariableHandle handle, const char *values) {
-    GlobalStr *thisvar = dynamic_cast<GlobalStr *>(*handle);
+void Expressions::setVariable(VariableHandle handle, const char *values)
+{
+    auto *thisvar = dynamic_cast<GlobalStr *>(*handle);
     assert(thisvar && "set value to variable with incompatible types.");
     thisvar->val = values;
 
     // eval loop invariant now.
     std::set<DExpression *> ret = getAffectedExpr(thisvar);
-    for (std::set<DExpression *>::iterator I = ret.begin(), E = ret.end(); I != E; ++I) (*I)->eval();
+    for (auto *I : ret)
+        I->eval();
 }
 
-bool Expressions::isValid() const {
+bool Expressions::isValid() const
+{
     bool ret = true;
-    for (std::set<DExpression *>::const_iterator I = AllExprs.begin(), E = AllExprs.end(); I != E; ++I)
-        ret &= (*I)->isValid();
+    for (auto *AllExpr : AllExprs)
+        ret &= AllExpr->isValid();
     return ret;
 }
 
-ExprEvalHandle Expressions::getExprEvalHandle(ExprHandle eh) {
+ExprEvalHandle Expressions::getExprEvalHandle(ExprHandle eh)
+{
     // std::cout << "exprToEval size is " << exprToEval.size() << std::endl;
 
     DExpression *de = *eh;
@@ -237,11 +292,13 @@ ExprEvalHandle Expressions::getExprEvalHandle(ExprHandle eh) {
     return std::make_pair(eh, ret2);
 }
 
-const std::vector<double> &Expressions::evalFP(ExprEvalHandle eeh) {
+const std::vector<double> &Expressions::evalFP(ExprEvalHandle eeh)
+{
     // std::cout << "eeh.second.size() is " << eeh.second.size() << std::endl;
-    for (std::vector<DExpression *>::iterator I = eeh.second.begin(), E = eeh.second.end(); I != E; ++I) (*I)->eval();
+    for (auto & I : eeh.second)
+        I->eval();
 
-    GlobalFP *thisvar = dynamic_cast<GlobalFP *>((*eeh.first)->val);
+    auto *thisvar = dynamic_cast<GlobalFP *>((*eeh.first)->val);
 
     //    std::cout << thisvar->val[0] << ","
     //            << thisvar->val[1] << ","
@@ -249,10 +306,12 @@ const std::vector<double> &Expressions::evalFP(ExprEvalHandle eeh) {
     return thisvar->val;
 }
 
-const char *Expressions::evalStr(ExprEvalHandle eeh) {
-    for (std::vector<DExpression *>::iterator I = eeh.second.begin(), E = eeh.second.end(); I != E; ++I) (*I)->eval();
+const char *Expressions::evalStr(ExprEvalHandle eeh)
+{
+    for (auto & I : eeh.second)
+        I->eval();
 
-    GlobalStr *thisvar = dynamic_cast<GlobalStr *>((*eeh.first)->val);
+    auto *thisvar = dynamic_cast<GlobalStr *>((*eeh.first)->val);
     return thisvar->val;
 }
-}
+} // namespace KSeExpr
