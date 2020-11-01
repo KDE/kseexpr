@@ -591,7 +591,7 @@ ExprType ExprFuncNode::prep(bool wantScalar, ExprVarEnvBuilder &envBuilder)
 
     // find function using per-expression callback and then global table
     // TODO: put lookup of local functions here
-    _func = 0;
+    _func = nullptr;
     if (ExprLocalFunctionNode *localFunction = envBuilder.current()->findFunction(_name)) {
         _localFunc = localFunction;
         setTypeWithChildLife(localFunction->prep(this, wantScalar, envBuilder));
@@ -628,7 +628,7 @@ int ExprFuncNode::buildInterpreter(Interpreter *interpreter) const
     return 0;
 }
 
-bool ExprFuncNode::checkArg(int arg, ExprType type, ExprVarEnvBuilder &envBuilder)
+bool ExprFuncNode::checkArg(int arg, const ExprType &type, ExprVarEnvBuilder &envBuilder)
 {
     ExprType childType = child(arg)->prep(type.isFP(1), envBuilder);
     _promote[arg] = 0;

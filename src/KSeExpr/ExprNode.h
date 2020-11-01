@@ -179,7 +179,7 @@ public:
     /// @}
 
     /// Register error. This will allow users and sophisticated editors to highlight where in code problem was
-    inline void addError(const ErrorCode error, const std::vector<std::string> ids = {}) const
+    inline void addError(const ErrorCode error, const std::vector<std::string>& ids = {}) const
     {
         _expr->addError(error, ids, _startPos, _endPos);
     }
@@ -207,7 +207,7 @@ protected: /*protected functions*/
 
 public:
     /// Checks the boolean value and records an error string with node if it is false
-    inline bool checkCondition(bool check, const ErrorCode message, const std::vector<std::string> ids, bool &error) const
+    inline bool checkCondition(bool check, const ErrorCode message, const std::vector<std::string>& ids, bool &error) const
     {
         if (!check) {
             addError(message, ids);
@@ -679,7 +679,7 @@ public:
     {
         return _name.c_str();
     }
-    bool checkArg(int argIndex, ExprType type, ExprVarEnvBuilder &envBuilder);
+    bool checkArg(int argIndex, const ExprType &type, ExprVarEnvBuilder &envBuilder);
 
 #if 0
     virtual void eval(Vec3d& result) const;
