@@ -4,25 +4,28 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 #include <QColorDialog>
+#include <QDialogButtonBox>
 #include <QDoubleValidator>
 #include <QGraphicsSceneMouseEvent>
-#include <QHBoxLayout>
-#include <QVBoxLayout>
 #include <QGridLayout>
-#include <QResizeEvent>
-#include <QPushButton>
-#include <QDialogButtonBox>
-#include <QPainter>
-#include <QMenu>
+#include <QHBoxLayout>
 #include <QLabel>
+#include <QMenu>
+#include <QPainter>
+#include <QPushButton>
+#include <QResizeEvent>
 #include <QToolButton>
+#include <QVBoxLayout>
 
 #include <KSeExpr/ExprBuiltins.h>
 
 #include "ExprColorSwatch.h"
 
 // Simple color frame for swatch
-ExprColorFrame::ExprColorFrame(KSeExpr::Vec3d value, QWidget *parent) : QFrame(parent), _value(value) {
+ExprColorFrame::ExprColorFrame(KSeExpr::Vec3d value, QWidget *parent)
+    : QFrame(parent)
+    , _value(value)
+{
     setValue(_value);
     setFrameStyle(QFrame::Box | QFrame::Plain);
     QPalette pal = palette();
@@ -31,25 +34,29 @@ ExprColorFrame::ExprColorFrame(KSeExpr::Vec3d value, QWidget *parent) : QFrame(p
     setAutoFillBackground(true);
 }
 
-void ExprColorFrame::setValue(const KSeExpr::Vec3d &value) {
+void ExprColorFrame::setValue(const KSeExpr::Vec3d &value)
+{
     _color = QColor(int(255 * value[0] + 0.5), int(255 * value[1] + 0.5), int(255 * value[2] + 0.5));
     _value = value;
     update();
 }
 
-KSeExpr::Vec3d ExprColorFrame::getValue() const { return _value; }
+KSeExpr::Vec3d ExprColorFrame::getValue() const
+{
+    return _value;
+}
 
-void ExprColorFrame::paintEvent(QPaintEvent *event) {
-    Q_UNUSED(event);
+void ExprColorFrame::paintEvent(QPaintEvent *)
+{
     QPainter p(this);
     p.fillRect(contentsRect(), _color);
 }
 
-void ExprColorFrame::mouseReleaseEvent(QMouseEvent *event) {
+void ExprColorFrame::mouseReleaseEvent(QMouseEvent *event)
+{
     if (event->button() == Qt::RightButton)
         deleteSwatchMenu(event->pos());
     else {
-
         QColor color = QColorDialog::getColor(_color);
 
         if (color.isValid()) {
@@ -64,27 +71,31 @@ void ExprColorFrame::mouseReleaseEvent(QMouseEvent *event) {
     }
 }
 
-void ExprColorFrame::deleteSwatchMenu(const QPoint &pos) {
-    QMenu *menu = new QMenu(this);
+void ExprColorFrame::deleteSwatchMenu(const QPoint &pos)
+{
+    auto *menu = new QMenu(this);
     QAction *deleteAction = menu->addAction(tr("Delete Swatch"));
     menu->addAction(tr("Cancel"));
     QAction *action = menu->exec(mapToGlobal(pos));
-    if (action == deleteAction) emit deleteSwatch(this);
+    if (action == deleteAction)
+        emit deleteSwatch(this);
 }
 
 // Simple color widget with or without index label
-ExprColorWidget::ExprColorWidget(KSeExpr::Vec3d value, int index, bool indexLabel, QWidget *parent) : QWidget(parent) {
+ExprColorWidget::ExprColorWidget(KSeExpr::Vec3d value, int index, bool indexLabel, QWidget *parent)
+    : QWidget(parent)
+{
     _colorFrame = new ExprColorFrame(value);
     _colorFrame->setFixedWidth(32);
     _colorFrame->setFixedHeight(16);
 
-    QVBoxLayout *vbox = new QVBoxLayout();
+    auto *vbox = new QVBoxLayout();
     vbox->setContentsMargins(0, 0, 0, 0);
     vbox->setSpacing(0);
     vbox->addWidget(_colorFrame);
 
     if (indexLabel) {
-        QLabel *label = new QLabel(tr("%1").arg(index));
+        auto *label = new QLabel(tr("%1").arg(index));
         vbox->addWidget(label);
     }
 
@@ -92,35 +103,41 @@ ExprColorWidget::ExprColorWidget(KSeExpr::Vec3d value, int index, bool indexLabe
     // emit swatchAdded(index, val);
 }
 
-ExprColorFrame *ExprColorWidget::getColorFrame() { return _colorFrame; }
+ExprColorFrame *ExprColorWidget::getColorFrame()
+{
+    return _colorFrame;
+}
 
 // Grid layout of color swatches
 ExprColorSwatchWidget::ExprColorSwatchWidget(bool indexLabel, QWidget *parent)
-    : QWidget(parent), _columns(8), _indexLabel(indexLabel) {
-    QHBoxLayout *hboxLayout = new QHBoxLayout();
+    : QWidget(parent)
+    , _columns(8)
+    , _indexLabel(indexLabel)
+{
+    auto *hboxLayout = new QHBoxLayout();
     hboxLayout->setContentsMargins(0, 0, 0, 0);
     setLayout(hboxLayout);
 
-    QToolButton *addBtn = new QToolButton;
+    auto *addBtn = new QToolButton;
     addBtn->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
-    QAction *detailAction = new QAction(tr("&Add..."));
+    auto *detailAction = new QAction(tr("&Add..."));
     QIcon detailIcon = QIcon::fromTheme("addlayer", QIcon::fromTheme("list-add"));
     detailAction->setIcon(detailIcon);
     addBtn->setDefaultAction(detailAction);
     addBtn->setFixedHeight(16);
-    QVBoxLayout *swatchControlLayout = new QVBoxLayout();
+    auto *swatchControlLayout = new QVBoxLayout();
     swatchControlLayout->setContentsMargins(0, 0, 0, 0);
     swatchControlLayout->setAlignment(Qt::AlignLeft | Qt::AlignCenter);
-    QHBoxLayout *addRemoveBtnLayout = new QHBoxLayout();
+    auto *addRemoveBtnLayout = new QHBoxLayout();
     addRemoveBtnLayout->setContentsMargins(0, 0, 0, 0);
     addRemoveBtnLayout->setSpacing(0);
     addRemoveBtnLayout->addWidget(addBtn);
     swatchControlLayout->addLayout(addRemoveBtnLayout);
     swatchControlLayout->addStretch();
 
-    QHBoxLayout *paletteLayout = new QHBoxLayout();
+    auto *paletteLayout = new QHBoxLayout();
     paletteLayout->setContentsMargins(0, 0, 0, 0);
-    QWidget *colorGrid = new QWidget();
+    auto *colorGrid = new QWidget();
     colorGrid->setMinimumWidth(256);
     _gridLayout = new QGridLayout();
     _gridLayout->setContentsMargins(0, 0, 0, 0);
@@ -136,14 +153,17 @@ ExprColorSwatchWidget::ExprColorSwatchWidget(bool indexLabel, QWidget *parent)
     connect(addBtn, SIGNAL(triggered(QAction *)), this, SLOT(addNewColor()));
 }
 
-void ExprColorSwatchWidget::addNewColor() {
+void ExprColorSwatchWidget::addNewColor()
+{
     KSeExpr::Vec3d val(.5);
     addSwatch(val, -1);
 }
 
-void ExprColorSwatchWidget::addSwatch(KSeExpr::Vec3d &val, int index) {
-    if (index == -1 || index > _gridLayout->count()) index = _gridLayout->count();
-    ExprColorWidget *widget = new ExprColorWidget(val, index, _indexLabel, this);
+void ExprColorSwatchWidget::addSwatch(KSeExpr::Vec3d &val, int index)
+{
+    if (index == -1 || index > _gridLayout->count())
+        index = _gridLayout->count();
+    auto *widget = new ExprColorWidget(val, index, _indexLabel, this);
     ExprColorFrame *swatchFrame = widget->getColorFrame();
     _gridLayout->addWidget(widget, index / _columns, index % _columns);
     connect(swatchFrame, SIGNAL(swatchChanged(QColor)), this, SLOT(internalSwatchChanged(QColor)));
@@ -151,15 +171,16 @@ void ExprColorSwatchWidget::addSwatch(KSeExpr::Vec3d &val, int index) {
     emit swatchAdded(index, val);
 }
 
-void ExprColorSwatchWidget::internalSwatchChanged(QColor newcolor) {
-    Q_UNUSED(newcolor);
-    ExprColorFrame *swatchFrame = (ExprColorFrame *)sender();
+void ExprColorSwatchWidget::internalSwatchChanged(QColor)
+{
+    auto *swatchFrame = dynamic_cast<ExprColorFrame *>(sender());
     KSeExpr::Vec3d value = swatchFrame->getValue();
     int index = _gridLayout->indexOf(swatchFrame->parentWidget());
     emit swatchChanged(index, value);
 }
 
-void ExprColorSwatchWidget::removeSwatch(ExprColorFrame *widget) {
+void ExprColorSwatchWidget::removeSwatch(ExprColorFrame *widget)
+{
     QWidget *parentWidget = widget->parentWidget();
     // Find given widget to remove from grid layout
     for (int i = 0; i < _gridLayout->count(); i++) {
@@ -172,27 +193,29 @@ void ExprColorSwatchWidget::removeSwatch(ExprColorFrame *widget) {
     }
 }
 
-void ExprColorSwatchWidget::setSwatchColor(int index, QColor color) {
+void ExprColorSwatchWidget::setSwatchColor(int index, QColor color)
+{
     if (index >= 0 && index < _gridLayout->count()) {
         KSeExpr::Vec3d newColor(color.redF(), color.greenF(), color.blueF());
         QLayoutItem *layoutItem = _gridLayout->itemAt(index);
         if (layoutItem && layoutItem->widget()) {
             QWidget *widget = layoutItem->widget();
-            ExprColorFrame *cFrame = ((ExprColorWidget *)widget)->getColorFrame();
+            auto *cFrame = (dynamic_cast<ExprColorWidget *>(widget))->getColorFrame();
             cFrame->setValue(newColor);
         }
     }
 }
 
-QColor ExprColorSwatchWidget::getSwatchColor(int index) {
+QColor ExprColorSwatchWidget::getSwatchColor(int index)
+{
     if (index >= 0 && index < _gridLayout->count()) {
         QLayoutItem *layoutItem = _gridLayout->itemAt(index);
         if (layoutItem && layoutItem->widget()) {
             QWidget *widget = layoutItem->widget();
-            ExprColorFrame *cFrame = ((ExprColorWidget *)widget)->getColorFrame();
+            ExprColorFrame *cFrame = (dynamic_cast<ExprColorWidget *>(widget))->getColorFrame();
             KSeExpr::Vec3d val = cFrame->getValue();
             return QColor::fromRgbF(val[0], val[1], val[2], 1);
         }
     }
-    return QColor();
+    return {};
 }
