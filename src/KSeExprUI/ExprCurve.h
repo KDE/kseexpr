@@ -8,9 +8,10 @@
 * @author Arthur Shek
 * @version ashek     05/04/09  Initial Version
 */
-#ifndef _ExprCurve_h_
-#define _ExprCurve_h_
 
+#pragma once
+
+#include <cstddef>
 #include <vector>
 
 #include <QObject>
@@ -31,9 +32,9 @@ class CurveGraphicsView : public QGraphicsView {
         setTransformationAnchor(QGraphicsView::NoAnchor);
         setResizeAnchor(QGraphicsView::NoAnchor);
     }
-    ~CurveGraphicsView() {}
+    ~CurveGraphicsView() override = default;
 
-    virtual void resizeEvent(QResizeEvent *event);
+    void resizeEvent(QResizeEvent *event) override;
 
 Q_SIGNALS:
     void resizeSignal(int width, int height);
@@ -46,24 +47,24 @@ Q_SIGNALS:
 class CurveScene : public QGraphicsScene {
     Q_OBJECT
 
-    typedef KSeExpr::Curve<double> T_CURVE;
-    typedef T_CURVE::InterpType T_INTERP;
+    using T_CURVE = KSeExpr::Curve<double>;
+    using T_INTERP = T_CURVE::InterpType;
 
   public:
     CurveScene();
-    ~CurveScene();
+    ~CurveScene() override;
 
-    void addPoint(double x, double y, const T_INTERP interp, const bool select = true);
+    void addPoint(double x, double y, T_INTERP interp, bool select = true);
 
-    void removePoint(const int index);
+    void removePoint(int index);
     void removeAll();
 
-    virtual void keyPressEvent(QKeyEvent *event);
+     void keyPressEvent(QKeyEvent *event) override;
 
-    virtual void mouseMoveEvent(QGraphicsSceneMouseEvent *mouseEvent);
-    virtual void mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent);
-    virtual void mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent);
-    virtual void contextMenuEvent(QGraphicsSceneContextMenuEvent *event);
+     void mouseMoveEvent(QGraphicsSceneMouseEvent *mouseEvent) override;
+     void mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent) override;
+     void mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent) override;
+     void contextMenuEvent(QGraphicsSceneContextMenuEvent *event) override;
     void drawRect();
 
     void drawPoly();
@@ -82,10 +83,10 @@ class CurveScene : public QGraphicsScene {
     T_CURVE *_curve;
   public
 Q_SLOTS:
-    void interpChanged(const int interp);
+    void interpChanged(int interp);
     void selPosChanged(double pos);
     void selValChanged(double val);
-    void resize(const int width, const int height);
+    void resize(int width, int height);
 
 Q_SIGNALS:
     void cvSelected(double x, double y, T_INTERP interp);
@@ -97,27 +98,30 @@ Q_SIGNALS:
     T_INTERP _interp;
     std::vector<QGraphicsEllipseItem *> _circleObjects;
     int _selectedItem;
-    QGraphicsPolygonItem *_curvePoly;
-    QGraphicsRectItem *_baseRect;
+    QGraphicsPolygonItem *_curvePoly{nullptr};
+    QGraphicsRectItem *_baseRect{nullptr};
     bool _lmb;
 };
 
 class ExprCurve : public QWidget {
     Q_OBJECT
 
-    typedef KSeExpr::Curve<double> T_CURVE;
-    typedef T_CURVE::InterpType T_INTERP;
+    using T_CURVE = KSeExpr::Curve<double>;
+    using T_INTERP = T_CURVE::InterpType;
 
   public:
-    ExprCurve(QWidget *parent = 0,
+    ExprCurve(QWidget *parent = nullptr,
               QString pLabel = QString(),
               QString vLabel = QString(),
               QString iLabel = QString(),
               bool expandable = true);
-    ~ExprCurve() {}
+    ~ExprCurve() override = default;
 
     // Convenience Functions
-    void addPoint(const double x, const double y, const T_INTERP interp, bool select = false);
+    void addPoint(double x, double y, T_INTERP interp, bool select = false)
+    {
+        _scene->addPoint(x, y, interp, select);
+    }
 
     CurveScene *_scene;
 
@@ -133,8 +137,7 @@ Q_SIGNALS:
     void selValChangedSignal(double val);
 
   private:
-    QLineEdit *_selPosEdit;
-    QLineEdit *_selValEdit;
-    QComboBox *_interpComboBox;
+    QLineEdit *_selPosEdit{nullptr};
+    QLineEdit *_selValEdit{nullptr};
+    QComboBox *_interpComboBox{nullptr};
 };
-#endif

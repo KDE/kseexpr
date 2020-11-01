@@ -3,11 +3,11 @@
 // SPDX-FileCopyrightText: 2020 L. E. Segovia <amy@amyspark.me>
 // SPDX-License-Identifier: GPL-3.0-or-later
 /*
-* @file ExprCurve.cpp
-* @brief Contains PyQt4 Ramp Widget to emulate Maya's ramp widget
-* @author Arthur Shek
-* @version ashek     05/04/09  Initial Version
-*/
+ * @file ExprCurve.cpp
+ * @brief Contains PyQt4 Ramp Widget to emulate Maya's ramp widget
+ * @author Arthur Shek
+ * @version ashek     05/04/09  Initial Version
+ */
 
 #include <QDialog>
 #include <QDialogButtonBox>
@@ -26,22 +26,35 @@
 
 #include "ExprCurve.h"
 
-void CurveScene::removeAll() { _cvs.clear(); }
+void CurveScene::removeAll()
+{
+    _cvs.clear();
+}
 
-void CurveGraphicsView::resizeEvent(QResizeEvent *event) {
+void CurveGraphicsView::resizeEvent(QResizeEvent *event)
+{
     emit resizeSignal(event->size().width(), event->size().height());
 }
 
 CurveScene::CurveScene()
-    : _curve(new T_CURVE), _width(320), _height(50), _interp(T_CURVE::kMonotoneSpline), _selectedItem(-1),
-      _curvePoly(0), _baseRect(0), _lmb(false) {
+    : _curve(new T_CURVE)
+    , _width(320)
+    , _height(50)
+    , _interp(T_CURVE::kMonotoneSpline)
+    , _selectedItem(-1)
+    , _lmb(false)
+{
     rebuildCurve();
     resize(_width, _height);
 }
 
-CurveScene::~CurveScene() { delete _curve; }
+CurveScene::~CurveScene()
+{
+    delete _curve;
+}
 
-void CurveScene::resize(const int width, const int height) {
+void CurveScene::resize(const int width, const int height)
+{
     // width and height already have the 8 px padding factored in
     _width = width - 16;
     _height = height - 16;
@@ -51,28 +64,33 @@ void CurveScene::resize(const int width, const int height) {
     drawPoints();
 }
 
-void CurveScene::rebuildCurve() {
+void CurveScene::rebuildCurve()
+{
     delete _curve;
     _curve = new T_CURVE;
-    for (unsigned int i = 0; i < _cvs.size(); i++) _curve->addPoint(_cvs[i]._pos, _cvs[i]._val, _cvs[i]._interp);
+    for (auto & _cv : _cvs)
+        _curve->addPoint(_cv._pos, _cv._val, _cv._interp);
     _curve->preparePoints();
 }
 
-void CurveScene::addPoint(double x, double y, const T_INTERP interp, const bool select) {
+void CurveScene::addPoint(double x, double y, const T_INTERP interp, const bool select)
+{
     x = KSeExpr::clamp(x, 0, 1);
     y = KSeExpr::clamp(y, 0, 1);
 
-    _cvs.push_back(T_CURVE::CV(x, y, T_INTERP(interp)));
-    int newIndex = _cvs.size() - 1;
+    _cvs.emplace_back(x, y, T_INTERP(interp));
+    auto newIndex = _cvs.size() - 1;
 
     rebuildCurve();
 
-    if (select) _selectedItem = newIndex;
+    if (select)
+        _selectedItem = newIndex;
     drawPoly();
     drawPoints();
 }
 
-void CurveScene::removePoint(const int index) {
+void CurveScene::removePoint(const int index)
+{
     _cvs.erase(_cvs.begin() + index);
     _selectedItem = -1;
     rebuildCurve();
@@ -82,14 +100,16 @@ void CurveScene::removePoint(const int index) {
     emitCurveChanged();
 }
 
-void CurveScene::keyPressEvent(QKeyEvent *event) {
+void CurveScene::keyPressEvent(QKeyEvent *event)
+{
     if (((event->key() == Qt::Key_Backspace) || (event->key() == Qt::Key_Delete)) && (_selectedItem >= 0)) {
         // user hit delete with cv selected
         removePoint(_selectedItem);
     }
 }
 
-void CurveScene::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent) {
+void CurveScene::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent)
+{
     _lmb = true;
     QPointF pos = mouseEvent->scenePos();
     // get items under mouse click
@@ -115,7 +135,8 @@ void CurveScene::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent) {
             // getting here means we want to create a new point
             double myx = pos.x() / _width;
             T_INTERP interpFromNearby = _curve->getLowerBoundCV(KSeExpr::clamp(myx, 0, 1))._interp;
-            if (interpFromNearby == T_CURVE::kNone) interpFromNearby = T_CURVE::kMonotoneSpline;
+            if (interpFromNearby == T_CURVE::kNone)
+                interpFromNearby = T_CURVE::kMonotoneSpline;
             addPoint(myx, pos.y() / _height, interpFromNearby);
             emitCurveChanged();
         } else {
@@ -125,17 +146,20 @@ void CurveScene::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent) {
     }
 }
 
-void CurveScene::contextMenuEvent(QGraphicsSceneContextMenuEvent *event) {
+void CurveScene::contextMenuEvent(QGraphicsSceneContextMenuEvent *event)
+{
     if (_selectedItem >= 0) {
-        QMenu *menu = new QMenu(event->widget());
+        auto *menu = new QMenu(event->widget());
         QAction *deleteAction = menu->addAction(tr("Delete Point"));
         // menu->addAction("Cancel");
         QAction *action = menu->exec(event->screenPos());
-        if (action == deleteAction) removePoint(_selectedItem);
+        if (action == deleteAction)
+            removePoint(_selectedItem);
     }
 }
 
-void CurveScene::mouseMoveEvent(QGraphicsSceneMouseEvent *mouseEvent) {
+void CurveScene::mouseMoveEvent(QGraphicsSceneMouseEvent *mouseEvent)
+{
     if (_lmb) {
         QPointF point = mouseEvent->scenePos();
         if (_selectedItem >= 0) {
@@ -153,13 +177,14 @@ void CurveScene::mouseMoveEvent(QGraphicsSceneMouseEvent *mouseEvent) {
     }
 }
 
-void CurveScene::mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent) {
-    Q_UNUSED(mouseEvent);
+void CurveScene::mouseReleaseEvent(QGraphicsSceneMouseEvent *)
+{
     _lmb = false;
 }
 
 // user selected a different interpolation type, redraw
-void CurveScene::interpChanged(const int interp) {
+void CurveScene::interpChanged(const int interp)
+{
     _interp = T_INTERP(interp);
     if (_selectedItem >= 0) {
         _cvs[_selectedItem]._interp = _interp;
@@ -170,7 +195,8 @@ void CurveScene::interpChanged(const int interp) {
 }
 
 // user entered a different point position, redraw
-void CurveScene::selPosChanged(double posInput) {
+void CurveScene::selPosChanged(double posInput)
+{
     if (_selectedItem >= 0) {
         double pos = KSeExpr::clamp(posInput, 0, 1);
         _cvs[_selectedItem]._pos = pos;
@@ -182,7 +208,8 @@ void CurveScene::selPosChanged(double posInput) {
 }
 
 // user entered a different point value, redraw
-void CurveScene::selValChanged(double val) {
+void CurveScene::selValChanged(double val)
+{
     if (_selectedItem >= 0) {
         val = KSeExpr::clamp(val, 0, 1);
         _cvs[_selectedItem]._val = val;
@@ -194,11 +221,15 @@ void CurveScene::selValChanged(double val) {
 }
 
 // return points in reverse order in order to use same parsing in editor
-void CurveScene::emitCurveChanged() { emit curveChanged(); }
+void CurveScene::emitCurveChanged()
+{
+    emit curveChanged();
+}
 
 // draws the base gray outline rectangle
-void CurveScene::drawRect() {
-    if (_baseRect == 0) {
+void CurveScene::drawRect()
+{
+    if (_baseRect == nullptr) {
         _baseRect = addRect(0, 0, _width, _height, QPen(Qt::black, 1.0), QBrush(Qt::gray));
     }
     _baseRect->setRect(0, 0, _width, _height);
@@ -206,8 +237,9 @@ void CurveScene::drawRect() {
 }
 
 // draws the poly curve representation
-void CurveScene::drawPoly() {
-    if (_curvePoly == 0) {
+void CurveScene::drawPoly()
+{
+    if (_curvePoly == nullptr) {
         _curvePoly = addPolygon(QPolygonF(), QPen(Qt::black, 1.0), QBrush(Qt::darkGray));
     }
 
@@ -224,12 +256,13 @@ void CurveScene::drawPoly() {
 }
 
 // draws the cv points
-void CurveScene::drawPoints() {
-    while (_circleObjects.size()) {
-        delete _circleObjects[0];
-        _circleObjects.erase(_circleObjects.begin());
+void CurveScene::drawPoints()
+{
+    for(const auto *i: _circleObjects) {
+        delete i;
     }
-    const int numCV = _cvs.size();
+    _circleObjects.clear();
+    int numCV = _cvs.size();
     for (int i = 0; i < numCV; i++) {
         const T_CURVE::CV &pt = _cvs[i];
         QPen pen;
@@ -245,19 +278,20 @@ void CurveScene::drawPoints() {
     }
 }
 
-ExprCurve::ExprCurve(QWidget *parent, QString pLabel, QString vLabel, QString iLabel, bool expandable)
-    : QWidget(parent), _scene(0), _selPosEdit(0), _selValEdit(0), _interpComboBox(0) {
-    Q_UNUSED(iLabel);
-    QHBoxLayout *mainLayout = new QHBoxLayout();
+ExprCurve::ExprCurve(QWidget *parent, QString pLabel, QString vLabel, QString, bool expandable)
+    : QWidget(parent)
+    , _scene(nullptr)
+{
+    auto *mainLayout = new QHBoxLayout();
     mainLayout->setMargin(0);
 
-    QWidget *edits = new QWidget;
-    QFormLayout *editsLayout = new QFormLayout;
+    auto *edits = new QWidget;
+    auto *editsLayout = new QFormLayout;
     editsLayout->setMargin(0);
     edits->setLayout(editsLayout);
 
     _selPosEdit = new QLineEdit;
-    QDoubleValidator *posValidator = new QDoubleValidator(0.0, 1.0, 6, _selPosEdit);
+    auto *posValidator = new QDoubleValidator(0.0, 1.0, 6, _selPosEdit);
     _selPosEdit->setValidator(posValidator);
     QString posLabel;
     if (pLabel.isEmpty()) {
@@ -268,7 +302,7 @@ ExprCurve::ExprCurve(QWidget *parent, QString pLabel, QString vLabel, QString iL
     editsLayout->addRow(posLabel, _selPosEdit);
 
     _selValEdit = new QLineEdit;
-    QDoubleValidator *valValidator = new QDoubleValidator(0.0, 1.0, 6, _selValEdit);
+    auto *valValidator = new QDoubleValidator(0.0, 1.0, 6, _selValEdit);
     _selValEdit->setValidator(valValidator);
     QString valLabel;
     if (vLabel.isEmpty()) {
@@ -288,7 +322,7 @@ ExprCurve::ExprCurve(QWidget *parent, QString pLabel, QString vLabel, QString iL
 
     editsLayout->addWidget(_interpComboBox);
 
-    CurveGraphicsView *curveView = new CurveGraphicsView;
+    auto *curveView = new CurveGraphicsView;
     curveView->setFrameShape(QFrame::StyledPanel);
     curveView->setFrameShadow(QFrame::Sunken);
     curveView->setLineWidth(1);
@@ -302,10 +336,10 @@ ExprCurve::ExprCurve(QWidget *parent, QString pLabel, QString vLabel, QString iL
     mainLayout->addWidget(edits);
     mainLayout->addWidget(curveView);
     if (expandable) {
-        QToolButton *expandButton = new QToolButton(this);
+        auto *expandButton = new QToolButton(this);
         expandButton->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Expanding);
         QIcon expandIcon = QIcon::fromTheme("arrow-right", QIcon::fromTheme("go-next"));
-        QAction *detailAction = new QAction(expandIcon, tr("&Expand..."));
+        auto *detailAction = new QAction(expandIcon, tr("&Expand..."));
         expandButton->setDefaultAction(detailAction);
         mainLayout->addWidget(expandButton);
         // open a the detail widget when clicked
@@ -331,46 +365,52 @@ ExprCurve::ExprCurve(QWidget *parent, QString pLabel, QString vLabel, QString iL
 }
 
 // CV selected, update the user interface fields.
-void ExprCurve::cvSelectedSlot(double pos, double val, T_INTERP interp) {
+void ExprCurve::cvSelectedSlot(double pos, double val, T_INTERP interp)
+{
     QString posStr;
-    if (pos >= 0.0) posStr.setNum(pos, 'f', 3);
+    if (pos >= 0.0)
+        posStr.setNum(pos, 'f', 3);
     _selPosEdit->setText(posStr);
     QString valStr;
-    if (val >= 0.0) valStr.setNum(val, 'f', 3);
+    if (val >= 0.0)
+        valStr.setNum(val, 'f', 3);
     _selValEdit->setText(valStr);
     _interpComboBox->setCurrentIndex(interp);
 }
 
 // User entered new position, round and send signal to redraw curve.
-void ExprCurve::selPosChanged() {
+void ExprCurve::selPosChanged()
+{
     double pos = QString(_selPosEdit->text()).toDouble();
     _selPosEdit->setText(QString(tr("%1")).arg(pos, 0, 'f', 3));
     emit selPosChangedSignal(pos);
 }
 
 // User entered new value, round and send signal to redraw curve.
-void ExprCurve::selValChanged() {
+void ExprCurve::selValChanged()
+{
     double val = QString(_selValEdit->text()).toDouble();
     val = KSeExpr::clamp(val, 0, 1);
     _selValEdit->setText(QString(tr("%1")).arg(val, 0, 'f', 3));
     emit selValChangedSignal(val);
 }
 
-void ExprCurve::openDetail() {
-    QDialog *dialog = new QDialog();
+void ExprCurve::openDetail()
+{
+    auto *dialog = new QDialog();
     dialog->setMinimumWidth(1024);
     dialog->setMinimumHeight(400);
-    ExprCurve *curve = new ExprCurve(0, QString(), QString(), QString(), false);
+    auto *curve = new ExprCurve(nullptr, QString(), QString(), QString(), false);
 
     // copy points into new data
     const std::vector<T_CURVE::CV> &data = _scene->_cvs;
-    typedef std::vector<T_CURVE::CV>::const_iterator ITERATOR;
-    for (ITERATOR i = data.begin(); i != data.end(); ++i) curve->addPoint(i->_pos, i->_val, i->_interp);
+    for (const auto & i : data)
+        curve->addPoint(i._pos, i._val, i._interp);
 
-    QVBoxLayout *layout = new QVBoxLayout();
+    auto *layout = new QVBoxLayout();
     dialog->setLayout(layout);
     layout->addWidget(curve);
-    QDialogButtonBox *buttonbar = new QDialogButtonBox();
+    auto *buttonbar = new QDialogButtonBox();
     buttonbar->setStandardButtons(QDialogButtonBox::Cancel | QDialogButtonBox::Ok);
     connect(buttonbar, SIGNAL(accepted()), dialog, SLOT(accept()));
     connect(buttonbar, SIGNAL(rejected()), dialog, SLOT(reject()));
@@ -379,22 +419,18 @@ void ExprCurve::openDetail() {
     if (dialog->exec() == QDialog::Accepted) {
         // copy points back from child
         _scene->removeAll();
-        const std::vector<T_CURVE::CV> &dataNew = curve->_scene->_cvs;
-        typedef std::vector<T_CURVE::CV>::const_iterator ITERATOR;
-        for (ITERATOR i = dataNew.begin(); i != dataNew.end(); ++i) addPoint(i->_pos, i->_val, i->_interp);
+        const auto &dataNew = curve->_scene->_cvs;
+        for (const auto & i : dataNew)
+            addPoint(i._pos, i._val, i._interp);
         _scene->emitCurveChanged();
     }
 
     if (dialog->exec() == QDialog::Accepted) {
         // copy points back from child
         _scene->removeAll();
-        const std::vector<T_CURVE::CV> &dataNew = curve->_scene->_cvs;
-        typedef std::vector<T_CURVE::CV>::const_iterator ITERATOR;
-        for (ITERATOR i = dataNew.begin(); i != dataNew.end(); ++i) addPoint(i->_pos, i->_val, i->_interp);
+        const auto &dataNew = curve->_scene->_cvs;
+        for (const auto & i : dataNew)
+            addPoint(i._pos, i._val, i._interp);
         _scene->emitCurveChanged();
     }
-}
-
-void ExprCurve::addPoint(const double x, const double y, T_INTERP interp, const bool select) {
-    _scene->addPoint(x, y, interp, select);
 }
