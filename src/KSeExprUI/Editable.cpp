@@ -7,6 +7,7 @@
  * @author Andrew Selle, L. E. Segovia
  */
 
+#include <algorithm>
 #include <cmath>
 #include <cstdio>
 #include <utility>
@@ -197,10 +198,14 @@ void ColorSwatchEditable::appendString(std::stringstream &stream) const
     }
 }
 
-bool ColorSwatchEditable::controlsMatch(const Editable &) const
+bool ColorSwatchEditable::controlsMatch(const Editable &other) const
 {
-    // TODO: determine when controls match
-    return false;
+    if (const auto *o = dynamic_cast<const ColorSwatchEditable *>(&other)) {
+        return this->labelType == o->labelType
+            && o->colors.size() == this->colors.size()
+            && std::equal(o->colors.begin(), o->colors.end(), this->colors.begin());
+    } else
+        return false;
 }
 
 void ColorSwatchEditable::add(const KSeExpr::Vec3d &value)
