@@ -3,35 +3,32 @@
 // SPDX-FileCopyrightText: 2020 L. E. Segovia <amy@amyspark.me>
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#ifndef ExprWalker_h
-#define ExprWalker_h
+#pragma once
+
+#include <type_traits>
+
+#include "ExprNode.h"
 
 namespace KSeExpr {
-
-template <class T, bool constnode>
-struct ADD_CONST {
-    typedef T TYPE;
-};
-template <class T>
-struct ADD_CONST<T, true> {
-    typedef const T TYPE;
+template<class T, bool constnode> struct conditional_const {
+    using type = typename std::conditional<constnode, typename std::add_const<T>::type, T>::type;
 };
 
 template <bool constnode = false>
 class Examiner {
   public:
-    typedef typename ADD_CONST<ExprNode, constnode>::TYPE T_NODE;
+      using T_NODE = typename conditional_const<ExprNode, constnode>::type;
 
-    virtual bool examine(T_NODE* examinee) = 0;
-    virtual void post(T_NODE* examinee) {};  // TODO: make this pure virt
-    virtual void reset() = 0;
+      virtual bool examine(T_NODE *examinee) = 0;
+      virtual void post(T_NODE *examinee) {}; // TODO: make this pure virt
+      virtual void reset() = 0;
 };
 
 template <bool constnode = false>
 class Walker {
   public:
-    typedef Examiner<constnode> T_EXAMINER;
-    typedef typename T_EXAMINER::T_NODE T_NODE;
+    using T_EXAMINER = Examiner<constnode>;
+    using T_NODE = typename T_EXAMINER::T_NODE;
 
     Walker(T_EXAMINER* examiner) : _examiner(examiner) {
         _examiner->reset();
@@ -48,7 +45,6 @@ class Walker {
     T_EXAMINER* _examiner;
 };
 
-typedef Examiner<true> ConstExaminer;
-typedef Walker<true> ConstWalker;
-}
-#endif
+using ConstExaminer = Examiner<true>;
+using ConstWalker = Walker<true>;
+} // namespace KSeExpr
