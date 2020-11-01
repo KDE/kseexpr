@@ -3,15 +3,16 @@
 // SPDX-FileCopyrightText: 2020 L. E. Segovia <amy@amyspark.me>
 // SPDX-License-Identifier: GPL-3.0-or-later
 
+#include <cstdio>
+
 #include "ExprFunc.h"
 #include "ExprFuncX.h"
 #include "Interpreter.h"
 #include "ExprNode.h"
-#include <cstdio>
 
 namespace KSeExpr {
 int ExprFuncSimple::EvalOp(int *opData, double *fp, char **c, std::vector<int> &callStack) {
-    ExprFuncSimple *simple = reinterpret_cast<ExprFuncSimple *>(c[opData[0]]);
+    auto *simple = reinterpret_cast<ExprFuncSimple *>(c[opData[0]]);
     //    ExprFuncNode::Data* simpleData=reinterpret_cast<ExprFuncNode::Data*>(c[opData[1]]);
     ArgHandle args(opData, fp, c, callStack);
     simple->eval(args);
@@ -54,8 +55,8 @@ int ExprFuncSimple::buildInterpreter(const ExprFuncNode *node, Interpreter *inte
     interpreter->addOperand(ptrDataLoc);
     interpreter->addOperand(outoperand);
     interpreter->addOperand(nargsData);
-    for (size_t c = 0; c < operands.size(); c++) {
-        interpreter->addOperand(operands[c]);
+    for (int operand : operands) {
+        interpreter->addOperand(operand);
     }
     interpreter->endOp(false);  // do not eval because the function may not be evaluatable!
 
@@ -70,7 +71,7 @@ int ExprFuncSimple::buildInterpreter(const ExprFuncNode *node, Interpreter *inte
 
     return outoperand;
 }
-}
+} // namespace KSeExpr
 
 extern "C" {
 //            allocate int[4+number of args];
@@ -102,8 +103,8 @@ void KSeExprLLVMEvalCustomFunction(int *opDataArg,
                                    void **funcdata,
                                    const KSeExpr::ExprFuncNode *node) {
     const KSeExpr::ExprFunc *func = node->func();
-    KSeExpr::ExprFuncX *funcX = const_cast<KSeExpr::ExprFuncX *>(func->funcx());
-    KSeExpr::ExprFuncSimple *funcSimple = static_cast<KSeExpr::ExprFuncSimple *>(funcX);
+    auto *funcX = const_cast<KSeExpr::ExprFuncX *>(func->funcx());
+    auto *funcSimple = static_cast<KSeExpr::ExprFuncSimple *>(funcX);
 
     strArg[0] = reinterpret_cast<char *>(funcSimple);
 

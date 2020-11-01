@@ -3,8 +3,7 @@
 // SPDX-FileCopyrightText: 2020 L. E. Segovia <amy@amyspark.me>
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#ifndef _ExprFuncX_h_
-#define _ExprFuncX_h_
+#pragma once
 
 #include "ExprType.h"
 #include "Vec.h"
@@ -14,7 +13,7 @@ namespace KSeExpr {
 class ExprFuncNode;
 class Interpreter;
 class ExprVarEnv;
-typedef std::map<std::string, double> Statistics;
+using Statistics = std::map<std::string, double>;
 
 //! Extension function spec, used for complicated argument custom functions.
 /** Provides the ability to handle all argument type checking and processing manually.
@@ -30,6 +29,10 @@ class ExprFuncX {
     //! and the controlling software should not attempt to run multiple threads
     //! of an expression.
     ExprFuncX(const bool threadSafe) : _threadSafe(threadSafe) {}
+    ExprFuncX(const ExprFuncX &) = default;
+    ExprFuncX(ExprFuncX &&) = default;
+    ExprFuncX& operator=(const ExprFuncX &) = default;
+    ExprFuncX& operator=(ExprFuncX &&) = default;
 
     /** prep the expression by doing all type checking argument checking, etc. */
     virtual ExprType prep(ExprFuncNode* node, bool scalarWanted, ExprVarEnvBuilder& env) const = 0;
@@ -40,7 +43,7 @@ class ExprFuncX {
     // virtual void eval(const ExprFuncNode* node, Vec3d& result) const = 0;
     //! Build an interpreter to evaluate the expression
     virtual int buildInterpreter(const ExprFuncNode* node, Interpreter* interpreter) const = 0;
-    virtual ~ExprFuncX() {}
+    virtual ~ExprFuncX() = default;
 
     bool isThreadSafe() const { return _threadSafe; }
 
@@ -51,7 +54,7 @@ class ExprFuncX {
     virtual void statistics(Statistics& /*statistics*/) const {}
 
   protected:
-    bool _isScalar;
+    bool _isScalar{};
     ExprType _type;
 
   private:
@@ -95,9 +98,9 @@ class ExprFuncSimple : public ExprFuncX {
         // std::stack<int>& callStack;
     };
 
-    virtual int buildInterpreter(const ExprFuncNode* node, Interpreter* interpreter) const;
+    int buildInterpreter(const ExprFuncNode* node, Interpreter* interpreter) const override;
 
-    virtual ExprType prep(ExprFuncNode* node, bool scalarWanted, ExprVarEnvBuilder& envBuilder) const = 0;
+    ExprType prep(ExprFuncNode* node, bool scalarWanted, ExprVarEnvBuilder& envBuilder) const override = 0;
     virtual ExprFuncNode::Data* evalConstant(const ExprFuncNode* node, ArgHandle args) const = 0;
     virtual void eval(ArgHandle args) = 0;
 
@@ -109,10 +112,8 @@ class ExprFuncLocal : public ExprFuncX {
     ExprFuncLocal() : ExprFuncX(true) {}
 
     /** prep the expression by doing all type checking argument checking, etc. */
-    virtual ExprType prep(ExprFuncNode* node, bool scalarWanted, ExprVarEnvBuilder& envBuilder) const;
+    ExprType prep(ExprFuncNode* node, bool scalarWanted, ExprVarEnvBuilder& envBuilder) const override;
     //! Build an interpreter to evaluate the expression
-    virtual int buildInterpreter(const ExprFuncNode* node, Interpreter* interpreter) const;
+    int buildInterpreter(const ExprFuncNode* node, Interpreter* interpreter) const override;
 };
-}
-
-#endif
+} // namespace KSeExpr
