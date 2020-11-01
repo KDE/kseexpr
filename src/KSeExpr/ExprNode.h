@@ -77,7 +77,7 @@ public:
     virtual int buildInterpreter(Interpreter *interpreter) const;
     /// @}
 
-    virtual LLVM_VALUE codegen(LLVM_BUILDER) LLVM_BODY;
+    virtual LLVM_VALUE codegen(LLVM_BUILDER) LLVM_BASE;
 
     /// True if node has a vector result.
     bool isVec() const
@@ -268,7 +268,7 @@ public:
 
     ExprType prep(bool wantScalar, ExprVarEnvBuilder &envBuilder) override;
     int buildInterpreter(Interpreter *interpreter) const override;
-    virtual LLVM_VALUE codegen(LLVM_BUILDER) LLVM_BODY;
+    LLVM_VALUE codegen(LLVM_BUILDER) LLVM_BODY;
 };
 
 /// Node that contains prototype of function
@@ -329,7 +329,7 @@ public:
 
     /// Build the interpreter
     int buildInterpreter(Interpreter *interpreter) const override;
-    virtual LLVM_VALUE codegen(LLVM_BUILDER) LLVM_BODY;
+    LLVM_VALUE codegen(LLVM_BUILDER) LLVM_BODY;
     /// Return op for interpreter
     int interpreterOps(int c) const
     {
@@ -369,7 +369,7 @@ public:
     int buildInterpreter(Interpreter *interpreter) const override;
     /// Build interpreter if we are called
     int buildInterpreterForCall(const ExprFuncNode *callerNode, Interpreter *interpreter) const;
-    virtual LLVM_VALUE codegen(LLVM_BUILDER) LLVM_BODY;
+    LLVM_VALUE codegen(LLVM_BUILDER) LLVM_BODY;
 
 private:
     mutable int _procedurePC{};
@@ -387,7 +387,7 @@ public:
 
     ExprType prep(bool wantScalar, ExprVarEnvBuilder &envBuilder) override;
     int buildInterpreter(Interpreter *interpreter) const override;
-    virtual LLVM_VALUE codegen(LLVM_BUILDER) LLVM_BODY;
+    LLVM_VALUE codegen(LLVM_BUILDER) LLVM_BODY;
 };
 
 /// Node that computes local variables before evaluating expression
@@ -403,7 +403,7 @@ public:
 
     ExprType prep(bool wantScalar, ExprVarEnvBuilder &envBuilder) override;
     int buildInterpreter(Interpreter *interpreter) const override;
-    virtual LLVM_VALUE codegen(LLVM_BUILDER) LLVM_BODY;
+    LLVM_VALUE codegen(LLVM_BUILDER) LLVM_BODY;
 
     ExprVarEnv *_varEnv;
     size_t _varEnvMergeIndex;
@@ -422,7 +422,7 @@ public:
     ExprType prep(bool wantScalar, ExprVarEnvBuilder &envBuilder) override;
     int buildInterpreter(Interpreter *interpreter) const override;
     // virtual void eval(Vec3d& result) const;
-    virtual LLVM_VALUE codegen(LLVM_BUILDER) LLVM_BODY;
+    LLVM_VALUE codegen(LLVM_BUILDER) LLVM_BODY;
 
     const std::string &name() const
     {
@@ -455,7 +455,7 @@ public:
 
     ExprType prep(bool wantScalar, ExprVarEnvBuilder &envBuilder) override;
     int buildInterpreter(Interpreter *interpreter) const override;
-    virtual LLVM_VALUE codegen(LLVM_BUILDER) LLVM_BODY;
+    LLVM_VALUE codegen(LLVM_BUILDER) LLVM_BODY;
 
     Vec3d value() const;
 };
@@ -473,7 +473,7 @@ public:
 
     ExprType prep(bool wantScalar, ExprVarEnvBuilder &envBuilder) override;
     int buildInterpreter(Interpreter *interpreter) const override;
-    virtual LLVM_VALUE codegen(LLVM_BUILDER) LLVM_BODY;
+    LLVM_VALUE codegen(LLVM_BUILDER) LLVM_BODY;
 
     char _op;
 };
@@ -489,7 +489,7 @@ public:
 
     ExprType prep(bool wantScalar, ExprVarEnvBuilder &envBuilder) override;
     int buildInterpreter(Interpreter *interpreter) const override;
-    virtual LLVM_VALUE codegen(LLVM_BUILDER) LLVM_BODY;
+    LLVM_VALUE codegen(LLVM_BUILDER) LLVM_BODY;
 };
 
 /// Node that evaluates a component of a vector
@@ -503,7 +503,7 @@ public:
 
     ExprType prep(bool wantScalar, ExprVarEnvBuilder &envBuilder) override;
     int buildInterpreter(Interpreter *interpreter) const override;
-    virtual LLVM_VALUE codegen(LLVM_BUILDER) LLVM_BODY;
+    LLVM_VALUE codegen(LLVM_BUILDER) LLVM_BODY;
 };
 
 /// Node that implements a numeric/string comparison
@@ -518,7 +518,7 @@ public:
 
     ExprType prep(bool wantScalar, ExprVarEnvBuilder &envBuilder) override;
     int buildInterpreter(Interpreter *interpreter) const override;
-    virtual LLVM_VALUE codegen(LLVM_BUILDER) LLVM_BODY;
+    LLVM_VALUE codegen(LLVM_BUILDER) LLVM_BODY;
 
     char _op;
 };
@@ -535,7 +535,7 @@ public:
 
     ExprType prep(bool wantScalar, ExprVarEnvBuilder &envBuilder) override;
     int buildInterpreter(Interpreter *interpreter) const override;
-    virtual LLVM_VALUE codegen(LLVM_BUILDER) LLVM_BODY;
+    LLVM_VALUE codegen(LLVM_BUILDER) LLVM_BODY;
 
     //! _op '<' less-than, 'l' less-than-eq, '>' greater-than, 'g' greater-than-eq
     char _op;
@@ -561,7 +561,7 @@ public:
 
     ExprType prep(bool wantScalar, ExprVarEnvBuilder &envBuilder) override;
     int buildInterpreter(Interpreter *interpreter) const override;
-    virtual LLVM_VALUE codegen(LLVM_BUILDER) LLVM_BODY;
+    LLVM_VALUE codegen(LLVM_BUILDER) LLVM_BODY;
 
     char _op;
     char *_out{nullptr};
@@ -585,7 +585,7 @@ public:
 
     ExprType prep(bool wantScalar, ExprVarEnvBuilder &envBuilder) override;
     int buildInterpreter(Interpreter *interpreter) const override;
-    virtual LLVM_VALUE codegen(LLVM_BUILDER) LLVM_BODY;
+    LLVM_VALUE codegen(LLVM_BUILDER) LLVM_BODY;
     const char *name() const
     {
         return _name.c_str();
@@ -617,7 +617,7 @@ public:
 
     ExprType prep(bool wantScalar, ExprVarEnvBuilder &envBuilder) override;
     int buildInterpreter(Interpreter *interpreter) const override;
-    virtual LLVM_VALUE codegen(LLVM_BUILDER) LLVM_BODY;
+    LLVM_VALUE codegen(LLVM_BUILDER) LLVM_BODY;
     double value() const
     {
         return _val;
@@ -635,7 +635,7 @@ public:
 
     ExprType prep(bool wantScalar, ExprVarEnvBuilder &envBuilder) override;
     int buildInterpreter(Interpreter *interpreter) const override;
-    virtual LLVM_VALUE codegen(LLVM_BUILDER) LLVM_BODY;
+    LLVM_VALUE codegen(LLVM_BUILDER) LLVM_BODY;
     const char *str() const
     {
         return _str.c_str();
@@ -673,7 +673,7 @@ public:
 
     ExprType prep(bool wantScalar, ExprVarEnvBuilder &envBuilder) override;
     int buildInterpreter(Interpreter *interpreter) const override;
-    virtual LLVM_VALUE codegen(LLVM_BUILDER) LLVM_BODY;
+    LLVM_VALUE codegen(LLVM_BUILDER) LLVM_BODY;
 
     const char *name() const
     {

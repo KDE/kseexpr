@@ -66,7 +66,7 @@ public:
     }
 
     //! LLVM value that has been allocated
-    virtual LLVM_VALUE codegen(LLVM_BUILDER, const std::string &, LLVM_VALUE) LLVM_BODY;
+    virtual LLVM_VALUE codegen(LLVM_BUILDER, const std::string &, LLVM_VALUE) LLVM_BASE;
 
     //! LLVM value that has been pre-done
     virtual LLVM_VALUE varPtr()
@@ -166,7 +166,7 @@ public:
     // static bool branchesMatch(const ExprVarEnv & env1, const ExprVarEnv & env2);
     size_t mergeBranches(const ExprType &type, ExprVarEnv &env1, ExprVarEnv &env2);
     // Code generate merges.
-    LLVM_VALUE codegenMerges(LLVM_BUILDER, int) LLVM_BODY; // NOLINT
+    LLVM_VALUE codegenMerges(LLVM_BUILDER, int) LLVM_BASE; // NOLINT
     // Query merges
     std::vector<std::pair<std::string, ExprLocalVarPhi *>> &merge(size_t index)
     {

@@ -17,12 +17,13 @@ class Type;
 class Module;
 class Function;
 }
-typedef llvm::Value* LLVM_VALUE;
-typedef llvm::IRBuilder<>& LLVM_BUILDER;
-#define LLVM_BODY const
+using LLVM_VALUE = llvm::Value *;
+using LLVM_BUILDER = llvm::IRBuilder<> &;
+#define LLVM_BASE const
+#define LLVM_BODY const override
 #else
-typedef double LLVM_VALUE;
-typedef double LLVM_BUILDER;
-#define LLVM_BODY \
-    { return 0; }
+using LLVM_VALUE = double;
+using LLVM_BUILDER = double;
+#define LLVM_BASE const { return 0; }
+#define LLVM_BODY const override { return 0; }
 #endif

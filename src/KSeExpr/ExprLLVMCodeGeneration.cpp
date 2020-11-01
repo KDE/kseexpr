@@ -527,30 +527,34 @@ LLVM_VALUE promoteToDim(LLVM_VALUE val, unsigned dim, LLVM_BUILDER Builder) {
     return createVecVal(Builder, val, dim);
 }
 
-LLVM_VALUE ExprNode::codegen(LLVM_BUILDER Builder) LLVM_BODY {
+LLVM_VALUE ExprNode::codegen(LLVM_BUILDER Builder) const {
     for (int i = 0; i < numChildren(); i++) child(i)->codegen(Builder);
     return 0;
 }
 
-LLVM_VALUE ExprModuleNode::codegen(LLVM_BUILDER Builder) LLVM_BODY {
+LLVM_VALUE ExprModuleNode::codegen(LLVM_BUILDER Builder) const
+{
     LLVM_VALUE lastVal = 0;
     for (int i = 0; i < numChildren(); i++) lastVal = child(i)->codegen(Builder);
     assert(lastVal);
     return lastVal;
 }
 
-LLVM_VALUE ExprBlockNode::codegen(LLVM_BUILDER Builder) LLVM_BODY {
+LLVM_VALUE ExprBlockNode::codegen(LLVM_BUILDER Builder) const
+{
     LLVM_VALUE lastVal = 0;
     for (int i = 0; i < numChildren(); i++) lastVal = child(i)->codegen(Builder);
     assert(lastVal);
     return lastVal;
 }
 
-LLVM_VALUE ExprNumNode::codegen(LLVM_BUILDER Builder) LLVM_BODY {
+LLVM_VALUE ExprNumNode::codegen(LLVM_BUILDER Builder) const
+{
     return ConstantFP::get(Builder.getContext(), APFloat(_val));
 }
 
-LLVM_VALUE ExprBinaryOpNode::codegen(LLVM_BUILDER Builder) LLVM_BODY {
+LLVM_VALUE ExprBinaryOpNode::codegen(LLVM_BUILDER Builder) const
+{
     LLVM_VALUE c1 = child(0)->codegen(Builder);
     LLVM_VALUE c2 = child(1)->codegen(Builder);
     std::pair<LLVM_VALUE, LLVM_VALUE> pv = promoteBinaryOperandsToAppropriateVector(Builder, c1, c2);
@@ -634,7 +638,8 @@ LLVM_VALUE ExprBinaryOpNode::codegen(LLVM_BUILDER Builder) LLVM_BODY {
 
 // This is the def of def-use chain
 // We don't go to VarNode::codegen. It is codegen'd here.
-LLVM_VALUE ExprAssignNode::codegen(LLVM_BUILDER Builder) LLVM_BODY {
+LLVM_VALUE ExprAssignNode::codegen(LLVM_BUILDER Builder) const
+{
     // codegen value to store
     LLVM_VALUE val = child(0)->codegen(Builder);
     // code gen pointer to store into
@@ -651,7 +656,8 @@ LLVM_VALUE ExprLocalVar::codegen(LLVM_BUILDER Builder, const std::string &varNam
     return _varPtr;
 }
 
-LLVM_VALUE ExprCompareEqNode::codegen(LLVM_BUILDER Builder) LLVM_BODY {
+LLVM_VALUE ExprCompareEqNode::codegen(LLVM_BUILDER Builder) const
+{
     LLVM_VALUE op1 = getFirstElement(child(0)->codegen(Builder), Builder);
     LLVM_VALUE op2 = getFirstElement(child(1)->codegen(Builder), Builder);
 
@@ -695,7 +701,7 @@ LLVM_VALUE ExprCompareEqNode::codegen(LLVM_BUILDER Builder) LLVM_BODY {
     }
 }
 
-LLVM_VALUE ExprCompareNode::codegen(LLVM_BUILDER Builder) LLVM_BODY {
+LLVM_VALUE ExprCompareNode::codegen(LLVM_BUILDER Builder) const {
     if (_op == '&' || _op == '|') {
         // Handle & and | specially as conditionals to handle short circuiting!
         LLVMContext &llvmContext = Builder.getContext();
@@ -790,7 +796,7 @@ LLVM_VALUE ExprCompareNode::codegen(LLVM_BUILDER Builder) LLVM_BODY {
     }
 }
 
-LLVM_VALUE ExprCondNode::codegen(LLVM_BUILDER Builder) LLVM_BODY {
+LLVM_VALUE ExprCondNode::codegen(LLVM_BUILDER Builder) const {
 
 #if 0  // old non-short circuit
     LLVM_VALUE condVal = getFirstElement(child(0)->codegen(Builder), Builder);
@@ -829,7 +835,7 @@ LLVM_VALUE ExprCondNode::codegen(LLVM_BUILDER Builder) LLVM_BODY {
 #endif
 }
 
-LLVM_VALUE ExprFuncNode::codegen(LLVM_BUILDER Builder) LLVM_BODY {
+LLVM_VALUE ExprFuncNode::codegen(LLVM_BUILDER Builder) const {
     LLVMContext &llvmContext = Builder.getContext();
     Module *M = llvm_getModule(Builder);
     std::string calleeName(name());
@@ -911,7 +917,7 @@ LLVM_VALUE ExprFuncNode::codegen(LLVM_BUILDER Builder) LLVM_BODY {
     return createVecVal(Builder, ret);
 }
 
-LLVM_VALUE ExprIfThenElseNode::codegen(LLVM_BUILDER Builder) LLVM_BODY {
+LLVM_VALUE ExprIfThenElseNode::codegen(LLVM_BUILDER Builder) const {
     LLVM_VALUE condVal = getFirstElement(child(0)->codegen(Builder), Builder);
     Type *condTy = condVal->getType();
 
@@ -978,7 +984,7 @@ LLVM_VALUE ExprIfThenElseNode::codegen(LLVM_BUILDER Builder) LLVM_BODY {
     return 0;
 }
 
-LLVM_VALUE ExprLocalFunctionNode::codegen(LLVM_BUILDER Builder) LLVM_BODY {
+LLVM_VALUE ExprLocalFunctionNode::codegen(LLVM_BUILDER Builder) const {
     IRBuilder<>::InsertPoint oldIP = Builder.saveIP();
     LLVMContext &llvmContext = Builder.getContext();
 
@@ -1003,7 +1009,7 @@ LLVM_VALUE ExprLocalFunctionNode::codegen(LLVM_BUILDER Builder) LLVM_BODY {
     return 0;
 }
 
-LLVM_VALUE ExprPrototypeNode::codegen(LLVM_BUILDER Builder) LLVM_BODY {
+LLVM_VALUE ExprPrototypeNode::codegen(LLVM_BUILDER Builder) const {
     LLVMContext &llvmContext = Builder.getContext();
 
     // get arg type
@@ -1026,11 +1032,11 @@ LLVM_VALUE ExprPrototypeNode::codegen(LLVM_BUILDER Builder) LLVM_BODY {
     return F;
 }
 
-LLVM_VALUE ExprStrNode::codegen(LLVM_BUILDER Builder) LLVM_BODY {
+LLVM_VALUE ExprStrNode::codegen(LLVM_BUILDER Builder) const {
     return Builder.CreateGlobalStringPtr(unescapeString(_str));
 }
 
-LLVM_VALUE ExprSubscriptNode::codegen(LLVM_BUILDER Builder) LLVM_BODY {
+LLVM_VALUE ExprSubscriptNode::codegen(LLVM_BUILDER Builder) const {
     LLVM_VALUE op1 = child(0)->codegen(Builder);
     LLVM_VALUE op2 = child(1)->codegen(Builder);
 
@@ -1041,7 +1047,7 @@ LLVM_VALUE ExprSubscriptNode::codegen(LLVM_BUILDER Builder) LLVM_BODY {
     return Builder.CreateExtractElement(op1, idx);
 }
 
-LLVM_VALUE ExprUnaryOpNode::codegen(LLVM_BUILDER Builder) LLVM_BODY {
+LLVM_VALUE ExprUnaryOpNode::codegen(LLVM_BUILDER Builder) const {
     LLVM_VALUE op1 = child(0)->codegen(Builder);
     Type *op1Ty = op1->getType();
     Constant *negateZero = ConstantFP::getZeroValueForNegation(op1Ty);
@@ -1146,7 +1152,7 @@ struct VarCodeGeneration {
 };
 
 // This is the use of def-use chain
-LLVM_VALUE ExprVarNode::codegen(LLVM_BUILDER Builder) LLVM_BODY {
+LLVM_VALUE ExprVarNode::codegen(LLVM_BUILDER Builder) const {
     if (_var) {
         // All external var has the prefix "external_" in current function to avoid
         // potential name conflict with local variable
@@ -1172,7 +1178,7 @@ LLVM_VALUE ExprVarNode::codegen(LLVM_BUILDER Builder) LLVM_BODY {
     return 0;
 }
 
-LLVM_VALUE ExprVecNode::codegen(LLVM_BUILDER Builder) LLVM_BODY {
+LLVM_VALUE ExprVecNode::codegen(LLVM_BUILDER Builder) const {
     std::vector<LLVM_VALUE> elems;
     ConstantInt *zero = ConstantInt::get(Type::getInt32Ty(Builder.getContext()), 0);
     for (int i = 0; i < numChildren(); i++) {
