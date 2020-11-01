@@ -99,7 +99,7 @@ private Q_SLOTS:
 
 private:
     int _id;
-    bool _signaling;
+    std::atomic<bool> _signaling{false};
 };
 
 /// Generic Slider (used for int and float sliders)

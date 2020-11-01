@@ -3,58 +3,68 @@
 // SPDX-FileCopyrightText: 2020 L. E. Segovia <amy@amyspark.me>
 // SPDX-License-Identifier: GPL-3.0-or-later
 /*
-* @file ExprEditor.cpp
-* @brief This provides an expression editor for SeExpr syntax with auto ui features
-* @author  aselle
-*/
+ * @file ExprEditor.cpp
+ * @brief This provides an expression editor for SeExpr syntax with auto ui features
+ * @author  aselle
+ */
 
 #include <QVBoxLayout>
 
-#include <KSeExpr/Expression.h>
-#include <KSeExpr/ExprNode.h>
-#include <KSeExpr/ExprFunc.h>
 #include <KSeExpr/ExprBuiltins.h>
+#include <KSeExpr/ExprFunc.h>
+#include <KSeExpr/ExprNode.h>
+#include <KSeExpr/Expression.h>
 
-#include "ExprEditor.h"
-#include "ExprHighlighter.h"
+
+#include "ExprColorCurve.h"
 #include "ExprCompletionModel.h"
+#include "ExprControl.h"
 #include "ExprControlCollection.h"
 #include "ExprCurve.h"
-#include "ExprColorCurve.h"
-#include "ExprControl.h"
+#include "ExprEditor.h"
+#include "ExprHighlighter.h"
 #include "ExprPopupDoc.h"
 
-ExprLineEdit::ExprLineEdit(int id, QWidget* parent) : QLineEdit(parent), _id(id), _signaling(0) {
-    connect(this, SIGNAL(textChanged(const QString&)), SLOT(textChangedCB(const QString&)));
+
+ExprLineEdit::ExprLineEdit(int id, QWidget *parent)
+    : QLineEdit(parent)
+    , _id(id)
+{
+    connect(this, SIGNAL(textChanged(const QString &)), SLOT(textChangedCB(const QString &)));
 }
 
-void ExprLineEdit::textChangedCB(const QString& text) {
-    _signaling = 1;
+void ExprLineEdit::textChangedCB(const QString &text)
+{
+    _signaling = true;
     emit textChanged(_id, text);
-    _signaling = 0;
+    _signaling = false;
 }
 
-void ExprEditor::controlChanged(int id) {
+void ExprEditor::controlChanged(int id)
+{
     QString newText = exprTe->toPlainText();
     controls->updateText(id, newText);
-    _updatingText = 1;
+    _updatingText = true;
     exprTe->selectAll();
     exprTe->insertPlainText(newText);
     // exprTe->setPlainText(newText);
-    _updatingText = 0;
+    _updatingText = false;
 
     // schedule preview update
     previewTimer->setSingleShot(true);
     previewTimer->start(0);
 }
 
-ExprEditor::~ExprEditor() {
+ExprEditor::~ExprEditor()
+{
     delete controlRebuildTimer;
     delete previewTimer;
 }
 
-ExprEditor::ExprEditor(QWidget* parent)
-    : QWidget(parent), controls(nullptr),_updatingText(0), errorHeight(0) {
+ExprEditor::ExprEditor(QWidget *parent)
+    : QWidget(parent)
+    , errorHeight(0)
+{
     // timers
     controlRebuildTimer = new QTimer();
     previewTimer = new QTimer();
@@ -64,7 +74,7 @@ ExprEditor::ExprEditor(QWidget* parent)
     setMinimumHeight(100);
 
     // make layout
-    QVBoxLayout* exprAndErrors = new QVBoxLayout;
+    auto *exprAndErrors = new QVBoxLayout;
     exprAndErrors->setMargin(0);
     setLayout(exprAndErrors);
 
@@ -109,33 +119,32 @@ ExprEditor::ExprEditor(QWidget* parent)
     connect(previewTimer, SIGNAL(timeout()), SLOT(sendPreview()));
 }
 
-ExprControlCollection* ExprEditor::controlCollectionWidget() const
+ExprControlCollection *ExprEditor::controlCollectionWidget() const
 {
     return this->controls;
 }
 
 // expression controls, we need for signal connections
-void ExprEditor::setControlCollectionWidget(ExprControlCollection* widget) {
-    if (this->controls)
-    {
-        disconnect(controlRebuildTimer, SIGNAL(timeout())),
-        disconnect(controls, SIGNAL(controlChanged(int)));
+void ExprEditor::setControlCollectionWidget(ExprControlCollection *widget)
+{
+    if (this->controls) {
+        disconnect(controlRebuildTimer, SIGNAL(timeout())), disconnect(controls, SIGNAL(controlChanged(int)));
         disconnect(controlRebuildTimer, SIGNAL(timeout()));
     }
 
     this->controls = widget;
 
-    if (this->controls)
-    {
+    if (this->controls) {
         connect(controlRebuildTimer, SIGNAL(timeout()), SLOT(rebuildControls()));
         connect(controls, SIGNAL(controlChanged(int)), SLOT(controlChanged(int)));
-        connect(controls, SIGNAL(insertString(const QString&)), SLOT(insertStr(const QString&)));
+        connect(controls, SIGNAL(insertString(const QString &)), SLOT(insertStr(const QString &)));
     }
 }
 
-void ExprEditor::selectError() {
+void ExprEditor::selectError()
+{
     int selected = errorWidget->currentRow();
-    QListWidgetItem* item = errorWidget->item(selected);
+    QListWidgetItem *item = errorWidget->item(selected);
     int start = item->data(Qt::UserRole).toInt();
     int end = item->data(Qt::UserRole + 1).toInt();
     QTextCursor cursor = exprTe->textCursor();
@@ -145,49 +154,66 @@ void ExprEditor::selectError() {
     exprTe->setTextCursor(cursor);
 }
 
-void ExprEditor::sendApply() { emit apply(); }
+void ExprEditor::sendApply()
+{
+    emit apply();
+}
 
-void ExprEditor::sendPreview() { emit preview(); }
+void ExprEditor::sendPreview()
+{
+    emit preview();
+}
 
-void ExprEditor::exprChanged() {
-    if (_updatingText) return;
+void ExprEditor::exprChanged()
+{
+    if (_updatingText)
+        return;
 
     // schedule control rebuild
     controlRebuildTimer->setSingleShot(true);
     controlRebuildTimer->start(0);
 }
 
-void ExprEditor::rebuildControls() {
+void ExprEditor::rebuildControls()
+{
     bool wasShown = !exprTe->completer->popup()->isHidden();
     bool newVariables = controls->rebuildControls(exprTe->toPlainText(), exprTe->completionModel->local_variables);
-    if (newVariables) exprTe->completer->setModel(exprTe->completionModel);
-    if (wasShown) exprTe->completer->popup()->show();
+    if (newVariables)
+        exprTe->completer->setModel(exprTe->completionModel);
+    if (wasShown)
+        exprTe->completer->popup()->show();
 }
 
-QString ExprEditor::getExpr() { return exprTe->toPlainText(); }
+QString ExprEditor::getExpr()
+{
+    return exprTe->toPlainText();
+}
 
-void ExprEditor::setExpr(const QString& expression, const bool doApply) {
+void ExprEditor::setExpr(const QString &expression, const bool doApply)
+{
     // exprTe->clear();
     exprTe->selectAll();
     exprTe->insertPlainText(expression);
     clearErrors();
     exprTe->moveCursor(QTextCursor::Start);
-    if (doApply) emit apply();
+    if (doApply)
+        emit apply();
 }
 
-void ExprEditor::insertStr(const QString& str)
+void ExprEditor::insertStr(const QString &str)
 {
     exprTe->append(str);
 }
 
-void ExprEditor::appendStr(const QString& str)
+void ExprEditor::appendStr(const QString &str)
 {
     exprTe->append(str);
 }
 
-void ExprEditor::addError(const int startPos, const int endPos, const QString& error) {
+void ExprEditor::addError(const int startPos, const int endPos, const QString &error)
+{
     QString message = tr("(%1, %2): %3").arg(startPos).arg(endPos).arg(error);
-    QListWidgetItem* item = new QListWidgetItem(message, errorWidget);
+    auto *item = new QListWidgetItem(message, errorWidget);
     item->setData(Qt::UserRole, startPos);
     item->setData(Qt::UserRole + 1, endPos);
     errorWidget->setHidden(false);
@@ -221,13 +247,16 @@ void ExprEditor::addError(const int startPos, const int endPos, const QString& e
     exprTe->ensureCursorVisible();
 }
 
-void ExprEditor::nextError() {
+void ExprEditor::nextError()
+{
     int newRow = errorWidget->currentRow() + 1;
-    if (newRow >= errorWidget->count()) newRow = 0;
+    if (newRow >= errorWidget->count())
+        newRow = 0;
     errorWidget->setCurrentRow(newRow);
 }
 
-void ExprEditor::clearErrors() {
+void ExprEditor::clearErrors()
+{
     QList<QTextEdit::ExtraSelection> extraSelections;
     exprTe->setExtraSelections(extraSelections);
     errorWidget->clear();
@@ -235,21 +264,33 @@ void ExprEditor::clearErrors() {
     errorHeight = 0;
 }
 
-void ExprEditor::clearExtraCompleters() {
+void ExprEditor::clearExtraCompleters()
+{
     exprTe->completionModel->clearFunctions();
     exprTe->completionModel->clearVariables();
 }
 
-void ExprEditor::registerExtraFunction(const QString& name, const QString& docString) {
+void ExprEditor::registerExtraFunction(const QString &name, const QString &docString)
+{
     exprTe->completionModel->addFunction(name, docString);
 }
 
-void ExprEditor::registerExtraVariable(const QString& name, const QString& docString) {
+void ExprEditor::registerExtraVariable(const QString &name, const QString &docString)
+{
     exprTe->completionModel->addVariable(name, docString);
 }
 
-void ExprEditor::replaceExtras(const ExprCompletionModel& completer) { exprTe->completionModel->syncExtras(completer); }
+void ExprEditor::replaceExtras(const ExprCompletionModel &completer)
+{
+    exprTe->completionModel->syncExtras(completer);
+}
 
-void ExprEditor::updateCompleter() { exprTe->completer->setModel(exprTe->completionModel); }
+void ExprEditor::updateCompleter()
+{
+    exprTe->completer->setModel(exprTe->completionModel);
+}
 
-void ExprEditor::updateStyle() { exprTe->updateStyle(); }
+void ExprEditor::updateStyle()
+{
+    exprTe->updateStyle();
+}
