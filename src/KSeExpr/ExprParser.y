@@ -395,7 +395,7 @@ bool ExprParse(KSeExpr::ExprNode*& parseTree,
     std::vector<std::pair<int,int> >& comments,
     const KSeExpr::Expression* expr,
     const char* str,
-    bool wantVec)
+    bool)
 {
     std::lock_guard<std::mutex> locker(mutex);
 
