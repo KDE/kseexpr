@@ -62,7 +62,7 @@ int main(int argc, char* argv[]) {
         } else
             std::cerr << "Expression failed: " << expr.parseError() << std::endl;
     } else {
-        std::cout << "SeExpr Basic Pattern Matcher (Iteractive Mode):";
+        std::cout << "KSeExpr Basic Pattern Matcher (Iteractive Mode):";
 
         while (true) {
             std::cout << std::endl << "> ";

@@ -48,6 +48,10 @@ if (GTest_FOUND AND PNG_FOUND AND Python3_FOUND)
     install(TARGETS typeTests DESTINATION ${TEST_DEST})
     add_test(NAME typeTests COMMAND typeTests)
 
+    add_executable(typePrinter "TypePrinter.cpp")
+    target_link_libraries(typePrinter KSeExpr)
+    install(TARGETS typePrinter DESTINATION ${TEST_DEST})
+
     add_executable(multiTests "multiTests.cpp")
     target_include_directories(multiTests PRIVATE ${GTEST_INCLUDE_DIR})
     target_link_libraries(multiTests KSeExpr GTest::GTest GTest::Main)
