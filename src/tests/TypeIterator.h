@@ -14,6 +14,7 @@
 #include <cstring>
 
 #include "TypeBuilder.h"
+#include "typeTests.h"
 
 class TypeTesterExpr;  // forward declaration for parent pointer
 

@@ -5,8 +5,8 @@
 
 #pragma once
 
-#include <cstdlib>
 #include <cstdio>
+#include <cstdlib>
 #include <cstring>
 
 #include <KSeExpr/ExprFunc.h>
@@ -22,8 +22,9 @@ using namespace KSeExpr;
    @file typeTests.h
 */
 //! Simple expression class to check all final types of tests
-class TypeTesterExpr : public TypeBuilderExpr {
-  public:
+class TypeTesterExpr : public TypeBuilderExpr
+{
+public:
     using FindResultOne = ExprType (*)(const ExprType &);
     using FindResultTwo = ExprType (*)(const ExprType &, const ExprType &);
     using FindResultThree = ExprType (*)(const ExprType &, const ExprType &, const ExprType &);
@@ -31,15 +32,21 @@ class TypeTesterExpr : public TypeBuilderExpr {
     TypePrintExaminer _examiner;
     KSeExpr::ConstWalker _walker;
 
-    TypeTesterExpr() : TypeBuilderExpr(), _walker(&_examiner) {};
+    TypeTesterExpr()
+        : TypeBuilderExpr()
+        , _walker(&_examiner) {};
 
-    TypeTesterExpr(const std::string &e) : TypeBuilderExpr(e), _walker(&_examiner) {};
+    TypeTesterExpr(const std::string &e)
+        : TypeBuilderExpr(e)
+        , _walker(&_examiner) {};
 
-    ExprVarRef *resolveVar(const std::string &name) const override {
+    ExprVarRef *resolveVar(const std::string &name) const override
+    {
         return TypeBuilderExpr::resolveVar(name);
     };
 
-    ExprFunc *resolveFunc(const std::string &name) const override {
+    ExprFunc *resolveFunc(const std::string &name) const override
+    {
         return TypeBuilderExpr::resolveFunc(name);
     };
 

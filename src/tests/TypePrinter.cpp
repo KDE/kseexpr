@@ -7,11 +7,11 @@
 #include <cstdio>
 #include <cstring>
 #include <KSeExpr/Expression.h>
+#include <KSeExpr/ExprWalker.h>
+#include <KSeExpr/ExprNode.h>
+#include <KSeExpr/ExprFunc.h>
 #include <KSeExpr/TypePrinter.h>
 
-#include "ExprWalker.h"
-#include "ExprNode.h"
-#include "ExprFunc.h"
 #include "TypeBuilder.h"
 
 using namespace KSeExpr;

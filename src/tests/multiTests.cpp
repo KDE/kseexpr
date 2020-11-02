@@ -3,25 +3,33 @@
 // SPDX-FileCopyrightText: 2020 L. E. Segovia <amy@amyspark.me>
 // SPDX-License-Identifier: GPL-3.0-or-later
 
+#include <array>
 #include <gtest/gtest.h>
 #include <KSeExpr/ExprMultiExpr.h>
 
 using namespace KSeExpr;
 
+template<typename T> void UNUSED(T)
+{
+}
+
 TEST(MultiTests, ParabolaCubicE1) {
     Expressions ee;
 
-    VariableHandle xHandle = ee.addExternalVariable("x", ExprType().FP(1).Varying());
-    VariableHandle vHandle = ee.addExternalVariable("v", ExprType().FP(3).Varying());
+    auto xHandle = ee.addExternalVariable("x", ExprType().FP(1).Varying());
+    auto vHandle = ee.addExternalVariable("v", ExprType().FP(3).Varying());
 
-    ExprHandle parabola = ee.addExpression("parabola", ExprType().FP(3).Varying(), "x*x");
-    ExprHandle cubic = ee.addExpression("cubic", ExprType().FP(3).Varying(), "parabola*v");
-    ExprHandle e1 = ee.addExpression("e1", ExprType().FP(3).Varying(), "cubic*parabola+x+1");
+    auto parabola = ee.addExpression("parabola", ExprType().FP(3).Varying(), "x*x");
+    auto cubic = ee.addExpression("cubic", ExprType().FP(3).Varying(), "parabola*v");
+    auto e1 = ee.addExpression("e1", ExprType().FP(3).Varying(), "cubic*parabola+x+1");
+
+    UNUSED(parabola);
+    UNUSED(e1);
 
     ASSERT_TRUE(ee.isValid());
 
     // VariableSetHandle xSHandle = ee.getLoopVarSetHandle(xHandle);
-    VariableSetHandle vSHandle = ee.getLoopVarSetHandle(vHandle);
+    auto vSHandle = ee.getLoopVarSetHandle(vHandle);
     ExprEvalHandle Scubic = ee.getExprEvalHandle(cubic);
     EXPECT_EQ(Scubic.second.size(), (unsigned int)1);
 
@@ -30,14 +38,14 @@ TEST(MultiTests, ParabolaCubicE1) {
 
     ee.setVariable(xHandle, 8);
 
-    double xmax = 100;
-    double xmin = 1;
+    // double xmax = 100;
+    // double xmin = 1;
     double npoints = 1000;
     // double dx = (xmax-xmin) / (npoints-1);
     for (int i = 0; i < npoints; i++) {
         // ee.setVariable(xSHandle, i*dx+xmin);
-        double myints[] = {2.0, 3.0, 4.0};
-        ee.setLoopVariable(vSHandle, myints, 3);
+        std::array<double, 3> myints{2.0, 3.0, 4.0};
+        ee.setLoopVariable(vSHandle, myints.data(), 3);
         std::vector<double> xCubed = ee.evalFP(Scubic);
         EXPECT_EQ(xCubed[0], 128);
         EXPECT_EQ(xCubed[1], 192);
