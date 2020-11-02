@@ -25,7 +25,7 @@ public:
         };
         return true;
     }
-    void post(T_NODE *examinee) override {};
+    void post(T_NODE *) override {};
     void reset() override
     {
         _varList.clear();
@@ -87,7 +87,7 @@ private:
     ConstWalker walker;
 
     //! resolve function that only supports one external variable 'x'
-    ExprVarRef *resolveVar(const std::string &name) const override
+    ExprVarRef *resolveVar(const std::string &) const override
     {
         return nullptr;
     };
@@ -97,9 +97,9 @@ void quit(const std::string &str)
 {
     if (str == "quit" || str == "q")
         exit(0);
-};
+}
 
-int main(int argc, char *argv[])
+int main(int, char *[])
 {
     ListVarExpr expr;
     std::string str;

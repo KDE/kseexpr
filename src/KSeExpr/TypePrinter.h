@@ -19,7 +19,7 @@ class TypePrintExaminer : public KSeExpr::Examiner<true> {
   public:
     bool examine(const ExprNode* examinee) override;
     void reset() override {};
-    void post(const ExprNode *examinee) override {};
+    void post(const ExprNode *) override {};
 };
 
 bool TypePrintExaminer::examine(const ExprNode* examinee) {
@@ -35,5 +35,5 @@ bool TypePrintExaminer::examine(const ExprNode* examinee) {
               << " type=" << examinee->type().toString() << std::endl;
 
     return true;
-};
+}
 } // namespace KSeExpr
