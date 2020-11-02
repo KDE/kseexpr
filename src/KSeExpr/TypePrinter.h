@@ -9,9 +9,9 @@
 #include <cstdio>
 #include <typeinfo>
 
-#include <KSeExpr/ExprNode.h>
-#include <KSeExpr/ExprWalker.h>
-#include <KSeExpr/Expression.h>
+#include "ExprNode.h"
+#include "ExprWalker.h"
+#include "Expression.h"
 
 namespace KSeExpr
 {
