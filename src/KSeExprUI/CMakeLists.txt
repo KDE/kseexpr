@@ -55,6 +55,7 @@ if (Qt5_FOUND)
 
     set(EDITOR_CPPS
             BasicExpression.cpp
+            ControlSpec.cpp
             Debug.cpp
             Editable.cpp
             EditableExpression.cpp

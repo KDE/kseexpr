@@ -14,9 +14,9 @@ namespace KSeExpr
 {
 SpecExaminer::~SpecExaminer()
 {
-    for (auto& i: _specList)
+    for (auto &i : _specList)
         delete i;
-};
+}
 
 bool SpecExaminer::examine(const ExprNode *examinee)
 {
@@ -38,17 +38,17 @@ bool SpecExaminer::examine(const ExprNode *examinee)
     };
 
     return true;
-};
+}
 
 inline std::vector<const ControlSpec *>::const_iterator SpecExaminer::begin() const
 {
     return _specList.begin();
-};
+}
 
 inline std::vector<const ControlSpec *>::const_iterator SpecExaminer::end() const
 {
     return _specList.end();
-};
+}
 
 //! Returns true if no newline separates comment and node
 inline bool isWS(const char *source, int start, int end)
@@ -57,18 +57,18 @@ inline bool isWS(const char *source, int start, int end)
         if (source[i] != '\n')
             return false;
     return true;
-};
+}
 
 //! Checks if there is whitespace in the range specified in the string
 inline std::string findComment(const ExprNode &node)
 {
     const Expression &expr = *node.expr();
-    using Comments = std::vector<std::pair<int, int> >;
+    using Comments = std::vector<std::pair<int, int>>;
     const Comments &comments = expr.getComments();
     const std::string &s = expr.getExpr();
 
     // TODO: user lower_bound to make this O(lg n) instead of O(n)
-    for (const auto & i: comments) {
+    for (const auto &i : comments) {
         if (i.first >= node.endPos() && isWS(s.c_str(), node.endPos(), i.first))
             return s.substr(i.first, i.second - i.first + 1);
     }
@@ -161,9 +161,14 @@ ExprCurveAssignSpec<T>::ExprCurveAssignSpec(const ExprAssignNode &node)
     const auto *cnode = dynamic_cast<const ExprFuncNode *>(node.child(0));
     _lookupText = cnode->child(0)->toString();
     int num = cnode->numChildren();
-    for (int i = 1; i < num - 2; i += 3)
+    for (int i = 1; i < num - 2; i += 3) {
+        // Someone at disney forgot that doubles cannot go straight to enums... -amyspark
+        auto x = static_cast<typename Curve<T>::InterpType>((int)(dynamic_cast<const ExprNumNode *>(cnode->child(i + 2))->value()));
         _vec.push_back(typename Curve<T>::CV(
-            dynamic_cast<const ExprNumNode *>(cnode->child(i))->value(), dynamic_cast<const ExprNumNode *>(cnode->child(i + 1))->value(), (typename Curve<T>::InterpType) dynamic_cast<const ExprNumNode *>(cnode->child(i + 2))->value()));
+            dynamic_cast<const ExprNumNode *>(cnode->child(i))->value(),
+            dynamic_cast<const ExprNumNode *>(cnode->child(i + 1))->value(),
+            x));
+    }
 }
 
 const ExprVectorAssignSpec *ExprVectorAssignSpec::match(const ExprNode *node)

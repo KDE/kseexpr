@@ -3,86 +3,109 @@
 // SPDX-FileCopyrightText: 2020 L. E. Segovia <amy@amyspark.me>
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#include <Expression.h>
-#include <cstdlib>
 #include <cstdio>
+#include <cstdlib>
 #include <cstring>
 
-#include "ExprWalker.h"
-#include "ExprPatterns.h"
-#include "ExprFunc.h"
-#include "ControlSpec.h"
+#include <KSeExpr/ExprFunc.h>
+#include <KSeExpr/ExprFuncX.h>
+#include <KSeExpr/ExprPatterns.h>
+#include <KSeExpr/ExprWalker.h>
+#include <KSeExpr/Expression.h>
+#include <KSeExprUI/ControlSpec.h>
 
 using namespace KSeExpr;
-/**
-   @file assignmentPatterns.cpp
-*/
-//! Simple expression class to list out variable uses
-class PatternExpr : public Expression {
-  public:
-    struct DummyFuncX : ExprFuncX {
-        DummyFuncX() : ExprFuncX(false) {};
 
-        ExprType prep(ExprFuncNode* node, ExprType wanted, ExprVarEnv& env) {
+//! Simple expression class to list out variable uses
+class PatternExpr : public Expression
+{
+public:
+    struct DummyFuncX : ExprFuncSimple {
+        DummyFuncX()
+            : ExprFuncSimple(false) {};
+
+        ExprType prep(ExprFuncNode *node, bool, ExprVarEnvBuilder &envBuilder) const override
+        {
             bool valid = true;
             for (int i = 0; i < node->numChildren(); i++) {
-                if (!node->isStrArg(i)) valid &= node->child(i)->prep(false, env).isValid();
+                if (!node->isStrArg(i))
+                    valid &= node->child(i)->prep(false, envBuilder).isValid();
             }
-            return wanted;
+            return valid ? ExprType().FP(1).Varying() : ExprType().Error();
         }
 
-        virtual bool isScalar() const {
-            return true;
-        };
-        virtual ExprType retType() const {
-            return ExprType().FP(1).Varying();
-        };
+        ExprFuncNode::Data *evalConstant(const ExprFuncNode *, ArgHandle) const override
+        {
+            return nullptr;
+        }
 
-        void eval(const ExprFuncNode* node, Vec3d& result) const { result = Vec3d(); }
+        void eval(ArgHandle args) override
+        {
+            double *out = &args.outFp;
+            for (int k = 0; k < 3; k++)
+                out[k] = 0.0;
+        }
     } dummyFuncX;
     mutable ExprFunc dummyFunc;
 
     //! Constructor that takes the expression to parse
-    PatternExpr(const std::string& expr)
-        : Expression(expr), dummyFunc(dummyFuncX, 0, 16), _examiner(), _walker(&_examiner) {};
+    PatternExpr(const std::string &expr)
+        : Expression(expr)
+        , dummyFunc(dummyFuncX, 0, 16)
+        , _examiner()
+        , _walker(&_examiner) {};
 
     //! Empty constructor
-    PatternExpr() : Expression(), dummyFunc(dummyFuncX, 0, 16), _examiner(), _walker(&_examiner) {};
+    PatternExpr()
+        : Expression()
+        , dummyFunc(dummyFuncX, 0, 16)
+        , _examiner()
+        , _walker(&_examiner) {};
 
-    inline void walk() {
+    inline void walk()
+    {
         _walker.walk(_parseTree);
     };
-    void specs() {
+    void specs()
+    {
         if (isValid()) {
             walk();
             printSpecs(_examiner);
         };
     };
 
-  private:
+private:
     KSeExpr::SpecExaminer _examiner;
     KSeExpr::ConstWalker _walker;
 
-    template <typename Examiner>
-    void printSpecs(Examiner examiner) {
+    template<typename Examiner> void printSpecs(Examiner examiner)
+    {
         if (isValid()) {
-            for (int i = 0; i < examiner.length(); ++i) std::cout << examiner.spec(i)->toString() << std::endl;
+            for (int i = 0; i < examiner.length(); ++i)
+                std::cout << examiner.spec(i)->toString() << std::endl;
         };
-    };
+    }
 
     //! resolve function that only supports one external variable 'x'
-    ExprVarRef* resolveVar(const std::string& name) const {
-        return 0;
-    };
+    ExprVarRef *resolveVar(const std::string &) const override
+    {
+        return nullptr;
+    }
 
-    ExprFunc* resolveFunc(const std::string& name) const { return &dummyFunc; }
+    ExprFunc *resolveFunc(const std::string &) const override
+    {
+        return &dummyFunc;
+    }
 };
 
-void quit(const std::string& str) {
-    if (str == "quit" || str == "q") exit(0);
-};
+void quit(const std::string &str)
+{
+    if (str == "quit" || str == "q")
+        exit(0);
+}
 
-int main(int argc, char* argv[]) {
+int main(int, char *[])
+{
     PatternExpr expr;
     std::string str;
 

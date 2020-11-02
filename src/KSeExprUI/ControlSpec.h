@@ -119,6 +119,7 @@ private:
 class SpecExaminer : public Examiner<true>
 {
 public:
+    SpecExaminer() = default;
     ~SpecExaminer();
     SpecExaminer &operator=(const SpecExaminer &) = default;
     SpecExaminer &operator=(SpecExaminer &&) = default;
@@ -126,6 +127,7 @@ public:
     SpecExaminer(SpecExaminer &&) = default;
 
     bool examine(const ExprNode *examinee) override;
+    void post(const ExprNode *) override {};
     void reset() override
     {
         _specList.clear();
