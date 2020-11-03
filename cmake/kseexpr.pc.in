@@ -10,6 +10,6 @@ includedir=${prefix}/include
 
 Name: KSeExpr
 Description: KSeExpr - An embeddable expression evaluation engine
-Version: 3.4.4.0
+Version: @KSeExpr_VERSION@
 Cflags: -I${includedir}
 Libs: -L${libdir}
