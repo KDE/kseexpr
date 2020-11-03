@@ -106,8 +106,7 @@ The translation loader is a modified version of the one provided by k18n under t
 
 The `crack_atof` function by Tian Bo (in Utils.cpp) is licensed under the [MIT](LICENSES/MIT.txt).
 
-The packaging scripts come from Krita and are licensed under the [GNU General Public License v2.0](LICENSES/GPL-2.0.txt).
-
+The packaging scripts are made available under the [BSD 3-Clause "New" or "Revised" License](LICENSES/BSD-3-Clause.txt).
 
 ## Original SeExpr Developers
 
