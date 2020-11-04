@@ -3,6 +3,8 @@
 // SPDX-FileCopyrightText: 2020 L. E. Segovia <amy@amyspark.me>
 // SPDX-License-Identifier: GPL-3.0-or-later
 
+#include <cstdint>
+
 #include "ExprConfig.h"
 #include "ExprLLVMAll.h"
 #include "ExprNode.h"
@@ -11,56 +13,66 @@
 #if defined(SEEXPR_ENABLE_LLVM)
 #include <llvm/Config/llvm-config.h>
 #include <llvm/Support/Compiler.h>
+#include <memory>
 #endif
 
 extern "C" void KSeExprLLVMEvalFPVarRef(KSeExpr::ExprVarRef *seVR, double *result);
 extern "C" void KSeExprLLVMEvalStrVarRef(KSeExpr::ExprVarRef *seVR, double *result);
-extern "C" void KSeExprLLVMEvalCustomFunction(int *opDataArg,
-                                              double *fpArg,
-                                              char **strArg,
-                                              void **funcdata,
-                                              const KSeExpr::ExprFuncNode *node);
+extern "C" void KSeExprLLVMEvalCustomFunction(int *opDataArg, double *fpArg, char **strArg, void **funcdata, const KSeExpr::ExprFuncNode *node);
 
-namespace KSeExpr {
+namespace KSeExpr
+{
 #if defined(SEEXPR_ENABLE_LLVM)
 
 LLVM_VALUE promoteToDim(LLVM_VALUE val, unsigned dim, llvm::IRBuilder<> &Builder);
 
-class LLVMEvaluator {
+class LLVMEvaluator
+{
     // TODO: this seems needlessly complex, let's fix it
     // TODO: let the dev code allocate memory?
     // FP is the native function for this expression.
-    template <class T>
-    class LLVMEvaluationContext {
-      private:
-        typedef void (*FunctionPtr)(T *, char **, uint32_t);
-        typedef void (*FunctionPtrMultiple)(char **, uint32_t, uint32_t, uint32_t);
-        FunctionPtr functionPtr;
-        FunctionPtrMultiple functionPtrMultiple;
-        T *resultData;
+    template<class T> class LLVMEvaluationContext
+    {
+    private:
+        using FunctionPtr = void (*)(T *, char **, uint32_t);
+        using FunctionPtrMultiple = void (*)(char **, uint32_t, uint32_t, uint32_t);
+        FunctionPtr functionPtr{nullptr};
+        FunctionPtrMultiple functionPtrMultiple{nullptr};
+        T *resultData{nullptr};
 
-      public:
+    public:
         LLVMEvaluationContext(const LLVMEvaluationContext &) = delete;
         LLVMEvaluationContext &operator=(const LLVMEvaluationContext &) = delete;
-        ~LLVMEvaluationContext() { delete[] resultData; }
-        LLVMEvaluationContext() : functionPtr(nullptr), resultData(nullptr) {}
-        void init(void *fp, void *fpLoop, int dim) {
+        LLVMEvaluationContext(LLVMEvaluationContext &&) noexcept = default;
+        LLVMEvaluationContext& operator=(LLVMEvaluationContext &&) noexcept = default;
+        ~LLVMEvaluationContext()
+        {
+            delete[] resultData;
+        }
+        LLVMEvaluationContext() = default;
+        
+        void init(void *fp, void *fpLoop, int dim)
+        {
             reset();
             functionPtr = reinterpret_cast<FunctionPtr>(fp);
             functionPtrMultiple = reinterpret_cast<FunctionPtrMultiple>(fpLoop);
             resultData = new T[dim];
         }
-        void reset() {
-            if (resultData) delete[] resultData;
+        void reset()
+        {
+            delete[] resultData;
+            resultData = nullptr;
             functionPtr = nullptr;
             resultData = nullptr;
         }
-        const T *operator()(VarBlock *varBlock) {
+        const T *operator()(VarBlock *varBlock)
+        {
             assert(functionPtr && resultData);
             functionPtr(resultData, varBlock ? varBlock->data() : nullptr, varBlock ? varBlock->indirectIndex : 0);
             return resultData;
         }
-        void operator()(VarBlock *varBlock, size_t outputVarBlockOffset, size_t rangeStart, size_t rangeEnd) {
+        void operator()(VarBlock *varBlock, size_t outputVarBlockOffset, size_t rangeStart, size_t rangeEnd)
+        {
             assert(functionPtr && resultData);
             functionPtrMultiple(varBlock ? varBlock->data() : nullptr, outputVarBlockOffset, rangeStart, rangeEnd);
         }
@@ -71,21 +83,30 @@ class LLVMEvaluator {
     std::unique_ptr<llvm::LLVMContext> _llvmContext;
     std::unique_ptr<llvm::ExecutionEngine> TheExecutionEngine;
 
-  public:
-    LLVMEvaluator() {}
+public:
+    LLVMEvaluator() = default;
 
-    const char *evalStr(VarBlock *varBlock) { return *(*_llvmEvalStr)(varBlock); }
-    const double *evalFP(VarBlock *varBlock) { return (*_llvmEvalFP)(varBlock); }
+    const char *evalStr(VarBlock *varBlock)
+    {
+        return *(*_llvmEvalStr)(varBlock);
+    }
+    const double *evalFP(VarBlock *varBlock)
+    {
+        return (*_llvmEvalFP)(varBlock);
+    }
 
-    void evalMultiple(VarBlock *varBlock, uint32_t outputVarBlockOffset, uint32_t rangeStart, uint32_t rangeEnd) {
+    void evalMultiple(VarBlock *varBlock, uint32_t outputVarBlockOffset, uint32_t rangeStart, uint32_t rangeEnd)
+    {
         return (*_llvmEvalFP)(varBlock, outputVarBlockOffset, rangeStart, rangeEnd);
     }
 
-    void debugPrint() {
+    void debugPrint()
+    {
         // TheModule->print(llvm::errs(), nullptr);
     }
 
-    bool prepLLVM(ExprNode *parseTree, ExprType desiredReturnType) {
+    bool prepLLVM(ExprNode *parseTree, const ExprType &desiredReturnType)
+    {
         using namespace llvm;
         InitializeNativeTarget();
         InitializeNativeTargetAsmPrinter();
@@ -94,20 +115,20 @@ class LLVMEvaluator {
         std::string uniqueName = getUniqueName();
 
         // create Module
-        _llvmContext.reset(new LLVMContext());
+        _llvmContext = std::make_unique<LLVMContext>();
 
         std::unique_ptr<Module> TheModule(new Module(uniqueName + "_module", *_llvmContext));
 
         // create all needed types
-        Type        *i8PtrTy        = Type::getInt8PtrTy(*_llvmContext);        // char *
-        PointerType *i8PtrPtrTy     = PointerType::getUnqual(i8PtrTy);          // char **
-        PointerType *i8PtrPtrPtrTy  = PointerType::getUnqual(i8PtrPtrTy);       // char ***
-        Type        *i32Ty          = Type::getInt32Ty(*_llvmContext);          // int
-        Type        *i32PtrTy       = Type::getInt32PtrTy(*_llvmContext);       // int *
-        Type        *i64Ty          = Type::getInt64Ty(*_llvmContext);          // int64 *
-        Type        *doublePtrTy    = Type::getDoublePtrTy(*_llvmContext);      // double *
-        PointerType *doublePtrPtrTy = PointerType::getUnqual(doublePtrTy);      // double **
-        Type        *voidTy         = Type::getVoidTy(*_llvmContext);           // void
+        Type *i8PtrTy = Type::getInt8PtrTy(*_llvmContext);                 // char *
+        PointerType *i8PtrPtrTy = PointerType::getUnqual(i8PtrTy);         // char **
+        PointerType *i8PtrPtrPtrTy = PointerType::getUnqual(i8PtrPtrTy);   // char ***
+        Type *i32Ty = Type::getInt32Ty(*_llvmContext);                     // int
+        Type *i32PtrTy = Type::getInt32PtrTy(*_llvmContext);               // int *
+        Type *i64Ty = Type::getInt64Ty(*_llvmContext);                     // int64 *
+        Type *doublePtrTy = Type::getDoublePtrTy(*_llvmContext);           // double *
+        PointerType *doublePtrPtrTy = PointerType::getUnqual(doublePtrTy); // double **
+        Type *voidTy = Type::getVoidTy(*_llvmContext);                     // void
 
         // create bindings to helper functions for variables and fucntions
         Function *KSeExprLLVMEvalCustomFunctionFunc = nullptr;
@@ -133,23 +154,23 @@ class LLVMEvaluator {
                 KSeExprLLVMEvalStrVarRefFunc = Function::Create(FT, GlobalValue::ExternalLinkage, "KSeExprLLVMEvalStrVarRef", TheModule.get());
             }
             {
-                FunctionType *FT = FunctionType::get(i32Ty, { i8PtrTy }, false);
+                FunctionType *FT = FunctionType::get(i32Ty, {i8PtrTy}, false);
                 KSeExprLLVMEvalstrlenFunc = Function::Create(FT, Function::ExternalLinkage, "strlen", TheModule.get());
             }
             {
-                FunctionType *FT = FunctionType::get(i8PtrTy, { i32Ty }, false);
+                FunctionType *FT = FunctionType::get(i8PtrTy, {i32Ty}, false);
                 KSeExprLLVMEvalmallocFunc = Function::Create(FT, Function::ExternalLinkage, "malloc", TheModule.get());
             }
             {
-                FunctionType *FT = FunctionType::get(voidTy, { i8PtrTy }, false);
+                FunctionType *FT = FunctionType::get(voidTy, {i8PtrTy}, false);
                 KSeExprLLVMEvalfreeFunc = Function::Create(FT, Function::ExternalLinkage, "free", TheModule.get());
             }
             {
-                FunctionType *FT = FunctionType::get(voidTy, { i8PtrTy, i32Ty, i32Ty }, false);
+                FunctionType *FT = FunctionType::get(voidTy, {i8PtrTy, i32Ty, i32Ty}, false);
                 KSeExprLLVMEvalmemsetFunc = Function::Create(FT, Function::ExternalLinkage, "memset", TheModule.get());
             }
             {
-                FunctionType *FT = FunctionType::get(i8PtrTy, { i8PtrTy, i8PtrTy }, false);
+                FunctionType *FT = FunctionType::get(i8PtrTy, {i8PtrTy, i8PtrTy}, false);
                 KSeExprLLVMEvalstrcatFunc = Function::Create(FT, Function::ExternalLinkage, "strcat", TheModule.get());
             }
             {
@@ -160,11 +181,7 @@ class LLVMEvaluator {
 
         // create function and entry BB
         bool desireFP = desiredReturnType.isFP();
-        Type *ParamTys[] = {
-            desireFP ? doublePtrTy : i8PtrPtrTy,
-            doublePtrPtrTy,
-            i32Ty
-        };
+        std::array<Type *, 3> ParamTys = {desireFP ? doublePtrTy : i8PtrPtrTy, doublePtrPtrTy, i32Ty};
         FunctionType *FT = FunctionType::get(voidTy, ParamTys, false);
         Function *F = Function::Create(FT, Function::ExternalLinkage, uniqueName + "_func", TheModule.get());
 #if LLVM_VERSION_MAJOR > 4
@@ -174,9 +191,10 @@ class LLVMEvaluator {
 #endif
         {
             // label the function with names
-            const char *names[] = {"outputPointer", "dataBlock", "indirectIndex"};
+            std::array<const char *, 3> names = {"outputPointer", "dataBlock", "indirectIndex"};
             int idx = 0;
-            for (auto &arg : F->args()) arg.setName(names[idx++]);
+            for (auto &arg : F->args())
+                arg.setName(names[idx++]);
         }
 
         auto dimDesired = desiredReturnType.dim();
@@ -217,8 +235,7 @@ class LLVMEvaluator {
                             Builder.CreateStore(val, ptr);
                         }
                     }
-                }
-                else {
+                } else {
                     if (dimGenerated > 1) {
                         Value *newLastVal = promoteToDim(lastVal, dimDesired, Builder);
                         assert(newLastVal->getType()->getVectorNumElements() >= dimDesired);
@@ -249,7 +266,7 @@ class LLVMEvaluator {
         Function *FLOOP = Function::Create(FTLOOP, Function::ExternalLinkage, uniqueName + "_loopfunc", TheModule.get());
         {
             // label the function with names
-            const char *names[] = {"dataBlock", "outputVarBlockOffset", "rangeStart", "rangeEnd"};
+            std::array<const char *, 4> names = {"dataBlock", "outputVarBlockOffset", "rangeStart", "rangeEnd"};
             int idx = 0;
             for (auto &arg : FLOOP->args()) {
                 arg.setName(names[idx++]);
@@ -271,10 +288,14 @@ class LLVMEvaluator {
 
             // Get arguments
             Function::arg_iterator argIterator = FLOOP->arg_begin();
-            Value *varBlockCharPtrPtrArg = &*argIterator;       ++argIterator;
-            Value *outputVarBlockOffsetArg = &*argIterator;     ++argIterator;
-            Value *rangeStartArg = &*argIterator;                ++argIterator;
-            Value *rangeEndArg = &*argIterator;                    ++argIterator;
+            Value *varBlockCharPtrPtrArg = &*argIterator;
+            ++argIterator;
+            Value *outputVarBlockOffsetArg = &*argIterator;
+            ++argIterator;
+            Value *rangeStartArg = &*argIterator;
+            ++argIterator;
+            Value *rangeEndArg = &*argIterator;
+            ++argIterator;
 
             // Allocate Variables
             Value *rangeStartVar = Builder.CreateAlloca(Type::getInt32Ty(*_llvmContext), oneValue, "rangeStartVar");
@@ -316,10 +337,10 @@ class LLVMEvaluator {
         }
 
         if (Expression::debugging) {
-            #ifdef DEBUG
+#ifdef DEBUG
             std::cerr << "Pre verified LLVM byte code " << std::endl;
             TheModule->print(llvm::errs(), nullptr);
-            #endif
+#endif
         }
 
         // TODO: Find out if there is a new way to veirfy
@@ -331,28 +352,37 @@ class LLVMEvaluator {
         std::string ErrStr;
         TheExecutionEngine.reset(EngineBuilder(std::move(TheModule))
                                      .setErrorStr(&ErrStr)
-                                 //     .setUseMCJIT(true)
+                                     //     .setUseMCJIT(true)
                                      .setOptLevel(CodeGenOpt::Aggressive)
                                      .create());
 
         altModule->setDataLayout(TheExecutionEngine->getDataLayout());
 
         // Add bindings to C linkage helper functions
-        TheExecutionEngine->addGlobalMapping(KSeExprLLVMEvalFPVarRefFunc, (void *)KSeExprLLVMEvalFPVarRef);
-        TheExecutionEngine->addGlobalMapping(KSeExprLLVMEvalStrVarRefFunc, (void *)KSeExprLLVMEvalStrVarRef);
-        TheExecutionEngine->addGlobalMapping(KSeExprLLVMEvalCustomFunctionFunc, (void *)KSeExprLLVMEvalCustomFunction);
-        TheExecutionEngine->addGlobalMapping(KSeExprLLVMEvalstrlenFunc, (void *)strlen);
-        TheExecutionEngine->addGlobalMapping(KSeExprLLVMEvalstrcatFunc, (void *)strcat);
-        TheExecutionEngine->addGlobalMapping(KSeExprLLVMEvalstrcmpFunc, (void *)strcmp);
-        TheExecutionEngine->addGlobalMapping(KSeExprLLVMEvalmemsetFunc, (void *)memset);
-        TheExecutionEngine->addGlobalMapping(KSeExprLLVMEvalmallocFunc, (void *)malloc);
-        TheExecutionEngine->addGlobalMapping(KSeExprLLVMEvalfreeFunc, (void *)free);
+        TheExecutionEngine->addGlobalMapping(KSeExprLLVMEvalFPVarRefFunc,
+            reinterpret_cast<void *>(KSeExprLLVMEvalFPVarRef));
+        TheExecutionEngine->addGlobalMapping(KSeExprLLVMEvalStrVarRefFunc,
+            reinterpret_cast<void *>(KSeExprLLVMEvalStrVarRef));
+        TheExecutionEngine->addGlobalMapping(KSeExprLLVMEvalCustomFunctionFunc,
+            reinterpret_cast<void *>(KSeExprLLVMEvalCustomFunction));
+        TheExecutionEngine->addGlobalMapping(KSeExprLLVMEvalstrlenFunc,
+            reinterpret_cast<void *>(strlen));
+        TheExecutionEngine->addGlobalMapping(KSeExprLLVMEvalstrcatFunc,
+            reinterpret_cast<void *>(strcat));
+        TheExecutionEngine->addGlobalMapping(KSeExprLLVMEvalstrcmpFunc,
+            reinterpret_cast<void *>(strcmp));
+        TheExecutionEngine->addGlobalMapping(KSeExprLLVMEvalmemsetFunc,
+            reinterpret_cast<void *>(memset));
+        TheExecutionEngine->addGlobalMapping(KSeExprLLVMEvalmallocFunc,
+            reinterpret_cast<void *>(malloc));
+        TheExecutionEngine->addGlobalMapping(KSeExprLLVMEvalfreeFunc,
+            reinterpret_cast<void *>(free));
 
         // [verify]
         std::string errorStr;
         llvm::raw_string_ostream raw(errorStr);
         if (llvm::verifyModule(*altModule, &raw)) {
-            parseTree->addError(ErrorCode::Unknown, { raw.str() });
+            parseTree->addError(ErrorCode::Unknown, {errorStr});
             return false;
         }
 
@@ -376,7 +406,7 @@ class LLVMEvaluator {
         // Create the JIT.  This takes ownership of the module.
 
         if (!TheExecutionEngine) {
-            fprintf(stderr, "Could not create ExecutionEngine: %s\n", ErrStr.c_str());
+            std::cerr << "Could not create ExecutionEngine: " << ErrStr << std::endl;
             exit(1);
         }
 
@@ -384,31 +414,32 @@ class LLVMEvaluator {
         void *fp = TheExecutionEngine->getPointerToFunction(F);
         void *fpLoop = TheExecutionEngine->getPointerToFunction(FLOOP);
         if (desireFP) {
-            _llvmEvalFP.reset(new LLVMEvaluationContext<double>);
+            _llvmEvalFP = std::make_unique<LLVMEvaluationContext<double>>();
             _llvmEvalFP->init(fp, fpLoop, dimDesired);
         } else {
-            _llvmEvalStr.reset(new LLVMEvaluationContext<char *>);
+            _llvmEvalStr = std::make_unique<LLVMEvaluationContext<char *>>();
             _llvmEvalStr->init(fp, fpLoop, dimDesired);
         }
 
         if (Expression::debugging) {
-            #ifdef DEBUG
+#ifdef DEBUG
             std::cerr << "Pre verified LLVM byte code " << std::endl;
             altModule->print(llvm::errs(), nullptr);
-            #endif
+#endif
         }
 
         return true;
     }
 
-    std::string getUniqueName() const {
+    std::string getUniqueName() const
+    {
         std::ostringstream o;
-        o << std::setbase(16) << (uint64_t)(this);
+        o << std::setbase(16) << reinterpret_cast<uintptr_t>(this);
         return ("_" + o.str());
     }
 };
 
-#else  // no LLVM support
+#else // no LLVM support
 class LLVMEvaluator
 {
 public:
@@ -441,4 +472,4 @@ public:
 };
 #endif
 
-}  // end namespace KSeExpr
+} // end namespace KSeExpr
