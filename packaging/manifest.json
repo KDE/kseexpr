@@ -1,6 +1,6 @@
 {
     "name": "kseexpr",
-    "gitTag": "v4.0.0.0",
+    "gitTag": null,
     "translations": {
         "branch": "trunk",
         "l10nmodule": "kseexpr",
