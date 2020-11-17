@@ -15,7 +15,7 @@ set(CMAKE_CXX_STANDARD 14)
 
 ## project name & version
 project(KSeExpr
-    VERSION "4.0.0.0"
+    VERSION "4.0.1.0"
     DESCRIPTION "An embeddable expression evaluation engine for Krita"
 )
 
