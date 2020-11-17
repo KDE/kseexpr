@@ -94,7 +94,7 @@ target_include_directories(KSeExpr
 )
 
 set_property(TARGET KSeExpr PROPERTY VERSION ${KSeExpr_VERSION})
-set_property(TARGET KSeExpr PROPERTY SOVERSION 3)
+set_property(TARGET KSeExpr PROPERTY SOVERSION ${KSeExpr_MAJOR_VERSION})
 set_property(TARGET KSeExpr PROPERTY
              INTERFACE_KSeExpr_MAJOR_VERSION ${KSeExpr_MAJOR_VERSION})
 set_property(TARGET KSeExpr APPEND PROPERTY

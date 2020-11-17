@@ -263,7 +263,7 @@ configure_file("cmake/kseexpr.pc.in" "kseexpr.pc" @ONLY)
 install(FILES "${CMAKE_CURRENT_BINARY_DIR}/kseexpr.pc"
     COMPONENT devel DESTINATION share/pkgconfig)
 
-write_basic_package_version_file("kseexpr-config-version.cmake" VERSION ${${PROJECT_NAME}_VERSION} COMPATIBILITY ExactVersion)
+write_basic_package_version_file("kseexpr-config-version.cmake" VERSION ${${PROJECT_NAME}_VERSION} COMPATIBILITY SameMajorVersion)
 
 configure_package_config_file(
     "cmake/kseexpr-config.cmake" "kseexpr-config.cmake"

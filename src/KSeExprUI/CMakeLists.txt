@@ -97,7 +97,7 @@ if (Qt5_FOUND)
     endif ()
 
     set_property(TARGET KSeExprUI PROPERTY VERSION ${KSeExpr_VERSION})
-    set_property(TARGET KSeExprUI PROPERTY SOVERSION 3)
+    set_property(TARGET KSeExprUI PROPERTY SOVERSION ${KSeExpr_MAJOR_VERSION})
     set_property(TARGET KSeExprUI PROPERTY
                  INTERFACE_KSeExprUI_MAJOR_VERSION ${KSeExpr_MAJOR_VERSION})
     set_property(TARGET KSeExprUI APPEND PROPERTY
