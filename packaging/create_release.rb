@@ -67,7 +67,7 @@ unless options.skip_archive
 
   Dir.chdir(ROOT) do
     puts "Creating tarball root from #{BRANCH}..."
-    system "git archive --prefix=\"#{PREFIX}/\" #{BRANCH} | tar xv -C packaging 2> /dev/null", exception: true
+    system "git archive --prefix=#{PREFIX}/ #{BRANCH} | tar xv -C packaging 2> /dev/null", exception: true
   end
 
   unless manifest['translations'].empty?
@@ -122,13 +122,13 @@ Dir.chdir(PACKAGING) do
 
   puts 'Creating tarballs...'
 
-  tar = if system('which gtar > /dev/null')
+  tar = if system('which gtar > /dev/null 2>&1')
           'gtar'
         else
           'tar'
         end
 
-  system "#{tar} czf #{PREFIX}.tar.gz --format=gnu --group=root --owner=root #{PREFIX} > /dev/null", exception: true
+  system "#{tar} czf #{PREFIX}.tar.gz --group=root --owner=root --sort=name --pax-option=exthdr.name=%d/PaxHeaders/%f,delete=atime,delete=ctime #{PREFIX} > /dev/null", exception: true
 
   if options.gpg_key
     puts 'Requesting GPG signature...'
