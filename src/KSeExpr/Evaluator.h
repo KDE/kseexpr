@@ -219,7 +219,9 @@ public:
 
                     assert(dimGenerated == 1 || dimGenerated >= dimDesired && "error: unable to match between FP of differing dimensions");
 
-                    if (newLastVal->getType()->getVectorNumElements() >= dimDesired) {
+                    auto *VT = llvm::cast<llvm::VectorType>(newLastVal->getType());
+
+                    if (VT && VT->getNumElements() >= dimDesired) {
                         for (unsigned i = 0; i < dimDesired; ++i) {
                             Value *idx = ConstantInt::get(Type::getInt64Ty(*_llvmContext), i);
                             Value *val = Builder.CreateExtractElement(newLastVal, idx);
@@ -238,7 +240,8 @@ public:
                 } else {
                     if (dimGenerated > 1) {
                         Value *newLastVal = promoteToDim(lastVal, dimDesired, Builder);
-                        assert(newLastVal->getType()->getVectorNumElements() >= dimDesired);
+                        auto *VT = llvm::cast<llvm::VectorType>(newLastVal->getType());
+                        assert(VT && VT->getNumElements() >= dimDesired);
                         for (unsigned i = 0; i < dimDesired; ++i) {
                             Value *idx = ConstantInt::get(Type::getInt64Ty(*_llvmContext), i);
                             Value *val = Builder.CreateExtractElement(newLastVal, idx);
