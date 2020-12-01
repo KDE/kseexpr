@@ -35,9 +35,13 @@ namespace {
             return false;
         }
 #else
-        const QString fullPath = QStandardPaths::locate(QStandardPaths::DataLocation, subPath);
+        // Use application's own data directory (e.g. Krita on AppImage, Windows)
+        QString fullPath = QStandardPaths::locate(QStandardPaths::DataLocation, subPath);
         if (fullPath.isEmpty()) {
-            return false;
+            // Try falling back to stock folder
+            fullPath = QStandardPaths::locate(QStandardPaths::GenericDataLocation, subPath);
+            if (fullPath.isEmpty())
+                return false;
         }
 #endif
         QTranslator *translator = new QTranslator(QCoreApplication::instance());
@@ -61,7 +65,8 @@ namespace {
 #if defined(Q_OS_ANDROID)
         const auto paths = QStringLiteral("assets:/share/");
 #else
-        const auto paths = QStandardPaths::standardLocations(QStandardPaths::DataLocation);
+        auto paths = QStandardPaths::standardLocations(QStandardPaths::DataLocation);
+        paths << QStandardPaths::standardLocations(QStandardPaths::GenericDataLocation);
 #endif
         dbgSeExpr << "Base paths for translations: " << paths;
 
