@@ -118,8 +118,9 @@ if (Qt5_FOUND)
 
     ## Install library and includes
     install(TARGETS KSeExprUI EXPORT ${PROJECT_NAME}Targets DESTINATION ${CMAKE_INSTALL_LIBDIR})
-    install(
-        FILES ${EDITOR_MOC_HDRS} ${EDITOR_ADDITIONAL_HEADERS}
-        DESTINATION "include/KSeExprUI"
+    install(FILES
+        ${EDITOR_MOC_HDRS}
+        ${EDITOR_ADDITIONAL_HEADERS}
+        DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/KSeExprUI"
     )
 endif()

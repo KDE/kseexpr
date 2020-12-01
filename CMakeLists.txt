@@ -62,11 +62,6 @@ endif()
 message(STATUS "CMAKE_INSTALL_PREFIX = ${CMAKE_INSTALL_PREFIX}")
 message(STATUS "CMAKE_INSTALL_LIBDIR = ${CMAKE_INSTALL_LIBDIR}")
 
-## Install locations
-set(DOC_DIR "share/doc/${PROJECT_NAME}")
-set(CMAKE_DIR "share/cmake/${PROJECT_NAME}")
-set(INCLUDE_DIR "include/${PROJECT_NAME}")
-
 # Configuration options
 option(ENABLE_LLVM_BACKEND "Whether to build with LLVM backend" FALSE)
 add_feature_info(LLVMBackend ENABLE_LLVM_BACKEND "Build the LLVM backend of KSeExpr")
@@ -267,14 +262,16 @@ write_basic_package_version_file("kseexpr-config-version.cmake" VERSION ${${PROJ
 
 configure_package_config_file(
     "cmake/kseexpr-config.cmake" "kseexpr-config.cmake"
-    INSTALL_DESTINATION ${CMAKE_DIR}
+    INSTALL_DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME}
     PATH_VARS CMAKE_INSTALL_PREFIX CMAKE_INSTALL_LIBDIR CMAKE_INSTALL_INCLUDEDIR)
 install(FILES
     "${CMAKE_CURRENT_BINARY_DIR}/kseexpr-config.cmake"
     "${CMAKE_CURRENT_BINARY_DIR}/kseexpr-config-version.cmake"
-    COMPONENT devel DESTINATION ${CMAKE_DIR})
+    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME}
+)
 install(EXPORT ${PROJECT_NAME}Targets
     NAMESPACE ${PROJECT_NAME}::
-    DESTINATION ${CMAKE_DIR})
+    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME}
+)
 
 feature_summary(WHAT ALL FATAL_ON_MISSING_REQUIRED_PACKAGES)
