@@ -6,6 +6,7 @@
 
 #if defined(KSeExpr_HAVE_CHARCONV_WITH_DOUBLES)
 #include <charconv>
+#include <cstring>
 
 double_t KSeExpr::Utils::atof(const char *num)
 {
@@ -21,7 +22,7 @@ double_t KSeExpr::Utils::atof(const char *num)
 double_t KSeExpr::Utils::atof(const std::string &num)
 {
     double_t v;
-    auto [p, ec] = std::from_chars(val.data(), val.data() + val.size(), v);
+    auto [p, ec] = std::from_chars(num.data(), num.data() + num.size(), v);
     if (ec == std::errc()) {
         return v;
     } else {
@@ -32,7 +33,7 @@ double_t KSeExpr::Utils::atof(const std::string &num)
 int32_t KSeExpr::Utils::strtol(const std::string &num)
 {
     int32_t v;
-    auto [p, ec] = std::from_chars(val.data(), val.data() + val.size(), v);
+    auto [p, ec] = std::from_chars(num.data(), num.data() + num.size(), v);
     if (ec == std::errc()) {
         return v;
     } else if (ec == std::errc::result_out_of_range) {
