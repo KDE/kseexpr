@@ -94,11 +94,11 @@ target_include_directories(KSeExpr
 )
 
 set_property(TARGET KSeExpr PROPERTY VERSION ${KSeExpr_VERSION})
-set_property(TARGET KSeExpr PROPERTY SOVERSION ${KSeExpr_MAJOR_VERSION})
+set_property(TARGET KSeExpr PROPERTY SOVERSION ${KSeExpr_VERSION_MAJOR})
 set_property(TARGET KSeExpr PROPERTY
-             INTERFACE_KSeExpr_MAJOR_VERSION ${KSeExpr_MAJOR_VERSION})
+             INTERFACE_KSeExpr_MAJOR_VERSION ${KSeExpr_VERSION_MAJOR})
 set_property(TARGET KSeExpr APPEND PROPERTY
-             COMPATIBLE_INTERFACE_STRING ${KSeExpr_MAJOR_VERSION})
+             COMPATIBLE_INTERFACE_STRING ${KSeExpr_VERSION_MAJOR})
 
 generate_export_header(KSeExpr)
 

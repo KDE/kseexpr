@@ -102,11 +102,11 @@ if (Qt5_FOUND)
     endif ()
 
     set_property(TARGET KSeExprUI PROPERTY VERSION ${KSeExpr_VERSION})
-    set_property(TARGET KSeExprUI PROPERTY SOVERSION ${KSeExpr_MAJOR_VERSION})
+    set_property(TARGET KSeExprUI PROPERTY SOVERSION ${KSeExpr_VERSION_MAJOR})
     set_property(TARGET KSeExprUI PROPERTY
-                 INTERFACE_KSeExprUI_MAJOR_VERSION ${KSeExpr_MAJOR_VERSION})
+                 INTERFACE_KSeExprUI_MAJOR_VERSION ${KSeExpr_VERSION_MAJOR})
     set_property(TARGET KSeExprUI APPEND PROPERTY
-                 COMPATIBLE_INTERFACE_STRING ${KSeExpr_MAJOR_VERSION})
+                 COMPATIBLE_INTERFACE_STRING ${KSeExpr_VERSION_MAJOR})
 
     target_include_directories(KSeExprUI
         PRIVATE $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
