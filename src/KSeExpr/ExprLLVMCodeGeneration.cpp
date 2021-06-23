@@ -134,10 +134,13 @@ Type *createLLVMTyForSeExprType(LLVMContext &llvmContext, const ExprType& seType
 {
     if (seType.isFP()) {
         int dim = seType.dim();
+#if LLVM_VERSION_MAJOR >= 10
+        return dim == 1 ? Type::getDoubleTy(llvmContext) : VectorType::get(Type::getDoubleTy(llvmContext), dim, false);
+#else
         return dim == 1 ? Type::getDoubleTy(llvmContext) : VectorType::get(Type::getDoubleTy(llvmContext), dim);
+#endif
     } else if (seType.isString()) {
-        // TODO: post c++11
-        // static_assert(sizeof(char*) == 8, "Expect 64-bit pointers");
+        static_assert(sizeof(char*) == 8, "Expect 64-bit pointers");
         return Type::getInt8PtrTy(llvmContext);
     }
     assert(!"unknown SeExpr type encountered"); // unknown type
@@ -148,7 +151,11 @@ Type *createLLVMTyForSeExprType(LLVMContext &llvmContext, const ExprType& seType
 LLVM_VALUE createVecVal(LLVM_BUILDER Builder, LLVM_VALUE val, unsigned dim)
 {
     LLVMContext &llvmContext = Builder.getContext();
+#if LLVM_VERSION_MAJOR >= 10
+    VectorType *doubleVecTy = VectorType::get(Type::getDoubleTy(llvmContext), dim, false);
+#else
     VectorType *doubleVecTy = VectorType::get(Type::getDoubleTy(llvmContext), dim);
+#endif
     LLVM_VALUE vecVal = UndefValue::get(doubleVecTy);
     for (unsigned i = 0; i < dim; i++)
         vecVal = Builder.CreateInsertElement(vecVal, val, ConstantInt::get(Type::getInt32Ty(llvmContext), i));
@@ -163,7 +170,11 @@ LLVM_VALUE createVecVal(LLVM_BUILDER Builder, ArrayRef<LLVM_VALUE> val, const st
 
     LLVMContext &llvmContext = Builder.getContext();
     unsigned dim = val.size();
+#if LLVM_VERSION_MAJOR >= 10
+    VectorType *elemType = VectorType::get(val[0]->getType(), dim, false);
+#else
     VectorType *elemType = VectorType::get(val[0]->getType(), dim);
+#endif
     LLVM_VALUE vecVal = UndefValue::get(elemType);
     for (unsigned i = 0; i < dim; i++)
         vecVal = Builder.CreateInsertElement(vecVal, val[i], ConstantInt::get(Type::getInt32Ty(llvmContext), i), name);
@@ -330,7 +341,11 @@ std::vector<LLVM_VALUE> promoteArgs(std::vector<LLVM_VALUE> args, LLVM_BUILDER B
         return args;
 
     LLVMContext &llvmContext = Builder.getContext();
+#if LLVM_VERSION_MAJOR >= 10
+    VectorType *destTy = VectorType::get(Type::getDoubleTy(llvmContext), 3, false);
+#else
     VectorType *destTy = VectorType::get(Type::getDoubleTy(llvmContext), 3);
+#endif
     std::vector<LLVM_VALUE> ret;
     ret.reserve(args.size());
     for (auto & arg : args)
