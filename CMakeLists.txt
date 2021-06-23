@@ -88,7 +88,7 @@ find_package(Doxygen)
 set_package_properties(Doxygen PROPERTIES
                        TYPE OPTIONAL
                        PURPOSE "Needed to build the documentation")
-find_package(ECM 5.64.0 NO_MODULE)
+find_package(ECM 5.52.0 NO_MODULE)
 set_package_properties(ECM PROPERTIES
                        TYPE OPTIONAL
                        PURPOSE "Enables translations (if bundled) and automatic sanitizer support")
@@ -130,6 +130,7 @@ if (ECM_FOUND)
 
     if (IS_DIRECTORY "${CMAKE_SOURCE_DIR}/po")
         option(BUILD_TRANSLATIONS "Whether to include translations" TRUE)
+        add_feature_info(i18n BUILD_TRANSLATIONS "Build and embed translations")
     endif ()
 endif ()
 

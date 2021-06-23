@@ -122,7 +122,6 @@ if (ENABLE_LLVM_BACKEND)
     add_definitions(${LLVM_DEFINITIONS})
 
     target_include_directories(${SEEXPR_LIBRARIES} PUBLIC ${LLVM_INCLUDE_DIRS})
-    target_link_directories(${SEEXPR_LIBRARIES} PUBLIC ${LLVM_LIBRARY_DIR})
 
     if(LLVM_VERSION VERSION_GREATER_EQUAL 10)
         # LLVM >= 10 moved to C++ 14.
