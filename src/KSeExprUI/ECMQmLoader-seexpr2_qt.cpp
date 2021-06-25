@@ -7,7 +7,7 @@
  *
  * SPDX-FileCopyrightText: 2014 Aurélien Gâteau <agateau@kde.org>
  * SPDX-FileCopyrightText: 2015 Alex Merry <alex.merry@kde.org>
- * SPDX-FileCopyrightText: 2020 L. E. Segovia <amy@amyspark.me>
+ * SPDX-FileCopyrightText: 2020-2021 L. E. Segovia <amy@amyspark.me>
  *
  * SPDX-License-Identifier: BSD-3-Clause
  */
@@ -21,7 +21,12 @@
 #include <QThread>
 #include <QTranslator>
 
-namespace {
+#if defined(KSeExpr_HAVE_I18N_FALLBACK_LANGUAGES_DETECTION)
+#include <KLocalizedString>
+#include <algorithm>
+#endif
+
+namespace KSeExpr {
 
     bool loadTranslation(const QString &localeDirName)
     {
@@ -70,7 +75,11 @@ namespace {
 #endif
         dbgSeExpr << "Base paths for translations: " << paths;
 
-        dbgSeExpr << "Qt UI languages: " << QLocale::system().uiLanguages() << qgetenv("LANG");
+#if defined(KSeExpr_HAVE_I18N_FALLBACK_LANGUAGES_DETECTION)
+        dbgSeExpr << "Qt UI languages: " << KLocalizedString::languages() << QLocale().uiLanguages() << qgetenv("LANG");
+#else
+        dbgSeExpr << "Qt UI languages: " << QLocale().uiLanguages() << qgetenv("LANG");
+#endif
 
         // The way Qt translation system handles plural forms makes it necessary to
         // have a translation file which contains only plural forms for `en`. That's
@@ -78,9 +87,26 @@ namespace {
         // translation for the current locale to overload it.
         loadTranslation(QStringLiteral("en"));
 
-        // Amy: use the default locale, not the system() one.
-        // Krita changes the default at startup.
-        for (const auto &locale : {QLocale::system(), QLocale()}) {
+        // Use the default locale and any available fallback languages.
+        // Fallback languages must be reverse iterated in order of priority.
+#if defined(KSeExpr_HAVE_I18N_FALLBACK_LANGUAGES_DETECTION)
+        const auto fallbackLanguages { KLocalizedString::languages()};
+        for (auto it = fallbackLanguages.rbegin(); it != fallbackLanguages.rend(); ++it) {
+            if(!loadTranslation(*it)) {
+                const auto localeParts = it->split('@');
+                QLocale locale(localeParts.constFirst());
+                if (!loadTranslation(locale.name())) {
+                    if (!loadTranslation(locale.bcp47Name())) {
+                        const int i = locale.name().indexOf(QLatin1Char('_'));
+                        if (i > 0) {
+                            loadTranslation(locale.name().left(i));
+                        }
+                    }
+                }
+            }
+        }
+#else
+        for (const auto &locale : { QLocale() }) {
             dbgSeExpr << "Attempting to load translations for locale: " << locale.name();
             if (!loadTranslation(locale.name())) {
                 if (!loadTranslation(locale.bcp47Name())) {
@@ -91,6 +117,7 @@ namespace {
                 }
             }
         }
+#endif
 
         dbgSeExpr << "Test: " << QCoreApplication::translate("ExprControlCollection", "Add new variable");
     }
@@ -133,6 +160,6 @@ namespace {
             QCoreApplication::instance()->postEvent(loader, new QTimerEvent(0), Qt::HighEventPriority);
         }
     }
-}
 
-Q_COREAPP_STARTUP_FUNCTION(loadOnMainThread)
+    Q_COREAPP_STARTUP_FUNCTION(loadOnMainThread)
+} // namespace KSeExpr

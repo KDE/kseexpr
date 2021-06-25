@@ -1,6 +1,6 @@
 # SPDX-FileCopyrightText: 2011-2019 Disney Enterprises, Inc.
 # SPDX-License-Identifier: LicenseRef-Apache-2.0
-# SPDX-FileCopyrightText: 2020 L. E. Segovia <amy@amyspark.me>
+# SPDX-FileCopyrightText: 2020-2021 L. E. Segovia <amy@amyspark.me>
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 if (EXISTS "/usr/share/apps/cmake/modules")
@@ -81,6 +81,11 @@ if (Qt5_FOUND)
     if (BUILD_TRANSLATIONS)
         include(ECMPoQmTools)
         ecm_install_po_files_as_qm("${CMAKE_SOURCE_DIR}/po")
+
+        if (KF5I18n_FOUND)
+            add_definitions(-DKSeExpr_HAVE_I18N_FALLBACK_LANGUAGES_DETECTION)
+        endif()
+
         # ecm_create_qm_loader(KSeExprUI_QM_LOADER seexpr2_qt)
         set(KSeExprUI_QM_LOADER "ECMQmLoader-seexpr2_qt.cpp")
         set(EDITOR_CPPS
@@ -115,6 +120,10 @@ if (Qt5_FOUND)
         Qt5::Gui
         Qt5::Widgets
     )
+
+    if (KF5I18n_FOUND)
+        target_link_libraries(KSeExprUI PUBLIC KF5::I18n)
+    endif()
 
     ## Install library and includes
     install(TARGETS KSeExprUI EXPORT ${PROJECT_NAME}Targets DESTINATION ${CMAKE_INSTALL_LIBDIR})

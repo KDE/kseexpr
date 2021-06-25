@@ -1,6 +1,6 @@
 # SPDX-FileCopyrightText: 2011-2019 Disney Enterprises, Inc.
 # SPDX-License-Identifier: LicenseRef-Apache-2.0
-# SPDX-FileCopyrightText: 2020 L. E. Segovia <amy@amyspark.me>
+# SPDX-FileCopyrightText: 2020-2021 L. E. Segovia <amy@amyspark.me>
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 cmake_minimum_required(VERSION 3.8.0)
@@ -92,6 +92,10 @@ find_package(ECM 5.52.0 NO_MODULE)
 set_package_properties(ECM PROPERTIES
                        TYPE OPTIONAL
                        PURPOSE "Enables translations (if bundled) and automatic sanitizer support")
+find_package(KF5I18n 5.52.0)
+set_package_properties(KF5I18n PROPERTIES
+                       TYPE OPTIONAL
+                       PURPOSE "Enables detection of fallback languages in KDE apps")
 find_package(GTest)
 set_package_properties(GTest PROPERTIES
                        TYPE OPTIONAL
