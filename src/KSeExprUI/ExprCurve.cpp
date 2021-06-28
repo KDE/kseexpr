@@ -278,7 +278,7 @@ void CurveScene::drawPoints()
     }
 }
 
-ExprCurve::ExprCurve(QWidget *parent, QString pLabel, QString vLabel, QString, bool expandable)
+ExprCurve::ExprCurve(QWidget *parent, QString pLabel, QString vLabel, QString iLabel, bool expandable)
     : QWidget(parent)
     , _scene(nullptr)
 {
@@ -312,6 +312,12 @@ ExprCurve::ExprCurve(QWidget *parent, QString pLabel, QString vLabel, QString, b
     }
     editsLayout->addRow(valLabel, _selValEdit);
 
+    QString interpLabel;
+    if (iLabel.isEmpty()) {
+        interpLabel = tr("Interp:");
+    } else {
+        interpLabel = iLabel;
+    }
     _interpComboBox = new QComboBox;
     _interpComboBox->addItem(tr("None"));
     _interpComboBox->addItem(tr("Linear"));
@@ -319,8 +325,7 @@ ExprCurve::ExprCurve(QWidget *parent, QString pLabel, QString vLabel, QString, b
     _interpComboBox->addItem(tr("Spline"));
     _interpComboBox->addItem(tr("MSpline"));
     _interpComboBox->setCurrentIndex(4);
-
-    editsLayout->addWidget(_interpComboBox);
+    editsLayout->addRow(interpLabel, _interpComboBox);
 
     auto *curveView = new CurveGraphicsView;
     curveView->setFrameShape(QFrame::StyledPanel);

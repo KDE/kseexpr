@@ -381,7 +381,6 @@ ExprColorCurve::ExprColorCurve(QWidget *parent, QString pLabel, QString vLabel, 
     , _selValEdit(nullptr)
     , _interpComboBox(nullptr)
 {
-    Q_UNUSED(iLabel);
     auto *mainLayout = new QHBoxLayout();
     mainLayout->setMargin(0);
 
@@ -412,6 +411,12 @@ ExprColorCurve::ExprColorCurve(QWidget *parent, QString pLabel, QString vLabel, 
     }
     editsLayout->addRow(valLabel, _selValEdit);
 
+    QString interpLabel;
+    if (iLabel.isEmpty()) {
+        interpLabel = tr("Interp:");
+    } else {
+        interpLabel = iLabel;
+    }
     _interpComboBox = new QComboBox;
     _interpComboBox->addItem(tr("None"));
     _interpComboBox->addItem(tr("Linear"));
@@ -419,8 +424,7 @@ ExprColorCurve::ExprColorCurve(QWidget *parent, QString pLabel, QString vLabel, 
     _interpComboBox->addItem(tr("Spline"));
     _interpComboBox->addItem(tr("MSpline"));
     _interpComboBox->setCurrentIndex(4);
-
-    editsLayout->addWidget(_interpComboBox);
+    editsLayout->addRow(interpLabel, _interpComboBox);
 
     auto *curveView = new CurveGraphicsView;
     curveView->setFrameShape(QFrame::StyledPanel);
