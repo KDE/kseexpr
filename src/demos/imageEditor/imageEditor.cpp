@@ -12,6 +12,7 @@
 
 #include <QApplication>
 #include <QDialog>
+#include <QDir>
 #include <QImage>
 #include <QLabel>
 #include <QMessageBox>
@@ -178,9 +179,7 @@ ImageEditorDialog::ImageEditorDialog(QWidget *parent)
     // Add user expressions, example expressions to browser list.
     browser->addUserExpressionPath("imageEditor");
 #ifdef IMAGE_EDITOR_ROOT
-    std::string exPathStr = IMAGE_EDITOR_ROOT;
-    exPathStr += "/share/KSeExpr/expressions";
-    browser->addPath("Examples", exPathStr);
+    browser->addPath("Examples", QDir::toNativeSeparators(QString("%1/share/KSeExpr/expressions").arg(IMAGE_EDITOR_ROOT)).toStdString());
 #else
     browser->addPath("Examples", "./src/demos/imageEditor");
 #endif
