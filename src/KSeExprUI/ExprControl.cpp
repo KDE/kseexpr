@@ -331,7 +331,7 @@ VectorControl::VectorControl(int id, VectorEditable *editable)
             slider->setDisplayColor(rgb[i]);
 
         connect(edit, SIGNAL(textChanged(int, const QString &)), SLOT(editChanged(int, const QString &)));
-        connect(slider, SIGNAL(valueChanged(int, float)), SLOT(sliderChanged(int, float)));
+        connect(slider, SIGNAL(valueChanged(int, double)), SLOT(sliderChanged(int, double)));
     }
     hbox->addLayout(control, 4);
     // update controls
