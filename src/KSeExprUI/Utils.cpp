@@ -4,7 +4,7 @@
 #include "Utils.h"
 #include <KSeExpr/Utils.h>
 
-bool KSeExpr::Utils::parseRangeComment(const std::string &comment, double_t &from, double_t &to)
+bool KSeExpr::Utils::parseRangeComment(const std::string &comment, double &from, double &to)
 {
     if (comment.find_first_of('#') != 0) {
         return false;
@@ -34,7 +34,7 @@ bool KSeExpr::Utils::parseRangeComment(const std::string &comment, double_t &fro
     return false;
 }
 
-bool KSeExpr::Utils::parseRangeComment(const std::string &comment, float_t &from, float_t &to)
+bool KSeExpr::Utils::parseRangeComment(const std::string &comment, float &from, float_t &to)
 {
     if (comment.find_first_of('#') != 0) {
         return false;
