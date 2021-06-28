@@ -202,7 +202,9 @@ void ExprEditor::setExpr(const QString &expression, const bool doApply)
 
 void ExprEditor::insertStr(const QString &str)
 {
-    exprTe->append(str);
+    exprTe->moveCursor(QTextCursor::StartOfLine);
+    exprTe->moveCursor(QTextCursor::Up);
+    exprTe->insertPlainText(str);
 }
 
 void ExprEditor::appendStr(const QString &str)
