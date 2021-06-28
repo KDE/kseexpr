@@ -160,7 +160,7 @@ ExprAddDialog::ExprAddDialog(int& count, QWidget* parent) : QDialog(parent) {
         stringLayout->setWidget(1, QFormLayout::LabelRole, new QLabel(tr("String Type")));
         stringLayout->setWidget(1, QFormLayout::FieldRole, stringTypeWidget);
         stringLayout->setWidget(2, QFormLayout::LabelRole, new QLabel(tr("String Default")));
-        stringLayout->setWidget(3, QFormLayout::FieldRole, stringDefaultWidget);
+        stringLayout->setWidget(2, QFormLayout::FieldRole, stringDefaultWidget);
 
         tabWidget->addTab(stringTab, QString(tr("String")));
     }
