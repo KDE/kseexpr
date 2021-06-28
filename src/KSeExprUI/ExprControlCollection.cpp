@@ -89,7 +89,8 @@ void ExprControlCollection::addControlDialog() {
                         .arg(QString::fromLatin1(dialog->initSwatch()));
                 break;
             case 7:
-                s = QString::fromLatin1("\"%1\" #%2 %3\n")
+                s = QString::fromLatin1("%1 = \"%2\"; #%3 %4\n")
+                        .arg(dialog->variableName->text())
                         .arg(dialog->stringDefaultWidget->text())
                         .arg(dialog->stringTypeWidget->currentText())
                         .arg(dialog->stringNameWidget->text());
