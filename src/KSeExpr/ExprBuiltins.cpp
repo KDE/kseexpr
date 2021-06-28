@@ -27,8 +27,8 @@ namespace KSeExpr {
 static const char* fabs_docstring = QT_TRANSLATE_NOOP_UTF8("builtin", "float abs(float x)\nabsolute value of x");
 
 // angle conversion functions
-static const char* deg_docstring = QT_TRANSLATE_NOOP_UTF8("builtin", "float deg(float angle)\nradians to degrees");
-static const char* rad_docstring = QT_TRANSLATE_NOOP_UTF8("builtin", "float deg(float angle)\ndegrees to radians");
+static const char *deg_docstring = QT_TRANSLATE_NOOP_UTF8("builtin", "float deg(float angle)\ndegrees to radians");
+static const char *rad_docstring = QT_TRANSLATE_NOOP_UTF8("builtin", "float rad(float angle)\nradians to degrees");
 // trig in degrees
 static const char* cosd_docstring = QT_TRANSLATE_NOOP_UTF8("builtin", "float cosd(float angle)\ncosine in degrees");
 static const char* sind_docstring = QT_TRANSLATE_NOOP_UTF8("builtin", "float sind(float angle)\nsine in degrees");
@@ -65,7 +65,7 @@ static const char* invert_docstring = QT_TRANSLATE_NOOP_UTF8("builtin", "float i
 static const char* cbrt_docstring = QT_TRANSLATE_NOOP_UTF8("builtin", "float cbrt(float x)\ncube root");
 static const char* sqrt_docstring = QT_TRANSLATE_NOOP_UTF8("builtin", "float sqrt(float x)\nsquare root");
 static const char* exp_docstring = QT_TRANSLATE_NOOP_UTF8("builtin", "float exp(float x)\nE raised to the x power");
-static const char* pow_docstring = QT_TRANSLATE_NOOP_UTF8("builtin", "float pow(float x)\nx to the y power, also available as ^");
+static const char* pow_docstring = QT_TRANSLATE_NOOP_UTF8("builtin", "float pow(float x, float y)\nx to the y power, also available as ^");
 static const char* log_docstring = QT_TRANSLATE_NOOP_UTF8("builtin", "float log(float x)\nNatural logarithm");
 static const char* log10_docstring = QT_TRANSLATE_NOOP_UTF8("builtin", "float log10(float x)\nBase 10 logarithm");
 static const char* fmod_docstring = QT_TRANSLATE_NOOP_UTF8("builtin", "float fmod(float x,float y)\nremainder of x/y (also available as % operator)");
@@ -122,7 +122,7 @@ double contrast(double x, double c)
         return 1 - 0.5 * bias(1 - c, 2 - 2 * x);
 }
 static const char* contrast_docstring = QT_TRANSLATE_NOOP_UTF8("builtin",
-    "float contrast(float x,float x)\nAdjust the contrast.&nbsp; For c from 0 to 0.5, the contrast is decreased.&nbsp; "
+    "float contrast(float x, float c)\nAdjust the contrast.&nbsp; For c from 0 to 0.5, the contrast is decreased.&nbsp; "
     "For c &gt; 0.5, the contrast is increased.");
 
 double boxstep(double x, double a)
@@ -141,8 +141,8 @@ double linearstep(double x, double a, double b)
     return boxstep(x, a);
 }
 static const char* linearstep_docstring = QT_TRANSLATE_NOOP_UTF8("builtin",
-    "float linearstep(float x,float a,float b)\n if x &lt; a then 0, if x &gt; b then 1, and\nx transitions linearly "
-    "when &lt; x &lt; b ");
+    "float linearstep(float x, float a, float b)\n if x &lt; a then 0, if x &gt; b then 1, and\nx transitions linearly "
+    "when a &lt; x &lt; b");
 
 double smoothstep(double x, double a, double b)
 {
@@ -823,7 +823,7 @@ static const char* fbm4_docstring = QT_TRANSLATE_NOOP_UTF8("builtin",
     "The base frequency is the same as the \"noise\" function. The total \n"
     "number of frequencies is controlled by octaves. The lacunarity is the \n"
     "spacing between the frequencies - a value of 2 means each octave is \n"
-    "twice the previous frequency. The gain< controls how much each \n"
+    "twice the previous frequency. The gain controls how much each \n"
     "frequency is scaled relative to the previous frequency.");
 
 Vec3d vfbm4(int n, const Vec3d *args)
@@ -1486,7 +1486,7 @@ double wchoose(int n, double *params)
 }
 static const char* wchoose_docstring = QT_TRANSLATE_NOOP_UTF8("builtin",
     "float wchoose(float index,float choice1, float weight1, float choice2, float weight2, [...] )\n"
-    "Chooses one of the supplied choices based on the index (assumed to be in range[0..1]).\n"
+    "Chooses one of the supplied choices based on the index (assumed to be in range [0..1]).\n"
     "The values will be distributed according to the supplied weights.");
 
 double spline(int n, double *params)
@@ -1509,7 +1509,7 @@ double spline(int n, double *params)
 static const char* spline_docstring = QT_TRANSLATE_NOOP_UTF8("builtin",
     "float spline(float param,float y1,float y2,float y3,float y4,[...])\n\n"
     "Interpolates a set of values to the parameter specified where y1, ..., yn are\n"
-    "distributed evenly from [0...1]");
+    "distributed evenly from [0..1]");
 
 template<class T> struct CurveData : public ExprFuncNode::Data {
     Curve<T> curve;
@@ -1579,7 +1579,7 @@ static const char* curve_docstring = QT_TRANSLATE_NOOP_UTF8("builtin",
     "Interpolates a 1D ramp defined by control points at 'param'. Control points are specified \n"
     "by triples of parameters pos_i, val_i, and interp_i. Interpolation codes are \n"
     "0 - none, 1 - linear, 2 - smooth, 3 - spline, \n"
-    "4-monotone (non oscillating spline)");
+    "4 - monotone (non oscillating spline)");
 
 class CCurveFuncX : public ExprFuncSimple
 {
