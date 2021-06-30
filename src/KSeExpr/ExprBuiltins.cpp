@@ -27,8 +27,8 @@ namespace KSeExpr {
 static const char* fabs_docstring = QT_TRANSLATE_NOOP_UTF8("builtin", "float abs(float x)\nabsolute value of x");
 
 // angle conversion functions
-static const char *deg_docstring = QT_TRANSLATE_NOOP_UTF8("builtin", "float deg(float angle)\ndegrees to radians");
-static const char *rad_docstring = QT_TRANSLATE_NOOP_UTF8("builtin", "float rad(float angle)\nradians to degrees");
+static const char *deg_docstring = QT_TRANSLATE_NOOP_UTF8("builtin", "float deg(float angle)\nradians to degrees");
+static const char *rad_docstring = QT_TRANSLATE_NOOP_UTF8("builtin", "float rad(float angle)\ndegrees to radians");
 // trig in degrees
 static const char* cosd_docstring = QT_TRANSLATE_NOOP_UTF8("builtin", "float cosd(float angle)\ncosine in degrees");
 static const char* sind_docstring = QT_TRANSLATE_NOOP_UTF8("builtin", "float sind(float angle)\nsine in degrees");
