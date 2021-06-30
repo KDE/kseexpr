@@ -121,7 +121,7 @@ LLVM_VALUE CreateCall(LLVM_BUILDER Builder, LLVM_VALUE addrVal, ArrayRef<Value *
     auto *funcCast = llvm::cast<llvm::CastInst>(addrVal);
     assert(funcCast && "ERROR! The callee value is not a pointer cast!");
     auto *funcPtr = llvm::cast<llvm::PointerType>(funcCast->getDestTy());
-    assert(TY && "ERROR! The callee value does not contain a function!");
+    assert(funcPtr && "ERROR! The callee value does not contain a function!");
     auto *TY = llvm::cast<llvm::FunctionType>(funcPtr->getElementType());
     assert(TY && "ERROR! The callee value does not return a function signature!");
     return Builder.CreateCall(TY, addrVal, args);
