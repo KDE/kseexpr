@@ -34,7 +34,7 @@ bool KSeExpr::Utils::parseRangeComment(const std::string &comment, double &from,
     return false;
 }
 
-bool KSeExpr::Utils::parseRangeComment(const std::string &comment, float &from, float_t &to)
+bool KSeExpr::Utils::parseRangeComment(const std::string &comment, float &from, float &to)
 {
     if (comment.find_first_of('#') != 0) {
         return false;
@@ -52,9 +52,9 @@ bool KSeExpr::Utils::parseRangeComment(const std::string &comment, float &from, 
 
     std::string second {trim(trimmed_comment.substr(div + 1, std::string::npos))};
 
-    auto i = static_cast<float_t>(KSeExpr::Utils::atof(first));
+    auto i = static_cast<float>(KSeExpr::Utils::atof(first));
 
-    auto j = static_cast<float_t>(KSeExpr::Utils::atof(second));
+    auto j = static_cast<float>(KSeExpr::Utils::atof(second));
 
     if (std::isfinite(i) && std::isfinite(j)) {
         from = i, to = j;

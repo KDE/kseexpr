@@ -10,8 +10,8 @@ namespace KSeExpr
 {
     namespace Utils
     {
-        bool parseRangeComment(const std::string &comment, double &from, double_t &to);
-        bool parseRangeComment(const std::string &comment, float &from, float_t &to);
+        bool parseRangeComment(const std::string &comment, double &from, double &to);
+        bool parseRangeComment(const std::string &comment, float &from, float &to);
         bool parseRangeComment(const std::string &comment, int32_t &from, int32_t &to);
         bool parseTypeNameComment(const std::string &comment, std::string &type, std::string &name);
         bool parseLabelComment(const std::string &comment, std::string &label);
