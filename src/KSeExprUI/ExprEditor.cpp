@@ -129,7 +129,7 @@ void ExprEditor::setControlCollectionWidget(ExprControlCollection *widget)
 {
     if (this->controls) {
         disconnect(controlRebuildTimer, SIGNAL(timeout())), disconnect(controls, SIGNAL(controlChanged(int)));
-        disconnect(controlRebuildTimer, SIGNAL(timeout()));
+        disconnect(controls, SIGNAL(insertString(const QString &)));
     }
 
     this->controls = widget;
