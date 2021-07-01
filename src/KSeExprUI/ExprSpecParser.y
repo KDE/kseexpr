@@ -322,6 +322,7 @@ e:
     | VAR			{  $$ = 0; }
     | NAME			{  $$ = 0; }
     | NUMBER			{ $$=remember(new ExprSpecScalarNode(@$.first_column,@$.last_column,$1)); }
+    | STR           { $$ = remember(new ExprSpecStringNode(@$.first_column,@$.last_column,$1)); }
     ;
 
 /* An optional argument list */
@@ -354,12 +355,6 @@ args:
 
 arg:
       e				{ $$ = $1;}
-    | STR			{
-        ExprSpecStringNode* str=new ExprSpecStringNode(@$.first_column,@$.last_column,$1);
-        //specRegisterEditable("<UNKNOWN>",str);
-        // TODO: move string stuff out
-        $$ = remember(str);
-      }
     ;
 
 %%

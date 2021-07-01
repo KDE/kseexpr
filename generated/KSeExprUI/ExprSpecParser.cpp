@@ -1,8 +1,8 @@
-/* A Bison parser, made by GNU Bison 3.6.4.  */
+/* A Bison parser, made by GNU Bison 3.7.6.  */
 
 /* Bison implementation for Yacc-like parsers in C
 
-   Copyright (C) 1984, 1989-1990, 2000-2015, 2018-2020 Free Software Foundation,
+   Copyright (C) 1984, 1989-1990, 2000-2015, 2018-2021 Free Software Foundation,
    Inc.
 
    This program is free software: you can redistribute it and/or modify
@@ -16,7 +16,7 @@
    GNU General Public License for more details.
 
    You should have received a copy of the GNU General Public License
-   along with this program.  If not, see <http://www.gnu.org/licenses/>.  */
+   along with this program.  If not, see <https://www.gnu.org/licenses/>.  */
 
 /* As a special exception, you may create a larger work that contains
    part or all of the Bison parser skeleton and distribute that work
@@ -45,11 +45,11 @@
    define necessary library symbols; they are noted "INFRINGES ON
    USER NAME SPACE" below.  */
 
-/* Identify Bison output.  */
-#define ExprSpecYYBISON 1
+/* Identify Bison output, and Bison version.  */
+#define ExprSpecYYBISON 30706
 
-/* Bison version.  */
-#define ExprSpecYYBISON_VERSION "3.6.4"
+/* Bison version string.  */
+#define ExprSpecYYBISON_VERSION "3.7.6"
 
 /* Skeleton name.  */
 #define ExprSpecYYSKELETON_NAME "yacc.c"
@@ -446,6 +446,18 @@ typedef int_least16_t ExprSpectype_int16;
 typedef short ExprSpectype_int16;
 #endif
 
+/* Work around bug in HP-UX 11.23, which defines these macros
+   incorrectly for preprocessor constants.  This workaround can likely
+   be removed in 2023, as HPE has promised support for HP-UX 11.23
+   (aka HP-UX 11i v2) only through the end of 2022; see Table 2 of
+   <https://h20195.www2.hpe.com/V2/getpdf.aspx/4AA4-7673ENW.pdf>.  */
+#ifdef __hpux
+# undef UINT_LEAST8_MAX
+# undef UINT_LEAST16_MAX
+# define UINT_LEAST8_MAX 255
+# define UINT_LEAST16_MAX 65535
+#endif
+
 #if defined __UINT_LEAST8_MAX__ && __UINT_LEAST8_MAX__ <= __INT_MAX__
 typedef __UINT_LEAST8_TYPE__ ExprSpectype_uint8;
 #elif (!defined __UINT_LEAST8_MAX__ && defined ExprSpecYY_STDINT_H \
@@ -543,9 +555,9 @@ typedef int ExprSpec_state_fast_t;
 
 /* Suppress unused-variable warnings by "using" E.  */
 #if ! defined lint || defined __GNUC__
-# define ExprSpecYYUSE(E) ((void) (E))
+# define ExprSpecYY_USE(E) ((void) (E))
 #else
-# define ExprSpecYYUSE(E) /* empty */
+# define ExprSpecYY_USE(E) /* empty */
 #endif
 
 #if defined __GNUC__ && ! defined __ICC && 407 <= __GNUC__ * 100 + __GNUC_MINOR__
@@ -713,9 +725,9 @@ union ExprSpecalloc
 #endif /* !ExprSpecYYCOPY_NEEDED */
 
 /* ExprSpecYYFINAL -- State number of the termination state.  */
-#define ExprSpecYYFINAL  40
+#define ExprSpecYYFINAL  41
 /* ExprSpecYYLAST -- Last index in ExprSpecYYTABLE.  */
-#define ExprSpecYYLAST   692
+#define ExprSpecYYLAST   680
 
 /* ExprSpecYYNTOKENS -- Number of terminals.  */
 #define ExprSpecYYNTOKENS  44
@@ -726,6 +738,7 @@ union ExprSpecalloc
 /* ExprSpecYYNSTATES -- Number of states.  */
 #define ExprSpecYYNSTATES  139
 
+/* ExprSpecYYMAXUTOK -- Last valid token kind.  */
 #define ExprSpecYYMAXUTOK   277
 
 
@@ -779,7 +792,7 @@ static const ExprSpectype_int16 ExprSpecrline[] =
      248,   249,   250,   254,   259,   260,   261,   266,   267,   272,
      273,   274,   275,   276,   277,   278,   279,   280,   281,   282,
      283,   292,   293,   294,   295,   296,   297,   298,   299,   300,
-     321,   322,   323,   324,   329,   330,   335,   344,   356,   357
+     321,   322,   323,   324,   325,   330,   331,   336,   345,   357
 };
 #endif
 
@@ -824,7 +837,7 @@ static const ExprSpectype_int16 ExprSpectoknum[] =
 };
 #endif
 
-#define ExprSpecYYPACT_NINF (-57)
+#define ExprSpecYYPACT_NINF (-60)
 
 #define ExprSpecpact_value_is_default(Yyn) \
   ((Yyn) == ExprSpecYYPACT_NINF)
@@ -838,20 +851,20 @@ static const ExprSpectype_int16 ExprSpectoknum[] =
      STATE-NUM.  */
 static const ExprSpectype_int16 ExprSpecpact[] =
 {
-      57,    25,    23,   101,   -57,    72,    72,    72,    72,    72,
-      72,    15,    57,   -57,   -57,   593,    72,    72,    72,    72,
-      72,    72,    72,    61,    72,    72,    72,    72,    72,    72,
-      72,    72,    26,   -57,   529,   -33,   -33,   -33,   -33,   184,
-     -57,   -57,   593,    18,    72,    72,    72,    72,    72,    72,
-      72,    72,    72,    72,    72,    72,    72,    72,    72,    72,
-     551,   232,   253,   274,   295,   316,   337,   -57,   593,    27,
-      22,   -57,   358,   379,   400,   421,   442,   463,   484,   505,
-     -57,    72,    55,   572,   629,   645,   105,   105,   655,   655,
-     655,   655,   113,   113,   -33,   -33,   -33,   -33,   134,     2,
-     -57,   -57,   -57,   -57,   -57,   -57,   -57,    61,   -57,   -57,
-     -57,   -57,   -57,   -57,   -57,   -57,   208,    61,    72,   -57,
-       8,   -57,    72,    58,   612,   114,   101,    30,     8,   159,
-     -57,    69,   -57,    -1,   -57,     8,   -57,    34,   -57
+      58,   -10,    91,    24,   -60,   -60,    62,    62,    62,    62,
+      62,    62,    16,    58,   -60,   -60,   577,    62,    62,    62,
+      62,    62,    62,    62,    62,    62,    62,    62,    62,    62,
+      62,    62,    62,    25,   -60,   513,   -33,   -33,   -33,   -33,
+     168,   -60,   -60,   577,    19,    62,    62,    62,    62,    62,
+      62,    62,    62,    62,    62,    62,    62,    62,    62,    62,
+      62,   535,   216,   237,   258,   279,   300,   321,   577,    26,
+       1,   -60,   342,   363,   384,   405,   426,   447,   468,   489,
+     -60,    62,    29,   556,   613,   629,   643,   643,    95,    95,
+      95,    95,    48,    48,   -33,   -33,   -33,   -33,   118,    31,
+     -60,   -60,   -60,   -60,   -60,   -60,   -60,    62,   -60,   -60,
+     -60,   -60,   -60,   -60,   -60,   -60,   192,    62,    62,   -60,
+       9,   -60,    62,    56,   596,    98,    24,    33,     9,   143,
+     -60,    37,   -60,    -1,   -60,     9,   -60,    34,   -60
 };
 
   /* ExprSpecYYDEFACT[STATE-NUM] -- Default reduction number in state STATE-NUM.
@@ -859,33 +872,33 @@ static const ExprSpectype_int16 ExprSpecpact[] =
      means the default is an error.  */
 static const ExprSpectype_int8 ExprSpecdefact[] =
 {
-       0,     0,    52,    51,    53,     0,     0,     0,     0,     0,
-       0,     0,     0,     6,     8,     3,     0,     0,     0,     0,
-       0,     0,     0,    54,     0,     0,     0,     0,     0,     0,
-       0,     0,    52,    51,     0,    39,    40,    41,    42,     0,
-       1,     7,     2,     0,     0,     0,     0,     0,     0,     0,
+       0,     0,    52,    51,    54,    53,     0,     0,     0,     0,
+       0,     0,     0,     0,     6,     8,     3,     0,     0,     0,
+       0,     0,     0,     0,    55,     0,     0,     0,     0,     0,
+       0,     0,     0,    52,    51,     0,    39,    40,    41,    42,
+       0,     1,     7,     2,     0,     0,     0,     0,     0,     0,
        0,     0,     0,     0,     0,     0,     0,     0,     0,     0,
-       0,     0,     0,     0,     0,     0,     0,    59,    58,     0,
-      55,    56,     0,     0,     0,     0,     0,     0,     0,     0,
+       0,     0,     0,     0,     0,     0,     0,     0,    59,     0,
+      56,    57,     0,     0,     0,     0,     0,     0,     0,     0,
       27,     0,     0,     0,    31,    32,    33,    34,    35,    36,
       37,    38,    43,    44,    45,    46,    47,    48,     0,     0,
       17,    18,    19,    20,    21,    22,    49,     0,    16,    10,
-      11,    12,    13,    14,    15,     9,     0,    54,     0,    29,
-       4,    57,     0,     0,    30,     0,     0,     0,     5,     0,
+      11,    12,    13,    14,    15,     9,     0,    55,     0,    29,
+       4,    58,     0,     0,    30,     0,     0,     0,     5,     0,
       50,    24,    28,     0,    23,     4,    26,     0,    25
 };
 
   /* ExprSpecYYPGOTO[NTERM-NUM].  */
 static const ExprSpectype_int8 ExprSpecpgoto[] =
 {
-     -57,   -57,   -56,    82,   -11,   -50,   -57,     0,   -29,   -57,
-     -23
+     -60,   -60,   -59,    82,   -12,   -50,   -60,     0,   -29,   -60,
+     -18
 };
 
   /* ExprSpecYYDEFGOTO[NTERM-NUM].  */
-static const ExprSpectype_int16 ExprSpecdefgoto[] =
+static const ExprSpectype_uint8 ExprSpecdefgoto[] =
 {
-      -1,    11,   127,   128,    13,    14,   134,    68,    69,    70,
+       0,    12,   127,   128,    14,    15,   134,    68,    69,    70,
       71
 };
 
@@ -894,114 +907,103 @@ static const ExprSpectype_int16 ExprSpecdefgoto[] =
      number is the opposite.  If ExprSpecYYTABLE_NINF, syntax error.  */
 static const ExprSpectype_uint8 ExprSpectable[] =
 {
-      15,    41,     1,    58,    59,    34,    35,    36,    37,    38,
-      39,     1,    42,   125,   126,    40,    60,    61,    62,    63,
-      64,    65,    66,    82,    72,    73,    74,    75,    76,    77,
-      78,    79,    17,    18,    19,    20,    21,    22,    23,   135,
-      16,    23,   120,   106,    83,    84,    85,    86,    87,    88,
-      89,    90,    91,    92,    93,    94,    95,    96,    97,    98,
-       1,    24,     2,     3,   107,     4,    32,    33,    67,     4,
-     117,   131,     5,   133,   130,   138,     5,    32,    33,   137,
-       4,   116,    12,   136,   121,     6,     7,     5,   123,     6,
-       7,     8,     9,     0,    10,     8,     9,     0,    10,     0,
-       6,     7,     0,     0,     0,     0,     8,     9,     0,    10,
-      25,    26,    27,    28,    29,    30,     0,    41,   124,     0,
-       0,     0,   129,    17,    18,    19,    20,    21,    22,    49,
-      50,    51,    52,    53,    54,    55,    56,    57,     0,    31,
-       0,    58,    59,    55,    56,    57,     0,     0,     0,    58,
-      59,    43,    24,    44,    45,    46,    47,    48,    49,    50,
-      51,    52,    53,    54,    55,    56,    57,     0,     0,     0,
-      58,    59,     0,     0,     0,     0,    43,   119,    44,    45,
-      46,    47,    48,    49,    50,    51,    52,    53,    54,    55,
-      56,    57,     0,     0,     0,    58,    59,     0,     0,     0,
-       0,    43,   132,    44,    45,    46,    47,    48,    49,    50,
-      51,    52,    53,    54,    55,    56,    57,     0,     0,     0,
-      58,    59,     0,     0,     0,    43,    81,    44,    45,    46,
-      47,    48,    49,    50,    51,    52,    53,    54,    55,    56,
-      57,     0,     0,     0,    58,    59,     0,     0,     0,    43,
-     122,    44,    45,    46,    47,    48,    49,    50,    51,    52,
-      53,    54,    55,    56,    57,     0,     0,     0,    58,    59,
-      43,   100,    44,    45,    46,    47,    48,    49,    50,    51,
-      52,    53,    54,    55,    56,    57,     0,     0,     0,    58,
-      59,    43,   101,    44,    45,    46,    47,    48,    49,    50,
-      51,    52,    53,    54,    55,    56,    57,     0,     0,     0,
-      58,    59,    43,   102,    44,    45,    46,    47,    48,    49,
-      50,    51,    52,    53,    54,    55,    56,    57,     0,     0,
-       0,    58,    59,    43,   103,    44,    45,    46,    47,    48,
-      49,    50,    51,    52,    53,    54,    55,    56,    57,     0,
-       0,     0,    58,    59,    43,   104,    44,    45,    46,    47,
+      16,    42,     1,    59,    60,    17,    35,    36,    37,    38,
+      39,    40,     1,    43,   125,   126,    41,    61,    62,    63,
+      64,    65,    66,    67,    82,    72,    73,    74,    75,    76,
+      77,    78,    79,    26,    27,    28,    29,    30,    31,   135,
+      24,   133,   106,   107,   117,    83,    84,    85,    86,    87,
+      88,    89,    90,    91,    92,    93,    94,    95,    96,    97,
+      98,     1,    32,     2,     3,     4,     5,    33,    34,     4,
+       5,   120,   130,     6,   131,   138,   137,     6,    56,    57,
+      58,   116,    13,   136,    59,    60,     7,     8,   123,   121,
+       7,     8,     9,    10,     0,    11,     9,    10,     0,    11,
+      18,    19,    20,    21,    22,    23,    24,    18,    19,    20,
+      21,    22,    23,     0,     0,     0,    42,     0,   124,     0,
+       0,     0,   129,    54,    55,    56,    57,    58,     0,    25,
+       0,    59,    60,     0,     0,    44,    25,    45,    46,    47,
       48,    49,    50,    51,    52,    53,    54,    55,    56,    57,
-       0,     0,     0,    58,    59,    43,   105,    44,    45,    46,
+      58,     0,     0,     0,    59,    60,     0,     0,     0,     0,
+      44,   119,    45,    46,    47,    48,    49,    50,    51,    52,
+      53,    54,    55,    56,    57,    58,     0,     0,     0,    59,
+      60,     0,     0,     0,     0,    44,   132,    45,    46,    47,
+      48,    49,    50,    51,    52,    53,    54,    55,    56,    57,
+      58,     0,     0,     0,    59,    60,     0,     0,     0,    44,
+      81,    45,    46,    47,    48,    49,    50,    51,    52,    53,
+      54,    55,    56,    57,    58,     0,     0,     0,    59,    60,
+       0,     0,     0,    44,   122,    45,    46,    47,    48,    49,
+      50,    51,    52,    53,    54,    55,    56,    57,    58,     0,
+       0,     0,    59,    60,    44,   100,    45,    46,    47,    48,
+      49,    50,    51,    52,    53,    54,    55,    56,    57,    58,
+       0,     0,     0,    59,    60,    44,   101,    45,    46,    47,
+      48,    49,    50,    51,    52,    53,    54,    55,    56,    57,
+      58,     0,     0,     0,    59,    60,    44,   102,    45,    46,
       47,    48,    49,    50,    51,    52,    53,    54,    55,    56,
-      57,     0,     0,     0,    58,    59,    43,   108,    44,    45,
+      57,    58,     0,     0,     0,    59,    60,    44,   103,    45,
       46,    47,    48,    49,    50,    51,    52,    53,    54,    55,
-      56,    57,     0,     0,     0,    58,    59,    43,   109,    44,
+      56,    57,    58,     0,     0,     0,    59,    60,    44,   104,
       45,    46,    47,    48,    49,    50,    51,    52,    53,    54,
-      55,    56,    57,     0,     0,     0,    58,    59,    43,   110,
-      44,    45,    46,    47,    48,    49,    50,    51,    52,    53,
-      54,    55,    56,    57,     0,     0,     0,    58,    59,    43,
-     111,    44,    45,    46,    47,    48,    49,    50,    51,    52,
-      53,    54,    55,    56,    57,     0,     0,     0,    58,    59,
-      43,   112,    44,    45,    46,    47,    48,    49,    50,    51,
-      52,    53,    54,    55,    56,    57,     0,     0,     0,    58,
-      59,    43,   113,    44,    45,    46,    47,    48,    49,    50,
-      51,    52,    53,    54,    55,    56,    57,     0,     0,     0,
-      58,    59,    43,   114,    44,    45,    46,    47,    48,    49,
-      50,    51,    52,    53,    54,    55,    56,    57,     0,     0,
-       0,    58,    59,     0,   115,    80,    43,     0,    44,    45,
-      46,    47,    48,    49,    50,    51,    52,    53,    54,    55,
-      56,    57,     0,     0,     0,    58,    59,    99,    43,     0,
-      44,    45,    46,    47,    48,    49,    50,    51,    52,    53,
-      54,    55,    56,    57,     0,     0,     0,    58,    59,    43,
-     118,    44,    45,    46,    47,    48,    49,    50,    51,    52,
-      53,    54,    55,    56,    57,     0,     0,     0,    58,    59,
-      43,     0,    44,    45,    46,    47,    48,    49,    50,    51,
-      52,    53,    54,    55,    56,    57,     0,     0,     0,    58,
-      59,    44,    45,    46,    47,    48,    49,    50,    51,    52,
-      53,    54,    55,    56,    57,     0,     0,     0,    58,    59,
-      46,    47,    48,    49,    50,    51,    52,    53,    54,    55,
-      56,    57,     0,     0,     0,    58,    59,    47,    48,    49,
-      50,    51,    52,    53,    54,    55,    56,    57,     0,     0,
-       0,    58,    59,    53,    54,    55,    56,    57,     0,     0,
-       0,    58,    59
+      55,    56,    57,    58,     0,     0,     0,    59,    60,    44,
+     105,    45,    46,    47,    48,    49,    50,    51,    52,    53,
+      54,    55,    56,    57,    58,     0,     0,     0,    59,    60,
+      44,   108,    45,    46,    47,    48,    49,    50,    51,    52,
+      53,    54,    55,    56,    57,    58,     0,     0,     0,    59,
+      60,    44,   109,    45,    46,    47,    48,    49,    50,    51,
+      52,    53,    54,    55,    56,    57,    58,     0,     0,     0,
+      59,    60,    44,   110,    45,    46,    47,    48,    49,    50,
+      51,    52,    53,    54,    55,    56,    57,    58,     0,     0,
+       0,    59,    60,    44,   111,    45,    46,    47,    48,    49,
+      50,    51,    52,    53,    54,    55,    56,    57,    58,     0,
+       0,     0,    59,    60,    44,   112,    45,    46,    47,    48,
+      49,    50,    51,    52,    53,    54,    55,    56,    57,    58,
+       0,     0,     0,    59,    60,    44,   113,    45,    46,    47,
+      48,    49,    50,    51,    52,    53,    54,    55,    56,    57,
+      58,     0,     0,     0,    59,    60,    44,   114,    45,    46,
+      47,    48,    49,    50,    51,    52,    53,    54,    55,    56,
+      57,    58,     0,     0,     0,    59,    60,     0,   115,    80,
+      44,     0,    45,    46,    47,    48,    49,    50,    51,    52,
+      53,    54,    55,    56,    57,    58,     0,     0,     0,    59,
+      60,    99,    44,     0,    45,    46,    47,    48,    49,    50,
+      51,    52,    53,    54,    55,    56,    57,    58,     0,     0,
+       0,    59,    60,    44,   118,    45,    46,    47,    48,    49,
+      50,    51,    52,    53,    54,    55,    56,    57,    58,     0,
+       0,     0,    59,    60,    44,     0,    45,    46,    47,    48,
+      49,    50,    51,    52,    53,    54,    55,    56,    57,    58,
+       0,     0,     0,    59,    60,    45,    46,    47,    48,    49,
+      50,    51,    52,    53,    54,    55,    56,    57,    58,     0,
+       0,     0,    59,    60,    47,    48,    49,    50,    51,    52,
+      53,    54,    55,    56,    57,    58,     0,     0,     0,    59,
+      60,    48,    49,    50,    51,    52,    53,    54,    55,    56,
+      57,    58,     0,     0,     0,    59,    60,    50,    51,    52,
+      53,    54,    55,    56,    57,    58,     0,     0,     0,    59,
+      60
 };
 
 static const ExprSpectype_int16 ExprSpeccheck[] =
 {
-       0,    12,     3,    36,    37,     5,     6,     7,     8,     9,
-      10,     3,    12,     5,     6,     0,    16,    17,    18,    19,
-      20,    21,    22,     5,    24,    25,    26,    27,    28,    29,
-      30,    31,     9,    10,    11,    12,    13,    14,    15,    40,
-      15,    15,    40,    16,    44,    45,    46,    47,    48,    49,
+       0,    13,     3,    36,    37,    15,     6,     7,     8,     9,
+      10,    11,     3,    13,     5,     6,     0,    17,    18,    19,
+      20,    21,    22,    23,     5,    25,    26,    27,    28,    29,
+      30,    31,    32,     9,    10,    11,    12,    13,    14,    40,
+      15,     4,    16,    42,    15,    45,    46,    47,    48,    49,
       50,    51,    52,    53,    54,    55,    56,    57,    58,    59,
-       3,    38,     5,     6,    42,     8,     5,     6,     7,     8,
-      15,    41,    15,     4,    16,    41,    15,     5,     6,   135,
-       8,    81,     0,   133,   107,    28,    29,    15,   117,    28,
-      29,    34,    35,    -1,    37,    34,    35,    -1,    37,    -1,
-      28,    29,    -1,    -1,    -1,    -1,    34,    35,    -1,    37,
-       9,    10,    11,    12,    13,    14,    -1,   128,   118,    -1,
-      -1,    -1,   122,     9,    10,    11,    12,    13,    14,    24,
-      25,    26,    27,    28,    29,    30,    31,    32,    -1,    38,
-      -1,    36,    37,    30,    31,    32,    -1,    -1,    -1,    36,
-      37,    17,    38,    19,    20,    21,    22,    23,    24,    25,
-      26,    27,    28,    29,    30,    31,    32,    -1,    -1,    -1,
-      36,    37,    -1,    -1,    -1,    -1,    17,    43,    19,    20,
-      21,    22,    23,    24,    25,    26,    27,    28,    29,    30,
-      31,    32,    -1,    -1,    -1,    36,    37,    -1,    -1,    -1,
-      -1,    17,    43,    19,    20,    21,    22,    23,    24,    25,
-      26,    27,    28,    29,    30,    31,    32,    -1,    -1,    -1,
-      36,    37,    -1,    -1,    -1,    17,    42,    19,    20,    21,
+      60,     3,    38,     5,     6,     7,     8,     5,     6,     7,
+       8,    40,    16,    15,    41,    41,   135,    15,    30,    31,
+      32,    81,     0,   133,    36,    37,    28,    29,   117,   107,
+      28,    29,    34,    35,    -1,    37,    34,    35,    -1,    37,
+       9,    10,    11,    12,    13,    14,    15,     9,    10,    11,
+      12,    13,    14,    -1,    -1,    -1,   128,    -1,   118,    -1,
+      -1,    -1,   122,    28,    29,    30,    31,    32,    -1,    38,
+      -1,    36,    37,    -1,    -1,    17,    38,    19,    20,    21,
+      22,    23,    24,    25,    26,    27,    28,    29,    30,    31,
+      32,    -1,    -1,    -1,    36,    37,    -1,    -1,    -1,    -1,
+      17,    43,    19,    20,    21,    22,    23,    24,    25,    26,
+      27,    28,    29,    30,    31,    32,    -1,    -1,    -1,    36,
+      37,    -1,    -1,    -1,    -1,    17,    43,    19,    20,    21,
       22,    23,    24,    25,    26,    27,    28,    29,    30,    31,
       32,    -1,    -1,    -1,    36,    37,    -1,    -1,    -1,    17,
       42,    19,    20,    21,    22,    23,    24,    25,    26,    27,
       28,    29,    30,    31,    32,    -1,    -1,    -1,    36,    37,
-      17,    39,    19,    20,    21,    22,    23,    24,    25,    26,
-      27,    28,    29,    30,    31,    32,    -1,    -1,    -1,    36,
-      37,    17,    39,    19,    20,    21,    22,    23,    24,    25,
-      26,    27,    28,    29,    30,    31,    32,    -1,    -1,    -1,
-      36,    37,    17,    39,    19,    20,    21,    22,    23,    24,
-      25,    26,    27,    28,    29,    30,    31,    32,    -1,    -1,
-      -1,    36,    37,    17,    39,    19,    20,    21,    22,    23,
+      -1,    -1,    -1,    17,    42,    19,    20,    21,    22,    23,
       24,    25,    26,    27,    28,    29,    30,    31,    32,    -1,
       -1,    -1,    36,    37,    17,    39,    19,    20,    21,    22,
       23,    24,    25,    26,    27,    28,    29,    30,    31,    32,
@@ -1022,35 +1024,44 @@ static const ExprSpectype_int16 ExprSpeccheck[] =
       26,    27,    28,    29,    30,    31,    32,    -1,    -1,    -1,
       36,    37,    17,    39,    19,    20,    21,    22,    23,    24,
       25,    26,    27,    28,    29,    30,    31,    32,    -1,    -1,
-      -1,    36,    37,    -1,    39,    16,    17,    -1,    19,    20,
+      -1,    36,    37,    17,    39,    19,    20,    21,    22,    23,
+      24,    25,    26,    27,    28,    29,    30,    31,    32,    -1,
+      -1,    -1,    36,    37,    17,    39,    19,    20,    21,    22,
+      23,    24,    25,    26,    27,    28,    29,    30,    31,    32,
+      -1,    -1,    -1,    36,    37,    17,    39,    19,    20,    21,
+      22,    23,    24,    25,    26,    27,    28,    29,    30,    31,
+      32,    -1,    -1,    -1,    36,    37,    17,    39,    19,    20,
       21,    22,    23,    24,    25,    26,    27,    28,    29,    30,
-      31,    32,    -1,    -1,    -1,    36,    37,    16,    17,    -1,
-      19,    20,    21,    22,    23,    24,    25,    26,    27,    28,
-      29,    30,    31,    32,    -1,    -1,    -1,    36,    37,    17,
-      18,    19,    20,    21,    22,    23,    24,    25,    26,    27,
-      28,    29,    30,    31,    32,    -1,    -1,    -1,    36,    37,
+      31,    32,    -1,    -1,    -1,    36,    37,    -1,    39,    16,
       17,    -1,    19,    20,    21,    22,    23,    24,    25,    26,
       27,    28,    29,    30,    31,    32,    -1,    -1,    -1,    36,
-      37,    19,    20,    21,    22,    23,    24,    25,    26,    27,
-      28,    29,    30,    31,    32,    -1,    -1,    -1,    36,    37,
-      21,    22,    23,    24,    25,    26,    27,    28,    29,    30,
-      31,    32,    -1,    -1,    -1,    36,    37,    22,    23,    24,
+      37,    16,    17,    -1,    19,    20,    21,    22,    23,    24,
       25,    26,    27,    28,    29,    30,    31,    32,    -1,    -1,
-      -1,    36,    37,    28,    29,    30,    31,    32,    -1,    -1,
-      -1,    36,    37
+      -1,    36,    37,    17,    18,    19,    20,    21,    22,    23,
+      24,    25,    26,    27,    28,    29,    30,    31,    32,    -1,
+      -1,    -1,    36,    37,    17,    -1,    19,    20,    21,    22,
+      23,    24,    25,    26,    27,    28,    29,    30,    31,    32,
+      -1,    -1,    -1,    36,    37,    19,    20,    21,    22,    23,
+      24,    25,    26,    27,    28,    29,    30,    31,    32,    -1,
+      -1,    -1,    36,    37,    21,    22,    23,    24,    25,    26,
+      27,    28,    29,    30,    31,    32,    -1,    -1,    -1,    36,
+      37,    22,    23,    24,    25,    26,    27,    28,    29,    30,
+      31,    32,    -1,    -1,    -1,    36,    37,    24,    25,    26,
+      27,    28,    29,    30,    31,    32,    -1,    -1,    -1,    36,
+      37
 };
 
   /* ExprSpecYYSTOS[STATE-NUM] -- The (internal number of the) accessing
      symbol of state STATE-NUM.  */
 static const ExprSpectype_int8 ExprSpecstos[] =
 {
-       0,     3,     5,     6,     8,    15,    28,    29,    34,    35,
-      37,    45,    47,    48,    49,    51,    15,     9,    10,    11,
-      12,    13,    14,    15,    38,     9,    10,    11,    12,    13,
-      14,    38,     5,     6,    51,    51,    51,    51,    51,    51,
-       0,    48,    51,    17,    19,    20,    21,    22,    23,    24,
-      25,    26,    27,    28,    29,    30,    31,    32,    36,    37,
-      51,    51,    51,    51,    51,    51,    51,     7,    51,    52,
+       0,     3,     5,     6,     7,     8,    15,    28,    29,    34,
+      35,    37,    45,    47,    48,    49,    51,    15,     9,    10,
+      11,    12,    13,    14,    15,    38,     9,    10,    11,    12,
+      13,    14,    38,     5,     6,    51,    51,    51,    51,    51,
+      51,     0,    48,    51,    17,    19,    20,    21,    22,    23,
+      24,    25,    26,    27,    28,    29,    30,    31,    32,    36,
+      37,    51,    51,    51,    51,    51,    51,    51,    51,    52,
       53,    54,    51,    51,    51,    51,    51,    51,    51,    51,
       16,    42,     5,    51,    51,    51,    51,    51,    51,    51,
       51,    51,    51,    51,    51,    51,    51,    51,    51,    16,
@@ -1068,7 +1079,7 @@ static const ExprSpectype_int8 ExprSpecr1[] =
       48,    48,    48,    49,    50,    50,    50,    51,    51,    51,
       51,    51,    51,    51,    51,    51,    51,    51,    51,    51,
       51,    51,    51,    51,    51,    51,    51,    51,    51,    51,
-      51,    51,    51,    51,    52,    52,    53,    53,    54,    54
+      51,    51,    51,    51,    51,    52,    52,    53,    53,    54
 };
 
   /* ExprSpecYYR2[ExprSpecYYN] -- Number of symbols on the right hand side of rule ExprSpecYYN.  */
@@ -1079,7 +1090,7 @@ static const ExprSpectype_int8 ExprSpecr2[] =
        4,     4,     4,     8,     0,     4,     2,     3,     7,     4,
        5,     3,     3,     3,     3,     3,     3,     3,     3,     2,
        2,     2,     2,     3,     3,     3,     3,     3,     3,     4,
-       6,     1,     1,     1,     0,     1,     1,     3,     1,     1
+       6,     1,     1,     1,     1,     0,     1,     1,     3,     1
 };
 
 
@@ -1223,8 +1234,8 @@ ExprSpec_symbol_value_print (FILE *ExprSpeco,
                        ExprSpecsymbol_kind_t ExprSpeckind, ExprSpecYYSTYPE const * const ExprSpecvaluep, ExprSpecYYLTYPE const * const ExprSpeclocationp)
 {
   FILE *ExprSpecoutput = ExprSpeco;
-  ExprSpecYYUSE (ExprSpecoutput);
-  ExprSpecYYUSE (ExprSpeclocationp);
+  ExprSpecYY_USE (ExprSpecoutput);
+  ExprSpecYY_USE (ExprSpeclocationp);
   if (!ExprSpecvaluep)
     return;
 # ifdef ExprSpecYYPRINT
@@ -1232,7 +1243,7 @@ ExprSpec_symbol_value_print (FILE *ExprSpeco,
     ExprSpecYYPRINT (ExprSpeco, ExprSpectoknum[ExprSpeckind], *ExprSpecvaluep);
 # endif
   ExprSpecYY_IGNORE_MAYBE_UNINITIALIZED_BEGIN
-  ExprSpecYYUSE (ExprSpeckind);
+  ExprSpecYY_USE (ExprSpeckind);
   ExprSpecYY_IGNORE_MAYBE_UNINITIALIZED_END
 }
 
@@ -1349,19 +1360,19 @@ static void
 ExprSpecdestruct (const char *ExprSpecmsg,
             ExprSpecsymbol_kind_t ExprSpeckind, ExprSpecYYSTYPE *ExprSpecvaluep, ExprSpecYYLTYPE *ExprSpeclocationp)
 {
-  ExprSpecYYUSE (ExprSpecvaluep);
-  ExprSpecYYUSE (ExprSpeclocationp);
+  ExprSpecYY_USE (ExprSpecvaluep);
+  ExprSpecYY_USE (ExprSpeclocationp);
   if (!ExprSpecmsg)
     ExprSpecmsg = "Deleting";
   ExprSpecYY_SYMBOL_PRINT (ExprSpecmsg, ExprSpeckind, ExprSpecvaluep, ExprSpeclocationp);
 
   ExprSpecYY_IGNORE_MAYBE_UNINITIALIZED_BEGIN
-  ExprSpecYYUSE (ExprSpeckind);
+  ExprSpecYY_USE (ExprSpeckind);
   ExprSpecYY_IGNORE_MAYBE_UNINITIALIZED_END
 }
 
 
-/* The lookahead symbol.  */
+/* Lookahead token kind.  */
 int ExprSpecchar;
 
 /* The semantic value of the lookahead symbol.  */
@@ -1385,40 +1396,35 @@ int ExprSpecnerrs;
 int
 ExprSpecparse (void)
 {
-    ExprSpec_state_fast_t ExprSpecstate;
+    ExprSpec_state_fast_t ExprSpecstate = 0;
     /* Number of tokens to shift before error messages enabled.  */
-    int ExprSpecerrstatus;
+    int ExprSpecerrstatus = 0;
 
-    /* The stacks and their tools:
-       'ExprSpecss': related to states.
-       'ExprSpecvs': related to semantic values.
-       'ExprSpecls': related to locations.
-
-       Refer to the stacks through separate pointers, to allow ExprSpecoverflow
+    /* Refer to the stacks through separate pointers, to allow ExprSpecoverflow
        to reallocate them elsewhere.  */
 
     /* Their size.  */
-    ExprSpecYYPTRDIFF_T ExprSpecstacksize;
+    ExprSpecYYPTRDIFF_T ExprSpecstacksize = ExprSpecYYINITDEPTH;
 
-    /* The state stack.  */
+    /* The state stack: array, bottom, top.  */
     ExprSpec_state_t ExprSpecssa[ExprSpecYYINITDEPTH];
-    ExprSpec_state_t *ExprSpecss;
-    ExprSpec_state_t *ExprSpecssp;
+    ExprSpec_state_t *ExprSpecss = ExprSpecssa;
+    ExprSpec_state_t *ExprSpecssp = ExprSpecss;
 
-    /* The semantic value stack.  */
+    /* The semantic value stack: array, bottom, top.  */
     ExprSpecYYSTYPE ExprSpecvsa[ExprSpecYYINITDEPTH];
-    ExprSpecYYSTYPE *ExprSpecvs;
-    ExprSpecYYSTYPE *ExprSpecvsp;
+    ExprSpecYYSTYPE *ExprSpecvs = ExprSpecvsa;
+    ExprSpecYYSTYPE *ExprSpecvsp = ExprSpecvs;
 
-    /* The location stack.  */
+    /* The location stack: array, bottom, top.  */
     ExprSpecYYLTYPE ExprSpeclsa[ExprSpecYYINITDEPTH];
-    ExprSpecYYLTYPE *ExprSpecls;
-    ExprSpecYYLTYPE *ExprSpeclsp;
+    ExprSpecYYLTYPE *ExprSpecls = ExprSpeclsa;
+    ExprSpecYYLTYPE *ExprSpeclsp = ExprSpecls;
 
   int ExprSpecn;
   /* The return value of ExprSpecparse.  */
   int ExprSpecresult;
-  /* Lookahead token as an internal (translated) token number.  */
+  /* Lookahead symbol kind.  */
   ExprSpecsymbol_kind_t ExprSpectoken = ExprSpecYYSYMBOL_ExprSpecYYEMPTY;
   /* The variables used to return semantic value and location from the
      action routines.  */
@@ -1435,16 +1441,6 @@ ExprSpecparse (void)
   /* The number of symbols on the RHS of the reduced rule.
      Keep to zero when no symbol should be popped.  */
   int ExprSpeclen = 0;
-
-  ExprSpecnerrs = 0;
-  ExprSpecstate = 0;
-  ExprSpecerrstatus = 0;
-
-  ExprSpecstacksize = ExprSpecYYINITDEPTH;
-  ExprSpecssp = ExprSpecss = ExprSpecssa;
-  ExprSpecvsp = ExprSpecvs = ExprSpecvsa;
-  ExprSpeclsp = ExprSpecls = ExprSpeclsa;
-
 
   ExprSpecYYDPRINTF ((stderr, "Starting parse\n"));
 
@@ -1656,245 +1652,245 @@ ExprSpecreduce:
   ExprSpecYY_REDUCE_PRINT (ExprSpecn);
   switch (ExprSpecn)
     {
-  case 2:
+  case 2: /* expr: assigns e  */
 #line 213 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 { ParseResult = 0; }
-#line 1663 "y.tab.c"
+#line 1659 "y.tab.c"
     break;
 
-  case 3:
+  case 3: /* expr: e  */
 #line 214 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 { ParseResult = 0; }
-#line 1669 "y.tab.c"
+#line 1665 "y.tab.c"
     break;
 
-  case 4:
+  case 4: /* optassigns: %empty  */
 #line 219 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 1675 "y.tab.c"
+#line 1671 "y.tab.c"
     break;
 
-  case 5:
+  case 5: /* optassigns: assigns  */
 #line 220 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 1681 "y.tab.c"
+#line 1677 "y.tab.c"
     break;
 
-  case 6:
+  case 6: /* assigns: assign  */
 #line 224 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 1687 "y.tab.c"
+#line 1683 "y.tab.c"
     break;
 
-  case 7:
+  case 7: /* assigns: assigns assign  */
 #line 225 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 1693 "y.tab.c"
+#line 1689 "y.tab.c"
     break;
 
-  case 8:
+  case 8: /* assign: ifthenelse  */
 #line 230 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 1699 "y.tab.c"
+#line 1695 "y.tab.c"
     break;
 
-  case 9:
+  case 9: /* assign: VAR '=' e ';'  */
 #line 231 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 {
         specRegisterVariable((ExprSpecvsp[-3].s));
         specRegisterEditable((ExprSpecvsp[-3].s),(ExprSpecvsp[-1].n));
       }
-#line 1708 "y.tab.c"
+#line 1704 "y.tab.c"
     break;
 
-  case 10:
+  case 10: /* assign: VAR AddEq e ';'  */
 #line 235 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 1714 "y.tab.c"
+#line 1710 "y.tab.c"
     break;
 
-  case 11:
+  case 11: /* assign: VAR SubEq e ';'  */
 #line 236 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 1720 "y.tab.c"
+#line 1716 "y.tab.c"
     break;
 
-  case 12:
+  case 12: /* assign: VAR MultEq e ';'  */
 #line 237 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 1726 "y.tab.c"
+#line 1722 "y.tab.c"
     break;
 
-  case 13:
+  case 13: /* assign: VAR DivEq e ';'  */
 #line 238 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 1732 "y.tab.c"
+#line 1728 "y.tab.c"
     break;
 
-  case 14:
+  case 14: /* assign: VAR ExpEq e ';'  */
 #line 239 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 1738 "y.tab.c"
+#line 1734 "y.tab.c"
     break;
 
-  case 15:
+  case 15: /* assign: VAR ModEq e ';'  */
 #line 240 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 1744 "y.tab.c"
+#line 1740 "y.tab.c"
     break;
 
-  case 16:
+  case 16: /* assign: NAME '=' e ';'  */
 #line 241 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 {
         specRegisterVariable((ExprSpecvsp[-3].s));
         specRegisterEditable((ExprSpecvsp[-3].s),(ExprSpecvsp[-1].n));
       }
-#line 1753 "y.tab.c"
+#line 1749 "y.tab.c"
     break;
 
-  case 17:
+  case 17: /* assign: NAME AddEq e ';'  */
 #line 245 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 {  (ExprSpecval.n) = 0; }
-#line 1759 "y.tab.c"
+#line 1755 "y.tab.c"
     break;
 
-  case 18:
+  case 18: /* assign: NAME SubEq e ';'  */
 #line 246 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 {  (ExprSpecval.n) = 0; }
-#line 1765 "y.tab.c"
+#line 1761 "y.tab.c"
     break;
 
-  case 19:
+  case 19: /* assign: NAME MultEq e ';'  */
 #line 247 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 {  (ExprSpecval.n) = 0; }
-#line 1771 "y.tab.c"
+#line 1767 "y.tab.c"
     break;
 
-  case 20:
+  case 20: /* assign: NAME DivEq e ';'  */
 #line 248 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 {  (ExprSpecval.n) = 0; }
-#line 1777 "y.tab.c"
+#line 1773 "y.tab.c"
     break;
 
-  case 21:
+  case 21: /* assign: NAME ExpEq e ';'  */
 #line 249 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 {  (ExprSpecval.n) = 0; }
-#line 1783 "y.tab.c"
+#line 1779 "y.tab.c"
     break;
 
-  case 22:
+  case 22: /* assign: NAME ModEq e ';'  */
 #line 250 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 {  (ExprSpecval.n) = 0; }
-#line 1789 "y.tab.c"
+#line 1785 "y.tab.c"
     break;
 
-  case 23:
+  case 23: /* ifthenelse: IF '(' e ')' '{' optassigns '}' optelse  */
 #line 255 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
     { (ExprSpecval.n) = 0; }
-#line 1795 "y.tab.c"
+#line 1791 "y.tab.c"
     break;
 
-  case 24:
+  case 24: /* optelse: %empty  */
 #line 259 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                         { (ExprSpecval.n) = 0; }
-#line 1801 "y.tab.c"
+#line 1797 "y.tab.c"
     break;
 
-  case 25:
+  case 25: /* optelse: ELSE '{' optassigns '}'  */
 #line 260 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                             { (ExprSpecval.n) = 0;}
-#line 1807 "y.tab.c"
+#line 1803 "y.tab.c"
     break;
 
-  case 26:
+  case 26: /* optelse: ELSE ifthenelse  */
 #line 261 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0;}
-#line 1813 "y.tab.c"
+#line 1809 "y.tab.c"
     break;
 
-  case 27:
+  case 27: /* e: '(' e ')'  */
 #line 266 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 1819 "y.tab.c"
+#line 1815 "y.tab.c"
     break;
 
-  case 28:
+  case 28: /* e: '[' e ',' e ',' e ']'  */
 #line 267 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 {
         if(SPEC_IS_NUMBER((ExprSpecvsp[-5].n)) && SPEC_IS_NUMBER((ExprSpecvsp[-3].n)) && SPEC_IS_NUMBER((ExprSpecvsp[-1].n))){
             (ExprSpecval.n)=remember(new ExprSpecVectorNode((ExprSpecloc).first_column,(ExprSpecloc).last_column,(ExprSpecvsp[-5].n),(ExprSpecvsp[-3].n),(ExprSpecvsp[-1].n)));
         }else (ExprSpecval.n)=0;
       }
-#line 1829 "y.tab.c"
+#line 1825 "y.tab.c"
     break;
 
-  case 29:
+  case 29: /* e: e '[' e ']'  */
 #line 272 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 1835 "y.tab.c"
+#line 1831 "y.tab.c"
     break;
 
-  case 30:
+  case 30: /* e: e '?' e ':' e  */
 #line 273 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 1841 "y.tab.c"
+#line 1837 "y.tab.c"
     break;
 
-  case 31:
+  case 31: /* e: e OR e  */
 #line 274 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 1847 "y.tab.c"
+#line 1843 "y.tab.c"
     break;
 
-  case 32:
+  case 32: /* e: e AND e  */
 #line 275 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 1853 "y.tab.c"
+#line 1849 "y.tab.c"
     break;
 
-  case 33:
+  case 33: /* e: e EQ e  */
 #line 276 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 1859 "y.tab.c"
+#line 1855 "y.tab.c"
     break;
 
-  case 34:
+  case 34: /* e: e NE e  */
 #line 277 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 1865 "y.tab.c"
+#line 1861 "y.tab.c"
     break;
 
-  case 35:
+  case 35: /* e: e '<' e  */
 #line 278 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 1871 "y.tab.c"
+#line 1867 "y.tab.c"
     break;
 
-  case 36:
+  case 36: /* e: e '>' e  */
 #line 279 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 1877 "y.tab.c"
+#line 1873 "y.tab.c"
     break;
 
-  case 37:
+  case 37: /* e: e LE e  */
 #line 280 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 1883 "y.tab.c"
+#line 1879 "y.tab.c"
     break;
 
-  case 38:
+  case 38: /* e: e GE e  */
 #line 281 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 1889 "y.tab.c"
+#line 1885 "y.tab.c"
     break;
 
-  case 39:
+  case 39: /* e: '+' e  */
 #line 282 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = (ExprSpecvsp[0].n); }
-#line 1895 "y.tab.c"
+#line 1891 "y.tab.c"
     break;
 
-  case 40:
+  case 40: /* e: '-' e  */
 #line 283 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 {
         if(SPEC_IS_NUMBER((ExprSpecvsp[0].n))){
@@ -1905,58 +1901,58 @@ ExprSpecreduce:
             (ExprSpecval.n)=(ExprSpecvsp[0].n);
         }else (ExprSpecval.n)=0;
       }
-#line 1909 "y.tab.c"
+#line 1905 "y.tab.c"
     break;
 
-  case 41:
+  case 41: /* e: '!' e  */
 #line 292 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 1915 "y.tab.c"
+#line 1911 "y.tab.c"
     break;
 
-  case 42:
+  case 42: /* e: '~' e  */
 #line 293 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 1921 "y.tab.c"
+#line 1917 "y.tab.c"
     break;
 
-  case 43:
+  case 43: /* e: e '+' e  */
 #line 294 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 1927 "y.tab.c"
+#line 1923 "y.tab.c"
     break;
 
-  case 44:
+  case 44: /* e: e '-' e  */
 #line 295 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 1933 "y.tab.c"
+#line 1929 "y.tab.c"
     break;
 
-  case 45:
+  case 45: /* e: e '*' e  */
 #line 296 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 1939 "y.tab.c"
+#line 1935 "y.tab.c"
     break;
 
-  case 46:
+  case 46: /* e: e '/' e  */
 #line 297 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 1945 "y.tab.c"
+#line 1941 "y.tab.c"
     break;
 
-  case 47:
+  case 47: /* e: e '%' e  */
 #line 298 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 1951 "y.tab.c"
+#line 1947 "y.tab.c"
     break;
 
-  case 48:
+  case 48: /* e: e '^' e  */
 #line 299 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n) = 0; }
-#line 1957 "y.tab.c"
+#line 1953 "y.tab.c"
     break;
 
-  case 49:
+  case 49: /* e: NAME '(' optargs ')'  */
 #line 300 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 {
         if((ExprSpecvsp[-1].n) && strcmp((ExprSpecvsp[-3].s),"curve")==0){
@@ -1979,47 +1975,53 @@ ExprSpecreduce:
             (ExprSpecval.n)=0;
         }else (ExprSpecval.n)=0;
       }
-#line 1983 "y.tab.c"
+#line 1979 "y.tab.c"
     break;
 
-  case 50:
+  case 50: /* e: e ARROW NAME '(' optargs ')'  */
 #line 321 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                   {(ExprSpecval.n) = 0; }
-#line 1989 "y.tab.c"
+#line 1985 "y.tab.c"
     break;
 
-  case 51:
+  case 51: /* e: VAR  */
 #line 322 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 {  (ExprSpecval.n) = 0; }
-#line 1995 "y.tab.c"
+#line 1991 "y.tab.c"
     break;
 
-  case 52:
+  case 52: /* e: NAME  */
 #line 323 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 {  (ExprSpecval.n) = 0; }
-#line 2001 "y.tab.c"
+#line 1997 "y.tab.c"
     break;
 
-  case 53:
+  case 53: /* e: NUMBER  */
 #line 324 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                                 { (ExprSpecval.n)=remember(new ExprSpecScalarNode((ExprSpecloc).first_column,(ExprSpecloc).last_column,(ExprSpecvsp[0].d))); }
-#line 2007 "y.tab.c"
+#line 2003 "y.tab.c"
     break;
 
-  case 54:
-#line 329 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
-                                { (ExprSpecval.n) = 0;}
-#line 2013 "y.tab.c"
+  case 54: /* e: STR  */
+#line 325 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
+                    { (ExprSpecval.n) = remember(new ExprSpecStringNode((ExprSpecloc).first_column,(ExprSpecloc).last_column,(ExprSpecvsp[0].s))); }
+#line 2009 "y.tab.c"
     break;
 
-  case 55:
+  case 55: /* optargs: %empty  */
 #line 330 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
-                                { (ExprSpecval.n) = (ExprSpecvsp[0].n);}
-#line 2019 "y.tab.c"
+                                { (ExprSpecval.n) = 0;}
+#line 2015 "y.tab.c"
     break;
 
-  case 56:
-#line 335 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
+  case 56: /* optargs: args  */
+#line 331 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
+                                { (ExprSpecval.n) = (ExprSpecvsp[0].n);}
+#line 2021 "y.tab.c"
+    break;
+
+  case 57: /* args: arg  */
+#line 336 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
         {
        // ignore first argument unless it is a string (because we parse strings in weird ways)
        ExprSpecListNode* list=new ExprSpecListNode((ExprSpecloc).last_column,(ExprSpecloc).last_column);
@@ -2029,11 +2031,11 @@ ExprSpecreduce:
        remember(list);
        (ExprSpecval.n)=list;
    }
-#line 2033 "y.tab.c"
+#line 2035 "y.tab.c"
     break;
 
-  case 57:
-#line 344 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
+  case 58: /* args: args ',' arg  */
+#line 345 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
                  {
 
       if((ExprSpecvsp[-2].n) && (ExprSpecvsp[0].n) && ((SPEC_IS_NUMBER((ExprSpecvsp[0].n)) || SPEC_IS_VECTOR((ExprSpecvsp[0].n)) || SPEC_IS_STR((ExprSpecvsp[0].n))))){
@@ -2043,28 +2045,17 @@ ExprSpecreduce:
           (ExprSpecval.n)=0;
       }
     }
-#line 2047 "y.tab.c"
+#line 2049 "y.tab.c"
     break;
 
-  case 58:
-#line 356 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
-                                { (ExprSpecval.n) = (ExprSpecvsp[0].n);}
-#line 2053 "y.tab.c"
-    break;
-
-  case 59:
+  case 59: /* arg: e  */
 #line 357 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
-                                {
-        ExprSpecStringNode* str=new ExprSpecStringNode((ExprSpecloc).first_column,(ExprSpecloc).last_column,(ExprSpecvsp[0].s));
-        //specRegisterEditable("<UNKNOWN>",str);
-        // TODO: move string stuff out
-        (ExprSpecval.n) = remember(str);
-      }
-#line 2064 "y.tab.c"
+                                { (ExprSpecval.n) = (ExprSpecvsp[0].n);}
+#line 2055 "y.tab.c"
     break;
 
 
-#line 2068 "y.tab.c"
+#line 2059 "y.tab.c"
 
       default: break;
     }
@@ -2229,13 +2220,13 @@ ExprSpecabortlab:
 ExprSpecexhaustedlab:
   ExprSpecerror (ExprSpecYY_("memory exhausted"));
   ExprSpecresult = 2;
-  /* Fall through.  */
+  goto ExprSpecreturn;
 #endif
 
 
-/*-----------------------------------------------------.
-| ExprSpecreturn -- parsing is finished, return the result.  |
-`-----------------------------------------------------*/
+/*-------------------------------------------------------.
+| ExprSpecreturn -- parsing is finished, clean up and return.  |
+`-------------------------------------------------------*/
 ExprSpecreturn:
   if (ExprSpecchar != ExprSpecYYEMPTY)
     {
@@ -2263,7 +2254,7 @@ ExprSpecreturn:
   return ExprSpecresult;
 }
 
-#line 365 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
+#line 360 "@@PATH@@/src/KSeExprUI/ExprSpecParser.y"
 
 
 /* ExprSpecerror - Report an error.  This is called by the parser.

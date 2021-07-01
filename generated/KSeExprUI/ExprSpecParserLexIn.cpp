@@ -535,23 +535,22 @@ int yy_flex_debug = 0;
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
 #line 1 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
-// SPDX-FileCopyrightText: 2011-2019 Disney Enterprises, Inc.
-// SPDX-License-Identifier: LicenseRef-Apache-2.0
-// SPDX-FileCopyrightText: 2020 L. E. Segovia <amy@amyspark.me>
-// SPDX-License-Identifier: GPL-3.0-or-later
+/**
+ * SPDX-FileCopyrightText: 2011-2019 Disney Enterprises, Inc.
+ * SPDX-License-Identifier: LicenseRef-Apache-2.0
+ * SPDX-FileCopyrightText: 2020-2021 L. E. Segovia <amy@amyspark.me>
+ * SPDX-License-Identifier: GPL-3.0-or-later
+ */
 /* Don't generate yywrap since everything is in one string */
 /* Don't generate unput since it's unused and gcc complains... */
 /* Don't generate input since it's unused too -- amyspark */
 #define YY_NO_INPUT 1
 /* Don't worry about interactive and using isatty(). Fixes Windows compile. */
-#line 29 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
-#ifndef MAKEDEPEND
-#    include <ctype.h>
-#    include <string.h>
-#    include <string>
-#define _USE_MATH_DEFINES
-#    include <math.h>
-#endif
+#line 18 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
+#include <cctype>
+#include <cstring>
+#include <cmath>
+#include <vector>
 
 // If c++11 don't use register designator, lex and yacc need to go...
 #if __cplusplus > 199711L
@@ -591,8 +590,8 @@ int yypos(); // forward declare
     columnNumber+=yyleng;\
     yylloc.last_column=columnNumber;yylloc.last_line=lineNumber;} 
 
-#line 607 "ExprSpecParserLexIn.cpp"
-#line 608 "ExprSpecParserLexIn.cpp"
+#line 593 "ExprSpecParserLexIn.cpp"
+#line 594 "ExprSpecParserLexIn.cpp"
 
 #define INITIAL 0
 
@@ -807,9 +806,9 @@ YY_DECL
 		}
 
 	{
-#line 82 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
+#line 68 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
 
-#line 825 "ExprSpecParserLexIn.cpp"
+#line 811 "ExprSpecParserLexIn.cpp"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -864,122 +863,122 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 83 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
+#line 69 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
 
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 85 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
+#line 71 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
 { return IF; }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 86 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
+#line 72 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
 { return ELSE; }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 88 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
+#line 74 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
 { return OR; }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 89 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
+#line 75 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
 { return AND; }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 90 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
+#line 76 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
 { return EQ; }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 91 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
+#line 77 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
 { return NE; }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 92 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
+#line 78 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
 { return LE; }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 93 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
+#line 79 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
 { return GE; }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 94 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
+#line 80 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
 { return ARROW; }
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 95 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
+#line 81 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
 { return AddEq; }
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 96 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
+#line 82 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
 { return SubEq; }
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 97 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
+#line 83 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
 { return MultEq; }
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 98 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
+#line 84 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
 { return DivEq; }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 99 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
+#line 85 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
 { return ModEq; }
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 100 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
+#line 86 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
 { return ExpEq; }
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 102 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
+#line 88 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
 { yylval.d = M_PI; return NUMBER; }
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 103 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
+#line 89 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
 { yylval.d = M_E; return NUMBER; }
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 104 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
+#line 90 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
 { yylval.d = 0; return NUMBER; }
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 105 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
+#line 91 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
 { yylval.d = 1; return NUMBER; }
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 106 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
+#line 92 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
 { yylval.d = 2; return NUMBER; }
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 107 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
+#line 93 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
 { yylval.d = 3; return NUMBER; }
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 109 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
+#line 95 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
 { yylval.d = KSeExpr::Utils::atof(yytext); return NUMBER; }
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 110 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
+#line 96 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
 { /* match quoted string, allow embedded quote, \" */
 			  yylval.s = specRegisterToken(&yytext[1]); 
 			  yylval.s[strlen(yylval.s)-1] = '\0';
@@ -987,7 +986,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 114 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
+#line 100 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
 { /* match quoted string, allow embedded quote, \' */
 			  yylval.s = specRegisterToken(&yytext[1]); 
 			  yylval.s[strlen(yylval.s)-1] = '\0';
@@ -995,53 +994,53 @@ YY_RULE_SETUP
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 118 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
+#line 104 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
 { yylval.s = specRegisterToken(&yytext[1]); return VAR; }
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 119 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
+#line 105 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
 { yylval.s = specRegisterToken(&yytext[1]); return VAR; }
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 120 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
+#line 106 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
 { yylval.s = specRegisterToken(yytext); return NAME; }
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 122 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
+#line 108 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
 /* ignore quoted newline */;
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 123 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
+#line 109 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
 /* ignore quoted tab */;
 	YY_BREAK
 case 31:
 /* rule 31 can match eol */
 YY_RULE_SETUP
-#line 124 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
+#line 110 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
 /* ignore whitespace */;
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 125 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
+#line 111 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
 { /* match comment */ 
                          int startPos=yypos(),endPos=yypos()+strlen(&yytext[1])+1;
                           comments->push_back(std::pair<int,int>(startPos,endPos));}
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 130 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
+#line 116 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
 { return yytext[0]; }
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 132 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
+#line 118 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
 ECHO;
 	YY_BREAK
-#line 1057 "ExprSpecParserLexIn.cpp"
+#line 1043 "ExprSpecParserLexIn.cpp"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -2010,7 +2009,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 132 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
+#line 118 "@@PATH@@/src/KSeExprUI/ExprSpecParserLex.l"
 
 
 /* Gets index of current token (corresponding to yytext).  
