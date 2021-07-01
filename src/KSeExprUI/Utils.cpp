@@ -18,7 +18,7 @@ bool KSeExpr::Utils::parseRangeComment(const std::string &comment, double &from,
         return false;
     }
 
-    std::string first {trim(trimmed_comment.substr(1, div))};
+    std::string first {trim(trimmed_comment.substr(0, div))};
 
     std::string second {trim(trimmed_comment.substr(div + 1, std::string::npos))};
 
@@ -48,7 +48,7 @@ bool KSeExpr::Utils::parseRangeComment(const std::string &comment, float &from, 
         return false;
     }
 
-    std::string first {trim(trimmed_comment.substr(1, div))};
+    std::string first {trim(trimmed_comment.substr(0, div))};
 
     std::string second {trim(trimmed_comment.substr(div + 1, std::string::npos))};
 
@@ -110,7 +110,7 @@ bool KSeExpr::Utils::parseTypeNameComment(const std::string &comment, std::strin
         return false;
     }
 
-    auto first = trimmed_comment.substr(1, div);
+    auto first = trimmed_comment.substr(0, div);
 
     auto second = trimmed_comment.substr(div + 1, std::string::npos);
 
@@ -129,7 +129,7 @@ bool KSeExpr::Utils::parseLabelComment(const std::string &comment, std::string &
 
     auto trimmed_comment = trim(comment.substr(1, std::string::npos));
 
-    auto first = trimmed_comment.substr(1, std::string::npos);
+    auto first = trimmed_comment.substr(0, std::string::npos);
 
     label.replace(0, label.size(), first);
 
