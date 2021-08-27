@@ -100,10 +100,6 @@ find_package(GTest)
 set_package_properties(GTest PROPERTIES
                        TYPE OPTIONAL
                        PURPOSE "Needed for building the tests")
-find_package(LLVM)
-set_package_properties(LLVM PROPERTIES
-                       TYPE OPTIONAL
-                       PURPOSE "Needed for building the LLVM-based script backend")
 find_package(PNG)
 set_package_properties(PNG PROPERTIES
                        TYPE OPTIONAL
@@ -139,6 +135,10 @@ if (ECM_FOUND)
 endif ()
 
 if (ENABLE_LLVM_BACKEND)
+    find_package(LLVM)
+    set_package_properties(LLVM PROPERTIES
+                        TYPE OPTIONAL
+                        PURPOSE "Needed for building the LLVM-based script backend")
     if (NOT LLVM_FOUND OR LLVM_VERSION VERSION_LESS 3.8.0)
         set(ENABLE_LLVM_BACKEND off)
         message(STATUS "Not building with LLVM, version must be >= 3.8.0")
