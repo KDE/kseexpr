@@ -1540,10 +1540,21 @@ public:
 
         bool valid = true;
         valid &= node->checkArg(0, ExprType().FP(1).Varying(), envBuilder);
-        for (int i = 1; i < nargs; i += 3) {
+        for (int i = 1; i < nargs && valid; i += 3) {
             valid &= node->checkArg(i, ExprType().FP(1).Constant(), envBuilder);
             valid &= node->checkArg(i + 1, ExprType().FP(1).Constant(), envBuilder);
             valid &= node->checkArg(i + 2, ExprType().FP(1).Constant(), envBuilder);
+            if (valid) {
+                const auto *value = dynamic_cast<ExprNumNode *>(node->child(i + 2));
+                if (!value) {
+                    node->addError(ErrorCode::Unknown, {QT_TRANSLATE_NOOP_UTF8("builtin", "Unable to validate the interpolant type")});
+                    return ExprType().Error().Varying();
+                }
+                else if (!Curve<Vec3d>::interpTypeValid(static_cast<Curve<Vec3d>::InterpType>((int)value->value()))){
+                    node->addError(ErrorCode::Unknown, {QT_TRANSLATE_NOOP_UTF8("builtin", "Invalid interpolant type")});
+                    return ExprType().Error().Varying();
+                }
+            }
         }
         return valid ? ExprType().FP(1).Varying() : ExprType().Error();
     }
@@ -1594,10 +1605,20 @@ class CCurveFuncX : public ExprFuncSimple
 
         bool valid = true;
         valid &= node->checkArg(0, ExprType().FP(1).Varying(), envBuilder);
-        for (int i = 1; i < nargs; i += 3) {
+        for (int i = 1; i < nargs && valid; i += 3) {
             valid &= node->checkArg(i, ExprType().FP(1).Constant(), envBuilder);
             valid &= node->checkArg(i + 1, ExprType().FP(3).Constant(), envBuilder);
             valid &= node->checkArg(i + 2, ExprType().FP(1).Constant(), envBuilder);
+            if (valid) {
+                const auto *value = dynamic_cast<ExprNumNode *>(node->child(i + 2));
+                if (!value) {
+                    node->addError(ErrorCode::Unknown, {QT_TRANSLATE_NOOP_UTF8("builtin", "Unable to validate the interpolant type")});
+                    return ExprType().Error().Varying();
+                } else if (!Curve<Vec3d>::interpTypeValid(static_cast<Curve<Vec3d>::InterpType>((int)value->value()))) {
+                    node->addError(ErrorCode::Unknown, {QT_TRANSLATE_NOOP_UTF8("builtin", "Invalid interpolant type")});
+                    return ExprType().Error().Varying();
+                }
+            }
         }
         return valid ? ExprType().FP(3).Varying() : ExprType().Error();
     }

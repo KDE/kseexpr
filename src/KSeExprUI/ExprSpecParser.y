@@ -103,10 +103,15 @@ static void specRegisterEditable(const char* var,ExprSpecNode* node)
                     ExprSpecScalarNode* xnode=dynamic_cast<ExprSpecScalarNode*>(args->nodes[i]);
                     ExprSpecVectorNode* ynode=dynamic_cast<ExprSpecVectorNode*>(args->nodes[i+1]);
                     ExprSpecScalarNode* interpnode=dynamic_cast<ExprSpecScalarNode*>(args->nodes[i+2]);
-                    if(xnode && ynode && interpnode){
-                        ccurve->add(xnode->v,ynode->v,interpnode->v);
-                    }else{
-                        valid=false;
+                    if (xnode && ynode && interpnode) {
+                        if (interpnode->v >= 0 && interpnode->v <= 4) {
+                            ccurve->add(xnode->v, ynode->v, interpnode->v);
+                        } else {
+                            // invalid interpolant type -- Amyspark
+                            valid = false;
+                        }
+                    } else {
+                        valid = false;
                     }
                 }
                 if(valid) editables->push_back(ccurve);
@@ -123,11 +128,16 @@ static void specRegisterEditable(const char* var,ExprSpecNode* node)
                 for(size_t i=0;i<args->nodes.size();i+=3){
                     ExprSpecScalarNode* xnode=dynamic_cast<ExprSpecScalarNode*>(args->nodes[i]);
                     ExprSpecScalarNode* ynode=dynamic_cast<ExprSpecScalarNode*>(args->nodes[i+1]);
-                    ExprSpecScalarNode* interpnode=dynamic_cast<ExprSpecScalarNode*>(args->nodes[i+2]);
-                    if(xnode && ynode && interpnode){
-                        ccurve->add(xnode->v,ynode->v,interpnode->v);
-                    }else{
-                        valid=false;
+                    ExprSpecScalarNode *interpnode = dynamic_cast<ExprSpecScalarNode *>(args->nodes[i + 2]);
+                    if (xnode && ynode && interpnode) {
+                        if (interpnode->v >= 0 && interpnode->v <= 4) {
+                            ccurve->add(xnode->v, ynode->v, interpnode->v);
+                        } else {
+                            // invalid interpolant type -- Amyspark
+                            valid = false;
+                        }
+                    } else {
+                        valid = false;
                     }
                 }
                 if(valid) editables->push_back(ccurve);

@@ -538,7 +538,7 @@ char *ExprSpectext;
 /**
  * SPDX-FileCopyrightText: 2011-2019 Disney Enterprises, Inc.
  * SPDX-License-Identifier: LicenseRef-Apache-2.0
- * SPDX-FileCopyrightText: 2020 L. E. Segovia <amy@amyspark.me>
+ * SPDX-FileCopyrightText: 2020-2021 L. E. Segovia <amy@amyspark.me>
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 /* Don't generate ExprSpecwrap since everything is in one string */

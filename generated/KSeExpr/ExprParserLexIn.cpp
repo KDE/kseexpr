@@ -563,22 +563,22 @@ int yy_flex_debug = 0;
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
 #line 1 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
-// SPDX-FileCopyrightText: 2011-2019 Disney Enterprises, Inc.
-// SPDX-License-Identifier: LicenseRef-Apache-2.0
-// SPDX-FileCopyrightText: 2020 L. E. Segovia <amy@amyspark.me>
-// SPDX-License-Identifier: GPL-3.0-or-later
+/**
+ * SPDX-FileCopyrightText: 2011-2019 Disney Enterprises, Inc.
+ * SPDX-License-Identifier: LicenseRef-Apache-2.0
+ * SPDX-FileCopyrightText: 2020-2021 L. E. Segovia <amy@amyspark.me>
+ * SPDX-License-Identifier: GPL-3.0-or-later
+ */
 /* Don't generate yywrap since everything is in one string */
 /* Don't generate unput since it's unused and gcc complains... */
 /* Don't generate input since it's unused too -- amyspark */
 #define YY_NO_INPUT 1
-#line 26 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
-#ifndef MAKEDEPEND
-#    include <ctype.h>
-#    include <string.h>
-#    include <string>
-#    include <math.h>
-#    include <vector>
-#endif
+/* Don't worry about interactive and using isatty(). Fixes Windows compile. */
+#line 18 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
+#include <cctype>
+#include <cstring>
+#include <cmath>
+#include <vector>
 
 // If c++11 don't use register designator, lex and yacc need to go...
 #if __cplusplus > 199711L
@@ -616,8 +616,8 @@ int yypos();
     columnNumber+=yyleng;\
     yylloc.last_column=columnNumber;yylloc.last_line=lineNumber;}
 
-#line 633 "ExprParserLexIn.cpp"
-#line 634 "ExprParserLexIn.cpp"
+#line 619 "ExprParserLexIn.cpp"
+#line 620 "ExprParserLexIn.cpp"
 
 #define INITIAL 0
 
@@ -832,9 +832,9 @@ YY_DECL
 		}
 
 	{
-#line 78 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
+#line 66 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
 
-#line 851 "ExprParserLexIn.cpp"
+#line 837 "ExprParserLexIn.cpp"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -867,16 +867,12 @@ yy_match:
 			yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
 			++yy_cp;
 			}
-		while ( yy_base[yy_current_state] != 246 );
+		while ( yy_current_state != 159 );
+		yy_cp = (yy_last_accepting_cpos);
+		yy_current_state = (yy_last_accepting_state);
 
 yy_find_action:
 		yy_act = yy_accept[yy_current_state];
-		if ( yy_act == 0 )
-			{ /* have to back up */
-			yy_cp = (yy_last_accepting_cpos);
-			yy_current_state = (yy_last_accepting_state);
-			yy_act = yy_accept[yy_current_state];
-			}
 
 		YY_DO_BEFORE_ACTION;
 
@@ -893,162 +889,162 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 79 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
+#line 67 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
 
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 81 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
+#line 69 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
 { return EXTERN; }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 82 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
+#line 70 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
 { return DEF; }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 83 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
+#line 71 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
 { return FLOATPOINT; }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 84 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
+#line 72 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
 { return STRING; }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 85 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
+#line 73 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
 { return LIFETIME_CONSTANT; }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 86 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
+#line 74 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
 { return LIFETIME_UNIFORM; }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 87 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
+#line 75 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
 { return LIFETIME_VARYING; }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 88 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
+#line 76 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
 { return LIFETIME_ERROR; }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 90 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
+#line 78 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
 { return IF; }
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 91 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
+#line 79 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
 { return ELSE; }
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 93 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
+#line 81 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
 { return OR; }
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 94 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
+#line 82 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
 { return AND; }
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 95 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
+#line 83 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
 { return EQ; }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 96 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
+#line 84 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
 { return NE; }
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 97 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
+#line 85 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
 { return SEEXPR_LE; }
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 98 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
+#line 86 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
 { return SEEXPR_GE; }
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 99 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
+#line 87 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
 { return ARROW; }
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 100 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
+#line 88 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
 { return AddEq; }
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 101 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
+#line 89 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
 { return SubEq; }
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 102 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
+#line 90 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
 { return MultEq; }
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 103 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
+#line 91 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
 { return DivEq; }
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 104 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
+#line 92 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
 { return ModEq; }
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 105 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
+#line 93 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
 { return ExpEq; }
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 107 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
+#line 95 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
 { yylval.d = M_PI; return NUMBER; }
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 108 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
+#line 96 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
 { yylval.d = M_E; return NUMBER; }
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 109 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
+#line 97 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
 { yylval.d = 0; return NUMBER; }
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 110 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
+#line 98 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
 { yylval.d = 1; return NUMBER; }
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 111 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
+#line 99 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
 { yylval.d = 2; return NUMBER; }
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 112 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
+#line 100 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
 { yylval.d = 3; return NUMBER; }
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 114 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
+#line 102 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
 { yylval.d = KSeExpr::Utils::atof(yytext); return NUMBER; }
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 115 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
+#line 103 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
 { /* match quoted string, allow embedded quote, \" */
 			  yylval.s = strdup(&yytext[1]);
 			  yylval.s[strlen(yylval.s)-1] = '\0';
@@ -1056,7 +1052,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 119 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
+#line 107 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
 { /* match quoted string, allow embedded quote, \' */
 			  yylval.s = strdup(&yytext[1]);
 			  yylval.s[strlen(yylval.s)-1] = '\0';
@@ -1064,53 +1060,53 @@ YY_RULE_SETUP
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 123 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
+#line 111 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
 { yylval.s = strdup(&yytext[1]); return VAR; }
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 124 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
+#line 112 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
 { yylval.s = strdup(&yytext[1]); return VAR; }
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 125 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
+#line 113 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
 { yylval.s = strdup(yytext); return NAME; }
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 127 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
+#line 115 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
 /* ignore quoted newline */;
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
-#line 128 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
+#line 116 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
 /* ignore quoted tab */;
 	YY_BREAK
 case 39:
 /* rule 39 can match eol */
 YY_RULE_SETUP
-#line 129 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
+#line 117 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
 /* ignore whitespace */;
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
-#line 130 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
+#line 118 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
 { /* match comment */
                          int startPos=yypos(),endPos=yypos()+strlen(&yytext[1])+1;
 			  comments->push_back(std::pair<int,int>(startPos,endPos));}
 	YY_BREAK
 case 41:
 YY_RULE_SETUP
-#line 134 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
+#line 122 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
 { return yytext[0]; }
 	YY_BREAK
 case 42:
 YY_RULE_SETUP
-#line 136 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
+#line 124 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
 ECHO;
 	YY_BREAK
-#line 1127 "ExprParserLexIn.cpp"
+#line 1109 "ExprParserLexIn.cpp"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1177,7 +1173,8 @@ case YY_STATE_EOF(INITIAL):
 
 			else
 				{
-				yy_cp = (yy_c_buf_p);
+				yy_cp = (yy_last_accepting_cpos);
+				yy_current_state = (yy_last_accepting_state);
 				goto yy_find_action;
 				}
 			}
@@ -1655,7 +1652,7 @@ static void yy_load_buffer_state  (void)
         b->yy_bs_column = 0;
     }
 
-        b->yy_is_interactive = file ? (isatty( fileno(file) ) > 0) : 0;
+        b->yy_is_interactive = 0;
     
 	errno = oerrno;
 }
@@ -2078,7 +2075,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 136 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
+#line 124 "@@PATH@@/src/KSeExpr/ExprParserLex.l"
 
 
 /* Gets index of current token (corresponding to yytext).
