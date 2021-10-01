@@ -213,16 +213,15 @@ void ExprEditor::appendStr(const QString &str)
 
 void ExprEditor::addError(const int startPos, const int endPos, const QString &error)
 {
-    QString message = tr("(%1, %2): %3").arg(startPos).arg(endPos).arg(error);
-    auto *item = new QListWidgetItem(message, errorWidget);
-    item->setData(Qt::UserRole, startPos);
-    item->setData(Qt::UserRole + 1, endPos);
+    int startLine, startCol;
     errorWidget->setHidden(false);
 
     // Underline error
     QTextCursor cursor = exprTe->textCursor();
     cursor.movePosition(QTextCursor::Start, QTextCursor::MoveAnchor);
     cursor.movePosition(QTextCursor::Right, QTextCursor::MoveAnchor, startPos);
+    startLine = cursor.blockNumber();
+    startCol = cursor.columnNumber();
     cursor.movePosition(QTextCursor::Right, QTextCursor::KeepAnchor, endPos - startPos + 1);
     QList<QTextEdit::ExtraSelection> extraSelections = exprTe->extraSelections();
     QTextEdit::ExtraSelection selection;
@@ -232,6 +231,11 @@ void ExprEditor::addError(const int startPos, const int endPos, const QString &e
     selection.cursor = cursor;
     extraSelections.append(selection);
     exprTe->setExtraSelections(extraSelections);
+
+    QString message = tr("(%1, %2): %3").arg(startLine).arg(startCol).arg(error);
+    auto *item = new QListWidgetItem(message, errorWidget);
+    item->setData(Qt::UserRole, startPos);
+    item->setData(Qt::UserRole + 1, endPos);
 
     // errorWidget has its height fixed -- amyspark
     // TODO: fix to not use count lines and compute heuristic of 25 pixels per line!
