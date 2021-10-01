@@ -12,7 +12,7 @@ bool KSeExpr::Utils::parseRangeComment(const std::string &comment, double &from,
 
     auto trimmed_comment = trim(comment.substr(1, std::string::npos));
 
-    auto div = trimmed_comment.find_first_of(' ');
+    auto div = trimmed_comment.find_first_of(',');
 
     if (div == std::string::npos) {
         return false;
@@ -42,7 +42,7 @@ bool KSeExpr::Utils::parseRangeComment(const std::string &comment, float &from, 
 
     auto trimmed_comment = trim(comment.substr(1, std::string::npos));
 
-    auto div = trimmed_comment.find_first_of(' ');
+    auto div = trimmed_comment.find_first_of(',');
 
     if (div == std::string::npos) {
         return false;
@@ -72,7 +72,7 @@ bool KSeExpr::Utils::parseRangeComment(const std::string &comment, int32_t &from
 
     auto trimmed_comment = trim(comment.substr(1, std::string::npos));
 
-    auto div = trimmed_comment.find_first_of(' ');
+    auto div = trimmed_comment.find_first_of(',');
 
     if (div == std::string::npos) {
         return false;

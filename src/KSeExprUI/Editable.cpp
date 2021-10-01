@@ -53,13 +53,14 @@ bool NumberEditable::parseComment(const std::string &comment)
             max = fmax;
             isInt = false;
         }
-    }
-    int imin = 0;
-    int imax = 0;
-    if (KSeExpr::Utils::parseRangeComment(comment, imin, imax)) {
-        min = imin;
-        max = imax;
-        isInt = true;
+    } else {
+        int32_t imin = 0;
+        int32_t imax = 0;
+        if (KSeExpr::Utils::parseRangeComment(comment, imin, imax)) {
+            min = imin;
+            max = imax;
+            isInt = true;
+        }
     }
     return true;
 }

@@ -92,8 +92,8 @@ ExprScalarAssignSpec::ExprScalarAssignSpec(const ExprAssignNode &node)
             return;
         }
     } else {
-        int imin = 0;
-        int imax = 0;
+        int32_t imin = 0;
+        int32_t imax = 0;
         if (KSeExpr::Utils::parseRangeComment(comment, imin, imax)) {
             _min = imin;
             _max = imax;
