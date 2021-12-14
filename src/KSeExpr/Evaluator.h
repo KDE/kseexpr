@@ -10,12 +10,6 @@
 #include "ExprNode.h"
 #include "VarBlock.h"
 
-#if defined(SEEXPR_ENABLE_LLVM)
-#include <llvm/Config/llvm-config.h>
-#include <llvm/Support/Compiler.h>
-#include <memory>
-#endif
-
 extern "C" void KSeExprLLVMEvalFPVarRef(KSeExpr::ExprVarRef *seVR, double *result);
 extern "C" void KSeExprLLVMEvalStrVarRef(KSeExpr::ExprVarRef *seVR, double *result);
 extern "C" void KSeExprLLVMEvalCustomFunction(int *opDataArg, double *fpArg, char **strArg, void **funcdata, const KSeExpr::ExprFuncNode *node);
@@ -220,12 +214,15 @@ public:
                     assert(dimGenerated == 1 || dimGenerated >= dimDesired && "error: unable to match between FP of differing dimensions");
 
                     auto *VT = llvm::cast<llvm::VectorType>(newLastVal->getType());
-
+#if LLVM_VERSION_MAJOR >= 13
+                    if (VT && VT->getElementCount().getKnownMinValue() >= dimDesired) {
+#else
                     if (VT && VT->getNumElements() >= dimDesired) {
+#endif
                         for (unsigned i = 0; i < dimDesired; ++i) {
                             Value *idx = ConstantInt::get(Type::getInt64Ty(*_llvmContext), i);
                             Value *val = Builder.CreateExtractElement(newLastVal, idx);
-                            Value *ptr = Builder.CreateInBoundsGEP(firstArg, idx);
+                            Value *ptr = IN_BOUNDS_GEP(Builder, firstArg, idx);
                             Builder.CreateStore(val, ptr);
                         }
                     } else {
@@ -233,19 +230,25 @@ public:
                             Value *idx = ConstantInt::get(Type::getInt64Ty(*_llvmContext), i);
                             Value *original_idx = ConstantInt::get(Type::getInt64Ty(*_llvmContext), 0);
                             Value *val = Builder.CreateExtractElement(newLastVal, original_idx);
-                            Value *ptr = Builder.CreateInBoundsGEP(firstArg, idx);
+                            Value *ptr = IN_BOUNDS_GEP(Builder, firstArg, idx);
                             Builder.CreateStore(val, ptr);
                         }
                     }
                 } else {
                     if (dimGenerated > 1) {
                         Value *newLastVal = promoteToDim(lastVal, dimDesired, Builder);
+#ifndef NDEBUG
                         auto *VT = llvm::cast<llvm::VectorType>(newLastVal->getType());
+#if LLVM_VERSION_MAJOR >= 13
+                        assert(VT && VT->getElementCount().getKnownMinValue() >= dimDesired);
+#else
                         assert(VT && VT->getNumElements() >= dimDesired);
+#endif
+#endif
                         for (unsigned i = 0; i < dimDesired; ++i) {
                             Value *idx = ConstantInt::get(Type::getInt64Ty(*_llvmContext), i);
                             Value *val = Builder.CreateExtractElement(newLastVal, idx);
-                            Value *ptr = Builder.CreateInBoundsGEP(firstArg, idx);
+                            Value *ptr = IN_BOUNDS_GEP(Builder, firstArg, idx);
                             Builder.CreateStore(val, ptr);
                         }
                     } else if (dimGenerated == 1) {
@@ -316,23 +319,23 @@ public:
             Builder.CreateStore(outputVarBlockOffsetArg, outputVarBlockOffsetVar);
 
             // Set output pointer
-            Value *outputBasePtrPtr = Builder.CreateGEP(nullptr, Builder.CreateLoad(varBlockTPtrPtrVar), outputVarBlockOffsetArg, "outputBasePtrPtr");
-            Value *outputBasePtr = Builder.CreateLoad(outputBasePtrPtr, "outputBasePtr");
-            Builder.CreateStore(Builder.CreateLoad(rangeStartVar), indexVar);
+            Value *outputBasePtrPtr = Builder.CreateGEP(nullptr, CREATE_LOAD(Builder, varBlockTPtrPtrVar), outputVarBlockOffsetArg, "outputBasePtrPtr");
+            Value *outputBasePtr = CREATE_LOAD_WITH_ID(Builder, outputBasePtrPtr, "outputBasePtr");
+            Builder.CreateStore(CREATE_LOAD(Builder, rangeStartVar), indexVar);
 
             Builder.CreateBr(loopCmpBlock);
             Builder.SetInsertPoint(loopCmpBlock);
-            Value *cond = Builder.CreateICmpULT(Builder.CreateLoad(indexVar), Builder.CreateLoad(rangeEndVar));
+            Value *cond = Builder.CreateICmpULT(CREATE_LOAD(Builder, indexVar), CREATE_LOAD(Builder, rangeEndVar));
             Builder.CreateCondBr(cond, loopRepeatBlock, loopEndBlock);
 
             Builder.SetInsertPoint(loopRepeatBlock);
-            Value *myOutputPtr = Builder.CreateGEP(nullptr, outputBasePtr, Builder.CreateMul(dimValue, Builder.CreateLoad(indexVar)));
-            Builder.CreateCall(F, {myOutputPtr, Builder.CreateLoad(varBlockDoublePtrPtrVar), Builder.CreateLoad(indexVar)});
+            Value *myOutputPtr = Builder.CreateGEP(nullptr, outputBasePtr, Builder.CreateMul(dimValue, CREATE_LOAD(Builder, indexVar)));
+            Builder.CreateCall(F, {myOutputPtr, CREATE_LOAD(Builder, varBlockDoublePtrPtrVar), CREATE_LOAD(Builder, indexVar)});
 
             Builder.CreateBr(loopIncBlock);
 
             Builder.SetInsertPoint(loopIncBlock);
-            Builder.CreateStore(Builder.CreateAdd(Builder.CreateLoad(indexVar), oneValue), indexVar);
+            Builder.CreateStore(Builder.CreateAdd(CREATE_LOAD(Builder, indexVar), oneValue), indexVar);
             Builder.CreateBr(loopCmpBlock);
 
             Builder.SetInsertPoint(loopEndBlock);

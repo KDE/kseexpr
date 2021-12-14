@@ -188,8 +188,8 @@ LLVM_VALUE createVecValFromAlloca(LLVM_BUILDER Builder, AllocaInst *destPtr, uns
     std::vector<LLVM_VALUE> vals;
 
     for (unsigned i = 0; i < vecLen; ++i) {
-        LLVM_VALUE ptr = destTy->isDoubleTy() ? Builder.CreateConstGEP1_32(destPtr, i) : Builder.CreateConstGEP2_32(nullptr, destPtr, 0, i);
-        vals.push_back(Builder.CreateLoad(ptr));
+        LLVM_VALUE ptr = destTy->isDoubleTy() ? CREATE_CONST_GEP1_32(Builder, destPtr, i) : Builder.CreateConstGEP2_32(nullptr, destPtr, 0, i);
+        vals.push_back(CREATE_LOAD(Builder, ptr));
     }
 
     return createVecVal(Builder, vals);
@@ -201,7 +201,11 @@ inline unsigned int getVectorNumElements(llvm::Type *ty)
 #if LLVM_VERSION_MAJOR >= 11
     assert(ty && ty->isVectorTy() && "This is not a vector type!");
     auto *VT = llvm::cast<llvm::VectorType>(ty);
+#if LLVM_VERSION_MAJOR >= 13
+    return VT->getElementCount().getKnownMinValue();
+#else
     return VT->getNumElements();
+#endif
 #else
     return ty->getVectorNumElements();
 #endif
@@ -312,7 +316,7 @@ AllocaInst *storeVectorToDoublePtr(LLVM_BUILDER Builder, LLVM_VALUE vecVal)
     for (unsigned i = 0; i < 3; ++i) {
         LLVM_VALUE idx = ConstantInt::get(Type::getInt32Ty(llvmContext), i);
         LLVM_VALUE val = Builder.CreateExtractElement(vecVal, idx);
-        LLVM_VALUE ptr = Builder.CreateConstGEP1_32(doublePtr, i);
+        LLVM_VALUE ptr = CREATE_CONST_GEP1_32(Builder, doublePtr, i);
         Builder.CreateStore(val, ptr);
     }
     return doublePtr;
@@ -379,7 +383,7 @@ std::vector<LLVM_VALUE> convertArgsToPointerAndLength(LLVM_BUILDER Builder, std:
     if (seFuncType == ExprFuncStandard::FUNCN) {
         AllocaInst *doublePtr = createAllocaInst(Builder, Type::getDoubleTy(llvmContext), numArgs);
         for (unsigned i = 0; i < numArgs; ++i) {
-            LLVM_VALUE ptr = Builder.CreateConstGEP1_32(doublePtr, i);
+            LLVM_VALUE ptr = CREATE_CONST_GEP1_32(Builder, doublePtr, i);
             Builder.CreateStore(actualArgs[i], ptr);
         }
         args.push_back(doublePtr);
@@ -392,8 +396,8 @@ std::vector<LLVM_VALUE> convertArgsToPointerAndLength(LLVM_BUILDER Builder, std:
         LLVM_VALUE subArrayPtr = Builder.CreateConstGEP2_32(nullptr, arrayPtr, 0, i);
         for (unsigned j = 0; j < 3; ++j) {
             LLVM_VALUE destAddr = Builder.CreateConstGEP2_32(nullptr, subArrayPtr, 0, j);
-            LLVM_VALUE srcAddr = Builder.CreateConstGEP1_32(toInsert, j);
-            Builder.CreateStore(Builder.CreateLoad(srcAddr), destAddr);
+            LLVM_VALUE srcAddr = CREATE_CONST_GEP1_32(Builder, toInsert, j);
+            Builder.CreateStore(CREATE_LOAD(Builder, srcAddr), destAddr);
         }
     }
     args.push_back(Builder.CreateBitCast(arrayPtr, Type::getDoublePtrTy(llvmContext)));
@@ -444,8 +448,8 @@ LLVM_VALUE callPrintf(const ExprFuncNode *seFunc, LLVM_BUILDER Builder, Function
         if (arg->getType()->isVectorTy()) {
             AllocaInst *vecArray = storeVectorToDoublePtr(Builder, arg);
             for (unsigned i = 0; i < getVectorNumElements(arg->getType()); ++i) {
-                LLVM_VALUE elemPtr = Builder.CreateConstGEP1_32(vecArray, i);
-                args.push_back(Builder.CreateLoad(elemPtr));
+                LLVM_VALUE elemPtr = CREATE_CONST_GEP1_32(Builder, vecArray, i);
+                args.push_back(CREATE_LOAD(Builder, elemPtr));
             }
         } else
             args.push_back(arg);
@@ -501,10 +505,10 @@ LLVM_VALUE callCustomFunction(const ExprFuncNode *funcNode, LLVM_BUILDER Builder
     Builder.CreateStore(ConstantFP::get(doubleTy, nargs), fpArg);
 
     // fill opDataArgPtr
-    Builder.CreateStore(ConstantInt::get(int32Ty, 0), Builder.CreateConstGEP1_32(opDataArg, 0));
-    Builder.CreateStore(ConstantInt::get(int32Ty, 1), Builder.CreateConstGEP1_32(opDataArg, 1));
-    Builder.CreateStore(ConstantInt::get(int32Ty, 1), Builder.CreateConstGEP1_32(opDataArg, 2));
-    Builder.CreateStore(ConstantInt::get(int32Ty, 0), Builder.CreateConstGEP1_32(opDataArg, 3));
+    Builder.CreateStore(ConstantInt::get(int32Ty, 0), CREATE_CONST_GEP1_32(Builder, opDataArg, 0));
+    Builder.CreateStore(ConstantInt::get(int32Ty, 1), CREATE_CONST_GEP1_32(Builder, opDataArg, 1));
+    Builder.CreateStore(ConstantInt::get(int32Ty, 1), CREATE_CONST_GEP1_32(Builder, opDataArg, 2));
+    Builder.CreateStore(ConstantInt::get(int32Ty, 0), CREATE_CONST_GEP1_32(Builder, opDataArg, 3));
 
     // Load arguments into the pseudo interpreter data structure
     unsigned fpIdx = 1 + sizeOfRet;
@@ -514,12 +518,12 @@ LLVM_VALUE callCustomFunction(const ExprFuncNode *funcNode, LLVM_BUILDER Builder
         ExprType argType = funcNode->child(argIndex)->type();
         if (argType.isFP()) {
             // store the fpArgPtr indirection index
-            Builder.CreateStore(ConstantInt::get(int32Ty, fpIdx), Builder.CreateConstGEP1_32(opDataArg, opIndex));
+            Builder.CreateStore(ConstantInt::get(int32Ty, fpIdx), CREATE_CONST_GEP1_32(Builder, opDataArg, opIndex));
             if (argType.dim() > 1) {
                 for (int comp = 0; comp < argType.dim(); comp++) {
                     LLVM_VALUE compIndex = ConstantInt::get(int32Ty, comp);
                     LLVM_VALUE val = Builder.CreateExtractElement(args[argIndex], compIndex);
-                    LLVM_VALUE fpArgPtr = Builder.CreateConstGEP1_32(fpArg, fpIdx + comp);
+                    LLVM_VALUE fpArgPtr = CREATE_CONST_GEP1_32(Builder, fpArg, fpIdx + comp);
                     Builder.CreateStore(val, fpArgPtr);
                 }
                 fpIdx += argType.dim();
@@ -529,19 +533,19 @@ LLVM_VALUE callCustomFunction(const ExprFuncNode *funcNode, LLVM_BUILDER Builder
                 if (promote) {
                     LLVM_VALUE val = args[argIndex];
                     for (int comp = 0; comp < promote; comp++) {
-                        LLVM_VALUE fpArgPtr = Builder.CreateConstGEP1_32(fpArg, fpIdx + comp);
+                        LLVM_VALUE fpArgPtr = CREATE_CONST_GEP1_32(Builder, fpArg, fpIdx + comp);
                         Builder.CreateStore(val, fpArgPtr);
                     }
                     fpIdx += promote;
                 } else {
-                    Builder.CreateStore(args[argIndex], Builder.CreateConstGEP1_32(fpArg, fpIdx));
+                    Builder.CreateStore(args[argIndex], CREATE_CONST_GEP1_32(Builder, fpArg, fpIdx));
                     fpIdx++;
                 }
             }
         } else if (argType.isString()) {
             // store the strArgPtr indirection index
-            Builder.CreateStore(ConstantInt::get(int32Ty, strIdx), Builder.CreateConstGEP1_32(opDataArg, opIndex));
-            Builder.CreateStore(args[argIndex], Builder.CreateConstGEP1_32(strArg, strIdx));
+            Builder.CreateStore(ConstantInt::get(int32Ty, strIdx), CREATE_CONST_GEP1_32(Builder, opDataArg, opIndex));
+            Builder.CreateStore(args[argIndex], CREATE_CONST_GEP1_32(Builder, strArg, strIdx));
             strIdx++;
         }
     }
@@ -560,17 +564,17 @@ LLVM_VALUE callCustomFunction(const ExprFuncNode *funcNode, LLVM_BUILDER Builder
     int resultOffset = 1;
     if (funcNode->type().isFP()) {
         if (sizeOfRet == 1) {
-            return Builder.CreateLoad(Builder.CreateConstGEP1_32(fpArg, resultOffset));
+            return CREATE_LOAD(Builder, CREATE_CONST_GEP1_32(Builder, fpArg, resultOffset));
         } else if (sizeOfRet > 1) {
             std::vector<LLVM_VALUE> resultArray;
             for (unsigned int comp = 0; comp < sizeOfRet; comp++) {
-                LLVM_VALUE ptr = Builder.CreateConstGEP1_32(fpArg, resultOffset + comp); // skip nargs
-                resultArray.push_back(Builder.CreateLoad(ptr));
+                LLVM_VALUE ptr = CREATE_CONST_GEP1_32(Builder, fpArg, resultOffset + comp); // skip nargs
+                resultArray.push_back(CREATE_LOAD(Builder, ptr));
             }
             return createVecVal(Builder, resultArray);
         }
     } else {
-        return Builder.CreateLoad(Builder.CreateConstGEP1_32(strArg, 1));
+        return CREATE_LOAD(Builder, CREATE_CONST_GEP1_32(Builder, strArg, 1));
     }
 
     assert(false);
@@ -704,7 +708,7 @@ LLVM_VALUE ExprBinaryOpNode::codegen(LLVM_BUILDER Builder) const
         // cleaned up when the expression is destroyed.
         APInt outAddr = APInt(64, reinterpret_cast<uint64_t>(&_out));
         LLVM_VALUE out = Constant::getIntegerValue(i8PtrPtrTy, outAddr); // out = &_out;
-        Builder.CreateCall(free, {Builder.CreateLoad(out)});             // free(*out);
+        Builder.CreateCall(free, {CREATE_LOAD(Builder, out)});             // free(*out);
         Builder.CreateStore(alloc, out);                                 // *out = alloc
         return alloc;
     }
@@ -986,7 +990,7 @@ LLVM_VALUE ExprFuncNode::codegen(LLVM_BUILDER Builder) const
             LLVM_VALUE realArg = args[argIndex];
             if (argumentIsVectorAndNeedsDistribution[argIndex]) {
                 if (args[argIndex]->getType()->isPointerTy())
-                    realArg = Builder.CreateLoad(Builder.CreateConstGEP2_32(nullptr, args[argIndex], 0, vecComponent));
+                    realArg = CREATE_LOAD(Builder, Builder.CreateConstGEP2_32(nullptr, args[argIndex], 0, vecComponent));
                 else
                     realArg = Builder.CreateExtractElement(args[argIndex], idx);
             }
@@ -1032,9 +1036,9 @@ LLVM_VALUE ExprIfThenElseNode::codegen(LLVM_BUILDER Builder) const
         if (finalVar->valid()) {
             ExprType refType = finalVar->type();
             Builder.SetInsertPoint(thenBlock);
-            LLVM_VALUE thenValue = promoteOperand(Builder, refType, Builder.CreateLoad(finalVar->_thenVar->varPtr()));
+            LLVM_VALUE thenValue = promoteOperand(Builder, refType, CREATE_LOAD(Builder, finalVar->_thenVar->varPtr()));
             Builder.SetInsertPoint(elseBlock);
-            LLVM_VALUE elseValue = promoteOperand(Builder, refType, Builder.CreateLoad(finalVar->_elseVar->varPtr()));
+            LLVM_VALUE elseValue = promoteOperand(Builder, refType, CREATE_LOAD(Builder, finalVar->_elseVar->varPtr()));
 
             Type *finalType = thenValue->getType();
             Builder.SetInsertPoint(phiBlock);
@@ -1185,7 +1189,7 @@ struct VarCodeGeneration {
         // load our return value
         LLVM_VALUE ret = 0;
         if (dim == 1) {
-            ret = Builder.CreateLoad(returnValue);
+            ret = CREATE_LOAD(Builder, returnValue);
         } else {
             ret = createVecValFromAlloca(Builder, returnValue, dim);
         }
@@ -1212,13 +1216,13 @@ struct VarCodeGeneration {
         Type *ptrToPtrTy = variableBlock->getType();
         Value *variableBlockAsPtrPtr = Builder.CreatePointerCast(variableBlock, ptrToPtrTy);
         Value *variableOffsetIndex = ConstantInt::get(Type::getInt32Ty(llvmContext), variableOffset);
-        Value *variableBlockIndirectPtrPtr = Builder.CreateInBoundsGEP(variableBlockAsPtrPtr, variableOffsetIndex);
-        Value *baseMemory = Builder.CreateLoad(variableBlockIndirectPtrPtr);
+        Value *variableBlockIndirectPtrPtr = IN_BOUNDS_GEP(Builder, variableBlockAsPtrPtr, variableOffsetIndex);
+        Value *baseMemory = CREATE_LOAD(Builder, variableBlockIndirectPtrPtr);
         Value *variableStrideValue = ConstantInt::get(Type::getInt32Ty(llvmContext), variableStride);
         if (dim == 1) {
             /// If we are uniform always assume indirectIndex is 0 (there's only one value)
-            Value *variablePointer = varRef->type().isLifetimeUniform() ? baseMemory : Builder.CreateInBoundsGEP(baseMemory, indirectIndex);
-            return Builder.CreateLoad(variablePointer);
+            Value *variablePointer = varRef->type().isLifetimeUniform() ? baseMemory : IN_BOUNDS_GEP(Builder, baseMemory, indirectIndex);
+            return CREATE_LOAD(Builder, variablePointer);
         } else {
             std::vector<Value *> loadedValues(dim);
             for (int component = 0; component < dim; component++) {
@@ -1226,7 +1230,7 @@ struct VarCodeGeneration {
                 /// If we are uniform always assume indirectIndex is 0 (there's only one value)
                 Value *variablePointer = varRef->type().isLifetimeUniform() ? Builder.CreateInBoundsGEP(Type::getDoubleTy(llvmContext), baseMemory, componentIndex)
                                                                             : Builder.CreateInBoundsGEP(Type::getDoubleTy(llvmContext), baseMemory, Builder.CreateAdd(Builder.CreateMul(indirectIndex, variableStrideValue), componentIndex));
-                loadedValues[component] = Builder.CreateLoad(variablePointer, varName);
+                loadedValues[component] = CREATE_LOAD_WITH_ID(Builder, variablePointer, varName);
             }
             return createVecVal(Builder, loadedValues, varName);
         }
@@ -1242,7 +1246,7 @@ LLVM_VALUE ExprVarNode::codegen(LLVM_BUILDER Builder) const
         std::string varName("external_");
         varName.append(name());
         // if (LLVM_VALUE valPtr = resolveLocalVar(varName.c_str(), Builder))
-        //     return Builder.CreateLoad(valPtr);
+        //     return CREATE_LOAD(Builder, valPtr);
         if (auto *varBlockRef = dynamic_cast<VarBlockCreator::Ref *>(_var))
             return VarCodeGeneration::codegen(varBlockRef, varName, Builder);
         else
@@ -1253,7 +1257,7 @@ LLVM_VALUE ExprVarNode::codegen(LLVM_BUILDER Builder) const
             // LLVM_VALUE valPtr = resolveLocalVar(name(), Builder);
             LLVM_VALUE varPtr = _localVar->varPtr();
             assert(varPtr && "can not found symbol?");
-            return Builder.CreateLoad(varPtr);
+            return CREATE_LOAD(Builder, varPtr);
         }
     }
 
