@@ -1,0 +1,1686 @@
+# Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>, 2021.
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"PO-Revision-Date: 2021-12-30 12:22+0100\n"
+"Last-Translator: Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>\n"
+"Language-Team: Polish <kde-i18n-doc@kde.org>\n"
+"Language: pl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Qt-Contexts: true\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
+"|| n%100>=20) ? 1 : 2);\n"
+"X-Generator: Lokalize 22.03.70\n"
+
+#: KSeExpr/ExprBuiltins.cpp:27
+msgctxt "builtin|"
+msgid ""
+"float abs(float x)\n"
+"absolute value of x"
+msgstr ""
+"float abs(float x)\n"
+"wartość bezwzględna z \"x\""
+
+#: KSeExpr/ExprBuiltins.cpp:30
+msgctxt "builtin|"
+msgid ""
+"float deg(float angle)\n"
+"radians to degrees"
+msgstr ""
+"float deg(float kąt)\n"
+"radiany na stopnie"
+
+#: KSeExpr/ExprBuiltins.cpp:31
+msgctxt "builtin|"
+msgid ""
+"float rad(float angle)\n"
+"degrees to radians"
+msgstr ""
+"float rad(float kąt)\n"
+"stopnie na radiany"
+
+#: KSeExpr/ExprBuiltins.cpp:33
+msgctxt "builtin|"
+msgid ""
+"float cosd(float angle)\n"
+"cosine in degrees"
+msgstr ""
+"float cosd(float kąt)\n"
+"kosinus w stopniach"
+
+#: KSeExpr/ExprBuiltins.cpp:34
+msgctxt "builtin|"
+msgid ""
+"float sind(float angle)\n"
+"sine in degrees"
+msgstr ""
+"float sind(float kąt)\n"
+"sinus w stopniach"
+
+#: KSeExpr/ExprBuiltins.cpp:35
+msgctxt "builtin|"
+msgid ""
+"float tand(float angle)\n"
+"tangent in degrees"
+msgstr ""
+"float tand(float kąt)\n"
+"tangens w stopniach"
+
+#: KSeExpr/ExprBuiltins.cpp:36
+msgctxt "builtin|"
+msgid ""
+"float acosd(float value)\n"
+"arc cosine in degrees"
+msgstr ""
+"float acosd(float wartość)\n"
+"arkus kosinus w stopniach"
+
+#: KSeExpr/ExprBuiltins.cpp:37
+msgctxt "builtin|"
+msgid ""
+"float asind(float value)\n"
+"arc sine in degrees"
+msgstr ""
+"float asind(float wartość)\n"
+"arkus sinus w stopniach"
+
+#: KSeExpr/ExprBuiltins.cpp:38
+msgctxt "builtin|"
+msgid ""
+"float atand(float value)\n"
+"arc tangent in degrees"
+msgstr ""
+"float atand(float wartość)\n"
+"arkus tangens w stopniach"
+
+#: KSeExpr/ExprBuiltins.cpp:39
+msgctxt "builtin|"
+msgid ""
+"float atan2d(float y,float x)\n"
+"arc tangent in degrees of y/x between -180 and 180"
+msgstr ""
+"float atan2d(float y,float x)\n"
+"arkus tangens w stopniach z \"y/x\" w zakresie -180 oraz 180"
+
+#: KSeExpr/ExprBuiltins.cpp:41
+msgctxt "builtin|"
+msgid ""
+"float cos(float angle)\n"
+"cosine in radians"
+msgstr ""
+"float cos(float kąt)\n"
+"kosinus w radianach"
+
+#: KSeExpr/ExprBuiltins.cpp:42
+msgctxt "builtin|"
+msgid ""
+"float sin(float angle)\n"
+"sine in radians"
+msgstr ""
+"float sin(float kąt)\n"
+"sinus w radianach"
+
+#: KSeExpr/ExprBuiltins.cpp:43
+msgctxt "builtin|"
+msgid ""
+"float tan(float angle)\n"
+"tangent in radians"
+msgstr ""
+"float tan(float kąt)\n"
+"tangens w radianach"
+
+#: KSeExpr/ExprBuiltins.cpp:44
+msgctxt "builtin|"
+msgid ""
+"float acos(float value)\n"
+"arc cosine in radians"
+msgstr ""
+"float acos(float wartość)\n"
+"arkus kosinus w radianach"
+
+#: KSeExpr/ExprBuiltins.cpp:45
+msgctxt "builtin|"
+msgid ""
+"float asin(float value)\n"
+"arc sine in radians"
+msgstr ""
+"float asin(float wartość)\n"
+"arkus sinus w radianach"
+
+#: KSeExpr/ExprBuiltins.cpp:46
+msgctxt "builtin|"
+msgid ""
+"float atan(float value)\n"
+"arc tangent in radians"
+msgstr ""
+"float atan(float wartość)\n"
+"arkus tangens w radianach"
+
+#: KSeExpr/ExprBuiltins.cpp:47
+msgctxt "builtin|"
+msgid ""
+"float atan2(float y,float x)\n"
+"arc tangent in radians of y/x between -PI and PI"
+msgstr ""
+"float atan2(float y,float x)\n"
+"arkus tangens w radianach z \"y/x\" w zakresie -PI oraz PI"
+
+#: KSeExpr/ExprBuiltins.cpp:49
+msgctxt "builtin|"
+msgid ""
+"float cosh(float angle)\n"
+"hyperbolic cosine in radians"
+msgstr ""
+"float cosh(float kąt)\n"
+"hiperboliczny kosinus w radianach"
+
+#: KSeExpr/ExprBuiltins.cpp:50
+msgctxt "builtin|"
+msgid ""
+"float sinh(float angle)\n"
+"hyperbolic sine in radians"
+msgstr ""
+"float sinh(float kąt)\n"
+"hiperboliczny sinus w radianach"
+
+#: KSeExpr/ExprBuiltins.cpp:51
+msgctxt "builtin|"
+msgid ""
+"float tanh(float angle)\n"
+"hyperbolic tangent in radians"
+msgstr ""
+"float tanh(float kąt)\n"
+"hiperboliczny tangens w radianach"
+
+#: KSeExpr/ExprBuiltins.cpp:52
+msgctxt "builtin|"
+msgid ""
+"float acosh(float value)\n"
+"hyperbolic arc cosine in radians"
+msgstr ""
+"float acosh(float wartość)\n"
+"hiperboliczny arkus kosinus w radianach"
+
+#: KSeExpr/ExprBuiltins.cpp:53
+msgctxt "builtin|"
+msgid ""
+"float asinh(float value)\n"
+"hyperbolic arc sine in radians"
+msgstr ""
+"float asinh(float wartość)\n"
+"hiperboliczny arkus sinus w radianach"
+
+#: KSeExpr/ExprBuiltins.cpp:54
+msgctxt "builtin|"
+msgid ""
+"float atanh(float value)\n"
+"hyperbolic arc tangent in radians"
+msgstr ""
+"float atanh(float wartość)\n"
+"hiperboliczny arkus tangens w radianach"
+
+#: KSeExpr/ExprBuiltins.cpp:56
+msgctxt "builtin|"
+msgid ""
+"float clamp(float x,float lo,float hi)\n"
+"constrain x to range [lo,hi]"
+msgstr ""
+"float clamp(float x,float lo,float hi)\n"
+"wiąże x do zakresu [lo,hi]"
+
+#: KSeExpr/ExprBuiltins.cpp:57
+msgctxt "builtin|"
+msgid ""
+"float round(float x)\n"
+"nearest integer to x"
+msgstr ""
+"float round(float x)\n"
+"najbliższa liczba całkowita przy x"
+
+#: KSeExpr/ExprBuiltins.cpp:58
+msgctxt "builtin|"
+msgid ""
+"float max(float a,float b)\n"
+"greater of a and b"
+msgstr ""
+"float max(float a,float b)\n"
+"większe spośród a oraz b"
+
+#: KSeExpr/ExprBuiltins.cpp:59
+msgctxt "builtin|"
+msgid ""
+"float min(float a,float b)\n"
+"lesser of a and b"
+msgstr ""
+"float mix(float a,float b)\n"
+"mniejsze spośród a oraz b"
+
+#: KSeExpr/ExprBuiltins.cpp:60
+msgctxt "builtin|"
+msgid ""
+"float trunc(float a)\n"
+"nearest integer towards zero"
+msgstr ""
+"float trunc(float a)\n"
+"najbliższa liczba całkowita w stronę zera"
+
+#: KSeExpr/ExprBuiltins.cpp:61
+msgctxt "builtin|"
+msgid ""
+"float floor(float a)\n"
+"next lower integer"
+msgstr ""
+"float floor(float a)\n"
+"następna niższa liczba całkowita"
+
+#: KSeExpr/ExprBuiltins.cpp:62
+msgctxt "builtin|"
+msgid ""
+"float ceil(float a)\n"
+"next higher integer"
+msgstr ""
+"float ceil(float a)\n"
+"następna wyższa liczba całkowita"
+
+#: KSeExpr/ExprBuiltins.cpp:64
+msgctxt "builtin|"
+msgid ""
+"float invert(float a)\n"
+"Defined as 1-x"
+msgstr ""
+"float invert(float a)\n"
+"Określone jako 1-x"
+
+#: KSeExpr/ExprBuiltins.cpp:65
+msgctxt "builtin|"
+msgid ""
+"float cbrt(float x)\n"
+"cube root"
+msgstr ""
+"float cbrt(float x)\n"
+"pierwiastek sześcienny"
+
+#: KSeExpr/ExprBuiltins.cpp:66
+msgctxt "builtin|"
+msgid ""
+"float sqrt(float x)\n"
+"square root"
+msgstr ""
+"float sqrt(float x)\n"
+"pierwiastek kwadratowy"
+
+#: KSeExpr/ExprBuiltins.cpp:67
+msgctxt "builtin|"
+msgid ""
+"float exp(float x)\n"
+"E raised to the x power"
+msgstr ""
+"float exp(float x)\n"
+"E podniesione do potęgi x"
+
+#: KSeExpr/ExprBuiltins.cpp:68
+msgctxt "builtin|"
+msgid ""
+"float pow(float x, float y)\n"
+"x to the y power, also available as ^"
+msgstr ""
+"float pow(float x, float y)\n"
+"x do potęgi y, dostępne również jako ^"
+
+#: KSeExpr/ExprBuiltins.cpp:69
+msgctxt "builtin|"
+msgid ""
+"float log(float x)\n"
+"Natural logarithm"
+msgstr ""
+"float log(float x)\n"
+"Logarytm naturalny"
+
+#: KSeExpr/ExprBuiltins.cpp:70
+msgctxt "builtin|"
+msgid ""
+"float log10(float x)\n"
+"Base 10 logarithm"
+msgstr ""
+"float log10(float x)\n"
+"Podstawa algorytmu 10"
+
+#: KSeExpr/ExprBuiltins.cpp:71
+msgctxt "builtin|"
+msgid ""
+"float fmod(float x,float y)\n"
+"remainder of x/y (also available as % operator)"
+msgstr ""
+"float fmod(float x,float y)\n"
+"reszta z x/y (dostępne również jako operator %)"
+
+#: KSeExpr/ExprBuiltins.cpp:72
+msgctxt "builtin|"
+msgid ""
+"float turbulence(vector v,int octaves=6,float lacunarity=2,float gain=.5)\n"
+"Absolute value of each noise term is taken. This gives billowy appearance"
+msgstr ""
+"float turbulence(vector v,int oktawy=6,float lakunarność=2,float "
+"wzmocnienie=.5)\n"
+"Brana jest bezwzględna wartość każdego wyrażenia szumu. Nadaje to wzburzony "
+"wygląd"
+
+#: KSeExpr/ExprBuiltins.cpp:75
+msgctxt "builtin|"
+msgid ""
+"color cturbulence(vector v,int octaves=6,float lacunarity=2,float gain=.5)\n"
+"Absolute value of each noise term is taken. This gives billowy appearance"
+msgstr ""
+"color cturbulence(vector v,int oktawy=6,float lakunarność=2,float "
+"wzmocnienie=.5)\n"
+"Brana jest bezwzględna wartość każdego wyrażenia szumu. Nadaje to wzburzony "
+"wygląd"
+
+#: KSeExpr/ExprBuiltins.cpp:78
+msgctxt "builtin|"
+msgid ""
+"vector vturbulence(vector v,int octaves=6,float lacunarity=2,float gain=.5)\n"
+"Absolute value of each noise term is taken. This gives billowy appearance"
+msgstr ""
+"vector vturbulence(vector v,int oktawy=6,float lakunarność=2,float "
+"wzmocnienie=.5)\n"
+"Brana jest bezwzględna wartość każdego wyrażenia szumu. Nadaje to wzburzony "
+"wygląd"
+
+#: KSeExpr/ExprBuiltins.cpp:86
+msgctxt "builtin|"
+msgid ""
+"float compress(float x,float lo,float hi)\n"
+"Remaps x in [0,1] to [lo,hi]"
+msgstr ""
+"float compress(float x,float lo,float hi)\n"
+"Ponownie mapuje x w [0,1] do [lo,hi]"
+
+#: KSeExpr/ExprBuiltins.cpp:94
+msgctxt "builtin|"
+msgid ""
+"float expand(float x,float lo,float hi)\n"
+"Remaps x in [lo,hi] to [0,1]"
+msgstr ""
+"float expand(float x,float lo,float hi)\n"
+"Ponownie mapuje x w [lo,hi] do [0,1]"
+
+#: KSeExpr/ExprBuiltins.cpp:100
+msgctxt "builtin|"
+msgid ""
+"float fit(float x,float a1,float b1,float a2,float b2)\n"
+"Linearly remaps x in [a1,b1] to [a2,b2]"
+msgstr ""
+"float fit(float x,float a1,float b1,float a2,float b2)\n"
+"Liniowo mapuje ponownie x w [a1,b1] do [a2,b2]"
+
+#: KSeExpr/ExprBuiltins.cpp:106
+msgctxt "builtin|"
+msgid ""
+"float gamma(float x, float g)\n"
+"Gamma correction of x with gamma factor g"
+msgstr ""
+"float gamma(float x, float g)\n"
+"Poprawka gammy \"x\" ze współczynnikiem gammy \"g\""
+
+#: KSeExpr/ExprBuiltins.cpp:113
+msgctxt "builtin|"
+msgid ""
+"float bias(float x, float g)\n"
+"Variation of gamma where values less than 0.5 pull the curve down\n"
+"and values greater than 0.5 pull the curve up\n"
+"pow(x,log(b)/log(0.5))"
+msgstr ""
+"float bias(float x, float g)\n"
+"Odmiana gammy, gdzie wartości mniejsze niż 0,5 ściągają krzywą na dół\n"
+"a wartości większe niż 0.5 ciągną krzywą w górę\n"
+"pow(x,log(b)/log(0.5))"
+
+#: KSeExpr/ExprBuiltins.cpp:124
+msgctxt "builtin|"
+msgid ""
+"float contrast(float x, float c)\n"
+"Adjust the contrast.&nbsp; For c from 0 to 0.5, the contrast is decreased."
+"&nbsp; For c &gt; 0.5, the contrast is increased."
+msgstr ""
+"float contrast(float x, float c)\n"
+"Dostosuje kontrast.&nbsp; Dla \"c\" od 0 do 0,5, kontrast jest zmniejszany."
+"&nbsp; Dla \"c\" > 0,5, kontrast jest zwiększany."
+
+#: KSeExpr/ExprBuiltins.cpp:132
+msgctxt "builtin|"
+msgid ""
+"float boxstep(float x,float a)\n"
+" if x < a then 0 otherwise 1"
+msgstr ""
+"float boxstep(float x,float a)\n"
+" jeśli x < a to 0 w przeciwnym przypadku 1"
+
+#: KSeExpr/ExprBuiltins.cpp:143
+msgctxt "builtin|"
+msgid ""
+"float linearstep(float x, float a, float b)\n"
+" if x &lt; a then 0, if x &gt; b then 1, and\n"
+"x transitions linearly when a &lt; x &lt; b"
+msgstr ""
+"float linearstep(float x, float a, float b)\n"
+" jeśli x &lt; a to 0, jeśli x &gt; b to 1 oraz\n"
+"x przechodzi liniowo, gdy a &lt; x &lt; b "
+
+#: KSeExpr/ExprBuiltins.cpp:165
+msgctxt "builtin|"
+msgid ""
+"float smoothstep(float x,float a,float b)\n"
+" if x &lt; a then 0, if x &gt; b then 1, and\n"
+"x transitions smoothly (cubic) when a &lt; x &lt; b"
+msgstr ""
+"float smoothstep(float x,float a,float b)\n"
+" jeśli x &lt; a to 0, jeśli x &gt; b to 1 oraz\n"
+"x przechodzi gładko (sześciennie), gdy a &lt; x &lt; b"
+
+#: KSeExpr/ExprBuiltins.cpp:187
+msgctxt "builtin|"
+msgid ""
+"float gasussstep(float x,float a,float b)\n"
+" if x &lt; a then 0, if x &gt; b then 1, and\n"
+"x transitions smoothly (exponentially) when a &lt; x &lt; b"
+msgstr ""
+"float gasussstep(float x,float a,float b)\n"
+" jeśli x &lt; a to 0, jeśli x &gt; b to 1 oraz\n"
+"x przechodzi gładko (wykładniczo), gdy a &lt; x &lt; b"
+
+#: KSeExpr/ExprBuiltins.cpp:218
+msgctxt "builtin|"
+msgid ""
+"remap(float x, float source, float range, float falloff, float interp)\n"
+"General remapping function.\n"
+"When x is within +/- <i>range</i> of source, the result is one.\n"
+"The result falls to zero beyond that range over <i>falloff</i> distance.\n"
+"The falloff shape is controlled by <i>interp</i>. Numeric values\n"
+"or named constants may be used:\n"
+"&nbsp;&nbsp;&nbsp;&nbsp;int <b>linear</b> = 0\n"
+"&nbsp;&nbsp;&nbsp;&nbsp;int <b>smooth</b> = 1\n"
+"&nbsp;&nbsp;&nbsp;&nbsp;int <b>gaussian</b> = 2\n"
+msgstr ""
+"remap(float x, float źródło, float zakres, float spadek, float interp)\n"
+"Ogólna funkcja ponownie mapująca.\n"
+"Gdy x jest w <i>zakres</i> +/-  źródła, to wynik jest równy jeden.\n"
+"Wynik spada do zera poza tym zakresem w odległości <i>spadek</i>.\n"
+"Kształt spadku jest określany przez <i>interp</i>. Można używać wartości "
+"numerycznych\n"
+"lub nazwanych stałych:\n"
+"&nbsp;&nbsp;&nbsp;&nbsp;int <b>linowy</b> = 0\n"
+"&nbsp;&nbsp;&nbsp;&nbsp;int <b>wygładzony</b> = 1\n"
+"&nbsp;&nbsp;&nbsp;&nbsp;int <b>gausa</b> = 2\n"
+
+#: KSeExpr/ExprBuiltins.cpp:233
+msgctxt "builtin|"
+msgid ""
+"mix(float a,float b,float alpha)\n"
+"Blend of a and b according to alpha."
+msgstr ""
+"mix(float a,float b,float alpha)\n"
+"Zmieszanie \"a\" oraz \"b\" wg alfy."
+
+#: KSeExpr/ExprBuiltins.cpp:260
+msgctxt "builtin|"
+msgid ""
+"color  hsi(color x, float h, float s, float i, float map=1)\n"
+"The hsi function shifts the hue by h\n"
+"(in degrees) and scales the saturation and intensity by s and i\n"
+"respectively.&nbsp; A map may be supplied which will control the shift\n"
+"- the full shift will happen when the map is one and no shift will\n"
+"happen when the map is zero.&nbsp; The shift will be scaled back for\n"
+"values between zero and one."
+msgstr ""
+"color  hsi(color x, float h, float s, float i, float map=1)\n"
+"Funkcja hsi przesuwa odcień o wartość \"h\"\n"
+"(w stopniach) i skaluje nasycenie oraz natężenie odpowiednio o wartość \"s\" "
+"oraz \"i\"\n"
+".&nbsp; Można podać mapę, która będzie sterować przesunięciem\n"
+"- pełne przesunięcie nastąpi, gdy mapa jest równa jeden, a brak przesunięcia "
+"nastąpi\n"
+"gdy mapa jest równa zero.&nbsp; Przesunięcie powróci do swojej pierwotnej\n"
+"wartości pomiędzy zero i jeden."
+
+#: KSeExpr/ExprBuiltins.cpp:306
+msgctxt "builtin|"
+msgid ""
+"color midhsi(color x, float h, float s, float i, float map, float falloff=1, "
+"int interp=0)\n"
+"The midhsi function is just like the hsi function except that\n"
+"the control map is centered around the mid point (value of 0.5)\n"
+"and can scale the shift in both directions."
+msgstr ""
+"color midhsi(color x, float h, float s, float i, float map, float falloff=1, "
+"int interp=0)\n"
+"Funkcja midhsi jest taka sama jak hsi z wyjątkiem, że \n"
+"mapa sterująca jest wyśrodkowana względem punktu środkowego (wartość 0.5)\n"
+"i może skalować przesunięcie w obu kierunkach."
+
+#: KSeExpr/ExprBuiltins.cpp:358
+msgctxt "builtin|"
+msgid ""
+"color rgbtohsl(color rgb)\n"
+"RGB to HSL color space conversion.\n"
+"HSL is Hue, Saturation, Lightness (all in range [0..1] )\n"
+"These functions have also been extended to support rgb and hsl values\n"
+"outside of the range [0..1] in a reasonable way.&nbsp; For any rgb or\n"
+"hsl value (except for negative s values), the conversion is\n"
+"well-defined and reversible."
+msgstr ""
+"color rgbtohsl(color rgb)\n"
+"Przekształcenie przestrzeni barw RGB na HSL.\n"
+"HSL to Hue (z ang. odcień), Saturation (z ang. nasycenie), Lightness (z ang. "
+"jasność) (wszystkie w zakresie[0..1] )\n"
+"Funkcje te zostały także rozszerzone o obsługę wartości rgb oraz hsl\n"
+"spoza zakresu [0..1] w sensowny sposób.&nbsp; Dla każdej wartości rgb czy\n"
+"hsl (poza ujemnymi wartościami \"s\"), przekształcenie\n"
+"jest jednoznacznie określone i odwracalne."
+
+#: KSeExpr/ExprBuiltins.cpp:413
+msgctxt "builtin|"
+msgid ""
+"color hsltorgb(color hsl)\n"
+"HSL to RGB color space conversion.\n"
+"HSL is Hue, Saturation, Lightness (all in range [0..1] )\n"
+"These functions have also been extended to support rgb and hsl values\n"
+"outside of the range [0..1] in a reasonable way.&nbsp; For any rgb or\n"
+"hsl value (except for negative s values), the conversion is\n"
+"well-defined and reversible."
+msgstr ""
+"color hsltorgb(color hsl)\n"
+"Przekształcenie przestrzeni barw HSL na RGB.\n"
+"HSL to Hue (z ang. odcień), Saturation (z ang. nasycenie), Lightness (z ang. "
+"jasność) (wszystkie w zakresie[0..1] )\n"
+"Funkcje te zostały także rozszerzone o obsługę wartości rgb oraz hsl\n"
+"spoza zakresu [0..1] w sensowny sposób.&nbsp; Dla każdej wartości rgb czy\n"
+"hsl (poza ujemnymi wartościami \"s\"), przekształcenie\n"
+"jest jednoznacznie określone i odwracalne."
+
+#: KSeExpr/ExprBuiltins.cpp:441
+msgctxt "builtin|"
+msgid ""
+"color saturate(color val, float amt)\n"
+"Scale saturation of color by amt.\n"
+"The color is scaled around the rec709 luminance value,\n"
+"and negative results are clamped at zero.\n"
+msgstr ""
+"color saturate(color val, float amt)\n"
+"Skaluje nasycenie barwy o wartość \"amt\".\n"
+"Barwa jest skalowana wokół wartości luminancji rec709,\n"
+"a wartości ujemne są przycinane do zera.\n"
+
+#: KSeExpr/ExprBuiltins.cpp:499
+msgctxt "builtin|"
+msgid ""
+"float rand ( [float min, float max], [float seed] )\n"
+"Random number between [min, max] (or [0, 1] if unspecified).\n"
+"If a seed is supplied, it will be used in addition to the internal seeds and "
+"may be used to create multiple distinct generators."
+msgstr ""
+"float rand ( [float min, float max], [float seed] )\n"
+"Losowa liczba pomiędzy [min, max] (lub [0, 1] jeśli nie określono).\n"
+"Jeśli podano ziarno losowości, to zostanie ono wykorzystane jako dodatkowe "
+"do wewnętrznych ziaren losowości i może być użyte do stworzenia wielu "
+"odmiennych generatorów."
+
+#: KSeExpr/ExprBuiltins.cpp:553
+msgctxt "builtin|"
+msgid ""
+"float hash(float seed1,[float seed2, ...])\n"
+"Like rand, but with no internal seeds. Any number of seeds may be given\n"
+"and the result will be a random function based on all the seeds."
+msgstr ""
+"float hash(float seed1,[float seed2, ...])\n"
+"Tak jak rand lecz bez wewnętrznych ziaren losowości. Można podać dowolną\n"
+"liczbę ziaren losowości, a wynikiem będzie losowa funkcja na podstawie "
+"wszystkich ziaren losowości."
+
+#: KSeExpr/ExprBuiltins.cpp:596
+msgctxt "builtin|"
+msgid ""
+"float noise ( vector v )\n"
+"float noise ( float x, float y )\n"
+"float noise ( float x, float y, float z )\n"
+"float noise ( float x, float y, float z, float w )\n"
+"Original perlin noise at location (C2 interpolant)"
+msgstr ""
+"float noise ( vector v )\n"
+"float noise ( float x, float y )\n"
+"float noise ( float x, float y, float z )\n"
+"float noise ( float x, float y, float z, float w )\n"
+"Pierwotny szum perlin w miejscu (C2 interpolant)"
+
+#: KSeExpr/ExprBuiltins.cpp:610
+msgctxt "builtin|"
+msgid ""
+"float snoise ( vector v)\n"
+"signed noise w/ range -1 to 1 formed with original perlin noise at location "
+"(C2 interpolant)"
+msgstr ""
+"float snoise ( vector v)\n"
+"Szum w zakresie od -1 do 1 utworzony z pierwotnego szumu perlin w miejscu "
+"(C2 interpolant)"
+
+#: KSeExpr/ExprBuiltins.cpp:621
+msgctxt "builtin|"
+msgid ""
+"vector vnoise ( vector v)\n"
+"vector noise formed with original perlin noise at location (C2 interpolant)"
+msgstr ""
+"vector vnoise (vector v)\n"
+"Szum wektorowy utworzony z pierwotnego szumu perlin w miejscu (C2 "
+"interpolant)"
+
+#: KSeExpr/ExprBuiltins.cpp:629
+msgctxt "builtin|"
+msgid ""
+"color cnoise ( vector v)\n"
+"color noise formed with original perlin noise at location (C2 interpolant)"
+msgstr ""
+"color cnoise ( vector v)\n"
+"Szum kolorowy utworzony z pierwotnego szumu perlin w miejscu (C2 interpolant)"
+
+#: KSeExpr/ExprBuiltins.cpp:640
+msgctxt "builtin|"
+msgid ""
+"float snoise4 ( vector v,float t)\n"
+"4D signed noise w/ range -1 to 1 formed with original perlin noise at "
+"location (C2 interpolant)"
+msgstr ""
+"float snoise4 ( vector v,float t)\n"
+"Szum 4D ze znakiem w zakresie od -1 do 1 utworzony z pierwotnego szumu "
+"perlin w miejscu (C2 interpolant)"
+
+#: KSeExpr/ExprBuiltins.cpp:651
+msgctxt "builtin|"
+msgid ""
+"vector vnoise4 ( vector v,float t)\n"
+"4D vector noise formed with original perlin noise at location (C2 "
+"interpolant)"
+msgstr ""
+"vector vnoise4 ( vector v,float t)\n"
+"Szum wektorowy 4D utworzony z pierwotnego szumu perlin w miejscu (C2 "
+"interpolant)"
+
+#: KSeExpr/ExprBuiltins.cpp:659
+msgctxt "builtin|"
+msgid ""
+"color cnoise4 ( vector v,float t)\n"
+"4D color noise formed with original perlin noise at location (C2 interpolant)"
+msgstr ""
+"color cnoise4 ( vector v,float t)\n"
+"Szum kolorowy 4D utworzony z pierwotnego szumu perlin w miejscu (C2 "
+"interpolant)"
+
+#: KSeExpr/ExprBuiltins.cpp:751
+msgctxt "builtin|"
+msgid ""
+"float fbm(vector v,int octaves=6,float lacunarity=2,float gain=.5)\n"
+"fbm (Fractal Brownian Motion) is a multi-frequency noise function. \n"
+"The base frequency is the same as the \"noise\" function. The total number "
+"of frequencies is controlled by octaves. The lacunarity is the spacing "
+"between the frequencies - a value of 2 means each octave is twice the "
+"previous frequency. The gain controls how much each frequency is scaled "
+"relative to the previous frequency."
+msgstr ""
+"float fbm(vector v,int oktawy=6,float lakunarność=2,float wzmocnienie=.5)\n"
+"fbm (Fraktalny ruch Browna) jest wieloczęstotliwościową funkcją szumu. \n"
+"Podstawowa częstotliwość jest taka sama jak funkcja \"szumu\". Całkowita "
+"liczba częstotliwości sterowanych przez oktawy. Lakunarność jest "
+"odległościąpomiędzy częstotliwościami - wartość równa 2 oznacza, że każda "
+"oktawa madwukrotnie wyższą częstotliwość poprzedniej. Wzmocnienie określa o "
+"ilekażda częstotliwość jest skalowana względem poprzedniej częstotliwości."
+
+#: KSeExpr/ExprBuiltins.cpp:787
+msgctxt "builtin|"
+msgid "vector vfbm(vector vint octaves=6,float lacunarity=2,float gain=.5)"
+msgstr ""
+"vector vfbm(vector v, int oktawy=6, float lakunarność=2, float "
+"wzmocnienie=.5 )"
+
+#: KSeExpr/ExprBuiltins.cpp:820
+msgctxt "builtin|"
+msgid ""
+"float fbm4(vector v,float time,int octaves=6,float lacunarity=2,float "
+"gain=.5)\n"
+"fbm (Fractal Brownian Motion) is a multi-frequency noise function. \n"
+"The base frequency is the same as the \"noise\" function. The total \n"
+"number of frequencies is controlled by octaves. The lacunarity is the \n"
+"spacing between the frequencies - a value of 2 means each octave is \n"
+"twice the previous frequency. The gain controls how much each \n"
+"frequency is scaled relative to the previous frequency."
+msgstr ""
+"float fbm4(vector v,float czas,int oktaves=6,float lakunarność=2,float "
+"wzmocnienie=.5)\n"
+"fbm (Fraktalny ruch Browna) jest wieloczęstotliwościową funkcją szumu. \n"
+"Podstawowa częstotliwość jest taka sama jak funkcja \"szumu\". Całkowita \n"
+"liczba częstotliwości sterowanych przez oktawy. Lakunarność jest "
+"odległością \n"
+"pomiędzy częstotliwościami - wartość równa 2 oznacza, że każda oktawa ma \n"
+"dwukrotnie wyższą częstotliwość poprzedniej. Wzmocnienie określa o ile \n"
+"każda częstotliwość jest skalowana względem poprzedniej częstotliwości."
+
+#: KSeExpr/ExprBuiltins.cpp:860
+msgctxt "builtin|"
+msgid ""
+"vector vfbm4(vector v,float time,int octaves=6,float lacunarity=2,float "
+"gain=.5)"
+msgstr ""
+"vector vfbm4(vector v,float czas,int oktawy=6,float lakunarność=2,float "
+"wzmocnienie=.5)"
+
+#: KSeExpr/ExprBuiltins.cpp:866
+msgctxt "builtin|"
+msgid "color cfbm(vector vint octaves=6,float lacunarity=2,float gain=.5)"
+msgstr ""
+"color cfbm(vector vint oktawy=6,float lakunarność=2,float wzmocnienie=.5)"
+
+#: KSeExpr/ExprBuiltins.cpp:872
+msgctxt "builtin|"
+msgid ""
+"color cfbm4(vector v,float time,int octaves=6,float lacunarity=2,float "
+"gain=.5)"
+msgstr ""
+"color cfbm4(vector v,float czas,int oktawy=6,float lakunarność=2,float "
+"wzmocnienie=.5)"
+
+#: KSeExpr/ExprBuiltins.cpp:881
+msgctxt "builtin|"
+msgid ""
+"float cellnoise(vector v)\n"
+"cellnoise generates a field of constant colored cubes based on the integer "
+"location.\n"
+"This is the same as the prman cellnoise function."
+msgstr ""
+"float cellnoise(vector v)\n"
+"cellnoise tworzy pole sześcianów o stałej barwie na podstawie położenia "
+"liczb całkowitych.\n"
+"Jest to to samo co funkcja szumu komórkowego prman."
+
+#: KSeExpr/ExprBuiltins.cpp:893
+msgctxt "builtin|"
+msgid ""
+"color cellnoise(vector v)\n"
+"cellnoise generates a field of constant colored cubes based on the integer "
+"location.\n"
+"This is the same as the prman cellnoise function."
+msgstr ""
+"color cellnoise(vector v)\n"
+"cellnoise tworzy pole sześcianów o stałej barwie na podstawie położenia "
+"liczb całkowitych.\n"
+"Jest to to samo co funkcja szumu komórkowego prman."
+
+#: KSeExpr/ExprBuiltins.cpp:906
+msgctxt "builtin|"
+msgid ""
+"float pnoise ( vector v, vector period )\n"
+"periodic noise"
+msgstr ""
+"float pnoise ( vector v, vector okres )\n"
+"szum okresowy"
+
+#: KSeExpr/ExprBuiltins.cpp:1050
+msgctxt "builtin|"
+msgid ""
+"float voronoi(vector v, int type=1,float jitter=0.5, float fbmScale=0, int "
+"fbmOctaves=4,float fbmLacunarity=2, float fbmGain=.5)\n"
+"voronoi is a cellular noise pattern. It is a jittered variant of cellnoise."
+msgstr ""
+"float voronoi(vector v, int rodzaj=1,float postrzępienie=0.5, float "
+"fbmSkala=0, int fbmOktawy=4,float fbmLakunarność=2, float "
+"fbmWzmocnienie=.5)\n"
+"voronoi jest komórkowym wzorcem szumu. Jest postrzępioną odmianą cellnoise."
+
+#: KSeExpr/ExprBuiltins.cpp:1126
+msgctxt "builtin|"
+msgid ""
+"color cvoronoi(vector v, int type=1,float jitter=0.5, float fbmScale=0, int "
+"fbmOctaves=4,float fbmLacunarity=2, float fbmGain=.5)\n"
+"returns color in cellular pattern. It is a jittered variant of cellnoise."
+msgstr ""
+"color cvoronoi(vector v, int rodzaj=1,float postrzępienie=0.5, float "
+"fbmSkala=0, int fbmOktawy=4,float fbmLakunarność=2, float "
+"fbmWzmocnienie=.5)\n"
+"zwraca barwę we wzorcu komórkowym. Jest postrzępioną odmianą cellnoise."
+
+#: KSeExpr/ExprBuiltins.cpp:1175
+msgctxt "builtin|"
+msgid ""
+"color pvoronoi(vector v, int type=1,float jitter=0.5, float fbmScale=0, int "
+"fbmOctaves=4,float fbmLacunarity=2, float fbmGain=.5)\n"
+"returns center of voronoi cell."
+msgstr ""
+"color pvoronoi(vector v, int rodzaj=1,float postrzępienie=0.5, float "
+"fbmSkala=0, int fbmOktawy=4,float fbmLakunarność=2, float "
+"fbmWzmocnienie=.5)\n"
+"zwraca środek komórki voronoi."
+
+#: KSeExpr/ExprBuiltins.cpp:1238
+msgctxt "builtin|"
+msgid ""
+"float dist(vector a, vector b)\n"
+"distance between two points"
+msgstr ""
+"float dist(vector a, vector b)\n"
+"odległość pomiędzy dwoma punktami"
+
+#: KSeExpr/ExprBuiltins.cpp:1246
+msgctxt "builtin|"
+msgid ""
+"float length(vector v)\n"
+"length of vector"
+msgstr ""
+"float length(vector v)\n"
+"długość wektora"
+
+#: KSeExpr/ExprBuiltins.cpp:1254
+msgctxt "builtin|"
+msgid ""
+"float hypot(vector v)\n"
+"length of 2d vector [x,y]"
+msgstr ""
+"float hypot(vector v)\n"
+"długość wektora 2D [x, y]"
+
+#: KSeExpr/ExprBuiltins.cpp:1262
+msgctxt "builtin|"
+msgid ""
+"float dot(vector a,vector b)\n"
+"vector dot product"
+msgstr ""
+"float dot(vector a,vector b)\n"
+"iloczyn skalarny wektorów"
+
+#: KSeExpr/ExprBuiltins.cpp:1274
+msgctxt "builtin|"
+msgid ""
+"vector norm(vector v)\n"
+"vector scaled to unit length"
+msgstr ""
+"vector norm(vector v)\n"
+"wektor przeskalowany do długości jednostkowej"
+
+#: KSeExpr/ExprBuiltins.cpp:1282
+msgctxt "builtin|"
+msgid ""
+"vector cross(vector a,vector b)\n"
+"vector cross product"
+msgstr ""
+"vector cross(vector a,vector b)\n"
+"iloczyn wektorowy wektorów"
+
+#: KSeExpr/ExprBuiltins.cpp:1293
+msgctxt "builtin|"
+msgid ""
+"float angle(vector a,vector b)\n"
+"angle between two vectors (in radians)"
+msgstr ""
+"float angle(vector a,vector b)\n"
+"kąt pomiędzy dwoma wektorami (w radianach)"
+
+#: KSeExpr/ExprBuiltins.cpp:1301
+msgctxt "builtin|"
+msgid ""
+"vector angle(vector a,vector b)\n"
+"normalized vector orthogonal to a and b scaled to unit length"
+msgstr ""
+"vector angle(vector a,vector b)\n"
+"znormalizowany wektor prostopadły do \"a\" oraz \"b\", przeskalowany do "
+"jednostki długości"
+
+#: KSeExpr/ExprBuiltins.cpp:1317
+msgctxt "builtin|"
+msgid ""
+"vector rotate(vector v,vector axis,float angle)\n"
+"rotates v around axis by given angle (in radians)"
+msgstr ""
+"vector rotate(vector v,vector oś,float kąt)\n"
+"obraca \"v\" wokół osi o dany kąt (w radianach)"
+
+#: KSeExpr/ExprBuiltins.cpp:1327
+msgctxt "builtin|"
+msgid ""
+"vector up(vector P,vector upvec)\n"
+"rotates v such that the Y axis points in the given up direction"
+msgstr ""
+"vector up(vector P,vector upvec)\n"
+"obraca v tak, że oś Y jest skierowana w górę danego kierunku"
+
+#: KSeExpr/ExprBuiltins.cpp:1343
+msgctxt "builtin|"
+msgid ""
+"int cycle(int index, int loRange, int hiRange )\n"
+"Cycles through values between loRange and hiRange based on supplied index.\n"
+"This is an offset \"mod\" function. The result is computed as ``loRange + "
+"value % (hiRange-loRange+1)``."
+msgstr ""
+"int cycle(int index, int loRange, int hiRange )\n"
+"Krąży pomiędzy wartościami spomiędzy zakresu loRange oraz hiRange na "
+"podstawie podanego indeksu.\n"
+" Jest to funkcja przesunięcia \"mod\". Wynik jest obliczony jako ``loRange + "
+"wartość % (hiRange-loRange+1)``."
+
+#: KSeExpr/ExprBuiltins.cpp:1405
+msgctxt "builtin|"
+msgid ""
+"int pick(float index, int loRange, int hiRange, [float weights, ...] )\n"
+"Picks values randomly between loRange and hiRange based on supplied index "
+"(which is\n"
+"automatically hashed).&nbsp; The values will be distributed according\n"
+"to the supplied weights.&nbsp; Any weights not supplied are assumed to\n"
+"be 1.0."
+msgstr ""
+"int pick(float index, int loRange, int hiRange, [float weights, ...] )\n"
+"Wybiera wartości losowo spomiędzy loRange oraz hiRange na podstawie podanego "
+"indeksu (dla którego\n"
+" jest obliczany hasz).&nbsp; Wartości zostaną rozłożone wg podanych wag."
+"&nbsp; Gdy wartość wagi jest niepodana, to przyjmuje się\n"
+"1.0. "
+
+#: KSeExpr/ExprBuiltins.cpp:1416
+msgctxt "builtin|"
+msgid ""
+"color swatch(float index, color choice0, color choice1, color choice2, "
+"[...])\n"
+"Chooses one of the supplied color choices based on the index (assumed to be "
+"in range [0..1])."
+msgstr ""
+"color swatch(float indeks, color wybór0, color wybór1, color wybór2, [...])\n"
+"Wybiera jedną z dostępnych barw na podstawie indeksu (zakłada się, że z "
+"zakresu [0..1])."
+
+#: KSeExpr/ExprBuiltins.cpp:1431
+msgctxt "builtin|"
+msgid ""
+"float choose(float index,float choice1, float choice2, [...])\n"
+"Chooses one of the supplied choices based on the index (assumed to be in "
+"range [0, 1])."
+msgstr ""
+"float choose(float indeks,float wybór1, float wybór2, [...])\n"
+"Wybiera jeden z możliwych wyborów na podstawie indeksu (zakłada się, że z "
+"zakresu [0, 1])."
+
+#: KSeExpr/ExprBuiltins.cpp:1487
+msgctxt "builtin|"
+msgid ""
+"float wchoose(float index,float choice1, float weight1, float choice2, float "
+"weight2, [...] )\n"
+"Chooses one of the supplied choices based on the index (assumed to be in "
+"range [0..1]).\n"
+"The values will be distributed according to the supplied weights."
+msgstr ""
+"float wchoose(float indeks,float wybór1, float waga1, float wybór2, float "
+"waga2, [...] )\n"
+"Wybiera jeden z możliwych wyborów na podstawie indeksu (zakłada się, że z "
+"zakresu [0..1]).\n"
+"Wartości zostaną rozłożone wg podanych wag."
+
+#: KSeExpr/ExprBuiltins.cpp:1509
+msgctxt "builtin|"
+msgid ""
+"float spline(float param,float y1,float y2,float y3,float y4,[...])\n"
+"\n"
+"Interpolates a set of values to the parameter specified where y1, ..., yn "
+"are\n"
+"distributed evenly from [0..1]"
+msgstr ""
+"float spline(float param,float y1,float y2,float y3,float y4,[...])\n"
+"\n"
+"Interpoluje zestaw wartości do danego parametru, gdzie y...1, ..., yn\n"
+"są rozłożone równo w zakresie [0..1]"
+
+#: KSeExpr/ExprBuiltins.cpp:1550 KSeExpr/ExprBuiltins.cpp:1615
+msgctxt "builtin|"
+msgid "Unable to validate the interpolant type"
+msgstr "Nie można potwierdzić rodzaju interpolanta"
+
+#: KSeExpr/ExprBuiltins.cpp:1554 KSeExpr/ExprBuiltins.cpp:1618
+msgctxt "builtin|"
+msgid "Invalid interpolant type"
+msgstr "Nieprawidłowy rodzaj interpolanta"
+
+#: KSeExpr/ExprBuiltins.cpp:1588
+msgctxt "builtin|"
+msgid ""
+"float curve(float param,float pos0,float val0,int interp0,float pos1,float "
+"val1,int interp1,[...])\n"
+"\n"
+"Interpolates a 1D ramp defined by control points at 'param'. Control points "
+"are specified \n"
+"by triples of parameters pos_i, val_i, and interp_i. Interpolation codes "
+"are \n"
+"0 - none, 1 - linear, 2 - smooth, 3 - spline, \n"
+"4 - monotone (non oscillating spline)"
+msgstr ""
+"float curve(float param,float pos0,float val0,int interp0,float pos1,float "
+"val1,int interp1,[...])\n"
+"\n"
+"Interpoluje rampę 1D określoną punktami tworzącymi poprzez 'param'. Punkty "
+"tworzące są określane  \n"
+"trójkami parametrów pos_i, val_i oraz interp_i. Kody interpolacji to  \n"
+"0 - brak, 1 - liniowa, 2 - wygładzona, 3 - krzywa sklejana, \n"
+"4 - monotoniczna (nieoscylacyjna krzywa sklejana)"
+
+#: KSeExpr/ExprBuiltins.cpp:1660
+msgctxt "builtin|"
+msgid ""
+"color curve(float param,float pos0,color val0,int interp0,float pos1,color "
+"val1,int interp1,[...])\n"
+"\n"
+"Interpolates color ramp given by control points at 'param'. Control points "
+"are specified \n"
+"by triples of parameters pos_i, val_i, and interp_i. Interpolation codes "
+"are \n"
+"0 - none, 1 - linear, 2 - smooth, 3 - spline, \n"
+"4 - monotone (non oscillating spline)"
+msgstr ""
+"color curve(float param,float pos0,color val0,int interp0,float pos1,color "
+"val1,int interp1,[...])\n"
+"\n"
+"Interpoluje rampę barw określoną punktami tworzącymi poprzez 'param'. Punkty "
+"tworzące są określane  \n"
+"trójkami parametrów pos_i, val_i oraz interp_i. Kody interpolacji to  \n"
+"0 - brak, 1 - liniowa, 2 - wygładzona, 3 - krzywa sklejana, \n"
+"4 - monotoniczna (nieoscylacyjna krzywa sklejana)"
+
+#: KSeExpr/ExprBuiltins.cpp:1732
+msgctxt "builtin|"
+msgid ""
+"getVar(string varName,vector defaultValue)\n"
+"return value of varName if variable exists, otherwise return defaultValue"
+msgstr ""
+"getVar(string nazwaZmiennej,vector wartośćDomyślna)\n"
+"zwraca wartość nazwaZmiennej, jeśli zmienna istnieje, w przeciwnym przypadku "
+"zwraca wartośćDomyślna"
+
+#: KSeExpr/ExprBuiltins.cpp:1879
+msgctxt "builtin|"
+msgid ""
+"float printf(string format,[vec0, vec1,  ...])\n"
+"Prints out a string to STDOUT, Format parameters allowed are \"%v\" and \"%f"
+"\".\n"
+"Return parameter is empty, but must be assigned to a variable."
+msgstr ""
+"float printf(string format,[vec0, vec1,  ...])\n"
+"Wyświetla ciąg znaków na STDOUT, dozwolone parametry formatujące to \"%v\" "
+"oraz\"%f\".\n"
+"Wartość zwracana jest pusta, lecz musi zostać przypisana do zmiennej."
+
+#: KSeExpr/ExprBuiltins.cpp:1992
+msgctxt "builtin|"
+msgid ""
+"sprintf(string format, [double|string, double|string, ...])\n"
+"Returns a string formatted from the given values.  See 'man sprintf' for "
+"format details."
+msgstr ""
+"sprintf(string format, [double|string, double|string, ...])\n"
+"Zwraca ciąg znaków sformatowany wg podanych wartości.  Zobacz 'man sprintf' "
+"po więcej szczegółów nt. formatowania."
+
+#: KSeExprUI/ECMQmLoader-seexpr2_qt.cpp:62
+#: KSeExprUI/ECMQmLoader-seexpr2_qt.cpp:122
+#: KSeExprUI/ExprControlCollection.cpp:27
+msgctxt "ExprControlCollection|"
+msgid "Add new variable"
+msgstr "Dodaj nową zmienną"
+
+#: KSeExprUI/ErrorMessages.cpp:15
+msgctxt "ErrorMessages|"
+msgid "Expected string or float[d]"
+msgstr "Oczekiwany ciąg znaków lub float[d]"
+
+#: KSeExprUI/ErrorMessages.cpp:17
+msgctxt "ErrorMessages|"
+msgid "Expected float[d]"
+msgstr "Oczekiwany float[d]"
+
+#: KSeExprUI/ErrorMessages.cpp:19
+#, qt-format
+msgctxt "ErrorMessages|"
+msgid "Expected float[%1]"
+msgstr "Oczekiwano float[%1]"
+
+#: KSeExprUI/ErrorMessages.cpp:21
+#, qt-format
+msgctxt "ErrorMessages|"
+msgid "Type mismatch, first: '%1'; second: '%2'"
+msgstr "Niezgodność rodzaju, pierwszy: '%1'; drugi: '%2'"
+
+#: KSeExprUI/ErrorMessages.cpp:23
+msgctxt "ErrorMessages|"
+msgid "Expected float or float[3]"
+msgstr "Oczekiwany float lub float[3]"
+
+#: KSeExprUI/ErrorMessages.cpp:25
+#, qt-format
+msgctxt "ErrorMessages|"
+msgid "Expected '%1' for argument, got '%2'"
+msgstr "Oczekiwano '%1' jako argumentu, dostano '%2'"
+
+#: KSeExprUI/ErrorMessages.cpp:27
+msgctxt "ErrorMessages|"
+msgid "Wrong number of arguments, should be 1 to 7"
+msgstr "Zła liczba argumentów, powinno być od 1 do 7"
+
+#: KSeExprUI/ErrorMessages.cpp:29
+msgctxt "ErrorMessages|"
+msgid "Wrong number of arguments, should be multiple of 3 plus 1"
+msgstr "Zła liczba argumentów, powinna być wielokrotnością 3 plus 1"
+
+#: KSeExprUI/ErrorMessages.cpp:31
+msgctxt "ErrorMessages|"
+msgid "Wrong number of arguments, should be 1 or more"
+msgstr "Zła liczba argumentów, powinno być 1 lub więcej"
+
+#: KSeExprUI/ErrorMessages.cpp:33
+msgctxt "ErrorMessages|"
+msgid "First argument must be a string"
+msgstr "Pierwszym argumentem musi być ciąg znaków"
+
+#: KSeExprUI/ErrorMessages.cpp:35
+msgctxt "ErrorMessages|"
+msgid "Incomplete format specifier"
+msgstr "Niezupełne określenie formatu"
+
+#: KSeExprUI/ErrorMessages.cpp:37
+#, qt-format
+msgctxt "ErrorMessages|"
+msgid "No variable named '%1'"
+msgstr "Brak zmiennej o nazwie '%1'"
+
+#: KSeExprUI/ErrorMessages.cpp:39
+#, qt-format
+msgctxt "ErrorMessages|"
+msgid "Function '%1' has no definition"
+msgstr "Funkcja '%1' nie ma definicji"
+
+#: KSeExprUI/ErrorMessages.cpp:41
+#, qt-format
+msgctxt "ErrorMessages|"
+msgid "Assignment operation has incorrect type '%1'"
+msgstr "Działanie przypisania ma niepoprawny rodzaj '%1'"
+
+#: KSeExprUI/ErrorMessages.cpp:43
+msgctxt "ErrorMessages|"
+msgid "Types of conditional are not compatible"
+msgstr "Rodzaje warunków nie są zgodne"
+
+#: KSeExprUI/ErrorMessages.cpp:45
+#, qt-format
+msgctxt "ErrorMessages|"
+msgid "Variable '%1' defined in conditionals inconsistently"
+msgstr "Zmienna '%1' jest określona w warunkach niejednoznacznie"
+
+#: KSeExprUI/ErrorMessages.cpp:47
+#, qt-format
+msgctxt "ErrorMessages|"
+msgid "Too few arguments for function '%1'"
+msgstr "Zbyt mało argumentów dla funkcji '%1'"
+
+#: KSeExprUI/ErrorMessages.cpp:49
+#, qt-format
+msgctxt "ErrorMessages|"
+msgid "Too many arguments for function '%1'"
+msgstr "Zbyt wiele argumentów dla funkcji '%1'"
+
+#: KSeExprUI/ErrorMessages.cpp:51
+#, qt-format
+msgctxt "ErrorMessages|"
+msgid "Expression generated type '%1', incompatible with desired type '%2'"
+msgstr ""
+"Rodzaj wytworzonego wyrażenia '%1' jest niezgodny z żądanym rodzajem '%2'"
+
+#: KSeExprUI/ErrorMessages.cpp:53
+#, qt-format
+msgctxt "ErrorMessages|"
+msgid "Syntax error near '%1'"
+msgstr "Błąd składni w pobliżu '%1'"
+
+#: KSeExprUI/ErrorMessages.cpp:55
+#, qt-format
+msgctxt "ErrorMessages|"
+msgid "Unexpected end of expression near '%1'"
+msgstr "Nieoczekiwany koniec wyrażenia w pobliżu '%1'"
+
+#: KSeExprUI/ErrorMessages.cpp:57
+msgctxt "ErrorMessages|"
+msgid "Unexpected end of format string"
+msgstr "Nieoczekiwany koniec ciągu z formatowaniem"
+
+#: KSeExprUI/ErrorMessages.cpp:59
+msgctxt "ErrorMessages|"
+msgid "Invalid format string, only %v or %f is allowed"
+msgstr "Nieprawidłowy format ciągu znaków, dopuszczalne są tylko %v oraz %f"
+
+#: KSeExprUI/ErrorMessages.cpp:61
+msgctxt "ErrorMessages|"
+msgid "Wrong number of arguments for format string"
+msgstr "Zła liczba argumentów dla ciągu z formatem"
+
+#: KSeExprUI/ErrorMessages.cpp:64
+#, qt-format
+msgctxt "ErrorMessages|"
+msgid "Unknown error (message = %1)"
+msgstr "Nieznany błąd (wiadomość = %1)"
+
+#: KSeExprUI/ExprAddDialog.cpp:27
+msgctxt "ExprAddDialog|"
+msgid "Variable"
+msgstr "Zmienna"
+
+#: KSeExprUI/ExprAddDialog.cpp:40 KSeExprUI/ExprAddDialog.cpp:50
+#: KSeExprUI/ExprAddDialog.cpp:135
+msgctxt "ExprAddDialog|"
+msgid "Lookup"
+msgstr "Znajdź"
+
+#: KSeExprUI/ExprAddDialog.cpp:41 KSeExprUI/ExprAddDialog.cpp:51
+#: KSeExprUI/ExprAddDialog.cpp:134
+msgctxt "ExprAddDialog|"
+msgid "$u"
+msgstr "$u"
+
+#: KSeExprUI/ExprAddDialog.cpp:43
+msgctxt "ExprAddDialog|"
+msgid "Curve"
+msgstr "Krzywa"
+
+#: KSeExprUI/ExprAddDialog.cpp:53
+msgctxt "ExprAddDialog|"
+msgid "Color Curve"
+msgstr "Krzywa barwy"
+
+#: KSeExprUI/ExprAddDialog.cpp:60 KSeExprUI/ExprAddDialog.cpp:76
+#: KSeExprUI/ExprAddDialog.cpp:93
+msgctxt "ExprAddDialog|"
+msgid "Default"
+msgstr "Domyślne"
+
+#: KSeExprUI/ExprAddDialog.cpp:61 KSeExprUI/ExprAddDialog.cpp:77
+#: KSeExprUI/ExprAddDialog.cpp:94
+msgctxt "ExprAddDialog|"
+msgid "Min"
+msgstr "Min"
+
+#: KSeExprUI/ExprAddDialog.cpp:62 KSeExprUI/ExprAddDialog.cpp:78
+#: KSeExprUI/ExprAddDialog.cpp:95
+msgctxt "ExprAddDialog|"
+msgid "Max"
+msgstr "Maks"
+
+#: KSeExprUI/ExprAddDialog.cpp:63 KSeExprUI/ExprAddDialog.cpp:65
+#: KSeExprUI/ExprAddDialog.cpp:79 KSeExprUI/ExprAddDialog.cpp:81
+#: KSeExprUI/ExprAddDialog.cpp:96 KSeExprUI/ExprAddDialog.cpp:97
+#: KSeExprUI/ExprAddDialog.cpp:98 KSeExprUI/ExprAddDialog.cpp:104
+msgctxt "ExprAddDialog|"
+msgid "0"
+msgstr "0"
+
+#: KSeExprUI/ExprAddDialog.cpp:67
+msgctxt "ExprAddDialog|"
+msgid "10"
+msgstr "10"
+
+#: KSeExprUI/ExprAddDialog.cpp:69
+msgctxt "ExprAddDialog|"
+msgid "Int"
+msgstr "Int"
+
+#: KSeExprUI/ExprAddDialog.cpp:83 KSeExprUI/ExprAddDialog.cpp:106
+msgctxt "ExprAddDialog|"
+msgid "1"
+msgstr "1"
+
+#: KSeExprUI/ExprAddDialog.cpp:86
+msgctxt "ExprAddDialog|"
+msgid "Float"
+msgstr "Liczba zmiennoprzecinkowa"
+
+#: KSeExprUI/ExprAddDialog.cpp:109
+msgctxt "ExprAddDialog|"
+msgid "Vector"
+msgstr "Wektor"
+
+#: KSeExprUI/ExprAddDialog.cpp:119 KSeExprUI/ExprAddDialog.cpp:125
+msgctxt "ExprAddDialog|"
+msgid "Color"
+msgstr "Barwa"
+
+#: KSeExprUI/ExprAddDialog.cpp:137
+msgctxt "ExprAddDialog|"
+msgid "Rainbow"
+msgstr "Tęcza"
+
+#: KSeExprUI/ExprAddDialog.cpp:139
+msgctxt "ExprAddDialog|"
+msgid "Shades of Gray"
+msgstr "Odcienie szarości"
+
+#: KSeExprUI/ExprAddDialog.cpp:140
+msgctxt "ExprAddDialog|"
+msgid "Colors"
+msgstr "Barwy"
+
+#: KSeExprUI/ExprAddDialog.cpp:144
+msgctxt "ExprAddDialog|"
+msgid "Swatch"
+msgstr "Łata"
+
+#: KSeExprUI/ExprAddDialog.cpp:152
+msgctxt "ExprAddDialog|"
+msgid "string"
+msgstr "ciąg znaków"
+
+#: KSeExprUI/ExprAddDialog.cpp:153
+msgctxt "ExprAddDialog|"
+msgid "file"
+msgstr "plik"
+
+#: KSeExprUI/ExprAddDialog.cpp:154
+msgctxt "ExprAddDialog|"
+msgid "directory"
+msgstr "katalog"
+
+#: KSeExprUI/ExprAddDialog.cpp:158
+msgctxt "ExprAddDialog|"
+msgid "String Name"
+msgstr "Nazwa ciągu znaków"
+
+#: KSeExprUI/ExprAddDialog.cpp:160
+msgctxt "ExprAddDialog|"
+msgid "String Type"
+msgstr "Rodzaj ciągu znaków"
+
+#: KSeExprUI/ExprAddDialog.cpp:162
+msgctxt "ExprAddDialog|"
+msgid "String Default"
+msgstr "Domyślny ciąg znaków"
+
+#: KSeExprUI/ExprAddDialog.cpp:165
+msgctxt "ExprAddDialog|"
+msgid "String"
+msgstr "Ciąg znaków"
+
+#: KSeExprUI/ExprBrowser.cpp:299
+msgctxt "ExprBrowser|"
+msgid "X"
+msgstr "X"
+
+#: KSeExprUI/ExprBrowser.cpp:404 KSeExprUI/ExprBrowser.cpp:423
+msgctxt "ExprBrowser|"
+msgid "Save Expression"
+msgstr "Zapisz wyrażenie"
+
+#: KSeExprUI/ExprBrowser.cpp:404 KSeExprUI/ExprBrowser.cpp:423
+msgctxt "ExprBrowser|"
+msgid "*.se"
+msgstr "*.se"
+
+#: KSeExprUI/ExprBrowser.cpp:409 KSeExprUI/ExprBrowser.cpp:428
+#, qt-format
+msgctxt "ExprBrowser|"
+msgid "Could not open file %1 for writing"
+msgstr "Nie można otworzyć pliku %1 do zapisu"
+
+#: KSeExprUI/ExprBrowser.cpp:410 KSeExprUI/ExprBrowser.cpp:429
+#: KSeExprUI/ExprBrowser.cpp:450
+msgctxt "ExprBrowser|"
+msgid "Error"
+msgstr "Błąd"
+
+#: KSeExprUI/ExprBrowser.cpp:449
+#, qt-format
+msgctxt "ExprBrowser|"
+msgid "Could not open file %1 for writing.  Is it read-only?"
+msgstr "Nie można otworzyć pliku %1 do zapisu. Czy jest on tylko do odczytu?"
+
+#: KSeExprUI/ExprBrowser.cpp:450
+#, qt-format
+msgctxt "ExprBrowser|"
+msgid "<font face=fixed>%1</font>"
+msgstr "<font face=fixed>%1</font>"
+
+#: KSeExprUI/ExprColorCurve.cpp:180
+msgctxt "CCurveScene|"
+msgid "Delete Point"
+msgstr "Usuń punkt"
+
+#: KSeExprUI/ExprColorCurve.cpp:397
+msgctxt "ExprColorCurve|"
+msgid "Selected Position:"
+msgstr "Wybrane położenie:"
+
+#: KSeExprUI/ExprColorCurve.cpp:408
+msgctxt "ExprColorCurve|"
+msgid "Selected Color:"
+msgstr "Zaznaczona barwa:"
+
+#: KSeExprUI/ExprColorCurve.cpp:416
+msgctxt "ExprColorCurve|"
+msgid "Interp:"
+msgstr "Interp:"
+
+#: KSeExprUI/ExprColorCurve.cpp:421
+msgctxt "ExprColorCurve|"
+msgid "None"
+msgstr "Brak"
+
+#: KSeExprUI/ExprColorCurve.cpp:422
+msgctxt "ExprColorCurve|"
+msgid "Linear"
+msgstr "Liniowa"
+
+#: KSeExprUI/ExprColorCurve.cpp:423
+msgctxt "ExprColorCurve|"
+msgid "Smooth"
+msgstr "Wygładzona"
+
+#: KSeExprUI/ExprColorCurve.cpp:424
+msgctxt "ExprColorCurve|"
+msgid "Spline"
+msgstr "Krzywa sklejana"
+
+#: KSeExprUI/ExprColorCurve.cpp:425
+msgctxt "ExprColorCurve|"
+msgid "MSpline"
+msgstr "MSpline"
+
+#: KSeExprUI/ExprColorCurve.cpp:445
+msgctxt "ExprColorCurve|"
+msgid "&Expand..."
+msgstr "&Rozwiń..."
+
+#: KSeExprUI/ExprColorCurve.cpp:487
+#, qt-format
+msgctxt "ExprColorCurve|"
+msgid "%1"
+msgstr "%1"
+
+#: KSeExprUI/ExprColorSwatch.cpp:77
+msgctxt "ExprColorFrame|"
+msgid "Delete Swatch"
+msgstr "Usuń łatkę"
+
+#: KSeExprUI/ExprColorSwatch.cpp:78
+msgctxt "ExprColorFrame|"
+msgid "Cancel"
+msgstr "Anuluj"
+
+#: KSeExprUI/ExprColorSwatch.cpp:98
+#, qt-format
+msgctxt "ExprColorWidget|"
+msgid "%1"
+msgstr "%1"
+
+#: KSeExprUI/ExprColorSwatch.cpp:123
+msgctxt "ExprColorSwatchWidget|"
+msgid "&Add..."
+msgstr "Dod&aj..."
+
+#: KSeExprUI/ExprCompletionModel.cpp:121
+msgctxt "ExprCompletionModel|"
+msgid "Local"
+msgstr "Lokalna"
+
+#: KSeExprUI/ExprControl.cpp:185 KSeExprUI/ExprControl.cpp:200
+#, qt-format
+msgctxt "ExprControl|"
+msgid "<b>%1</b>"
+msgstr "<b>%1</b>"
+
+#: KSeExprUI/ExprControl.cpp:279
+#, qt-format
+msgctxt "NumberControl|"
+msgid "%1"
+msgstr "%1"
+
+#: KSeExprUI/ExprControl.cpp:386
+#, qt-format
+msgctxt "VectorControl|"
+msgid "%1"
+msgstr "%1"
+
+#: KSeExprUI/ExprControl.cpp:456 KSeExprUI/ExprControl.cpp:465
+msgctxt "StringControl|"
+msgid "Please choose a file"
+msgstr "Wybierz plik"
+
+#: KSeExprUI/ExprControl.cpp:456
+msgctxt "StringControl|"
+msgid "Images (*.tif *.tx *.jpg *.ptx *.png)"
+msgstr "Obrazy (*.tif *.tx *.jpg *.ptx *.png)"
+
+#: KSeExprUI/ExprControl.cpp:488
+msgctxt "CurveControl|"
+msgid "Pos:"
+msgstr "Położenie:"
+
+#: KSeExprUI/ExprControl.cpp:488
+msgctxt "CurveControl|"
+msgid "Val:"
+msgstr "Wartość:"
+
+#: KSeExprUI/ExprControl.cpp:488
+msgctxt "CurveControl|"
+msgid "Interp:"
+msgstr "Interp:"
+
+#: KSeExprUI/ExprControl.cpp:512
+msgctxt "CCurveControl|"
+msgid "Pos:"
+msgstr "Położenie:"
+
+#: KSeExprUI/ExprControl.cpp:512
+msgctxt "CCurveControl|"
+msgid "Val:"
+msgstr "Wartość:"
+
+#: KSeExprUI/ExprControl.cpp:512
+msgctxt "CCurveControl|"
+msgid "Interp:"
+msgstr "Interp:"
+
+#: KSeExprUI/ExprControl.cpp:617 KSeExprUI/ExprControl.cpp:618
+#: KSeExprUI/ExprControl.cpp:619 KSeExprUI/ExprControl.cpp:620
+#, qt-format
+msgctxt "ExprGraphPreview|"
+msgid "%1"
+msgstr "%1"
+
+#: KSeExprUI/ExprCurve.cpp:153
+msgctxt "CurveScene|"
+msgid "Delete Point"
+msgstr "Usuń punkt"
+
+#: KSeExprUI/ExprCurve.cpp:298
+msgctxt "ExprCurve|"
+msgid "Selected Position:"
+msgstr "Wybrane położenie:"
+
+#: KSeExprUI/ExprCurve.cpp:309
+msgctxt "ExprCurve|"
+msgid "Selected Value:"
+msgstr "Zaznaczona wartość:"
+
+#: KSeExprUI/ExprCurve.cpp:317
+msgctxt "ExprCurve|"
+msgid "Interp:"
+msgstr "Interp:"
+
+#: KSeExprUI/ExprCurve.cpp:322
+msgctxt "ExprCurve|"
+msgid "None"
+msgstr "Brak"
+
+#: KSeExprUI/ExprCurve.cpp:323
+msgctxt "ExprCurve|"
+msgid "Linear"
+msgstr "Liniowa"
+
+#: KSeExprUI/ExprCurve.cpp:324
+msgctxt "ExprCurve|"
+msgid "Smooth"
+msgstr "Wygładzona"
+
+#: KSeExprUI/ExprCurve.cpp:325
+msgctxt "ExprCurve|"
+msgid "Spline"
+msgstr "Krzywa sklejana"
+
+#: KSeExprUI/ExprCurve.cpp:326
+msgctxt "ExprCurve|"
+msgid "MSpline"
+msgstr "MSpline"
+
+#: KSeExprUI/ExprCurve.cpp:347
+msgctxt "ExprCurve|"
+msgid "&Expand..."
+msgstr "&Rozwiń..."
+
+#: KSeExprUI/ExprCurve.cpp:390 KSeExprUI/ExprCurve.cpp:399
+#, qt-format
+msgctxt "ExprCurve|"
+msgid "%1"
+msgstr "%1"
+
+#: KSeExprUI/ExprEditor.cpp:73
+msgctxt "ExprEditor|"
+msgid "Expression Editor"
+msgstr "Edytor wyrażeń"
+
+#: KSeExprUI/ExprEditor.cpp:235
+#, qt-format
+msgctxt "ExprEditor|"
+msgid "(%1, %2): %3"
+msgstr "(%1, %2): %3"
+
+#: KSeExprUI/ExprFileDialog.cpp:84
+msgctxt "ExprFileDialog|"
+msgid "Open"
+msgstr "Otwórz"
+
+#: KSeExprUI/ExprFileDialog.cpp:189
+msgctxt "ExprFileDialog|"
+msgid "Favorites"
+msgstr "Ulubione"
+
+#: KSeExprUI/ExprTextEdit.cpp:44
+msgctxt "ExprTextEdit|"
+msgid "Pop-up Help"
+msgstr "Pomoc podręczna"
+
+#: KSeExprUI/ExprTextEdit.cpp:185
+#, qt-format
+msgctxt "ExprTextEdit|"
+msgid "<b>%1</b>"
+msgstr "<b>%1</b>"
+
+#: KSeExprUI/ExprTextEdit.cpp:187
+#, qt-format
+msgctxt "ExprTextEdit|"
+msgid "<br>%1"
+msgstr "<br>%1"

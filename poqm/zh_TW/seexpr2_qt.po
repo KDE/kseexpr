@@ -1,0 +1,1632 @@
+# Alvin Wong <alvin@alvinhc.com>, 2021, 2022.
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"PO-Revision-Date: 2022-05-21 16:54+0800\n"
+"Last-Translator: Alvin Wong <alvin@alvinhc.com>\n"
+"Language-Team: Chinese <zh-l10n@lists.linux.org.tw>\n"
+"Language: zh_TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Qt-Contexts: true\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Lokalize 21.04.1\n"
+
+#: KSeExpr/ExprBuiltins.cpp:27
+msgctxt "builtin|"
+msgid ""
+"float abs(float x)\n"
+"absolute value of x"
+msgstr ""
+"float abs(float x)\n"
+"x 的絕對值"
+
+#: KSeExpr/ExprBuiltins.cpp:30
+msgctxt "builtin|"
+msgid ""
+"float deg(float angle)\n"
+"radians to degrees"
+msgstr ""
+"float deg(float angle)\n"
+"轉換弧度 (rad) 至角度 (deg)"
+
+#: KSeExpr/ExprBuiltins.cpp:31
+msgctxt "builtin|"
+msgid ""
+"float rad(float angle)\n"
+"degrees to radians"
+msgstr ""
+"float rad(float angle)\n"
+"轉換角度 (deg) 至弧度 (rad)"
+
+#: KSeExpr/ExprBuiltins.cpp:33
+msgctxt "builtin|"
+msgid ""
+"float cosd(float angle)\n"
+"cosine in degrees"
+msgstr ""
+"float cosd(float angle)\n"
+"以角度 (deg) 計算餘弦 (cos)"
+
+#: KSeExpr/ExprBuiltins.cpp:34
+msgctxt "builtin|"
+msgid ""
+"float sind(float angle)\n"
+"sine in degrees"
+msgstr ""
+"float sind(float angle)\n"
+"以角度 (deg) 計算正弦 (sin)"
+
+#: KSeExpr/ExprBuiltins.cpp:35
+msgctxt "builtin|"
+msgid ""
+"float tand(float angle)\n"
+"tangent in degrees"
+msgstr ""
+"float tand(float angle)\n"
+"以角度 (deg) 計算正切 (tan)"
+
+#: KSeExpr/ExprBuiltins.cpp:36
+msgctxt "builtin|"
+msgid ""
+"float acosd(float value)\n"
+"arc cosine in degrees"
+msgstr ""
+"float acosd(float value)\n"
+"以角度 (deg) 計算反餘弦 (arccos)"
+
+#: KSeExpr/ExprBuiltins.cpp:37
+msgctxt "builtin|"
+msgid ""
+"float asind(float value)\n"
+"arc sine in degrees"
+msgstr ""
+"float asind(float value)\n"
+"以角度 (deg) 計算反正弦 (arcsin)"
+
+#: KSeExpr/ExprBuiltins.cpp:38
+msgctxt "builtin|"
+msgid ""
+"float atand(float value)\n"
+"arc tangent in degrees"
+msgstr ""
+"float atand(float value)\n"
+"以角度 (deg) 計算反正切 (arctan)"
+
+#: KSeExpr/ExprBuiltins.cpp:39
+msgctxt "builtin|"
+msgid ""
+"float atan2d(float y,float x)\n"
+"arc tangent in degrees of y/x between -180 and 180"
+msgstr ""
+"float atan2d(float y,float x)\n"
+"以角度 (deg) 計算在 -180° 及 180° 之間 y/x 的反正切 (arctan)"
+
+#: KSeExpr/ExprBuiltins.cpp:41
+msgctxt "builtin|"
+msgid ""
+"float cos(float angle)\n"
+"cosine in radians"
+msgstr ""
+"float cos(float angle)\n"
+"以弧度 (rad) 計算餘弦 (cos)"
+
+#: KSeExpr/ExprBuiltins.cpp:42
+msgctxt "builtin|"
+msgid ""
+"float sin(float angle)\n"
+"sine in radians"
+msgstr ""
+"float sin(float angle)\n"
+"以弧度 (rad) 計算正弦 (sin)"
+
+#: KSeExpr/ExprBuiltins.cpp:43
+msgctxt "builtin|"
+msgid ""
+"float tan(float angle)\n"
+"tangent in radians"
+msgstr ""
+"float tan(float angle)\n"
+"以弧度 (rad) 計算正切 (tan)"
+
+#: KSeExpr/ExprBuiltins.cpp:44
+msgctxt "builtin|"
+msgid ""
+"float acos(float value)\n"
+"arc cosine in radians"
+msgstr ""
+"float acos(float value)\n"
+"以弧度 (rad) 計算反餘弦 (arccos)"
+
+#: KSeExpr/ExprBuiltins.cpp:45
+msgctxt "builtin|"
+msgid ""
+"float asin(float value)\n"
+"arc sine in radians"
+msgstr ""
+"float asin(float value)\n"
+"以弧度 (rad) 計算反正弦 (arcsin)"
+
+#: KSeExpr/ExprBuiltins.cpp:46
+msgctxt "builtin|"
+msgid ""
+"float atan(float value)\n"
+"arc tangent in radians"
+msgstr ""
+"float atan(float value)\n"
+"以弧度 (rad) 計算反正切 (arctan)"
+
+#: KSeExpr/ExprBuiltins.cpp:47
+msgctxt "builtin|"
+msgid ""
+"float atan2(float y,float x)\n"
+"arc tangent in radians of y/x between -PI and PI"
+msgstr ""
+"float atan2d(float y,float x)\n"
+"以弧度 (rad) 計算在 -PI 及 PI 之間 y/x 的反正切 (arctan)"
+
+#: KSeExpr/ExprBuiltins.cpp:49
+msgctxt "builtin|"
+msgid ""
+"float cosh(float angle)\n"
+"hyperbolic cosine in radians"
+msgstr ""
+"float cosh(float angle)\n"
+"以弧度 (rad) 計算雙曲餘弦 (cosh)"
+
+#: KSeExpr/ExprBuiltins.cpp:50
+msgctxt "builtin|"
+msgid ""
+"float sinh(float angle)\n"
+"hyperbolic sine in radians"
+msgstr ""
+"float sin(float angle)\n"
+"以弧度 (rad) 計算雙曲正弦 (sinh)"
+
+#: KSeExpr/ExprBuiltins.cpp:51
+msgctxt "builtin|"
+msgid ""
+"float tanh(float angle)\n"
+"hyperbolic tangent in radians"
+msgstr ""
+"float tan(float angle)\n"
+"以弧度 (rad) 計算雙曲正切 (tanh)"
+
+#: KSeExpr/ExprBuiltins.cpp:52
+msgctxt "builtin|"
+msgid ""
+"float acosh(float value)\n"
+"hyperbolic arc cosine in radians"
+msgstr ""
+"float acosh(float value)\n"
+"以弧度 (rad) 計算反雙曲餘弦 (arcosh)"
+
+#: KSeExpr/ExprBuiltins.cpp:53
+msgctxt "builtin|"
+msgid ""
+"float asinh(float value)\n"
+"hyperbolic arc sine in radians"
+msgstr ""
+"float asinh(float value)\n"
+"以弧度 (rad) 計算反雙曲正弦 (arsinh)"
+
+#: KSeExpr/ExprBuiltins.cpp:54
+msgctxt "builtin|"
+msgid ""
+"float atanh(float value)\n"
+"hyperbolic arc tangent in radians"
+msgstr ""
+"float atanh(float value)\n"
+"以弧度 (rad) 計算反雙曲正切 (artanh)"
+
+#: KSeExpr/ExprBuiltins.cpp:56
+msgctxt "builtin|"
+msgid ""
+"float clamp(float x,float lo,float hi)\n"
+"constrain x to range [lo,hi]"
+msgstr ""
+"float clamp(float x,float lo,float hi)\n"
+"將 x 局限到 [lo,hi] 之間"
+
+#: KSeExpr/ExprBuiltins.cpp:57
+msgctxt "builtin|"
+msgid ""
+"float round(float x)\n"
+"nearest integer to x"
+msgstr ""
+"float round(float x)\n"
+"取 x 最近整數值"
+
+#: KSeExpr/ExprBuiltins.cpp:58
+msgctxt "builtin|"
+msgid ""
+"float max(float a,float b)\n"
+"greater of a and b"
+msgstr ""
+"float max(float a,float b)\n"
+"取 a 與 b 之間的最大值"
+
+#: KSeExpr/ExprBuiltins.cpp:59
+msgctxt "builtin|"
+msgid ""
+"float min(float a,float b)\n"
+"lesser of a and b"
+msgstr ""
+"float min(float a,float b)\n"
+"取 a 與 b 之間的最小值"
+
+#: KSeExpr/ExprBuiltins.cpp:60
+msgctxt "builtin|"
+msgid ""
+"float trunc(float a)\n"
+"nearest integer towards zero"
+msgstr ""
+"float trunc(float a)\n"
+"向 0 取最近整數值"
+
+#: KSeExpr/ExprBuiltins.cpp:61
+msgctxt "builtin|"
+msgid ""
+"float floor(float a)\n"
+"next lower integer"
+msgstr ""
+"float floor(float a)\n"
+"向下取整數值"
+
+#: KSeExpr/ExprBuiltins.cpp:62
+msgctxt "builtin|"
+msgid ""
+"float ceil(float a)\n"
+"next higher integer"
+msgstr ""
+"float ceil(float a)\n"
+"向上取整數值"
+
+#: KSeExpr/ExprBuiltins.cpp:64
+msgctxt "builtin|"
+msgid ""
+"float invert(float a)\n"
+"Defined as 1-x"
+msgstr ""
+"float invert(float a)\n"
+"已定義為 1-x"
+
+#: KSeExpr/ExprBuiltins.cpp:65
+msgctxt "builtin|"
+msgid ""
+"float cbrt(float x)\n"
+"cube root"
+msgstr ""
+"float cbrt(float x)\n"
+"立方根"
+
+#: KSeExpr/ExprBuiltins.cpp:66
+msgctxt "builtin|"
+msgid ""
+"float sqrt(float x)\n"
+"square root"
+msgstr ""
+"float sqrt(float x)\n"
+"平方根"
+
+#: KSeExpr/ExprBuiltins.cpp:67
+msgctxt "builtin|"
+msgid ""
+"float exp(float x)\n"
+"E raised to the x power"
+msgstr ""
+"float exp(float x)\n"
+"E 的 x 次方 (指數函數)"
+
+#: KSeExpr/ExprBuiltins.cpp:68
+msgctxt "builtin|"
+msgid ""
+"float pow(float x, float y)\n"
+"x to the y power, also available as ^"
+msgstr ""
+"float pow(float x, float y)\n"
+"x 的 y 次方，亦可用運算符號 ^ 表達"
+
+#: KSeExpr/ExprBuiltins.cpp:69
+msgctxt "builtin|"
+msgid ""
+"float log(float x)\n"
+"Natural logarithm"
+msgstr ""
+"float log(float x)\n"
+"自然對數"
+
+#: KSeExpr/ExprBuiltins.cpp:70
+msgctxt "builtin|"
+msgid ""
+"float log10(float x)\n"
+"Base 10 logarithm"
+msgstr ""
+"float log10(float x)\n"
+"基數為 10 的對數"
+
+#: KSeExpr/ExprBuiltins.cpp:71
+msgctxt "builtin|"
+msgid ""
+"float fmod(float x,float y)\n"
+"remainder of x/y (also available as % operator)"
+msgstr ""
+"float fmod(float x,float y)\n"
+"x/y 的餘數，亦可用運算符號 % 表達"
+
+#: KSeExpr/ExprBuiltins.cpp:72
+msgctxt "builtin|"
+msgid ""
+"float turbulence(vector v,int octaves=6,float lacunarity=2,float gain=.5)\n"
+"Absolute value of each noise term is taken. This gives billowy appearance"
+msgstr ""
+"float turbulence(vector v,int octaves=6,float lacunarity=2,float gain=.5)\n"
+"將取每個雜訊數值的絕對值。這會產生一個比較膨脹飽滿的外觀"
+
+#: KSeExpr/ExprBuiltins.cpp:75
+msgctxt "builtin|"
+msgid ""
+"color cturbulence(vector v,int octaves=6,float lacunarity=2,float gain=.5)\n"
+"Absolute value of each noise term is taken. This gives billowy appearance"
+msgstr ""
+"color cturbulence(vector v,int octaves=6,float lacunarity=2,float gain=.5)\n"
+"將取每個雜訊數值的絕對值。這會產生一個比較膨脹飽滿的外觀"
+
+#: KSeExpr/ExprBuiltins.cpp:78
+msgctxt "builtin|"
+msgid ""
+"vector vturbulence(vector v,int octaves=6,float lacunarity=2,float gain=.5)\n"
+"Absolute value of each noise term is taken. This gives billowy appearance"
+msgstr ""
+"vector vturbulence(vector v,int octaves=6,float lacunarity=2,float gain=.5)\n"
+"將取每個雜訊數值的絕對值。這會產生一個比較膨脹飽滿的外觀"
+
+#: KSeExpr/ExprBuiltins.cpp:86
+msgctxt "builtin|"
+msgid ""
+"float compress(float x,float lo,float hi)\n"
+"Remaps x in [0,1] to [lo,hi]"
+msgstr ""
+"float compress(float x,float lo,float hi)\n"
+"將 x 由 [0,1] 映射到 [lo,hi]"
+
+#: KSeExpr/ExprBuiltins.cpp:94
+msgctxt "builtin|"
+msgid ""
+"float expand(float x,float lo,float hi)\n"
+"Remaps x in [lo,hi] to [0,1]"
+msgstr ""
+"float expand(float x,float lo,float hi)\n"
+"將 x 由 [lo,hi] 映射到 [0,1]"
+
+#: KSeExpr/ExprBuiltins.cpp:100
+msgctxt "builtin|"
+msgid ""
+"float fit(float x,float a1,float b1,float a2,float b2)\n"
+"Linearly remaps x in [a1,b1] to [a2,b2]"
+msgstr ""
+"float fit(float x,float a1,float b1,float a2,float b2)\n"
+"線性地將 x 由 [a1,b1] 映射到 [a2,b2]"
+
+#: KSeExpr/ExprBuiltins.cpp:106
+msgctxt "builtin|"
+msgid ""
+"float gamma(float x, float g)\n"
+"Gamma correction of x with gamma factor g"
+msgstr ""
+"float gamma(float x, float g)\n"
+"以伽馬因子 (gamma factor) g 對 x 作伽馬修正"
+
+#: KSeExpr/ExprBuiltins.cpp:113
+msgctxt "builtin|"
+msgid ""
+"float bias(float x, float g)\n"
+"Variation of gamma where values less than 0.5 pull the curve down\n"
+"and values greater than 0.5 pull the curve up\n"
+"pow(x,log(b)/log(0.5))"
+msgstr ""
+"float bias(float x, float g)\n"
+"gamma 的變異：低於 0.5 的值會將曲線下拉，\n"
+"而高於 0.5 的值會將曲線上推\n"
+"pow(x,log(b)/log(0.5))"
+
+#: KSeExpr/ExprBuiltins.cpp:124
+msgctxt "builtin|"
+msgid ""
+"float contrast(float x, float c)\n"
+"Adjust the contrast.&nbsp; For c from 0 to 0.5, the contrast is decreased."
+"&nbsp; For c &gt; 0.5, the contrast is increased."
+msgstr ""
+"float contrast(float x,float c)\n"
+"對比度調整。0 至 0.5 之間的 c 值會調低對比度，而大於 0.5 的 c 值會調高對比"
+"度。"
+
+#: KSeExpr/ExprBuiltins.cpp:132
+msgctxt "builtin|"
+msgid ""
+"float boxstep(float x,float a)\n"
+" if x < a then 0 otherwise 1"
+msgstr ""
+"float boxstep(float x,float a)\n"
+"如 x < a 則傳回 0，否則傳回 1"
+
+#: KSeExpr/ExprBuiltins.cpp:143
+msgctxt "builtin|"
+msgid ""
+"float linearstep(float x, float a, float b)\n"
+" if x &lt; a then 0, if x &gt; b then 1, and\n"
+"x transitions linearly when a &lt; x &lt; b"
+msgstr ""
+"float linearstep(float x,float a,float b)\n"
+"如 x &lt; a 則傳回 0，如 x &gt; b 則傳回 1，\n"
+"如 a &lt; x &lt; b 則為 x 作線性過渡"
+
+#: KSeExpr/ExprBuiltins.cpp:165
+msgctxt "builtin|"
+msgid ""
+"float smoothstep(float x,float a,float b)\n"
+" if x &lt; a then 0, if x &gt; b then 1, and\n"
+"x transitions smoothly (cubic) when a &lt; x &lt; b"
+msgstr ""
+"float smoothstep(float x,float a,float b)\n"
+"如 x &lt; a 則傳回 0，如 x &gt; b 則傳回 1，\n"
+"如 a &lt; x &lt; b 則為 x 作平滑過渡 (cubic)"
+
+#: KSeExpr/ExprBuiltins.cpp:187
+msgctxt "builtin|"
+msgid ""
+"float gasussstep(float x,float a,float b)\n"
+" if x &lt; a then 0, if x &gt; b then 1, and\n"
+"x transitions smoothly (exponentially) when a &lt; x &lt; b"
+msgstr ""
+"float gasussstep(float x,float a,float b)\n"
+"如 x &lt; a 則傳回 0，如 x &gt; b 則傳回 1，\n"
+"如 a &lt; x &lt; b 則為 x 作平滑過渡 (exponentially)"
+
+#: KSeExpr/ExprBuiltins.cpp:218
+msgctxt "builtin|"
+msgid ""
+"remap(float x, float source, float range, float falloff, float interp)\n"
+"General remapping function.\n"
+"When x is within +/- <i>range</i> of source, the result is one.\n"
+"The result falls to zero beyond that range over <i>falloff</i> distance.\n"
+"The falloff shape is controlled by <i>interp</i>. Numeric values\n"
+"or named constants may be used:\n"
+"&nbsp;&nbsp;&nbsp;&nbsp;int <b>linear</b> = 0\n"
+"&nbsp;&nbsp;&nbsp;&nbsp;int <b>smooth</b> = 1\n"
+"&nbsp;&nbsp;&nbsp;&nbsp;int <b>gaussian</b> = 2\n"
+msgstr ""
+"remap(float x, float source, float range, float falloff, float interp)\n"
+"泛用的數值映射函數。\n"
+"當 x 位於 source +/- <i>range</i> 的範圍內，結果為 1。\n"
+"在範圍以外將會在 <i>falloff</i> 距離中下降到 0。\n"
+"下降形狀由 <i>interp</i> 控制。可使用下列的列舉數值或\n"
+"命名常數字串：&nbsp;&nbsp;&nbsp;&nbsp;int <b>linear</b> = 0\n"
+"&nbsp;&nbsp;&nbsp;&nbsp;int <b>smooth</b> = 1\n"
+"&nbsp;&nbsp;&nbsp;&nbsp;int <b>gaussian</b> = 2\n"
+
+#: KSeExpr/ExprBuiltins.cpp:233
+msgctxt "builtin|"
+msgid ""
+"mix(float a,float b,float alpha)\n"
+"Blend of a and b according to alpha."
+msgstr ""
+"mix(float a,float b,float alpha)\n"
+"根據 alpha 混合 a 和 b。"
+
+#: KSeExpr/ExprBuiltins.cpp:260
+msgctxt "builtin|"
+msgid ""
+"color  hsi(color x, float h, float s, float i, float map=1)\n"
+"The hsi function shifts the hue by h\n"
+"(in degrees) and scales the saturation and intensity by s and i\n"
+"respectively.&nbsp; A map may be supplied which will control the shift\n"
+"- the full shift will happen when the map is one and no shift will\n"
+"happen when the map is zero.&nbsp; The shift will be scaled back for\n"
+"values between zero and one."
+msgstr ""
+"color  hsi(color x, float h, float s, float i, float map=1)\n"
+"將色相 (hue) 偏移 h 度，同時將飽和度及強度分別乘以 s 及 i。\n"
+"map 可以控制偏移的幅度——map 為 1 時作全幅度偏移，\n"
+"而 map 為 0 時則不作偏移，在 0 和 1 之間時則按比例偏移。"
+
+#: KSeExpr/ExprBuiltins.cpp:306
+msgctxt "builtin|"
+msgid ""
+"color midhsi(color x, float h, float s, float i, float map, float falloff=1, "
+"int interp=0)\n"
+"The midhsi function is just like the hsi function except that\n"
+"the control map is centered around the mid point (value of 0.5)\n"
+"and can scale the shift in both directions."
+msgstr ""
+"color midhsi(color x, float h, float s, float i, float map, float falloff=1, "
+"int interp=0)\n"
+"與 hsi 函數相似，不過 midhsi 參數 map 的中間點為 0.5，\n"
+"可循兩個方向控制偏移的比例。"
+
+#: KSeExpr/ExprBuiltins.cpp:358
+msgctxt "builtin|"
+msgid ""
+"color rgbtohsl(color rgb)\n"
+"RGB to HSL color space conversion.\n"
+"HSL is Hue, Saturation, Lightness (all in range [0..1] )\n"
+"These functions have also been extended to support rgb and hsl values\n"
+"outside of the range [0..1] in a reasonable way.&nbsp; For any rgb or\n"
+"hsl value (except for negative s values), the conversion is\n"
+"well-defined and reversible."
+msgstr ""
+"color rgbtohsl(color rgb)\n"
+"轉換 RGB 色彩空間至 HSL。\n"
+"HSL 為色相、飽和度、亮度 (範圍為 [0..1] )\n"
+"這些函數已被擴展至支援 [0..1] 範圍以外的 RGB 及 HSL 值。\n"
+"任何 RGB 或 HSL 值 (負數的 s 值除外) 都有明確的定義，可逆向轉換。"
+
+#: KSeExpr/ExprBuiltins.cpp:413
+msgctxt "builtin|"
+msgid ""
+"color hsltorgb(color hsl)\n"
+"HSL to RGB color space conversion.\n"
+"HSL is Hue, Saturation, Lightness (all in range [0..1] )\n"
+"These functions have also been extended to support rgb and hsl values\n"
+"outside of the range [0..1] in a reasonable way.&nbsp; For any rgb or\n"
+"hsl value (except for negative s values), the conversion is\n"
+"well-defined and reversible."
+msgstr ""
+"color hsltorgb(color hsl)\n"
+"轉換 HSL 色彩空間至 RGB。\n"
+"HSL 為色相、飽和度、亮度 (範圍為 [0..1] )\n"
+"這些函數已被擴展至支援 [0..1] 範圍以外的 RGB 及 HSL 值。\n"
+"任何 RGB 或 HSL 值 (負數的 s 值除外) 都有明確的定義，可逆向轉換。"
+
+#: KSeExpr/ExprBuiltins.cpp:441
+msgctxt "builtin|"
+msgid ""
+"color saturate(color val, float amt)\n"
+"Scale saturation of color by amt.\n"
+"The color is scaled around the rec709 luminance value,\n"
+"and negative results are clamped at zero.\n"
+msgstr ""
+"color saturate(color val, float amt)\n"
+"將飽和度乘以 amt。\n"
+"色彩會根據 rec709 的光度值按比例縮放，\n"
+"而負數的結果會變為 0。\n"
+
+#: KSeExpr/ExprBuiltins.cpp:499
+msgctxt "builtin|"
+msgid ""
+"float rand ( [float min, float max], [float seed] )\n"
+"Random number between [min, max] (or [0, 1] if unspecified).\n"
+"If a seed is supplied, it will be used in addition to the internal seeds and "
+"may be used to create multiple distinct generators."
+msgstr ""
+"float rand ( [float min, float max], [float seed] )\n"
+"[min, max] 之間的隨機數 (不指定範圍的話則為 [0, 1] 之間)。\n"
+"如果提供 seed (種子) 參數，會與內置的隨機數種子同時使用，可用作建立多個不同的"
+"產生器。"
+
+#: KSeExpr/ExprBuiltins.cpp:553
+msgctxt "builtin|"
+msgid ""
+"float hash(float seed1,[float seed2, ...])\n"
+"Like rand, but with no internal seeds. Any number of seeds may be given\n"
+"and the result will be a random function based on all the seeds."
+msgstr ""
+"float hash(float seed1,[float seed2, ...])\n"
+"與 rand 函數相似，不過沒有使用內置的隨機數種子。可提供任何數目\n"
+"的隨機數種子，結果將會是由合併所有種子所得出的隨機數。"
+
+#: KSeExpr/ExprBuiltins.cpp:596
+msgctxt "builtin|"
+msgid ""
+"float noise ( vector v )\n"
+"float noise ( float x, float y )\n"
+"float noise ( float x, float y, float z )\n"
+"float noise ( float x, float y, float z, float w )\n"
+"Original perlin noise at location (C2 interpolant)"
+msgstr ""
+"float noise ( vector v )\n"
+"float noise ( float x, float y )\n"
+"float noise ( float x, float y, float z )\n"
+"float noise ( float x, float y, float z, float w )\n"
+"原版 Perlin 雜訊 (C2 插值)"
+
+#: KSeExpr/ExprBuiltins.cpp:610
+msgctxt "builtin|"
+msgid ""
+"float snoise ( vector v)\n"
+"signed noise w/ range -1 to 1 formed with original perlin noise at location "
+"(C2 interpolant)"
+msgstr ""
+"float snoise ( vector v)\n"
+"含正負數、範圍為 -1 至 1 的雜訊，由原版 Perlin 雜訊 (C2 插值) 產生"
+
+#: KSeExpr/ExprBuiltins.cpp:621
+msgctxt "builtin|"
+msgid ""
+"vector vnoise ( vector v)\n"
+"vector noise formed with original perlin noise at location (C2 interpolant)"
+msgstr ""
+"vector vnoise ( vector v)\n"
+"向量雜訊，由原版 Perlin 雜訊 (C2 插值) 產生"
+
+#: KSeExpr/ExprBuiltins.cpp:629
+msgctxt "builtin|"
+msgid ""
+"color cnoise ( vector v)\n"
+"color noise formed with original perlin noise at location (C2 interpolant)"
+msgstr ""
+"color cnoise ( vector v)\n"
+"色彩雜訊，由原版 Perlin 雜訊 (C2 插值) 產生"
+
+#: KSeExpr/ExprBuiltins.cpp:640
+msgctxt "builtin|"
+msgid ""
+"float snoise4 ( vector v,float t)\n"
+"4D signed noise w/ range -1 to 1 formed with original perlin noise at "
+"location (C2 interpolant)"
+msgstr ""
+"float snoise4 ( vector v,float t)\n"
+"4D 且範圍為 -1 至 1 的雜訊，由原版 Perlin 雜訊 (C2 插值) 產生"
+
+#: KSeExpr/ExprBuiltins.cpp:651
+msgctxt "builtin|"
+msgid ""
+"vector vnoise4 ( vector v,float t)\n"
+"4D vector noise formed with original perlin noise at location (C2 "
+"interpolant)"
+msgstr ""
+"vector vnoise4 ( vector v,float t)\n"
+"4D 向量雜訊，由原版 Perlin 雜訊 (C2 插值) 產生"
+
+#: KSeExpr/ExprBuiltins.cpp:659
+msgctxt "builtin|"
+msgid ""
+"color cnoise4 ( vector v,float t)\n"
+"4D color noise formed with original perlin noise at location (C2 interpolant)"
+msgstr ""
+"color cnoise4 ( vector v,float t)\n"
+"4D 色彩雜訊，由原版 Perlin 雜訊 (C2 插值) 產生"
+
+#: KSeExpr/ExprBuiltins.cpp:751
+msgctxt "builtin|"
+msgid ""
+"float fbm(vector v,int octaves=6,float lacunarity=2,float gain=.5)\n"
+"fbm (Fractal Brownian Motion) is a multi-frequency noise function. \n"
+"The base frequency is the same as the \"noise\" function. The total number "
+"of frequencies is controlled by octaves. The lacunarity is the spacing "
+"between the frequencies - a value of 2 means each octave is twice the "
+"previous frequency. The gain controls how much each frequency is scaled "
+"relative to the previous frequency."
+msgstr ""
+"float fbm(vector v,int octaves=6,float lacunarity=2,float gain=.5)\n"
+"FBM (Fractal Brownian Motion，碎形布朗運動) 為多個頻率週波雜訊函數。\n"
+"基本頻率與 noise 函數相同。總週波數目由 octaves 控制。lacunarity 控制週波間距"
+"——若參數值為 2 則表示每個 actave 為上一個週波頻率的兩倍。gain 控制每個週波相"
+"對於上一個週波的振幅比例。"
+
+#: KSeExpr/ExprBuiltins.cpp:787
+msgctxt "builtin|"
+msgid "vector vfbm(vector vint octaves=6,float lacunarity=2,float gain=.5)"
+msgstr "vector vfbm(vector vint octaves=6,float lacunarity=2,float gain=.5)"
+
+#: KSeExpr/ExprBuiltins.cpp:820
+msgctxt "builtin|"
+msgid ""
+"float fbm4(vector v,float time,int octaves=6,float lacunarity=2,float "
+"gain=.5)\n"
+"fbm (Fractal Brownian Motion) is a multi-frequency noise function. \n"
+"The base frequency is the same as the \"noise\" function. The total \n"
+"number of frequencies is controlled by octaves. The lacunarity is the \n"
+"spacing between the frequencies - a value of 2 means each octave is \n"
+"twice the previous frequency. The gain controls how much each \n"
+"frequency is scaled relative to the previous frequency."
+msgstr ""
+"float fbm4(vector v,float time,int octaves=6,float lacunarity=2,float "
+"gain=.5)\n"
+"FBM (Fractal Brownian Motion，碎形布朗運動) 為多個頻率週波雜訊函數。\n"
+"基本頻率與 noise 函數相同。總週波數目由 octaves 控制。lacunarity 控制週波間距"
+"——若參數值為 2 則表示每個 actave 為上一個週波頻率的兩倍。gain 控制每個週波相"
+"對於上一個週波的振幅比例。"
+
+#: KSeExpr/ExprBuiltins.cpp:860
+msgctxt "builtin|"
+msgid ""
+"vector vfbm4(vector v,float time,int octaves=6,float lacunarity=2,float "
+"gain=.5)"
+msgstr ""
+"vector vfbm4(vector v,float time,int octaves=6,float lacunarity=2,float "
+"gain=.5)"
+
+#: KSeExpr/ExprBuiltins.cpp:866
+msgctxt "builtin|"
+msgid "color cfbm(vector vint octaves=6,float lacunarity=2,float gain=.5)"
+msgstr "color cfbm(vector vint octaves=6,float lacunarity=2,float gain=.5)"
+
+#: KSeExpr/ExprBuiltins.cpp:872
+msgctxt "builtin|"
+msgid ""
+"color cfbm4(vector v,float time,int octaves=6,float lacunarity=2,float "
+"gain=.5)"
+msgstr ""
+"color cfbm4(vector v,float time,int octaves=6,float lacunarity=2,float "
+"gain=.5)"
+
+#: KSeExpr/ExprBuiltins.cpp:881
+msgctxt "builtin|"
+msgid ""
+"float cellnoise(vector v)\n"
+"cellnoise generates a field of constant colored cubes based on the integer "
+"location.\n"
+"This is the same as the prman cellnoise function."
+msgstr ""
+"float cellnoise(vector v)\n"
+"產生一系列基於整數位置固定上色的立方體。\n"
+"與 prman cellnoise 函數相同。"
+
+#: KSeExpr/ExprBuiltins.cpp:893
+msgctxt "builtin|"
+msgid ""
+"color cellnoise(vector v)\n"
+"cellnoise generates a field of constant colored cubes based on the integer "
+"location.\n"
+"This is the same as the prman cellnoise function."
+msgstr ""
+"color cellnoise(vector v)\n"
+"產生一系列基於整數位置固定上色的立方體。\n"
+"與 prman cellnoise 函數相同。"
+
+#: KSeExpr/ExprBuiltins.cpp:906
+msgctxt "builtin|"
+msgid ""
+"float pnoise ( vector v, vector period )\n"
+"periodic noise"
+msgstr ""
+"float pnoise ( vector v, vector period )\n"
+"週期函數雜訊"
+
+#: KSeExpr/ExprBuiltins.cpp:1050
+msgctxt "builtin|"
+msgid ""
+"float voronoi(vector v, int type=1,float jitter=0.5, float fbmScale=0, int "
+"fbmOctaves=4,float fbmLacunarity=2, float fbmGain=.5)\n"
+"voronoi is a cellular noise pattern. It is a jittered variant of cellnoise."
+msgstr ""
+"float voronoi(vector v, int type=1,float jitter=0.5, float fbmScale=0, int "
+"fbmOctaves=4,float fbmLacunarity=2, float fbmGain=.5)\n"
+"巢狀雜訊圖案，為 cellnoise 經抖動後的變化體。"
+
+#: KSeExpr/ExprBuiltins.cpp:1126
+msgctxt "builtin|"
+msgid ""
+"color cvoronoi(vector v, int type=1,float jitter=0.5, float fbmScale=0, int "
+"fbmOctaves=4,float fbmLacunarity=2, float fbmGain=.5)\n"
+"returns color in cellular pattern. It is a jittered variant of cellnoise."
+msgstr ""
+"color cvoronoi(vector v, int type=1,float jitter=0.5, float fbmScale=0, int "
+"fbmOctaves=4,float fbmLacunarity=2, float fbmGain=.5)\n"
+"傳回巢狀雜訊圖案的色彩，為 cellnoise 經抖動後的變化體。"
+
+#: KSeExpr/ExprBuiltins.cpp:1175
+msgctxt "builtin|"
+msgid ""
+"color pvoronoi(vector v, int type=1,float jitter=0.5, float fbmScale=0, int "
+"fbmOctaves=4,float fbmLacunarity=2, float fbmGain=.5)\n"
+"returns center of voronoi cell."
+msgstr ""
+"color pvoronoi(vector v, int type=1,float jitter=0.5, float fbmScale=0, int "
+"fbmOctaves=4,float fbmLacunarity=2, float fbmGain=.5)\n"
+"傳回 voronoi 巢狀格的中心點。"
+
+#: KSeExpr/ExprBuiltins.cpp:1238
+msgctxt "builtin|"
+msgid ""
+"float dist(vector a, vector b)\n"
+"distance between two points"
+msgstr ""
+"float dist(vector a, vector b)\n"
+"兩點之間的距離"
+
+#: KSeExpr/ExprBuiltins.cpp:1246
+msgctxt "builtin|"
+msgid ""
+"float length(vector v)\n"
+"length of vector"
+msgstr ""
+"float length(vector v)\n"
+"向量的長度"
+
+#: KSeExpr/ExprBuiltins.cpp:1254
+msgctxt "builtin|"
+msgid ""
+"float hypot(vector v)\n"
+"length of 2d vector [x,y]"
+msgstr ""
+"float hypot(vector v)\n"
+"2D 向量 [x,y] 的長度"
+
+#: KSeExpr/ExprBuiltins.cpp:1262
+msgctxt "builtin|"
+msgid ""
+"float dot(vector a,vector b)\n"
+"vector dot product"
+msgstr ""
+"float dot(vector a,vector b)\n"
+"向量的內積 (dot product)"
+
+#: KSeExpr/ExprBuiltins.cpp:1274
+msgctxt "builtin|"
+msgid ""
+"vector norm(vector v)\n"
+"vector scaled to unit length"
+msgstr ""
+"vector norm(vector v)\n"
+"將向量縮放至單位長度"
+
+#: KSeExpr/ExprBuiltins.cpp:1282
+msgctxt "builtin|"
+msgid ""
+"vector cross(vector a,vector b)\n"
+"vector cross product"
+msgstr ""
+"vector cross(vector a,vector b)\n"
+"向量外積 (cross product)"
+
+#: KSeExpr/ExprBuiltins.cpp:1293
+msgctxt "builtin|"
+msgid ""
+"float angle(vector a,vector b)\n"
+"angle between two vectors (in radians)"
+msgstr ""
+"float angle(vector a,vector b)\n"
+"兩組向量之間的夾角 (以弧度 rad 為單位)"
+
+#: KSeExpr/ExprBuiltins.cpp:1301
+msgctxt "builtin|"
+msgid ""
+"vector angle(vector a,vector b)\n"
+"normalized vector orthogonal to a and b scaled to unit length"
+msgstr ""
+"vector angle(vector a,vector b)\n"
+"與 a 和 b 正交的正規化向量 (normalized vector，即已縮放至單位長度)"
+
+#: KSeExpr/ExprBuiltins.cpp:1317
+msgctxt "builtin|"
+msgid ""
+"vector rotate(vector v,vector axis,float angle)\n"
+"rotates v around axis by given angle (in radians)"
+msgstr ""
+"vector rotate(vector v,vector axis,float angle)\n"
+"依 axis 軸旋轉 v，角度為 angle (以弧度 rad 為單位)"
+
+#: KSeExpr/ExprBuiltins.cpp:1327
+msgctxt "builtin|"
+msgid ""
+"vector up(vector P,vector upvec)\n"
+"rotates v such that the Y axis points in the given up direction"
+msgstr ""
+"vector up(vector P,vector upvec)\n"
+"旋轉 v 以使其 Y 軸指向 upvec 指定的「上方」方向"
+
+#: KSeExpr/ExprBuiltins.cpp:1343
+msgctxt "builtin|"
+msgid ""
+"int cycle(int index, int loRange, int hiRange )\n"
+"Cycles through values between loRange and hiRange based on supplied index.\n"
+"This is an offset \"mod\" function. The result is computed as ``loRange + "
+"value % (hiRange-loRange+1)``."
+msgstr ""
+"int cycle(int index, int loRange, int hiRange )\n"
+"依 index 偱環 loRange 及 hiRange 之間的數值。這是經偏移的 \"mod\" (模數) 函"
+"數，運算式為 ``loRange + value % (hiRange-loRange+1)``。"
+
+#: KSeExpr/ExprBuiltins.cpp:1405
+msgctxt "builtin|"
+msgid ""
+"int pick(float index, int loRange, int hiRange, [float weights, ...] )\n"
+"Picks values randomly between loRange and hiRange based on supplied index "
+"(which is\n"
+"automatically hashed).&nbsp; The values will be distributed according\n"
+"to the supplied weights.&nbsp; Any weights not supplied are assumed to\n"
+"be 1.0."
+msgstr ""
+"int pick(float index, int loRange, int hiRange, [float weights, ...] )\n"
+"依 index (會經 hash 函數取雜湊值) 隨機取 loRange 及 hiRange 之間的數值。\n"
+"數值會根據所提供的 weights 參數分佈。省略掉的 weights 參數將會預設為 1.0。"
+
+#: KSeExpr/ExprBuiltins.cpp:1416
+msgctxt "builtin|"
+msgid ""
+"color swatch(float index, color choice0, color choice1, color choice2, "
+"[...])\n"
+"Chooses one of the supplied color choices based on the index (assumed to be "
+"in range [0..1])."
+msgstr ""
+"color swatch(float index, color choice0, color choice1, color choice2, "
+"[...])\n"
+"依 index (範圍為 [0..1]) 由所提供的色彩中選擇一種色彩。"
+
+#: KSeExpr/ExprBuiltins.cpp:1431
+msgctxt "builtin|"
+msgid ""
+"float choose(float index,float choice1, float choice2, [...])\n"
+"Chooses one of the supplied choices based on the index (assumed to be in "
+"range [0, 1])."
+msgstr ""
+"ufloat choose(float index,float choice1, float choice2, [...])\n"
+"依 index (範圍為 [0..1]) 由所提供的數值中選擇一個數值。"
+
+#: KSeExpr/ExprBuiltins.cpp:1487
+msgctxt "builtin|"
+msgid ""
+"float wchoose(float index,float choice1, float weight1, float choice2, float "
+"weight2, [...] )\n"
+"Chooses one of the supplied choices based on the index (assumed to be in "
+"range [0..1]).\n"
+"The values will be distributed according to the supplied weights."
+msgstr ""
+"float wchoose(float index,float choice1, float weight1, float choice2, float "
+"weight2, [...] )\n"
+"依 index (範圍為 [0..1]) 由所提供的數值中選擇一個數值。\n"
+"數值會根據所提供的 weights 參數分佈。"
+
+#: KSeExpr/ExprBuiltins.cpp:1509
+msgctxt "builtin|"
+msgid ""
+"float spline(float param,float y1,float y2,float y3,float y4,[...])\n"
+"\n"
+"Interpolates a set of values to the parameter specified where y1, ..., yn "
+"are\n"
+"distributed evenly from [0..1]"
+msgstr ""
+"float spline(float param,float y1,float y2,float y3,float y4,[...])\n"
+"\n"
+"將 y1, ..., yn 平均分佈在 [0..1] 範圍內，依其計算 param 參數的插值"
+
+#: KSeExpr/ExprBuiltins.cpp:1550 KSeExpr/ExprBuiltins.cpp:1615
+msgctxt "builtin|"
+msgid "Unable to validate the interpolant type"
+msgstr "無法驗證插值類型"
+
+#: KSeExpr/ExprBuiltins.cpp:1554 KSeExpr/ExprBuiltins.cpp:1618
+msgctxt "builtin|"
+msgid "Invalid interpolant type"
+msgstr "無效的插值類型"
+
+#: KSeExpr/ExprBuiltins.cpp:1588
+msgctxt "builtin|"
+msgid ""
+"float curve(float param,float pos0,float val0,int interp0,float pos1,float "
+"val1,int interp1,[...])\n"
+"\n"
+"Interpolates a 1D ramp defined by control points at 'param'. Control points "
+"are specified \n"
+"by triples of parameters pos_i, val_i, and interp_i. Interpolation codes "
+"are \n"
+"0 - none, 1 - linear, 2 - smooth, 3 - spline, \n"
+"4 - monotone (non oscillating spline)"
+msgstr ""
+"float curve(float param,float pos0,float val0,int interp0,float pos1,float "
+"val1,int interp1,[...])\n"
+"\n"
+"以控制點定義一個 1D 斜坡，依其計算 param 參數的插值。\n"
+"控制點根據多組三項連續的參數 pos_i、val_i，以及 interp_i 定義。\n"
+"插值列舉常數值如下：\n"
+"0 - 無、1 - 線性、2 - 平滑、3 - 樣條曲線 (spline)、\n"
+"4 - 單調 (monotone，無振動的樣條)"
+
+#: KSeExpr/ExprBuiltins.cpp:1660
+msgctxt "builtin|"
+msgid ""
+"color curve(float param,float pos0,color val0,int interp0,float pos1,color "
+"val1,int interp1,[...])\n"
+"\n"
+"Interpolates color ramp given by control points at 'param'. Control points "
+"are specified \n"
+"by triples of parameters pos_i, val_i, and interp_i. Interpolation codes "
+"are \n"
+"0 - none, 1 - linear, 2 - smooth, 3 - spline, \n"
+"4 - monotone (non oscillating spline)"
+msgstr ""
+"color curve(float param,float pos0,color val0,int interp0,float pos1,color "
+"val1,int interp1,[...])\n"
+"\n"
+"以控制點定義一個色彩斜坡，依其計算 param 參數的插值。\n"
+"控制點根據多組三項連續的參數 pos_i、val_i，以及 interp_i 定義。\n"
+"插值列舉常數值如下：\n"
+"0 - 無、1 - 線性、2 - 平滑、3 - 樣條曲線 (spline)、\n"
+"4 - 單調 (monotone，無振動的樣條)"
+
+#: KSeExpr/ExprBuiltins.cpp:1732
+msgctxt "builtin|"
+msgid ""
+"getVar(string varName,vector defaultValue)\n"
+"return value of varName if variable exists, otherwise return defaultValue"
+msgstr ""
+"getVar(string varName,vector defaultValue)\n"
+"如 varName 變數存在，傳回這變數的值，否則傳回 defaultValue"
+
+#: KSeExpr/ExprBuiltins.cpp:1879
+msgctxt "builtin|"
+msgid ""
+"float printf(string format,[vec0, vec1,  ...])\n"
+"Prints out a string to STDOUT, Format parameters allowed are \"%v\" and \"%f"
+"\".\n"
+"Return parameter is empty, but must be assigned to a variable."
+msgstr ""
+"float printf(string format,[vec0, vec1,  ...])\n"
+"輸出字串到 STDOUT，可用的格式字串為 \"%v\" 和 \"%f\"。\n"
+"傳回值為空，不過必須將其指派給變數。"
+
+#: KSeExpr/ExprBuiltins.cpp:1992
+msgctxt "builtin|"
+msgid ""
+"sprintf(string format, [double|string, double|string, ...])\n"
+"Returns a string formatted from the given values.  See 'man sprintf' for "
+"format details."
+msgstr ""
+"sprintf(string format, [double|string, double|string, ...])\n"
+"傳回根據參數值作格式化的字串。格式化詳情請參見 'man sprintf'。"
+
+#: KSeExprUI/ECMQmLoader-seexpr2_qt.cpp:62
+#: KSeExprUI/ECMQmLoader-seexpr2_qt.cpp:122
+#: KSeExprUI/ExprControlCollection.cpp:27
+msgctxt "ExprControlCollection|"
+msgid "Add new variable"
+msgstr "加入新變數"
+
+#: KSeExprUI/ErrorMessages.cpp:15
+msgctxt "ErrorMessages|"
+msgid "Expected string or float[d]"
+msgstr "預期應為字串 (string) 或浮點陣列 (float[d])"
+
+#: KSeExprUI/ErrorMessages.cpp:17
+msgctxt "ErrorMessages|"
+msgid "Expected float[d]"
+msgstr "預期應為浮點陣列 (float[d])"
+
+#: KSeExprUI/ErrorMessages.cpp:19
+#, qt-format
+msgctxt "ErrorMessages|"
+msgid "Expected float[%1]"
+msgstr "預期應為含 %1 項的浮點陣列 (float[%1])"
+
+#: KSeExprUI/ErrorMessages.cpp:21
+#, qt-format
+msgctxt "ErrorMessages|"
+msgid "Type mismatch, first: '%1'; second: '%2'"
+msgstr "類型不符，首項：'%1'；次項：'%2'"
+
+#: KSeExprUI/ErrorMessages.cpp:23
+msgctxt "ErrorMessages|"
+msgid "Expected float or float[3]"
+msgstr "預期應為浮點 (float) 或含 3 項的浮點陣列 (float[3])"
+
+#: KSeExprUI/ErrorMessages.cpp:25
+#, qt-format
+msgctxt "ErrorMessages|"
+msgid "Expected '%1' for argument, got '%2'"
+msgstr "預期參數應為 '%1'，卻得出 '%2'"
+
+#: KSeExprUI/ErrorMessages.cpp:27
+msgctxt "ErrorMessages|"
+msgid "Wrong number of arguments, should be 1 to 7"
+msgstr "不正確的參數數目，應為 1 至 7 項"
+
+#: KSeExprUI/ErrorMessages.cpp:29
+msgctxt "ErrorMessages|"
+msgid "Wrong number of arguments, should be multiple of 3 plus 1"
+msgstr "不正確的參數數目，應為 3 的倍數加 1 項"
+
+#: KSeExprUI/ErrorMessages.cpp:31
+msgctxt "ErrorMessages|"
+msgid "Wrong number of arguments, should be 1 or more"
+msgstr "不正確的參數數目，應為 1 項或更多"
+
+#: KSeExprUI/ErrorMessages.cpp:33
+msgctxt "ErrorMessages|"
+msgid "First argument must be a string"
+msgstr "首項參數必須為字串 (string)"
+
+#: KSeExprUI/ErrorMessages.cpp:35
+msgctxt "ErrorMessages|"
+msgid "Incomplete format specifier"
+msgstr "不完整的格式定義符號"
+
+#: KSeExprUI/ErrorMessages.cpp:37
+#, qt-format
+msgctxt "ErrorMessages|"
+msgid "No variable named '%1'"
+msgstr "沒有名為 '%1' 的變數"
+
+#: KSeExprUI/ErrorMessages.cpp:39
+#, qt-format
+msgctxt "ErrorMessages|"
+msgid "Function '%1' has no definition"
+msgstr "函數 '%1' 未被定義"
+
+#: KSeExprUI/ErrorMessages.cpp:41
+#, qt-format
+msgctxt "ErrorMessages|"
+msgid "Assignment operation has incorrect type '%1'"
+msgstr "指派操作含不正確的類型 '%1'"
+
+#: KSeExprUI/ErrorMessages.cpp:43
+msgctxt "ErrorMessages|"
+msgid "Types of conditional are not compatible"
+msgstr "條件運算式的類型不兼容"
+
+#: KSeExprUI/ErrorMessages.cpp:45
+#, qt-format
+msgctxt "ErrorMessages|"
+msgid "Variable '%1' defined in conditionals inconsistently"
+msgstr "變數 '%1' 在條件運算區塊內的定義不一致"
+
+#: KSeExprUI/ErrorMessages.cpp:47
+#, qt-format
+msgctxt "ErrorMessages|"
+msgid "Too few arguments for function '%1'"
+msgstr "傳送給函數 '%1' 的參數過少"
+
+#: KSeExprUI/ErrorMessages.cpp:49
+#, qt-format
+msgctxt "ErrorMessages|"
+msgid "Too many arguments for function '%1'"
+msgstr "傳送給函數 '%1' 的參數過多"
+
+#: KSeExprUI/ErrorMessages.cpp:51
+#, qt-format
+msgctxt "ErrorMessages|"
+msgid "Expression generated type '%1', incompatible with desired type '%2'"
+msgstr "運算式的結果為類型 '%1'，與目標類型 '%2' 不兼容"
+
+#: KSeExprUI/ErrorMessages.cpp:53
+#, qt-format
+msgctxt "ErrorMessages|"
+msgid "Syntax error near '%1'"
+msgstr "語法錯誤——在 '%1' 附近"
+
+#: KSeExprUI/ErrorMessages.cpp:55
+#, qt-format
+msgctxt "ErrorMessages|"
+msgid "Unexpected end of expression near '%1'"
+msgstr "未預期運算式的終結——在 '%1' 附近"
+
+#: KSeExprUI/ErrorMessages.cpp:57
+msgctxt "ErrorMessages|"
+msgid "Unexpected end of format string"
+msgstr "未預期格式字串的終結"
+
+#: KSeExprUI/ErrorMessages.cpp:59
+msgctxt "ErrorMessages|"
+msgid "Invalid format string, only %v or %f is allowed"
+msgstr "無效的格式字串，只容許 %v 或 %f"
+
+#: KSeExprUI/ErrorMessages.cpp:61
+msgctxt "ErrorMessages|"
+msgid "Wrong number of arguments for format string"
+msgstr "格式字串的參數數目不正確"
+
+#: KSeExprUI/ErrorMessages.cpp:64
+#, qt-format
+msgctxt "ErrorMessages|"
+msgid "Unknown error (message = %1)"
+msgstr "未知錯誤 (message = %1)"
+
+#: KSeExprUI/ExprAddDialog.cpp:27
+msgctxt "ExprAddDialog|"
+msgid "Variable"
+msgstr "變數"
+
+#: KSeExprUI/ExprAddDialog.cpp:40 KSeExprUI/ExprAddDialog.cpp:50
+#: KSeExprUI/ExprAddDialog.cpp:135
+msgctxt "ExprAddDialog|"
+msgid "Lookup"
+msgstr "查找"
+
+#: KSeExprUI/ExprAddDialog.cpp:41 KSeExprUI/ExprAddDialog.cpp:51
+#: KSeExprUI/ExprAddDialog.cpp:134
+msgctxt "ExprAddDialog|"
+msgid "$u"
+msgstr "$u"
+
+#: KSeExprUI/ExprAddDialog.cpp:43
+msgctxt "ExprAddDialog|"
+msgid "Curve"
+msgstr "曲線"
+
+#: KSeExprUI/ExprAddDialog.cpp:53
+msgctxt "ExprAddDialog|"
+msgid "Color Curve"
+msgstr "色彩曲線"
+
+#: KSeExprUI/ExprAddDialog.cpp:60 KSeExprUI/ExprAddDialog.cpp:76
+#: KSeExprUI/ExprAddDialog.cpp:93
+msgctxt "ExprAddDialog|"
+msgid "Default"
+msgstr "預設"
+
+#: KSeExprUI/ExprAddDialog.cpp:61 KSeExprUI/ExprAddDialog.cpp:77
+#: KSeExprUI/ExprAddDialog.cpp:94
+msgctxt "ExprAddDialog|"
+msgid "Min"
+msgstr "最小"
+
+#: KSeExprUI/ExprAddDialog.cpp:62 KSeExprUI/ExprAddDialog.cpp:78
+#: KSeExprUI/ExprAddDialog.cpp:95
+msgctxt "ExprAddDialog|"
+msgid "Max"
+msgstr "最大"
+
+#: KSeExprUI/ExprAddDialog.cpp:63 KSeExprUI/ExprAddDialog.cpp:65
+#: KSeExprUI/ExprAddDialog.cpp:79 KSeExprUI/ExprAddDialog.cpp:81
+#: KSeExprUI/ExprAddDialog.cpp:96 KSeExprUI/ExprAddDialog.cpp:97
+#: KSeExprUI/ExprAddDialog.cpp:98 KSeExprUI/ExprAddDialog.cpp:104
+msgctxt "ExprAddDialog|"
+msgid "0"
+msgstr "0"
+
+#: KSeExprUI/ExprAddDialog.cpp:67
+msgctxt "ExprAddDialog|"
+msgid "10"
+msgstr "10"
+
+#: KSeExprUI/ExprAddDialog.cpp:69
+msgctxt "ExprAddDialog|"
+msgid "Int"
+msgstr "整數 (int)"
+
+#: KSeExprUI/ExprAddDialog.cpp:83 KSeExprUI/ExprAddDialog.cpp:106
+msgctxt "ExprAddDialog|"
+msgid "1"
+msgstr "1"
+
+#: KSeExprUI/ExprAddDialog.cpp:86
+msgctxt "ExprAddDialog|"
+msgid "Float"
+msgstr "浮點 (float)"
+
+#: KSeExprUI/ExprAddDialog.cpp:109
+msgctxt "ExprAddDialog|"
+msgid "Vector"
+msgstr "向量 (vector)"
+
+#: KSeExprUI/ExprAddDialog.cpp:119 KSeExprUI/ExprAddDialog.cpp:125
+msgctxt "ExprAddDialog|"
+msgid "Color"
+msgstr "色彩"
+
+#: KSeExprUI/ExprAddDialog.cpp:137
+msgctxt "ExprAddDialog|"
+msgid "Rainbow"
+msgstr "彩虹"
+
+#: KSeExprUI/ExprAddDialog.cpp:139
+msgctxt "ExprAddDialog|"
+msgid "Shades of Gray"
+msgstr "灰階"
+
+#: KSeExprUI/ExprAddDialog.cpp:140
+msgctxt "ExprAddDialog|"
+msgid "Colors"
+msgstr "色彩"
+
+#: KSeExprUI/ExprAddDialog.cpp:144
+msgctxt "ExprAddDialog|"
+msgid "Swatch"
+msgstr "色板 (swatch)"
+
+#: KSeExprUI/ExprAddDialog.cpp:152
+msgctxt "ExprAddDialog|"
+msgid "string"
+msgstr "字串"
+
+#: KSeExprUI/ExprAddDialog.cpp:153
+msgctxt "ExprAddDialog|"
+msgid "file"
+msgstr "檔案"
+
+#: KSeExprUI/ExprAddDialog.cpp:154
+msgctxt "ExprAddDialog|"
+msgid "directory"
+msgstr "目錄"
+
+#: KSeExprUI/ExprAddDialog.cpp:158
+msgctxt "ExprAddDialog|"
+msgid "String Name"
+msgstr "字串名稱"
+
+#: KSeExprUI/ExprAddDialog.cpp:160
+msgctxt "ExprAddDialog|"
+msgid "String Type"
+msgstr "字串類型"
+
+#: KSeExprUI/ExprAddDialog.cpp:162
+msgctxt "ExprAddDialog|"
+msgid "String Default"
+msgstr "字串預設"
+
+#: KSeExprUI/ExprAddDialog.cpp:165
+msgctxt "ExprAddDialog|"
+msgid "String"
+msgstr "字串 (string)"
+
+#: KSeExprUI/ExprBrowser.cpp:299
+msgctxt "ExprBrowser|"
+msgid "X"
+msgstr "X"
+
+#: KSeExprUI/ExprBrowser.cpp:404 KSeExprUI/ExprBrowser.cpp:423
+msgctxt "ExprBrowser|"
+msgid "Save Expression"
+msgstr "儲存運算式"
+
+#: KSeExprUI/ExprBrowser.cpp:404 KSeExprUI/ExprBrowser.cpp:423
+msgctxt "ExprBrowser|"
+msgid "*.se"
+msgstr "*.se"
+
+#: KSeExprUI/ExprBrowser.cpp:409 KSeExprUI/ExprBrowser.cpp:428
+#, qt-format
+msgctxt "ExprBrowser|"
+msgid "Could not open file %1 for writing"
+msgstr "不能開啟檔案 %1 以供寫入"
+
+#: KSeExprUI/ExprBrowser.cpp:410 KSeExprUI/ExprBrowser.cpp:429
+#: KSeExprUI/ExprBrowser.cpp:450
+msgctxt "ExprBrowser|"
+msgid "Error"
+msgstr "錯誤"
+
+#: KSeExprUI/ExprBrowser.cpp:449
+#, qt-format
+msgctxt "ExprBrowser|"
+msgid "Could not open file %1 for writing.  Is it read-only?"
+msgstr "不能開啟檔案 %1 以供寫入。檔案是否唯讀？"
+
+#: KSeExprUI/ExprBrowser.cpp:450
+#, qt-format
+msgctxt "ExprBrowser|"
+msgid "<font face=fixed>%1</font>"
+msgstr "<font face=fixed>%1</font>"
+
+#: KSeExprUI/ExprColorCurve.cpp:180
+msgctxt "CCurveScene|"
+msgid "Delete Point"
+msgstr "刪除點"
+
+#: KSeExprUI/ExprColorCurve.cpp:397
+msgctxt "ExprColorCurve|"
+msgid "Selected Position:"
+msgstr "已選取位置："
+
+#: KSeExprUI/ExprColorCurve.cpp:408
+msgctxt "ExprColorCurve|"
+msgid "Selected Color:"
+msgstr "已選取色彩："
+
+#: KSeExprUI/ExprColorCurve.cpp:416
+msgctxt "ExprColorCurve|"
+msgid "Interp:"
+msgstr "插值："
+
+#: KSeExprUI/ExprColorCurve.cpp:421
+msgctxt "ExprColorCurve|"
+msgid "None"
+msgstr "無"
+
+#: KSeExprUI/ExprColorCurve.cpp:422
+msgctxt "ExprColorCurve|"
+msgid "Linear"
+msgstr "線性"
+
+#: KSeExprUI/ExprColorCurve.cpp:423
+msgctxt "ExprColorCurve|"
+msgid "Smooth"
+msgstr "平滑"
+
+#: KSeExprUI/ExprColorCurve.cpp:424
+msgctxt "ExprColorCurve|"
+msgid "Spline"
+msgstr "樣條曲線 (spline)"
+
+#: KSeExprUI/ExprColorCurve.cpp:425
+msgctxt "ExprColorCurve|"
+msgid "MSpline"
+msgstr "M樣條曲線 (MSpline)"
+
+#: KSeExprUI/ExprColorCurve.cpp:445
+msgctxt "ExprColorCurve|"
+msgid "&Expand..."
+msgstr "放大窗格(&E)…"
+
+#: KSeExprUI/ExprColorCurve.cpp:487
+#, qt-format
+msgctxt "ExprColorCurve|"
+msgid "%1"
+msgstr "%1"
+
+#: KSeExprUI/ExprColorSwatch.cpp:77
+msgctxt "ExprColorFrame|"
+msgid "Delete Swatch"
+msgstr "刪除色彩"
+
+#: KSeExprUI/ExprColorSwatch.cpp:78
+msgctxt "ExprColorFrame|"
+msgid "Cancel"
+msgstr "取消"
+
+#: KSeExprUI/ExprColorSwatch.cpp:98
+#, qt-format
+msgctxt "ExprColorWidget|"
+msgid "%1"
+msgstr "%1"
+
+#: KSeExprUI/ExprColorSwatch.cpp:123
+msgctxt "ExprColorSwatchWidget|"
+msgid "&Add..."
+msgstr "加入(&A)…"
+
+#: KSeExprUI/ExprCompletionModel.cpp:121
+msgctxt "ExprCompletionModel|"
+msgid "Local"
+msgstr "本地變數"
+
+#: KSeExprUI/ExprControl.cpp:185 KSeExprUI/ExprControl.cpp:200
+#, qt-format
+msgctxt "ExprControl|"
+msgid "<b>%1</b>"
+msgstr "<b>%1</b>"
+
+#: KSeExprUI/ExprControl.cpp:279
+#, qt-format
+msgctxt "NumberControl|"
+msgid "%1"
+msgstr "%1"
+
+#: KSeExprUI/ExprControl.cpp:386
+#, qt-format
+msgctxt "VectorControl|"
+msgid "%1"
+msgstr "%1"
+
+#: KSeExprUI/ExprControl.cpp:456 KSeExprUI/ExprControl.cpp:465
+msgctxt "StringControl|"
+msgid "Please choose a file"
+msgstr "請選擇檔案"
+
+#: KSeExprUI/ExprControl.cpp:456
+msgctxt "StringControl|"
+msgid "Images (*.tif *.tx *.jpg *.ptx *.png)"
+msgstr "圖像檔 (*.tif *.tx *.jpg *.ptx *.png)"
+
+#: KSeExprUI/ExprControl.cpp:488
+msgctxt "CurveControl|"
+msgid "Pos:"
+msgstr "位置："
+
+#: KSeExprUI/ExprControl.cpp:488
+msgctxt "CurveControl|"
+msgid "Val:"
+msgstr "數值："
+
+#: KSeExprUI/ExprControl.cpp:488
+msgctxt "CurveControl|"
+msgid "Interp:"
+msgstr "插值："
+
+#: KSeExprUI/ExprControl.cpp:512
+msgctxt "CCurveControl|"
+msgid "Pos:"
+msgstr "位置："
+
+#: KSeExprUI/ExprControl.cpp:512
+msgctxt "CCurveControl|"
+msgid "Val:"
+msgstr "數值："
+
+#: KSeExprUI/ExprControl.cpp:512
+msgctxt "CCurveControl|"
+msgid "Interp:"
+msgstr "插值："
+
+#: KSeExprUI/ExprControl.cpp:617 KSeExprUI/ExprControl.cpp:618
+#: KSeExprUI/ExprControl.cpp:619 KSeExprUI/ExprControl.cpp:620
+#, qt-format
+msgctxt "ExprGraphPreview|"
+msgid "%1"
+msgstr "%1"
+
+#: KSeExprUI/ExprCurve.cpp:153
+msgctxt "CurveScene|"
+msgid "Delete Point"
+msgstr "刪除點"
+
+#: KSeExprUI/ExprCurve.cpp:298
+msgctxt "ExprCurve|"
+msgid "Selected Position:"
+msgstr "已選取位置："
+
+#: KSeExprUI/ExprCurve.cpp:309
+msgctxt "ExprCurve|"
+msgid "Selected Value:"
+msgstr "已選取數值："
+
+#: KSeExprUI/ExprCurve.cpp:317
+msgctxt "ExprCurve|"
+msgid "Interp:"
+msgstr "插值："
+
+#: KSeExprUI/ExprCurve.cpp:322
+msgctxt "ExprCurve|"
+msgid "None"
+msgstr "無"
+
+#: KSeExprUI/ExprCurve.cpp:323
+msgctxt "ExprCurve|"
+msgid "Linear"
+msgstr "線性"
+
+#: KSeExprUI/ExprCurve.cpp:324
+msgctxt "ExprCurve|"
+msgid "Smooth"
+msgstr "平滑"
+
+#: KSeExprUI/ExprCurve.cpp:325
+msgctxt "ExprCurve|"
+msgid "Spline"
+msgstr "樣條曲線 (spline)"
+
+#: KSeExprUI/ExprCurve.cpp:326
+msgctxt "ExprCurve|"
+msgid "MSpline"
+msgstr "M樣條曲線 (MSpline)"
+
+#: KSeExprUI/ExprCurve.cpp:347
+msgctxt "ExprCurve|"
+msgid "&Expand..."
+msgstr "放大窗格(&E)…"
+
+#: KSeExprUI/ExprCurve.cpp:390 KSeExprUI/ExprCurve.cpp:399
+#, qt-format
+msgctxt "ExprCurve|"
+msgid "%1"
+msgstr "%1"
+
+#: KSeExprUI/ExprEditor.cpp:73
+msgctxt "ExprEditor|"
+msgid "Expression Editor"
+msgstr "運算式編輯器"
+
+#: KSeExprUI/ExprEditor.cpp:235
+#, qt-format
+msgctxt "ExprEditor|"
+msgid "(%1, %2): %3"
+msgstr "(%1, %2): %3"
+
+#: KSeExprUI/ExprFileDialog.cpp:84
+msgctxt "ExprFileDialog|"
+msgid "Open"
+msgstr "開啟"
+
+#: KSeExprUI/ExprFileDialog.cpp:189
+msgctxt "ExprFileDialog|"
+msgid "Favorites"
+msgstr "最愛"
+
+#: KSeExprUI/ExprTextEdit.cpp:44
+msgctxt "ExprTextEdit|"
+msgid "Pop-up Help"
+msgstr "浮動說明"
+
+#: KSeExprUI/ExprTextEdit.cpp:185
+#, qt-format
+msgctxt "ExprTextEdit|"
+msgid "<b>%1</b>"
+msgstr "<b>%1</b>"
+
+#: KSeExprUI/ExprTextEdit.cpp:187
+#, qt-format
+msgctxt "ExprTextEdit|"
+msgid "<br>%1"
+msgstr "<br>%1"

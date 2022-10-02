@@ -1,0 +1,1807 @@
+# Translation of seexpr2_qt.po to Ukrainian
+# Copyright (C) 2020 This_file_is_part_of_KDE
+# This file is distributed under the license LGPL version 2.1 or
+# version 3 or later versions approved by the membership of KDE e.V.
+#
+# Yuri Chornoivan <yurchor@ukr.net>, 2020, 2021.
+msgid ""
+msgstr ""
+"Project-Id-Version: seexpr2_qt\n"
+"PO-Revision-Date: 2021-12-15 14:15+0200\n"
+"Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
+"Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
+"Language: uk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Qt-Contexts: true\n"
+"X-Qt-Contexts: true\n"
+"Plural-Forms: nplurals=4; plural=n==1 ? 3 : n%10==1 && n%100!=11 ? 0 : n"
+"%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Lokalize 20.12.0\n"
+
+#: KSeExpr/ExprBuiltins.cpp:27
+msgctxt "builtin|"
+msgid ""
+"float abs(float x)\n"
+"absolute value of x"
+msgstr ""
+"float abs(float x)\n"
+"модуль значення x"
+
+#: KSeExpr/ExprBuiltins.cpp:30
+msgctxt "builtin|"
+msgid ""
+"float deg(float angle)\n"
+"radians to degrees"
+msgstr ""
+"float deg(float кут)\n"
+"радіани у градуси"
+
+#: KSeExpr/ExprBuiltins.cpp:31
+msgctxt "builtin|"
+msgid ""
+"float rad(float angle)\n"
+"degrees to radians"
+msgstr ""
+"float rad(float кут)\n"
+"градуси у радіани"
+
+#: KSeExpr/ExprBuiltins.cpp:33
+msgctxt "builtin|"
+msgid ""
+"float cosd(float angle)\n"
+"cosine in degrees"
+msgstr ""
+"float cosd(float кут)\n"
+"косинус значення у градусах"
+
+#: KSeExpr/ExprBuiltins.cpp:34
+msgctxt "builtin|"
+msgid ""
+"float sind(float angle)\n"
+"sine in degrees"
+msgstr ""
+"float sind(float кут)\n"
+"синус значення у градусах"
+
+#: KSeExpr/ExprBuiltins.cpp:35
+msgctxt "builtin|"
+msgid ""
+"float tand(float angle)\n"
+"tangent in degrees"
+msgstr ""
+"float tand(float кут)\n"
+"тангенс значення у градусах"
+
+#: KSeExpr/ExprBuiltins.cpp:36
+msgctxt "builtin|"
+msgid ""
+"float acosd(float value)\n"
+"arc cosine in degrees"
+msgstr ""
+"float acosd(float значення)\n"
+"арккосинус у градусах"
+
+#: KSeExpr/ExprBuiltins.cpp:37
+msgctxt "builtin|"
+msgid ""
+"float asind(float value)\n"
+"arc sine in degrees"
+msgstr ""
+"float asind(float значення)\n"
+"арксинус у градусах"
+
+#: KSeExpr/ExprBuiltins.cpp:38
+msgctxt "builtin|"
+msgid ""
+"float atand(float value)\n"
+"arc tangent in degrees"
+msgstr ""
+"float atand(float значення)\n"
+"арктангенс у градусах"
+
+#: KSeExpr/ExprBuiltins.cpp:39
+msgctxt "builtin|"
+msgid ""
+"float atan2d(float y,float x)\n"
+"arc tangent in degrees of y/x between -180 and 180"
+msgstr ""
+"float atan2d(float y,float x)\n"
+"арктангенс у градусах для y/x, значення від -180 до 180"
+
+#: KSeExpr/ExprBuiltins.cpp:41
+msgctxt "builtin|"
+msgid ""
+"float cos(float angle)\n"
+"cosine in radians"
+msgstr ""
+"float cos(float кут)\n"
+"косинус значення у радіанах"
+
+#: KSeExpr/ExprBuiltins.cpp:42
+msgctxt "builtin|"
+msgid ""
+"float sin(float angle)\n"
+"sine in radians"
+msgstr ""
+"float sin(float кут)\n"
+"синус значення у радіанах"
+
+#: KSeExpr/ExprBuiltins.cpp:43
+msgctxt "builtin|"
+msgid ""
+"float tan(float angle)\n"
+"tangent in radians"
+msgstr ""
+"float tan(float кут)\n"
+"тангенс значення у радіанах"
+
+#: KSeExpr/ExprBuiltins.cpp:44
+msgctxt "builtin|"
+msgid ""
+"float acos(float value)\n"
+"arc cosine in radians"
+msgstr ""
+"float acos(float значення)\n"
+"арккосинус у радіанах"
+
+#: KSeExpr/ExprBuiltins.cpp:45
+msgctxt "builtin|"
+msgid ""
+"float asin(float value)\n"
+"arc sine in radians"
+msgstr ""
+"float asin(float значення)\n"
+"арксинус у радіанах"
+
+#: KSeExpr/ExprBuiltins.cpp:46
+msgctxt "builtin|"
+msgid ""
+"float atan(float value)\n"
+"arc tangent in radians"
+msgstr ""
+"float atan(float значення)\n"
+"арктангенс у радіанах"
+
+#: KSeExpr/ExprBuiltins.cpp:47
+msgctxt "builtin|"
+msgid ""
+"float atan2(float y,float x)\n"
+"arc tangent in radians of y/x between -PI and PI"
+msgstr ""
+"float atan2(float y,float x)\n"
+"арктангенс у радіанах для y/x, значення від -PI до PI"
+
+#: KSeExpr/ExprBuiltins.cpp:49
+msgctxt "builtin|"
+msgid ""
+"float cosh(float angle)\n"
+"hyperbolic cosine in radians"
+msgstr ""
+"float cosh(float кут)\n"
+"гіперболічний косинус значення у радіанах"
+
+#: KSeExpr/ExprBuiltins.cpp:50
+msgctxt "builtin|"
+msgid ""
+"float sinh(float angle)\n"
+"hyperbolic sine in radians"
+msgstr ""
+"float sinh(float кут)\n"
+"гіперболічний синус значення у радіанах"
+
+#: KSeExpr/ExprBuiltins.cpp:51
+msgctxt "builtin|"
+msgid ""
+"float tanh(float angle)\n"
+"hyperbolic tangent in radians"
+msgstr ""
+"float tanh(float кут)\n"
+"гіперболічний тангенс значення у радіанах"
+
+#: KSeExpr/ExprBuiltins.cpp:52
+msgctxt "builtin|"
+msgid ""
+"float acosh(float value)\n"
+"hyperbolic arc cosine in radians"
+msgstr ""
+"float acosh(float значення)\n"
+"гіперболічний арккосинус у радіанах"
+
+#: KSeExpr/ExprBuiltins.cpp:53
+msgctxt "builtin|"
+msgid ""
+"float asinh(float value)\n"
+"hyperbolic arc sine in radians"
+msgstr ""
+"float asinh(float значення)\n"
+"гіперболічний арксинус у радіанах"
+
+#: KSeExpr/ExprBuiltins.cpp:54
+msgctxt "builtin|"
+msgid ""
+"float atanh(float value)\n"
+"hyperbolic arc tangent in radians"
+msgstr ""
+"float atanh(float кут)\n"
+"гіперболічний арктангенс у радіанах"
+
+#: KSeExpr/ExprBuiltins.cpp:56
+msgctxt "builtin|"
+msgid ""
+"float clamp(float x,float lo,float hi)\n"
+"constrain x to range [lo,hi]"
+msgstr ""
+"float clamp(float x,float lo,float hi)\n"
+"обмежити x до діапазону [lo,hi]"
+
+#: KSeExpr/ExprBuiltins.cpp:57
+msgctxt "builtin|"
+msgid ""
+"float round(float x)\n"
+"nearest integer to x"
+msgstr ""
+"float round(float x)\n"
+"найближче до x ціле значення"
+
+#: KSeExpr/ExprBuiltins.cpp:58
+msgctxt "builtin|"
+msgid ""
+"float max(float a,float b)\n"
+"greater of a and b"
+msgstr ""
+"float max(float a,float b)\n"
+"більше з чисел a і b"
+
+#: KSeExpr/ExprBuiltins.cpp:59
+msgctxt "builtin|"
+msgid ""
+"float min(float a,float b)\n"
+"lesser of a and b"
+msgstr ""
+"float min(float a,float b)\n"
+"менше з чисел a і b"
+
+#: KSeExpr/ExprBuiltins.cpp:60
+msgctxt "builtin|"
+msgid ""
+"float trunc(float a)\n"
+"nearest integer towards zero"
+msgstr ""
+"float trunc(float a)\n"
+"найближче до x ціле значення у напрямку до нуля"
+
+#: KSeExpr/ExprBuiltins.cpp:61
+msgctxt "builtin|"
+msgid ""
+"float floor(float a)\n"
+"next lower integer"
+msgstr ""
+"float floor(float a)\n"
+"найбільше з менших цілих чисел"
+
+#: KSeExpr/ExprBuiltins.cpp:62
+msgctxt "builtin|"
+msgid ""
+"float ceil(float a)\n"
+"next higher integer"
+msgstr ""
+"float ceil(float a)\n"
+"найменше з більших цілих чисел"
+
+#: KSeExpr/ExprBuiltins.cpp:64
+msgctxt "builtin|"
+msgid ""
+"float invert(float a)\n"
+"Defined as 1-x"
+msgstr ""
+"float invert(float a)\n"
+"визначено як 1-x"
+
+#: KSeExpr/ExprBuiltins.cpp:65
+msgctxt "builtin|"
+msgid ""
+"float cbrt(float x)\n"
+"cube root"
+msgstr ""
+"float cbrt(float x)\n"
+"кубічний корінь"
+
+#: KSeExpr/ExprBuiltins.cpp:66
+msgctxt "builtin|"
+msgid ""
+"float sqrt(float x)\n"
+"square root"
+msgstr ""
+"float sqrt(float x)\n"
+"квадратний корінь"
+
+#: KSeExpr/ExprBuiltins.cpp:67
+msgctxt "builtin|"
+msgid ""
+"float exp(float x)\n"
+"E raised to the x power"
+msgstr ""
+"float exp(float x)\n"
+"E у степені x"
+
+#: KSeExpr/ExprBuiltins.cpp:68
+msgctxt "builtin|"
+msgid ""
+"float pow(float x, float y)\n"
+"x to the y power, also available as ^"
+msgstr ""
+"float pow(float x, float y)\n"
+"x у степені y, також можна записати у формі з ^"
+
+#: KSeExpr/ExprBuiltins.cpp:69
+msgctxt "builtin|"
+msgid ""
+"float log(float x)\n"
+"Natural logarithm"
+msgstr ""
+"float log(float x)\n"
+"натуральний логарифм"
+
+#: KSeExpr/ExprBuiltins.cpp:70
+msgctxt "builtin|"
+msgid ""
+"float log10(float x)\n"
+"Base 10 logarithm"
+msgstr ""
+"float log10(float x)\n"
+"логарифм за основою 10"
+
+#: KSeExpr/ExprBuiltins.cpp:71
+msgctxt "builtin|"
+msgid ""
+"float fmod(float x,float y)\n"
+"remainder of x/y (also available as % operator)"
+msgstr ""
+"float fmod(float x,float y)\n"
+"Лишок від ділення x/y (також можна використати форму запису з оператором %)"
+
+#: KSeExpr/ExprBuiltins.cpp:72
+msgctxt "builtin|"
+msgid ""
+"float turbulence(vector v,int octaves=6,float lacunarity=2,float gain=.5)\n"
+"Absolute value of each noise term is taken. This gives billowy appearance"
+msgstr ""
+"float turbulence(vector v,int octaves=6,float lacunarity=2,float gain=.5)\n"
+"Врахування усіх складових шуму за модулем. Надає хвилястішого вигляду."
+
+#: KSeExpr/ExprBuiltins.cpp:75
+msgctxt "builtin|"
+msgid ""
+"color cturbulence(vector v,int octaves=6,float lacunarity=2,float gain=.5)\n"
+"Absolute value of each noise term is taken. This gives billowy appearance"
+msgstr ""
+"color cturbulence(vector v,int octaves=6,float lacunarity=2,float gain=.5)\n"
+"Врахування усіх складових шуму за модулем. Надає хвилястішого вигляду."
+
+#: KSeExpr/ExprBuiltins.cpp:78
+msgctxt "builtin|"
+msgid ""
+"vector vturbulence(vector v,int octaves=6,float lacunarity=2,float gain=.5)\n"
+"Absolute value of each noise term is taken. This gives billowy appearance"
+msgstr ""
+"vector vturbulence(vector v,int octaves=6,float lacunarity=2,float gain=.5)\n"
+"Врахування усіх складових шуму за модулем. Надає хвилястішого вигляду."
+
+#: KSeExpr/ExprBuiltins.cpp:86
+msgctxt "builtin|"
+msgid ""
+"float compress(float x,float lo,float hi)\n"
+"Remaps x in [0,1] to [lo,hi]"
+msgstr ""
+"float compress(float x,float lo,float hi)\n"
+"Відображає x з [0,1] на [lo,hi]"
+
+#: KSeExpr/ExprBuiltins.cpp:94
+msgctxt "builtin|"
+msgid ""
+"float expand(float x,float lo,float hi)\n"
+"Remaps x in [lo,hi] to [0,1]"
+msgstr ""
+"float expand(float x,float lo,float hi)\n"
+"Відображає x з [lo,hi] на [0,1]"
+
+#: KSeExpr/ExprBuiltins.cpp:100
+msgctxt "builtin|"
+msgid ""
+"float fit(float x,float a1,float b1,float a2,float b2)\n"
+"Linearly remaps x in [a1,b1] to [a2,b2]"
+msgstr ""
+"float fit(float x,float a1,float b1,float a2,float b2)\n"
+"Лінійно відображає x з [a1,b1] на [a2,b2]"
+
+#: KSeExpr/ExprBuiltins.cpp:106
+msgctxt "builtin|"
+msgid ""
+"float gamma(float x, float g)\n"
+"Gamma correction of x with gamma factor g"
+msgstr ""
+"float gamma(float x, float g)\n"
+"Гамма-виправлення x із коефіцієнтом гамма, який дорівнює g"
+
+#: KSeExpr/ExprBuiltins.cpp:113
+msgctxt "builtin|"
+msgid ""
+"float bias(float x, float g)\n"
+"Variation of gamma where values less than 0.5 pull the curve down\n"
+"and values greater than 0.5 pull the curve up\n"
+"pow(x,log(b)/log(0.5))"
+msgstr ""
+"float bias(float x, float g)\n"
+"Варіація гамми, де параметр керування має значення від 0 до 1 зі значеннями, "
+"меншими за 0.5, які піднімають криву, і значеннями, більшими за 0.5, які "
+"опускають криву. Визначається як pow(x, log(b)/log(0.5))."
+
+#: KSeExpr/ExprBuiltins.cpp:124
+msgctxt "builtin|"
+msgid ""
+"float contrast(float x, float c)\n"
+"Adjust the contrast.&nbsp; For c from 0 to 0.5, the contrast is decreased."
+"&nbsp; For c &gt; 0.5, the contrast is increased."
+msgstr ""
+"float contrast(float x,float c)\n"
+"Скоригувати контрастність. Для c у діапазоні від 0 до 0.5 контрастність "
+"зменшуватиметься. Для c &gt; 0.5 контрастність збільшуватиметься."
+
+#: KSeExpr/ExprBuiltins.cpp:132
+msgctxt "builtin|"
+msgid ""
+"float boxstep(float x,float a)\n"
+" if x < a then 0 otherwise 1"
+msgstr ""
+"float boxstep(float x,float a)\n"
+"якщо x < a, то 0, інакше — 1"
+
+#: KSeExpr/ExprBuiltins.cpp:143
+msgctxt "builtin|"
+msgid ""
+"float linearstep(float x, float a, float b)\n"
+" if x &lt; a then 0, if x &gt; b then 1, and\n"
+"x transitions linearly when a &lt; x &lt; b"
+msgstr ""
+"float linearstep(float x,float a,float b)\n"
+"якщо x &lt; a, то 0, якщо x &gt; b, то 1, і\n"
+"значення лінійно переходить у проміжку a &lt; x &lt; b "
+
+#: KSeExpr/ExprBuiltins.cpp:165
+msgctxt "builtin|"
+msgid ""
+"float smoothstep(float x,float a,float b)\n"
+" if x &lt; a then 0, if x &gt; b then 1, and\n"
+"x transitions smoothly (cubic) when a &lt; x &lt; b"
+msgstr ""
+"float smoothstep(float x,float a,float b)\n"
+"якщо x &lt; a, то 0, якщо x &gt; b, то 1, і\n"
+"значення плавно переходить (за кубічною параболою) у проміжку a &lt; x &lt; b"
+
+#: KSeExpr/ExprBuiltins.cpp:187
+msgctxt "builtin|"
+msgid ""
+"float gasussstep(float x,float a,float b)\n"
+" if x &lt; a then 0, if x &gt; b then 1, and\n"
+"x transitions smoothly (exponentially) when a &lt; x &lt; b"
+msgstr ""
+"float gasussstep(float x,float a,float b)\n"
+"якщо x &lt; a, то 0, якщо x &gt; b, то 1, і\n"
+"значення плавно переходить (за експонентою) у проміжку a &lt; x &lt; b"
+
+#: KSeExpr/ExprBuiltins.cpp:218
+msgctxt "builtin|"
+msgid ""
+"remap(float x, float source, float range, float falloff, float interp)\n"
+"General remapping function.\n"
+"When x is within +/- <i>range</i> of source, the result is one.\n"
+"The result falls to zero beyond that range over <i>falloff</i> distance.\n"
+"The falloff shape is controlled by <i>interp</i>. Numeric values\n"
+"or named constants may be used:\n"
+"&nbsp;&nbsp;&nbsp;&nbsp;int <b>linear</b> = 0\n"
+"&nbsp;&nbsp;&nbsp;&nbsp;int <b>smooth</b> = 1\n"
+"&nbsp;&nbsp;&nbsp;&nbsp;int <b>gaussian</b> = 2\n"
+msgstr ""
+"remap(float x, float source, float range, float falloff, float interp)\n"
+"Загальна функція відображення.\n"
+"Якщо x перебуває у діапазоні джерела ±<i>range</i>, результатом буде "
+"одиниця. Результат спадає до нуля за межами діапазону на відстані "
+"<i>falloff</i>. Форма спадання контролюється параметром <i>interp</i>. Можна "
+"використовувати числові значення\n"
+"або іменовані сталі:\n"
+"&nbsp;&nbsp;&nbsp;&nbsp;int <b>linear</b> = 0\n"
+"&nbsp;&nbsp;&nbsp;&nbsp;int <b>smooth</b> = 1\n"
+"&nbsp;&nbsp;&nbsp;&nbsp;int <b>gaussian</b> = 2\n"
+
+#: KSeExpr/ExprBuiltins.cpp:233
+msgctxt "builtin|"
+msgid ""
+"mix(float a,float b,float alpha)\n"
+"Blend of a and b according to alpha."
+msgstr ""
+"mix(float a,float b,float alpha)\n"
+"Змішує a і b відповідно до alpha."
+
+#: KSeExpr/ExprBuiltins.cpp:260
+msgctxt "builtin|"
+msgid ""
+"color  hsi(color x, float h, float s, float i, float map=1)\n"
+"The hsi function shifts the hue by h\n"
+"(in degrees) and scales the saturation and intensity by s and i\n"
+"respectively.&nbsp; A map may be supplied which will control the shift\n"
+"- the full shift will happen when the map is one and no shift will\n"
+"happen when the map is zero.&nbsp; The shift will be scaled back for\n"
+"values between zero and one."
+msgstr ""
+"color  hsi(color x, float h, float s, float i, float map=1)\n"
+"Функція hsi зсуває відтінок на ``h`` (у градусах) і масштабує\n"
+"насиченість та інтенсивність на ``s`` і ``i``, відповідно. Функції може "
+"бути\n"
+"передано значення map, яке контролюватиме зсув — повний зсув\n"
+"відбуватиметься, якщо map дорівнює одиниці. Якщо ж значенням map буде нуль,\n"
+"зсув не відбуватиметься. Зсув буде масштабовано до значень між нулем та\n"
+"одиницею."
+
+#: KSeExpr/ExprBuiltins.cpp:306
+msgctxt "builtin|"
+msgid ""
+"color midhsi(color x, float h, float s, float i, float map, float falloff=1, "
+"int interp=0)\n"
+"The midhsi function is just like the hsi function except that\n"
+"the control map is centered around the mid point (value of 0.5)\n"
+"and can scale the shift in both directions."
+msgstr ""
+"color midhsi(color x, float h, float s, float i, float map, float falloff=1, "
+"int interp=0)\n"
+"Функція midhsi подібна до функції hsi, але керівне відображення\n"
+"центровано навколо середньої точки (значення 0.5)\n"
+"і може масштабувати зсув у обох напрямках."
+
+#: KSeExpr/ExprBuiltins.cpp:358
+msgctxt "builtin|"
+msgid ""
+"color rgbtohsl(color rgb)\n"
+"RGB to HSL color space conversion.\n"
+"HSL is Hue, Saturation, Lightness (all in range [0..1] )\n"
+"These functions have also been extended to support rgb and hsl values\n"
+"outside of the range [0..1] in a reasonable way.&nbsp; For any rgb or\n"
+"hsl value (except for negative s values), the conversion is\n"
+"well-defined and reversible."
+msgstr ""
+"color rgbtohsl(color rgb)\n"
+"Перетворення з простору кольорів RGB до простору кольорів HSL.\n"
+"Колір у HSL визначається значеннями відтінку (Hue), насиченості "
+"(Saturation), освітленості (Lightness) (усі в діапазоні [0, 1]).\n"
+"Ці функції також розширено для підтримки значень RGB і HSL поза діапазоном "
+"[0, 1] у природний спосіб.\n"
+"Для будь-якого значення RGB або HSL (окрім від'ємних значень) перетворення є "
+"коректним і оборотним."
+
+#: KSeExpr/ExprBuiltins.cpp:413
+msgctxt "builtin|"
+msgid ""
+"color hsltorgb(color hsl)\n"
+"HSL to RGB color space conversion.\n"
+"HSL is Hue, Saturation, Lightness (all in range [0..1] )\n"
+"These functions have also been extended to support rgb and hsl values\n"
+"outside of the range [0..1] in a reasonable way.&nbsp; For any rgb or\n"
+"hsl value (except for negative s values), the conversion is\n"
+"well-defined and reversible."
+msgstr ""
+"color hsltorgb(color hsl)\n"
+"Перетворення з простору кольорів HSL до простору кольорів RGB.\n"
+"Колір у HSL визначається значеннями відтінку (Hue), насиченості "
+"(Saturation), освітленості (Lightness) (усі в діапазоні [0, 1]).\n"
+"Ці функції також розширено для підтримки значень RGB і HSL поза діапазоном "
+"[0, 1] у природний спосіб.\n"
+"Для будь-якого значення RGB або HSL (окрім від'ємних значень) перетворення є "
+"коректним і оборотним."
+
+#: KSeExpr/ExprBuiltins.cpp:441
+msgctxt "builtin|"
+msgid ""
+"color saturate(color val, float amt)\n"
+"Scale saturation of color by amt.\n"
+"The color is scaled around the rec709 luminance value,\n"
+"and negative results are clamped at zero.\n"
+msgstr ""
+"color saturate(color val, float amt)\n"
+"Масштабує насиченість кольору на amt.\n"
+"Колір буде масштабовано навколо значення освітленості rec709, від'ємні\n"
+"результати буде обрізано до нуля.\n"
+
+#: KSeExpr/ExprBuiltins.cpp:499
+msgctxt "builtin|"
+msgid ""
+"float rand ( [float min, float max], [float seed] )\n"
+"Random number between [min, max] (or [0, 1] if unspecified).\n"
+"If a seed is supplied, it will be used in addition to the internal seeds and "
+"may be used to create multiple distinct generators."
+msgstr ""
+"float rand ( [float min, float max], [float seed] )\n"
+"Випадкове число у проміжку [min; max] (або [0; 1], якщо проміжок не "
+"вказано).\n"
+"Якщо вказано базове значення (seed), його буде використано на додачу до "
+"вбудованих базових значень. Цим значенням можна скористатися для створення "
+"декількох різних генераторів."
+
+#: KSeExpr/ExprBuiltins.cpp:553
+msgctxt "builtin|"
+msgid ""
+"float hash(float seed1,[float seed2, ...])\n"
+"Like rand, but with no internal seeds. Any number of seeds may be given\n"
+"and the result will be a random function based on all the seeds."
+msgstr ""
+"float hash(float seed1,[float seed2, ...])\n"
+"Подібна до «rand», але без внутрішніх базових значень псевдовипадковості. "
+"Можна надавати довільну кількість базових значень (seed). Результатом буде "
+"випадкова функція на основі усіх базових значень."
+
+#: KSeExpr/ExprBuiltins.cpp:596
+msgctxt "builtin|"
+msgid ""
+"float noise ( vector v )\n"
+"float noise ( float x, float y )\n"
+"float noise ( float x, float y, float z )\n"
+"float noise ( float x, float y, float z, float w )\n"
+"Original perlin noise at location (C2 interpolant)"
+msgstr ""
+"float noise ( vector v )\n"
+"float noise ( float x, float y )\n"
+"float noise ( float x, float y, float z )\n"
+"float noise ( float x, float y, float z, float w )\n"
+"Оригінальний шум Перліна у точці (інтерполятора C2)"
+
+#: KSeExpr/ExprBuiltins.cpp:610
+msgctxt "builtin|"
+msgid ""
+"float snoise ( vector v)\n"
+"signed noise w/ range -1 to 1 formed with original perlin noise at location "
+"(C2 interpolant)"
+msgstr ""
+"float snoise ( vector v )\n"
+"шум з чисел зі знаком у діапазоні від –1 до 1, сформований за допомогою "
+"оригінального шуму Перліна у точці (інтерполятор C2)"
+
+#: KSeExpr/ExprBuiltins.cpp:621
+msgctxt "builtin|"
+msgid ""
+"vector vnoise ( vector v)\n"
+"vector noise formed with original perlin noise at location (C2 interpolant)"
+msgstr ""
+"vector vnoise ( vector v )\n"
+"векторний шум, сформований за допомогою оригінального шуму Перліна у точці "
+"(інтерполятор C2)"
+
+#: KSeExpr/ExprBuiltins.cpp:629
+msgctxt "builtin|"
+msgid ""
+"color cnoise ( vector v)\n"
+"color noise formed with original perlin noise at location (C2 interpolant)"
+msgstr ""
+"color cnoise ( vector v )\n"
+"колірний шум, сформований за допомогою оригінального шуму Перліна у точці "
+"(інтерполятор C2)"
+
+#: KSeExpr/ExprBuiltins.cpp:640
+msgctxt "builtin|"
+msgid ""
+"float snoise4 ( vector v,float t)\n"
+"4D signed noise w/ range -1 to 1 formed with original perlin noise at "
+"location (C2 interpolant)"
+msgstr ""
+"float snoise4 ( vector v, float t)\n"
+"Чотиривимірний шум з чисел зі знаком у діапазоні від –1 до 1, сформований за "
+"допомогою оригінального шуму Перліна у точці (інтерполятор C2)"
+
+#: KSeExpr/ExprBuiltins.cpp:651
+msgctxt "builtin|"
+msgid ""
+"vector vnoise4 ( vector v,float t)\n"
+"4D vector noise formed with original perlin noise at location (C2 "
+"interpolant)"
+msgstr ""
+"vector vnoise4 ( vector v, float t)\n"
+"Чотиривимірний векторний шум, сформований за допомогою оригінального шуму "
+"Перліна у точці (інтерполятор C2)"
+
+#: KSeExpr/ExprBuiltins.cpp:659
+msgctxt "builtin|"
+msgid ""
+"color cnoise4 ( vector v,float t)\n"
+"4D color noise formed with original perlin noise at location (C2 interpolant)"
+msgstr ""
+"color cnoise4 ( vector v,float t)\n"
+"Чотиривимірний колірний шум, сформований за допомогою оригінального шуму "
+"Перліна у точці (інтерполятор C2)"
+
+#: KSeExpr/ExprBuiltins.cpp:751
+msgctxt "builtin|"
+msgid ""
+"float fbm(vector v,int octaves=6,float lacunarity=2,float gain=.5)\n"
+"fbm (Fractal Brownian Motion) is a multi-frequency noise function. \n"
+"The base frequency is the same as the \"noise\" function. The total number "
+"of frequencies is controlled by octaves. The lacunarity is the spacing "
+"between the frequencies - a value of 2 means each octave is twice the "
+"previous frequency. The gain controls how much each frequency is scaled "
+"relative to the previous frequency."
+msgstr ""
+"float fbm(vector v,int octaves=6,float lacunarity=2,float gain=.5)\n"
+"fbm (Fractal Brownian Motion або фрактальний броунівський рух) є "
+"багаточастотною функцію шуму.\n"
+"Базова частота збігається із частотою функції «noise». Загальна кількість "
+"частот керується значенням «octaves». Значення «lacunarity» є інтервалом між "
+"частотами — значення 2 означає, що у кожній наступній октаві частота "
+"подвоюється. Значення «gain» керує тим, наскільки буде масштабовано кожну "
+"частоту відносно попередньої частоти."
+
+#: KSeExpr/ExprBuiltins.cpp:787
+msgctxt "builtin|"
+msgid "vector vfbm(vector vint octaves=6,float lacunarity=2,float gain=.5)"
+msgstr "vector vfbm(vector vint octaves=6,float lacunarity=2,float gain=.5)"
+
+#: KSeExpr/ExprBuiltins.cpp:820
+msgctxt "builtin|"
+msgid ""
+"float fbm4(vector v,float time,int octaves=6,float lacunarity=2,float "
+"gain=.5)\n"
+"fbm (Fractal Brownian Motion) is a multi-frequency noise function. \n"
+"The base frequency is the same as the \"noise\" function. The total \n"
+"number of frequencies is controlled by octaves. The lacunarity is the \n"
+"spacing between the frequencies - a value of 2 means each octave is \n"
+"twice the previous frequency. The gain controls how much each \n"
+"frequency is scaled relative to the previous frequency."
+msgstr ""
+"float fbm4(vector v,float time,int octaves=6,float lacunarity=2,float "
+"gain=.5)\n"
+"fbm (Fractal Brownian Motion або фрактальний броунівський рух) є "
+"багаточастотною функцію шуму.\n"
+"Базова частота збігається із частотою функції «noise». Загальна кількість "
+"частот керується\n"
+"значенням «octaves». Значення «lacunarity» є інтервалом між частотами — "
+"значення 2 означає,\n"
+"що у кожній наступній октаві частота подвоюється. Значення «gain» керує тим, "
+"наскільки буде\n"
+"масштабовано кожну частоту відносно попередньої частоти."
+
+#: KSeExpr/ExprBuiltins.cpp:860
+msgctxt "builtin|"
+msgid ""
+"vector vfbm4(vector v,float time,int octaves=6,float lacunarity=2,float "
+"gain=.5)"
+msgstr ""
+"vector vfbm4(vector v,float time,int octaves=6,float lacunarity=2,float "
+"gain=.5)"
+
+#: KSeExpr/ExprBuiltins.cpp:866
+msgctxt "builtin|"
+msgid "color cfbm(vector vint octaves=6,float lacunarity=2,float gain=.5)"
+msgstr "color cfbm(vector vint octaves=6,float lacunarity=2,float gain=.5)"
+
+#: KSeExpr/ExprBuiltins.cpp:872
+msgctxt "builtin|"
+msgid ""
+"color cfbm4(vector v,float time,int octaves=6,float lacunarity=2,float "
+"gain=.5)"
+msgstr ""
+"color cfbm4(vector v,float time,int octaves=6,float lacunarity=2,float "
+"gain=.5)"
+
+#: KSeExpr/ExprBuiltins.cpp:881
+msgctxt "builtin|"
+msgid ""
+"float cellnoise(vector v)\n"
+"cellnoise generates a field of constant colored cubes based on the integer "
+"location.\n"
+"This is the same as the prman cellnoise function."
+msgstr ""
+"float cellnoise(vector v)\n"
+"cellnoise створює поле кубів розфарбованих сталим кольором на основі "
+"цілочисельного розташування вершин.\n"
+"Ця функція збігається із функцією cellnoise prman."
+
+#: KSeExpr/ExprBuiltins.cpp:893
+msgctxt "builtin|"
+msgid ""
+"color cellnoise(vector v)\n"
+"cellnoise generates a field of constant colored cubes based on the integer "
+"location.\n"
+"This is the same as the prman cellnoise function."
+msgstr ""
+"color cellnoise(vector v)\n"
+"cellnoise створює поле кубів розфарбованих сталим кольором на основі "
+"цілочисельного розташування вершин.\n"
+"Ця функція збігається із функцією cellnoise prman."
+
+#: KSeExpr/ExprBuiltins.cpp:906
+msgctxt "builtin|"
+msgid ""
+"float pnoise ( vector v, vector period )\n"
+"periodic noise"
+msgstr ""
+"float pnoise ( vector v, vector період )\n"
+"періодичний шум"
+
+#: KSeExpr/ExprBuiltins.cpp:1050
+msgctxt "builtin|"
+msgid ""
+"float voronoi(vector v, int type=1,float jitter=0.5, float fbmScale=0, int "
+"fbmOctaves=4,float fbmLacunarity=2, float fbmGain=.5)\n"
+"voronoi is a cellular noise pattern. It is a jittered variant of cellnoise."
+msgstr ""
+"float voronoi(vector v, int type=1,float jitter=0.5, float fbmScale=0, int "
+"fbmOctaves=4,float fbmLacunarity=2, float fbmGain=.5)\n"
+"повертає стільниковий шумовий візерунок. Це варіант cellnoise із джитером."
+
+#: KSeExpr/ExprBuiltins.cpp:1126
+msgctxt "builtin|"
+msgid ""
+"color cvoronoi(vector v, int type=1,float jitter=0.5, float fbmScale=0, int "
+"fbmOctaves=4,float fbmLacunarity=2, float fbmGain=.5)\n"
+"returns color in cellular pattern. It is a jittered variant of cellnoise."
+msgstr ""
+"color cvoronoi(vector v, int type=1,float jitter=0.5, float fbmScale=0, int "
+"fbmOctaves=4,float fbmLacunarity=2, float fbmGain=.5)\n"
+"повертає колір у стільниковому візерунку. Це варіант cellnoise із джитером."
+
+#: KSeExpr/ExprBuiltins.cpp:1175
+msgctxt "builtin|"
+msgid ""
+"color pvoronoi(vector v, int type=1,float jitter=0.5, float fbmScale=0, int "
+"fbmOctaves=4,float fbmLacunarity=2, float fbmGain=.5)\n"
+"returns center of voronoi cell."
+msgstr ""
+"color pvoronoi(vector v, int type=1,float jitter=0.5, float fbmScale=0, int "
+"fbmOctaves=4,float fbmLacunarity=2, float fbmGain=.5)\n"
+"повертає центр комірки Вороного."
+
+#: KSeExpr/ExprBuiltins.cpp:1238
+msgctxt "builtin|"
+msgid ""
+"float dist(vector a, vector b)\n"
+"distance between two points"
+msgstr ""
+"float dist(vector a, vector b)\n"
+"відстань між двома точками"
+
+#: KSeExpr/ExprBuiltins.cpp:1246
+msgctxt "builtin|"
+msgid ""
+"float length(vector v)\n"
+"length of vector"
+msgstr ""
+"float length(vector v)\n"
+"довжина вектора"
+
+#: KSeExpr/ExprBuiltins.cpp:1254
+msgctxt "builtin|"
+msgid ""
+"float hypot(vector v)\n"
+"length of 2d vector [x,y]"
+msgstr ""
+"float hypot(vector v)\n"
+"довжина двовимірного вектора [x,y]"
+
+#: KSeExpr/ExprBuiltins.cpp:1262
+msgctxt "builtin|"
+msgid ""
+"float dot(vector a,vector b)\n"
+"vector dot product"
+msgstr ""
+"float dot(vector a,vector b)\n"
+"скалярний добуток векторів"
+
+#: KSeExpr/ExprBuiltins.cpp:1274
+msgctxt "builtin|"
+msgid ""
+"vector norm(vector v)\n"
+"vector scaled to unit length"
+msgstr ""
+"vector norm(vector v)\n"
+"масштабування вектора до одиничної довжини"
+
+#: KSeExpr/ExprBuiltins.cpp:1282
+msgctxt "builtin|"
+msgid ""
+"vector cross(vector a,vector b)\n"
+"vector cross product"
+msgstr ""
+"vector cross(vector a,vector b)\n"
+"векторний добуток векторів"
+
+#: KSeExpr/ExprBuiltins.cpp:1293
+msgctxt "builtin|"
+msgid ""
+"float angle(vector a,vector b)\n"
+"angle between two vectors (in radians)"
+msgstr ""
+"float angle(vector a,vector b)\n"
+"кут між двома векторами (у радіанах)"
+
+#: KSeExpr/ExprBuiltins.cpp:1301
+msgctxt "builtin|"
+msgid ""
+"vector angle(vector a,vector b)\n"
+"normalized vector orthogonal to a and b scaled to unit length"
+msgstr ""
+"vector angle(vector a,vector b)\n"
+"нормалізований вектор, який є ортогональним до a і b, масштабований до "
+"одиничної довжини"
+
+#: KSeExpr/ExprBuiltins.cpp:1317
+msgctxt "builtin|"
+msgid ""
+"vector rotate(vector v,vector axis,float angle)\n"
+"rotates v around axis by given angle (in radians)"
+msgstr ""
+"vector rotate(vector v,vector вісь,float кут)\n"
+"Обертає вектор v навколо вісі на заданий кут (у радіанах)"
+
+#: KSeExpr/ExprBuiltins.cpp:1327
+msgctxt "builtin|"
+msgid ""
+"vector up(vector P,vector upvec)\n"
+"rotates v such that the Y axis points in the given up direction"
+msgstr ""
+"vector up(vector P,vector upvec)\n"
+"обертає v так, щоб вісь Y вказувала у заданому напрямку"
+
+#: KSeExpr/ExprBuiltins.cpp:1343
+msgctxt "builtin|"
+msgid ""
+"int cycle(int index, int loRange, int hiRange )\n"
+"Cycles through values between loRange and hiRange based on supplied index.\n"
+"This is an offset \"mod\" function. The result is computed as ``loRange + "
+"value % (hiRange-loRange+1)``."
+msgstr ""
+"int cycle(int index, int loRange, int hiRange )\n"
+"Циклічно переходить значеннями між loRange і hiRange на основі наданого\n"
+"індексу (index). Це зсунута версія функції «mod». Результатом є значення "
+"``loRange + value % (hiRange-loRange+1)``."
+
+#: KSeExpr/ExprBuiltins.cpp:1405
+msgctxt "builtin|"
+msgid ""
+"int pick(float index, int loRange, int hiRange, [float weights, ...] )\n"
+"Picks values randomly between loRange and hiRange based on supplied index "
+"(which is\n"
+"automatically hashed).&nbsp; The values will be distributed according\n"
+"to the supplied weights.&nbsp; Any weights not supplied are assumed to\n"
+"be 1.0."
+msgstr ""
+"int pick(float index, int loRange, int hiRange, [float weights, ...] )\n"
+"Випадково вибирає значення між loRange і hiRange на основі наданого індексу "
+"(index,\n"
+"який автоматично хешується). Значення буде розподілено за вказаними "
+"значеннями ваги (weights).\n"
+"Усі ваги, значення яких не вказано, вважатимуться рівними 1.0."
+
+#: KSeExpr/ExprBuiltins.cpp:1416
+msgctxt "builtin|"
+msgid ""
+"color swatch(float index, color choice0, color choice1, color choice2, "
+"[...])\n"
+"Chooses one of the supplied color choices based on the index (assumed to be "
+"in range [0..1])."
+msgstr ""
+"color swatch(float індекс, color варіант0, color варіант1, color варіант2, "
+"[...])\n"
+"Вибирає один із наданих варіантів на основі індексу (припускається значення "
+"у діапазоні [0, 1])."
+
+#: KSeExpr/ExprBuiltins.cpp:1431
+msgctxt "builtin|"
+msgid ""
+"float choose(float index,float choice1, float choice2, [...])\n"
+"Chooses one of the supplied choices based on the index (assumed to be in "
+"range [0, 1])."
+msgstr ""
+"float choose(float індекс, float варіант1, float варіант2, [...])\n"
+"Вибирає один із наданих варіантів на основі індексу (припускається значення "
+"у діапазоні [0, 1])."
+
+#: KSeExpr/ExprBuiltins.cpp:1487
+msgctxt "builtin|"
+msgid ""
+"float wchoose(float index,float choice1, float weight1, float choice2, float "
+"weight2, [...] )\n"
+"Chooses one of the supplied choices based on the index (assumed to be in "
+"range [0..1]).\n"
+"The values will be distributed according to the supplied weights."
+msgstr ""
+"float wchoose(float index,float choice1, float weight1, float choice2, float "
+"weight2, [...] )\n"
+"Вибирає один із наданих варіантів на основі індексу (припускається значення "
+"у діапазоні [0, 1]).\n"
+"Значення буде розподілено відповідно до наданих значень ваги (weight)."
+
+#: KSeExpr/ExprBuiltins.cpp:1509
+msgctxt "builtin|"
+msgid ""
+"float spline(float param,float y1,float y2,float y3,float y4,[...])\n"
+"\n"
+"Interpolates a set of values to the parameter specified where y1, ..., yn "
+"are\n"
+"distributed evenly from [0..1]"
+msgstr ""
+"float spline(float param,float y1,float y2,float y3,float y4,[...])\n"
+"\n"
+"Інтерполює набір значень до вказаного параметра, де y1, ..., yn розподілено "
+"рівномірно у проміжку [0, 1]"
+
+#: KSeExpr/ExprBuiltins.cpp:1550 KSeExpr/ExprBuiltins.cpp:1615
+msgctxt "builtin|"
+msgid "Unable to validate the interpolant type"
+msgstr "Не вдалося перевірити тип інтерполянта"
+
+#: KSeExpr/ExprBuiltins.cpp:1554 KSeExpr/ExprBuiltins.cpp:1618
+msgctxt "builtin|"
+msgid "Invalid interpolant type"
+msgstr "Некоректний тип інтерполянта"
+
+#: KSeExpr/ExprBuiltins.cpp:1588
+msgctxt "builtin|"
+msgid ""
+"float curve(float param,float pos0,float val0,int interp0,float pos1,float "
+"val1,int interp1,[...])\n"
+"\n"
+"Interpolates a 1D ramp defined by control points at 'param'. Control points "
+"are specified \n"
+"by triples of parameters pos_i, val_i, and interp_i. Interpolation codes "
+"are \n"
+"0 - none, 1 - linear, 2 - smooth, 3 - spline, \n"
+"4 - monotone (non oscillating spline)"
+msgstr ""
+"float curve(float param,float pos0,float val0,int interp0,float pos1,float "
+"val1,int interp1,[...])\n"
+"\n"
+"Інтерполює одновимірний набір, які задано контрольними точками для значення "
+"param.\n"
+"Контрольні точки задаються трійками параметрів pos_i, val_i і interp_i. Коди "
+"інтерполяції: \n"
+"0 — немає, 1 — лінійна, 2 — згладжена, 3 — сплайни, \n"
+"4 — монотонна (сплайни без осциляції)"
+
+#: KSeExpr/ExprBuiltins.cpp:1660
+msgctxt "builtin|"
+msgid ""
+"color curve(float param,float pos0,color val0,int interp0,float pos1,color "
+"val1,int interp1,[...])\n"
+"\n"
+"Interpolates color ramp given by control points at 'param'. Control points "
+"are specified \n"
+"by triples of parameters pos_i, val_i, and interp_i. Interpolation codes "
+"are \n"
+"0 - none, 1 - linear, 2 - smooth, 3 - spline, \n"
+"4 - monotone (non oscillating spline)"
+msgstr ""
+"color curve(float param,float pos0,color val0,int interp0,float pos1,color "
+"val1,int interp1,[...])\n"
+"\n"
+"Інтерполює набір кольорів, які задано контрольними точками для значення "
+"param.\n"
+"Контрольні точки задаються трійками параметрів pos_i, val_i і interp_i. Коди "
+"інтерполяції:\n"
+"0 — немає, 1 — лінійна, 2 — згладжена, 3 — сплайни, \n"
+"4 — монотонна (сплайни без осциляції)"
+
+#: KSeExpr/ExprBuiltins.cpp:1732
+msgctxt "builtin|"
+msgid ""
+"getVar(string varName,vector defaultValue)\n"
+"return value of varName if variable exists, otherwise return defaultValue"
+msgstr ""
+"getVar(string varName, vector defaultValue)\n"
+"повертає значення змінної varName, якщо змінна існує, інакше, повертає "
+"значення defaultValue"
+
+#: KSeExpr/ExprBuiltins.cpp:1879
+msgctxt "builtin|"
+msgid ""
+"float printf(string format,[vec0, vec1,  ...])\n"
+"Prints out a string to STDOUT, Format parameters allowed are \"%v\" and \"%f"
+"\".\n"
+"Return parameter is empty, but must be assigned to a variable."
+msgstr ""
+"float printf(string формат,[vec0, vec1,  ...])\n"
+"Виводить рядок до STDOUT. Можливими значеннями параметра «формат» є %v та "
+"%f.\n"
+"Повернутий параметр є порожнім, але його обов'язково слід пов'язувати "
+"наданням значення змінній."
+
+#: KSeExpr/ExprBuiltins.cpp:1992
+msgctxt "builtin|"
+msgid ""
+"sprintf(string format, [double|string, double|string, ...])\n"
+"Returns a string formatted from the given values.  See 'man sprintf' for "
+"format details."
+msgstr ""
+"sprintf(string формат, [double|рядок, double|рядок, ...])\n"
+"Повертає рядок, форматований з вказаних значень. Див. «man sprintf», щоб "
+"дізнатися більше про форматування."
+
+#: KSeExprUI/ECMQmLoader-seexpr2_qt.cpp:62
+#: KSeExprUI/ECMQmLoader-seexpr2_qt.cpp:122
+#: KSeExprUI/ExprControlCollection.cpp:27
+msgctxt "ExprControlCollection|"
+msgid "Add new variable"
+msgstr "Додати нову змінну"
+
+#: KSeExprUI/ErrorMessages.cpp:15
+msgctxt "ErrorMessages|"
+msgid "Expected string or float[d]"
+msgstr "Мав бути рядок або float[d]"
+
+#: KSeExprUI/ErrorMessages.cpp:17
+msgctxt "ErrorMessages|"
+msgid "Expected float[d]"
+msgstr "Мало бути float[d]"
+
+#: KSeExprUI/ErrorMessages.cpp:19
+#, qt-format
+msgctxt "ErrorMessages|"
+msgid "Expected float[%1]"
+msgstr "Мало бути float[%1]"
+
+#: KSeExprUI/ErrorMessages.cpp:21
+#, qt-format
+msgctxt "ErrorMessages|"
+msgid "Type mismatch, first: '%1'; second: '%2'"
+msgstr "Невідповідність типів. Перший: «%1»; другий: «%2»"
+
+#: KSeExprUI/ErrorMessages.cpp:23
+msgctxt "ErrorMessages|"
+msgid "Expected float or float[3]"
+msgstr "Мало бути float або float[3]"
+
+#: KSeExprUI/ErrorMessages.cpp:25
+#, qt-format
+msgctxt "ErrorMessages|"
+msgid "Expected '%1' for argument, got '%2'"
+msgstr "Аргументом мав бути «%1», а маємо «%2»"
+
+#: KSeExprUI/ErrorMessages.cpp:27
+msgctxt "ErrorMessages|"
+msgid "Wrong number of arguments, should be 1 to 7"
+msgstr "Помилкова кількість аргументів. Має бути від одного до семи"
+
+#: KSeExprUI/ErrorMessages.cpp:29
+msgctxt "ErrorMessages|"
+msgid "Wrong number of arguments, should be multiple of 3 plus 1"
+msgstr "Помилкова кількість аргументів. Має бути кратною до 3 плюс 1"
+
+#: KSeExprUI/ErrorMessages.cpp:31
+msgctxt "ErrorMessages|"
+msgid "Wrong number of arguments, should be 1 or more"
+msgstr "Помилкова кількість аргументів. Має бути один або декілька"
+
+#: KSeExprUI/ErrorMessages.cpp:33
+msgctxt "ErrorMessages|"
+msgid "First argument must be a string"
+msgstr "Першим аргументом має бути рядок"
+
+#: KSeExprUI/ErrorMessages.cpp:35
+msgctxt "ErrorMessages|"
+msgid "Incomplete format specifier"
+msgstr "Неповний специфікатор форматування"
+
+#: KSeExprUI/ErrorMessages.cpp:37
+#, qt-format
+msgctxt "ErrorMessages|"
+msgid "No variable named '%1'"
+msgstr "Немає змінної із назвою «%1»"
+
+#: KSeExprUI/ErrorMessages.cpp:39
+#, qt-format
+msgctxt "ErrorMessages|"
+msgid "Function '%1' has no definition"
+msgstr "Функція «%1» не має визначення"
+
+#: KSeExprUI/ErrorMessages.cpp:41
+#, qt-format
+msgctxt "ErrorMessages|"
+msgid "Assignment operation has incorrect type '%1'"
+msgstr "Операція надання значення належить до некоректного типу «%1»"
+
+#: KSeExprUI/ErrorMessages.cpp:43
+msgctxt "ErrorMessages|"
+msgid "Types of conditional are not compatible"
+msgstr "Тип умов є несумісним"
+
+#: KSeExprUI/ErrorMessages.cpp:45
+#, qt-format
+msgctxt "ErrorMessages|"
+msgid "Variable '%1' defined in conditionals inconsistently"
+msgstr "Змінну «%1» визначено несумісним чином"
+
+#: KSeExprUI/ErrorMessages.cpp:47
+#, qt-format
+msgctxt "ErrorMessages|"
+msgid "Too few arguments for function '%1'"
+msgstr "Замало аргументів функції «%1»"
+
+#: KSeExprUI/ErrorMessages.cpp:49
+#, qt-format
+msgctxt "ErrorMessages|"
+msgid "Too many arguments for function '%1'"
+msgstr "Забагато аргументів функції «%1»"
+
+#: KSeExprUI/ErrorMessages.cpp:51
+#, qt-format
+msgctxt "ErrorMessages|"
+msgid "Expression generated type '%1', incompatible with desired type '%2'"
+msgstr "Створений виразом тип «%1» є несумісним із бажаним типом «%2»"
+
+#: KSeExprUI/ErrorMessages.cpp:53
+#, qt-format
+msgctxt "ErrorMessages|"
+msgid "Syntax error near '%1'"
+msgstr "Синтаксична помилка поряд із «%1»"
+
+#: KSeExprUI/ErrorMessages.cpp:55
+#, qt-format
+msgctxt "ErrorMessages|"
+msgid "Unexpected end of expression near '%1'"
+msgstr "Неочікуване завершення виразу поряд із «%1»"
+
+#: KSeExprUI/ErrorMessages.cpp:57
+msgctxt "ErrorMessages|"
+msgid "Unexpected end of format string"
+msgstr "Неочікуване завершення рядка форматування"
+
+#: KSeExprUI/ErrorMessages.cpp:59
+msgctxt "ErrorMessages|"
+msgid "Invalid format string, only %v or %f is allowed"
+msgstr "Некоректний рядок форматування. Можна використовувати лише %v або %f"
+
+#: KSeExprUI/ErrorMessages.cpp:61
+msgctxt "ErrorMessages|"
+msgid "Wrong number of arguments for format string"
+msgstr "Помилкова кількість аргументів для рядка форматування"
+
+#: KSeExprUI/ErrorMessages.cpp:64
+#, qt-format
+msgctxt "ErrorMessages|"
+msgid "Unknown error (message = %1)"
+msgstr "Невідома помилка (повідомлення = %1)"
+
+#: KSeExprUI/ExprAddDialog.cpp:27
+msgctxt "ExprAddDialog|"
+msgid "Variable"
+msgstr "Змінна"
+
+#: KSeExprUI/ExprAddDialog.cpp:40 KSeExprUI/ExprAddDialog.cpp:50
+#: KSeExprUI/ExprAddDialog.cpp:135
+msgctxt "ExprAddDialog|"
+msgid "Lookup"
+msgstr "Пошук"
+
+#: KSeExprUI/ExprAddDialog.cpp:41 KSeExprUI/ExprAddDialog.cpp:51
+#: KSeExprUI/ExprAddDialog.cpp:134
+msgctxt "ExprAddDialog|"
+msgid "$u"
+msgstr "$u"
+
+#: KSeExprUI/ExprAddDialog.cpp:43
+msgctxt "ExprAddDialog|"
+msgid "Curve"
+msgstr "Крива"
+
+#: KSeExprUI/ExprAddDialog.cpp:53
+msgctxt "ExprAddDialog|"
+msgid "Color Curve"
+msgstr "Крива кольорів"
+
+#: KSeExprUI/ExprAddDialog.cpp:60 KSeExprUI/ExprAddDialog.cpp:76
+#: KSeExprUI/ExprAddDialog.cpp:93
+msgctxt "ExprAddDialog|"
+msgid "Default"
+msgstr "Типова"
+
+#: KSeExprUI/ExprAddDialog.cpp:61 KSeExprUI/ExprAddDialog.cpp:77
+#: KSeExprUI/ExprAddDialog.cpp:94
+msgctxt "ExprAddDialog|"
+msgid "Min"
+msgstr "Мін."
+
+#: KSeExprUI/ExprAddDialog.cpp:62 KSeExprUI/ExprAddDialog.cpp:78
+#: KSeExprUI/ExprAddDialog.cpp:95
+msgctxt "ExprAddDialog|"
+msgid "Max"
+msgstr "Макс."
+
+#: KSeExprUI/ExprAddDialog.cpp:63 KSeExprUI/ExprAddDialog.cpp:65
+#: KSeExprUI/ExprAddDialog.cpp:79 KSeExprUI/ExprAddDialog.cpp:81
+#: KSeExprUI/ExprAddDialog.cpp:96 KSeExprUI/ExprAddDialog.cpp:97
+#: KSeExprUI/ExprAddDialog.cpp:98 KSeExprUI/ExprAddDialog.cpp:104
+msgctxt "ExprAddDialog|"
+msgid "0"
+msgstr "0"
+
+#: KSeExprUI/ExprAddDialog.cpp:67
+msgctxt "ExprAddDialog|"
+msgid "10"
+msgstr "10"
+
+#: KSeExprUI/ExprAddDialog.cpp:69
+msgctxt "ExprAddDialog|"
+msgid "Int"
+msgstr "Ціле"
+
+#: KSeExprUI/ExprAddDialog.cpp:83 KSeExprUI/ExprAddDialog.cpp:106
+msgctxt "ExprAddDialog|"
+msgid "1"
+msgstr "1"
+
+#: KSeExprUI/ExprAddDialog.cpp:86
+msgctxt "ExprAddDialog|"
+msgid "Float"
+msgstr "Float"
+
+#: KSeExprUI/ExprAddDialog.cpp:109
+msgctxt "ExprAddDialog|"
+msgid "Vector"
+msgstr "Вектор"
+
+#: KSeExprUI/ExprAddDialog.cpp:119 KSeExprUI/ExprAddDialog.cpp:125
+msgctxt "ExprAddDialog|"
+msgid "Color"
+msgstr "Колір"
+
+#: KSeExprUI/ExprAddDialog.cpp:137
+msgctxt "ExprAddDialog|"
+msgid "Rainbow"
+msgstr "Веселка"
+
+#: KSeExprUI/ExprAddDialog.cpp:139
+msgctxt "ExprAddDialog|"
+msgid "Shades of Gray"
+msgstr "Відтінки сірого"
+
+#: KSeExprUI/ExprAddDialog.cpp:140
+msgctxt "ExprAddDialog|"
+msgid "Colors"
+msgstr "Кольори"
+
+#: KSeExprUI/ExprAddDialog.cpp:144
+msgctxt "ExprAddDialog|"
+msgid "Swatch"
+msgstr "Зразок"
+
+#: KSeExprUI/ExprAddDialog.cpp:152
+msgctxt "ExprAddDialog|"
+msgid "string"
+msgstr "рядок"
+
+#: KSeExprUI/ExprAddDialog.cpp:153
+msgctxt "ExprAddDialog|"
+msgid "file"
+msgstr "файл"
+
+#: KSeExprUI/ExprAddDialog.cpp:154
+msgctxt "ExprAddDialog|"
+msgid "directory"
+msgstr "каталог"
+
+#: KSeExprUI/ExprAddDialog.cpp:158
+msgctxt "ExprAddDialog|"
+msgid "String Name"
+msgstr "Назва рядка"
+
+#: KSeExprUI/ExprAddDialog.cpp:160
+msgctxt "ExprAddDialog|"
+msgid "String Type"
+msgstr "Тип рядка"
+
+#: KSeExprUI/ExprAddDialog.cpp:162
+msgctxt "ExprAddDialog|"
+msgid "String Default"
+msgstr "Типовий рядок"
+
+#: KSeExprUI/ExprAddDialog.cpp:165
+msgctxt "ExprAddDialog|"
+msgid "String"
+msgstr "Рядок"
+
+#: KSeExprUI/ExprBrowser.cpp:299
+msgctxt "ExprBrowser|"
+msgid "X"
+msgstr "X"
+
+#: KSeExprUI/ExprBrowser.cpp:404 KSeExprUI/ExprBrowser.cpp:423
+msgctxt "ExprBrowser|"
+msgid "Save Expression"
+msgstr "Зберегти вираз"
+
+#: KSeExprUI/ExprBrowser.cpp:404 KSeExprUI/ExprBrowser.cpp:423
+msgctxt "ExprBrowser|"
+msgid "*.se"
+msgstr "*.se"
+
+#: KSeExprUI/ExprBrowser.cpp:409 KSeExprUI/ExprBrowser.cpp:428
+#, qt-format
+msgctxt "ExprBrowser|"
+msgid "Could not open file %1 for writing"
+msgstr "Не вдалося відкрити файл %1 для запису."
+
+#: KSeExprUI/ExprBrowser.cpp:410 KSeExprUI/ExprBrowser.cpp:429
+#: KSeExprUI/ExprBrowser.cpp:450
+msgctxt "ExprBrowser|"
+msgid "Error"
+msgstr "Помилка"
+
+#: KSeExprUI/ExprBrowser.cpp:449
+#, qt-format
+msgctxt "ExprBrowser|"
+msgid "Could not open file %1 for writing.  Is it read-only?"
+msgstr ""
+"Не вдалося відкрити файл %1 для запису. Цей файл призначено лише для читання?"
+
+#: KSeExprUI/ExprBrowser.cpp:450
+#, qt-format
+msgctxt "ExprBrowser|"
+msgid "<font face=fixed>%1</font>"
+msgstr "<font face=fixed>%1</font>"
+
+#: KSeExprUI/ExprColorCurve.cpp:180
+msgctxt "CCurveScene|"
+msgid "Delete Point"
+msgstr "Вилучити точку"
+
+#: KSeExprUI/ExprColorCurve.cpp:397
+msgctxt "ExprColorCurve|"
+msgid "Selected Position:"
+msgstr "Вибрана позиція:"
+
+#: KSeExprUI/ExprColorCurve.cpp:408
+msgctxt "ExprColorCurve|"
+msgid "Selected Color:"
+msgstr "Вибраний колір:"
+
+#: KSeExprUI/ExprColorCurve.cpp:416
+msgctxt "ExprColorCurve|"
+msgid "Interp:"
+msgstr "Ітерпр.:"
+
+#: KSeExprUI/ExprColorCurve.cpp:421
+msgctxt "ExprColorCurve|"
+msgid "None"
+msgstr "Немає"
+
+#: KSeExprUI/ExprColorCurve.cpp:422
+msgctxt "ExprColorCurve|"
+msgid "Linear"
+msgstr "Лінійний"
+
+#: KSeExprUI/ExprColorCurve.cpp:423
+msgctxt "ExprColorCurve|"
+msgid "Smooth"
+msgstr "Згладжування"
+
+#: KSeExprUI/ExprColorCurve.cpp:424
+msgctxt "ExprColorCurve|"
+msgid "Spline"
+msgstr "Сплайни"
+
+#: KSeExprUI/ExprColorCurve.cpp:425
+msgctxt "ExprColorCurve|"
+msgid "MSpline"
+msgstr "M-сплайни"
+
+#: KSeExprUI/ExprColorCurve.cpp:445
+msgctxt "ExprColorCurve|"
+msgid "&Expand..."
+msgstr "Роз&горнути"
+
+#: KSeExprUI/ExprColorCurve.cpp:487
+#, qt-format
+msgctxt "ExprColorCurve|"
+msgid "%1"
+msgstr "%1"
+
+#: KSeExprUI/ExprColorSwatch.cpp:77
+msgctxt "ExprColorFrame|"
+msgid "Delete Swatch"
+msgstr "Вилучити зразок"
+
+#: KSeExprUI/ExprColorSwatch.cpp:78
+msgctxt "ExprColorFrame|"
+msgid "Cancel"
+msgstr "Скасувати"
+
+#: KSeExprUI/ExprColorSwatch.cpp:98
+#, qt-format
+msgctxt "ExprColorWidget|"
+msgid "%1"
+msgstr "%1"
+
+#: KSeExprUI/ExprColorSwatch.cpp:123
+msgctxt "ExprColorSwatchWidget|"
+msgid "&Add..."
+msgstr "&Додати…"
+
+#: KSeExprUI/ExprCompletionModel.cpp:121
+msgctxt "ExprCompletionModel|"
+msgid "Local"
+msgstr "Локально"
+
+#: KSeExprUI/ExprControl.cpp:185 KSeExprUI/ExprControl.cpp:200
+#, qt-format
+msgctxt "ExprControl|"
+msgid "<b>%1</b>"
+msgstr "<b>%1</b>"
+
+#: KSeExprUI/ExprControl.cpp:279
+#, qt-format
+msgctxt "NumberControl|"
+msgid "%1"
+msgstr "%1"
+
+#: KSeExprUI/ExprControl.cpp:386
+#, qt-format
+msgctxt "VectorControl|"
+msgid "%1"
+msgstr "%1"
+
+#: KSeExprUI/ExprControl.cpp:456 KSeExprUI/ExprControl.cpp:465
+msgctxt "StringControl|"
+msgid "Please choose a file"
+msgstr "Будь ласка, виберіть файл"
+
+#: KSeExprUI/ExprControl.cpp:456
+msgctxt "StringControl|"
+msgid "Images (*.tif *.tx *.jpg *.ptx *.png)"
+msgstr "зображення (*.tif *.tx *.jpg *.ptx *.png)"
+
+#: KSeExprUI/ExprControl.cpp:488
+msgctxt "CurveControl|"
+msgid "Pos:"
+msgstr "Поз.:"
+
+#: KSeExprUI/ExprControl.cpp:488
+msgctxt "CurveControl|"
+msgid "Val:"
+msgstr "Знач.:"
+
+#: KSeExprUI/ExprControl.cpp:488
+msgctxt "CurveControl|"
+msgid "Interp:"
+msgstr "Ітерпр.:"
+
+#: KSeExprUI/ExprControl.cpp:512
+msgctxt "CCurveControl|"
+msgid "Pos:"
+msgstr "Поз.:"
+
+#: KSeExprUI/ExprControl.cpp:512
+msgctxt "CCurveControl|"
+msgid "Val:"
+msgstr "Знач.:"
+
+#: KSeExprUI/ExprControl.cpp:512
+msgctxt "CCurveControl|"
+msgid "Interp:"
+msgstr "Ітерпр.:"
+
+#: KSeExprUI/ExprControl.cpp:617 KSeExprUI/ExprControl.cpp:618
+#: KSeExprUI/ExprControl.cpp:619 KSeExprUI/ExprControl.cpp:620
+#, qt-format
+msgctxt "ExprGraphPreview|"
+msgid "%1"
+msgstr "%1"
+
+#: KSeExprUI/ExprCurve.cpp:153
+msgctxt "CurveScene|"
+msgid "Delete Point"
+msgstr "Вилучити точку"
+
+#: KSeExprUI/ExprCurve.cpp:298
+msgctxt "ExprCurve|"
+msgid "Selected Position:"
+msgstr "Вибрана позиція:"
+
+#: KSeExprUI/ExprCurve.cpp:309
+msgctxt "ExprCurve|"
+msgid "Selected Value:"
+msgstr "Вибране значення:"
+
+#: KSeExprUI/ExprCurve.cpp:317
+msgctxt "ExprCurve|"
+msgid "Interp:"
+msgstr "Ітерпр.:"
+
+#: KSeExprUI/ExprCurve.cpp:322
+msgctxt "ExprCurve|"
+msgid "None"
+msgstr "Немає"
+
+#: KSeExprUI/ExprCurve.cpp:323
+msgctxt "ExprCurve|"
+msgid "Linear"
+msgstr "Лінійний"
+
+#: KSeExprUI/ExprCurve.cpp:324
+msgctxt "ExprCurve|"
+msgid "Smooth"
+msgstr "Згладжування"
+
+#: KSeExprUI/ExprCurve.cpp:325
+msgctxt "ExprCurve|"
+msgid "Spline"
+msgstr "Сплайни"
+
+#: KSeExprUI/ExprCurve.cpp:326
+msgctxt "ExprCurve|"
+msgid "MSpline"
+msgstr "M-сплайни"
+
+#: KSeExprUI/ExprCurve.cpp:347
+msgctxt "ExprCurve|"
+msgid "&Expand..."
+msgstr "&Розгорнути…"
+
+#: KSeExprUI/ExprCurve.cpp:390 KSeExprUI/ExprCurve.cpp:399
+#, qt-format
+msgctxt "ExprCurve|"
+msgid "%1"
+msgstr "%1"
+
+#: KSeExprUI/ExprEditor.cpp:73
+msgctxt "ExprEditor|"
+msgid "Expression Editor"
+msgstr "Редактор виразів"
+
+#: KSeExprUI/ExprEditor.cpp:235
+#, qt-format
+msgctxt "ExprEditor|"
+msgid "(%1, %2): %3"
+msgstr "(%1, %2): %3"
+
+#: KSeExprUI/ExprFileDialog.cpp:84
+msgctxt "ExprFileDialog|"
+msgid "Open"
+msgstr "Відкрити"
+
+#: KSeExprUI/ExprFileDialog.cpp:189
+msgctxt "ExprFileDialog|"
+msgid "Favorites"
+msgstr "Улюблене"
+
+#: KSeExprUI/ExprTextEdit.cpp:44
+msgctxt "ExprTextEdit|"
+msgid "Pop-up Help"
+msgstr "Контекстна довідка"
+
+#: KSeExprUI/ExprTextEdit.cpp:185
+#, qt-format
+msgctxt "ExprTextEdit|"
+msgid "<b>%1</b>"
+msgstr "<b>%1</b>"
+
+#: KSeExprUI/ExprTextEdit.cpp:187
+#, qt-format
+msgctxt "ExprTextEdit|"
+msgid "<br>%1"
+msgstr "<br>%1"
+
+#~ msgctxt "ExprAddDialog|"
+#~ msgid "Link"
+#~ msgstr "Посилання"
+
+#~ msgctxt "ExprAddDialog|"
+#~ msgid "AnimCurve"
+#~ msgstr "АнімКрива"
+
+#~ msgctxt "ExprAddDialog|"
+#~ msgid "Deep Water"
+#~ msgstr "Глибока вода"
+
+#~ msgctxt "ExprDialog|"
+#~ msgid "Preview / Library"
+#~ msgstr "Перегляд/Бібліотека"
+
+#~ msgctxt "ExprDialog|"
+#~ msgid "Preview"
+#~ msgstr "Перегляд"
+
+#~ msgctxt "ExprDialog|"
+#~ msgid "Save"
+#~ msgstr "Зберегти"
+
+#~ msgctxt "ExprDialog|"
+#~ msgid "Save As"
+#~ msgstr "Зберегти як"
+
+#~ msgctxt "ExprDialog|"
+#~ msgid "Save Local"
+#~ msgstr "Зберегти локально"
+
+#~ msgctxt "ExprDialog|"
+#~ msgid "Clear"
+#~ msgstr "Спорожнити"
+
+#~ msgctxt "ExprDialog|"
+#~ msgid "Apply"
+#~ msgstr "Застосувати"
+
+#~ msgctxt "ExprDialog|"
+#~ msgid "Accept"
+#~ msgstr "Прийняти"
+
+#~ msgctxt "ExprDialog|"
+#~ msgid "Cancel"
+#~ msgstr "Скасувати"
+
+#~ msgctxt "ExprDialog|"
+#~ msgid "Your expression had possible errors."
+#~ msgstr "У вашому виразі були помилки."
+
+#~ msgctxt "ExprDialog|"
+#~ msgid "Do you want to accept your expression anyways?"
+#~ msgstr "Хочете прийняти ваш вираз попри це?"
+
+#~ msgctxt "ExprDialog|"
+#~ msgid "Help"
+#~ msgstr "Довідка"
+
+#~ msgctxt "ExprDialog|"
+#~ msgid "Back"
+#~ msgstr "Назад"
+
+#~ msgctxt "ExprDialog|"
+#~ msgid "Forward"
+#~ msgstr "Далі"
+
+#~ msgctxt "ExprDialog|"
+#~ msgid "Find"
+#~ msgstr "Знайти"
+
+#~ msgctxt "ExprDialog|"
+#~ msgid "Find Next"
+#~ msgstr "Знайти далі"
+
+#~ msgctxt "ExprDialog|"
+#~ msgid "Find Prev"
+#~ msgstr "Знайти позаду"
+
+#~ msgctxt "ExprDialog|"
+#~ msgid "<b>Variables not supported in preview (assumed zero):</b><br>"
+#~ msgstr ""
+#~ "<b>Змінні, підтримки яких у перегляді не передбачено (припускається нуль):"
+#~ "</b><br>"
+
+#~ msgctxt "ExprDialog|"
+#~ msgid "<b>Functions not supported in preview (assumed zero):</b><br>"
+#~ msgstr ""
+#~ "<b>Функції, підтримки яких у перегляді не передбачено (припускається "
+#~ "нуль):</b><br>"
+
+#~ msgctxt "ExprGrapherWidget|"
+#~ msgid "Width"
+#~ msgstr "Ширина"
+
+#~ msgctxt "ExprGrapherWidget|"
+#~ msgid "%1"
+#~ msgstr "%1"
+
+#~ msgctxt "ExprShortTextEdit|"
+#~ msgid "<b>%1</b>"
+#~ msgstr "<b>%1</b>"
+
+#~ msgctxt "ExprShortTextEdit|"
+#~ msgid "<br>%1"
+#~ msgstr "<br>%1"
+
+#~ msgctxt "ExprCurve|"
+#~ msgid "Selected Position:  "
+#~ msgstr "Вибрана позиція:  "
+
+#~ msgctxt "builtin|"
+#~ msgid ""
+#~ "float round(float x)\n"
+#~ "constrain x to range [lo,hi]"
+#~ msgstr ""
+#~ "float round(float x)\n"
+#~ "найближче до x ціле значення"
