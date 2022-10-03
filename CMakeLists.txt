@@ -128,7 +128,7 @@ if (ECM_FOUND)
         include(ECMEnableSanitizers)
     endif()
 
-    if (IS_DIRECTORY "${CMAKE_SOURCE_DIR}/po")
+    if (IS_DIRECTORY "${CMAKE_SOURCE_DIR}/poqm")
         option(BUILD_TRANSLATIONS "Whether to include translations" TRUE)
         add_feature_info(i18n BUILD_TRANSLATIONS "Build and embed translations")
     endif ()
