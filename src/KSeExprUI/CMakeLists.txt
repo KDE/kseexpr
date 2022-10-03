@@ -80,7 +80,7 @@ if (Qt5_FOUND)
 
     if (BUILD_TRANSLATIONS)
         include(ECMPoQmTools)
-        ecm_install_po_files_as_qm("${CMAKE_SOURCE_DIR}/po")
+        ecm_install_po_files_as_qm("${CMAKE_SOURCE_DIR}/poqm")
 
         if (KF5I18n_FOUND)
             add_definitions(-DKSeExpr_HAVE_I18N_FALLBACK_LANGUAGES_DETECTION)
