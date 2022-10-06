@@ -1499,7 +1499,7 @@ msgstr "MSpline"
 #: KSeExprUI/ExprColorCurve.cpp:445
 msgctxt "ExprColorCurve|"
 msgid "&Expand..."
-msgstr "&Expandix..."
+msgstr "Ex&pandix..."
 
 #: KSeExprUI/ExprColorCurve.cpp:487
 #, qt-format
@@ -1526,7 +1526,7 @@ msgstr "%1"
 #: KSeExprUI/ExprColorSwatch.cpp:123
 msgctxt "ExprColorSwatchWidget|"
 msgid "&Add..."
-msgstr "&Afig..."
+msgstr "Afi&g..."
 
 #: KSeExprUI/ExprCompletionModel.cpp:121
 msgctxt "ExprCompletionModel|"
@@ -1646,7 +1646,7 @@ msgstr "MSpline"
 #: KSeExprUI/ExprCurve.cpp:347
 msgctxt "ExprCurve|"
 msgid "&Expand..."
-msgstr "&Expandix..."
+msgstr "Ex&pandix..."
 
 #: KSeExprUI/ExprCurve.cpp:390 KSeExprUI/ExprCurve.cpp:399
 #, qt-format
