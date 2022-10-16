@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"PO-Revision-Date: 2022-07-27 16:19+0300\n"
+"PO-Revision-Date: 2022-08-30 14:05+0300\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
 "Language: fi\n"
@@ -154,6 +154,8 @@ msgid ""
 "float atan(float value)\n"
 "arc tangent in radians"
 msgstr ""
+"float atan(float arvo)\n"
+"arkustangentti radiaaneina"
 
 #: KSeExpr/ExprBuiltins.cpp:47
 msgctxt "builtin|"
@@ -161,6 +163,8 @@ msgid ""
 "float atan2(float y,float x)\n"
 "arc tangent in radians of y/x between -PI and PI"
 msgstr ""
+"float atan2(float y,float x)\n"
+"arkustangentti y/x:n radiaaneina väliltä -PI…PI"
 
 #: KSeExpr/ExprBuiltins.cpp:49
 msgctxt "builtin|"
@@ -168,6 +172,8 @@ msgid ""
 "float cosh(float angle)\n"
 "hyperbolic cosine in radians"
 msgstr ""
+"float cosh(float kulma)\n"
+"hyperbolinen kosini radiaaneina"
 
 #: KSeExpr/ExprBuiltins.cpp:50
 msgctxt "builtin|"
@@ -175,6 +181,8 @@ msgid ""
 "float sinh(float angle)\n"
 "hyperbolic sine in radians"
 msgstr ""
+"float sinh(float kulma)\n"
+"hyperbolinen sini radiaaneina"
 
 #: KSeExpr/ExprBuiltins.cpp:51
 msgctxt "builtin|"
@@ -182,6 +190,8 @@ msgid ""
 "float tanh(float angle)\n"
 "hyperbolic tangent in radians"
 msgstr ""
+"float tanh(float kulma)\n"
+"hyperbolinen tangentti radiaaneina"
 
 #: KSeExpr/ExprBuiltins.cpp:52
 msgctxt "builtin|"
@@ -189,6 +199,8 @@ msgid ""
 "float acosh(float value)\n"
 "hyperbolic arc cosine in radians"
 msgstr ""
+"float acosh(float arvo)\n"
+"hyperbolinen arkuskosini radiaaneina"
 
 #: KSeExpr/ExprBuiltins.cpp:53
 msgctxt "builtin|"
@@ -196,6 +208,8 @@ msgid ""
 "float asinh(float value)\n"
 "hyperbolic arc sine in radians"
 msgstr ""
+"float asinh(float arvo)\n"
+"hyperbolinen arkussini radiaaneina"
 
 #: KSeExpr/ExprBuiltins.cpp:54
 msgctxt "builtin|"
@@ -203,6 +217,8 @@ msgid ""
 "float atanh(float value)\n"
 "hyperbolic arc tangent in radians"
 msgstr ""
+"float atanh(float arvo)\n"
+"hyperbolinen arkustangentti radiaaneina"
 
 #: KSeExpr/ExprBuiltins.cpp:56
 msgctxt "builtin|"
@@ -210,6 +226,8 @@ msgid ""
 "float clamp(float x,float lo,float hi)\n"
 "constrain x to range [lo,hi]"
 msgstr ""
+"float clamp(float x,float ala,float ylä)\n"
+"rajaa x välille [ala,ylä]"
 
 #: KSeExpr/ExprBuiltins.cpp:57
 msgctxt "builtin|"
@@ -217,6 +235,8 @@ msgid ""
 "float round(float x)\n"
 "nearest integer to x"
 msgstr ""
+"float round(float x)\n"
+"x:ää lähin kokonaisluku"
 
 #: KSeExpr/ExprBuiltins.cpp:58
 msgctxt "builtin|"
@@ -224,6 +244,8 @@ msgid ""
 "float max(float a,float b)\n"
 "greater of a and b"
 msgstr ""
+"float max(float a,float b)\n"
+"suurempi luvuista a, b"
 
 #: KSeExpr/ExprBuiltins.cpp:59
 msgctxt "builtin|"
@@ -231,6 +253,8 @@ msgid ""
 "float min(float a,float b)\n"
 "lesser of a and b"
 msgstr ""
+"float min(float a,float b)\n"
+"pienempi luvuista a, b"
 
 #: KSeExpr/ExprBuiltins.cpp:60
 msgctxt "builtin|"
@@ -238,6 +262,8 @@ msgid ""
 "float trunc(float a)\n"
 "nearest integer towards zero"
 msgstr ""
+"float trunc(float a)\n"
+"lähin kokonaisluku nollaa kohti"
 
 #: KSeExpr/ExprBuiltins.cpp:61
 msgctxt "builtin|"
@@ -245,6 +271,8 @@ msgid ""
 "float floor(float a)\n"
 "next lower integer"
 msgstr ""
+"float floor(float a)\n"
+"lähin pienempi kokonaisluku"
 
 #: KSeExpr/ExprBuiltins.cpp:62
 msgctxt "builtin|"
@@ -252,6 +280,8 @@ msgid ""
 "float ceil(float a)\n"
 "next higher integer"
 msgstr ""
+"float ceil(float a)\n"
+"lähin suurempi kokonaisluku"
 
 #: KSeExpr/ExprBuiltins.cpp:64
 msgctxt "builtin|"
@@ -259,6 +289,8 @@ msgid ""
 "float invert(float a)\n"
 "Defined as 1-x"
 msgstr ""
+"float invert(float a)\n"
+"määriteellään 1–x"
 
 #: KSeExpr/ExprBuiltins.cpp:65
 msgctxt "builtin|"
@@ -266,6 +298,8 @@ msgid ""
 "float cbrt(float x)\n"
 "cube root"
 msgstr ""
+"float cbrt(float x)\n"
+"kuutiojuuri"
 
 #: KSeExpr/ExprBuiltins.cpp:66
 msgctxt "builtin|"
@@ -273,6 +307,8 @@ msgid ""
 "float sqrt(float x)\n"
 "square root"
 msgstr ""
+"float sqrt(float x)\n"
+"neliöjuuri"
 
 #: KSeExpr/ExprBuiltins.cpp:67
 msgctxt "builtin|"
@@ -280,6 +316,8 @@ msgid ""
 "float exp(float x)\n"
 "E raised to the x power"
 msgstr ""
+"float exp(float x)\n"
+"e potenssiin x"
 
 #: KSeExpr/ExprBuiltins.cpp:68
 msgctxt "builtin|"
@@ -287,6 +325,8 @@ msgid ""
 "float pow(float x, float y)\n"
 "x to the y power, also available as ^"
 msgstr ""
+"float pow(float x, float y)\n"
+"x potenssiin y, saatavilla myös operaattorina ^"
 
 #: KSeExpr/ExprBuiltins.cpp:69
 msgctxt "builtin|"
@@ -294,6 +334,8 @@ msgid ""
 "float log(float x)\n"
 "Natural logarithm"
 msgstr ""
+"float log(float x)\n"
+"luonnollinen logaritmi"
 
 #: KSeExpr/ExprBuiltins.cpp:70
 msgctxt "builtin|"
@@ -301,6 +343,8 @@ msgid ""
 "float log10(float x)\n"
 "Base 10 logarithm"
 msgstr ""
+"float log10(float x)\n"
+"10-kantainen logaritmi"
 
 #: KSeExpr/ExprBuiltins.cpp:71
 msgctxt "builtin|"
@@ -308,6 +352,8 @@ msgid ""
 "float fmod(float x,float y)\n"
 "remainder of x/y (also available as % operator)"
 msgstr ""
+"float fmod(float x,float y)\n"
+"x/y:n jakojäännös, saatavilla myös operaattorina %"
 
 #: KSeExpr/ExprBuiltins.cpp:72
 msgctxt "builtin|"
