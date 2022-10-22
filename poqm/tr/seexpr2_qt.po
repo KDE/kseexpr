@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"PO-Revision-Date: 2022-08-16 15:50+0300\n"
+"PO-Revision-Date: 2022-10-21 12:06+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Qt-Contexts: true\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 22.04.3\n"
+"X-Generator: Lokalize 22.08.1\n"
 
 #: KSeExpr/ExprBuiltins.cpp:27
 msgctxt "builtin|"
@@ -47,7 +47,7 @@ msgid ""
 "cosine in degrees"
 msgstr ""
 "float cosd(kayan noktalı açı)\n"
-"derece türünden kosünüs"
+"derece türünden kosinüs"
 
 #: KSeExpr/ExprBuiltins.cpp:34
 msgctxt "builtin|"
@@ -74,7 +74,7 @@ msgid ""
 "arc cosine in degrees"
 msgstr ""
 "float acosd(kayan noktalı değer)\n"
-"derece türünden ark kosünüs"
+"derece türünden ark kosinüs"
 
 #: KSeExpr/ExprBuiltins.cpp:37
 msgctxt "builtin|"
@@ -110,7 +110,7 @@ msgid ""
 "cosine in radians"
 msgstr ""
 "float cos(kayan noktalı açı)\n"
-"yarıçap türünden kosünüs"
+"yarıçap türünden kosinüs"
 
 #: KSeExpr/ExprBuiltins.cpp:42
 msgctxt "builtin|"
@@ -137,7 +137,7 @@ msgid ""
 "arc cosine in radians"
 msgstr ""
 "float acos(kayan noktalı değer)\n"
-"yarıçap türünden ark kosünüs"
+"yarıçap türünden ark kosinüs"
 
 #: KSeExpr/ExprBuiltins.cpp:45
 msgctxt "builtin|"
@@ -173,7 +173,7 @@ msgid ""
 "hyperbolic cosine in radians"
 msgstr ""
 "float cosh(kayan noktalı açı)\n"
-"yarıçap türünden hiperbolik kosünüs"
+"yarıçap türünden hiperbolik kosinüs"
 
 #: KSeExpr/ExprBuiltins.cpp:50
 msgctxt "builtin|"
@@ -181,6 +181,8 @@ msgid ""
 "float sinh(float angle)\n"
 "hyperbolic sine in radians"
 msgstr ""
+"float sinh(kayan noktalı açı)\n"
+"yarıçap türünden hiperbolik sinüs"
 
 #: KSeExpr/ExprBuiltins.cpp:51
 msgctxt "builtin|"
