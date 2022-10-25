@@ -1,14 +1,14 @@
 # Translation of seexpr2_qt.po to Catalan (Valencian)
-# Copyright (C) 2020-2021 This_file_is_part_of_KDE
+# Copyright (C) 2020-2022 This_file_is_part_of_KDE
 # This file is distributed under the license LGPL version 2.1 or
 # version 3 or later versions approved by the membership of KDE e.V.
 #
 # Antoni Bella Pérez <antonibella5@yahoo.com>, 2020.
-# Josep M. Ferrer <txemaq@gmail.com>, 2020, 2021.
+# Josep M. Ferrer <txemaq@gmail.com>, 2020, 2021, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: kseexpr\n"
-"PO-Revision-Date: 2021-12-15 10:58+0100\n"
+"PO-Revision-Date: 2022-10-23 20:50+0200\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca@valencia\n"
@@ -269,7 +269,7 @@ msgid ""
 "nearest integer towards zero"
 msgstr ""
 "float trunc(float a)\n"
-"Sencer més proper a zero"
+"Nombre enter més proper a zero"
 
 #: KSeExpr/ExprBuiltins.cpp:61
 msgctxt "builtin|"
@@ -278,7 +278,7 @@ msgid ""
 "next lower integer"
 msgstr ""
 "float floor(float a)\n"
-"Següent sencer més xicotet"
+"Següent nombre enter més xicotet"
 
 #: KSeExpr/ExprBuiltins.cpp:62
 msgctxt "builtin|"
@@ -287,7 +287,7 @@ msgid ""
 "next higher integer"
 msgstr ""
 "float ceil(float a)\n"
-"Següent sencer més gran"
+"Següent nombre enter més gran"
 
 #: KSeExpr/ExprBuiltins.cpp:64
 msgctxt "builtin|"
@@ -802,7 +802,7 @@ msgid ""
 msgstr ""
 "float cellnoise(vector v)\n"
 "«cellnoise» genera un camp de cubs amb colors constants en funció de la "
-"ubicació del nombre sencer.\n"
+"ubicació del nombre enter.\n"
 "És el mateix que la funció «cellnoise» de PRMan."
 
 #: KSeExpr/ExprBuiltins.cpp:893
@@ -815,7 +815,7 @@ msgid ""
 msgstr ""
 "color cellnoise(vector v)\n"
 "«cellnoise» genera un camp de cubs amb colors constants en funció de la "
-"ubicació del nombre sencer.\n"
+"ubicació del nombre enter.\n"
 "És el mateix que la funció «cellnoise» de PRMan."
 
 #: KSeExpr/ExprBuiltins.cpp:906
