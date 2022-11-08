@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"PO-Revision-Date: 2022-10-21 12:06+0300\n"
+"PO-Revision-Date: 2022-11-07 19:38+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Qt-Contexts: true\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 22.08.1\n"
+"X-Generator: Lokalize 22.08.2\n"
 
 #: KSeExpr/ExprBuiltins.cpp:27
 msgctxt "builtin|"
@@ -28,8 +28,8 @@ msgid ""
 "float deg(float angle)\n"
 "radians to degrees"
 msgstr ""
-"float deg(kayan noktalı açı)\n"
-"yarıçaplar açılara"
+"float deg(float açı)\n"
+"derecelere göre radyan"
 
 #: KSeExpr/ExprBuiltins.cpp:31
 msgctxt "builtin|"
@@ -37,8 +37,8 @@ msgid ""
 "float rad(float angle)\n"
 "degrees to radians"
 msgstr ""
-"float rad(kayan noktalı açı)\n"
-"açılar yarıçaplara"
+"float rad(float açı)\n"
+"radyanlara göre derece"
 
 #: KSeExpr/ExprBuiltins.cpp:33
 msgctxt "builtin|"
@@ -46,7 +46,7 @@ msgid ""
 "float cosd(float angle)\n"
 "cosine in degrees"
 msgstr ""
-"float cosd(kayan noktalı açı)\n"
+"float cosd(float açı)\n"
 "derece türünden kosinüs"
 
 #: KSeExpr/ExprBuiltins.cpp:34
@@ -55,7 +55,7 @@ msgid ""
 "float sind(float angle)\n"
 "sine in degrees"
 msgstr ""
-"float sind(kayan noktalı açı)\n"
+"float sind(float açı)\n"
 "derece türünden sinüs"
 
 #: KSeExpr/ExprBuiltins.cpp:35
@@ -64,7 +64,7 @@ msgid ""
 "float tand(float angle)\n"
 "tangent in degrees"
 msgstr ""
-"float tand(kayan noktalı açı)\n"
+"float tand(float açı)\n"
 "derece türünden tanjant"
 
 #: KSeExpr/ExprBuiltins.cpp:36
@@ -73,7 +73,7 @@ msgid ""
 "float acosd(float value)\n"
 "arc cosine in degrees"
 msgstr ""
-"float acosd(kayan noktalı değer)\n"
+"float acosd(float değer)\n"
 "derece türünden ark kosinüs"
 
 #: KSeExpr/ExprBuiltins.cpp:37
@@ -82,7 +82,7 @@ msgid ""
 "float asind(float value)\n"
 "arc sine in degrees"
 msgstr ""
-"float asind(kayan noktalı değer)\n"
+"float asind(float değer)\n"
 "derece türünden ark sinüs"
 
 #: KSeExpr/ExprBuiltins.cpp:38
@@ -91,7 +91,7 @@ msgid ""
 "float atand(float value)\n"
 "arc tangent in degrees"
 msgstr ""
-"float atand(kayan noktalı değer)\n"
+"float atand(float değer)\n"
 "derece türünden ark tanjant"
 
 #: KSeExpr/ExprBuiltins.cpp:39
@@ -100,7 +100,7 @@ msgid ""
 "float atan2d(float y,float x)\n"
 "arc tangent in degrees of y/x between -180 and 180"
 msgstr ""
-"float atan2d(kayan noktalı değer y,kayan noktalı değer x)\n"
+"float atan2d(float y,float x)\n"
 "-180 ve 180 arasında y/x'in derece türünden ark tanjantı"
 
 #: KSeExpr/ExprBuiltins.cpp:41
@@ -109,7 +109,7 @@ msgid ""
 "float cos(float angle)\n"
 "cosine in radians"
 msgstr ""
-"float cos(kayan noktalı açı)\n"
+"float cos(float açı)\n"
 "yarıçap türünden kosinüs"
 
 #: KSeExpr/ExprBuiltins.cpp:42
@@ -118,7 +118,7 @@ msgid ""
 "float sin(float angle)\n"
 "sine in radians"
 msgstr ""
-"float sin(kayan noktalı değer açı)\n"
+"float sin(float açı)\n"
 "yarıçap türünden sinüs"
 
 #: KSeExpr/ExprBuiltins.cpp:43
@@ -127,7 +127,7 @@ msgid ""
 "float tan(float angle)\n"
 "tangent in radians"
 msgstr ""
-"float tan(kayan noktalı açı)\n"
+"float tan(float açı)\n"
 "yarıçap türünden tanjant"
 
 #: KSeExpr/ExprBuiltins.cpp:44
@@ -136,7 +136,7 @@ msgid ""
 "float acos(float value)\n"
 "arc cosine in radians"
 msgstr ""
-"float acos(kayan noktalı değer)\n"
+"float acos(float değer)\n"
 "yarıçap türünden ark kosinüs"
 
 #: KSeExpr/ExprBuiltins.cpp:45
@@ -145,7 +145,7 @@ msgid ""
 "float asin(float value)\n"
 "arc sine in radians"
 msgstr ""
-"float asin(kayan noktalı değer)\n"
+"float asin(float değer)\n"
 "yarıçap türünden ark sinüs"
 
 #: KSeExpr/ExprBuiltins.cpp:46
@@ -154,7 +154,7 @@ msgid ""
 "float atan(float value)\n"
 "arc tangent in radians"
 msgstr ""
-"float atan(kayan noktalı değer)\n"
+"float atan(float değer)\n"
 "yarıçap türünden ark tanjant"
 
 #: KSeExpr/ExprBuiltins.cpp:47
@@ -172,7 +172,7 @@ msgid ""
 "float cosh(float angle)\n"
 "hyperbolic cosine in radians"
 msgstr ""
-"float cosh(kayan noktalı açı)\n"
+"float cosh(float açı)\n"
 "yarıçap türünden hiperbolik kosinüs"
 
 #: KSeExpr/ExprBuiltins.cpp:50
@@ -181,7 +181,7 @@ msgid ""
 "float sinh(float angle)\n"
 "hyperbolic sine in radians"
 msgstr ""
-"float sinh(kayan noktalı açı)\n"
+"float sinh(float açı)\n"
 "yarıçap türünden hiperbolik sinüs"
 
 #: KSeExpr/ExprBuiltins.cpp:51
@@ -190,6 +190,8 @@ msgid ""
 "float tanh(float angle)\n"
 "hyperbolic tangent in radians"
 msgstr ""
+"float tanh(float açı)\n"
+"yarıçap türünden hiperbolik tanjant"
 
 #: KSeExpr/ExprBuiltins.cpp:52
 msgctxt "builtin|"
@@ -197,6 +199,8 @@ msgid ""
 "float acosh(float value)\n"
 "hyperbolic arc cosine in radians"
 msgstr ""
+"float acosh(float değer)\n"
+"yarıçap türünden hiperbolik ark kosinüs"
 
 #: KSeExpr/ExprBuiltins.cpp:53
 msgctxt "builtin|"
@@ -204,6 +208,8 @@ msgid ""
 "float asinh(float value)\n"
 "hyperbolic arc sine in radians"
 msgstr ""
+"float asinh(float değer)\n"
+"yarıçap türünden hiperbolik ark sinüs"
 
 #: KSeExpr/ExprBuiltins.cpp:54
 msgctxt "builtin|"
@@ -211,6 +217,8 @@ msgid ""
 "float atanh(float value)\n"
 "hyperbolic arc tangent in radians"
 msgstr ""
+"float atanh(float değer)\n"
+"yarıçap türünden hiperbolik ark tanjant"
 
 #: KSeExpr/ExprBuiltins.cpp:56
 msgctxt "builtin|"
@@ -218,6 +226,8 @@ msgid ""
 "float clamp(float x,float lo,float hi)\n"
 "constrain x to range [lo,hi]"
 msgstr ""
+"float clamp(float x,float lo,float hi)\n"
+"x'i aralıkla sınırla [dü,yü]"
 
 #: KSeExpr/ExprBuiltins.cpp:57
 msgctxt "builtin|"
@@ -225,6 +235,8 @@ msgid ""
 "float round(float x)\n"
 "nearest integer to x"
 msgstr ""
+"float round(float x)\n"
+"x'e en yakın tamsayı"
 
 #: KSeExpr/ExprBuiltins.cpp:58
 msgctxt "builtin|"
@@ -232,6 +244,8 @@ msgid ""
 "float max(float a,float b)\n"
 "greater of a and b"
 msgstr ""
+"float max(float a,float b)\n"
+"a ve b'den büyük"
 
 #: KSeExpr/ExprBuiltins.cpp:59
 msgctxt "builtin|"
@@ -239,6 +253,8 @@ msgid ""
 "float min(float a,float b)\n"
 "lesser of a and b"
 msgstr ""
+"float min(float a,float b)\n"
+"a ve b'den küçük"
 
 #: KSeExpr/ExprBuiltins.cpp:60
 msgctxt "builtin|"
@@ -246,6 +262,8 @@ msgid ""
 "float trunc(float a)\n"
 "nearest integer towards zero"
 msgstr ""
+"float trunc(float a)\n"
+"sıfıra yakın en yakın tamsayı"
 
 #: KSeExpr/ExprBuiltins.cpp:61
 msgctxt "builtin|"
@@ -253,6 +271,8 @@ msgid ""
 "float floor(float a)\n"
 "next lower integer"
 msgstr ""
+"float floor(float a)\n"
+"sonraki daha düşük tamsayı"
 
 #: KSeExpr/ExprBuiltins.cpp:62
 msgctxt "builtin|"
@@ -260,6 +280,8 @@ msgid ""
 "float ceil(float a)\n"
 "next higher integer"
 msgstr ""
+"float ceil(float a)\n"
+"sonraki daha yüksek tamsayı"
 
 #: KSeExpr/ExprBuiltins.cpp:64
 msgctxt "builtin|"
@@ -267,6 +289,8 @@ msgid ""
 "float invert(float a)\n"
 "Defined as 1-x"
 msgstr ""
+"float invert(float a)\n"
+"1-x olarak tanımlı"
 
 #: KSeExpr/ExprBuiltins.cpp:65
 msgctxt "builtin|"
@@ -274,6 +298,8 @@ msgid ""
 "float cbrt(float x)\n"
 "cube root"
 msgstr ""
+"float cbrt(float x)\n"
+"küpkök"
 
 #: KSeExpr/ExprBuiltins.cpp:66
 msgctxt "builtin|"
@@ -281,6 +307,8 @@ msgid ""
 "float sqrt(float x)\n"
 "square root"
 msgstr ""
+"float sqrt(float x)\n"
+"karekök"
 
 #: KSeExpr/ExprBuiltins.cpp:67
 msgctxt "builtin|"
@@ -288,6 +316,8 @@ msgid ""
 "float exp(float x)\n"
 "E raised to the x power"
 msgstr ""
+"float exp(float x)\n"
+"x kuvvetine yükseltilmiş E"
 
 #: KSeExpr/ExprBuiltins.cpp:68
 msgctxt "builtin|"
@@ -295,6 +325,8 @@ msgid ""
 "float pow(float x, float y)\n"
 "x to the y power, also available as ^"
 msgstr ""
+"float pow(float x, float y)\n"
+"x üzeri y kuvveti, ^ olarak da kullanılabilir"
 
 #: KSeExpr/ExprBuiltins.cpp:69
 msgctxt "builtin|"
@@ -302,6 +334,8 @@ msgid ""
 "float log(float x)\n"
 "Natural logarithm"
 msgstr ""
+"float log(float x)\n"
+"Doğal logaritma"
 
 #: KSeExpr/ExprBuiltins.cpp:70
 msgctxt "builtin|"
@@ -309,6 +343,8 @@ msgid ""
 "float log10(float x)\n"
 "Base 10 logarithm"
 msgstr ""
+"float log10(float x)\n"
+"10 tabanlı logaritma"
 
 #: KSeExpr/ExprBuiltins.cpp:71
 msgctxt "builtin|"
@@ -316,6 +352,8 @@ msgid ""
 "float fmod(float x,float y)\n"
 "remainder of x/y (also available as % operator)"
 msgstr ""
+"float fmod(float x,float y)\n"
+"x/y'nin kalanı (% işleci olarak da kullanılabilir)"
 
 #: KSeExpr/ExprBuiltins.cpp:72
 msgctxt "builtin|"
@@ -323,6 +361,8 @@ msgid ""
 "float turbulence(vector v,int octaves=6,float lacunarity=2,float gain=.5)\n"
 "Absolute value of each noise term is taken. This gives billowy appearance"
 msgstr ""
+"float turbulence(vector v,int octaves=6,float lacunarity=2,float gain=.5)\n"
+"Her gürültü teriminin mutlak değeri alınır. Bu, dalgalı bir görünüm verir"
 
 #: KSeExpr/ExprBuiltins.cpp:75
 msgctxt "builtin|"
@@ -330,6 +370,8 @@ msgid ""
 "color cturbulence(vector v,int octaves=6,float lacunarity=2,float gain=.5)\n"
 "Absolute value of each noise term is taken. This gives billowy appearance"
 msgstr ""
+"color cturbulence(vector v,int octaves=6,float lacunarity=2,float gain=.5)\n"
+"Her gürültü teriminin mutlak değeri alınır. Bu, dalgalı bir görünüm verir"
 
 #: KSeExpr/ExprBuiltins.cpp:78
 msgctxt "builtin|"
@@ -337,6 +379,8 @@ msgid ""
 "vector vturbulence(vector v,int octaves=6,float lacunarity=2,float gain=.5)\n"
 "Absolute value of each noise term is taken. This gives billowy appearance"
 msgstr ""
+"vector vturbulence(vector v,int octaves=6,float lacunarity=2,float gain=.5)\n"
+"Her gürültü teriminin mutlak değeri alınır. Bu, dalgalı bir görünüm verir"
 
 #: KSeExpr/ExprBuiltins.cpp:86
 msgctxt "builtin|"
@@ -344,6 +388,8 @@ msgid ""
 "float compress(float x,float lo,float hi)\n"
 "Remaps x in [0,1] to [lo,hi]"
 msgstr ""
+"float compress(float x,float dü,float yü)\n"
+"[0,1]'deki x'i [dü,yü]'ye yeniden eşler"
 
 #: KSeExpr/ExprBuiltins.cpp:94
 msgctxt "builtin|"
@@ -351,6 +397,8 @@ msgid ""
 "float expand(float x,float lo,float hi)\n"
 "Remaps x in [lo,hi] to [0,1]"
 msgstr ""
+"float expand(float x,float dü,float yü)\n"
+"[dü,yü]'deki x'i [0,1]'e yeniden eşler"
 
 #: KSeExpr/ExprBuiltins.cpp:100
 msgctxt "builtin|"
@@ -358,6 +406,8 @@ msgid ""
 "float fit(float x,float a1,float b1,float a2,float b2)\n"
 "Linearly remaps x in [a1,b1] to [a2,b2]"
 msgstr ""
+"float fit(float x,float a1,float b1,float a2,float b2)\n"
+"[a1,b1]'deki x'i [a2,b2]'ye doğrusal olarak yeniden eşler"
 
 #: KSeExpr/ExprBuiltins.cpp:106
 msgctxt "builtin|"
@@ -365,6 +415,8 @@ msgid ""
 "float gamma(float x, float g)\n"
 "Gamma correction of x with gamma factor g"
 msgstr ""
+"float gamma(float x, float g)\n"
+"Gama faktörü g ile x'in gama düzeltmesi"
 
 #: KSeExpr/ExprBuiltins.cpp:113
 msgctxt "builtin|"
@@ -374,6 +426,10 @@ msgid ""
 "and values greater than 0.5 pull the curve up\n"
 "pow(x,log(b)/log(0.5))"
 msgstr ""
+"float bias(float x, float g)\n"
+"0,5'ten küçük değerlerin eğriyi aşağı çektiği ve 0,5'ten büyük değerlerin\n"
+"eğriyi yukarı çektiği gama değerleri\n"
+"pow(x,log(b)/log(0,5))"
 
 #: KSeExpr/ExprBuiltins.cpp:124
 msgctxt "builtin|"
@@ -382,6 +438,9 @@ msgid ""
 "Adjust the contrast.&nbsp; For c from 0 to 0.5, the contrast is decreased."
 "&nbsp; For c &gt; 0.5, the contrast is increased."
 msgstr ""
+"float contrast(float x, float c)\n"
+"Karşıtlığı ayarla.&nbsp; c'nin 0'dan 0,5'e kadar olduğu durumlarda karşıtlık "
+"azalır.&nbsp; c &gt; 0,5 iken karşıtlık artar."
 
 #: KSeExpr/ExprBuiltins.cpp:132
 msgctxt "builtin|"
@@ -389,6 +448,8 @@ msgid ""
 "float boxstep(float x,float a)\n"
 " if x < a then 0 otherwise 1"
 msgstr ""
+"float boxstep(float x,float a)\n"
+" x < a ise 0 yoksa 1"
 
 #: KSeExpr/ExprBuiltins.cpp:143
 msgctxt "builtin|"
@@ -397,6 +458,9 @@ msgid ""
 " if x &lt; a then 0, if x &gt; b then 1, and\n"
 "x transitions linearly when a &lt; x &lt; b"
 msgstr ""
+"float linearstep(float x, float a, float b)\n"
+" x &lt; a ise 0, x &gt; b ise 1 ve\n"
+"a &lt; x &lt; b iken x doğrusal olarak geçiş yapar"
 
 #: KSeExpr/ExprBuiltins.cpp:165
 msgctxt "builtin|"
@@ -405,6 +469,9 @@ msgid ""
 " if x &lt; a then 0, if x &gt; b then 1, and\n"
 "x transitions smoothly (cubic) when a &lt; x &lt; b"
 msgstr ""
+"float smoothstep(float x,float a,float b)\n"
+" x &lt; a ise 0, x &gt; b ise 1 ve\n"
+"a &lt; x &lt; b iken x pürüzsüzce geçiş yapar (kübik)"
 
 #: KSeExpr/ExprBuiltins.cpp:187
 msgctxt "builtin|"
