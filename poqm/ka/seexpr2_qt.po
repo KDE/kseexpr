@@ -11,7 +11,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Qt-Contexts: true\n"
-"X-Generator: Poedit 3.1.1\n"
+"X-Generator: Poedit 3.2.2\n"
 
 #: KSeExpr/ExprBuiltins.cpp:27
 msgctxt "builtin|"
@@ -19,6 +19,8 @@ msgid ""
 "float abs(float x)\n"
 "absolute value of x"
 msgstr ""
+"float abs(float x)\n"
+"x-ის აბსოლუტური მნიშვნელობა"
 
 #: KSeExpr/ExprBuiltins.cpp:30
 msgctxt "builtin|"
@@ -26,6 +28,8 @@ msgid ""
 "float deg(float angle)\n"
 "radians to degrees"
 msgstr ""
+"float deg(float angle)\n"
+"რადიანები გრადუსებამდე"
 
 #: KSeExpr/ExprBuiltins.cpp:31
 msgctxt "builtin|"
@@ -33,6 +37,8 @@ msgid ""
 "float rad(float angle)\n"
 "degrees to radians"
 msgstr ""
+"float rad(float angle)\n"
+"გრადუსები რადიანებში"
 
 #: KSeExpr/ExprBuiltins.cpp:33
 msgctxt "builtin|"
@@ -40,6 +46,8 @@ msgid ""
 "float cosd(float angle)\n"
 "cosine in degrees"
 msgstr ""
+"float cosd(float angle)\n"
+"კოსინუსი გრადუსებში"
 
 #: KSeExpr/ExprBuiltins.cpp:34
 msgctxt "builtin|"
@@ -47,6 +55,8 @@ msgid ""
 "float sind(float angle)\n"
 "sine in degrees"
 msgstr ""
+"float sind(float angle)\n"
+"სინუსი გრადუსებში"
 
 #: KSeExpr/ExprBuiltins.cpp:35
 msgctxt "builtin|"
@@ -54,6 +64,8 @@ msgid ""
 "float tand(float angle)\n"
 "tangent in degrees"
 msgstr ""
+"float tand(float angle)\n"
+"ტანგენსი გრადუსებში"
 
 #: KSeExpr/ExprBuiltins.cpp:36
 msgctxt "builtin|"
@@ -61,6 +73,8 @@ msgid ""
 "float acosd(float value)\n"
 "arc cosine in degrees"
 msgstr ""
+"float acosd(float value)\n"
+"არკკოსინუსი გრადუსებში"
 
 #: KSeExpr/ExprBuiltins.cpp:37
 msgctxt "builtin|"
@@ -68,6 +82,8 @@ msgid ""
 "float asind(float value)\n"
 "arc sine in degrees"
 msgstr ""
+"float asind(float value)\n"
+"არკსინუსი გრადუსებში"
 
 #: KSeExpr/ExprBuiltins.cpp:38
 msgctxt "builtin|"
@@ -75,6 +91,8 @@ msgid ""
 "float atand(float value)\n"
 "arc tangent in degrees"
 msgstr ""
+"float atand(float value)\n"
+"არკტანგენსი გრადუსებში"
 
 #: KSeExpr/ExprBuiltins.cpp:39
 msgctxt "builtin|"
@@ -82,6 +100,8 @@ msgid ""
 "float atan2d(float y,float x)\n"
 "arc tangent in degrees of y/x between -180 and 180"
 msgstr ""
+"float atan2d(float y,float x)\n"
+"y/x-ის არკტანგენსი გრადუსებში -180-დან 180-მდე შუალედში"
 
 #: KSeExpr/ExprBuiltins.cpp:41
 msgctxt "builtin|"
@@ -89,6 +109,8 @@ msgid ""
 "float cos(float angle)\n"
 "cosine in radians"
 msgstr ""
+"float cos(float angle)\n"
+"კოსინუსი რადიანებში"
 
 #: KSeExpr/ExprBuiltins.cpp:42
 msgctxt "builtin|"
@@ -96,6 +118,8 @@ msgid ""
 "float sin(float angle)\n"
 "sine in radians"
 msgstr ""
+"float sin(float angle)\n"
+"სინუსი რადიანებში"
 
 #: KSeExpr/ExprBuiltins.cpp:43
 msgctxt "builtin|"
@@ -103,6 +127,8 @@ msgid ""
 "float tan(float angle)\n"
 "tangent in radians"
 msgstr ""
+"float tan(float angle)\n"
+"ტანგენსი რადიანებში"
 
 #: KSeExpr/ExprBuiltins.cpp:44
 msgctxt "builtin|"
@@ -110,6 +136,8 @@ msgid ""
 "float acos(float value)\n"
 "arc cosine in radians"
 msgstr ""
+"float acos(float value)\n"
+"არკკოსინუსი რადიანებში"
 
 #: KSeExpr/ExprBuiltins.cpp:45
 msgctxt "builtin|"
@@ -117,6 +145,8 @@ msgid ""
 "float asin(float value)\n"
 "arc sine in radians"
 msgstr ""
+"float asin(float value)\n"
+"არკსინუსი რადიანებში"
 
 #: KSeExpr/ExprBuiltins.cpp:46
 msgctxt "builtin|"
@@ -124,6 +154,8 @@ msgid ""
 "float atan(float value)\n"
 "arc tangent in radians"
 msgstr ""
+"float atan(float value)\n"
+"არკტანგენსი რადიანებში"
 
 #: KSeExpr/ExprBuiltins.cpp:47
 msgctxt "builtin|"
@@ -131,6 +163,8 @@ msgid ""
 "float atan2(float y,float x)\n"
 "arc tangent in radians of y/x between -PI and PI"
 msgstr ""
+"float atan2(float y,float x)\n"
+"y/x-ის არკტანგენსი რადიანებში -PI-დან PI-მდე შუალედში"
 
 #: KSeExpr/ExprBuiltins.cpp:49
 msgctxt "builtin|"
@@ -138,6 +172,8 @@ msgid ""
 "float cosh(float angle)\n"
 "hyperbolic cosine in radians"
 msgstr ""
+"float cosh(float angle)\n"
+"ჰიპერბოლური კოსინუსი რადიანებში"
 
 #: KSeExpr/ExprBuiltins.cpp:50
 msgctxt "builtin|"
@@ -145,6 +181,8 @@ msgid ""
 "float sinh(float angle)\n"
 "hyperbolic sine in radians"
 msgstr ""
+"float sinh(float angle)\n"
+"ჰიპერბოლური სინუსი რადიანებში"
 
 #: KSeExpr/ExprBuiltins.cpp:51
 msgctxt "builtin|"
@@ -152,6 +190,8 @@ msgid ""
 "float tanh(float angle)\n"
 "hyperbolic tangent in radians"
 msgstr ""
+"float tanh(float angle)\n"
+"ჰიპერბოლური ტანგენსი რადიანებში"
 
 #: KSeExpr/ExprBuiltins.cpp:52
 msgctxt "builtin|"
@@ -159,6 +199,8 @@ msgid ""
 "float acosh(float value)\n"
 "hyperbolic arc cosine in radians"
 msgstr ""
+"float acosh(float value)\n"
+"ჰიპერბოლური არკკოსინუსი რადიანებში"
 
 #: KSeExpr/ExprBuiltins.cpp:53
 msgctxt "builtin|"
@@ -166,6 +208,8 @@ msgid ""
 "float asinh(float value)\n"
 "hyperbolic arc sine in radians"
 msgstr ""
+"float asinh(float value)\n"
+"ჰიპერბოლური არკინუსი რადიანებში"
 
 #: KSeExpr/ExprBuiltins.cpp:54
 msgctxt "builtin|"
@@ -173,6 +217,8 @@ msgid ""
 "float atanh(float value)\n"
 "hyperbolic arc tangent in radians"
 msgstr ""
+"float atanh(float value)\n"
+"ჰიპერბოლური არკტანგენსი რადიანებში"
 
 #: KSeExpr/ExprBuiltins.cpp:56
 msgctxt "builtin|"
@@ -180,6 +226,8 @@ msgid ""
 "float clamp(float x,float lo,float hi)\n"
 "constrain x to range [lo,hi]"
 msgstr ""
+"float clamp(float x,float lo,float hi)\n"
+"X-ის [lo, hi] დიაპაზონში შეზღუდვა"
 
 #: KSeExpr/ExprBuiltins.cpp:57
 msgctxt "builtin|"
@@ -187,6 +235,8 @@ msgid ""
 "float round(float x)\n"
 "nearest integer to x"
 msgstr ""
+"float round(float x)\n"
+"X-თან არსებული მთელი რიცხვი"
 
 #: KSeExpr/ExprBuiltins.cpp:58
 msgctxt "builtin|"
@@ -194,6 +244,8 @@ msgid ""
 "float max(float a,float b)\n"
 "greater of a and b"
 msgstr ""
+"float max(float a,float b)\n"
+"უდიდესი A-სა და B-ს შორის"
 
 #: KSeExpr/ExprBuiltins.cpp:59
 msgctxt "builtin|"
@@ -201,6 +253,8 @@ msgid ""
 "float min(float a,float b)\n"
 "lesser of a and b"
 msgstr ""
+"float min(float a,float b)\n"
+"უმცირესი A-სა და B-ს შორის"
 
 #: KSeExpr/ExprBuiltins.cpp:60
 msgctxt "builtin|"
@@ -208,6 +262,8 @@ msgid ""
 "float trunc(float a)\n"
 "nearest integer towards zero"
 msgstr ""
+"float trunc(float a)\n"
+"უახლოესი მთელი რიცხვი ნულისკენ მიმართულებით"
 
 #: KSeExpr/ExprBuiltins.cpp:61
 msgctxt "builtin|"
@@ -215,6 +271,8 @@ msgid ""
 "float floor(float a)\n"
 "next lower integer"
 msgstr ""
+"float floor(float a)\n"
+"შემდეგი მცირე მთელი რიცხვი"
 
 #: KSeExpr/ExprBuiltins.cpp:62
 msgctxt "builtin|"
@@ -222,6 +280,8 @@ msgid ""
 "float ceil(float a)\n"
 "next higher integer"
 msgstr ""
+"float ceil(float a)\n"
+"შემდეგი დიდი მთელი რიცხვი"
 
 #: KSeExpr/ExprBuiltins.cpp:64
 msgctxt "builtin|"
@@ -229,6 +289,8 @@ msgid ""
 "float invert(float a)\n"
 "Defined as 1-x"
 msgstr ""
+"float invert(float a)\n"
+"აღწერილია, როგორც  1-x"
 
 #: KSeExpr/ExprBuiltins.cpp:65
 msgctxt "builtin|"
@@ -236,6 +298,8 @@ msgid ""
 "float cbrt(float x)\n"
 "cube root"
 msgstr ""
+"float cbrt(float x)\n"
+"კუბური ფესვი"
 
 #: KSeExpr/ExprBuiltins.cpp:66
 msgctxt "builtin|"
@@ -243,6 +307,8 @@ msgid ""
 "float sqrt(float x)\n"
 "square root"
 msgstr ""
+"float sqrt(float x)\n"
+"კვადრატული ფესვი"
 
 #: KSeExpr/ExprBuiltins.cpp:67
 msgctxt "builtin|"
@@ -250,6 +316,8 @@ msgid ""
 "float exp(float x)\n"
 "E raised to the x power"
 msgstr ""
+"float exp(float x)\n"
+"E ხარისხად x"
 
 #: KSeExpr/ExprBuiltins.cpp:68
 msgctxt "builtin|"
@@ -257,6 +325,8 @@ msgid ""
 "float pow(float x, float y)\n"
 "x to the y power, also available as ^"
 msgstr ""
+"float pow(float x, float y)\n"
+"x ხარისხად y. ასევე შეგიძლიათ ჩაწეროთ, როგორც  ^"
 
 #: KSeExpr/ExprBuiltins.cpp:69
 msgctxt "builtin|"
@@ -264,6 +334,8 @@ msgid ""
 "float log(float x)\n"
 "Natural logarithm"
 msgstr ""
+"float log(float x)\n"
+"ნატურალური ლოგარითმი"
 
 #: KSeExpr/ExprBuiltins.cpp:70
 msgctxt "builtin|"
@@ -278,6 +350,8 @@ msgid ""
 "float fmod(float x,float y)\n"
 "remainder of x/y (also available as % operator)"
 msgstr ""
+"float fmod(float x,float y)\n"
+"x/y-ის ნაშთი (ასევე გამოიყენება, როგორც ოპერატორი %)"
 
 #: KSeExpr/ExprBuiltins.cpp:72
 msgctxt "builtin|"
@@ -597,6 +671,8 @@ msgid ""
 "float pnoise ( vector v, vector period )\n"
 "periodic noise"
 msgstr ""
+"float pnoise ( vector v, vector period )\n"
+"პერიოდული ხმაური"
 
 #: KSeExpr/ExprBuiltins.cpp:1050
 msgctxt "builtin|"
@@ -635,6 +711,8 @@ msgid ""
 "float length(vector v)\n"
 "length of vector"
 msgstr ""
+"float length(vector v)\n"
+"ვექტორის სიგრძე"
 
 #: KSeExpr/ExprBuiltins.cpp:1254
 msgctxt "builtin|"
@@ -642,6 +720,8 @@ msgid ""
 "float hypot(vector v)\n"
 "length of 2d vector [x,y]"
 msgstr ""
+"float hypot(vector v)\n"
+"2d ვექტორის სიგრძე [x,y]"
 
 #: KSeExpr/ExprBuiltins.cpp:1262
 msgctxt "builtin|"
@@ -649,6 +729,8 @@ msgid ""
 "float dot(vector a,vector b)\n"
 "vector dot product"
 msgstr ""
+"float dot(vector a,vector b)\n"
+"ვექტორი წერტილი პროდუქტი"
 
 #: KSeExpr/ExprBuiltins.cpp:1274
 msgctxt "builtin|"
@@ -927,7 +1009,7 @@ msgstr ""
 #, qt-format
 msgctxt "ErrorMessages|"
 msgid "Syntax error near '%1'"
-msgstr ""
+msgstr "სინტაქსის შეცდომა `%1' -სთან ახლოს."
 
 #: KSeExprUI/ErrorMessages.cpp:55
 #, qt-format
@@ -1328,7 +1410,7 @@ msgstr ""
 #: KSeExprUI/ExprCurve.cpp:347
 msgctxt "ExprCurve|"
 msgid "&Expand..."
-msgstr ""
+msgstr "&ამოკეცვა..."
 
 #: KSeExprUI/ExprCurve.cpp:390 KSeExprUI/ExprCurve.cpp:399
 #, qt-format
@@ -1339,7 +1421,7 @@ msgstr "%1"
 #: KSeExprUI/ExprEditor.cpp:73
 msgctxt "ExprEditor|"
 msgid "Expression Editor"
-msgstr ""
+msgstr "გამოსახულების რედაქტორი"
 
 #: KSeExprUI/ExprEditor.cpp:235
 #, qt-format
@@ -1360,7 +1442,7 @@ msgstr "სანიშნები"
 #: KSeExprUI/ExprTextEdit.cpp:44
 msgctxt "ExprTextEdit|"
 msgid "Pop-up Help"
-msgstr ""
+msgstr "მხტუნარა დახმარება"
 
 #: KSeExprUI/ExprTextEdit.cpp:185
 #, qt-format
