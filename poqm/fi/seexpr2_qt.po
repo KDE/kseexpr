@@ -1,8 +1,8 @@
-# Tommi Nieminen <translator@legisign.org>, 2022.
+# Tommi Nieminen <translator@legisign.org>, 2022, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"PO-Revision-Date: 2022-08-30 14:05+0300\n"
+"PO-Revision-Date: 2023-05-15 16:01+0300\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
 "Language: fi\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 20.12.0\n"
+"X-Generator: Lokalize 23.04.1\n"
 "X-Qt-Contexts: true\n"
 
 #: KSeExpr/ExprBuiltins.cpp:27
@@ -892,34 +892,34 @@ msgstr ""
 #: KSeExprUI/ExprControlCollection.cpp:27
 msgctxt "ExprControlCollection|"
 msgid "Add new variable"
-msgstr ""
+msgstr "Lisää uusi muuttuja"
 
 #: KSeExprUI/ErrorMessages.cpp:15
 msgctxt "ErrorMessages|"
 msgid "Expected string or float[d]"
-msgstr ""
+msgstr "Odotettiin merkkijonoa tai liukulukua[d]"
 
 #: KSeExprUI/ErrorMessages.cpp:17
 msgctxt "ErrorMessages|"
 msgid "Expected float[d]"
-msgstr ""
+msgstr "Odotettiin liukulukua[d]"
 
 #: KSeExprUI/ErrorMessages.cpp:19
 #, qt-format
 msgctxt "ErrorMessages|"
 msgid "Expected float[%1]"
-msgstr ""
+msgstr "Odotettiin liukulukua[%1]"
 
 #: KSeExprUI/ErrorMessages.cpp:21
 #, qt-format
 msgctxt "ErrorMessages|"
 msgid "Type mismatch, first: '%1'; second: '%2'"
-msgstr ""
+msgstr "Tyypit eivät täsmää, ensimmäinen: ”%1”, toinen ”%2”"
 
 #: KSeExprUI/ErrorMessages.cpp:23
 msgctxt "ErrorMessages|"
 msgid "Expected float or float[3]"
-msgstr ""
+msgstr "Odotettiin liukulukua tai liukulukua[3]"
 
 #: KSeExprUI/ErrorMessages.cpp:25
 #, qt-format
@@ -1154,12 +1154,12 @@ msgstr "kansio"
 #: KSeExprUI/ExprAddDialog.cpp:158
 msgctxt "ExprAddDialog|"
 msgid "String Name"
-msgstr ""
+msgstr "Merkkijonon nimi"
 
 #: KSeExprUI/ExprAddDialog.cpp:160
 msgctxt "ExprAddDialog|"
 msgid "String Type"
-msgstr ""
+msgstr "Merkkijonotyyppi"
 
 #: KSeExprUI/ExprAddDialog.cpp:162
 msgctxt "ExprAddDialog|"
@@ -1190,7 +1190,7 @@ msgstr "*.se"
 #, qt-format
 msgctxt "ExprBrowser|"
 msgid "Could not open file %1 for writing"
-msgstr ""
+msgstr "Tiedostoa %1 ei voitu avata kirjoitettavaksi"
 
 #: KSeExprUI/ExprBrowser.cpp:410 KSeExprUI/ExprBrowser.cpp:429
 #: KSeExprUI/ExprBrowser.cpp:450
@@ -1239,7 +1239,7 @@ msgstr "Ei mitään"
 #: KSeExprUI/ExprColorCurve.cpp:422
 msgctxt "ExprColorCurve|"
 msgid "Linear"
-msgstr ""
+msgstr "Lineaarinen"
 
 #: KSeExprUI/ExprColorCurve.cpp:423
 msgctxt "ExprColorCurve|"
