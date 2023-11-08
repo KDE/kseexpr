@@ -1,16 +1,16 @@
-# Xavier Besnard <xavier.besnard@neuf.fr>, 2020, 2021.
+# SPDX-FileCopyrightText: 2020, 2021, 2023 Xavier Besnard <xavier.besnard@neuf.fr>
 msgid ""
 msgstr ""
 "Project-Id-Version: seexpr2_qt\n"
-"PO-Revision-Date: 2021-12-15 20:05+0100\n"
-"Last-Translator: Xavier Besnard <xavier.besnard@neuf.fr>\n"
-"Language-Team: French <kde-francophone@kde.org>\n"
+"PO-Revision-Date: 2023-11-05 18:27+0100\n"
+"Last-Translator: Xavier BESNARD <xavier.besnard@neuf.fr>\n"
+"Language-Team: fr\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 21.12.0\n"
+"X-Generator: Lokalize 23.08.2\n"
 "X-Qt-Contexts: true\n"
 
 #: KSeExpr/ExprBuiltins.cpp:27
@@ -1097,9 +1097,9 @@ msgid ""
 "getVar(string varName,vector defaultValue)\n"
 "return value of varName if variable exists, otherwise return defaultValue"
 msgstr ""
-"getVar (string varName, vector defaultValue)\n"
+"getVar (string varName, vector DefaultValue)\n"
 "retourne la valeur de « varName » si la variable existe, sinon retourne "
-"« defaultValue »"
+"« DefaultValue »"
 
 #: KSeExpr/ExprBuiltins.cpp:1879
 msgctxt "builtin|"
