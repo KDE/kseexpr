@@ -401,7 +401,7 @@ msgid ""
 "Remaps x in [0,1] to [lo,hi]"
 msgstr ""
 "float compress(float x,float lo,float hi)\n"
-"Reassigna «x» de [0,1] a [lo,hi]"
+"Torna a assignar «x» de [0,1] a [lo,hi]"
 
 #: KSeExpr/ExprBuiltins.cpp:94
 msgctxt "builtin|"
@@ -410,7 +410,7 @@ msgid ""
 "Remaps x in [lo,hi] to [0,1]"
 msgstr ""
 "float expand(float x,float lo,float hi)\n"
-"Reassigna «x» de [lo,hi] a [0,1]"
+"Torna a assignar «x» de [lo,hi] a [0,1]"
 
 #: KSeExpr/ExprBuiltins.cpp:100
 msgctxt "builtin|"
@@ -419,7 +419,7 @@ msgid ""
 "Linearly remaps x in [a1,b1] to [a2,b2]"
 msgstr ""
 "float fit(float x,float a1,float b1,float a2,float b2)\n"
-"Reassigna linealment «x» de [a1,b1] a [a2,b2]"
+"Torna a assignar linealment «x» de [a1,b1] a [a2,b2]"
 
 #: KSeExpr/ExprBuiltins.cpp:106
 msgctxt "builtin|"
