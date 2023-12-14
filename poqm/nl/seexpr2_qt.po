@@ -1,9 +1,9 @@
-# Freek de Kruijf <freekdekruijf@kde.nl>, 2020, 2021.
+# SPDX-FileCopyrightText: 2020, 2021, 2023 Freek de Kruijf <freekdekruijf@kde.nl>
 # jaap <jjhwoldringh@kde.nl>, 2020, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"PO-Revision-Date: 2021-12-15 13:33+0100\n"
+"PO-Revision-Date: 2023-12-13 12:15+0100\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Qt-Contexts: true\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 21.12.0\n"
+"X-Generator: Lokalize 23.08.4\n"
 
 #: KSeExpr/ExprBuiltins.cpp:27
 msgctxt "builtin|"
@@ -1322,7 +1322,7 @@ msgstr "1"
 #: KSeExprUI/ExprAddDialog.cpp:86
 msgctxt "ExprAddDialog|"
 msgid "Float"
-msgstr "Float"
+msgstr "Drijvende komma"
 
 #: KSeExprUI/ExprAddDialog.cpp:109
 msgctxt "ExprAddDialog|"
