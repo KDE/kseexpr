@@ -19,7 +19,7 @@
 ExprControlCollection::ExprControlCollection(QWidget* parent, bool showAddButton)
     : QWidget(parent), showAddButton(showAddButton) {
     controlLayout = new QVBoxLayout();
-    controlLayout->setMargin(0);
+    controlLayout->setContentsMargins({});
     controlLayout->setSpacing(0);
     controlLayout->insertStretch(-1, 100);
 

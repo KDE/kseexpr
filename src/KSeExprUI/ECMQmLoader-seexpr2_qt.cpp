@@ -41,7 +41,7 @@ namespace KSeExpr {
         }
 #else
         // Use application's own data directory (e.g. Krita on AppImage, Windows)
-        QString fullPath = QStandardPaths::locate(QStandardPaths::DataLocation, subPath);
+        QString fullPath = QStandardPaths::locate(QStandardPaths::AppLocalDataLocation, subPath);
         if (fullPath.isEmpty()) {
             // Try falling back to stock folder
             fullPath = QStandardPaths::locate(QStandardPaths::GenericDataLocation, subPath);
@@ -70,7 +70,7 @@ namespace KSeExpr {
 #if defined(Q_OS_ANDROID)
         const auto paths = QStringLiteral("assets:/share/");
 #else
-        auto paths = QStandardPaths::standardLocations(QStandardPaths::DataLocation);
+        auto paths = QStandardPaths::standardLocations(QStandardPaths::AppLocalDataLocation);
         paths << QStandardPaths::standardLocations(QStandardPaths::GenericDataLocation);
 #endif
         dbgSeExpr << "Base paths for translations: " << paths;
