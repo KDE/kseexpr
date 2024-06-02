@@ -46,18 +46,18 @@ void ExprHighlighter::init()
     //}
 
     numberFormat.setForeground(QColor::fromHsv(37, 200, lightness));
-    rule.pattern = QRegExp(QString::fromLatin1("\\b[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)\\b")); // \\b?[^\\$][A-Za-z][A-Za-z0-9]*\\b");
+    rule.pattern = QRegularExpression(QStringLiteral("\\b[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)\\b")); // \\b?[^\\$][A-Za-z][A-Za-z0-9]*\\b");
     rule.format = numberFormat;
     highlightingRules.append(rule);
 
     variableFormat.setForeground(QColor::fromHsv(200, 153, lightness));
     // variableFormat.setFontWeight(QFont::Bold);
-    rule.pattern = QRegExp(QString::fromLatin1("\\$[A-Za-z][A-Za-z0-9]*\\b"));
+    rule.pattern = QRegularExpression(QStringLiteral("\\$[A-Za-z][A-Za-z0-9]*\\b"));
     rule.format = variableFormat;
     highlightingRules.append(rule);
 
     singleLineCommentFormat.setForeground(QColor::fromHsv(54, 49, lightness));
-    rule.pattern = QRegExp(QString::fromLatin1("#[^\n]*"));
+    rule.pattern = QRegularExpression(QStringLiteral("#[^\n]*"));
     rule.format = singleLineCommentFormat;
     highlightingRules.append(rule);
 }
@@ -65,10 +65,11 @@ void ExprHighlighter::init()
 void ExprHighlighter::highlightBlock(const QString &text)
 {
     foreach (HighlightingRule rule, highlightingRules) {
-        QRegExp expression(rule.pattern);
-        int index = text.indexOf(expression);
+        QRegularExpression expression(rule.pattern);
+        QRegularExpressionMatch match;
+        int index = text.indexOf(expression, 0, &match);
         while (index >= 0) {
-            int length = expression.matchedLength();
+            int length = match.capturedLength();
             setFormat(index, length, rule.format);
             index = text.indexOf(expression, index + length);
         }

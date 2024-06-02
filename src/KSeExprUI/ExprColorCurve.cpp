@@ -241,7 +241,7 @@ QPixmap &CCurveScene::getPixmap()
 {
     if (_pixmapDirty) {
         QByteArray buf;
-        buf.append(QString::fromLatin1("P6\n%1 %2\n255\n").arg(_width).arg(_height));
+        buf.append(QLatin1String("P6\n%1 %2\n255\n").arg(QString::number(_width), QString::number(_height)).toUtf8());
         buf.append(getCPixmap());
         _pixmap.loadFromData(buf, "PPM");
         _pixmapDirty = false;
@@ -382,11 +382,11 @@ ExprColorCurve::ExprColorCurve(QWidget *parent, QString pLabel, QString vLabel, 
     , _interpComboBox(nullptr)
 {
     auto *mainLayout = new QHBoxLayout();
-    mainLayout->setMargin(0);
+    mainLayout->setContentsMargins({});
 
     auto *edits = new QWidget;
     auto *editsLayout = new QFormLayout;
-    editsLayout->setMargin(0);
+    editsLayout->setContentsMargins({});
     edits->setLayout(editsLayout);
 
     _selPosEdit = new QLineEdit;

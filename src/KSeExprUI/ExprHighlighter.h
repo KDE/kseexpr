@@ -14,12 +14,13 @@
 #include <QSyntaxHighlighter>
 #include <QTextDocument>
 #include <QTextEdit>
+#include <QRegularExpression>
 
 
 class ExprHighlighter : public QSyntaxHighlighter
 {
     struct HighlightingRule {
-        QRegExp pattern;
+        QRegularExpression pattern;
         QTextCharFormat format;
     };
     QVector<HighlightingRule> highlightingRules;

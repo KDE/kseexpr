@@ -58,7 +58,7 @@ ExprPreviewWidget::ExprPreviewWidget(QWidget *parent)
     _pm->setAutoFillBackground(true);
     auto *layout = new QVBoxLayout;
     layout->setSpacing(0);
-    layout->setMargin(0);
+    layout->setContentsMargins({});
     layout->addWidget(_pm);
     setLayout(layout);
 }
@@ -99,7 +99,7 @@ ExprFileDialog::ExprFileDialog(QWidget *parent)
 
 void ExprFileDialog::handleOk()
 {
-    if (fileMode() != QFileDialog::DirectoryOnly)
+    if (fileMode() != QFileDialog::Directory)
         return;
     QString entry = _nameEdit->text();
     if (entry.isEmpty())
@@ -151,7 +151,7 @@ void ExprFileDialog::editReturnPress()
             if (d.cd(str))
                 setDirectory(str);
         }
-    } else if (fileMode() == QFileDialog::DirectoryOnly)
+    } else if (fileMode() == QFileDialog::Directory)
         handleOk();
     else
         accept();
@@ -301,7 +301,7 @@ QString ExprFileDialog::getExistingDirectory(const QString &caption, const QStri
         setDirectory(startWith);
     if (!caption.isNull())
         setWindowTitle(caption);
-    setFileMode(QFileDialog::DirectoryOnly);
+    setFileMode(QFileDialog::Directory);
     selectFile(QString());
 
     QString result;

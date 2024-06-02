@@ -304,7 +304,7 @@ VectorControl::VectorControl(int id, VectorEditable *editable)
     for (int i = 0; i < 3; i++) {
         auto *vbl = new QVBoxLayout();
         control->addLayout(vbl);
-        vbl->setMargin(0);
+        vbl->setContentsMargins({});
         vbl->setSpacing(0);
 
         auto *edit = new ExprLineEdit(i, this);

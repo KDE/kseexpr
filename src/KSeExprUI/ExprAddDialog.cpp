@@ -20,7 +20,7 @@
 ExprAddDialog::ExprAddDialog(int& count, QWidget* parent) : QDialog(parent) {
     auto *verticalLayout = new QVBoxLayout();
     verticalLayout->setSpacing(3);
-    verticalLayout->setMargin(3);
+    verticalLayout->setContentsMargins(3, 3, 3, 3);
     setLayout(verticalLayout);
     auto *horizontalLayout = new QHBoxLayout();
 
