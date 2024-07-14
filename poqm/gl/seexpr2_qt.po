@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"PO-Revision-Date: 2024-07-12 19:13+0200\n"
+"PO-Revision-Date: 2024-07-13 09:29+0200\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
 "Language-Team: Proxecto Trasno (proxecto@trasno.gal)\n"
 "Language: gl\n"
@@ -961,6 +961,12 @@ msgid ""
 "This is an offset \"mod\" function. The result is computed as ``loRange + "
 "value % (hiRange-loRange+1)``."
 msgstr ""
+"int cycle(int índice, int intervaloMínimo, int intervaloMáximo)\n"
+"Itera polos valores entre intervaloMínimo e intervaloMáximo segundo o "
+"índice.\n"
+"Esta é unha función de módulo de desprazamento. O resultado calcúlase "
+"mediante ``intervaloMínimo + value % (intervaloMáximo - intervaloMínimo + "
+"1)``."
 
 #: KSeExpr/ExprBuiltins.cpp:1405
 msgctxt "builtin|"
@@ -972,6 +978,13 @@ msgid ""
 "to the supplied weights.&nbsp; Any weights not supplied are assumed to\n"
 "be 1.0."
 msgstr ""
+"int pick(float índice, int intervaloMínimo, int intervaloMáximo, [float "
+"pesos, …])\n"
+"Escolle valores aleatorios entre intervaloMínimo e intervaloMáximo segundo o "
+"índice (do que\n"
+"se calcula un resumo [hash] automaticamente). Os valores distribuiranse "
+"segundo os pesos\n"
+"indicados. Se faltan pesos, usarase o valor 1.0 para eses pesos."
 
 #: KSeExpr/ExprBuiltins.cpp:1416
 msgctxt "builtin|"
@@ -981,6 +994,10 @@ msgid ""
 "Chooses one of the supplied color choices based on the index (assumed to be "
 "in range [0..1])."
 msgstr ""
+"color swatch(float índice, color escolla0, color escolla1, color escolla2, "
+"[…])\n"
+"Escolle unha das escollas de cor indicadas segundo o índice (que se asume "
+"que está no intervalo [0, 1])."
 
 #: KSeExpr/ExprBuiltins.cpp:1431
 msgctxt "builtin|"
@@ -989,6 +1006,9 @@ msgid ""
 "Chooses one of the supplied choices based on the index (assumed to be in "
 "range [0, 1])."
 msgstr ""
+"float choose(float índice, float escolla1, float escolla2, […])\n"
+"Escolle unha das escollas indicadas segundo o índice (que se asume que está "
+"no intervalo [0, 1])."
 
 #: KSeExpr/ExprBuiltins.cpp:1487
 msgctxt "builtin|"
@@ -999,6 +1019,10 @@ msgid ""
 "range [0..1]).\n"
 "The values will be distributed according to the supplied weights."
 msgstr ""
+"float wchoose(float índice, float escolla1, float peso1, float escolla2, "
+"float peso2, […])\n"
+"Escolle unha das escollas indicadas segundo o índice (que se asume que está "
+"no intervalo [0, 1]).Os valores distribuiranse segundo os pesos indicados."
 
 #: KSeExpr/ExprBuiltins.cpp:1509
 msgctxt "builtin|"
@@ -1009,16 +1033,20 @@ msgid ""
 "are\n"
 "distributed evenly from [0..1]"
 msgstr ""
+"float spline(float parámetro, float y1, float y2, float y3, float y4, […])\n"
+"\n"
+"Interpola un conxunto de valores ao parámetro indicado onde y1, …, yn se\n"
+"distribúen de maneira equitativa en [0, 1]."
 
 #: KSeExpr/ExprBuiltins.cpp:1550 KSeExpr/ExprBuiltins.cpp:1615
 msgctxt "builtin|"
 msgid "Unable to validate the interpolant type"
-msgstr ""
+msgstr "Non é posíbel validar o tipo do interpolador."
 
 #: KSeExpr/ExprBuiltins.cpp:1554 KSeExpr/ExprBuiltins.cpp:1618
 msgctxt "builtin|"
 msgid "Invalid interpolant type"
-msgstr ""
+msgstr "O tipo do interpolador é incorrecto."
 
 #: KSeExpr/ExprBuiltins.cpp:1588
 msgctxt "builtin|"
@@ -1033,6 +1061,16 @@ msgid ""
 "0 - none, 1 - linear, 2 - smooth, 3 - spline, \n"
 "4 - monotone (non oscillating spline)"
 msgstr ""
+"float curve(float parámetro, float posición0, float valor0, int "
+"interpolación0, float posición1, float valor1, int interpolación1, […])\n"
+"\n"
+"Interpola unha pendente 1D definida por puntos de control en parámetro. Os "
+"puntos de control\n"
+"indícanse mediante triplos de parámetros posición, valor e interpolación. Os "
+"códigos de\n"
+"interpolación son: 0 (ningunha), 1 (linear), 2 (suave), 3 (adaptación por "
+"segmentos),\n"
+"4 (monoton, adaptación por segmentos sen oscilación)."
 
 #: KSeExpr/ExprBuiltins.cpp:1660
 msgctxt "builtin|"
@@ -1047,6 +1085,16 @@ msgid ""
 "0 - none, 1 - linear, 2 - smooth, 3 - spline, \n"
 "4 - monotone (non oscillating spline)"
 msgstr ""
+"color curve(float parámetro, float posición0, color valor0, int "
+"interpolación0, float posición, color valor1, int interpolación1, […])\n"
+"\n"
+"Interpola unha pendente de color indicada mediante puntos de control en "
+"parámetro. Os puntos de control\n"
+"indícanse mediante triplos de parámetros posición, valor e interpolación. Os "
+"códigos de\n"
+"interpolación son: 0 (ningunha), 1 (linear), 2 (suave), 3 (adaptación por "
+"segmentos),\n"
+"4 (monoton, adaptación por segmentos sen oscilación)."
 
 #: KSeExpr/ExprBuiltins.cpp:1732
 msgctxt "builtin|"
@@ -1054,6 +1102,8 @@ msgid ""
 "getVar(string varName,vector defaultValue)\n"
 "return value of varName if variable exists, otherwise return defaultValue"
 msgstr ""
+"getVar(string nomeDaVariábel, vector valorPredeterminado)\n"
+"Devolve o valor da variábel se existe, ou o valor predeterminado senón."
 
 #: KSeExpr/ExprBuiltins.cpp:1879
 msgctxt "builtin|"
@@ -1063,6 +1113,11 @@ msgid ""
 "\".\n"
 "Return parameter is empty, but must be assigned to a variable."
 msgstr ""
+"float printf(string formato, [vector0, vector1, …])\n"
+"Imprime unha cadea na saída estándar (stdout). Pode usar os parámetros de\n"
+"formato «%v» e «%f».\n"
+"Devolver o parámetro se está baleiro, pero debe estar asignado a unha "
+"variábel."
 
 #: KSeExpr/ExprBuiltins.cpp:1992
 msgctxt "builtin|"
@@ -1071,196 +1126,202 @@ msgid ""
 "Returns a string formatted from the given values.  See 'man sprintf' for "
 "format details."
 msgstr ""
+"sprintf(string formato, [double|string, double|string, …])\n"
+"Devolve unha cadea formatada cos valores indicados. Consulte «man sprintf» "
+"para detalles de formato."
 
 #: KSeExprUI/ECMQmLoader-seexpr2_qt.cpp:62
 #: KSeExprUI/ECMQmLoader-seexpr2_qt.cpp:122
 #: KSeExprUI/ExprControlCollection.cpp:27
 msgctxt "ExprControlCollection|"
 msgid "Add new variable"
-msgstr ""
+msgstr "Engadir unha nova variábel."
 
 #: KSeExprUI/ErrorMessages.cpp:15
 msgctxt "ErrorMessages|"
 msgid "Expected string or float[d]"
-msgstr ""
+msgstr "Esperábase string ou float[d]."
 
 #: KSeExprUI/ErrorMessages.cpp:17
 msgctxt "ErrorMessages|"
 msgid "Expected float[d]"
-msgstr ""
+msgstr "Esperábase float[d]."
 
 #: KSeExprUI/ErrorMessages.cpp:19
 #, qt-format
 msgctxt "ErrorMessages|"
 msgid "Expected float[%1]"
-msgstr ""
+msgstr "Esperábase float[%1]."
 
 #: KSeExprUI/ErrorMessages.cpp:21
 #, qt-format
 msgctxt "ErrorMessages|"
 msgid "Type mismatch, first: '%1'; second: '%2'"
-msgstr ""
+msgstr "Discrepancia de tipos, primeiro: «%1»; segundo: «%2»."
 
 #: KSeExprUI/ErrorMessages.cpp:23
 msgctxt "ErrorMessages|"
 msgid "Expected float or float[3]"
-msgstr ""
+msgstr "Esperábase float ou float[3]."
 
 #: KSeExprUI/ErrorMessages.cpp:25
 #, qt-format
 msgctxt "ErrorMessages|"
 msgid "Expected '%1' for argument, got '%2'"
-msgstr ""
+msgstr "Esperábase «%1» para o argumento, obtívose «%2»."
 
 #: KSeExprUI/ErrorMessages.cpp:27
 msgctxt "ErrorMessages|"
 msgid "Wrong number of arguments, should be 1 to 7"
-msgstr ""
+msgstr "O número de argumentos é incorrecto, debería estar entre 1 e 7."
 
 #: KSeExprUI/ErrorMessages.cpp:29
 msgctxt "ErrorMessages|"
 msgid "Wrong number of arguments, should be multiple of 3 plus 1"
 msgstr ""
+"O número de argumentos é incorrecto, debería ser o resultado de sumar 1 a un "
+"múltiplo de 3."
 
 #: KSeExprUI/ErrorMessages.cpp:31
 msgctxt "ErrorMessages|"
 msgid "Wrong number of arguments, should be 1 or more"
-msgstr ""
+msgstr "O número de argumentos é incorrecto, debería ser 1 ou máis."
 
 #: KSeExprUI/ErrorMessages.cpp:33
 msgctxt "ErrorMessages|"
 msgid "First argument must be a string"
-msgstr ""
+msgstr "O primeiro argumento debe ser unha cadea."
 
 #: KSeExprUI/ErrorMessages.cpp:35
 msgctxt "ErrorMessages|"
 msgid "Incomplete format specifier"
-msgstr ""
+msgstr "Hai un indicador de formato incorrecto."
 
 #: KSeExprUI/ErrorMessages.cpp:37
 #, qt-format
 msgctxt "ErrorMessages|"
 msgid "No variable named '%1'"
-msgstr ""
+msgstr "Non hai ningunha variábel chamada «%1»."
 
 #: KSeExprUI/ErrorMessages.cpp:39
 #, qt-format
 msgctxt "ErrorMessages|"
 msgid "Function '%1' has no definition"
-msgstr ""
+msgstr "A función «%1» non ten definición."
 
 #: KSeExprUI/ErrorMessages.cpp:41
 #, qt-format
 msgctxt "ErrorMessages|"
 msgid "Assignment operation has incorrect type '%1'"
-msgstr ""
+msgstr "A operación de asignación ten un tipo incorrecto, «%1»."
 
 #: KSeExprUI/ErrorMessages.cpp:43
 msgctxt "ErrorMessages|"
 msgid "Types of conditional are not compatible"
-msgstr ""
+msgstr "Os tipos da condición non son compatíbeis."
 
 #: KSeExprUI/ErrorMessages.cpp:45
 #, qt-format
 msgctxt "ErrorMessages|"
 msgid "Variable '%1' defined in conditionals inconsistently"
-msgstr ""
+msgstr "A variábel «%1» está definida en condicións de maneira inconsistente."
 
 #: KSeExprUI/ErrorMessages.cpp:47
 #, qt-format
 msgctxt "ErrorMessages|"
 msgid "Too few arguments for function '%1'"
-msgstr ""
+msgstr "Os argumentos pasados á función «%1» son insuficientes."
 
 #: KSeExprUI/ErrorMessages.cpp:49
 #, qt-format
 msgctxt "ErrorMessages|"
 msgid "Too many arguments for function '%1'"
-msgstr ""
+msgstr "Os argumentos pasados á función «%1» son demasiados."
 
 #: KSeExprUI/ErrorMessages.cpp:51
 #, qt-format
 msgctxt "ErrorMessages|"
 msgid "Expression generated type '%1', incompatible with desired type '%2'"
 msgstr ""
+"O tipo «%1» xerado pola expresión é incompatíbel co tipo desexado, «%2»."
 
 #: KSeExprUI/ErrorMessages.cpp:53
 #, qt-format
 msgctxt "ErrorMessages|"
 msgid "Syntax error near '%1'"
-msgstr ""
+msgstr "Hai un erro de sintaxe preto de «%1»."
 
 #: KSeExprUI/ErrorMessages.cpp:55
 #, qt-format
 msgctxt "ErrorMessages|"
 msgid "Unexpected end of expression near '%1'"
-msgstr ""
+msgstr "Unha expresión rematou de maneira inesperada preto de «%1»."
 
 #: KSeExprUI/ErrorMessages.cpp:57
 msgctxt "ErrorMessages|"
 msgid "Unexpected end of format string"
-msgstr ""
+msgstr "Unha cadea de formato rematou de maneira inesperada."
 
 #: KSeExprUI/ErrorMessages.cpp:59
 msgctxt "ErrorMessages|"
 msgid "Invalid format string, only %v or %f is allowed"
-msgstr ""
+msgstr "Unha cadea de formato é incorrecta, só se permiten %v e %f."
 
 #: KSeExprUI/ErrorMessages.cpp:61
 msgctxt "ErrorMessages|"
 msgid "Wrong number of arguments for format string"
-msgstr ""
+msgstr "Unha cadea de formato recibiu un número incorrecto de argumentos."
 
 #: KSeExprUI/ErrorMessages.cpp:64
 #, qt-format
 msgctxt "ErrorMessages|"
 msgid "Unknown error (message = %1)"
-msgstr ""
+msgstr "Produciuse un erro descoñecido. A mensaxe foi: «%1»."
 
 #: KSeExprUI/ExprAddDialog.cpp:27
 msgctxt "ExprAddDialog|"
 msgid "Variable"
-msgstr ""
+msgstr "Variábel"
 
 #: KSeExprUI/ExprAddDialog.cpp:40 KSeExprUI/ExprAddDialog.cpp:50
 #: KSeExprUI/ExprAddDialog.cpp:135
 msgctxt "ExprAddDialog|"
 msgid "Lookup"
-msgstr ""
+msgstr "Busca"
 
 #: KSeExprUI/ExprAddDialog.cpp:41 KSeExprUI/ExprAddDialog.cpp:51
 #: KSeExprUI/ExprAddDialog.cpp:134
 msgctxt "ExprAddDialog|"
 msgid "$u"
-msgstr ""
+msgstr "$u"
 
 #: KSeExprUI/ExprAddDialog.cpp:43
 msgctxt "ExprAddDialog|"
 msgid "Curve"
-msgstr ""
+msgstr "Curva"
 
 #: KSeExprUI/ExprAddDialog.cpp:53
 msgctxt "ExprAddDialog|"
 msgid "Color Curve"
-msgstr ""
+msgstr "Curva de cor"
 
 #: KSeExprUI/ExprAddDialog.cpp:60 KSeExprUI/ExprAddDialog.cpp:76
 #: KSeExprUI/ExprAddDialog.cpp:93
 msgctxt "ExprAddDialog|"
 msgid "Default"
-msgstr ""
+msgstr "Predeterminada"
 
 #: KSeExprUI/ExprAddDialog.cpp:61 KSeExprUI/ExprAddDialog.cpp:77
 #: KSeExprUI/ExprAddDialog.cpp:94
 msgctxt "ExprAddDialog|"
 msgid "Min"
-msgstr ""
+msgstr "Mínimo"
 
 #: KSeExprUI/ExprAddDialog.cpp:62 KSeExprUI/ExprAddDialog.cpp:78
 #: KSeExprUI/ExprAddDialog.cpp:95
 msgctxt "ExprAddDialog|"
 msgid "Max"
-msgstr ""
+msgstr "Máximo"
 
 #: KSeExprUI/ExprAddDialog.cpp:63 KSeExprUI/ExprAddDialog.cpp:65
 #: KSeExprUI/ExprAddDialog.cpp:79 KSeExprUI/ExprAddDialog.cpp:81
@@ -1268,369 +1329,370 @@ msgstr ""
 #: KSeExprUI/ExprAddDialog.cpp:98 KSeExprUI/ExprAddDialog.cpp:104
 msgctxt "ExprAddDialog|"
 msgid "0"
-msgstr ""
+msgstr "0"
 
 #: KSeExprUI/ExprAddDialog.cpp:67
 msgctxt "ExprAddDialog|"
 msgid "10"
-msgstr ""
+msgstr "10"
 
 #: KSeExprUI/ExprAddDialog.cpp:69
 msgctxt "ExprAddDialog|"
 msgid "Int"
-msgstr ""
+msgstr "Enteiro"
 
 #: KSeExprUI/ExprAddDialog.cpp:83 KSeExprUI/ExprAddDialog.cpp:106
 msgctxt "ExprAddDialog|"
 msgid "1"
-msgstr ""
+msgstr "1"
 
 #: KSeExprUI/ExprAddDialog.cpp:86
 msgctxt "ExprAddDialog|"
 msgid "Float"
-msgstr ""
+msgstr "Decimal"
 
 #: KSeExprUI/ExprAddDialog.cpp:109
 msgctxt "ExprAddDialog|"
 msgid "Vector"
-msgstr ""
+msgstr "Vector"
 
 #: KSeExprUI/ExprAddDialog.cpp:119 KSeExprUI/ExprAddDialog.cpp:125
 msgctxt "ExprAddDialog|"
 msgid "Color"
-msgstr ""
+msgstr "Cor"
 
 #: KSeExprUI/ExprAddDialog.cpp:137
 msgctxt "ExprAddDialog|"
 msgid "Rainbow"
-msgstr ""
+msgstr "Arco da vella"
 
 #: KSeExprUI/ExprAddDialog.cpp:139
 msgctxt "ExprAddDialog|"
 msgid "Shades of Gray"
-msgstr ""
+msgstr "Escala de grises"
 
 #: KSeExprUI/ExprAddDialog.cpp:140
 msgctxt "ExprAddDialog|"
 msgid "Colors"
-msgstr ""
+msgstr "Cores"
 
 #: KSeExprUI/ExprAddDialog.cpp:144
 msgctxt "ExprAddDialog|"
 msgid "Swatch"
-msgstr ""
+msgstr "Mostra"
 
 #: KSeExprUI/ExprAddDialog.cpp:152
 msgctxt "ExprAddDialog|"
 msgid "string"
-msgstr ""
+msgstr "cadea"
 
 #: KSeExprUI/ExprAddDialog.cpp:153
 msgctxt "ExprAddDialog|"
 msgid "file"
-msgstr ""
+msgstr "ficheiro"
 
 #: KSeExprUI/ExprAddDialog.cpp:154
 msgctxt "ExprAddDialog|"
 msgid "directory"
-msgstr ""
+msgstr "cartafol"
 
 #: KSeExprUI/ExprAddDialog.cpp:158
 msgctxt "ExprAddDialog|"
 msgid "String Name"
-msgstr ""
+msgstr "Nome da cadea"
 
 #: KSeExprUI/ExprAddDialog.cpp:160
 msgctxt "ExprAddDialog|"
 msgid "String Type"
-msgstr ""
+msgstr "Tipo da cadea"
 
 #: KSeExprUI/ExprAddDialog.cpp:162
 msgctxt "ExprAddDialog|"
 msgid "String Default"
-msgstr ""
+msgstr "Valor predeterminado da cadea"
 
 #: KSeExprUI/ExprAddDialog.cpp:165
 msgctxt "ExprAddDialog|"
 msgid "String"
-msgstr ""
+msgstr "Cadea"
 
 #: KSeExprUI/ExprBrowser.cpp:299
 msgctxt "ExprBrowser|"
 msgid "X"
-msgstr ""
+msgstr "X"
 
 #: KSeExprUI/ExprBrowser.cpp:404 KSeExprUI/ExprBrowser.cpp:423
 msgctxt "ExprBrowser|"
 msgid "Save Expression"
-msgstr ""
+msgstr "Gardar a expresión"
 
 #: KSeExprUI/ExprBrowser.cpp:404 KSeExprUI/ExprBrowser.cpp:423
 msgctxt "ExprBrowser|"
 msgid "*.se"
-msgstr ""
+msgstr "*.se"
 
 #: KSeExprUI/ExprBrowser.cpp:409 KSeExprUI/ExprBrowser.cpp:428
 #, qt-format
 msgctxt "ExprBrowser|"
 msgid "Could not open file %1 for writing"
-msgstr ""
+msgstr "Non foi posíbel abrir o ficheiro «%1» para escritura."
 
 #: KSeExprUI/ExprBrowser.cpp:410 KSeExprUI/ExprBrowser.cpp:429
 #: KSeExprUI/ExprBrowser.cpp:450
 msgctxt "ExprBrowser|"
 msgid "Error"
-msgstr ""
+msgstr "Erro"
 
 #: KSeExprUI/ExprBrowser.cpp:449
 #, qt-format
 msgctxt "ExprBrowser|"
 msgid "Could not open file %1 for writing.  Is it read-only?"
 msgstr ""
+"Non foi posíbel abrir o ficheiro «%1» para escritura. Só permite lectura?"
 
 #: KSeExprUI/ExprBrowser.cpp:450
 #, qt-format
 msgctxt "ExprBrowser|"
 msgid "<font face=fixed>%1</font>"
-msgstr ""
+msgstr "<font face=fixed>%1</font>"
 
 #: KSeExprUI/ExprColorCurve.cpp:180
 msgctxt "CCurveScene|"
 msgid "Delete Point"
-msgstr ""
+msgstr "Eliminar o punto"
 
 #: KSeExprUI/ExprColorCurve.cpp:397
 msgctxt "ExprColorCurve|"
 msgid "Selected Position:"
-msgstr ""
+msgstr "Posición seleccionada:"
 
 #: KSeExprUI/ExprColorCurve.cpp:408
 msgctxt "ExprColorCurve|"
 msgid "Selected Color:"
-msgstr ""
+msgstr "Cor seleccionado:"
 
 #: KSeExprUI/ExprColorCurve.cpp:416
 msgctxt "ExprColorCurve|"
 msgid "Interp:"
-msgstr ""
+msgstr "Interpolación:"
 
 #: KSeExprUI/ExprColorCurve.cpp:421
 msgctxt "ExprColorCurve|"
 msgid "None"
-msgstr ""
+msgstr "Ningunha"
 
 #: KSeExprUI/ExprColorCurve.cpp:422
 msgctxt "ExprColorCurve|"
 msgid "Linear"
-msgstr ""
+msgstr "Linear"
 
 #: KSeExprUI/ExprColorCurve.cpp:423
 msgctxt "ExprColorCurve|"
 msgid "Smooth"
-msgstr ""
+msgstr "Suave"
 
 #: KSeExprUI/ExprColorCurve.cpp:424
 msgctxt "ExprColorCurve|"
 msgid "Spline"
-msgstr ""
+msgstr "Adaptación por segmentos"
 
 #: KSeExprUI/ExprColorCurve.cpp:425
 msgctxt "ExprColorCurve|"
 msgid "MSpline"
-msgstr ""
+msgstr "Adaptación por segmentos M"
 
 #: KSeExprUI/ExprColorCurve.cpp:445
 msgctxt "ExprColorCurve|"
 msgid "&Expand..."
-msgstr ""
+msgstr "&Expandir…"
 
 #: KSeExprUI/ExprColorCurve.cpp:487
 #, qt-format
 msgctxt "ExprColorCurve|"
 msgid "%1"
-msgstr ""
+msgstr "%1"
 
 #: KSeExprUI/ExprColorSwatch.cpp:77
 msgctxt "ExprColorFrame|"
 msgid "Delete Swatch"
-msgstr ""
+msgstr "Eliminar a mostra"
 
 #: KSeExprUI/ExprColorSwatch.cpp:78
 msgctxt "ExprColorFrame|"
 msgid "Cancel"
-msgstr ""
+msgstr "Cancelar"
 
 #: KSeExprUI/ExprColorSwatch.cpp:98
 #, qt-format
 msgctxt "ExprColorWidget|"
 msgid "%1"
-msgstr ""
+msgstr "%1"
 
 #: KSeExprUI/ExprColorSwatch.cpp:123
 msgctxt "ExprColorSwatchWidget|"
 msgid "&Add..."
-msgstr ""
+msgstr "Eng&adir…"
 
 #: KSeExprUI/ExprCompletionModel.cpp:121
 msgctxt "ExprCompletionModel|"
 msgid "Local"
-msgstr ""
+msgstr "Local"
 
 #: KSeExprUI/ExprControl.cpp:185 KSeExprUI/ExprControl.cpp:200
 #, qt-format
 msgctxt "ExprControl|"
 msgid "<b>%1</b>"
-msgstr ""
+msgstr "<b>%1</b>"
 
 #: KSeExprUI/ExprControl.cpp:279
 #, qt-format
 msgctxt "NumberControl|"
 msgid "%1"
-msgstr ""
+msgstr "%1"
 
 #: KSeExprUI/ExprControl.cpp:386
 #, qt-format
 msgctxt "VectorControl|"
 msgid "%1"
-msgstr ""
+msgstr "%1"
 
 #: KSeExprUI/ExprControl.cpp:456 KSeExprUI/ExprControl.cpp:465
 msgctxt "StringControl|"
 msgid "Please choose a file"
-msgstr ""
+msgstr "Escolla un ficheiro"
 
 #: KSeExprUI/ExprControl.cpp:456
 msgctxt "StringControl|"
 msgid "Images (*.tif *.tx *.jpg *.ptx *.png)"
-msgstr ""
+msgstr "Imaxes (*.tif *.tx *.jpg *.ptx *.png)"
 
 #: KSeExprUI/ExprControl.cpp:488
 msgctxt "CurveControl|"
 msgid "Pos:"
-msgstr ""
+msgstr "Posición:"
 
 #: KSeExprUI/ExprControl.cpp:488
 msgctxt "CurveControl|"
 msgid "Val:"
-msgstr ""
+msgstr "Valor:"
 
 #: KSeExprUI/ExprControl.cpp:488
 msgctxt "CurveControl|"
 msgid "Interp:"
-msgstr ""
+msgstr "Interpolación:"
 
 #: KSeExprUI/ExprControl.cpp:512
 msgctxt "CCurveControl|"
 msgid "Pos:"
-msgstr ""
+msgstr "Posición:"
 
 #: KSeExprUI/ExprControl.cpp:512
 msgctxt "CCurveControl|"
 msgid "Val:"
-msgstr ""
+msgstr "Valor:"
 
 #: KSeExprUI/ExprControl.cpp:512
 msgctxt "CCurveControl|"
 msgid "Interp:"
-msgstr ""
+msgstr "Interpolación:"
 
 #: KSeExprUI/ExprControl.cpp:617 KSeExprUI/ExprControl.cpp:618
 #: KSeExprUI/ExprControl.cpp:619 KSeExprUI/ExprControl.cpp:620
 #, qt-format
 msgctxt "ExprGraphPreview|"
 msgid "%1"
-msgstr ""
+msgstr "%1"
 
 #: KSeExprUI/ExprCurve.cpp:153
 msgctxt "CurveScene|"
 msgid "Delete Point"
-msgstr ""
+msgstr "Eliminar o punto"
 
 #: KSeExprUI/ExprCurve.cpp:298
 msgctxt "ExprCurve|"
 msgid "Selected Position:"
-msgstr ""
+msgstr "Posición seleccionada:"
 
 #: KSeExprUI/ExprCurve.cpp:309
 msgctxt "ExprCurve|"
 msgid "Selected Value:"
-msgstr ""
+msgstr "Valor seleccionado:"
 
 #: KSeExprUI/ExprCurve.cpp:317
 msgctxt "ExprCurve|"
 msgid "Interp:"
-msgstr ""
+msgstr "Interpolación:"
 
 #: KSeExprUI/ExprCurve.cpp:322
 msgctxt "ExprCurve|"
 msgid "None"
-msgstr ""
+msgstr "Ningunha"
 
 #: KSeExprUI/ExprCurve.cpp:323
 msgctxt "ExprCurve|"
 msgid "Linear"
-msgstr ""
+msgstr "Linear"
 
 #: KSeExprUI/ExprCurve.cpp:324
 msgctxt "ExprCurve|"
 msgid "Smooth"
-msgstr ""
+msgstr "Suave"
 
 #: KSeExprUI/ExprCurve.cpp:325
 msgctxt "ExprCurve|"
 msgid "Spline"
-msgstr ""
+msgstr "Adaptación por segmentos"
 
 #: KSeExprUI/ExprCurve.cpp:326
 msgctxt "ExprCurve|"
 msgid "MSpline"
-msgstr ""
+msgstr "Adaptación por segmentos M"
 
 #: KSeExprUI/ExprCurve.cpp:347
 msgctxt "ExprCurve|"
 msgid "&Expand..."
-msgstr ""
+msgstr "&Expandir…"
 
 #: KSeExprUI/ExprCurve.cpp:390 KSeExprUI/ExprCurve.cpp:399
 #, qt-format
 msgctxt "ExprCurve|"
 msgid "%1"
-msgstr ""
+msgstr "%1"
 
 #: KSeExprUI/ExprEditor.cpp:73
 msgctxt "ExprEditor|"
 msgid "Expression Editor"
-msgstr ""
+msgstr "Editor de expresións"
 
 #: KSeExprUI/ExprEditor.cpp:235
 #, qt-format
 msgctxt "ExprEditor|"
 msgid "(%1, %2): %3"
-msgstr ""
+msgstr "(%1, %2): %3"
 
 #: KSeExprUI/ExprFileDialog.cpp:84
 msgctxt "ExprFileDialog|"
 msgid "Open"
-msgstr ""
+msgstr "Abrir"
 
 #: KSeExprUI/ExprFileDialog.cpp:189
 msgctxt "ExprFileDialog|"
 msgid "Favorites"
-msgstr ""
+msgstr "Favoritas"
 
 #: KSeExprUI/ExprTextEdit.cpp:44
 msgctxt "ExprTextEdit|"
 msgid "Pop-up Help"
-msgstr ""
+msgstr "Axuda emerxente"
 
 #: KSeExprUI/ExprTextEdit.cpp:185
 #, qt-format
 msgctxt "ExprTextEdit|"
 msgid "<b>%1</b>"
-msgstr ""
+msgstr "<b>%1</b>"
 
 #: KSeExprUI/ExprTextEdit.cpp:187
 #, qt-format
 msgctxt "ExprTextEdit|"
 msgid "<br>%1"
-msgstr ""
+msgstr "<br>%1"
