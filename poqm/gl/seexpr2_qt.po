@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"PO-Revision-Date: 2024-08-23 10:00+0200\n"
+"PO-Revision-Date: 2024-12-08 12:49+0100\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
 "Language-Team: Proxecto Trasno (proxecto@trasno.gal)\n"
 "Language: gl\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 24.05.2\n"
+"X-Generator: Lokalize 24.08.3\n"
 "X-Qt-Contexts: true\n"
 
 #: KSeExpr/ExprBuiltins.cpp:27
@@ -557,7 +557,7 @@ msgstr ""
 "decaemento = 1, int interpolación = 0)\n"
 "A función midhsi é como a función hsi pero o mapa de control\n"
 "está centrado arredor do punto medio (valor de 0,5) e pode\n"
-"axustar o cambio en ambas direccións."
+"axustar o cambio en ambas as direccións."
 
 #: KSeExpr/ExprBuiltins.cpp:358
 msgctxt "builtin|"
