@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"PO-Revision-Date: 2024-12-08 12:49+0100\n"
+"PO-Revision-Date: 2024-12-13 20:42+0100\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
 "Language-Team: Proxecto Trasno (proxecto@trasno.gal)\n"
 "Language: gl\n"
@@ -1195,7 +1195,7 @@ msgstr "O primeiro argumento debe ser unha cadea."
 #: KSeExprUI/ErrorMessages.cpp:35
 msgctxt "ErrorMessages|"
 msgid "Incomplete format specifier"
-msgstr "Hai un indicador de formato incorrecto."
+msgstr "Hai un indicador de formato incompleto."
 
 #: KSeExprUI/ErrorMessages.cpp:37
 #, qt-format
