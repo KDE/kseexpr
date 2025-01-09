@@ -82,6 +82,10 @@ add_feature_info(PregeneratedFiles USE_PREGENERATED_FILES "Build the language pa
 option(ENABLE_PERFORMANCE_STATS "Whether to print performance stats across KSeExpr" FALSE)
 add_feature_info(PerformanceStats ENABLE_PERFORMANCE_STATS "Print performance stats across KSeExpr")
 
+if (CMAKE_SYSTEM_NAME MATCHES "Windows")
+    set(USE_PREGENERATED_FILES TRUE)
+endif()
+
 # Package lookup
 
 find_package(Doxygen)
