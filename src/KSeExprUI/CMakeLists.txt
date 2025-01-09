@@ -8,7 +8,7 @@ if (EXISTS "/usr/share/apps/cmake/modules")
     list(APPEND CMAKE_MODULE_PATH "/usr/share/apps/cmake/modules")
 endif()
 
-if (Qt5_FOUND)
+if (Qt6_FOUND)
     # Adding Krita's definitions to make headers automatically compatible. -amyspark
     add_definitions(
         -DQT_USE_QSTRINGBUILDER
@@ -76,13 +76,13 @@ if (Qt5_FOUND)
             Utils.cpp
     )
 
-    qt5_wrap_cpp(EDITOR_MOC_SRCS ${EDITOR_MOC_HDRS})
+    qt6_wrap_cpp(EDITOR_MOC_SRCS ${EDITOR_MOC_HDRS})
 
     if (BUILD_TRANSLATIONS)
         include(ECMPoQmTools)
         ecm_install_po_files_as_qm("${CMAKE_SOURCE_DIR}/poqm")
 
-        if (KF5I18n_FOUND)
+        if (KF6I18n_FOUND)
             add_definitions(-DKSeExpr_HAVE_I18N_FALLBACK_LANGUAGES_DETECTION)
         endif()
 
@@ -116,13 +116,13 @@ if (Qt5_FOUND)
     target_link_libraries(KSeExprUI PUBLIC KSeExpr)
 
     target_link_libraries(KSeExprUI PUBLIC
-        Qt5::Core
-        Qt5::Gui
-        Qt5::Widgets
+        Qt6::Core
+        Qt6::Gui
+        Qt6::Widgets
     )
 
-    if (KF5I18n_FOUND)
-        target_link_libraries(KSeExprUI PUBLIC KF5::I18n)
+    if (KF6I18n_FOUND)
+        target_link_libraries(KSeExprUI PUBLIC KF6::I18n)
     endif()
 
     ## Install library and includes

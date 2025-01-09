@@ -15,7 +15,7 @@ set(CMAKE_CXX_STANDARD 14)
 
 ## project name & version
 project(KSeExpr
-    VERSION "4.0.4.0"
+    VERSION "5.0.0.0"
     DESCRIPTION "An embeddable expression evaluation engine for Krita"
 )
 
@@ -65,8 +65,8 @@ message(STATUS "CMAKE_INSTALL_LIBDIR = ${CMAKE_INSTALL_LIBDIR}")
 # Configuration options
 option(ENABLE_LLVM_BACKEND "Whether to build with LLVM backend" FALSE)
 add_feature_info(LLVMBackend ENABLE_LLVM_BACKEND "Build the LLVM backend of KSeExpr")
-option(ENABLE_QT5 "Whether to use Qt5" TRUE)
-add_feature_info(KSeExprUI ENABLE_QT5 "Build the KSeExprUI widget library")
+option(ENABLE_QT6 "Whether to use Qt6" TRUE)
+add_feature_info(KSeExprUI ENABLE_QT6 "Build the KSeExprUI widget library")
 option(BUILD_UTILS "Whether to build the utilities" FALSE)
 add_feature_info(Utils BUILD_UTILS "Build the utilities")
 option(BUILD_DEMOS "Whether to build the demos" FALSE)
@@ -92,8 +92,8 @@ find_package(ECM 5.52.0 NO_MODULE)
 set_package_properties(ECM PROPERTIES
                        TYPE OPTIONAL
                        PURPOSE "Enables translations (if bundled) and automatic sanitizer support")
-find_package(KF5I18n 5.52.0)
-set_package_properties(KF5I18n PROPERTIES
+find_package(KF6I18n 6.0.0)
+set_package_properties(KF6I18n PROPERTIES
                        TYPE OPTIONAL
                        PURPOSE "Enables detection of fallback languages in KDE apps")
 find_package(GTest)
@@ -218,12 +218,12 @@ if (NOT CMAKE_BUILD_TYPE)
       FORCE)
 endif()
 
-if (ENABLE_QT5)
-    find_package(Qt5 5.9.0 COMPONENTS Core Gui Widgets REQUIRED)
-    set_package_properties(Qt5 PROPERTIES
+if (ENABLE_QT6)
+    find_package(Qt6 6.0.0 COMPONENTS Core Gui Widgets REQUIRED)
+    set_package_properties(Qt6 PROPERTIES
                             TYPE REQUIRED
                             PURPOSE "Required if you're building KSeExprUI")
-    message(STATUS "Qt5 Enabled")
+    message(STATUS "Qt6 Enabled")
 endif()
 
 ## Make modules able to see seexpr library
@@ -241,7 +241,7 @@ endif()
 
 ## Traverse subdirectories
 add_subdirectory(src/KSeExpr)
-if (ENABLE_QT5)
+if (ENABLE_QT6)
     add_subdirectory(src/KSeExprUI)
 endif()
 if (BUILD_UTILS)

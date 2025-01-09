@@ -9,7 +9,7 @@ foreach(item eval listVar)
     install(TARGETS "${item}" DESTINATION share/KSeExpr/utils)
 endforeach()
 
-if (ENABLE_QT5)
+if (ENABLE_QT6)
     add_executable(patterns patterns.cpp)
     target_link_libraries(patterns ${SEEXPR_LIBRARIES} ${SEEXPR_EDITOR_LIBRARIES})
     install(TARGETS patterns DESTINATION share/KSeExpr/utils)

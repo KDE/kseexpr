@@ -3,17 +3,17 @@
 # SPDX-FileCopyrightText: 2020 L. E. Segovia <amy@amyspark.me>
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-if(ENABLE_QT5)
+if(ENABLE_QT6)
     set(imageEditor_MOC_HDRS ImageEditorDialog.h)
     set(imageEditor_CPPS imageEditor.cpp)
 
-    qt5_wrap_cpp(imageEditor_MOC_SRCS ${imageEditor_MOC_HDRS})
+    qt6_wrap_cpp(imageEditor_MOC_SRCS ${imageEditor_MOC_HDRS})
 
     add_executable(imageEditor2 ${imageEditor_CPPS} ${imageEditor_MOC_SRCS})
 
-    target_link_libraries(imageEditor2 Qt5::Core
-                                       Qt5::Gui
-                                       Qt5::Widgets
+    target_link_libraries(imageEditor2 Qt6::Core
+                                       Qt6::Gui
+                                       Qt6::Widgets
                                        ${SEEXPR_LIBRARIES}
                                        ${SEEXPR_EDITOR_LIBRARIES})
 
