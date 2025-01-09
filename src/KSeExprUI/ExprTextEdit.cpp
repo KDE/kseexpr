@@ -95,9 +95,9 @@ void ExprTextEdit::paintEvent(QPaintEvent *event)
 void ExprTextEdit::wheelEvent(QWheelEvent *event)
 {
     if (event->modifiers() == Qt::ControlModifier) {
-        if (event->delta() > 0)
+        if (event->pixelDelta().y() > 0)
             zoomIn();
-        else if (event->delta() < 0)
+        else if (event->pixelDelta().y() < 0)
             zoomOut();
     }
     return QTextEdit::wheelEvent(event);
@@ -149,7 +149,7 @@ void ExprTextEdit::keyPressEvent(QKeyEvent *e)
     QString line = tc.selectedText();
 
     // matches the last prefix of a completable variable or function and extract as completionPrefix
-    static QRegExp completion(QString::fromLatin1("^(?:.*[^A-Za-z0-9_$])?((?:\\$[A-Za-z0-9_]*)|[A-Za-z]+[A-Za-z0-9_]*)$"));
+    static QRegularExpression completion(QString::fromLatin1("^(?:.*[^A-Za-z0-9_$])?((?:\\$[A-Za-z0-9_]*)|[A-Za-z]+[A-Za-z0-9_]*)$"));
     int index = completion.indexIn(line);
     QString completionPrefix;
     if (index != -1 && !line.contains(QLatin1Char('#'))) {
@@ -177,7 +177,7 @@ void ExprTextEdit::keyPressEvent(QKeyEvent *e)
     }
 
     // documentation completion
-    static QRegExp inFunction(QString::fromLatin1("^(?:.*[^A-Za-z0-9_$])?([A-Za-z0-9_]+)\\([^()]*$"));
+    static QRegularExpression inFunction(QString::fromLatin1("^(?:.*[^A-Za-z0-9_$])?([A-Za-z0-9_]+)\\([^()]*$"));
     int index2 = inFunction.indexIn(line);
     if (index2 != -1) {
         QString functionName = inFunction.cap(1);

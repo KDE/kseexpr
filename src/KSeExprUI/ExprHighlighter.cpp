@@ -10,6 +10,8 @@
 
 #include "ExprHighlighter.h"
 
+#include <QRegularExpression>
+
 ExprHighlighter::ExprHighlighter(QTextDocument *parent)
     : QSyntaxHighlighter(parent)
     , lightness(130)
@@ -40,24 +42,24 @@ void ExprHighlighter::init()
     // QStringList operatorPatterns;
     // operatorPatterns<<"(?:->)|(?:[()\\+-/\\*%\\^:\\?\\[\\]])";
     // foreach (QString pattern,operatorPatterns){
-    //    rule.pattern=QRegExp(pattern);
+    //    rule.pattern = QRegularExpression(pattern);
     //    rule.format=operatorFormat;
     //    highlightingRules.append(rule);
     //}
 
     numberFormat.setForeground(QColor::fromHsv(37, 200, lightness));
-    rule.pattern = QRegExp(QString::fromLatin1("\\b[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)\\b")); // \\b?[^\\$][A-Za-z][A-Za-z0-9]*\\b");
+    rule.pattern = QRegularExpression(QString::fromLatin1("\\b[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)\\b")); // \\b?[^\\$][A-Za-z][A-Za-z0-9]*\\b");
     rule.format = numberFormat;
     highlightingRules.append(rule);
 
     variableFormat.setForeground(QColor::fromHsv(200, 153, lightness));
     // variableFormat.setFontWeight(QFont::Bold);
-    rule.pattern = QRegExp(QString::fromLatin1("\\$[A-Za-z][A-Za-z0-9]*\\b"));
+    rule.pattern = QRegularExpression(QString::fromLatin1("\\$[A-Za-z][A-Za-z0-9]*\\b"));
     rule.format = variableFormat;
     highlightingRules.append(rule);
 
     singleLineCommentFormat.setForeground(QColor::fromHsv(54, 49, lightness));
-    rule.pattern = QRegExp(QString::fromLatin1("#[^\n]*"));
+    rule.pattern = QRegularExpression(QString::fromLatin1("#[^\n]*"));
     rule.format = singleLineCommentFormat;
     highlightingRules.append(rule);
 }
@@ -65,13 +67,14 @@ void ExprHighlighter::init()
 void ExprHighlighter::highlightBlock(const QString &text)
 {
     foreach (HighlightingRule rule, highlightingRules) {
-        QRegExp expression(rule.pattern);
-        int index = text.indexOf(expression);
-        while (index >= 0) {
-            int length = expression.matchedLength();
-            setFormat(index, length, rule.format);
-            index = text.indexOf(expression, index + length);
+        QRegularExpression expression(rule.pattern);
+
+        QRegularExpressionMatchIterator it = expression.globalMatch(text);
+        while (it.hasNext()) {
+            QRegularExpressionMatch match = it.next();
+            setFormat(match.capturedStart(), match.capturedLength(), rule.format);
         }
+
     }
     setCurrentBlockState(0);
 }
