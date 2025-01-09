@@ -241,7 +241,7 @@ QPixmap &CCurveScene::getPixmap()
 {
     if (_pixmapDirty) {
         QByteArray buf;
-        buf.append(QString::fromLatin1("P6\n%1 %2\n255\n").arg(_width).arg(_height));
+        buf.append(QString::fromLatin1("P6\n%1 %2\n255\n").arg(_width).arg(_height).toUtf8());
         buf.append(getCPixmap());
         _pixmap.loadFromData(buf, "PPM");
         _pixmapDirty = false;
