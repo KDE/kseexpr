@@ -13,6 +13,7 @@
 #include <QCheckBox>
 #include <QHBoxLayout>
 #include <QLabel>
+#include <QEnterEvent>
 
 #include "Editable.h"
 #include "ExprColorCurve.h"
@@ -122,7 +123,7 @@ public:
     {
         update();
     }
-    void enterEvent(QEvent *) override
+    void enterEvent(QEnterEvent *) override
     {
         update();
     }
