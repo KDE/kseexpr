@@ -58,7 +58,7 @@ ExprPreviewWidget::ExprPreviewWidget(QWidget *parent)
     _pm->setAutoFillBackground(true);
     auto *layout = new QVBoxLayout;
     layout->setSpacing(0);
-    layout->setMargin(0);
+    layout->setContentsMargins(QMargins(0, 0, 0, 0));
     layout->addWidget(_pm);
     setLayout(layout);
 }

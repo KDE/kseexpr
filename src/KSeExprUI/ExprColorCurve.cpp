@@ -382,11 +382,11 @@ ExprColorCurve::ExprColorCurve(QWidget *parent, QString pLabel, QString vLabel, 
     , _interpComboBox(nullptr)
 {
     auto *mainLayout = new QHBoxLayout();
-    mainLayout->setMargin(0);
+    mainLayout->setContentsMargins(QMargins(0, 0, 0, 0));
 
     auto *edits = new QWidget;
     auto *editsLayout = new QFormLayout;
-    editsLayout->setMargin(0);
+    editsLayout->setContentsMargins(QMargins(0, 0, 0, 0));
     edits->setLayout(editsLayout);
 
     _selPosEdit = new QLineEdit;

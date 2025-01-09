@@ -75,7 +75,7 @@ ExprEditor::ExprEditor(QWidget *parent)
 
     // make layout
     auto *exprAndErrors = new QVBoxLayout;
-    exprAndErrors->setMargin(0);
+    exprAndErrors->setContentsMargins(QMargins(0, 0, 0, 0));
     setLayout(exprAndErrors);
 
     // create text editor widget

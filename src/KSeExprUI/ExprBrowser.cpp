@@ -289,7 +289,7 @@ ExprBrowser::ExprBrowser(QWidget *parent, ExprEditor *editor)
     , _applyOnSelect(true)
 {
     auto *rootLayout = new QVBoxLayout;
-    rootLayout->setMargin(0);
+    rootLayout->setContentsMargins(QMargins(0, 0, 0, 0));
     this->setLayout(rootLayout);
     // search and clear widgets
     auto *searchAndClearLayout = new QHBoxLayout();

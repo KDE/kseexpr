@@ -283,11 +283,11 @@ ExprCurve::ExprCurve(QWidget *parent, QString pLabel, QString vLabel, QString iL
     , _scene(nullptr)
 {
     auto *mainLayout = new QHBoxLayout();
-    mainLayout->setMargin(0);
+    mainLayout->setContentsMargins(QMargins(0, 0, 0, 0));
 
     auto *edits = new QWidget;
     auto *editsLayout = new QFormLayout;
-    editsLayout->setMargin(0);
+    editsLayout->setContentsMargins(QMargins(0, 0, 0, 0));
     edits->setLayout(editsLayout);
 
     _selPosEdit = new QLineEdit;
