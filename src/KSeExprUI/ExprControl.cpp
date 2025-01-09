@@ -78,7 +78,7 @@ void ExprSlider::mousePressEvent(QMouseEvent *e)
 void ExprSlider::mouseMoveEvent(QMouseEvent *e)
 {
     auto r = maximum() - minimum();
-    auto v = ((double)(e->x() - 2) * r / (width() - 5)) + minimum() + .5F;
+    auto v = ((double)(e->position().x() - 2) * r / (width() - 5)) + minimum() + .5F;
     int iv = std::min(std::max((int)v, minimum()), maximum());
     setValue(iv);
 }
@@ -150,7 +150,7 @@ void ExprChannelSlider::mousePressEvent(QMouseEvent *e)
 
 void ExprChannelSlider::mouseMoveEvent(QMouseEvent *e)
 {
-    setValue(clamp(float(e->x() - 1) / (width() - 3), 0, 1));
+    setValue(clamp(float(e->position().x() - 1) / (width() - 3), 0, 1));
 }
 
 void ExprChannelSlider::setValue(double value)
