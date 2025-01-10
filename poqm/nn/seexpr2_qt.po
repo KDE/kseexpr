@@ -803,8 +803,8 @@ msgstr ""
 msgctxt "builtin|"
 msgid ""
 "float printf(string format,[vec0, vec1,  ...])\n"
-"Prints out a string to STDOUT, Format parameters allowed are \"%v\" and "
-"\"%f\".\n"
+"Prints out a string to STDOUT, Format parameters allowed are \"%v\" and \"%f"
+"\".\n"
 "Return parameter is empty, but must be assigned to a variable."
 msgstr ""
 
@@ -1367,13 +1367,13 @@ msgctxt "ExprTextEdit|"
 msgid "Pop-up Help"
 msgstr "Sprettopphjelp"
 
-#: KSeExprUI/ExprTextEdit.cpp:185
+#: KSeExprUI/ExprTextEdit.cpp:186
 #, qt-format
 msgctxt "ExprTextEdit|"
 msgid "<b>%1</b>"
 msgstr "<b>%1</b>"
 
-#: KSeExprUI/ExprTextEdit.cpp:187
+#: KSeExprUI/ExprTextEdit.cpp:188
 #, qt-format
 msgctxt "ExprTextEdit|"
 msgid "<br>%1"

@@ -12,8 +12,8 @@ msgstr ""
 "X-Crowdin-Project: kdeorg\n"
 "X-Crowdin-Project-ID: 269464\n"
 "X-Crowdin-Language: zh-CN\n"
-"X-Crowdin-File: /kf5-trunk/messages/kseexpr/seexpr2_qt.pot\n"
-"X-Crowdin-File-ID: 24866\n"
+"X-Crowdin-File: /kf6-trunk/messages/kseexpr/seexpr2_qt.pot\n"
+"X-Crowdin-File-ID: 57088\n"
 
 #: KSeExpr/ExprBuiltins.cpp:27
 msgctxt "builtin|"
@@ -1638,13 +1638,13 @@ msgctxt "ExprTextEdit|"
 msgid "Pop-up Help"
 msgstr "浮动式帮助"
 
-#: KSeExprUI/ExprTextEdit.cpp:185
+#: KSeExprUI/ExprTextEdit.cpp:186
 #, qt-format
 msgctxt "ExprTextEdit|"
 msgid "<b>%1</b>"
 msgstr "<b>%1</b>"
 
-#: KSeExprUI/ExprTextEdit.cpp:187
+#: KSeExprUI/ExprTextEdit.cpp:188
 #, qt-format
 msgctxt "ExprTextEdit|"
 msgid "<br>%1"

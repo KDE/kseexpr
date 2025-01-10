@@ -1688,13 +1688,13 @@ msgctxt "ExprTextEdit|"
 msgid "Pop-up Help"
 msgstr "Ajuda de Contexto"
 
-#: KSeExprUI/ExprTextEdit.cpp:185
+#: KSeExprUI/ExprTextEdit.cpp:186
 #, qt-format
 msgctxt "ExprTextEdit|"
 msgid "<b>%1</b>"
 msgstr "<b>%1</b>"
 
-#: KSeExprUI/ExprTextEdit.cpp:187
+#: KSeExprUI/ExprTextEdit.cpp:188
 #, qt-format
 msgctxt "ExprTextEdit|"
 msgid "<br>%1"
