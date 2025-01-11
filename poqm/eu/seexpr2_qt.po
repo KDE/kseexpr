@@ -1,17 +1,22 @@
-# SPDX-FileCopyrightText: 2024 Yaron Shahrabani <sh.yaron@gmail.com>
+# Translation for seexpr2_qt.po to Euskara/Basque (eu).
+# Copyright 2025 This file is copyright:
+# This file is distributed unde the same license as the original file.
+# SPDX-FileCopyrightText: 2025 KDE euskaratzeko proiektuaren arduraduna <xalba@ni.eus>
+#
+# Translators:
+# SPDX-FileCopyrightText: 2025 Iñigo Salvador Azurmendi <xalba@ni.eus>
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"PO-Revision-Date: 2025-01-10 09:44+0200\n"
-"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
-"Language-Team: צוות התרגום של KDE ישראל\n"
-"Language: he\n"
+"PO-Revision-Date: 2025-01-10 21:58+0100\n"
+"Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
+"Language-Team: Basque <kde-i18n-eu@kde.org>\n"
+"Language: eu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Qt-Contexts: true\n"
-"Plural-Forms: nplurals=4; plural=(n == 1) ? 0 : ((n == 2) ? 1 : ((n > 10 && "
-"n % 10 == 0) ? 2 : 3));\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Lokalize 24.12.0\n"
 
 #: KSeExpr/ExprBuiltins.cpp:27
@@ -20,8 +25,8 @@ msgid ""
 "float abs(float x)\n"
 "absolute value of x"
 msgstr ""
-"float abs(x כשבר עשרוני)\n"
-"ערך מוחלט של x"
+"float abs(float x)\n"
+"x-ren balio absolutua"
 
 #: KSeExpr/ExprBuiltins.cpp:30
 msgctxt "builtin|"
@@ -29,8 +34,8 @@ msgid ""
 "float deg(float angle)\n"
 "radians to degrees"
 msgstr ""
-"float deg(זווית כשבר עשרוני)\n"
-"רדיאנים למעלות"
+"float deg(float angelua)\n"
+"radianetatik gradutara"
 
 #: KSeExpr/ExprBuiltins.cpp:31
 msgctxt "builtin|"
@@ -38,8 +43,8 @@ msgid ""
 "float rad(float angle)\n"
 "degrees to radians"
 msgstr ""
-"float rad(זווית כשבר עשרוני)\n"
-"מעלות לרדיאנים"
+"float rad(float angelua)\n"
+"gradutatik radianetara"
 
 #: KSeExpr/ExprBuiltins.cpp:33
 msgctxt "builtin|"
@@ -47,8 +52,8 @@ msgid ""
 "float cosd(float angle)\n"
 "cosine in degrees"
 msgstr ""
-"float cosd(זווית כשבר עשרוני)\n"
-"קוסינוס במעלות"
+"float cosd(float angelua)\n"
+"kosinua gradutan"
 
 #: KSeExpr/ExprBuiltins.cpp:34
 msgctxt "builtin|"
@@ -56,8 +61,8 @@ msgid ""
 "float sind(float angle)\n"
 "sine in degrees"
 msgstr ""
-"float sind(זווית כשבר עשרוני)\n"
-"סינוס במעלות"
+"float sind(float angelua)\n"
+"sinua gradutan"
 
 #: KSeExpr/ExprBuiltins.cpp:35
 msgctxt "builtin|"
@@ -65,8 +70,8 @@ msgid ""
 "float tand(float angle)\n"
 "tangent in degrees"
 msgstr ""
-"float tand(זווית כשבר עשרוני)\n"
-"טנגנס במעלות"
+"float tand(float angelua)\n"
+"tangentea gradutan"
 
 #: KSeExpr/ExprBuiltins.cpp:36
 msgctxt "builtin|"
@@ -74,8 +79,8 @@ msgid ""
 "float acosd(float value)\n"
 "arc cosine in degrees"
 msgstr ""
-"float acosd(שבר עשרוני)\n"
-"ארק-קוסינוס במעלות"
+"float acosd(float balioa)\n"
+"arku kosinua gradutan"
 
 #: KSeExpr/ExprBuiltins.cpp:37
 msgctxt "builtin|"
@@ -83,8 +88,8 @@ msgid ""
 "float asind(float value)\n"
 "arc sine in degrees"
 msgstr ""
-"float asind(שבר עשרוני)\n"
-"ארק-סינוס במעלות"
+"float asind(float balioa)\n"
+"arku sinua gradutan"
 
 #: KSeExpr/ExprBuiltins.cpp:38
 msgctxt "builtin|"
@@ -92,8 +97,8 @@ msgid ""
 "float atand(float value)\n"
 "arc tangent in degrees"
 msgstr ""
-"float atand(שבר עשרוני)\n"
-"ארק-טנגנס במעלות"
+"float atand(float balioa)\n"
+"arku tangentea gradutan"
 
 #: KSeExpr/ExprBuiltins.cpp:39
 msgctxt "builtin|"
@@ -101,8 +106,8 @@ msgid ""
 "float atan2d(float y,float x)\n"
 "arc tangent in degrees of y/x between -180 and 180"
 msgstr ""
-"float atan2d(y כשבר עשרוני,x כשבר עשרוני)\n"
-"ארק-טנגנס במעלות של y/x בין ‎-180 ל־180"
+"float atan2d(float y,float x)\n"
+"arku tangentea gradutan y/x -180 eta 180 artean direla"
 
 #: KSeExpr/ExprBuiltins.cpp:41
 msgctxt "builtin|"
@@ -110,8 +115,8 @@ msgid ""
 "float cos(float angle)\n"
 "cosine in radians"
 msgstr ""
-"float cos(זווית כשבר עשרוני)\n"
-"קוסינוס ברדיאנים"
+"float cos(float angelua)\n"
+"kosinua radianetan"
 
 #: KSeExpr/ExprBuiltins.cpp:42
 msgctxt "builtin|"
@@ -119,8 +124,8 @@ msgid ""
 "float sin(float angle)\n"
 "sine in radians"
 msgstr ""
-"float sin(זווית כשבר עשרוני)\n"
-"סינוס ברדיאנים"
+"float sin(float angelua)\n"
+"sinua radianetan"
 
 #: KSeExpr/ExprBuiltins.cpp:43
 msgctxt "builtin|"
@@ -128,8 +133,8 @@ msgid ""
 "float tan(float angle)\n"
 "tangent in radians"
 msgstr ""
-"float tan(זווית כשבר עשרוני)\n"
-"טנגנס ברדיאנים"
+"float tan(float angelua)\n"
+"tangentea radianetan"
 
 #: KSeExpr/ExprBuiltins.cpp:44
 msgctxt "builtin|"
@@ -137,8 +142,8 @@ msgid ""
 "float acos(float value)\n"
 "arc cosine in radians"
 msgstr ""
-"float acos(שבר עשרוני)\n"
-"ארק-קוסינוס ברדיאנים"
+"float acos(float balioa)\n"
+"arku sinua radianetan"
 
 #: KSeExpr/ExprBuiltins.cpp:45
 msgctxt "builtin|"
@@ -146,8 +151,8 @@ msgid ""
 "float asin(float value)\n"
 "arc sine in radians"
 msgstr ""
-"float asin(שבר עשרוני)\n"
-"ארק-סינוס ברדיאנים"
+"float asin(float balioa)\n"
+"arku sinua radianetan"
 
 #: KSeExpr/ExprBuiltins.cpp:46
 msgctxt "builtin|"
@@ -155,6 +160,8 @@ msgid ""
 "float atan(float value)\n"
 "arc tangent in radians"
 msgstr ""
+"float atan(float balioa)\n"
+"arku tangentea radianetan"
 
 #: KSeExpr/ExprBuiltins.cpp:47
 msgctxt "builtin|"
@@ -162,6 +169,8 @@ msgid ""
 "float atan2(float y,float x)\n"
 "arc tangent in radians of y/x between -PI and PI"
 msgstr ""
+"float atan2(float y,float x)\n"
+"arku tangentea radianetan y/x -PI eta PI artean daudela"
 
 #: KSeExpr/ExprBuiltins.cpp:49
 msgctxt "builtin|"
@@ -169,6 +178,8 @@ msgid ""
 "float cosh(float angle)\n"
 "hyperbolic cosine in radians"
 msgstr ""
+"float cosh(float angelua)\n"
+"kosinu hiperbolikoa radianetan"
 
 #: KSeExpr/ExprBuiltins.cpp:50
 msgctxt "builtin|"
@@ -176,6 +187,8 @@ msgid ""
 "float sinh(float angle)\n"
 "hyperbolic sine in radians"
 msgstr ""
+"float sinh(float angelua)\n"
+"sinu hiperbolikoa radianetan"
 
 #: KSeExpr/ExprBuiltins.cpp:51
 msgctxt "builtin|"
@@ -183,6 +196,8 @@ msgid ""
 "float tanh(float angle)\n"
 "hyperbolic tangent in radians"
 msgstr ""
+"float tanh(float angelua)\n"
+"tangente hiperbolikoa radianetan"
 
 #: KSeExpr/ExprBuiltins.cpp:52
 msgctxt "builtin|"
@@ -190,6 +205,8 @@ msgid ""
 "float acosh(float value)\n"
 "hyperbolic arc cosine in radians"
 msgstr ""
+"float acosh(float balioa)\n"
+"arku kosinu hiperbolikoa radianetan"
 
 #: KSeExpr/ExprBuiltins.cpp:53
 msgctxt "builtin|"
@@ -197,6 +214,8 @@ msgid ""
 "float asinh(float value)\n"
 "hyperbolic arc sine in radians"
 msgstr ""
+"float asinh(float balioa)\n"
+"Arku sinu hiperbolikoa radianetan"
 
 #: KSeExpr/ExprBuiltins.cpp:54
 msgctxt "builtin|"
@@ -204,13 +223,18 @@ msgid ""
 "float atanh(float value)\n"
 "hyperbolic arc tangent in radians"
 msgstr ""
+"float atanh(float balioa)\n"
+"arku tangente hiperbolikoa radianetan"
 
 #: KSeExpr/ExprBuiltins.cpp:56
+#, fuzzy
 msgctxt "builtin|"
 msgid ""
 "float clamp(float x,float lo,float hi)\n"
 "constrain x to range [lo,hi]"
 msgstr ""
+"float clamp(float x,float lo,float hi)\n"
+"constrain x to range [lo,hi]"
 
 #: KSeExpr/ExprBuiltins.cpp:57
 msgctxt "builtin|"
@@ -218,6 +242,8 @@ msgid ""
 "float round(float x)\n"
 "nearest integer to x"
 msgstr ""
+"float round(float x)\n"
+"x-tik hurbileneko osoa"
 
 #: KSeExpr/ExprBuiltins.cpp:58
 msgctxt "builtin|"
@@ -225,6 +251,8 @@ msgid ""
 "float max(float a,float b)\n"
 "greater of a and b"
 msgstr ""
+"float max(float a,float b)\n"
+"a eta b arteko handiena"
 
 #: KSeExpr/ExprBuiltins.cpp:59
 msgctxt "builtin|"
@@ -232,6 +260,8 @@ msgid ""
 "float min(float a,float b)\n"
 "lesser of a and b"
 msgstr ""
+"float min(float a,float b)\n"
+"a eta b arteko txikiena"
 
 #: KSeExpr/ExprBuiltins.cpp:60
 msgctxt "builtin|"
@@ -239,6 +269,8 @@ msgid ""
 "float trunc(float a)\n"
 "nearest integer towards zero"
 msgstr ""
+"float trunc(float a)\n"
+"zerorantz hurbileneko osoa"
 
 #: KSeExpr/ExprBuiltins.cpp:61
 msgctxt "builtin|"
@@ -246,6 +278,8 @@ msgid ""
 "float floor(float a)\n"
 "next lower integer"
 msgstr ""
+"float floor(float a)\n"
+"hurrengo oso txikiagoa"
 
 #: KSeExpr/ExprBuiltins.cpp:62
 msgctxt "builtin|"
@@ -253,6 +287,8 @@ msgid ""
 "float ceil(float a)\n"
 "next higher integer"
 msgstr ""
+"float ceil(float a)\n"
+"hurrengo oso handiagoa"
 
 #: KSeExpr/ExprBuiltins.cpp:64
 msgctxt "builtin|"
@@ -260,6 +296,8 @@ msgid ""
 "float invert(float a)\n"
 "Defined as 1-x"
 msgstr ""
+"float invert(float a)\n"
+"1-x gisa definitua"
 
 #: KSeExpr/ExprBuiltins.cpp:65
 msgctxt "builtin|"
@@ -267,6 +305,8 @@ msgid ""
 "float cbrt(float x)\n"
 "cube root"
 msgstr ""
+"float cbrt(float x)\n"
+"hiru erroa"
 
 #: KSeExpr/ExprBuiltins.cpp:66
 msgctxt "builtin|"
@@ -274,6 +314,8 @@ msgid ""
 "float sqrt(float x)\n"
 "square root"
 msgstr ""
+"float sqrt(float x)\n"
+"erro karratua"
 
 #: KSeExpr/ExprBuiltins.cpp:67
 msgctxt "builtin|"
@@ -281,6 +323,8 @@ msgid ""
 "float exp(float x)\n"
 "E raised to the x power"
 msgstr ""
+"float exp(float x)\n"
+"E ber x"
 
 #: KSeExpr/ExprBuiltins.cpp:68
 msgctxt "builtin|"
@@ -288,6 +332,8 @@ msgid ""
 "float pow(float x, float y)\n"
 "x to the y power, also available as ^"
 msgstr ""
+"float pow(float x, float y)\n"
+"x ber y, ^ gisa ere erabilgarri"
 
 #: KSeExpr/ExprBuiltins.cpp:69
 msgctxt "builtin|"
@@ -295,8 +341,8 @@ msgid ""
 "float log(float x)\n"
 "Natural logarithm"
 msgstr ""
-"float log(x כשבר עשרוני)\n"
-"לוגריתם טבעי"
+"float log(float x)\n"
+"Logaritmo naturala"
 
 #: KSeExpr/ExprBuiltins.cpp:70
 msgctxt "builtin|"
@@ -304,8 +350,8 @@ msgid ""
 "float log10(float x)\n"
 "Base 10 logarithm"
 msgstr ""
-"float log10 (x כשבר עשרוני)\n"
-"Base 10 logarithm"
+"float log10(float x)\n"
+"10 oinarriko logaritmoa"
 
 #: KSeExpr/ExprBuiltins.cpp:71
 msgctxt "builtin|"
@@ -313,6 +359,8 @@ msgid ""
 "float fmod(float x,float y)\n"
 "remainder of x/y (also available as % operator)"
 msgstr ""
+"float fmod(float x,float y)\n"
+"x/y-ren hondarra (% eragile gisa ere erabilgarri)"
 
 #: KSeExpr/ExprBuiltins.cpp:72
 msgctxt "builtin|"
@@ -787,12 +835,12 @@ msgstr ""
 #: KSeExpr/ExprBuiltins.cpp:1550 KSeExpr/ExprBuiltins.cpp:1615
 msgctxt "builtin|"
 msgid "Unable to validate the interpolant type"
-msgstr ""
+msgstr "Ezin du mota interpolatzailea baliozkotu"
 
 #: KSeExpr/ExprBuiltins.cpp:1554 KSeExpr/ExprBuiltins.cpp:1618
 msgctxt "builtin|"
 msgid "Invalid interpolant type"
-msgstr ""
+msgstr "Mota interpolatzaile baliogabea"
 
 #: KSeExpr/ExprBuiltins.cpp:1588
 msgctxt "builtin|"
@@ -851,190 +899,191 @@ msgstr ""
 #: KSeExprUI/ExprControlCollection.cpp:27
 msgctxt "ExprControlCollection|"
 msgid "Add new variable"
-msgstr "הוספת משתנה חדש"
+msgstr "Gehitu aldagai berria"
 
 #: KSeExprUI/ErrorMessages.cpp:15
 msgctxt "ErrorMessages|"
 msgid "Expected string or float[d]"
-msgstr "אמור היה להיות מחרוזת או שבר עשרוני[d]"
+msgstr "Katea edo float[d] espero zen"
 
 #: KSeExprUI/ErrorMessages.cpp:17
 msgctxt "ErrorMessages|"
 msgid "Expected float[d]"
-msgstr "אמור להיות שבר עשרוני[d]"
+msgstr "float[d] espero zen"
 
 #: KSeExprUI/ErrorMessages.cpp:19
 #, qt-format
 msgctxt "ErrorMessages|"
 msgid "Expected float[%1]"
-msgstr "אמור להיות שבר עשרוני[%1]"
+msgstr "float[%1] espero zen"
 
 #: KSeExprUI/ErrorMessages.cpp:21
 #, qt-format
 msgctxt "ErrorMessages|"
 msgid "Type mismatch, first: '%1'; second: '%2'"
-msgstr ""
+msgstr "Mota desegokia, lehenengo: '%1'; bigarrena: '%2'"
 
 #: KSeExprUI/ErrorMessages.cpp:23
 msgctxt "ErrorMessages|"
 msgid "Expected float or float[3]"
-msgstr ""
+msgstr "float edo float[3] espero zen"
 
 #: KSeExprUI/ErrorMessages.cpp:25
 #, qt-format
 msgctxt "ErrorMessages|"
 msgid "Expected '%1' for argument, got '%2'"
-msgstr ""
+msgstr "Argumentu gisa '%1' espero zen, '%2' lortu du"
 
 #: KSeExprUI/ErrorMessages.cpp:27
 msgctxt "ErrorMessages|"
 msgid "Wrong number of arguments, should be 1 to 7"
-msgstr ""
+msgstr "Argumentu kopuru okerra, 1etik 7ra izan beharko luke"
 
 #: KSeExprUI/ErrorMessages.cpp:29
 msgctxt "ErrorMessages|"
 msgid "Wrong number of arguments, should be multiple of 3 plus 1"
-msgstr ""
+msgstr "Argumentu kopuru okerra, 3ren multiploa gehi 1 izan beharko luke"
 
 #: KSeExprUI/ErrorMessages.cpp:31
 msgctxt "ErrorMessages|"
 msgid "Wrong number of arguments, should be 1 or more"
-msgstr ""
+msgstr "Argumentu kopuru okerra, 1 edo gehiago izan beharko luke"
 
 #: KSeExprUI/ErrorMessages.cpp:33
 msgctxt "ErrorMessages|"
 msgid "First argument must be a string"
-msgstr ""
+msgstr "Aurreneko argumentua katea izan behar du."
 
 #: KSeExprUI/ErrorMessages.cpp:35
 msgctxt "ErrorMessages|"
 msgid "Incomplete format specifier"
-msgstr ""
+msgstr "Formatu zehaztaile osatugabea"
 
 #: KSeExprUI/ErrorMessages.cpp:37
 #, qt-format
 msgctxt "ErrorMessages|"
 msgid "No variable named '%1'"
-msgstr ""
+msgstr "Ez dago '%1' izeneko aldagairik"
 
 #: KSeExprUI/ErrorMessages.cpp:39
 #, qt-format
 msgctxt "ErrorMessages|"
 msgid "Function '%1' has no definition"
-msgstr ""
+msgstr "'%1' funtzioak ez du definiziorik"
 
 #: KSeExprUI/ErrorMessages.cpp:41
 #, qt-format
 msgctxt "ErrorMessages|"
 msgid "Assignment operation has incorrect type '%1'"
-msgstr ""
+msgstr "Esleipen eragiketak '%1' mota okerra du"
 
 #: KSeExprUI/ErrorMessages.cpp:43
 msgctxt "ErrorMessages|"
 msgid "Types of conditional are not compatible"
-msgstr ""
+msgstr "Baldintza motak ez dira bateragarriak"
 
 #: KSeExprUI/ErrorMessages.cpp:45
 #, qt-format
 msgctxt "ErrorMessages|"
 msgid "Variable '%1' defined in conditionals inconsistently"
-msgstr ""
+msgstr "'%1' aldagaia baldintzetan era inkoherentean definitu da"
 
 #: KSeExprUI/ErrorMessages.cpp:47
 #, qt-format
 msgctxt "ErrorMessages|"
 msgid "Too few arguments for function '%1'"
-msgstr ""
+msgstr "'%1' funtziorako argumentu gutxiegi"
 
 #: KSeExprUI/ErrorMessages.cpp:49
 #, qt-format
 msgctxt "ErrorMessages|"
 msgid "Too many arguments for function '%1'"
-msgstr ""
+msgstr "'%1' funtziorako argumentu gehiegi"
 
 #: KSeExprUI/ErrorMessages.cpp:51
 #, qt-format
 msgctxt "ErrorMessages|"
 msgid "Expression generated type '%1', incompatible with desired type '%2'"
 msgstr ""
+"Sortutako adierazpenaren mota '%1', desiratutako '%2' motarekin bateraezina"
 
 #: KSeExprUI/ErrorMessages.cpp:53
 #, qt-format
 msgctxt "ErrorMessages|"
 msgid "Syntax error near '%1'"
-msgstr ""
+msgstr "Sintaxi errorea '%1' ondoan"
 
 #: KSeExprUI/ErrorMessages.cpp:55
 #, qt-format
 msgctxt "ErrorMessages|"
 msgid "Unexpected end of expression near '%1'"
-msgstr ""
+msgstr "Adierazpenaren ustekabeko bukaera '%1' ondoan"
 
 #: KSeExprUI/ErrorMessages.cpp:57
 msgctxt "ErrorMessages|"
 msgid "Unexpected end of format string"
-msgstr ""
+msgstr "Formatu-katearen ustekabeko bukaera"
 
 #: KSeExprUI/ErrorMessages.cpp:59
 msgctxt "ErrorMessages|"
 msgid "Invalid format string, only %v or %f is allowed"
-msgstr ""
+msgstr "Formatu-kate baliogabea, %v eta %f bakarrik onartzen dira"
 
 #: KSeExprUI/ErrorMessages.cpp:61
 msgctxt "ErrorMessages|"
 msgid "Wrong number of arguments for format string"
-msgstr ""
+msgstr "Formatu-katerako argumentu kopurua okerra"
 
 #: KSeExprUI/ErrorMessages.cpp:64
 #, qt-format
 msgctxt "ErrorMessages|"
 msgid "Unknown error (message = %1)"
-msgstr "שגיאה לא ידועה (הודעה = %1)"
+msgstr "Errore ezezaguna (mezua = %1)"
 
 #: KSeExprUI/ExprAddDialog.cpp:27
 msgctxt "ExprAddDialog|"
 msgid "Variable"
-msgstr "משתנה"
+msgstr "Aldagaia"
 
 #: KSeExprUI/ExprAddDialog.cpp:40 KSeExprUI/ExprAddDialog.cpp:50
 #: KSeExprUI/ExprAddDialog.cpp:135
 msgctxt "ExprAddDialog|"
 msgid "Lookup"
-msgstr "איתור"
+msgstr "Bilatzea"
 
 #: KSeExprUI/ExprAddDialog.cpp:41 KSeExprUI/ExprAddDialog.cpp:51
 #: KSeExprUI/ExprAddDialog.cpp:134
 msgctxt "ExprAddDialog|"
 msgid "$u"
-msgstr ""
+msgstr "$u"
 
 #: KSeExprUI/ExprAddDialog.cpp:43
 msgctxt "ExprAddDialog|"
 msgid "Curve"
-msgstr "עקומה"
+msgstr "Kurba"
 
 #: KSeExprUI/ExprAddDialog.cpp:53
 msgctxt "ExprAddDialog|"
 msgid "Color Curve"
-msgstr "עקומת צבע"
+msgstr "Kolore-kurba"
 
 #: KSeExprUI/ExprAddDialog.cpp:60 KSeExprUI/ExprAddDialog.cpp:76
 #: KSeExprUI/ExprAddDialog.cpp:93
 msgctxt "ExprAddDialog|"
 msgid "Default"
-msgstr "ברירת מחדל"
+msgstr "Lehenetsia"
 
 #: KSeExprUI/ExprAddDialog.cpp:61 KSeExprUI/ExprAddDialog.cpp:77
 #: KSeExprUI/ExprAddDialog.cpp:94
 msgctxt "ExprAddDialog|"
 msgid "Min"
-msgstr "מזערי"
+msgstr "Min"
 
 #: KSeExprUI/ExprAddDialog.cpp:62 KSeExprUI/ExprAddDialog.cpp:78
 #: KSeExprUI/ExprAddDialog.cpp:95
 msgctxt "ExprAddDialog|"
 msgid "Max"
-msgstr "מרבי"
+msgstr "Max"
 
 #: KSeExprUI/ExprAddDialog.cpp:63 KSeExprUI/ExprAddDialog.cpp:65
 #: KSeExprUI/ExprAddDialog.cpp:79 KSeExprUI/ExprAddDialog.cpp:81
@@ -1052,7 +1101,7 @@ msgstr "10"
 #: KSeExprUI/ExprAddDialog.cpp:69
 msgctxt "ExprAddDialog|"
 msgid "Int"
-msgstr "מספר שלם"
+msgstr "Oso"
 
 #: KSeExprUI/ExprAddDialog.cpp:83 KSeExprUI/ExprAddDialog.cpp:106
 msgctxt "ExprAddDialog|"
@@ -1062,72 +1111,72 @@ msgstr "1"
 #: KSeExprUI/ExprAddDialog.cpp:86
 msgctxt "ExprAddDialog|"
 msgid "Float"
-msgstr "שבר עשרוני"
+msgstr "Higikorra"
 
 #: KSeExprUI/ExprAddDialog.cpp:109
 msgctxt "ExprAddDialog|"
 msgid "Vector"
-msgstr "וקטור"
+msgstr "Bektorea"
 
 #: KSeExprUI/ExprAddDialog.cpp:119 KSeExprUI/ExprAddDialog.cpp:125
 msgctxt "ExprAddDialog|"
 msgid "Color"
-msgstr "צבע"
+msgstr "Kolorea"
 
 #: KSeExprUI/ExprAddDialog.cpp:137
 msgctxt "ExprAddDialog|"
 msgid "Rainbow"
-msgstr "קשת בענן"
+msgstr "Ostadarra"
 
 #: KSeExprUI/ExprAddDialog.cpp:139
 msgctxt "ExprAddDialog|"
 msgid "Shades of Gray"
-msgstr "גווני אפור"
+msgstr "Gris-tonuak"
 
 #: KSeExprUI/ExprAddDialog.cpp:140
 msgctxt "ExprAddDialog|"
 msgid "Colors"
-msgstr "צבעים"
+msgstr "Koloreak"
 
 #: KSeExprUI/ExprAddDialog.cpp:144
 msgctxt "ExprAddDialog|"
 msgid "Swatch"
-msgstr ""
+msgstr "Lagina"
 
 #: KSeExprUI/ExprAddDialog.cpp:152
 msgctxt "ExprAddDialog|"
 msgid "string"
-msgstr "מחרוזת"
+msgstr "katea"
 
 #: KSeExprUI/ExprAddDialog.cpp:153
 msgctxt "ExprAddDialog|"
 msgid "file"
-msgstr "קובץ"
+msgstr "fitxategia"
 
 #: KSeExprUI/ExprAddDialog.cpp:154
 msgctxt "ExprAddDialog|"
 msgid "directory"
-msgstr "תיקייה"
+msgstr "direktorioa"
 
 #: KSeExprUI/ExprAddDialog.cpp:158
 msgctxt "ExprAddDialog|"
 msgid "String Name"
-msgstr "שם המחרוזת"
+msgstr "Katearen izena"
 
 #: KSeExprUI/ExprAddDialog.cpp:160
 msgctxt "ExprAddDialog|"
 msgid "String Type"
-msgstr "סוג המחרוזת"
+msgstr "Kate mota"
 
 #: KSeExprUI/ExprAddDialog.cpp:162
 msgctxt "ExprAddDialog|"
 msgid "String Default"
-msgstr "ברירת מחדל של מחרוזת"
+msgstr "Kate lehenetsia"
 
 #: KSeExprUI/ExprAddDialog.cpp:165
 msgctxt "ExprAddDialog|"
 msgid "String"
-msgstr "מחרוזת"
+msgstr "Katea"
 
 #: KSeExprUI/ExprBrowser.cpp:299
 msgctxt "ExprBrowser|"
@@ -1137,7 +1186,7 @@ msgstr "X"
 #: KSeExprUI/ExprBrowser.cpp:404 KSeExprUI/ExprBrowser.cpp:423
 msgctxt "ExprBrowser|"
 msgid "Save Expression"
-msgstr "שמירת ביטוי"
+msgstr "Gorde adierazpena"
 
 #: KSeExprUI/ExprBrowser.cpp:404 KSeExprUI/ExprBrowser.cpp:423
 msgctxt "ExprBrowser|"
@@ -1148,19 +1197,19 @@ msgstr "*.se"
 #, qt-format
 msgctxt "ExprBrowser|"
 msgid "Could not open file %1 for writing"
-msgstr "לא ניתן לפתוח את %1 לכתיבה"
+msgstr "Ezin izan du %1 fitxategia idazteko ireki"
 
 #: KSeExprUI/ExprBrowser.cpp:410 KSeExprUI/ExprBrowser.cpp:429
 #: KSeExprUI/ExprBrowser.cpp:450
 msgctxt "ExprBrowser|"
 msgid "Error"
-msgstr "שגיאה"
+msgstr "Errorea"
 
 #: KSeExprUI/ExprBrowser.cpp:449
 #, qt-format
 msgctxt "ExprBrowser|"
 msgid "Could not open file %1 for writing.  Is it read-only?"
-msgstr ""
+msgstr "Ezin izan du %1 fitxategia irakurtzeko ireki. Soilik irakurtzeko da?"
 
 #: KSeExprUI/ExprBrowser.cpp:450
 #, qt-format
@@ -1171,52 +1220,52 @@ msgstr "<font face=fixed>%1</font>"
 #: KSeExprUI/ExprColorCurve.cpp:180
 msgctxt "CCurveScene|"
 msgid "Delete Point"
-msgstr "מחיקת נקודה"
+msgstr "Ezabatu puntua"
 
 #: KSeExprUI/ExprColorCurve.cpp:397
 msgctxt "ExprColorCurve|"
 msgid "Selected Position:"
-msgstr "מקום נבחר:"
+msgstr "Hautatutako kokalekua:"
 
 #: KSeExprUI/ExprColorCurve.cpp:408
 msgctxt "ExprColorCurve|"
 msgid "Selected Color:"
-msgstr "צבע נבחר:"
+msgstr "Hautatutako kolorea:"
 
 #: KSeExprUI/ExprColorCurve.cpp:416
 msgctxt "ExprColorCurve|"
 msgid "Interp:"
-msgstr "פענוח:"
+msgstr "Interp:"
 
 #: KSeExprUI/ExprColorCurve.cpp:421
 msgctxt "ExprColorCurve|"
 msgid "None"
-msgstr "ללא"
+msgstr "Bat ere ez"
 
 #: KSeExprUI/ExprColorCurve.cpp:422
 msgctxt "ExprColorCurve|"
 msgid "Linear"
-msgstr "קווי"
+msgstr "Lineala"
 
 #: KSeExprUI/ExprColorCurve.cpp:423
 msgctxt "ExprColorCurve|"
 msgid "Smooth"
-msgstr "חלק"
+msgstr "Leuna"
 
 #: KSeExprUI/ExprColorCurve.cpp:424
 msgctxt "ExprColorCurve|"
 msgid "Spline"
-msgstr ""
+msgstr "Spline"
 
 #: KSeExprUI/ExprColorCurve.cpp:425
 msgctxt "ExprColorCurve|"
 msgid "MSpline"
-msgstr ""
+msgstr "MSpline"
 
 #: KSeExprUI/ExprColorCurve.cpp:445
 msgctxt "ExprColorCurve|"
 msgid "&Expand..."
-msgstr "ה&רחבה…"
+msgstr "&Zabaldu..."
 
 #: KSeExprUI/ExprColorCurve.cpp:487
 #, qt-format
@@ -1227,12 +1276,12 @@ msgstr "%1"
 #: KSeExprUI/ExprColorSwatch.cpp:77
 msgctxt "ExprColorFrame|"
 msgid "Delete Swatch"
-msgstr ""
+msgstr "Ezabatu lagina"
 
 #: KSeExprUI/ExprColorSwatch.cpp:78
 msgctxt "ExprColorFrame|"
 msgid "Cancel"
-msgstr "ביטול"
+msgstr "Utzi"
 
 #: KSeExprUI/ExprColorSwatch.cpp:98
 #, qt-format
@@ -1243,12 +1292,12 @@ msgstr "%1"
 #: KSeExprUI/ExprColorSwatch.cpp:123
 msgctxt "ExprColorSwatchWidget|"
 msgid "&Add..."
-msgstr "הו&ספה…"
+msgstr "&Gehitu..."
 
 #: KSeExprUI/ExprCompletionModel.cpp:121
 msgctxt "ExprCompletionModel|"
 msgid "Local"
-msgstr "מקומי"
+msgstr "Lokala"
 
 #: KSeExprUI/ExprControl.cpp:185 KSeExprUI/ExprControl.cpp:200
 #, qt-format
@@ -1271,42 +1320,42 @@ msgstr "%1"
 #: KSeExprUI/ExprControl.cpp:456 KSeExprUI/ExprControl.cpp:465
 msgctxt "StringControl|"
 msgid "Please choose a file"
-msgstr "נא לבחור קובץ"
+msgstr "Mesedez aukeratu fitxategi bat"
 
 #: KSeExprUI/ExprControl.cpp:456
 msgctxt "StringControl|"
 msgid "Images (*.tif *.tx *.jpg *.ptx *.png)"
-msgstr "מקום (‎*.tif‏ ‎*.tx‏ ‎*.jpg‏ ‎*.ptx‏ ‎*.png)"
+msgstr "Irudiak (*.tif *.tx *.jpg *.ptx *.png)"
 
 #: KSeExprUI/ExprControl.cpp:488
 msgctxt "CurveControl|"
 msgid "Pos:"
-msgstr "מקום:"
+msgstr "Kok:"
 
 #: KSeExprUI/ExprControl.cpp:488
 msgctxt "CurveControl|"
 msgid "Val:"
-msgstr "ערך:"
+msgstr "Bal:"
 
 #: KSeExprUI/ExprControl.cpp:488
 msgctxt "CurveControl|"
 msgid "Interp:"
-msgstr "פענוח:"
+msgstr "Interp:"
 
 #: KSeExprUI/ExprControl.cpp:512
 msgctxt "CCurveControl|"
 msgid "Pos:"
-msgstr "מקום:"
+msgstr "Kok:"
 
 #: KSeExprUI/ExprControl.cpp:512
 msgctxt "CCurveControl|"
 msgid "Val:"
-msgstr "ערך:"
+msgstr "Bal:"
 
 #: KSeExprUI/ExprControl.cpp:512
 msgctxt "CCurveControl|"
 msgid "Interp:"
-msgstr "פענוח:"
+msgstr "Interp:"
 
 #: KSeExprUI/ExprControl.cpp:617 KSeExprUI/ExprControl.cpp:618
 #: KSeExprUI/ExprControl.cpp:619 KSeExprUI/ExprControl.cpp:620
@@ -1318,52 +1367,52 @@ msgstr "%1"
 #: KSeExprUI/ExprCurve.cpp:153
 msgctxt "CurveScene|"
 msgid "Delete Point"
-msgstr "מחיקת נקודה"
+msgstr "Ezabatu puntua"
 
 #: KSeExprUI/ExprCurve.cpp:298
 msgctxt "ExprCurve|"
 msgid "Selected Position:"
-msgstr "מקום נבחר:"
+msgstr "Hautatutako kokalekua:"
 
 #: KSeExprUI/ExprCurve.cpp:309
 msgctxt "ExprCurve|"
 msgid "Selected Value:"
-msgstr "ערך נבחר:"
+msgstr "Hautatutako balioa:"
 
 #: KSeExprUI/ExprCurve.cpp:317
 msgctxt "ExprCurve|"
 msgid "Interp:"
-msgstr "פענוח:"
+msgstr "Interp:"
 
 #: KSeExprUI/ExprCurve.cpp:322
 msgctxt "ExprCurve|"
 msgid "None"
-msgstr "ללא"
+msgstr "Bat ere ez"
 
 #: KSeExprUI/ExprCurve.cpp:323
 msgctxt "ExprCurve|"
 msgid "Linear"
-msgstr "קווי"
+msgstr "Lineala"
 
 #: KSeExprUI/ExprCurve.cpp:324
 msgctxt "ExprCurve|"
 msgid "Smooth"
-msgstr "חלק"
+msgstr "Leuna"
 
 #: KSeExprUI/ExprCurve.cpp:325
 msgctxt "ExprCurve|"
 msgid "Spline"
-msgstr ""
+msgstr "Spline"
 
 #: KSeExprUI/ExprCurve.cpp:326
 msgctxt "ExprCurve|"
 msgid "MSpline"
-msgstr ""
+msgstr "MSpline"
 
 #: KSeExprUI/ExprCurve.cpp:347
 msgctxt "ExprCurve|"
 msgid "&Expand..."
-msgstr "ה&רחבה…"
+msgstr "&Zabaldu..."
 
 #: KSeExprUI/ExprCurve.cpp:390 KSeExprUI/ExprCurve.cpp:399
 #, qt-format
@@ -1374,7 +1423,7 @@ msgstr "%1"
 #: KSeExprUI/ExprEditor.cpp:73
 msgctxt "ExprEditor|"
 msgid "Expression Editor"
-msgstr "עורך הביטויים"
+msgstr "Adierazpen editorea"
 
 #: KSeExprUI/ExprEditor.cpp:235
 #, qt-format
@@ -1385,17 +1434,17 @@ msgstr "(%1, %2): %3"
 #: KSeExprUI/ExprFileDialog.cpp:84
 msgctxt "ExprFileDialog|"
 msgid "Open"
-msgstr "פתיחה"
+msgstr "Ireki"
 
 #: KSeExprUI/ExprFileDialog.cpp:189
 msgctxt "ExprFileDialog|"
 msgid "Favorites"
-msgstr "מועדפים"
+msgstr "Gogokoak"
 
 #: KSeExprUI/ExprTextEdit.cpp:44
 msgctxt "ExprTextEdit|"
 msgid "Pop-up Help"
-msgstr "עזרה קופצת"
+msgstr "Laguntza gainerakorra"
 
 #: KSeExprUI/ExprTextEdit.cpp:186
 #, qt-format
