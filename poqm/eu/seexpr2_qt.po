@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"PO-Revision-Date: 2025-01-10 21:58+0100\n"
+"PO-Revision-Date: 2025-01-11 07:42+0100\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
 "Language: eu\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Qt-Contexts: true\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Lokalize 24.12.0\n"
 
 #: KSeExpr/ExprBuiltins.cpp:27
@@ -227,14 +227,13 @@ msgstr ""
 "arku tangente hiperbolikoa radianetan"
 
 #: KSeExpr/ExprBuiltins.cpp:56
-#, fuzzy
 msgctxt "builtin|"
 msgid ""
 "float clamp(float x,float lo,float hi)\n"
 "constrain x to range [lo,hi]"
 msgstr ""
-"float clamp(float x,float lo,float hi)\n"
-"constrain x to range [lo,hi]"
+"float clamp(float x,float be,float go)\n"
+"x [be,go] barrutira mugatu"
 
 #: KSeExpr/ExprBuiltins.cpp:57
 msgctxt "builtin|"
@@ -389,6 +388,8 @@ msgid ""
 "float compress(float x,float lo,float hi)\n"
 "Remaps x in [0,1] to [lo,hi]"
 msgstr ""
+"float compress(float x,float be,float go)\n"
+"x [0,1] barrutian [be,go] barrutira birmapatzen du"
 
 #: KSeExpr/ExprBuiltins.cpp:94
 msgctxt "builtin|"
@@ -396,6 +397,8 @@ msgid ""
 "float expand(float x,float lo,float hi)\n"
 "Remaps x in [lo,hi] to [0,1]"
 msgstr ""
+"float expand(float x,float be,float go)\n"
+"x [be,go] barrutian [0,1] barrutira birmapatzen du"
 
 #: KSeExpr/ExprBuiltins.cpp:100
 msgctxt "builtin|"
@@ -403,6 +406,8 @@ msgid ""
 "float fit(float x,float a1,float b1,float a2,float b2)\n"
 "Linearly remaps x in [a1,b1] to [a2,b2]"
 msgstr ""
+"float fit(float x,float a1,float b1,float a2,float b2)\n"
+"x [a1,b1] barrutitik [a2,b2] barrutira linealki birmapatzen du"
 
 #: KSeExpr/ExprBuiltins.cpp:106
 msgctxt "builtin|"
@@ -410,6 +415,8 @@ msgid ""
 "float gamma(float x, float g)\n"
 "Gamma correction of x with gamma factor g"
 msgstr ""
+"float gamma(float x, float g)\n"
+"x-ren gamma zuzenketa g gamma faktorearekin"
 
 #: KSeExpr/ExprBuiltins.cpp:113
 msgctxt "builtin|"
@@ -419,6 +426,11 @@ msgid ""
 "and values greater than 0.5 pull the curve up\n"
 "pow(x,log(b)/log(0.5))"
 msgstr ""
+"float bias(float x, float g)\n"
+"Gamaren aldakuntzak, non 0,5 baino balio txikiagoek kurbari\n"
+"beherantz tira egiten dioten eta 0,5 baino balio handiagoek\n"
+"kurbari gorantz tira egiten dioten\n"
+"pow(x,log(b)/log(0.5))"
 
 #: KSeExpr/ExprBuiltins.cpp:124
 msgctxt "builtin|"
@@ -427,6 +439,9 @@ msgid ""
 "Adjust the contrast.&nbsp; For c from 0 to 0.5, the contrast is decreased."
 "&nbsp; For c &gt; 0.5, the contrast is increased."
 msgstr ""
+"float contrast(float x, float c)\n"
+"Kontrastea doitu.&nbsp; c 0tik 0,5era, kontrastea txikiagotu egiten da."
+"&nbsp; c &gt; 0,5, kontrastea handiagotu egiten da."
 
 #: KSeExpr/ExprBuiltins.cpp:132
 msgctxt "builtin|"
@@ -434,6 +449,8 @@ msgid ""
 "float boxstep(float x,float a)\n"
 " if x < a then 0 otherwise 1"
 msgstr ""
+"float boxstep(float x,float a)\n"
+" x < a bada orduan 0 bestela 1"
 
 #: KSeExpr/ExprBuiltins.cpp:143
 msgctxt "builtin|"
@@ -442,6 +459,9 @@ msgid ""
 " if x &lt; a then 0, if x &gt; b then 1, and\n"
 "x transitions linearly when a &lt; x &lt; b"
 msgstr ""
+"float linearstep(float x, float a, float b)\n"
+" x &lt; a bada orduan 0, x &gt; b bada orduan 1, eta\n"
+"x-ak trantsizio lineala egiten du a &lt; x &lt; b denean"
 
 #: KSeExpr/ExprBuiltins.cpp:165
 msgctxt "builtin|"
@@ -450,6 +470,9 @@ msgid ""
 " if x &lt; a then 0, if x &gt; b then 1, and\n"
 "x transitions smoothly (cubic) when a &lt; x &lt; b"
 msgstr ""
+"float smoothstep(float x,float a,float b)\n"
+" x &lt; a bada orduan 0, x &gt; b bada orduan 1, eta\n"
+"x-ak trantsizio leuna (kubikoa) egiten du a &lt; x &lt; b denean"
 
 #: KSeExpr/ExprBuiltins.cpp:187
 msgctxt "builtin|"
@@ -458,6 +481,10 @@ msgid ""
 " if x &lt; a then 0, if x &gt; b then 1, and\n"
 "x transitions smoothly (exponentially) when a &lt; x &lt; b"
 msgstr ""
+"float gasussstep(float x,float a,float b)\n"
+" x &lt; a bada orduan 0, x &gt; b bada orduan 1, eta\n"
+"x-ak trantsizio lineala egiten du x trantsizio leuna (esponentzialki) egiten "
+"du a &lt; x &lt; b denean"
 
 #: KSeExpr/ExprBuiltins.cpp:218
 msgctxt "builtin|"
@@ -479,6 +506,8 @@ msgid ""
 "mix(float a,float b,float alpha)\n"
 "Blend of a and b according to alpha."
 msgstr ""
+"mix(float a,float b,float alpha)\n"
+"a eta b-ren nahasketa alfaren arabera."
 
 #: KSeExpr/ExprBuiltins.cpp:260
 msgctxt "builtin|"
@@ -622,7 +651,7 @@ msgstr ""
 #: KSeExpr/ExprBuiltins.cpp:787
 msgctxt "builtin|"
 msgid "vector vfbm(vector vint octaves=6,float lacunarity=2,float gain=.5)"
-msgstr ""
+msgstr "vector vfbm(vector vint octaves=6,float lacunarity=2,float gain=.5)"
 
 #: KSeExpr/ExprBuiltins.cpp:820
 msgctxt "builtin|"
@@ -643,11 +672,13 @@ msgid ""
 "vector vfbm4(vector v,float time,int octaves=6,float lacunarity=2,float "
 "gain=.5)"
 msgstr ""
+"vector vfbm4(vector v,float time,int octaves=6,float lacunarity=2,float "
+"gain=.5)"
 
 #: KSeExpr/ExprBuiltins.cpp:866
 msgctxt "builtin|"
 msgid "color cfbm(vector vint octaves=6,float lacunarity=2,float gain=.5)"
-msgstr ""
+msgstr "color cfbm(vector vint octaves=6,float lacunarity=2,float gain=.5)"
 
 #: KSeExpr/ExprBuiltins.cpp:872
 msgctxt "builtin|"
@@ -655,6 +686,8 @@ msgid ""
 "color cfbm4(vector v,float time,int octaves=6,float lacunarity=2,float "
 "gain=.5)"
 msgstr ""
+"color cfbm4(vector v,float time,int octaves=6,float lacunarity=2,float "
+"gain=.5)"
 
 #: KSeExpr/ExprBuiltins.cpp:881
 msgctxt "builtin|"
@@ -680,6 +713,8 @@ msgid ""
 "float pnoise ( vector v, vector period )\n"
 "periodic noise"
 msgstr ""
+"float pnoise ( vector v, vector period )\n"
+"aldizkako zarata"
 
 #: KSeExpr/ExprBuiltins.cpp:1050
 msgctxt "builtin|"
@@ -711,6 +746,8 @@ msgid ""
 "float dist(vector a, vector b)\n"
 "distance between two points"
 msgstr ""
+"float dist(vector a, vector b)\n"
+"bi puntuen arteko distantzia"
 
 #: KSeExpr/ExprBuiltins.cpp:1246
 msgctxt "builtin|"
@@ -718,6 +755,8 @@ msgid ""
 "float length(vector v)\n"
 "length of vector"
 msgstr ""
+"float length(vector v)\n"
+"bektorearen luzera"
 
 #: KSeExpr/ExprBuiltins.cpp:1254
 msgctxt "builtin|"
@@ -725,6 +764,8 @@ msgid ""
 "float hypot(vector v)\n"
 "length of 2d vector [x,y]"
 msgstr ""
+"float hypot(vector v)\n"
+"2d-ko [x,y] bektorearen luzera"
 
 #: KSeExpr/ExprBuiltins.cpp:1262
 msgctxt "builtin|"
@@ -753,6 +794,8 @@ msgid ""
 "float angle(vector a,vector b)\n"
 "angle between two vectors (in radians)"
 msgstr ""
+"float angle(vector a,vector b)\n"
+"bi bektoreen arteko angelua (radianetan)"
 
 #: KSeExpr/ExprBuiltins.cpp:1301
 msgctxt "builtin|"
@@ -876,6 +919,9 @@ msgid ""
 "getVar(string varName,vector defaultValue)\n"
 "return value of varName if variable exists, otherwise return defaultValue"
 msgstr ""
+"getVar(string varName,vector defaultValue)\n"
+"aldagaia existitzen bada varName-ren balio itzuli, bestela defaultValue "
+"itzuli"
 
 #: KSeExpr/ExprBuiltins.cpp:1879
 msgctxt "builtin|"
@@ -885,6 +931,10 @@ msgid ""
 "\".\n"
 "Return parameter is empty, but must be assigned to a variable."
 msgstr ""
+"float printf(string format,[vec0, vec1,  ...])\n"
+"STDOUT-ean kate bat inprimatzen du, formatua emateko baimendutako "
+"parametroak \"%v\" eta \"%f\" dira.\n"
+"Itzulitako parametroa hutsik dago, baina aldagai bati esleitu behar zaio."
 
 #: KSeExpr/ExprBuiltins.cpp:1992
 msgctxt "builtin|"
@@ -893,6 +943,9 @@ msgid ""
 "Returns a string formatted from the given values.  See 'man sprintf' for "
 "format details."
 msgstr ""
+"sprintf(string format, [double|string, double|string, ...])\n"
+"Emandako balioetatik formatua emandako kate bat itzultzen du. Begiratu 'man "
+"sprintf' xehetasun gehiago nahi baduzu."
 
 #: KSeExprUI/ECMQmLoader-seexpr2_qt.cpp:62
 #: KSeExprUI/ECMQmLoader-seexpr2_qt.cpp:122

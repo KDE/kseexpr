@@ -429,6 +429,11 @@ msgid ""
 "and values greater than 0.5 pull the curve up\n"
 "pow(x,log(b)/log(0.5))"
 msgstr ""
+"float bias(float x, float g)\n"
+"გამას ვარიაცია, სადაც მნისვნელობები, რომლებიც 0.5-ზე ნაკლებია, მრუდს ქვემოთ "
+"სწევს\n"
+"და მნიშვნელობები, რომლებიც 0.5-ზე მეტია, მაღლა\n"
+"pow(x,log(b)/log(0.5))"
 
 #: KSeExpr/ExprBuiltins.cpp:124
 msgctxt "builtin|"
@@ -437,6 +442,9 @@ msgid ""
 "Adjust the contrast.&nbsp; For c from 0 to 0.5, the contrast is decreased."
 "&nbsp; For c &gt; 0.5, the contrast is increased."
 msgstr ""
+"float contrast(float x, float c)\n"
+"კონტრასტის გასწორება.&nbsp; c-სთვის 0-დან 0.5-მდე კონტრასტი შემცირდება."
+"&nbsp; c-სთვის &gt; 0.5, კონტრასტი გაიზრდება."
 
 #: KSeExpr/ExprBuiltins.cpp:132
 msgctxt "builtin|"
@@ -454,6 +462,9 @@ msgid ""
 " if x &lt; a then 0, if x &gt; b then 1, and\n"
 "x transitions linearly when a &lt; x &lt; b"
 msgstr ""
+"float linearstep(float x, float a, float b)\n"
+" თუ x &lt; a მაშინ 0, თუ x &gt; b მაშინ 1, და\n"
+"x გადავა წრფივად, როცა a &lt; x &lt; b"
 
 #: KSeExpr/ExprBuiltins.cpp:165
 msgctxt "builtin|"
@@ -462,6 +473,9 @@ msgid ""
 " if x &lt; a then 0, if x &gt; b then 1, and\n"
 "x transitions smoothly (cubic) when a &lt; x &lt; b"
 msgstr ""
+"float smoothstep(float x,float a,float b)\n"
+" თუ x &lt; a მაშინ 0, თუ x &gt; b მაშინ 1, და\n"
+"x გადავა რბილად (კუბური), როცა a &lt; x &lt; b"
 
 #: KSeExpr/ExprBuiltins.cpp:187
 msgctxt "builtin|"
@@ -470,6 +484,9 @@ msgid ""
 " if x &lt; a then 0, if x &gt; b then 1, and\n"
 "x transitions smoothly (exponentially) when a &lt; x &lt; b"
 msgstr ""
+"float gasussstep(float x,float a,float b)\n"
+" თუ x &lt; a მაშინ 0, თუ x &gt; b მაშინ 1, და\n"
+"x გადავა რბილად (ექსპონენტურად), როცა a &lt; x &lt; b"
 
 #: KSeExpr/ExprBuiltins.cpp:218
 msgctxt "builtin|"
@@ -515,6 +532,11 @@ msgid ""
 "the control map is centered around the mid point (value of 0.5)\n"
 "and can scale the shift in both directions."
 msgstr ""
+"color midhsi(color x, float h, float s, float i, float map, float falloff=1, "
+"int interp=0)\n"
+"midhsi ფუნქცია hsi ფუნქციაა იმ გამონაკლისით, რომ\n"
+"საკონტროლო რუკა დაცენტრებულია შუაში (მნიშვნელობით 0.5)\n"
+"და შეუძლია დამასშტაბება და წანაცვლება ორივე მიმართულებით."
 
 #: KSeExpr/ExprBuiltins.cpp:358
 msgctxt "builtin|"
@@ -802,6 +824,8 @@ msgid ""
 "vector angle(vector a,vector b)\n"
 "normalized vector orthogonal to a and b scaled to unit length"
 msgstr ""
+"vector angle(vector a,vector b)\n"
+"ნორმალიზებული ვექტორი, ორთოგონალური a-სთან და b მასშტაბით ერთეულის სიგრძემდე"
 
 #: KSeExpr/ExprBuiltins.cpp:1317
 msgctxt "builtin|"
