@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"PO-Revision-Date: 2025-01-13 18:15+0200\n"
+"PO-Revision-Date: 2025-01-15 10:05+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
@@ -182,6 +182,8 @@ msgid ""
 "float sinh(float angle)\n"
 "hyperbolic sine in radians"
 msgstr ""
+"float sinh(זווית כשבר עשרוני)\n"
+"סינוס היפרבולי ברדיאנים"
 
 #: KSeExpr/ExprBuiltins.cpp:51
 msgctxt "builtin|"
@@ -189,6 +191,8 @@ msgid ""
 "float tanh(float angle)\n"
 "hyperbolic tangent in radians"
 msgstr ""
+"float tanh(זווית כשבר עשרוני)\n"
+"טנגנס היפרבולי ברדיאנים"
 
 #: KSeExpr/ExprBuiltins.cpp:52
 msgctxt "builtin|"
@@ -196,6 +200,8 @@ msgid ""
 "float acosh(float value)\n"
 "hyperbolic arc cosine in radians"
 msgstr ""
+"float acosh(שבר עשרוני)\n"
+"ארק-קוסינוס היפרבולי ברדיאנים"
 
 #: KSeExpr/ExprBuiltins.cpp:53
 msgctxt "builtin|"
@@ -203,6 +209,8 @@ msgid ""
 "float asinh(float value)\n"
 "hyperbolic arc sine in radians"
 msgstr ""
+"float asinh(שבר עשרוני)\n"
+"ארק-סינוס היפרבולי ברדיאנים"
 
 #: KSeExpr/ExprBuiltins.cpp:54
 msgctxt "builtin|"
@@ -210,6 +218,8 @@ msgid ""
 "float atanh(float value)\n"
 "hyperbolic arc tangent in radians"
 msgstr ""
+"float atanh(שבר עשרוני)\n"
+"ארק-טנגנס היפרבולי ברדיאנים"
 
 #: KSeExpr/ExprBuiltins.cpp:56
 msgctxt "builtin|"
@@ -235,6 +245,8 @@ msgid ""
 "float max(float a,float b)\n"
 "greater of a and b"
 msgstr ""
+"float max(שבר עשרוני a,שבר עשרוני b)\n"
+"הגדול מבין a ו־b"
 
 #: KSeExpr/ExprBuiltins.cpp:59
 msgctxt "builtin|"
@@ -274,6 +286,8 @@ msgid ""
 "float invert(float a)\n"
 "Defined as 1-x"
 msgstr ""
+"float invert(שבר עשרוני a)\n"
+"מוגדר בתור ‎1-a"
 
 #: KSeExpr/ExprBuiltins.cpp:65
 msgctxt "builtin|"
@@ -281,6 +295,8 @@ msgid ""
 "float cbrt(float x)\n"
 "cube root"
 msgstr ""
+"float cbrt(שבר עשרוני x)\n"
+"שורש מסדר שלישי"
 
 #: KSeExpr/ExprBuiltins.cpp:66
 msgctxt "builtin|"
@@ -288,6 +304,8 @@ msgid ""
 "float sqrt(float x)\n"
 "square root"
 msgstr ""
+"float sqrt(שבר עשרוני x)\n"
+"שורש ריבועי"
 
 #: KSeExpr/ExprBuiltins.cpp:67
 msgctxt "builtin|"
@@ -295,6 +313,8 @@ msgid ""
 "float exp(float x)\n"
 "E raised to the x power"
 msgstr ""
+"float exp(שבר עשרוני x)\n"
+"E בחזקת x"
 
 #: KSeExpr/ExprBuiltins.cpp:68
 msgctxt "builtin|"
@@ -302,6 +322,8 @@ msgid ""
 "float pow(float x, float y)\n"
 "x to the y power, also available as ^"
 msgstr ""
+"float pow(שבר עשרוני x, שבר עשרוני y)\n"
+"x בחזקת y, זמין גם בתור ^"
 
 #: KSeExpr/ExprBuiltins.cpp:69
 msgctxt "builtin|"
@@ -327,6 +349,8 @@ msgid ""
 "float fmod(float x,float y)\n"
 "remainder of x/y (also available as % operator)"
 msgstr ""
+"float fmod(שבר עשרוני x,שבר עשרוני y)\n"
+"השארית של x/y (זמין גם עם הסימן %)"
 
 #: KSeExpr/ExprBuiltins.cpp:72
 msgctxt "builtin|"
