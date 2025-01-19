@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"PO-Revision-Date: 2025-01-15 10:05+0200\n"
+"PO-Revision-Date: 2025-01-18 21:09+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
@@ -272,6 +272,8 @@ msgid ""
 "float floor(float a)\n"
 "next lower integer"
 msgstr ""
+"float floor(שבר עשרוני a)\n"
+"המספר השלם הנמוך הבא"
 
 #: KSeExpr/ExprBuiltins.cpp:62
 msgctxt "builtin|"
@@ -279,6 +281,8 @@ msgid ""
 "float ceil(float a)\n"
 "next higher integer"
 msgstr ""
+"float ceil(שבר עשרוני a)\n"
+"המספר השלם הגבוה הבא"
 
 #: KSeExpr/ExprBuiltins.cpp:64
 msgctxt "builtin|"
@@ -379,6 +383,8 @@ msgid ""
 "float compress(float x,float lo,float hi)\n"
 "Remaps x in [0,1] to [lo,hi]"
 msgstr ""
+"float compress(שבר עשרוני x,שבר עשרוני lo,שבר עשרוני hi)\n"
+"מיפוי מחדש של x בטווח [0,1] לכדי [lo,hi]"
 
 #: KSeExpr/ExprBuiltins.cpp:94
 msgctxt "builtin|"
