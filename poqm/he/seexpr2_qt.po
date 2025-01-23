@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"PO-Revision-Date: 2025-01-18 21:09+0200\n"
+"PO-Revision-Date: 2025-01-22 14:18+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
@@ -676,6 +676,8 @@ msgid ""
 "float pnoise ( vector v, vector period )\n"
 "periodic noise"
 msgstr ""
+"float pnoise ( וקטור v, וקטור תקופה )\n"
+"רעש לאורך תקופה"
 
 #: KSeExpr/ExprBuiltins.cpp:1050
 msgctxt "builtin|"
@@ -725,6 +727,8 @@ msgid ""
 "float hypot(vector v)\n"
 "length of 2d vector [x,y]"
 msgstr ""
+"float hypot(וקטור v)\n"
+"אורך של וקטור דו־ממדי [x,y]"
 
 #: KSeExpr/ExprBuiltins.cpp:1262
 msgctxt "builtin|"
@@ -925,7 +929,7 @@ msgstr "אמור להיות שבר עשרוני[%1]"
 #, qt-format
 msgctxt "ErrorMessages|"
 msgid "Type mismatch, first: '%1'; second: '%2'"
-msgstr ""
+msgstr "סתירת סוג, ראשון: ‚%1’, שני: ‚%2’"
 
 #: KSeExprUI/ErrorMessages.cpp:23
 msgctxt "ErrorMessages|"
@@ -936,17 +940,17 @@ msgstr "אמור להיות שבר עשרוני או שבר עשרוני[3]"
 #, qt-format
 msgctxt "ErrorMessages|"
 msgid "Expected '%1' for argument, got '%2'"
-msgstr ""
+msgstr "אמור היה להתקבל ‚%1’ כארגומנט, במקום התקבל ‚%2’"
 
 #: KSeExprUI/ErrorMessages.cpp:27
 msgctxt "ErrorMessages|"
 msgid "Wrong number of arguments, should be 1 to 7"
-msgstr ""
+msgstr "כמות הארגומנטים שגויה, אמורה להיות בין 1 ל־7"
 
 #: KSeExprUI/ErrorMessages.cpp:29
 msgctxt "ErrorMessages|"
 msgid "Wrong number of arguments, should be multiple of 3 plus 1"
-msgstr ""
+msgstr "כמות הארגומנטים שגויה, אמורה להיות בכפולות של 3 ועוד 1"
 
 #: KSeExprUI/ErrorMessages.cpp:31
 msgctxt "ErrorMessages|"
@@ -990,7 +994,7 @@ msgstr "סוגי ההתניות אינם תואמים"
 #, qt-format
 msgctxt "ErrorMessages|"
 msgid "Variable '%1' defined in conditionals inconsistently"
-msgstr ""
+msgstr "המשתנה ‚%1’ מוגדר בקבועים בצורה לא עקבית"
 
 #: KSeExprUI/ErrorMessages.cpp:47
 #, qt-format
@@ -1008,7 +1012,7 @@ msgstr "יותר מדי ארגומנטים לפונקציה ‚%1’"
 #, qt-format
 msgctxt "ErrorMessages|"
 msgid "Expression generated type '%1', incompatible with desired type '%2'"
-msgstr ""
+msgstr "הביטוי ייצר את הסוג ‚%1’, שאינו תואם לסוג הרצוי ‚%2’."
 
 #: KSeExprUI/ErrorMessages.cpp:53
 #, qt-format
@@ -1035,7 +1039,7 @@ msgstr "מחרוזת תבנית שגויה, מותר רק ‎%v ו־‎%f"
 #: KSeExprUI/ErrorMessages.cpp:61
 msgctxt "ErrorMessages|"
 msgid "Wrong number of arguments for format string"
-msgstr ""
+msgstr "מספר הארגומנטים למחרוזת התבנית שגוי"
 
 #: KSeExprUI/ErrorMessages.cpp:64
 #, qt-format
