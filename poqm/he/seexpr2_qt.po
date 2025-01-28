@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"PO-Revision-Date: 2025-01-22 14:18+0200\n"
+"PO-Revision-Date: 2025-01-27 08:56+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
@@ -406,6 +406,8 @@ msgid ""
 "float gamma(float x, float g)\n"
 "Gamma correction of x with gamma factor g"
 msgstr ""
+"float gamma(שבר עשרוני x, שבר עשרוני g)\n"
+"תיקון גאמה של x עם מקדם גאמה g"
 
 #: KSeExpr/ExprBuiltins.cpp:113
 msgctxt "builtin|"
@@ -475,6 +477,8 @@ msgid ""
 "mix(float a,float b,float alpha)\n"
 "Blend of a and b according to alpha."
 msgstr ""
+"mix(שבר עשרוני a,שבר עשרוני b,שבר עשרוני alpha)\n"
+"ערבוב של a ו־b לפי alpha."
 
 #: KSeExpr/ExprBuiltins.cpp:260
 msgctxt "builtin|"
