@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"PO-Revision-Date: 2025-02-01 10:17+0200\n"
+"PO-Revision-Date: 2025-02-03 09:33+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
@@ -20,7 +20,7 @@ msgid ""
 "float abs(float x)\n"
 "absolute value of x"
 msgstr ""
-"float abs(x כשבר עשרוני)\n"
+"float abs(שבר עשרוני x)\n"
 "ערך מוחלט של x"
 
 #: KSeExpr/ExprBuiltins.cpp:30
@@ -101,7 +101,7 @@ msgid ""
 "float atan2d(float y,float x)\n"
 "arc tangent in degrees of y/x between -180 and 180"
 msgstr ""
-"float atan2d(y כשבר עשרוני,x כשבר עשרוני)\n"
+"float atan2d(שבר עשרוני y, שבר עשרוני x)\n"
 "ארק-טנגנס במעלות של y/x בין ‎-180 ל־180"
 
 #: KSeExpr/ExprBuiltins.cpp:41
@@ -164,7 +164,7 @@ msgid ""
 "float atan2(float y,float x)\n"
 "arc tangent in radians of y/x between -PI and PI"
 msgstr ""
-"float atan2(y כשבר עשרוני,x כשבר עשרוני)\n"
+"float atan2(שבר עשרוני y,שבר עשרוני x)\n"
 "ארק-טנגנס של y/x בין ‎-PI לבין PI"
 
 #: KSeExpr/ExprBuiltins.cpp:49
