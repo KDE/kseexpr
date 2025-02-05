@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"PO-Revision-Date: 2025-02-03 09:33+0200\n"
+"PO-Revision-Date: 2025-02-04 08:30+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
@@ -690,6 +690,10 @@ msgid ""
 "fbmOctaves=4,float fbmLacunarity=2, float fbmGain=.5)\n"
 "voronoi is a cellular noise pattern. It is a jittered variant of cellnoise."
 msgstr ""
+"float voronoi(וקטור v, מספר שלם type=1,שבר עשרוני jitter=0.5, שבר עשרוני "
+"fbmScale=0, מספר שלם fbmOctaves=4,שבר עשרוני fbmLacunarity=2, שבר עשרוני "
+"fbmGain=.5)\n"
+"וורונוי היא תבנית רעש תאית. זה הגוון מפוזר של רעש תאי (cellnoise)."
 
 #: KSeExpr/ExprBuiltins.cpp:1126
 msgctxt "builtin|"
@@ -740,6 +744,8 @@ msgid ""
 "float dot(vector a,vector b)\n"
 "vector dot product"
 msgstr ""
+"float dot(וקטור a,וקטור b)\n"
+"מכפלה סקלרית של וקטורים"
 
 #: KSeExpr/ExprBuiltins.cpp:1274
 msgctxt "builtin|"
@@ -792,6 +798,8 @@ msgid ""
 "vector up(vector P,vector upvec)\n"
 "rotates v such that the Y axis points in the given up direction"
 msgstr ""
+"vector up(וקטור P,וקטור upvec)\n"
+"הטייה של v כך שהנקודות בציר Y פונות לכיוון שצוין בתור למעלה"
 
 #: KSeExpr/ExprBuiltins.cpp:1343
 msgctxt "builtin|"
