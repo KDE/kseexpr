@@ -1,8 +1,8 @@
-# Emir SARI <emir_sari@icloud.com>, 2022, 2023.
+# SPDX-FileCopyrightText: 2022, 2023, 2025 Emir SARI <emir_sari@icloud.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"PO-Revision-Date: 2023-08-02 00:48+0300\n"
+"PO-Revision-Date: 2025-03-13 23:20+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Qt-Contexts: true\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 23.11.70\n"
+"X-Generator: Lokalize 25.07.70\n"
 
 #: KSeExpr/ExprBuiltins.cpp:27
 msgctxt "builtin|"
@@ -20,7 +20,7 @@ msgid ""
 "absolute value of x"
 msgstr ""
 "float abs(float x)\n"
-"x'in mutlak değeri"
+"x’in mutlak değeri"
 
 #: KSeExpr/ExprBuiltins.cpp:30
 msgctxt "builtin|"
@@ -101,7 +101,7 @@ msgid ""
 "arc tangent in degrees of y/x between -180 and 180"
 msgstr ""
 "float atan2d(float y,float x)\n"
-"-180 ve 180 arasında y/x'in derece türünden ark tanjantı"
+"−180 ve 180 arasında y/x’in derece türünden ark tanjantı"
 
 #: KSeExpr/ExprBuiltins.cpp:41
 msgctxt "builtin|"
@@ -164,7 +164,7 @@ msgid ""
 "arc tangent in radians of y/x between -PI and PI"
 msgstr ""
 "float atan2(float y,float x)\n"
-"-PI ve PI arasındaki y/x'in yarıçap türünden ark tanjantı"
+"−PI ve PI arasındaki y/x’in yarıçap türünden ark tanjantı"
 
 #: KSeExpr/ExprBuiltins.cpp:49
 msgctxt "builtin|"
@@ -227,7 +227,7 @@ msgid ""
 "constrain x to range [lo,hi]"
 msgstr ""
 "float clamp(float x,float lo,float hi)\n"
-"x'i aralıkla sınırla [dü,yü]"
+"x’i aralıkla sınırla [dü,yü]"
 
 #: KSeExpr/ExprBuiltins.cpp:57
 msgctxt "builtin|"
@@ -236,7 +236,7 @@ msgid ""
 "nearest integer to x"
 msgstr ""
 "float round(float x)\n"
-"x'e en yakın tamsayı"
+"x’e en yakın tamsayı"
 
 #: KSeExpr/ExprBuiltins.cpp:58
 msgctxt "builtin|"
@@ -245,7 +245,7 @@ msgid ""
 "greater of a and b"
 msgstr ""
 "float max(float a,float b)\n"
-"a ve b'den büyük"
+"a ve b’den büyük"
 
 #: KSeExpr/ExprBuiltins.cpp:59
 msgctxt "builtin|"
@@ -254,7 +254,7 @@ msgid ""
 "lesser of a and b"
 msgstr ""
 "float min(float a,float b)\n"
-"a ve b'den küçük"
+"a ve b’den küçük"
 
 #: KSeExpr/ExprBuiltins.cpp:60
 msgctxt "builtin|"
@@ -290,7 +290,7 @@ msgid ""
 "Defined as 1-x"
 msgstr ""
 "float invert(float a)\n"
-"1-x olarak tanımlı"
+"1 − x olarak tanımlı"
 
 #: KSeExpr/ExprBuiltins.cpp:65
 msgctxt "builtin|"
@@ -353,7 +353,7 @@ msgid ""
 "remainder of x/y (also available as % operator)"
 msgstr ""
 "float fmod(float x,float y)\n"
-"x/y'nin kalanı (% işleci olarak da kullanılabilir)"
+"x/y’nin kalanı (% işleci olarak da kullanılabilir)"
 
 #: KSeExpr/ExprBuiltins.cpp:72
 msgctxt "builtin|"
@@ -389,7 +389,7 @@ msgid ""
 "Remaps x in [0,1] to [lo,hi]"
 msgstr ""
 "float compress(float x,float dü,float yü)\n"
-"[0,1]'deki x'i [dü,yü]'ye yeniden eşler"
+"[0,1]’deki x’i [dü,yü]’ye yeniden eşler"
 
 #: KSeExpr/ExprBuiltins.cpp:94
 msgctxt "builtin|"
@@ -398,7 +398,7 @@ msgid ""
 "Remaps x in [lo,hi] to [0,1]"
 msgstr ""
 "float expand(float x,float dü,float yü)\n"
-"[dü,yü]'deki x'i [0,1]'e yeniden eşler"
+"[dü,yü]’deki x’i [0,1]’e yeniden eşler"
 
 #: KSeExpr/ExprBuiltins.cpp:100
 msgctxt "builtin|"
@@ -407,7 +407,7 @@ msgid ""
 "Linearly remaps x in [a1,b1] to [a2,b2]"
 msgstr ""
 "float fit(float x,float a1,float b1,float a2,float b2)\n"
-"[a1,b1]'deki x'i [a2,b2]'ye doğrusal olarak yeniden eşler"
+"[a1,b1]’deki x’i [a2,b2]’ye doğrusal olarak yeniden eşler"
 
 #: KSeExpr/ExprBuiltins.cpp:106
 msgctxt "builtin|"
@@ -416,7 +416,7 @@ msgid ""
 "Gamma correction of x with gamma factor g"
 msgstr ""
 "float gamma(float x, float g)\n"
-"Gama faktörü g ile x'in gama düzeltmesi"
+"Gama faktörü g ile x’in gama düzeltmesi"
 
 #: KSeExpr/ExprBuiltins.cpp:113
 msgctxt "builtin|"
@@ -427,8 +427,8 @@ msgid ""
 "pow(x,log(b)/log(0.5))"
 msgstr ""
 "float bias(float x, float g)\n"
-"0,5'ten küçük değerlerin eğriyi aşağı çektiği ve 0,5'ten büyük değerlerin\n"
-"eğriyi yukarı çektiği gama değerleri\n"
+"0,5’ten küçük değerlerin eğriyi aşağı çektiği ve 0,5’ten\n"
+"büyük değerlerin eğriyi yukarı çektiği gama değerleri\n"
 "pow(x,log(b)/log(0,5))"
 
 #: KSeExpr/ExprBuiltins.cpp:124
@@ -439,8 +439,8 @@ msgid ""
 "&nbsp; For c &gt; 0.5, the contrast is increased."
 msgstr ""
 "float contrast(float x, float c)\n"
-"Karşıtlığı ayarla.&nbsp; c'nin 0'dan 0,5'e kadar olduğu durumlarda karşıtlık "
-"azalır.&nbsp; c &gt; 0,5 iken karşıtlık artar."
+"Karşıtlığı ayarla.&nbsp; c’nin 0’dan 0,5’e kadar olduğu\n"
+"durumlarda karşıtlık azalır.&nbsp; c &gt; 0,5 iken karşıtlık artar."
 
 #: KSeExpr/ExprBuiltins.cpp:132
 msgctxt "builtin|"
@@ -499,7 +499,7 @@ msgid ""
 msgstr ""
 "remap(float x, float kaynak, float erim, float düşme, float aradeğerlenen)\n"
 "Genel yeniden eşlemleme işlevi.\n"
-"x, kaynağın +/- <i>erimi</i> içindeyse, sonuç 1'dir.\n"
+"x, kaynağın +/− <i>erimi</i> içindeyse, sonuç 1’dir.\n"
 "Sonuç, <i>düşme</i> uzaklığı boyunca bu erimin ötesinde sıfıra düşer.\n"
 "Düşme şekli, <i>aradeğerlenen</i> tarafından denetlenir. Sayısal değerler\n"
 "veya adlı sabitler kullanılabilir:\n"
@@ -514,7 +514,7 @@ msgid ""
 "Blend of a and b according to alpha."
 msgstr ""
 "mix(float a,float b,float alpha)\n"
-"Alfaya göre a ve b'nin harmanı."
+"Alfaya göre a ve b’nin harmanı."
 
 #: KSeExpr/ExprBuiltins.cpp:260
 msgctxt "builtin|"
@@ -531,9 +531,9 @@ msgstr ""
 "hsi işlevi, renk tonunu h kadar (derece türünden) kaydırır\n"
 "ve doygunluğu ve yoğunluğu sırasıyla s ve i kadar\n"
 "ölçekler.&nbsp; Kaydırmayı denetleyecek bir eşlem\n"
-"verilebilir - eşlem 1 iken tam kaydırma, eşlem 0 iken\n"
+"verilebilir — eşlem 1 iken tam kaydırma, eşlem 0 iken\n"
 "hiçbir kaydırma yapılmaz.&nbsp; Sıfır ve bir arasındaki\n"
-"değerler için, kaydırma geri ölçeklendirilecektir."
+"değerler için kaydırma geri ölçeklendirilecektir."
 
 #: KSeExpr/ExprBuiltins.cpp:306
 msgctxt "builtin|"
@@ -547,7 +547,7 @@ msgstr ""
 "color midhsi(color x, float h, float s, float i, float eşlem, float düşme=1, "
 "int aradeğerlenen=0)\n"
 "midhsi işlevi, hsi işlevinin aynısıdır; yalnızca denetim eşlemi\n"
-"orta nokta çevresinde merkezlenmiştir (0,5'in değeri)\n"
+"orta nokta çevresinde merkezlenmiştir (0,5’in değeri)\n"
 "ve kaydırmayı her iki yönde de ölçeklendirebilir."
 
 #: KSeExpr/ExprBuiltins.cpp:358
@@ -562,10 +562,10 @@ msgid ""
 "well-defined and reversible."
 msgstr ""
 "color rgbtohsl(color rgb)\n"
-"RGB'den HSL'ye renk uzayı dönüşümü.\n"
-"HSL, sırasıyla renk tonu, doygunluk ve aydınlık demektir (tümü [0...1] "
+"RGB’den HSL’ye renk uzayı dönüşümü.\n"
+"HSL, sırasıyla renk tonu, doygunluk ve aydınlık demektir (tümü [0‥1] "
 "eriminde\n"
-"Bu işlevler, RGB ve HSL değerlerini, [0...1] erimi dışında da uygulanabilir\n"
+"Bu işlevler, RGB ve HSL değerlerini, [0‥1] erimi dışında da uygulanabilir\n"
 "bir biçimde desteklemeleri için genişletilmiştir.&nbsp; Herhangi bir RGB\n"
 "veya HSL değeri için (negatif s değerleri dışında), dönüştürme düzgünce\n"
 "tanımlanmıştır ve geri döndürülebilir."
@@ -582,10 +582,10 @@ msgid ""
 "well-defined and reversible."
 msgstr ""
 "color hsltorgb(color hsl)\n"
-"HSL'den RGB'ye renk uzayı dönüşümü.\n"
-"HSL, sırasıyla renk tonu, doygunluk ve aydınlık demektir (tümü [0...1] "
+"HSL’den RGB’ye renk uzayı dönüşümü.\n"
+"HSL, sırasıyla renk tonu, doygunluk ve aydınlık demektir (tümü [0‥1] "
 "eriminde\n"
-"Bu işlevler, RGB ve HSL değerlerini, [0...1] erimi dışında da uygulanabilir\n"
+"Bu işlevler, RGB ve HSL değerlerini, [0‥1] erimi dışında da uygulanabilir\n"
 "bir biçimde desteklemeleri için genişletilmiştir.&nbsp; Herhangi bir RGB\n"
 "veya HSL değeri için (negatif s değerleri dışında), dönüştürme düzgünce\n"
 "tanımlanmıştır ve geri döndürülebilir."
@@ -601,7 +601,7 @@ msgstr ""
 "color saturate(color değer, float tutar)\n"
 "Renk doygunluğunu tutar kadar ölçeklendir.\n"
 "Renk, rec709 aydınlık değeri çevresinde ölçeklendirilmiştir\n"
-"ve negatif değerler 0'da kenetlenmiştir.\n"
+"ve negatif değerler 0’da kenetlenmiştir.\n"
 
 #: KSeExpr/ExprBuiltins.cpp:499
 msgctxt "builtin|"
@@ -623,7 +623,7 @@ msgid ""
 "Like rand, but with no internal seeds. Any number of seeds may be given\n"
 "and the result will be a random function based on all the seeds."
 msgstr ""
-"float hash(float tohum1,[float tohum2, ...])\n"
+"float hash(float tohum1,[float tohum2, …])\n"
 "rand gibi; ancak iç tohumu yoktur. Herhangi bir sayıda tohum verilebilir\n"
 "ve sonuç tüm tohumlar temelli rastgele bir işlev olacaktır."
 
@@ -650,7 +650,7 @@ msgid ""
 "(C2 interpolant)"
 msgstr ""
 "float snoise(vector v)\n"
-"Konumdaki özgün perlin gürültüsü ile oluşturulmuş, -1 ile 1 arası imzalı "
+"Konumdaki özgün perlin gürültüsü ile oluşturulmuş, −1 ile 1 arası imzalı "
 "gürültü (C2 aradeğerlenen)"
 
 #: KSeExpr/ExprBuiltins.cpp:621
@@ -681,7 +681,7 @@ msgid ""
 "location (C2 interpolant)"
 msgstr ""
 "float snoise4(vector v, float t)\n"
-"Konumdaki özgün perlin gürültüsü ile oluşturulmuş, -1 ile 1 arası 4B imzalı "
+"Konumdaki özgün perlin gürültüsü ile oluşturulmuş, −1 ile 1 arası 4B imzalı "
 "gürültü (C2 aradeğerlenen)"
 
 #: KSeExpr/ExprBuiltins.cpp:651
@@ -717,11 +717,12 @@ msgid ""
 "relative to the previous frequency."
 msgstr ""
 "float fbm(vector v, int oktavlar=6, float eksiklik=2, float kazanç=,5)\n"
-"fbm (Fractal Brownian Motion) çok frekanslı bir gürültü işlevidir. \n"
-"Temel frekans, \"gürültü\" işleviyle aynıdır. Toplam frekans sayısı oktavlar "
-"tarafından denetlenir. Eksiklik, frekanslar arasındaki boşluktur. - 2 "
-"değeri, her oktavın önceki frekansın iki katı olduğu anlamına gelir. Kazanç, "
-"her frekansın önceki frekansa göre ne kadar ölçeklendirileceğini denetler."
+"fbm (Fractal Brownian Motion) çok frekanslı bir gürültü işlevidir.\n"
+"Temel frekans, “gürültü” işleviyle aynıdır. Toplam frekans sayısı\n"
+"oktavlar tarafından denetlenir. Eksiklik, frekanslar arasındaki\n"
+"boşluktur. — 2 değeri, her oktavın önceki frekansın iki katı olduğu\n"
+"anlamına gelir. Kazanç, her frekansın önceki frekansa göre ne kadar\n"
+"ölçeklendirileceğini denetler."
 
 #: KSeExpr/ExprBuiltins.cpp:787
 msgctxt "builtin|"
@@ -742,12 +743,12 @@ msgid ""
 msgstr ""
 "float fbm4(vector v, float zaman, int oktavlar=6, float eksiklik=2, float "
 "kazanç=,5)\n"
-"fbm (Fractal Brownian Motion) çok frekanslı bir gürültü işlevidir. \n"
-"Temel frekans, \"gürültü\" işleviyle aynıdır. Toplam frekans sayısı\n"
-"oktavlar tarafından denetlenir. Eksiklik, frekanslar arasındaki boşluktur.\n"
-"- 2 değeri, her oktavın önceki frekansın iki katı olduğu anlamına gelir.\n"
-"Kazanç, her frekansın önceki frekansa göre ne kadar ölçeklendirileceğini "
-"denetler."
+"fbm (Fractal Brownian Motion) çok frekanslı bir gürültü işlevidir.\n"
+"Temel frekans, “gürültü” işleviyle aynıdır. Toplam frekans sayısı\n"
+"oktavlar tarafından denetlenir. Eksiklik, frekanslar arasındaki\n"
+"boşluktur — 2 değeri, her oktavın önceki frekansın iki katı olduğu\n"
+"anlamına gelir. Kazanç, her frekansın önceki frekansa göre ne kadar\n"
+"ölçeklendirileceğini denetler."
 
 #: KSeExpr/ExprBuiltins.cpp:860
 msgctxt "builtin|"
@@ -814,7 +815,7 @@ msgid ""
 msgstr ""
 "float voronoi(vector v, int tür=1, float titreşim=0,5, float fbmÖlçeği=0, "
 "int fbmOktavları=4, float fbmEksikliği=2, float fbmKazancı=,5)\n"
-"voronoi, hücresel bir gürültü desenidir. cellnoise'in titreşimli bir "
+"voronoi, hücresel bir gürültü desenidir. cellnoise’in titreşimli bir "
 "varyantıdır."
 
 #: KSeExpr/ExprBuiltins.cpp:1126
@@ -826,7 +827,7 @@ msgid ""
 msgstr ""
 "color cvoronoi(vector v, int tür=1,float titreşim=0,5, float gbmÖlçeği=0, "
 "int fbmOktavları=4, float fbmEksikliği=2, float fbmKazancı=,5)\n"
-"Bir hücresel desen olarak renk döndürür. cellnoise'in titreşimli bir "
+"Bir hücresel desen olarak renk döndürür. cellnoise’in titreşimli bir "
 "varyantıdır."
 
 #: KSeExpr/ExprBuiltins.cpp:1175
@@ -910,7 +911,7 @@ msgid ""
 "normalized vector orthogonal to a and b scaled to unit length"
 msgstr ""
 "vector angle(vector a,vector b)\n"
-"a ve b'ye dik normalleştirilmiş vektör, birim uzunluğa ölçeklendirilmiş"
+"a ve b’ye dik normalleştirilmiş vektör, birim uzunluğa ölçeklendirilmiş"
 
 #: KSeExpr/ExprBuiltins.cpp:1317
 msgctxt "builtin|"
@@ -919,7 +920,7 @@ msgid ""
 "rotates v around axis by given angle (in radians)"
 msgstr ""
 "vector rotate(vector v,vector axis,float angle)\n"
-"v'yi belirli bir açıyla eksen çevresinde döndürür (radyan türünden)"
+"v’yi belirli bir açıyla eksen çevresinde döndürür (radyan türünden)"
 
 #: KSeExpr/ExprBuiltins.cpp:1327
 msgctxt "builtin|"
@@ -928,7 +929,7 @@ msgid ""
 "rotates v such that the Y axis points in the given up direction"
 msgstr ""
 "vector up(vector P,vector upvec)\n"
-"v'yi, Y ekseni verilen yönü gösterecek şekilde döndürür"
+"v’yi, Y ekseni verilen yönü gösterecek şekilde döndürür"
 
 #: KSeExpr/ExprBuiltins.cpp:1343
 msgctxt "builtin|"
@@ -940,8 +941,8 @@ msgid ""
 msgstr ""
 "int cycle(int indeks, int düErim, int yüErim )\n"
 "Sağlanan indekse göre düErim ve yüErim değerleri arasında gidip gelir.\n"
-"Bu, bir ofset \"kip\" işlevidir. Sonuç, ``loRange + değer % (yüErim-düErim"
-"+1)`` olarak hesaplanır."
+"Bu, bir ofset “kip” işlevidir. Sonuç, ``loRange + değer % (yüErim − düErim + "
+"1)`` olarak hesaplanır."
 
 #: KSeExpr/ExprBuiltins.cpp:1405
 msgctxt "builtin|"
@@ -953,7 +954,7 @@ msgid ""
 "to the supplied weights.&nbsp; Any weights not supplied are assumed to\n"
 "be 1.0."
 msgstr ""
-"int pick(float indeks, int düErim, int yüErim, [float ağırlıklar, ...] )\n"
+"int pick(float indeks, int düErim, int yüErim, [float ağırlıklar, …])\n"
 "Sağlanan indekse göre düErim ve yüErim değerleri arasında gidip\n"
 "gelir (otomatik olarak sağlaması yapılır).&nbsp; Değerler, sağlanan\n"
 "ağırlıklara göre dağıtılır.&nbsp; Sağlanmamış herhangi bir ağırlık\n"
@@ -967,8 +968,8 @@ msgid ""
 "Chooses one of the supplied color choices based on the index (assumed to be "
 "in range [0..1])."
 msgstr ""
-"color swatch(float indeks, color seçim0, color seçim1, color seçim2, [...])\n"
-"İndekse göre sağlanan renk seçeneklerinden birini seçer ([0...1] eriminde "
+"color swatch(float indeks, color seçim0, color seçim1, color seçim2, […])\n"
+"İndekse göre sağlanan renk seçeneklerinden birini seçer ([0‥1] eriminde "
 "olduğu varsayılır)."
 
 #: KSeExpr/ExprBuiltins.cpp:1431
@@ -978,8 +979,8 @@ msgid ""
 "Chooses one of the supplied choices based on the index (assumed to be in "
 "range [0, 1])."
 msgstr ""
-"float choose(float indeks, float seçim1, float seçim2, [...])\n"
-"İndekse göre sağlanan renk seçeneklerinden birini seçer ([0...1] eriminde "
+"float choose(float indeks, float seçim1, float seçim2, […])\n"
+"İndekse göre sağlanan renk seçeneklerinden birini seçer ([0‥1] eriminde "
 "olduğu varsayılır)."
 
 #: KSeExpr/ExprBuiltins.cpp:1487
@@ -992,8 +993,8 @@ msgid ""
 "The values will be distributed according to the supplied weights."
 msgstr ""
 "float wchoose(float indeks, float seçim1, float ağırlık2, float seçim2, "
-"float ağırlık2, [...] )\n"
-"İndekse göre sağlanan renk seçeneklerinden birini seçer ([0...1] eriminde "
+"float ağırlık2, […] )\n"
+"İndekse göre sağlanan renk seçeneklerinden birini seçer ([0‥1] eriminde "
 "olduğu varsayılır).\n"
 "Değerler, sağlanan ağırlıklara göre dağıtılır."
 
@@ -1006,9 +1007,9 @@ msgid ""
 "are\n"
 "distributed evenly from [0..1]"
 msgstr ""
-"float spline(float param,float y1,float y2,float y3,float y4,[...])\n"
+"float spline(float param,float y1,float y2,float y3,float y4, […])\n"
 "\n"
-"y1, ..., yn'nin [0..1]'den eşit olarak dağıtıldığı yerde belirtilen\n"
+"y1, …, yn’nin [0..1]’den eşit olarak dağıtıldığı yerde belirtilen\n"
 "parametreye bir dizi değeri aradeğerler"
 
 #: KSeExpr/ExprBuiltins.cpp:1550 KSeExpr/ExprBuiltins.cpp:1615
@@ -1035,14 +1036,14 @@ msgid ""
 "4 - monotone (non oscillating spline)"
 msgstr ""
 "float curve(float param, float kon0, float değ0, int arad0, float kon1, "
-"float değ1, int arad1,[...])\n"
+"float değ1, int arad1, […])\n"
 "\n"
-"'param' konumundaki denetim noktaları tarafından tanımlanan bir 1B rampa ara "
+"“param” konumundaki denetim noktaları tarafından tanımlanan bir 1B rampa ara "
 "değerler.\n"
 "Denetim noktaları, kon_i, değ_i ve arad_i üçlü parametreleri ile belirtilir. "
 "Aradeğerleme kodları:\n"
-"0 - yok, 1 - doğrusal, 2 - pürüzsüz, 3 - eğri, \n"
-"4 - tek tonlu (salınmayan eğri)"
+"0 — yok, 1 — doğrusal, 2 — pürüzsüz, 3 — eğri,\n"
+"4 — tek tonlu (salınmayan eğri)"
 
 #: KSeExpr/ExprBuiltins.cpp:1660
 msgctxt "builtin|"
@@ -1058,14 +1059,14 @@ msgid ""
 "4 - monotone (non oscillating spline)"
 msgstr ""
 "color curve(float param, float kon0, color değ0, int arad0, float kon1, "
-"color değ1, int arad1,[...])\n"
+"color değ1, int arad1, […])\n"
 "\n"
-"'param' konumundaki denetim noktaları tarafından tanımlanan bir renk rampası "
+"“param” konumundaki denetim noktaları tarafından tanımlanan bir renk rampası "
 "aradeğerler.\n"
 "Denetim noktaları, kon_i, değ_i ve arad_i üçlü parametreleri ile belirtilir. "
 "Aradeğerleme kodları:\n"
-"0 - yok, 1 - doğrusal, 2 - pürüzsüz, 3 - eğri, \n"
-"4 - tek tonlu (salınmayan eğri)"
+"0 — yok, 1 — doğrusal, 2 — pürüzsüz, 3 — eğri,\n"
+"4 — tek tonlu (salınmayan eğri))"
 
 #: KSeExpr/ExprBuiltins.cpp:1732
 msgctxt "builtin|"
@@ -1084,9 +1085,9 @@ msgid ""
 "\".\n"
 "Return parameter is empty, but must be assigned to a variable."
 msgstr ""
-"float printf(string biçim, [vec0, vec1,  ...])\n"
-"STDOUT'a bir dizi yazdırır. İzin verilen biçim parametreleri \"%v\" ve \"%f"
-"\"dir.\n"
+"float printf(string biçim, [vec0, vec1, …])\n"
+"STDOUT’a bir dizi yazdırır. İzin verilen biçim parametreleri “%v” ve "
+"“%f”dir.\n"
 "Dönüş parametresi boştur; ancak bir değişkene atanmış olmalıdır."
 
 #: KSeExpr/ExprBuiltins.cpp:1992
@@ -1096,9 +1097,9 @@ msgid ""
 "Returns a string formatted from the given values.  See 'man sprintf' for "
 "format details."
 msgstr ""
-"sprintf(string biçim, [double|string, double|string, ...])\n"
+"sprintf(string biçim, [double|string, double|string, …])\n"
 "Verilen değerlerden biçimlendirilmiş bir dizi döndürür. Biçim ayrıntıları "
-"için 'man sprintf'ye bakın."
+"için “man sprintf”ye bakın."
 
 #: KSeExprUI/ECMQmLoader-seexpr2_qt.cpp:62
 #: KSeExprUI/ECMQmLoader-seexpr2_qt.cpp:122
@@ -1127,7 +1128,7 @@ msgstr "Kayan noktalı değer[%1] bekleniyordu"
 #, qt-format
 msgctxt "ErrorMessages|"
 msgid "Type mismatch, first: '%1'; second: '%2'"
-msgstr "Tür uyuşmazlığı; önce: '%1', sonra: '%2'"
+msgstr "Tür uyuşmazlığı; önce: “%1”, sonra: “%2”"
 
 #: KSeExprUI/ErrorMessages.cpp:23
 msgctxt "ErrorMessages|"
@@ -1138,17 +1139,17 @@ msgstr "Kayan noktalı değer veya kayan noktalı değer[3] bekleniyordu"
 #, qt-format
 msgctxt "ErrorMessages|"
 msgid "Expected '%1' for argument, got '%2'"
-msgstr "Argüman için '%1' bekleniyordu, '%2' alındı"
+msgstr "Argüman için “%1” bekleniyordu, “%2” alındı"
 
 #: KSeExprUI/ErrorMessages.cpp:27
 msgctxt "ErrorMessages|"
 msgid "Wrong number of arguments, should be 1 to 7"
-msgstr "Yanlış argüman sayısı, 1-7 arasında olmalı"
+msgstr "Yanlış argüman sayısı, 1–7 arasında olmalı"
 
 #: KSeExprUI/ErrorMessages.cpp:29
 msgctxt "ErrorMessages|"
 msgid "Wrong number of arguments, should be multiple of 3 plus 1"
-msgstr "Yanlış argüman sayısı, 3'ün katı artı 1 olmalı"
+msgstr "Yanlış argüman sayısı, 3’ün katı artı 1 olmalı"
 
 #: KSeExprUI/ErrorMessages.cpp:31
 msgctxt "ErrorMessages|"
@@ -1169,19 +1170,19 @@ msgstr "Tam olmayan biçim belirteci"
 #, qt-format
 msgctxt "ErrorMessages|"
 msgid "No variable named '%1'"
-msgstr "'%1' adında bir değişken yok"
+msgstr "“%1” adında bir değişken yok"
 
 #: KSeExprUI/ErrorMessages.cpp:39
 #, qt-format
 msgctxt "ErrorMessages|"
 msgid "Function '%1' has no definition"
-msgstr "'%1' işlevinin bir tanımı yok"
+msgstr "“%1” işlevinin bir tanımı yok"
 
 #: KSeExprUI/ErrorMessages.cpp:41
 #, qt-format
 msgctxt "ErrorMessages|"
 msgid "Assignment operation has incorrect type '%1'"
-msgstr "Atama işlecinde yanlış '%1' türü var"
+msgstr "Atama işlecinde yanlış “%1” türü var"
 
 #: KSeExprUI/ErrorMessages.cpp:43
 msgctxt "ErrorMessages|"
@@ -1192,37 +1193,37 @@ msgstr "Koşulsal türleri uyumlu değil"
 #, qt-format
 msgctxt "ErrorMessages|"
 msgid "Variable '%1' defined in conditionals inconsistently"
-msgstr "'%1' değişkeni, koşulsallarda tutarsızca tanımlanmış"
+msgstr "“%1” değişkeni, koşulsallarda tutarsızca tanımlanmış"
 
 #: KSeExprUI/ErrorMessages.cpp:47
 #, qt-format
 msgctxt "ErrorMessages|"
 msgid "Too few arguments for function '%1'"
-msgstr "'%1' işlevi için pek az argüman"
+msgstr "“%1” işlevi için pek az argüman"
 
 #: KSeExprUI/ErrorMessages.cpp:49
 #, qt-format
 msgctxt "ErrorMessages|"
 msgid "Too many arguments for function '%1'"
-msgstr "'%1' işlevi için pek çok argüman"
+msgstr "“%1” işlevi için pek çok argüman"
 
 #: KSeExprUI/ErrorMessages.cpp:51
 #, qt-format
 msgctxt "ErrorMessages|"
 msgid "Expression generated type '%1', incompatible with desired type '%2'"
-msgstr "İfadenin ürettiği '%1' türü, istenen '%2' türüyle uyumsuz"
+msgstr "İfadenin ürettiği “%1” türü, istenen “%2” türüyle uyumsuz"
 
 #: KSeExprUI/ErrorMessages.cpp:53
 #, qt-format
 msgctxt "ErrorMessages|"
 msgid "Syntax error near '%1'"
-msgstr "'%1' yakınında sözdizim hatası"
+msgstr "“%1” yakınında sözdizim hatası"
 
 #: KSeExprUI/ErrorMessages.cpp:55
 #, qt-format
 msgctxt "ErrorMessages|"
 msgid "Unexpected end of expression near '%1'"
-msgstr "'%1' yakınında beklenmedik ifade sonu"
+msgstr "“%1” yakınında beklenmedik ifade sonu"
 
 #: KSeExprUI/ErrorMessages.cpp:57
 msgctxt "ErrorMessages|"
@@ -1465,12 +1466,12 @@ msgstr "Eğri"
 #: KSeExprUI/ExprColorCurve.cpp:425
 msgctxt "ExprColorCurve|"
 msgid "MSpline"
-msgstr "M-Eğri"
+msgstr "M Eğrisi"
 
 #: KSeExprUI/ExprColorCurve.cpp:445
 msgctxt "ExprColorCurve|"
 msgid "&Expand..."
-msgstr "&Genişlet..."
+msgstr "&Genişlet…"
 
 #: KSeExprUI/ExprColorCurve.cpp:487
 #, qt-format
@@ -1497,7 +1498,7 @@ msgstr "%1"
 #: KSeExprUI/ExprColorSwatch.cpp:123
 msgctxt "ExprColorSwatchWidget|"
 msgid "&Add..."
-msgstr "&Ekle..."
+msgstr "&Ekle…"
 
 #: KSeExprUI/ExprCompletionModel.cpp:121
 msgctxt "ExprCompletionModel|"
@@ -1612,12 +1613,12 @@ msgstr "Eğri"
 #: KSeExprUI/ExprCurve.cpp:326
 msgctxt "ExprCurve|"
 msgid "MSpline"
-msgstr "M-Eğri"
+msgstr "M Eğrisi"
 
 #: KSeExprUI/ExprCurve.cpp:347
 msgctxt "ExprCurve|"
 msgid "&Expand..."
-msgstr "&Genişlet..."
+msgstr "&Genişlet…"
 
 #: KSeExprUI/ExprCurve.cpp:390 KSeExprUI/ExprCurve.cpp:399
 #, qt-format
