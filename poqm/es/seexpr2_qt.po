@@ -1,10 +1,14 @@
-# Sofia Priego <spriego@darksylvania.net>, %Y.
-# Eloy Cuadra <ecuadra@eloihr.net>, 2020, 2021.
-# Sofía Priego <spriego@darksylvania.net>, %Y.
+# Spanish translations for seexpr2_qt.po package.
+# Copyright (C) 2020-2025 This file is copyright:
+# This file is distributed under the same license as the kseexpr package.
+#
+# SPDX-FileCopyrightText: 2020, 2021 Eloy Cuadra <ecuadra@eloihr.net>
+# SPDX-FileCopyrightText: 2021, 2025 Sofía Priego <spriego@darksylvania.net>
 msgid ""
 msgstr ""
 "Project-Id-Version: seexpr2_qt\n"
-"PO-Revision-Date: 2021-12-18 22:15+0100\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"PO-Revision-Date: 2025-05-24 18:34+0100\n"
 "Last-Translator: Sofía Priego <spriego@darksylvania.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
 "Language: es\n"
@@ -638,7 +642,7 @@ msgid ""
 "Like rand, but with no internal seeds. Any number of seeds may be given\n"
 "and the result will be a random function based on all the seeds."
 msgstr ""
-"float hash(float semilla1,[float semilla2, ...])\n"
+"float hash(float semilla1,[float semilla2, …])\n"
 "Como rand, pero sin semillas internas. Se puede indicar cualquier número de\n"
 "semillas y el resultado será una función aleatoria basada en todas las "
 "semillas."
@@ -979,8 +983,7 @@ msgid ""
 "to the supplied weights.&nbsp; Any weights not supplied are assumed to\n"
 "be 1.0."
 msgstr ""
-"int pick(float índice, int limInferior, int limSuperior, [float "
-"pesos, ...] )\n"
+"int pick(float índice, int limInferior, int limSuperior, [float pesos, …] )\n"
 "Escoge valores aleatoriamente entre «limInferior» y «limSuperior» según el "
 "índice proporcionado (cuyo\n"
 "«hash» se obtiene automáticamente).&nbsp; Los valores se distribuirán según\n"
@@ -996,7 +999,7 @@ msgid ""
 "in range [0..1])."
 msgstr ""
 "color swatch(float índice, color elección0, color elección1, color "
-"elección2, [...])\n"
+"elección2, […])\n"
 "Escoge una de las elecciones de color proporcionadas basándose en el "
 "«índice» (que se supone en el intervalo [0..1])."
 
@@ -1007,7 +1010,7 @@ msgid ""
 "Chooses one of the supplied choices based on the index (assumed to be in "
 "range [0, 1])."
 msgstr ""
-"float choose(float índice,float elección1, float elección2, [...])\n"
+"float choose(float índice,float elección1, float elección2, […])\n"
 "Escoge una de las elecciones proporcionadas basándose en el «índice» (que se "
 "supone en el intervalo [0, 1])."
 
@@ -1021,7 +1024,7 @@ msgid ""
 "The values will be distributed according to the supplied weights."
 msgstr ""
 "float wchoose(float índice,float elección1, float peso1, float elección2, "
-"float peso2, [...] )\n"
+"float peso2, […] )\n"
 "Escoge una de las elecciones proporcionadas basándose en el «índice» (que se "
 "supone en el intervalo [0..1]).\n"
 "Los valores se distribuyen según los pesos proporcionados."
@@ -1035,10 +1038,10 @@ msgid ""
 "are\n"
 "distributed evenly from [0..1]"
 msgstr ""
-"float spline(float parámetro,float y1,float y2,float y3,float y4,[...])\n"
+"float spline(float parámetro,float y1,float y2,float y3,float y4,[…])\n"
 "\n"
-"Interpola un conjunto de valores al parámetro especificado, donde y1, ..., "
-"yn se\n"
+"Interpola un conjunto de valores al parámetro especificado, donde y1, …, yn "
+"se\n"
 "distribuyen uniformemente desde [0..1]"
 
 #: KSeExpr/ExprBuiltins.cpp:1550 KSeExpr/ExprBuiltins.cpp:1615
@@ -1065,7 +1068,7 @@ msgid ""
 "4 - monotone (non oscillating spline)"
 msgstr ""
 "float curve(float parámetro,float pos0,float val0,int interp0,float pos1,"
-"float val1,int interp1,[...])\n"
+"float val1,int interp1,[…])\n"
 "\n"
 "Interpola una rampa de 1D definida por los puntos de control en «parámetro». "
 "Los puntos de control se especifican \n"
@@ -1088,7 +1091,7 @@ msgid ""
 "4 - monotone (non oscillating spline)"
 msgstr ""
 "color curve(float parámetro,float pos0,color val0,int interp0,float pos1,"
-"color val1,int interp1,[...])\n"
+"color val1,int interp1,[…])\n"
 "\n"
 "Interpola la rampa de color indicada por los puntos de control de "
 "«parámetro». Los puntos de control se especifican \n"
@@ -1115,7 +1118,7 @@ msgid ""
 "\".\n"
 "Return parameter is empty, but must be assigned to a variable."
 msgstr ""
-"float printf(string formato,[vec0, vec1,  ...])\n"
+"float printf(string formato,[vec0, vec1,  …])\n"
 "Imprime una cadena de texto en STDOUT. Los parámetros de formato permitidos "
 "son «%v» y «%f».\n"
 "El parámetro devuelto está vacío, aunque se puede asignar a una variable."
@@ -1127,7 +1130,7 @@ msgid ""
 "Returns a string formatted from the given values.  See 'man sprintf' for "
 "format details."
 msgstr ""
-"sprintf(string formato, [double|string, double|string, ...])\n"
+"sprintf(string formato, [double|string, double|string, …])\n"
 "Devuelve una cadena de texto formateada con los valores indicados. Consulte "
 "«man sprintf» para los detalles del formato."
 
@@ -1503,7 +1506,7 @@ msgstr "MSpline"
 #: KSeExprUI/ExprColorCurve.cpp:445
 msgctxt "ExprColorCurve|"
 msgid "&Expand..."
-msgstr "&Expandir..."
+msgstr "&Expandir…"
 
 #: KSeExprUI/ExprColorCurve.cpp:487
 #, qt-format
@@ -1530,7 +1533,7 @@ msgstr "%1"
 #: KSeExprUI/ExprColorSwatch.cpp:123
 msgctxt "ExprColorSwatchWidget|"
 msgid "&Add..."
-msgstr "&Añadir..."
+msgstr "&Añadir…"
 
 #: KSeExprUI/ExprCompletionModel.cpp:121
 msgctxt "ExprCompletionModel|"
@@ -1650,7 +1653,7 @@ msgstr "MSpline"
 #: KSeExprUI/ExprCurve.cpp:347
 msgctxt "ExprCurve|"
 msgid "&Expand..."
-msgstr "&Expandir..."
+msgstr "&Expandir…"
 
 #: KSeExprUI/ExprCurve.cpp:390 KSeExprUI/ExprCurve.cpp:399
 #, qt-format
@@ -1695,115 +1698,3 @@ msgstr "<b>%1</b>"
 msgctxt "ExprTextEdit|"
 msgid "<br>%1"
 msgstr "<br>%1"
-
-#~ msgctxt "ExprAddDialog|"
-#~ msgid "Link"
-#~ msgstr "Enlace"
-
-#~ msgctxt "ExprAddDialog|"
-#~ msgid "AnimCurve"
-#~ msgstr "CurvaAnim"
-
-#~ msgctxt "ExprAddDialog|"
-#~ msgid "Deep Water"
-#~ msgstr "Aguas profundas"
-
-#~ msgctxt "ExprDialog|"
-#~ msgid "Preview / Library"
-#~ msgstr "Vista previa / biblioteca"
-
-#~ msgctxt "ExprDialog|"
-#~ msgid "Preview"
-#~ msgstr "Vista previa"
-
-#~ msgctxt "ExprDialog|"
-#~ msgid "Save"
-#~ msgstr "Guardar"
-
-#~ msgctxt "ExprDialog|"
-#~ msgid "Save As"
-#~ msgstr "Guardar como"
-
-#~ msgctxt "ExprDialog|"
-#~ msgid "Save Local"
-#~ msgstr "Guardar localmente"
-
-#~ msgctxt "ExprDialog|"
-#~ msgid "Clear"
-#~ msgstr "Borrar"
-
-#~ msgctxt "ExprDialog|"
-#~ msgid "Apply"
-#~ msgstr "Aplicar"
-
-#~ msgctxt "ExprDialog|"
-#~ msgid "Accept"
-#~ msgstr "Aceptar"
-
-#~ msgctxt "ExprDialog|"
-#~ msgid "Cancel"
-#~ msgstr "Cancelar"
-
-#~ msgctxt "ExprDialog|"
-#~ msgid "Your expression had possible errors."
-#~ msgstr "La expresión puede contener errores."
-
-#~ msgctxt "ExprDialog|"
-#~ msgid "Do you want to accept your expression anyways?"
-#~ msgstr "¿Desea aceptar la expresión no obstante?"
-
-#~ msgctxt "ExprDialog|"
-#~ msgid "Help"
-#~ msgstr "Ayuda"
-
-#~ msgctxt "ExprDialog|"
-#~ msgid "Back"
-#~ msgstr "Atrás"
-
-#~ msgctxt "ExprDialog|"
-#~ msgid "Forward"
-#~ msgstr "Adelante"
-
-#~ msgctxt "ExprDialog|"
-#~ msgid "Find"
-#~ msgstr "Buscar"
-
-#~ msgctxt "ExprDialog|"
-#~ msgid "Find Next"
-#~ msgstr "Encontrar siguiente"
-
-#~ msgctxt "ExprDialog|"
-#~ msgid "Find Prev"
-#~ msgstr "Encontrar anterior"
-
-#~ msgctxt "ExprDialog|"
-#~ msgid "<b>Variables not supported in preview (assumed zero):</b><br>"
-#~ msgstr ""
-#~ "<b>Variables no permitidas en la vista previa (se asume que valen cero):</"
-#~ "b><br>"
-
-#~ msgctxt "ExprDialog|"
-#~ msgid "<b>Functions not supported in preview (assumed zero):</b><br>"
-#~ msgstr ""
-#~ "<b>Funciones no permitidas en la vista previa (se asume que valen cero):</"
-#~ "b><br>"
-
-#~ msgctxt "ExprGrapherWidget|"
-#~ msgid "Width"
-#~ msgstr "Anchura"
-
-#~ msgctxt "ExprGrapherWidget|"
-#~ msgid "%1"
-#~ msgstr "%1"
-
-#~ msgctxt "ExprShortTextEdit|"
-#~ msgid "<b>%1</b>"
-#~ msgstr "<b>%1</b>"
-
-#~ msgctxt "ExprShortTextEdit|"
-#~ msgid "<br>%1"
-#~ msgstr "<br>%1"
-
-#~ msgctxt "ExprCurve|"
-#~ msgid "Selected Position:  "
-#~ msgstr "Posición seleccionada:  "
