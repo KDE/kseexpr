@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"PO-Revision-Date: 2025-02-16 07:43+0200\n"
+"PO-Revision-Date: 2025-06-21 08:43+0300\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
@@ -12,7 +12,7 @@ msgstr ""
 "X-Qt-Contexts: true\n"
 "Plural-Forms: nplurals=4; plural=(n == 1) ? 0 : ((n == 2) ? 1 : ((n > 10 && "
 "n % 10 == 0) ? 2 : 3));\n"
-"X-Generator: Lokalize 24.12.1\n"
+"X-Generator: Lokalize 25.04.1\n"
 
 #: KSeExpr/ExprBuiltins.cpp:27
 msgctxt "builtin|"
@@ -664,6 +664,9 @@ msgid ""
 "location.\n"
 "This is the same as the prman cellnoise function."
 msgstr ""
+"float cellnoise(וקטור v)\n"
+"רעש תא מייצר שדה של קוביות בצבעים קבועים שמבוססים על מקום המספר השלם.\n"
+"זהה לפונקציית רעש תא של prman ‏(RenderMan מבית Pixar)."
 
 #: KSeExpr/ExprBuiltins.cpp:893
 msgctxt "builtin|"
@@ -673,6 +676,9 @@ msgid ""
 "location.\n"
 "This is the same as the prman cellnoise function."
 msgstr ""
+"color cellnoise(וקטור v)\n"
+"רעש תא מייצר שדה של קוביות בצבעים קבועים שמבוססים על מקום המספר השלם.\n"
+"זהה לפונקציית רעש תא של prman ‏(RenderMan מבית Pixar)."
 
 #: KSeExpr/ExprBuiltins.cpp:906
 msgctxt "builtin|"
@@ -710,6 +716,9 @@ msgid ""
 "fbmOctaves=4,float fbmLacunarity=2, float fbmGain=.5)\n"
 "returns center of voronoi cell."
 msgstr ""
+"color pvoronoi(vector v, int type=1,float jitter=0.5, float fbmScale=0, int "
+"fbmOctaves=4,float fbmLacunarity=2, float fbmGain=.5)\n"
+"מחזירה את מרכז תא וורונוי."
 
 #: KSeExpr/ExprBuiltins.cpp:1238
 msgctxt "builtin|"
