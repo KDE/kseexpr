@@ -1,4 +1,6 @@
 # Spanish translations for seexpr2_qt.po package.
+# Copyright (C) 2020-2025 This file is copyright:
+# This file is distributed under the same license as the kseexpr package.
 #
 # SPDX-FileCopyrightText: 2020, 2021 Eloy Cuadra <ecuadra@eloihr.net>
 # SPDX-FileCopyrightText: 2021, 2025 Sofía Priego <spriego@darksylvania.net>
@@ -6,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: seexpr2_qt\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"PO-Revision-Date: 2025-04-20 11:01+0100\n"
+"PO-Revision-Date: 2025-07-07 18:18+0100\n"
 "Last-Translator: Sofía Priego <spriego@darksylvania.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
 "Language: es\n"
