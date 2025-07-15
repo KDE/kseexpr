@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"PO-Revision-Date: 2025-06-21 08:43+0300\n"
+"PO-Revision-Date: 2025-07-14 10:50+0300\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
@@ -12,7 +12,7 @@ msgstr ""
 "X-Qt-Contexts: true\n"
 "Plural-Forms: nplurals=4; plural=(n == 1) ? 0 : ((n == 2) ? 1 : ((n > 10 && "
 "n % 10 == 0) ? 2 : 3));\n"
-"X-Generator: Lokalize 25.04.1\n"
+"X-Generator: Lokalize 25.04.3\n"
 
 #: KSeExpr/ExprBuiltins.cpp:27
 msgctxt "builtin|"
@@ -362,6 +362,8 @@ msgid ""
 "float turbulence(vector v,int octaves=6,float lacunarity=2,float gain=.5)\n"
 "Absolute value of each noise term is taken. This gives billowy appearance"
 msgstr ""
+"float turbulence(vector v,int octaves=6,float lacunarity=2,float gain=.5)\n"
+"נלקח ערך מוחלט לכל רכיב רעש. מעניק מראה נפוח."
 
 #: KSeExpr/ExprBuiltins.cpp:75
 msgctxt "builtin|"
@@ -369,6 +371,8 @@ msgid ""
 "color cturbulence(vector v,int octaves=6,float lacunarity=2,float gain=.5)\n"
 "Absolute value of each noise term is taken. This gives billowy appearance"
 msgstr ""
+"color cturbulence(vector v,int octaves=6,float lacunarity=2,float gain=.5)\n"
+"נלקח ערך מוחלט לכל רכיב רעש. מעניק מראה נפוח."
 
 #: KSeExpr/ExprBuiltins.cpp:78
 msgctxt "builtin|"
@@ -376,6 +380,8 @@ msgid ""
 "vector vturbulence(vector v,int octaves=6,float lacunarity=2,float gain=.5)\n"
 "Absolute value of each noise term is taken. This gives billowy appearance"
 msgstr ""
+"vector vturbulence(vector v,int octaves=6,float lacunarity=2,float gain=.5)\n"
+"נלקח ערך מוחלט לכל רכיב רעש. מעניק מראה נפוח."
 
 #: KSeExpr/ExprBuiltins.cpp:86
 msgctxt "builtin|"
@@ -392,6 +398,8 @@ msgid ""
 "float expand(float x,float lo,float hi)\n"
 "Remaps x in [lo,hi] to [0,1]"
 msgstr ""
+"float expand(float x,float lo,float hi)\n"
+"מיפוי x ב־[lo,hi] ל־[0,1]"
 
 #: KSeExpr/ExprBuiltins.cpp:100
 msgctxt "builtin|"
@@ -399,6 +407,8 @@ msgid ""
 "float fit(float x,float a1,float b1,float a2,float b2)\n"
 "Linearly remaps x in [a1,b1] to [a2,b2]"
 msgstr ""
+"float fit(float x,float a1,float b1,float a2,float b2)\n"
+"מיפוי קווי של x ב־[a1,b1] ל־[a2,b2]"
 
 #: KSeExpr/ExprBuiltins.cpp:106
 msgctxt "builtin|"
