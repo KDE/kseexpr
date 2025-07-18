@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"PO-Revision-Date: 2025-07-14 10:50+0300\n"
+"PO-Revision-Date: 2025-07-16 12:10+0300\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
@@ -848,6 +848,9 @@ msgid ""
 "Chooses one of the supplied color choices based on the index (assumed to be "
 "in range [0..1])."
 msgstr ""
+"color swatch(float index, color choice0, color choice1, color choice2, "
+"[...])\n"
+"בוחרת את אחת מבחירות הצבע שסופקו לפי המפתח (בהנחה שהוא בטווח [0..1])."
 
 #: KSeExpr/ExprBuiltins.cpp:1431
 msgctxt "builtin|"
