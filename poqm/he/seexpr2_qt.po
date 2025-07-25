@@ -1,8 +1,8 @@
-# SPDX-FileCopyrightText: 2024 Yaron Shahrabani <sh.yaron@gmail.com>
+# SPDX-FileCopyrightText: 2024, 2025 Yaron Shahrabani <sh.yaron@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"PO-Revision-Date: 2025-01-25 14:30+0200\n"
+"PO-Revision-Date: 2025-07-24 11:39+0300\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Qt-Contexts: true\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 24.12.0\n"
+"X-Generator: Lokalize 25.04.3\n"
 
 #: KSeExpr/ExprBuiltins.cpp:27
 msgctxt "builtin|"
@@ -361,6 +361,8 @@ msgid ""
 "float turbulence(vector v,int octaves=6,float lacunarity=2,float gain=.5)\n"
 "Absolute value of each noise term is taken. This gives billowy appearance"
 msgstr ""
+"float turbulence(vector v,int octaves=6,float lacunarity=2,float gain=.5)\n"
+"נלקח ערך מוחלט לכל רכיב רעש. מעניק מראה נפוח."
 
 #: KSeExpr/ExprBuiltins.cpp:75
 msgctxt "builtin|"
@@ -368,6 +370,8 @@ msgid ""
 "color cturbulence(vector v,int octaves=6,float lacunarity=2,float gain=.5)\n"
 "Absolute value of each noise term is taken. This gives billowy appearance"
 msgstr ""
+"color cturbulence(vector v,int octaves=6,float lacunarity=2,float gain=.5)\n"
+"נלקח ערך מוחלט לכל רכיב רעש. מעניק מראה נפוח."
 
 #: KSeExpr/ExprBuiltins.cpp:78
 msgctxt "builtin|"
@@ -375,6 +379,8 @@ msgid ""
 "vector vturbulence(vector v,int octaves=6,float lacunarity=2,float gain=.5)\n"
 "Absolute value of each noise term is taken. This gives billowy appearance"
 msgstr ""
+"vector vturbulence(vector v,int octaves=6,float lacunarity=2,float gain=.5)\n"
+"נלקח ערך מוחלט לכל רכיב רעש. מעניק מראה נפוח."
 
 #: KSeExpr/ExprBuiltins.cpp:86
 msgctxt "builtin|"
@@ -391,6 +397,8 @@ msgid ""
 "float expand(float x,float lo,float hi)\n"
 "Remaps x in [lo,hi] to [0,1]"
 msgstr ""
+"float expand(float x,float lo,float hi)\n"
+"מיפוי x ב־[lo,hi] ל־[0,1]"
 
 #: KSeExpr/ExprBuiltins.cpp:100
 msgctxt "builtin|"
@@ -398,6 +406,8 @@ msgid ""
 "float fit(float x,float a1,float b1,float a2,float b2)\n"
 "Linearly remaps x in [a1,b1] to [a2,b2]"
 msgstr ""
+"float fit(float x,float a1,float b1,float a2,float b2)\n"
+"מיפוי קווי של x ב־[a1,b1] ל־[a2,b2]"
 
 #: KSeExpr/ExprBuiltins.cpp:106
 msgctxt "builtin|"
@@ -405,6 +415,8 @@ msgid ""
 "float gamma(float x, float g)\n"
 "Gamma correction of x with gamma factor g"
 msgstr ""
+"float gamma(שבר עשרוני x, שבר עשרוני g)\n"
+"תיקון גאמה של x עם מקדם גאמה g"
 
 #: KSeExpr/ExprBuiltins.cpp:113
 msgctxt "builtin|"
@@ -429,6 +441,8 @@ msgid ""
 "float boxstep(float x,float a)\n"
 " if x < a then 0 otherwise 1"
 msgstr ""
+"float boxstep(float x,float a)\n"
+" אם x < a אז 0 אחרת 1"
 
 #: KSeExpr/ExprBuiltins.cpp:143
 msgctxt "builtin|"
@@ -474,6 +488,8 @@ msgid ""
 "mix(float a,float b,float alpha)\n"
 "Blend of a and b according to alpha."
 msgstr ""
+"mix(שבר עשרוני a,שבר עשרוני b,שבר עשרוני alpha)\n"
+"ערבוב של a ו־b לפי alpha."
 
 #: KSeExpr/ExprBuiltins.cpp:260
 msgctxt "builtin|"
@@ -659,6 +675,9 @@ msgid ""
 "location.\n"
 "This is the same as the prman cellnoise function."
 msgstr ""
+"float cellnoise(וקטור v)\n"
+"רעש תא מייצר שדה של קוביות בצבעים קבועים שמבוססים על מקום המספר השלם.\n"
+"זהה לפונקציית רעש תא של prman ‏(RenderMan מבית Pixar)."
 
 #: KSeExpr/ExprBuiltins.cpp:893
 msgctxt "builtin|"
@@ -668,6 +687,9 @@ msgid ""
 "location.\n"
 "This is the same as the prman cellnoise function."
 msgstr ""
+"color cellnoise(וקטור v)\n"
+"רעש תא מייצר שדה של קוביות בצבעים קבועים שמבוססים על מקום המספר השלם.\n"
+"זהה לפונקציית רעש תא של prman ‏(RenderMan מבית Pixar)."
 
 #: KSeExpr/ExprBuiltins.cpp:906
 msgctxt "builtin|"
@@ -685,6 +707,10 @@ msgid ""
 "fbmOctaves=4,float fbmLacunarity=2, float fbmGain=.5)\n"
 "voronoi is a cellular noise pattern. It is a jittered variant of cellnoise."
 msgstr ""
+"float voronoi(וקטור v, מספר שלם type=1,שבר עשרוני jitter=0.5, שבר עשרוני "
+"fbmScale=0, מספר שלם fbmOctaves=4,שבר עשרוני fbmLacunarity=2, שבר עשרוני "
+"fbmGain=.5)\n"
+"וורונוי היא תבנית רעש תאית. זה הגוון מפוזר של רעש תאי (cellnoise)."
 
 #: KSeExpr/ExprBuiltins.cpp:1126
 msgctxt "builtin|"
@@ -701,6 +727,9 @@ msgid ""
 "fbmOctaves=4,float fbmLacunarity=2, float fbmGain=.5)\n"
 "returns center of voronoi cell."
 msgstr ""
+"color pvoronoi(vector v, int type=1,float jitter=0.5, float fbmScale=0, int "
+"fbmOctaves=4,float fbmLacunarity=2, float fbmGain=.5)\n"
+"מחזירה את מרכז תא וורונוי."
 
 #: KSeExpr/ExprBuiltins.cpp:1238
 msgctxt "builtin|"
@@ -735,6 +764,8 @@ msgid ""
 "float dot(vector a,vector b)\n"
 "vector dot product"
 msgstr ""
+"float dot(וקטור a,וקטור b)\n"
+"מכפלה סקלרית של וקטורים"
 
 #: KSeExpr/ExprBuiltins.cpp:1274
 msgctxt "builtin|"
@@ -742,6 +773,8 @@ msgid ""
 "vector norm(vector v)\n"
 "vector scaled to unit length"
 msgstr ""
+"vector norm(וקטור v)\n"
+"שינוי קנה מידה של וקטור לאורך של יחידה"
 
 #: KSeExpr/ExprBuiltins.cpp:1282
 msgctxt "builtin|"
@@ -749,6 +782,8 @@ msgid ""
 "vector cross(vector a,vector b)\n"
 "vector cross product"
 msgstr ""
+"vector cross(וקטור a,וקטור b)\n"
+"מכפלה וקטורית"
 
 #: KSeExpr/ExprBuiltins.cpp:1293
 msgctxt "builtin|"
@@ -774,6 +809,8 @@ msgid ""
 "vector rotate(vector v,vector axis,float angle)\n"
 "rotates v around axis by given angle (in radians)"
 msgstr ""
+"vector rotate(וקטור v,חקטור axis,שבר עשרוני angle)\n"
+"סיבוב של v סביב ציר בזווית מסוימת (ברדיאנים)"
 
 #: KSeExpr/ExprBuiltins.cpp:1327
 msgctxt "builtin|"
@@ -781,6 +818,8 @@ msgid ""
 "vector up(vector P,vector upvec)\n"
 "rotates v such that the Y axis points in the given up direction"
 msgstr ""
+"vector up(וקטור P,וקטור upvec)\n"
+"הטייה של v כך שהנקודות בציר Y פונות לכיוון שצוין בתור למעלה"
 
 #: KSeExpr/ExprBuiltins.cpp:1343
 msgctxt "builtin|"
@@ -810,6 +849,9 @@ msgid ""
 "Chooses one of the supplied color choices based on the index (assumed to be "
 "in range [0..1])."
 msgstr ""
+"color swatch(float index, color choice0, color choice1, color choice2, "
+"[...])\n"
+"בוחרת את אחת מבחירות הצבע שסופקו לפי המפתח (בהנחה שהוא בטווח [0..1])."
 
 #: KSeExpr/ExprBuiltins.cpp:1431
 msgctxt "builtin|"
@@ -818,6 +860,9 @@ msgid ""
 "Chooses one of the supplied choices based on the index (assumed to be in "
 "range [0, 1])."
 msgstr ""
+"float choose(שבר עשרוני index,שבר עשרוני choice1, שבר עשרוני choice2, "
+"[...])\n"
+"בוחר את אחת הבחירות שסופקו ב־index (בהנחה שהערך הוא בטווח [0, 1])."
 
 #: KSeExpr/ExprBuiltins.cpp:1487
 msgctxt "builtin|"
@@ -842,12 +887,12 @@ msgstr ""
 #: KSeExpr/ExprBuiltins.cpp:1550 KSeExpr/ExprBuiltins.cpp:1615
 msgctxt "builtin|"
 msgid "Unable to validate the interpolant type"
-msgstr ""
+msgstr "לא ניתן לתקף את סוג האינטרפולנט"
 
 #: KSeExpr/ExprBuiltins.cpp:1554 KSeExpr/ExprBuiltins.cpp:1618
 msgctxt "builtin|"
 msgid "Invalid interpolant type"
-msgstr ""
+msgstr "סוג אינטרפולנט שגוי"
 
 #: KSeExpr/ExprBuiltins.cpp:1588
 msgctxt "builtin|"
@@ -883,6 +928,8 @@ msgid ""
 "getVar(string varName,vector defaultValue)\n"
 "return value of varName if variable exists, otherwise return defaultValue"
 msgstr ""
+"getVar(מחרוזת varName,וקטור defaultValue)\n"
+"החזרת הערך של varName אם המשתנה קיים, אחרת להחזיר defaultValue"
 
 #: KSeExpr/ExprBuiltins.cpp:1879
 msgctxt "builtin|"
@@ -892,6 +939,9 @@ msgid ""
 "\".\n"
 "Return parameter is empty, but must be assigned to a variable."
 msgstr ""
+"float printf(תבנית מחרוזת,[vec0, vec1,  ...])\n"
+"הצגת מחרוזת בפלט התקני (STDOUT), פרמטרי העיצוב המורשים הם „%v” ו־„%f”.\n"
+"פרמטר החזרה ריק, אבל יש להקצות אותו למשתנה."
 
 #: KSeExpr/ExprBuiltins.cpp:1992
 msgctxt "builtin|"
@@ -982,7 +1032,7 @@ msgstr "לפונקציה ‚%1’ אין הגדרה"
 #, qt-format
 msgctxt "ErrorMessages|"
 msgid "Assignment operation has incorrect type '%1'"
-msgstr ""
+msgstr "לפעולת ההקצאה יש סוג שגוי ‚%1’"
 
 #: KSeExprUI/ErrorMessages.cpp:43
 msgctxt "ErrorMessages|"
@@ -1061,7 +1111,7 @@ msgstr "איתור"
 #: KSeExprUI/ExprAddDialog.cpp:134
 msgctxt "ExprAddDialog|"
 msgid "$u"
-msgstr ""
+msgstr "$u"
 
 #: KSeExprUI/ExprAddDialog.cpp:43
 msgctxt "ExprAddDialog|"
@@ -1147,7 +1197,7 @@ msgstr "צבעים"
 #: KSeExprUI/ExprAddDialog.cpp:144
 msgctxt "ExprAddDialog|"
 msgid "Swatch"
-msgstr ""
+msgstr "מקבץ צבעים"
 
 #: KSeExprUI/ExprAddDialog.cpp:152
 msgctxt "ExprAddDialog|"
@@ -1261,12 +1311,12 @@ msgstr "חלק"
 #: KSeExprUI/ExprColorCurve.cpp:424
 msgctxt "ExprColorCurve|"
 msgid "Spline"
-msgstr ""
+msgstr "ספליין/Spline"
 
 #: KSeExprUI/ExprColorCurve.cpp:425
 msgctxt "ExprColorCurve|"
 msgid "MSpline"
-msgstr ""
+msgstr "ספליין מונוטוני/MSpline"
 
 #: KSeExprUI/ExprColorCurve.cpp:445
 msgctxt "ExprColorCurve|"
@@ -1282,7 +1332,7 @@ msgstr "%1"
 #: KSeExprUI/ExprColorSwatch.cpp:77
 msgctxt "ExprColorFrame|"
 msgid "Delete Swatch"
-msgstr ""
+msgstr "מחיקת מקבץ צבעים"
 
 #: KSeExprUI/ExprColorSwatch.cpp:78
 msgctxt "ExprColorFrame|"
@@ -1408,12 +1458,12 @@ msgstr "חלק"
 #: KSeExprUI/ExprCurve.cpp:325
 msgctxt "ExprCurve|"
 msgid "Spline"
-msgstr ""
+msgstr "ספליין/Spline"
 
 #: KSeExprUI/ExprCurve.cpp:326
 msgctxt "ExprCurve|"
 msgid "MSpline"
-msgstr ""
+msgstr "ספליין מונוטוני/MSpline"
 
 #: KSeExprUI/ExprCurve.cpp:347
 msgctxt "ExprCurve|"
