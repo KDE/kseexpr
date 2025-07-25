@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"PO-Revision-Date: 2025-07-16 12:10+0300\n"
+"PO-Revision-Date: 2025-07-24 10:22+0300\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
@@ -442,6 +442,8 @@ msgid ""
 "float boxstep(float x,float a)\n"
 " if x < a then 0 otherwise 1"
 msgstr ""
+"float boxstep(float x,float a)\n"
+" אם x < a אז 0 אחרת 1"
 
 #: KSeExpr/ExprBuiltins.cpp:143
 msgctxt "builtin|"
