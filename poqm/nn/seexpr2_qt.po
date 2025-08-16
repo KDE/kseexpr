@@ -346,8 +346,8 @@ msgstr ""
 msgctxt "builtin|"
 msgid ""
 "float contrast(float x, float c)\n"
-"Adjust the contrast.&nbsp; For c from 0 to 0.5, the contrast is decreased."
-"&nbsp; For c &gt; 0.5, the contrast is increased."
+"Adjust the contrast.&nbsp; For c from 0 to 0.5, the contrast is "
+"decreased.&nbsp; For c &gt; 0.5, the contrast is increased."
 msgstr ""
 
 #: KSeExpr/ExprBuiltins.cpp:132
