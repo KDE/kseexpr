@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"PO-Revision-Date: 2025-07-24 10:22+0300\n"
+"PO-Revision-Date: 2025-08-27 09:39+0300\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
@@ -12,7 +12,7 @@ msgstr ""
 "X-Qt-Contexts: true\n"
 "Plural-Forms: nplurals=4; plural=(n == 1) ? 0 : ((n == 2) ? 1 : ((n > 10 && "
 "n % 10 == 0) ? 2 : 3));\n"
-"X-Generator: Lokalize 25.04.3\n"
+"X-Generator: Lokalize 25.08.0\n"
 
 #: KSeExpr/ExprBuiltins.cpp:27
 msgctxt "builtin|"
@@ -634,7 +634,7 @@ msgstr ""
 #: KSeExpr/ExprBuiltins.cpp:787
 msgctxt "builtin|"
 msgid "vector vfbm(vector vint octaves=6,float lacunarity=2,float gain=.5)"
-msgstr ""
+msgstr "vector vfbm(vector vint octaves=6,float lacunarity=2,float gain=.5)"
 
 #: KSeExpr/ExprBuiltins.cpp:820
 msgctxt "builtin|"
@@ -655,11 +655,13 @@ msgid ""
 "vector vfbm4(vector v,float time,int octaves=6,float lacunarity=2,float "
 "gain=.5)"
 msgstr ""
+"vector vfbm4(vector v,float time,int octaves=6,float lacunarity=2,float "
+"gain=.5)"
 
 #: KSeExpr/ExprBuiltins.cpp:866
 msgctxt "builtin|"
 msgid "color cfbm(vector vint octaves=6,float lacunarity=2,float gain=.5)"
-msgstr ""
+msgstr "color cfbm(vector vint octaves=6,float lacunarity=2,float gain=.5)"
 
 #: KSeExpr/ExprBuiltins.cpp:872
 msgctxt "builtin|"
@@ -667,6 +669,8 @@ msgid ""
 "color cfbm4(vector v,float time,int octaves=6,float lacunarity=2,float "
 "gain=.5)"
 msgstr ""
+"color cfbm4(vector v,float time,int octaves=6,float lacunarity=2,float "
+"gain=.5)"
 
 #: KSeExpr/ExprBuiltins.cpp:881
 msgctxt "builtin|"
@@ -951,6 +955,9 @@ msgid ""
 "Returns a string formatted from the given values.  See 'man sprintf' for "
 "format details."
 msgstr ""
+"sprintf(string format, [double|string, double|string, ...])\n"
+"החזרת מחרוזת מעוצבת מערכים שסופקו.  יש לעיין ב־‚man sprintf’ לפרטים על "
+"העיצוב."
 
 #: KSeExprUI/ECMQmLoader-seexpr2_qt.cpp:62
 #: KSeExprUI/ECMQmLoader-seexpr2_qt.cpp:122
