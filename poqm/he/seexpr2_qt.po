@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"PO-Revision-Date: 2025-08-27 09:39+0300\n"
+"PO-Revision-Date: 2025-09-24 08:04+0300\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
@@ -435,6 +435,9 @@ msgid ""
 "Adjust the contrast.&nbsp; For c from 0 to 0.5, the contrast is decreased."
 "&nbsp; For c &gt; 0.5, the contrast is increased."
 msgstr ""
+"float contrast(float x, float c)\n"
+"כיוון הניגודיות.&nbsp; עבור c מ־0 עד 0.5, הניגודיות מופחתת.&nbsp; עבור c "
+"&gt; 0.5, הניגודיות מוגברת."
 
 #: KSeExpr/ExprBuiltins.cpp:132
 msgctxt "builtin|"
@@ -452,6 +455,9 @@ msgid ""
 " if x &lt; a then 0, if x &gt; b then 1, and\n"
 "x transitions linearly when a &lt; x &lt; b"
 msgstr ""
+"float linearstep(float x, float a, float b)\n"
+" אם x &lt; a אז 0, אם x &gt; b אז 1,\n"
+"ו־x מתחלף באופן קווי כאשר a &lt; x &lt; b"
 
 #: KSeExpr/ExprBuiltins.cpp:165
 msgctxt "builtin|"
@@ -460,6 +466,9 @@ msgid ""
 " if x &lt; a then 0, if x &gt; b then 1, and\n"
 "x transitions smoothly (cubic) when a &lt; x &lt; b"
 msgstr ""
+"float smoothstep(float x,float a,float b)\n"
+" אם x &lt; a אז 0, אם x &gt; b אז 1,\n"
+"ו־x מתחלף באופן חלק (קובייתי) a &lt; x &lt; b"
 
 #: KSeExpr/ExprBuiltins.cpp:187
 msgctxt "builtin|"
@@ -468,6 +477,9 @@ msgid ""
 " if x &lt; a then 0, if x &gt; b then 1, and\n"
 "x transitions smoothly (exponentially) when a &lt; x &lt; b"
 msgstr ""
+"float gasussstep(float x,float a,float b)\n"
+" אם x &lt; a אז 0, אם x &gt; b אז 1,\n"
+"ו־x מתחלף באופן חלק (מעריכית) כאשר a &lt; x &lt; b"
 
 #: KSeExpr/ExprBuiltins.cpp:218
 msgctxt "builtin|"
