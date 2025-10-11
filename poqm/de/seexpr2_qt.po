@@ -1,4 +1,4 @@
-# Burkhard Lück <lueck@hube-lueck.de>, 2020, 2021.
+# SPDX-FileCopyrightText: 2020, 2021 Burkhard Lück <lueck@hube-lueck.de>
 msgid ""
 msgstr ""
 "Project-Id-Version: seexpr2_qt\n"
