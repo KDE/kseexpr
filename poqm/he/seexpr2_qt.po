@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"PO-Revision-Date: 2025-07-24 11:39+0300\n"
+"PO-Revision-Date: 2025-10-31 09:44+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Qt-Contexts: true\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 25.04.3\n"
+"X-Generator: Lokalize 25.08.2\n"
 
 #: KSeExpr/ExprBuiltins.cpp:27
 msgctxt "builtin|"
@@ -434,6 +434,9 @@ msgid ""
 "Adjust the contrast.&nbsp; For c from 0 to 0.5, the contrast is decreased."
 "&nbsp; For c &gt; 0.5, the contrast is increased."
 msgstr ""
+"float contrast(float x, float c)\n"
+"כיוון הניגודיות.&nbsp; עבור c מ־0 עד 0.5, הניגודיות מופחתת.&nbsp; עבור c "
+"&gt; 0.5, הניגודיות מוגברת."
 
 #: KSeExpr/ExprBuiltins.cpp:132
 msgctxt "builtin|"
@@ -451,6 +454,9 @@ msgid ""
 " if x &lt; a then 0, if x &gt; b then 1, and\n"
 "x transitions linearly when a &lt; x &lt; b"
 msgstr ""
+"float linearstep(float x, float a, float b)\n"
+" אם x &lt; a אז 0, אם x &gt; b אז 1,\n"
+"ו־x מתחלף באופן קווי כאשר a &lt; x &lt; b"
 
 #: KSeExpr/ExprBuiltins.cpp:165
 msgctxt "builtin|"
@@ -459,6 +465,9 @@ msgid ""
 " if x &lt; a then 0, if x &gt; b then 1, and\n"
 "x transitions smoothly (cubic) when a &lt; x &lt; b"
 msgstr ""
+"float smoothstep(float x,float a,float b)\n"
+" אם x &lt; a אז 0, אם x &gt; b אז 1,\n"
+"ו־x מתחלף באופן חלק (קובייתי) a &lt; x &lt; b"
 
 #: KSeExpr/ExprBuiltins.cpp:187
 msgctxt "builtin|"
@@ -467,6 +476,9 @@ msgid ""
 " if x &lt; a then 0, if x &gt; b then 1, and\n"
 "x transitions smoothly (exponentially) when a &lt; x &lt; b"
 msgstr ""
+"float gasussstep(float x,float a,float b)\n"
+" אם x &lt; a אז 0, אם x &gt; b אז 1,\n"
+"ו־x מתחלף באופן חלק (מעריכית) כאשר a &lt; x &lt; b"
 
 #: KSeExpr/ExprBuiltins.cpp:218
 msgctxt "builtin|"
@@ -524,6 +536,13 @@ msgid ""
 "hsl value (except for negative s values), the conversion is\n"
 "well-defined and reversible."
 msgstr ""
+"color rgbtohsl(color rgb)\n"
+"המרה ממרחב צבע RGB ל־HSL.\n"
+"HSL זה גוון, רוויה ובהירות (כולם בטווח של [0..1] )\n"
+"הפונקציות האלו הורחבו כדי לתמוך בערכי rgb ו־hsl\n"
+"מחוץ לטווח של [0..1] בצורה הגיונית.&nbsp; לכל ערך rgb או\n"
+"hsl (למעט ערכי s שליליים), ההמרה מוגדרת היטב\n"
+"והפיכה."
 
 #: KSeExpr/ExprBuiltins.cpp:413
 msgctxt "builtin|"
@@ -536,6 +555,13 @@ msgid ""
 "hsl value (except for negative s values), the conversion is\n"
 "well-defined and reversible."
 msgstr ""
+"color hsltorgb(color hsl)\n"
+"המרה ממרחב צבע HSL ל־RGB.\n"
+"HSL זה גוון, רוויה ובהירות (כולם בטווח של [0..1] )\n"
+"הפונקציות האלו הורחבו כדי לתמוך בערכי rgb ו־hsl\n"
+"מחוץ לטווח של [0..1] בצורה הגיונית.&nbsp; לכל ערך rgb או\n"
+"hsl (למעט ערכי s שליליים), ההמרה מוגדרת היטב\n"
+"והפיכה."
 
 #: KSeExpr/ExprBuiltins.cpp:441
 msgctxt "builtin|"
@@ -545,6 +571,10 @@ msgid ""
 "The color is scaled around the rec709 luminance value,\n"
 "and negative results are clamped at zero.\n"
 msgstr ""
+"color saturate(color val, float amt)\n"
+"שינוי קנה המידה של רוויית צבע ב־amt.\n"
+"הצבע משתנה סביב ערך הארה של rec709,\n"
+"ותוצאות שליליות נקטעות באפס.\n"
 
 #: KSeExpr/ExprBuiltins.cpp:499
 msgctxt "builtin|"
@@ -562,6 +592,9 @@ msgid ""
 "Like rand, but with no internal seeds. Any number of seeds may be given\n"
 "and the result will be a random function based on all the seeds."
 msgstr ""
+"float hash(float seed1,[float seed2, ...])\n"
+"כמו rand, אבל בלי זרעים פנימיים. אפשר לציין כל מספר של זרעים\n"
+"והתוצאה תהיה פונקציה אקראית שמבוססת על כל הזרעים."
 
 #: KSeExpr/ExprBuiltins.cpp:596
 msgctxt "builtin|"
@@ -633,7 +666,7 @@ msgstr ""
 #: KSeExpr/ExprBuiltins.cpp:787
 msgctxt "builtin|"
 msgid "vector vfbm(vector vint octaves=6,float lacunarity=2,float gain=.5)"
-msgstr ""
+msgstr "vector vfbm(vector vint octaves=6,float lacunarity=2,float gain=.5)"
 
 #: KSeExpr/ExprBuiltins.cpp:820
 msgctxt "builtin|"
@@ -654,11 +687,13 @@ msgid ""
 "vector vfbm4(vector v,float time,int octaves=6,float lacunarity=2,float "
 "gain=.5)"
 msgstr ""
+"vector vfbm4(vector v,float time,int octaves=6,float lacunarity=2,float "
+"gain=.5)"
 
 #: KSeExpr/ExprBuiltins.cpp:866
 msgctxt "builtin|"
 msgid "color cfbm(vector vint octaves=6,float lacunarity=2,float gain=.5)"
-msgstr ""
+msgstr "color cfbm(vector vint octaves=6,float lacunarity=2,float gain=.5)"
 
 #: KSeExpr/ExprBuiltins.cpp:872
 msgctxt "builtin|"
@@ -666,6 +701,8 @@ msgid ""
 "color cfbm4(vector v,float time,int octaves=6,float lacunarity=2,float "
 "gain=.5)"
 msgstr ""
+"color cfbm4(vector v,float time,int octaves=6,float lacunarity=2,float "
+"gain=.5)"
 
 #: KSeExpr/ExprBuiltins.cpp:881
 msgctxt "builtin|"
@@ -950,6 +987,9 @@ msgid ""
 "Returns a string formatted from the given values.  See 'man sprintf' for "
 "format details."
 msgstr ""
+"sprintf(string format, [double|string, double|string, ...])\n"
+"החזרת מחרוזת מעוצבת מערכים שסופקו.  יש לעיין ב־‚man sprintf’ לפרטים על "
+"העיצוב."
 
 #: KSeExprUI/ECMQmLoader-seexpr2_qt.cpp:62
 #: KSeExprUI/ECMQmLoader-seexpr2_qt.cpp:122
