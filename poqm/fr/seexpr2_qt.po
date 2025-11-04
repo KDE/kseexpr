@@ -1112,7 +1112,7 @@ msgid ""
 "Return parameter is empty, but must be assigned to a variable."
 msgstr ""
 "float printf (string format, [vec0, vec1,...])\n"
-"Imprime une chaîne sur « stdout ». Les paramètres de formatage sont « %v » "
+"Imprime une chaine sur « stdout ». Les paramètres de formatage sont « %v » "
 "et « %f ».\n"
 "Le paramètre retourné est vide mais doit être stocké dans une variable."
 
@@ -1124,7 +1124,7 @@ msgid ""
 "format details."
 msgstr ""
 "sprintf (string format, [double|string, double|string,...])\n"
-"Retourne une chaîne formatée à partir des valeurs fournies. Veuillez  "
+"Retourne une chaine formatée à partir des valeurs fournies. Veuillez  "
 "consulter « man sprintf » pour des informations détaillées sur le format."
 
 #: KSeExprUI/ECMQmLoader-seexpr2_qt.cpp:62
@@ -1137,7 +1137,7 @@ msgstr "Ajouter une nouvelle variable"
 #: KSeExprUI/ErrorMessages.cpp:15
 msgctxt "ErrorMessages|"
 msgid "Expected string or float[d]"
-msgstr "Flottant ou chaîne attendus [d]"
+msgstr "Flottant ou chaine attendus [d]"
 
 #: KSeExprUI/ErrorMessages.cpp:17
 msgctxt "ErrorMessages|"
@@ -1185,7 +1185,7 @@ msgstr "Nombre incorrect d'arguments. Devrait être 1 ou plus."
 #: KSeExprUI/ErrorMessages.cpp:33
 msgctxt "ErrorMessages|"
 msgid "First argument must be a string"
-msgstr "Le premier argument doit être une chaîne"
+msgstr "Le premier argument doit être une chaine"
 
 #: KSeExprUI/ErrorMessages.cpp:35
 msgctxt "ErrorMessages|"
@@ -1256,7 +1256,7 @@ msgstr "Fin inattendue d'expression à proximité de « %1 »"
 #: KSeExprUI/ErrorMessages.cpp:57
 msgctxt "ErrorMessages|"
 msgid "Unexpected end of format string"
-msgstr "Fin inattendue de la chaîne de formatage"
+msgstr "Fin inattendue de la chaine de formatage"
 
 #: KSeExprUI/ErrorMessages.cpp:59
 msgctxt "ErrorMessages|"
@@ -1267,7 +1267,7 @@ msgstr ""
 #: KSeExprUI/ErrorMessages.cpp:61
 msgctxt "ErrorMessages|"
 msgid "Wrong number of arguments for format string"
-msgstr "Nombre incorrect d'arguments pour la chaîne de formatage."
+msgstr "Nombre incorrect d'arguments pour la chaine de formatage."
 
 #: KSeExprUI/ErrorMessages.cpp:64
 #, qt-format
@@ -1381,7 +1381,7 @@ msgstr "Nuancier"
 #: KSeExprUI/ExprAddDialog.cpp:152
 msgctxt "ExprAddDialog|"
 msgid "string"
-msgstr "chaîne"
+msgstr "chaine"
 
 #: KSeExprUI/ExprAddDialog.cpp:153
 msgctxt "ExprAddDialog|"
@@ -1396,12 +1396,12 @@ msgstr "dossier"
 #: KSeExprUI/ExprAddDialog.cpp:158
 msgctxt "ExprAddDialog|"
 msgid "String Name"
-msgstr "Nom de la chaîne"
+msgstr "Nom de la chaine"
 
 #: KSeExprUI/ExprAddDialog.cpp:160
 msgctxt "ExprAddDialog|"
 msgid "String Type"
-msgstr "Type de chaîne"
+msgstr "Type de chaine"
 
 #: KSeExprUI/ExprAddDialog.cpp:162
 msgctxt "ExprAddDialog|"
