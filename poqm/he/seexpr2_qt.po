@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"PO-Revision-Date: 2025-10-31 09:44+0200\n"
+"PO-Revision-Date: 2025-11-17 12:03+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Qt-Contexts: true\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 25.08.2\n"
+"X-Generator: Lokalize 25.08.3\n"
 
 #: KSeExpr/ExprBuiltins.cpp:27
 msgctxt "builtin|"
@@ -756,6 +756,10 @@ msgid ""
 "fbmOctaves=4,float fbmLacunarity=2, float fbmGain=.5)\n"
 "returns color in cellular pattern. It is a jittered variant of cellnoise."
 msgstr ""
+"color cvoronoi(וקטור v, מספר שלם type=1,שבר עשרוני jitter=0.5, שבר עשרוני "
+"fbmScale=0, מספר שלם fbmOctaves=4,שבר עשרוני fbmLacunarity=2, שבר עשרוני "
+"fbmGain=.5)\n"
+"מחזירה צבע בתבנית תאית. זה הגוון מפוזר של רעש תאי (cellnoise)."
 
 #: KSeExpr/ExprBuiltins.cpp:1175
 msgctxt "builtin|"
