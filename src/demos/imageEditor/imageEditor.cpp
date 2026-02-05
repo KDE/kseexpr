@@ -11,6 +11,7 @@
 #include <string>
 
 #include <QApplication>
+#include <QCoreApplication>
 #include <QDialog>
 #include <QDir>
 #include <QImage>
@@ -18,6 +19,7 @@
 #include <QMessageBox>
 #include <QPushButton>
 #include <QScrollArea>
+#include <QStringList>
 #include <QVBoxLayout>
 
 #include <KSeExpr/Expression.h>
@@ -178,11 +180,48 @@ ImageEditorDialog::ImageEditorDialog(QWidget *parent)
 
     // Add user expressions, example expressions to browser list.
     browser->addUserExpressionPath("imageEditor");
+
+    // Try multiple candidate paths for example expressions
+    QString appDir = QCoreApplication::applicationDirPath();
+    QStringList candidatePaths;
+
+    // Standard installation layout (bin/../share/KSeExpr/expressions)
+    candidatePaths << QDir(appDir).filePath("../share/KSeExpr/expressions");
+    
+    // Simple layout (bin/expressions)
+    candidatePaths << QDir(appDir).filePath("expressions");
+    
+    // Alternative layout (bin/../expressions)
+    candidatePaths << QDir(appDir).filePath("../expressions");
+
 #ifdef IMAGE_EDITOR_ROOT
-    browser->addPath("Examples", QDir::toNativeSeparators(QString("%1/share/KSeExpr/expressions").arg(IMAGE_EDITOR_ROOT)).toStdString());
+    // Build-time configured path (for development/installed builds)
+    candidatePaths << QString("%1/share/KSeExpr/expressions").arg(IMAGE_EDITOR_ROOT);
 #else
-    browser->addPath("Examples", "./src/demos/imageEditor");
+    // Source tree path (for development)
+    candidatePaths << "./src/demos/imageEditor";
 #endif
+
+    // Try each candidate path and use the first one that exists
+    bool pathFound = false;
+    for (const QString &path : candidatePaths) {
+        QString nativePath = QDir::toNativeSeparators(QDir::cleanPath(path));
+        if (QDir(nativePath).exists()) {
+            std::cerr << "Found example expressions at: " << nativePath.toStdString() << std::endl;
+            browser->addPath("Examples", nativePath.toStdString());
+            pathFound = true;
+            break;
+        }
+    }
+
+    if (!pathFound) {
+        std::cerr << "Warning: Could not find example expressions directory." << std::endl;
+        std::cerr << "Searched paths:" << std::endl;
+        for (const QString &path : candidatePaths) {
+            std::cerr << "  - " << QDir::toNativeSeparators(QDir::cleanPath(path)).toStdString() << std::endl;
+        }
+    }
+
     browser->update();
 
     // Create apply button and connect to image preview.

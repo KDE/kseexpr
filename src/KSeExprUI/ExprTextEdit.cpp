@@ -95,9 +95,9 @@ void ExprTextEdit::paintEvent(QPaintEvent *event)
 void ExprTextEdit::wheelEvent(QWheelEvent *event)
 {
     if (event->modifiers() == Qt::ControlModifier) {
-        if (event->pixelDelta().y() > 0)
+        if (event->angleDelta().y() > 0)
             zoomIn();
-        else if (event->pixelDelta().y() < 0)
+        else if (event->angleDelta().y() < 0)
             zoomOut();
     }
     return QTextEdit::wheelEvent(event);
@@ -149,11 +149,12 @@ void ExprTextEdit::keyPressEvent(QKeyEvent *e)
     QString line = tc.selectedText();
 
     // matches the last prefix of a completable variable or function and extract as completionPrefix
-    static QRegularExpression completion(QString::fromLatin1("^(?:.*[^A-Za-z0-9_$])?((?:\\$[A-Za-z0-9_]*)|[A-Za-z]+[A-Za-z0-9_]*)$"));
-    int index = completion.indexIn(line);
+    static QRegularExpression completion(QStringLiteral("^(?:.*[^A-Za-z0-9_$])?((?:\\$[A-Za-z0-9_]*)|[A-Za-z]+[A-Za-z0-9_]*)$"));
+    QRegularExpressionMatch match;
+    int index = line.indexOf(completion, 0, &match);
     QString completionPrefix;
     if (index != -1 && !line.contains(QLatin1Char('#'))) {
-        completionPrefix = completion.cap(1);
+        completionPrefix = match.captured(1);
         // std::cout<<"we have completer prefix '"<<completionPrefix.toStdString()<<"'"<<std::endl;
     }
 
@@ -177,10 +178,10 @@ void ExprTextEdit::keyPressEvent(QKeyEvent *e)
     }
 
     // documentation completion
-    static QRegularExpression inFunction(QString::fromLatin1("^(?:.*[^A-Za-z0-9_$])?([A-Za-z0-9_]+)\\([^()]*$"));
-    int index2 = inFunction.indexIn(line);
+    static QRegularExpression inFunction(QStringLiteral("^(?:.*[^A-Za-z0-9_$])?([A-Za-z0-9_]+)\\([^()]*$"));
+    int index2 = line.indexOf(inFunction, 0, &match);
     if (index2 != -1) {
-        QString functionName = inFunction.cap(1);
+        QString functionName = match.captured(1);
         QStringList tips = completionModel->getDocString(functionName).split(QString::fromLatin1("\n"));
         QString tip = QString(tr("<b>%1</b>")).arg(tips[0]);
         for (int i = 1; i < tips.size(); i++) {
