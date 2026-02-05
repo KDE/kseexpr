@@ -15,6 +15,10 @@
 * You may obtain a copy of the License at
 * http://www.apache.org/licenses/LICENSE-2.0
 */
+// SPDX-FileCopyrightText: 2011-2019 Disney Enterprises, Inc.
+// SPDX-License-Identifier: LicenseRef-Apache-2.0
+// SPDX-FileCopyrightText: 2020 L. E. Segovia <amy@amyspark.me>
+// SPDX-License-Identifier: GPL-3.0-or-later
 
 /**
    @file imageEditor.cpp
@@ -22,138 +26,165 @@
 
 #include <iostream>
 #include <string>
-#include <png.h>
 
 #include <QApplication>
+#include <QCoreApplication>
 #include <QDialog>
-#include <QVBoxLayout>
-#include <QScrollArea>
-#include <QLabel>
+#include <QDir>
 #include <QImage>
-#include <QPushButton>
+#include <QLabel>
 #include <QMessageBox>
+#include <QPushButton>
+#include <QScrollArea>
+#include <QStringList>
+#include <QVBoxLayout>
 
-#include <SeExpr2/Expression.h>
-#include <SeExpr2/UI/ExprControlCollection.h>
-#include <SeExpr2/UI/ExprEditor.h>
-#include <SeExpr2/UI/ExprBrowser.h>
+#include <KSeExpr/Expression.h>
+#include <KSeExprUI/ErrorMessages.h>
+#include <KSeExprUI/ExprBrowser.h>
+#include <KSeExprUI/ExprControlCollection.h>
+#include <KSeExprUI/ExprEditor.h>
 
 #include "ImageEditorDialog.h"
 
 //-- IMAGE SYNTHESIZER CLASSES AND METHODS --//
 
-double clamp(double x) { return std::max(0., std::min(255., x)); }
+constexpr double clamp(double x)
+{
+    return std::max(0., std::min(255., x)); // NOLINT readability-magic-numbers
+}
 
 // Simple image synthesizer expression class to support demo image editor
-class ImageSynthExpression : public SeExpr2::Expression {
-  public:
+class ImageSynthExpression : public KSeExpr::Expression
+{
+public:
     // Constructor that takes the expression to parse
-    ImageSynthExpression(const std::string &expr) : SeExpr2::Expression(expr) {}
+    ImageSynthExpression(const std::string &expr)
+        : KSeExpr::Expression(expr)
+    {
+    }
 
     // Simple variable that just returns its internal value
-    struct Var : public SeExpr2::ExprVarRef {
-        Var(const double val) : SeExpr2::ExprVarRef(SeExpr2::ExprType().FP(1).Varying()), val(val) {}
-        Var() : SeExpr2::ExprVarRef(SeExpr2::ExprType().FP(1).Varying()), val(0.0) {}
-        double val;  // independent variable
-        void eval(double *result) { result[0] = val; }
-        void eval(const char **result) { assert(false); }
+    struct Var : public KSeExpr::ExprVarRef {
+        Var(const double val)
+            : KSeExpr::ExprVarRef(KSeExpr::ExprType().FP(1).Varying())
+            , val(val)
+        {
+        }
+        Var()
+            : KSeExpr::ExprVarRef(KSeExpr::ExprType().FP(1).Varying())
+        {
+        }
+        double val {0.0}; // independent variable
+        void eval(double *result) override
+        {
+            result[0] = val;
+        }
+        void eval(const char **) override
+        {
+            assert(false);
+        }
     };
     // variable map
     mutable std::map<std::string, Var> vars;
 
     // resolve function that only supports one external variable 'x'
-    SeExpr2::ExprVarRef *resolveVar(const std::string &name) const {
-        std::map<std::string, Var>::iterator i = vars.find(name);
-        if (i != vars.end()) return &i->second;
-        return 0;
+    KSeExpr::ExprVarRef *resolveVar(const std::string &name) const override
+    {
+        auto i = vars.find(name);
+        if (i != vars.end())
+            return &i->second;
+        return nullptr;
     }
 };
 
-class ImageSynthesizer {
-  public:
-    ImageSynthesizer();
-    unsigned char *evaluateExpression(const std::string &exprStr);
+class ImageSynthesizer
+{
+public:
+    using ImageData = std::shared_ptr<std::vector<unsigned char>>;
+    ImageSynthesizer() = default;
+    ImageData evaluateExpression(const std::string &exprStr) const
+    {
+        ImageSynthExpression expr(exprStr);
 
-  private:
-    int _width;
-    int _height;
-};
+        // make variables
+        expr.vars["u"] = ImageSynthExpression::Var(0.);
+        expr.vars["v"] = ImageSynthExpression::Var(0.);
+        expr.vars["w"] = ImageSynthExpression::Var(_width);
+        expr.vars["h"] = ImageSynthExpression::Var(_height);
 
-ImageSynthesizer::ImageSynthesizer() {
-    _width = 256;
-    _height = 256;
-}
-
-unsigned char *ImageSynthesizer::evaluateExpression(const std::string &exprStr) {
-    ImageSynthExpression expr(exprStr);
-
-    // make variables
-    expr.vars["u"] = ImageSynthExpression::Var(0.);
-    expr.vars["v"] = ImageSynthExpression::Var(0.);
-    expr.vars["w"] = ImageSynthExpression::Var(_width);
-    expr.vars["h"] = ImageSynthExpression::Var(_height);
-
-    // check if expression is valid
-    bool valid = expr.isValid();
-    if (!valid) {
-        std::cerr << "Invalid expression " << std::endl;
-        std::cerr << expr.parseError() << std::endl;
-        return NULL;
-    }
-
-    // evaluate expression
-    std::cerr << "Evaluating expression..." << std::endl;
-    unsigned char *image = new unsigned char[_width * _height * 4];
-    double one_over_width = 1. / _width, one_over_height = 1. / _height;
-    double &u = expr.vars["u"].val;
-    double &v = expr.vars["v"].val;
-    unsigned char *pixel = image;
-    for (int row = 0; row < _height; row++) {
-        for (int col = 0; col < _width; col++) {
-            u = one_over_width * (col + .5);
-            v = one_over_height * (row + .5);
-            SeExpr2::Vec3d result = SeExpr2::Vec3dConstRef(expr.evalFP());
-            pixel[0] = clamp(result[2] * 256.);
-            pixel[1] = clamp(result[1] * 256.);
-            pixel[2] = clamp(result[0] * 256.);
-            pixel[3] = 255;
-            pixel += 4;
+        // check if expression is valid
+        bool valid = expr.isValid();
+        if (!valid) {
+            std::cerr << "Invalid expression " << std::endl;
+            auto message = ErrorMessages::message(expr.parseError());
+            for (const auto &arg : expr.parseErrorArgs()) {
+                message = message.arg(QString::fromStdString(arg));
+            }
+            std::cerr << "Parse error: " << message.toStdString() << std::endl;
+            for (const auto &occurrence : expr.getErrors()) {
+                QString message = ErrorMessages::message(occurrence.error);
+                for (const auto &arg : occurrence.ids) {
+                    message = message.arg(QString::fromStdString(arg));
+                }
+                std::cerr << "Prep error: " << message.toStdString() << std::endl;
+            }
+            return nullptr;
         }
+
+        // evaluate expression
+        std::cerr << "Evaluating expression..." << std::endl;
+        std::vector<unsigned char> image(_width * _height * 4);
+        double one_over_width = 1. / _width;
+        double one_over_height = 1. / _height;
+        double &u = expr.vars["u"].val;
+        double &v = expr.vars["v"].val;
+        for (size_t row {}; row < _height; row++) {
+            for (size_t col {}; col < _width; col++) {
+                auto i = (row * _width + col) * 4;
+                u = one_over_width * (col + .5);  // NOLINT readability-magic-constants
+                v = one_over_height * (row + .5); // NOLINT readability-magic-constants
+                KSeExpr::Vec3d result = KSeExpr::Vec3dConstRef(expr.evalFP());
+                image[i] = clamp(result[2] * 256.);     // NOLINT readability-magic-numbers
+                image[i + 1] = clamp(result[1] * 256.); // NOLINT readability-magic-numbers
+                image[i + 2] = clamp(result[0] * 256.); // NOLINT readability-magic-numbers
+                image[i + 3] = 255;                     // NOLINT readability-magic-numbers
+            }
+        }
+
+        return std::make_shared<std::vector<unsigned char>>(image);
     }
 
-    return image;
-}
+private:
+    size_t _width {256};  // NOLINT readability-magic-numbers
+    size_t _height {256}; // NOLINT readability-magic-numbers
+};
 
 //-- IMAGE EDITOR DIALOG METHODS --//
 
-ImageEditorDialog::ImageEditorDialog(QWidget *parent) : QDialog(parent) {
+ImageEditorDialog::ImageEditorDialog(QWidget *parent)
+    : QDialog(parent)
+{
     _imageSynthesizer = new ImageSynthesizer();
 
     this->setWindowTitle("Image Synthesis Editor");
 
     // Image Previewer
     _imageLabel = new QLabel();
-    _imageLabel->setFixedSize(256, 256);
+    _imageLabel->setFixedSize(256, 256); // NOLINT readability-magic-numbers
     _imageLabel->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
 
-    // Locate logo image relative to location of the app itself
-    QString imageFile = QCoreApplication::applicationDirPath() + "/../share/doc/SeExpr2/seexprlogo.png";
-    QImage image(imageFile);  // just a fun default
-
-    QPixmap imagePixmap = QPixmap::fromImage(image);
-    imagePixmap = imagePixmap.scaled(256, 256, Qt::KeepAspectRatio);
-    _imageLabel->setPixmap(imagePixmap);
-    QWidget *imagePreviewWidget = new QWidget();
-    QHBoxLayout *imagePreviewLayout = new QHBoxLayout(imagePreviewWidget);
+    auto *imagePreviewWidget = new QWidget();
+    auto *imagePreviewLayout = new QHBoxLayout(imagePreviewWidget);
     imagePreviewLayout->addStretch();
     imagePreviewLayout->addWidget(_imageLabel);
     imagePreviewLayout->addStretch();
 
     // Expression controls
-    ExprControlCollection *controls = new ExprControlCollection();
-    QScrollArea *scrollArea = new QScrollArea();
-    scrollArea->setMinimumHeight(100);
-    scrollArea->setFixedWidth(450);
+    auto *controls = new ExprControlCollection();
+    auto *scrollArea = new QScrollArea();
+    scrollArea->setMinimumHeight(100); // NOLINT readability-magic-numbers
+    scrollArea->setFixedWidth(450);    // NOLINT readability-magic-numbers
     scrollArea->setWidgetResizable(true);
     scrollArea->setWidget(controls);
 
@@ -162,48 +193,83 @@ ImageEditorDialog::ImageEditorDialog(QWidget *parent) : QDialog(parent) {
     _editor->setControlCollectionWidget(controls);
 
     // Expression browser
-    ExprBrowser *browser = new ExprBrowser(0, _editor);
+    auto *browser = new ExprBrowser(nullptr, _editor);
 
     // Add user expressions, example expressions to browser list.
     browser->addUserExpressionPath("imageEditor");
+
+    // Try multiple candidate paths for example expressions
+    QString appDir = QCoreApplication::applicationDirPath();
+    QStringList candidatePaths;
+
+    // Standard installation layout (bin/../share/KSeExpr/expressions)
+    candidatePaths << QDir(appDir).filePath("../share/KSeExpr/expressions");
+    
+    // Simple layout (bin/expressions)
+    candidatePaths << QDir(appDir).filePath("expressions");
+    
+    // Alternative layout (bin/../expressions)
+    candidatePaths << QDir(appDir).filePath("../expressions");
+
 #ifdef IMAGE_EDITOR_ROOT
-    std::string exPathStr = IMAGE_EDITOR_ROOT;
-    exPathStr += "/share/SeExpr2/expressions";
-    browser->addPath("Examples", exPathStr);
+    // Build-time configured path (for development/installed builds)
+    candidatePaths << QString("%1/share/KSeExpr/expressions").arg(IMAGE_EDITOR_ROOT);
 #else
-    browser->addPath("Examples", "./src/demos/imageEditor");
+    // Source tree path (for development)
+    candidatePaths << "./src/demos/imageEditor";
 #endif
+
+    // Try each candidate path and use the first one that exists
+    bool pathFound = false;
+    for (const QString &path : candidatePaths) {
+        QString nativePath = QDir::toNativeSeparators(QDir::cleanPath(path));
+        if (QDir(nativePath).exists()) {
+            std::cerr << "Found example expressions at: " << nativePath.toStdString() << std::endl;
+            browser->addPath("Examples", nativePath.toStdString());
+            pathFound = true;
+            break;
+        }
+    }
+
+    if (!pathFound) {
+        std::cerr << "Warning: Could not find example expressions directory." << std::endl;
+        std::cerr << "Searched paths:" << std::endl;
+        for (const QString &path : candidatePaths) {
+            std::cerr << "  - " << QDir::toNativeSeparators(QDir::cleanPath(path)).toStdString() << std::endl;
+        }
+    }
+
     browser->update();
 
     // Create apply button and connect to image preview.
-    QPushButton *applyButton = new QPushButton("Apply");
+    auto *applyButton = new QPushButton("Apply");
     connect(applyButton, SIGNAL(clicked()), (ImageEditorDialog *)this, SLOT(applyExpression()));
 
     // Layout widgets: Top section contains left side with previewer and
     // controls, right side with browser.  Bottom section contains editor
     // and apply button.
-    QVBoxLayout *rootLayout = new QVBoxLayout();
+    auto *rootLayout = new QVBoxLayout();
     this->setLayout(rootLayout);
 
-    QWidget *topWidget = new QWidget();
-    QHBoxLayout *topLayout = new QHBoxLayout();
+    auto *topWidget = new QWidget();
+    auto *topLayout = new QHBoxLayout();
     topLayout->setContentsMargins(0, 0, 0, 0);
     topWidget->setLayout(topLayout);
 
-    QWidget *leftWidget = new QWidget();
-    QVBoxLayout *leftLayout = new QVBoxLayout();
+    auto *leftWidget = new QWidget();
+    auto *leftLayout = new QVBoxLayout();
     leftLayout->setContentsMargins(0, 0, 0, 0);
     leftWidget->setLayout(leftLayout);
     leftLayout->addWidget(imagePreviewWidget);
     leftLayout->addWidget(scrollArea, 1);
 
-    QWidget *bottomWidget = new QWidget();
-    QVBoxLayout *bottomLayout = new QVBoxLayout();
+    auto *bottomWidget = new QWidget();
+    auto *bottomLayout = new QVBoxLayout();
     bottomLayout->setContentsMargins(0, 0, 0, 0);
     bottomWidget->setLayout(bottomLayout);
 
-    QWidget *buttonWidget = new QWidget();
-    QHBoxLayout *buttonLayout = new QHBoxLayout(0);
+    auto *buttonWidget = new QWidget();
+    auto *buttonLayout = new QHBoxLayout(nullptr);
     buttonWidget->setLayout(buttonLayout);
     buttonLayout->addWidget(applyButton);
 
@@ -218,31 +284,32 @@ ImageEditorDialog::ImageEditorDialog(QWidget *parent) : QDialog(parent) {
 }
 
 // Apply expression, if any, from the editor contents to the preview image
-void ImageEditorDialog::applyExpression() {
+void ImageEditorDialog::applyExpression()
+{
     std::string exprStr = _editor->getExpr().toStdString();
     if (exprStr.empty()) {
-        QMessageBox msgBox;
-        msgBox.setText("No expression entered in the editor.");
-        msgBox.exec();
+        QMessageBox::information(this, this->windowTitle(), "No expression entered in the editor.");
     } else {
-        QImage image(_imageSynthesizer->evaluateExpression(exprStr), 256, 256, QImage::Format_RGB32);
-        if (image.isNull()) {
-            QMessageBox msgBox;
-            msgBox.setText("Error evaluating expression to create preview image.");
-            msgBox.exec();
+        auto data = _imageSynthesizer->evaluateExpression(exprStr);
+        if (!data) {
+            QMessageBox::critical(this, this->windowTitle(), "Error evaluating expression to create preview image.");
         } else {
+            QImage image(data->data(), 256, 256, QImage::Format_RGB32); // NOLINT readability-magic-numbers
             QPixmap imagePixmap = QPixmap::fromImage(image);
             _imageLabel->setPixmap(imagePixmap);
+            // amyspark: ensure the old image gets dropped only after it was replaced
+            imageData = data;
         }
     }
 }
 
 //-- MAIN --//
 
-int main(int argc, char *argv[]) {
-    QApplication app(argc, argv);
-    ImageEditorDialog *dialog = new ImageEditorDialog(0);
+int main(int argc, char *argv[])
+{
+    auto app = std::make_unique<QApplication>(argc, argv);
+    auto dialog = std::make_unique<ImageEditorDialog>(nullptr);
     dialog->show();
-    app.exec();
+    app->exec();
     return 0;
 }
