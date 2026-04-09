@@ -12,8 +12,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 21.12.3\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"X-Generator: Lokalize 21.12.3\n"
 "X-Qt-Contexts: true\n"
 
 #: KSeExpr/ExprBuiltins.cpp:27
@@ -911,16 +911,16 @@ msgid "Variable '%1' defined in conditionals inconsistently"
 msgstr ""
 
 #: KSeExprUI/ErrorMessages.cpp:47
-#, fuzzy, qt-format
+#, qt-format
 msgctxt "ErrorMessages|"
 msgid "Too few arguments for function '%1'"
-msgstr "Priveľa argumentov pre funkciu."
+msgstr ""
 
 #: KSeExprUI/ErrorMessages.cpp:49
-#, fuzzy, qt-format
+#, qt-format
 msgctxt "ErrorMessages|"
 msgid "Too many arguments for function '%1'"
-msgstr "Priveľa argumentov pre funkciu."
+msgstr ""
 
 #: KSeExprUI/ErrorMessages.cpp:51
 #, qt-format
@@ -974,10 +974,9 @@ msgstr "Hľadanie"
 
 #: KSeExprUI/ExprAddDialog.cpp:41 KSeExprUI/ExprAddDialog.cpp:51
 #: KSeExprUI/ExprAddDialog.cpp:134
-#, fuzzy
 msgctxt "ExprAddDialog|"
 msgid "$u"
-msgstr "%1 u"
+msgstr ""
 
 #: KSeExprUI/ExprAddDialog.cpp:43
 msgctxt "ExprAddDialog|"
@@ -985,30 +984,24 @@ msgid "Curve"
 msgstr "Krivka"
 
 #: KSeExprUI/ExprAddDialog.cpp:53
-#, fuzzy
-#| msgctxt "ExprAddDialog|"
-#| msgid "Curve"
 msgctxt "ExprAddDialog|"
 msgid "Color Curve"
 msgstr "Krivka"
 
 #: KSeExprUI/ExprAddDialog.cpp:60 KSeExprUI/ExprAddDialog.cpp:76
 #: KSeExprUI/ExprAddDialog.cpp:93
-#, fuzzy
 msgctxt "ExprAddDialog|"
 msgid "Default"
 msgstr "Predvolené"
 
 #: KSeExprUI/ExprAddDialog.cpp:61 KSeExprUI/ExprAddDialog.cpp:77
 #: KSeExprUI/ExprAddDialog.cpp:94
-#, fuzzy
 msgctxt "ExprAddDialog|"
 msgid "Min"
 msgstr "Min"
 
 #: KSeExprUI/ExprAddDialog.cpp:62 KSeExprUI/ExprAddDialog.cpp:78
 #: KSeExprUI/ExprAddDialog.cpp:95
-#, fuzzy
 msgctxt "ExprAddDialog|"
 msgid "Max"
 msgstr "Max"
@@ -1019,12 +1012,12 @@ msgstr "Max"
 #: KSeExprUI/ExprAddDialog.cpp:98 KSeExprUI/ExprAddDialog.cpp:104
 msgctxt "ExprAddDialog|"
 msgid "0"
-msgstr ""
+msgstr "0"
 
 #: KSeExprUI/ExprAddDialog.cpp:67
 msgctxt "ExprAddDialog|"
 msgid "10"
-msgstr ""
+msgstr "10"
 
 #: KSeExprUI/ExprAddDialog.cpp:69
 msgctxt "ExprAddDialog|"
@@ -1034,7 +1027,7 @@ msgstr "Int"
 #: KSeExprUI/ExprAddDialog.cpp:83 KSeExprUI/ExprAddDialog.cpp:106
 msgctxt "ExprAddDialog|"
 msgid "1"
-msgstr ""
+msgstr "1"
 
 #: KSeExprUI/ExprAddDialog.cpp:86
 msgctxt "ExprAddDialog|"
@@ -1069,16 +1062,14 @@ msgstr "Farby"
 #: KSeExprUI/ExprAddDialog.cpp:144
 msgctxt "ExprAddDialog|"
 msgid "Swatch"
-msgstr ""
+msgstr "Vzorkovník"
 
 #: KSeExprUI/ExprAddDialog.cpp:152
-#, fuzzy
 msgctxt "ExprAddDialog|"
 msgid "string"
 msgstr "reťazec"
 
 #: KSeExprUI/ExprAddDialog.cpp:153
-#, fuzzy
 msgctxt "ExprAddDialog|"
 msgid "file"
 msgstr "&Súbor"
@@ -1089,23 +1080,16 @@ msgid "directory"
 msgstr "adresár"
 
 #: KSeExprUI/ExprAddDialog.cpp:158
-#, fuzzy
-#| msgctxt "ExprAddDialog|"
-#| msgid "String"
 msgctxt "ExprAddDialog|"
 msgid "String Name"
 msgstr "Reťazec"
 
 #: KSeExprUI/ExprAddDialog.cpp:160
-#, fuzzy
-#| msgctxt "ExprAddDialog|"
-#| msgid "String"
 msgctxt "ExprAddDialog|"
 msgid "String Type"
 msgstr "Reťazec"
 
 #: KSeExprUI/ExprAddDialog.cpp:162
-#, fuzzy
 msgctxt "ExprAddDialog|"
 msgid "String Default"
 msgstr "Predvolené"
@@ -1123,19 +1107,18 @@ msgstr "X"
 #: KSeExprUI/ExprBrowser.cpp:404 KSeExprUI/ExprBrowser.cpp:423
 msgctxt "ExprBrowser|"
 msgid "Save Expression"
-msgstr ""
+msgstr "Save Expression"
 
 #: KSeExprUI/ExprBrowser.cpp:404 KSeExprUI/ExprBrowser.cpp:423
-#, fuzzy
 msgctxt "ExprBrowser|"
 msgid "*.se"
 msgstr "JV"
 
 #: KSeExprUI/ExprBrowser.cpp:409 KSeExprUI/ExprBrowser.cpp:428
-#, fuzzy, qt-format
+#, qt-format
 msgctxt "ExprBrowser|"
 msgid "Could not open file %1 for writing"
-msgstr "Nepodarilo sa otvoriť súbor pre zápis."
+msgstr ""
 
 #: KSeExprUI/ExprBrowser.cpp:410 KSeExprUI/ExprBrowser.cpp:429
 #: KSeExprUI/ExprBrowser.cpp:450
@@ -1144,10 +1127,10 @@ msgid "Error"
 msgstr "Chyba"
 
 #: KSeExprUI/ExprBrowser.cpp:449
-#, fuzzy, qt-format
+#, qt-format
 msgctxt "ExprBrowser|"
 msgid "Could not open file %1 for writing.  Is it read-only?"
-msgstr "Nepodarilo sa otvoriť súbor pre zápis."
+msgstr ""
 
 #: KSeExprUI/ExprBrowser.cpp:450
 #, qt-format
@@ -1161,13 +1144,11 @@ msgid "Delete Point"
 msgstr "Zmazať bod"
 
 #: KSeExprUI/ExprColorCurve.cpp:397
-#, fuzzy
 msgctxt "ExprColorCurve|"
 msgid "Selected Position:"
 msgstr "Vybraná farba"
 
 #: KSeExprUI/ExprColorCurve.cpp:408
-#, fuzzy
 msgctxt "ExprColorCurve|"
 msgid "Selected Color:"
 msgstr "Vybraná farba"
@@ -1178,19 +1159,16 @@ msgid "Interp:"
 msgstr ""
 
 #: KSeExprUI/ExprColorCurve.cpp:421
-#, fuzzy
 msgctxt "ExprColorCurve|"
 msgid "None"
 msgstr "Žiadne"
 
 #: KSeExprUI/ExprColorCurve.cpp:422
-#, fuzzy
 msgctxt "ExprColorCurve|"
 msgid "Linear"
 msgstr "Lineárny"
 
 #: KSeExprUI/ExprColorCurve.cpp:423
-#, fuzzy
 msgctxt "ExprColorCurve|"
 msgid "Smooth"
 msgstr "Plynulý"
@@ -1201,15 +1179,11 @@ msgid "Spline"
 msgstr "Spline"
 
 #: KSeExprUI/ExprColorCurve.cpp:425
-#, fuzzy
-#| msgctxt "ExprColorCurve|"
-#| msgid "Spline"
 msgctxt "ExprColorCurve|"
 msgid "MSpline"
 msgstr "Spline"
 
 #: KSeExprUI/ExprColorCurve.cpp:445
-#, fuzzy
 msgctxt "ExprColorCurve|"
 msgid "&Expand..."
 msgstr "Rozvinúť"
@@ -1218,12 +1192,9 @@ msgstr "Rozvinúť"
 #, qt-format
 msgctxt "ExprColorCurve|"
 msgid "%1"
-msgstr ""
+msgstr "%1"
 
 #: KSeExprUI/ExprColorSwatch.cpp:77
-#, fuzzy
-#| msgctxt "CCurveScene|"
-#| msgid "Delete Point"
 msgctxt "ExprColorFrame|"
 msgid "Delete Swatch"
 msgstr "Zmazať bod"
@@ -1237,7 +1208,7 @@ msgstr "Zrušiť"
 #, qt-format
 msgctxt "ExprColorWidget|"
 msgid "%1"
-msgstr ""
+msgstr "%1"
 
 #: KSeExprUI/ExprColorSwatch.cpp:123
 msgctxt "ExprColorSwatchWidget|"
@@ -1245,7 +1216,6 @@ msgid "&Add..."
 msgstr "&Pridať..."
 
 #: KSeExprUI/ExprCompletionModel.cpp:121
-#, fuzzy
 msgctxt "ExprCompletionModel|"
 msgid "Local"
 msgstr "Lokálne"
@@ -1254,19 +1224,19 @@ msgstr "Lokálne"
 #, qt-format
 msgctxt "ExprControl|"
 msgid "<b>%1</b>"
-msgstr ""
+msgstr "<b>%1</b>"
 
 #: KSeExprUI/ExprControl.cpp:279
 #, qt-format
 msgctxt "NumberControl|"
 msgid "%1"
-msgstr ""
+msgstr "%1"
 
 #: KSeExprUI/ExprControl.cpp:386
 #, qt-format
 msgctxt "VectorControl|"
 msgid "%1"
-msgstr ""
+msgstr "%1"
 
 #: KSeExprUI/ExprControl.cpp:456 KSeExprUI/ExprControl.cpp:465
 msgctxt "StringControl|"
@@ -1284,7 +1254,6 @@ msgid "Pos:"
 msgstr ""
 
 #: KSeExprUI/ExprControl.cpp:488
-#, fuzzy
 msgctxt "CurveControl|"
 msgid "Val:"
 msgstr "val"
@@ -1300,7 +1269,6 @@ msgid "Pos:"
 msgstr ""
 
 #: KSeExprUI/ExprControl.cpp:512
-#, fuzzy
 msgctxt "CCurveControl|"
 msgid "Val:"
 msgstr "val"
@@ -1315,7 +1283,7 @@ msgstr ""
 #, qt-format
 msgctxt "ExprGraphPreview|"
 msgid "%1"
-msgstr ""
+msgstr "%1"
 
 #: KSeExprUI/ExprCurve.cpp:153
 msgctxt "CurveScene|"
@@ -1323,13 +1291,11 @@ msgid "Delete Point"
 msgstr "Zmazať bod"
 
 #: KSeExprUI/ExprCurve.cpp:298
-#, fuzzy
 msgctxt "ExprCurve|"
 msgid "Selected Position:"
 msgstr "Vybraná farba"
 
 #: KSeExprUI/ExprCurve.cpp:309
-#, fuzzy
 msgctxt "ExprCurve|"
 msgid "Selected Value:"
 msgstr "Vybraná farba"
@@ -1340,19 +1306,16 @@ msgid "Interp:"
 msgstr ""
 
 #: KSeExprUI/ExprCurve.cpp:322
-#, fuzzy
 msgctxt "ExprCurve|"
 msgid "None"
 msgstr "Žiadne"
 
 #: KSeExprUI/ExprCurve.cpp:323
-#, fuzzy
 msgctxt "ExprCurve|"
 msgid "Linear"
 msgstr "Lineárny"
 
 #: KSeExprUI/ExprCurve.cpp:324
-#, fuzzy
 msgctxt "ExprCurve|"
 msgid "Smooth"
 msgstr "Plynulý"
@@ -1363,15 +1326,11 @@ msgid "Spline"
 msgstr "Spline"
 
 #: KSeExprUI/ExprCurve.cpp:326
-#, fuzzy
-#| msgctxt "ExprCurve|"
-#| msgid "Spline"
 msgctxt "ExprCurve|"
 msgid "MSpline"
 msgstr "Spline"
 
 #: KSeExprUI/ExprCurve.cpp:347
-#, fuzzy
 msgctxt "ExprCurve|"
 msgid "&Expand..."
 msgstr "Rozvinúť"
@@ -1380,12 +1339,12 @@ msgstr "Rozvinúť"
 #, qt-format
 msgctxt "ExprCurve|"
 msgid "%1"
-msgstr ""
+msgstr "%1"
 
 #: KSeExprUI/ExprEditor.cpp:73
 msgctxt "ExprEditor|"
 msgid "Expression Editor"
-msgstr ""
+msgstr "Expression Editor"
 
 #: KSeExprUI/ExprEditor.cpp:235
 #, qt-format
@@ -1412,7 +1371,7 @@ msgstr ""
 #, qt-format
 msgctxt "ExprTextEdit|"
 msgid "<b>%1</b>"
-msgstr ""
+msgstr "<b>%1</b>"
 
 #: KSeExprUI/ExprTextEdit.cpp:187
 #, qt-format
