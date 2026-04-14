@@ -1,8 +1,8 @@
-# SPDX-FileCopyrightText: 2024, 2025 Yaron Shahrabani <sh.yaron@gmail.com>
+# SPDX-FileCopyrightText: 2024, 2025, 2026 Yaron Shahrabani <sh.yaron@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"PO-Revision-Date: 2025-11-10 13:54+0200\n"
+"PO-Revision-Date: 2026-04-13 21:27+0300\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
@@ -12,7 +12,7 @@ msgstr ""
 "X-Qt-Contexts: true\n"
 "Plural-Forms: nplurals=4; plural=(n == 1) ? 0 : ((n == 2) ? 1 : ((n > 10 && "
 "n % 10 == 0) ? 2 : 3));\n"
-"X-Generator: Lokalize 25.08.2\n"
+"X-Generator: Lokalize 25.12.3\n"
 
 #: KSeExpr/ExprBuiltins.cpp:27
 msgctxt "builtin|"
@@ -992,7 +992,7 @@ msgid ""
 "Returns a string formatted from the given values.  See 'man sprintf' for "
 "format details."
 msgstr ""
-"sprintf(string format, [double|string, double|string, ...])\n"
+"sprintf(string format, [double|string, double|string, …])\n"
 "החזרת מחרוזת מעוצבת מערכים שסופקו.  יש לעיין ב־‚man sprintf’ לפרטים על "
 "העיצוב."
 
