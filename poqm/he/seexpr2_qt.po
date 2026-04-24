@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"PO-Revision-Date: 2026-04-13 21:27+0300\n"
+"PO-Revision-Date: 2026-04-21 14:10+0300\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
@@ -1336,7 +1336,7 @@ msgstr "צבע נבחר:"
 #: KSeExprUI/ExprColorCurve.cpp:416
 msgctxt "ExprColorCurve|"
 msgid "Interp:"
-msgstr "פענוח:"
+msgstr "פיענוח:"
 
 #: KSeExprUI/ExprColorCurve.cpp:421
 msgctxt "ExprColorCurve|"
@@ -1441,7 +1441,7 @@ msgstr "ערך:"
 #: KSeExprUI/ExprControl.cpp:488
 msgctxt "CurveControl|"
 msgid "Interp:"
-msgstr "פענוח:"
+msgstr "פיענוח:"
 
 #: KSeExprUI/ExprControl.cpp:512
 msgctxt "CCurveControl|"
@@ -1456,7 +1456,7 @@ msgstr "ערך:"
 #: KSeExprUI/ExprControl.cpp:512
 msgctxt "CCurveControl|"
 msgid "Interp:"
-msgstr "פענוח:"
+msgstr "פיענוח:"
 
 #: KSeExprUI/ExprControl.cpp:617 KSeExprUI/ExprControl.cpp:618
 #: KSeExprUI/ExprControl.cpp:619 KSeExprUI/ExprControl.cpp:620
@@ -1483,7 +1483,7 @@ msgstr "ערך נבחר:"
 #: KSeExprUI/ExprCurve.cpp:317
 msgctxt "ExprCurve|"
 msgid "Interp:"
-msgstr "פענוח:"
+msgstr "פיענוח:"
 
 #: KSeExprUI/ExprCurve.cpp:322
 msgctxt "ExprCurve|"
