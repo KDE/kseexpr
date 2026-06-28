@@ -1066,7 +1066,7 @@ msgstr ""
 "Interpola una rampa en 1D definida pels punts de control en el\n"
 "«param». Els punts de control s'especifiquen mitjançant triples\n"
 "dels paràmetres «pos_i», «val_i» i «interp_i». Els codis d'interpolació\n"
-"són: 0 - cap, 1 - lineal, 2 - suau, 3 - spline i 4 - monòton\n"
+"són: 0 – cap, 1 – lineal, 2 – suau, 3 – spline i 4 – monòton\n"
 "(spline no oscil·lant)"
 
 #: KSeExpr/ExprBuiltins.cpp:1660
@@ -1088,7 +1088,7 @@ msgstr ""
 "Interpola una rampa definida pels punts de control en el «param».\n"
 "Els punts de control s'especifiquen mitjançant triples dels\n"
 "paràmetres «pos_i», «val_i» i «interp_i». Els codis d'interpolació\n"
-"són: 0 - cap, 1 - lineal, 2 - suau, 3 - spline i 4 - monòton\n"
+"són: 0 – cap, 1 – lineal, 2 – suau, 3 – spline i 4 – monòton\n"
 "(spline no oscil·lant)"
 
 #: KSeExpr/ExprBuiltins.cpp:1732
