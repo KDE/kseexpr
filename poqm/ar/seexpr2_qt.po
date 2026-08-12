@@ -566,7 +566,7 @@ msgstr ""
 "ُوُسِّعَت هذه الدوال أيضًا لدعم قيم rgb و hsl\n"
 "خارج النطاق [0..1] بطريقة معقولة. لأي قيمة rgb أو\n"
 "hsl (باستثناء قيم s السالبة)، يكون التحويل\n"
-"محددًا جيدًا وقابلاً للعكس."
+"محددًا جيدًا وقابلًا للعكس."
 
 #: KSeExpr/ExprBuiltins.cpp:413
 msgctxt "builtin|"
@@ -585,7 +585,7 @@ msgstr ""
 "ُوُسِّعَت هذه الدوال أيضًا لدعم قيم rgb و hsl\n"
 "خارج النطاق [0..1] بطريقة معقولة. لأي قيمة rgb أو\n"
 "hsl (باستثناء قيم s السالبة)، يكون التحويل\n"
-"محددًا جيدًا وقابلاً للعكس."
+"محددًا جيدًا وقابلًا للعكس."
 
 #: KSeExpr/ExprBuiltins.cpp:441
 msgctxt "builtin|"
@@ -779,7 +779,7 @@ msgid ""
 "This is the same as the prman cellnoise function."
 msgstr ""
 "float cellnoise(vector v)\n"
-"تولِّد cellnoise حقلاً من المكعبات ذات الألوان الثابتة بناءً على الموقع الصحيح.\n"
+"تولِّد cellnoise حقلًا من المكعبات ذات الألوان الثابتة بناءً على الموقع الصحيح.\n"
 "هذه هي نفس دالة prman cellnoise."
 
 #: KSeExpr/ExprBuiltins.cpp:893
@@ -791,7 +791,7 @@ msgid ""
 "This is the same as the prman cellnoise function."
 msgstr ""
 "color cellnoise(vector v)\n"
-"تولِّد cellnoise حقلاً من المكعبات ذات الألوان الثابتة بناءً على الموقع الصحيح.\n"
+"تولِّد cellnoise حقلًا من المكعبات ذات الألوان الثابتة بناءً على الموقع الصحيح.\n"
 "هذه هي نفس دالة prman cellnoise."
 
 #: KSeExpr/ExprBuiltins.cpp:906
