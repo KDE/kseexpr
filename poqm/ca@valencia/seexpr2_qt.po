@@ -4,7 +4,7 @@
 # version 3 or later versions approved by the membership of KDE e.V.
 #
 # SPDX-FileCopyrightText: 2020 Antoni Bella Pérez <antonibella5@yahoo.com>
-# SPDX-FileCopyrightText: 2020, 2021, 2022, 2023 Josep M. Ferrer <txemaq@gmail.com>
+# SPDX-FileCopyrightText: 2020-2023 Josep M. Ferrer <txemaq@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: kseexpr\n"
@@ -510,7 +510,7 @@ msgid ""
 "&nbsp;&nbsp;&nbsp;&nbsp;int <b>gaussian</b> = 2\n"
 msgstr ""
 "remap(float x, float source, float range, float falloff, float interp)\n"
-"Funció de reassignació general.\n"
+"Funció de tornar a assignar general.\n"
 "Quan «x» es troba dins de l'interval (<i>range</i>) +/- de la font,\n"
 "el resultat és u.\n"
 "El resultat caurà a zero més enllà d'este interval sobre la\n"
