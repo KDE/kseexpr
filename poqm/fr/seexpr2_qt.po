@@ -1262,7 +1262,7 @@ msgstr "Fin inattendue de la chaine de formatage"
 msgctxt "ErrorMessages|"
 msgid "Invalid format string, only %v or %f is allowed"
 msgstr ""
-"Chaîne de formatage non valable. Seuls « %v » ou « %f » sont autorisés."
+"Chaine de formatage non valable. Seuls « %v » ou « %f » sont autorisés."
 
 #: KSeExprUI/ErrorMessages.cpp:61
 msgctxt "ErrorMessages|"
@@ -1406,12 +1406,12 @@ msgstr "Type de chaine"
 #: KSeExprUI/ExprAddDialog.cpp:162
 msgctxt "ExprAddDialog|"
 msgid "String Default"
-msgstr "Chaîne par défaut"
+msgstr "Chaine par défaut"
 
 #: KSeExprUI/ExprAddDialog.cpp:165
 msgctxt "ExprAddDialog|"
 msgid "String"
-msgstr "Chaîne"
+msgstr "Chaine"
 
 #: KSeExprUI/ExprBrowser.cpp:299
 msgctxt "ExprBrowser|"
