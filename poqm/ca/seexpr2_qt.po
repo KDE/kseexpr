@@ -1,14 +1,14 @@
 # Translation of seexpr2_qt.po to Catalan
-# Copyright (C) 2020-2023 This_file_is_part_of_KDE
+# Copyright (C) 2020-2026 This_file_is_part_of_KDE
 # This file is distributed under the license LGPL version 2.1 or
 # version 3 or later versions approved by the membership of KDE e.V.
 #
 # SPDX-FileCopyrightText: 2020 Antoni Bella Pérez <antonibella5@yahoo.com>
-# SPDX-FileCopyrightText: 2020-2023 Josep M. Ferrer <txemaq@gmail.com>
+# SPDX-FileCopyrightText: 2020-2023, 2026 Josep M. Ferrer <txemaq@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: kseexpr\n"
-"PO-Revision-Date: 2023-07-03 11:54+0200\n"
+"PO-Revision-Date: 2026-09-12 21:41+0200\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Qt-Contexts: true\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 22.12.3\n"
+"X-Generator: Lokalize 25.04.0\n"
 
 #: KSeExpr/ExprBuiltins.cpp:27
 msgctxt "builtin|"
@@ -653,7 +653,7 @@ msgstr ""
 "float noise ( float x, float y )\n"
 "float noise ( float x, float y, float z )\n"
 "float noise ( float x, float y, float z, float w )\n"
-"Soroll Perlin original a la ubicació (interpolant C2)"
+"Soroll Perlin original a la ubicació (interpolació C2)"
 
 #: KSeExpr/ExprBuiltins.cpp:610
 msgctxt "builtin|"
@@ -664,7 +664,7 @@ msgid ""
 msgstr ""
 "float snoise ( vector v)\n"
 "Soroll signat «w/» amb l'interval -1 a 1 format amb el soroll Perlin "
-"original a la ubicació (interpolant C2)"
+"original a la ubicació (interpolació C2)"
 
 #: KSeExpr/ExprBuiltins.cpp:621
 msgctxt "builtin|"
@@ -674,7 +674,7 @@ msgid ""
 msgstr ""
 "vector vnoise ( vector v)\n"
 "Soroll vectorial format amb el soroll Perlin original a la ubicació "
-"(interpolant C2)"
+"(interpolació C2)"
 
 #: KSeExpr/ExprBuiltins.cpp:629
 msgctxt "builtin|"
@@ -684,7 +684,7 @@ msgid ""
 msgstr ""
 "color cnoise ( vector v)\n"
 "Soroll del color format amb el soroll Perlin original a la ubicació "
-"(interpolant C2)"
+"(interpolació C2)"
 
 #: KSeExpr/ExprBuiltins.cpp:640
 msgctxt "builtin|"
@@ -695,7 +695,7 @@ msgid ""
 msgstr ""
 "float snoise4 ( vector v,float t)\n"
 "Soroll signat en 4D «w/» amb l'interval -1 a 1 format amb el soroll Perlin "
-"original a la ubicació (interpolant C2)"
+"original a la ubicació (interpolació C2)"
 
 #: KSeExpr/ExprBuiltins.cpp:651
 msgctxt "builtin|"
@@ -706,7 +706,7 @@ msgid ""
 msgstr ""
 "vector vnoise4 ( vector v,float t)\n"
 "Soroll vectorial en 4D format amb el soroll Perlin original a la ubicació "
-"(interpolant C2)"
+"(interpolació C2)"
 
 #: KSeExpr/ExprBuiltins.cpp:659
 msgctxt "builtin|"
@@ -716,7 +716,7 @@ msgid ""
 msgstr ""
 "color cnoise4 ( vector v,float t)\n"
 "Soroll del color en 4D format amb el soroll Perlin original a la ubicació "
-"(interpolant C2)"
+"(interpolació C2)"
 
 #: KSeExpr/ExprBuiltins.cpp:751
 msgctxt "builtin|"
@@ -1041,12 +1041,12 @@ msgstr ""
 #: KSeExpr/ExprBuiltins.cpp:1550 KSeExpr/ExprBuiltins.cpp:1615
 msgctxt "builtin|"
 msgid "Unable to validate the interpolant type"
-msgstr "No s'ha pogut validar el tipus d'interpolant"
+msgstr "No s'ha pogut validar el tipus d'interpolació"
 
 #: KSeExpr/ExprBuiltins.cpp:1554 KSeExpr/ExprBuiltins.cpp:1618
 msgctxt "builtin|"
 msgid "Invalid interpolant type"
-msgstr "Tipus no vàlid d'interpolant"
+msgstr "Tipus no vàlid d'interpolació"
 
 #: KSeExpr/ExprBuiltins.cpp:1588
 msgctxt "builtin|"
