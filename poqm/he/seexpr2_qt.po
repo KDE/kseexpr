@@ -1,8 +1,8 @@
-# SPDX-FileCopyrightText: 2024, 2025, 2026 Yaron Shahrabani <sh.yaron@gmail.com>
+# SPDX-FileCopyrightText: 2024-2026 Yaron Shahrabani <sh.yaron@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"PO-Revision-Date: 2026-04-21 14:10+0300\n"
+"PO-Revision-Date: 2026-09-17 10:40+0300\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
@@ -12,7 +12,7 @@ msgstr ""
 "X-Qt-Contexts: true\n"
 "Plural-Forms: nplurals=4; plural=(n == 1) ? 0 : ((n == 2) ? 1 : ((n > 10 && "
 "n % 10 == 0) ? 2 : 3));\n"
-"X-Generator: Lokalize 25.12.3\n"
+"X-Generator: Lokalize 26.08.0\n"
 
 #: KSeExpr/ExprBuiltins.cpp:27
 msgctxt "builtin|"
@@ -606,6 +606,11 @@ msgid ""
 "float noise ( float x, float y, float z, float w )\n"
 "Original perlin noise at location (C2 interpolant)"
 msgstr ""
+"float noise ( וקטור v )\n"
+"float noise ( שבר עשרוני x, שבר עשרוני y )\n"
+"float noise ( שבר עשרוני x, שבר עשרוני y, שבר עשרוני z )\n"
+"float noise ( שבר עשרוני x, שבר עשרוני y, שבר עשרוני z, שבר עשרוני w )\n"
+"רעש פרלין המקורי במקום המבוקש (עם אינטרפולציית C2)"
 
 #: KSeExpr/ExprBuiltins.cpp:610
 msgctxt "builtin|"
@@ -614,6 +619,9 @@ msgid ""
 "signed noise w/ range -1 to 1 formed with original perlin noise at location "
 "(C2 interpolant)"
 msgstr ""
+"float snoise ( וקטור v)\n"
+"רעש חתום בטווח שבין ‎-1 ל־1 שעוצב עם רעש הפרלין המקורי במקום המבוקש (עם "
+"אינטרפולציית C2)"
 
 #: KSeExpr/ExprBuiltins.cpp:621
 msgctxt "builtin|"
