@@ -2,9 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: \n"
+"PO-Revision-Date: 2026-09-22 18:03+0900\n"
 "Last-Translator: Abduqadir Abliz <sahranbay@gmail.com>\n"
-"Language-Team: \n"
+"Language-Team: Uyghur <kde-i18n-doc@kde.org>\n"
 "Language: ug\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1007,7 +1007,7 @@ msgstr "ئەڭ چوڭ قىممەت"
 #: KSeExprUI/ExprAddDialog.cpp:98 KSeExprUI/ExprAddDialog.cpp:104
 msgctxt "ExprAddDialog|"
 msgid "0"
-msgstr "0"
+msgstr ""
 
 #: KSeExprUI/ExprAddDialog.cpp:67
 msgctxt "ExprAddDialog|"
@@ -1022,7 +1022,7 @@ msgstr ""
 #: KSeExprUI/ExprAddDialog.cpp:83 KSeExprUI/ExprAddDialog.cpp:106
 msgctxt "ExprAddDialog|"
 msgid "1"
-msgstr "1"
+msgstr ""
 
 #: KSeExprUI/ExprAddDialog.cpp:86
 msgctxt "ExprAddDialog|"
@@ -1187,7 +1187,7 @@ msgstr ""
 #, qt-format
 msgctxt "ExprColorCurve|"
 msgid "%1"
-msgstr "%1"
+msgstr ""
 
 #: KSeExprUI/ExprColorSwatch.cpp:77
 msgctxt "ExprColorFrame|"
@@ -1203,7 +1203,7 @@ msgstr "ۋاز كەچ"
 #, qt-format
 msgctxt "ExprColorWidget|"
 msgid "%1"
-msgstr "%1"
+msgstr ""
 
 #: KSeExprUI/ExprColorSwatch.cpp:123
 msgctxt "ExprColorSwatchWidget|"
@@ -1219,19 +1219,19 @@ msgstr "يەرلىك"
 #, qt-format
 msgctxt "ExprControl|"
 msgid "<b>%1</b>"
-msgstr "<b>%1</b>"
+msgstr ""
 
 #: KSeExprUI/ExprControl.cpp:279
 #, qt-format
 msgctxt "NumberControl|"
 msgid "%1"
-msgstr "%1"
+msgstr ""
 
 #: KSeExprUI/ExprControl.cpp:386
 #, qt-format
 msgctxt "VectorControl|"
 msgid "%1"
-msgstr "%1"
+msgstr ""
 
 #: KSeExprUI/ExprControl.cpp:456 KSeExprUI/ExprControl.cpp:465
 msgctxt "StringControl|"
@@ -1278,7 +1278,7 @@ msgstr ""
 #, qt-format
 msgctxt "ExprGraphPreview|"
 msgid "%1"
-msgstr "%1"
+msgstr ""
 
 #: KSeExprUI/ExprCurve.cpp:153
 msgctxt "CurveScene|"
@@ -1334,7 +1334,7 @@ msgstr ""
 #, qt-format
 msgctxt "ExprCurve|"
 msgid "%1"
-msgstr "%1"
+msgstr ""
 
 #: KSeExprUI/ExprEditor.cpp:73
 msgctxt "ExprEditor|"
@@ -1366,7 +1366,7 @@ msgstr ""
 #, qt-format
 msgctxt "ExprTextEdit|"
 msgid "<b>%1</b>"
-msgstr "<b>%1</b>"
+msgstr ""
 
 #: KSeExprUI/ExprTextEdit.cpp:188
 #, qt-format
