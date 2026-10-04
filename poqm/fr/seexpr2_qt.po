@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: seexpr2_qt\n"
-"PO-Revision-Date: 2026-05-26 18:51+0200\n"
+"PO-Revision-Date: 2026-10-03 08:28+0200\n"
 "Last-Translator: Xavier Besnard <xavier.besnard@kde.org>\n"
 "Language-Team: fr\n"
 "Language: fr\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 26.04.1\n"
+"X-Generator: Lokalize 26.08.1\n"
 "X-Qt-Contexts: true\n"
 
 #: KSeExpr/ExprBuiltins.cpp:27
@@ -1124,7 +1124,7 @@ msgid ""
 "format details."
 msgstr ""
 "sprintf (string format, [double|string, double|string,...])\n"
-"Retourne une chaine formatée à partir des valeurs fournies. Veuillez  "
+"Retourne une chaine formatée à partir des valeurs fournies. Veuillez "
 "consulter « man sprintf » pour des informations détaillées sur le format."
 
 #: KSeExprUI/ECMQmLoader-seexpr2_qt.cpp:62
