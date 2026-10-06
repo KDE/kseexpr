@@ -1,8 +1,8 @@
-# Shinjo Park <kde@peremen.name>, 2021.
+# SPDX-FileCopyrightText: 2021, 2026 Shinjo Park <kde@peremen.name>
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"PO-Revision-Date: 2021-06-09 23:50+0200\n"
+"PO-Revision-Date: 2026-10-05 21:55+0200\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
 "Language: ko\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Lokalize 20.12.3\n"
+"X-Generator: Lokalize 25.12.3\n"
 "X-Qt-Contexts: true\n"
 
 #: KSeExpr/ExprBuiltins.cpp:27
@@ -23,11 +23,6 @@ msgstr ""
 "x의 절댓값"
 
 #: KSeExpr/ExprBuiltins.cpp:30
-#, fuzzy
-#| msgctxt "builtin|"
-#| msgid ""
-#| "float deg(float angle)\n"
-#| "radians to degrees"
 msgctxt "builtin|"
 msgid ""
 "float deg(float angle)\n"
@@ -37,17 +32,12 @@ msgstr ""
 "라디안에서 도로"
 
 #: KSeExpr/ExprBuiltins.cpp:31
-#, fuzzy
-#| msgctxt "builtin|"
-#| msgid ""
-#| "float deg(float angle)\n"
-#| "degrees to radians"
 msgctxt "builtin|"
 msgid ""
 "float rad(float angle)\n"
 "degrees to radians"
 msgstr ""
-"float deg(float angle)\n"
+"float rad(float angle)\n"
 "도에서 라디안으로"
 
 #: KSeExpr/ExprBuiltins.cpp:33
@@ -330,17 +320,12 @@ msgstr ""
 "E의 x제곱"
 
 #: KSeExpr/ExprBuiltins.cpp:68
-#, fuzzy
-#| msgctxt "builtin|"
-#| msgid ""
-#| "float pow(float x)\n"
-#| "x to the y power, also available as ^"
 msgctxt "builtin|"
 msgid ""
 "float pow(float x, float y)\n"
 "x to the y power, also available as ^"
 msgstr ""
-"float pow(float x)\n"
+"float pow(float x, float y)\n"
 "x의 y제곱, ^ 연산자로도 사용 가능"
 
 #: KSeExpr/ExprBuiltins.cpp:69
@@ -376,6 +361,8 @@ msgid ""
 "float turbulence(vector v,int octaves=6,float lacunarity=2,float gain=.5)\n"
 "Absolute value of each noise term is taken. This gives billowy appearance"
 msgstr ""
+"float turbulence(vector v,int octaves=6,float lacunarity=2,float gain=.5)\n"
+"각각 노이즈 항의 절댓값을 취합니다. 부푼 형태로 표시됩니다"
 
 #: KSeExpr/ExprBuiltins.cpp:75
 msgctxt "builtin|"
@@ -383,6 +370,8 @@ msgid ""
 "color cturbulence(vector v,int octaves=6,float lacunarity=2,float gain=.5)\n"
 "Absolute value of each noise term is taken. This gives billowy appearance"
 msgstr ""
+"color cturbulence(vector v,int octaves=6,float lacunarity=2,float gain=.5)\n"
+"각각 노이즈 항의 절댓값을 취합니다. 부푼 형태로 표시됩니다"
 
 #: KSeExpr/ExprBuiltins.cpp:78
 msgctxt "builtin|"
@@ -390,6 +379,8 @@ msgid ""
 "vector vturbulence(vector v,int octaves=6,float lacunarity=2,float gain=.5)\n"
 "Absolute value of each noise term is taken. This gives billowy appearance"
 msgstr ""
+"vector vturbulence(vector v,int octaves=6,float lacunarity=2,float gain=.5)\n"
+"각각 노이즈 항의 절댓값을 취합니다. 부푼 형태로 표시됩니다"
 
 #: KSeExpr/ExprBuiltins.cpp:86
 msgctxt "builtin|"
@@ -441,19 +432,13 @@ msgstr ""
 "pow(x,log(b)/log(0.5))"
 
 #: KSeExpr/ExprBuiltins.cpp:124
-#, fuzzy
-#| msgctxt "builtin|"
-#| msgid ""
-#| "float contrast(float x,float x)\n"
-#| "Adjust the contrast.&nbsp; For c from 0 to 0.5, the contrast is decreased."
-#| "&nbsp; For c &gt; 0.5, the contrast is increased."
 msgctxt "builtin|"
 msgid ""
 "float contrast(float x, float c)\n"
 "Adjust the contrast.&nbsp; For c from 0 to 0.5, the contrast is decreased."
 "&nbsp; For c &gt; 0.5, the contrast is increased."
 msgstr ""
-"float contrast(float x,float x)\n"
+"float contrast(float x,float c)\n"
 "명암 조절.&nbsp; c가 0부터 0.5이면 명암 감소.&nbsp; c &gt; 0.5이면 명암 증가."
 
 #: KSeExpr/ExprBuiltins.cpp:132
@@ -466,12 +451,6 @@ msgstr ""
 " x < a이면 0, 아니면 1"
 
 #: KSeExpr/ExprBuiltins.cpp:143
-#, fuzzy
-#| msgctxt "builtin|"
-#| msgid ""
-#| "float linearstep(float x,float a,float b)\n"
-#| " if x &lt; a then 0, if x &gt; b then 1, and\n"
-#| "x transitions linearly when &lt; x &lt; b "
 msgctxt "builtin|"
 msgid ""
 "float linearstep(float x, float a, float b)\n"
@@ -1277,9 +1256,6 @@ msgid "Selected Color:"
 msgstr "선택한 색상:"
 
 #: KSeExprUI/ExprColorCurve.cpp:416
-#, fuzzy
-#| msgctxt "CurveControl|"
-#| msgid "Interp:"
 msgctxt "ExprColorCurve|"
 msgid "Interp:"
 msgstr "해석:"
@@ -1427,9 +1403,6 @@ msgid "Selected Value:"
 msgstr "선택한 값:"
 
 #: KSeExprUI/ExprCurve.cpp:317
-#, fuzzy
-#| msgctxt "CurveControl|"
-#| msgid "Interp:"
 msgctxt "ExprCurve|"
 msgid "Interp:"
 msgstr "해석:"
