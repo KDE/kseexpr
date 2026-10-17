@@ -1,8 +1,8 @@
-# SPDX-FileCopyrightText: 2022, 2023, 2025 Emir SARI <emir_sari@icloud.com>
+# SPDX-FileCopyrightText: 2022-2023, 2025-2026 Emir SARI <emir_sari@icloud.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"PO-Revision-Date: 2025-03-13 15:49+0300\n"
+"PO-Revision-Date: 2026-10-16 19:56+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Qt-Contexts: true\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 25.07.70\n"
+"X-Generator: Lokalize 26.08.0\n"
 
 #: KSeExpr/ExprBuiltins.cpp:27
 msgctxt "builtin|"
@@ -236,7 +236,7 @@ msgid ""
 "nearest integer to x"
 msgstr ""
 "float round(float x)\n"
-"x'e en yakın tamsayı"
+"x'e en yakın tam sayı"
 
 #: KSeExpr/ExprBuiltins.cpp:58
 msgctxt "builtin|"
@@ -263,7 +263,7 @@ msgid ""
 "nearest integer towards zero"
 msgstr ""
 "float trunc(float a)\n"
-"sıfıra yakın en yakın tamsayı"
+"sıfıra yakın en yakın tam sayı"
 
 #: KSeExpr/ExprBuiltins.cpp:61
 msgctxt "builtin|"
@@ -272,7 +272,7 @@ msgid ""
 "next lower integer"
 msgstr ""
 "float floor(float a)\n"
-"sonraki daha düşük tamsayı"
+"sonraki daha düşük tam sayı"
 
 #: KSeExpr/ExprBuiltins.cpp:62
 msgctxt "builtin|"
@@ -281,7 +281,7 @@ msgid ""
 "next higher integer"
 msgstr ""
 "float ceil(float a)\n"
-"sonraki daha yüksek tamsayı"
+"sonraki daha yüksek tam sayı"
 
 #: KSeExpr/ExprBuiltins.cpp:64
 msgctxt "builtin|"
@@ -781,7 +781,7 @@ msgid ""
 "This is the same as the prman cellnoise function."
 msgstr ""
 "float cellnoise(vector v)\n"
-"cellnoise, tamsayı konumuna göre sabit bir renkli küpler alanı üretir.\n"
+"cellnoise, tam sayı konumuna göre sabit bir renkli küpler alanı üretir.\n"
 "Bu, prman cellnoise işlevi ile aynıdır."
 
 #: KSeExpr/ExprBuiltins.cpp:893
@@ -793,7 +793,7 @@ msgid ""
 "This is the same as the prman cellnoise function."
 msgstr ""
 "color cellnoise(vector v)\n"
-"cellnoise, tamsayı konumuna göre sabit bir renkli küpler alanı üretir.\n"
+"cellnoise, tam sayı konumuna göre sabit bir renkli küpler alanı üretir.\n"
 "Bu, prman cellnoise işlevi ile aynıdır."
 
 #: KSeExpr/ExprBuiltins.cpp:906
@@ -1306,7 +1306,7 @@ msgstr "10"
 #: KSeExprUI/ExprAddDialog.cpp:69
 msgctxt "ExprAddDialog|"
 msgid "Int"
-msgstr "Tamsayı"
+msgstr "Tam Sayı"
 
 #: KSeExprUI/ExprAddDialog.cpp:83 KSeExprUI/ExprAddDialog.cpp:106
 msgctxt "ExprAddDialog|"
