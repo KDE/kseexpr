@@ -1,8 +1,8 @@
-# Tommi Nieminen <translator@legisign.org>, 2022, 2023.
+# SPDX-FileCopyrightText: 2022, 2023, 2026 Tommi Nieminen <translator@legisign.org>
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"PO-Revision-Date: 2023-05-15 16:01+0300\n"
+"PO-Revision-Date: 2026-08-14 21:20+0300\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
 "Language: fi\n"
@@ -10,6 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Lokalize 25.04.0\n"
 "X-Qt-Contexts: true\n"
 
 #: KSeExpr/ExprBuiltins.cpp:27
@@ -402,6 +403,8 @@ msgid ""
 "float gamma(float x, float g)\n"
 "Gamma correction of x with gamma factor g"
 msgstr ""
+"float gamma(float x, float g)\n"
+"x:n gammakorjaus gammakertoimella g"
 
 #: KSeExpr/ExprBuiltins.cpp:113
 msgctxt "builtin|"
@@ -419,6 +422,9 @@ msgid ""
 "Adjust the contrast.&nbsp; For c from 0 to 0.5, the contrast is decreased."
 "&nbsp; For c &gt; 0.5, the contrast is increased."
 msgstr ""
+"float contrast(float x, float c)\n"
+"Säädä kontrastia.&nbsp; c:n arvoilla 0…0,5 kontrastia vähennetään.&nbsp; c:n "
+"arvoilla &gt; 0,5 kontrastia lisätään."
 
 #: KSeExpr/ExprBuiltins.cpp:132
 msgctxt "builtin|"
