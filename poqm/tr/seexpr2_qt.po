@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"PO-Revision-Date: 2026-10-16 20:06+0300\n"
+"PO-Revision-Date: 2026-11-23 18:15+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Qt-Contexts: true\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 26.08.0\n"
+"X-Generator: Lokalize 26.08.2\n"
 
 #: KSeExpr/ExprBuiltins.cpp:27
 msgctxt "builtin|"
@@ -1074,8 +1074,8 @@ msgid ""
 "getVar(string varName,vector defaultValue)\n"
 "return value of varName if variable exists, otherwise return defaultValue"
 msgstr ""
-"getVar(string değişkenAdı,vector öntanımlıDeğer)\n"
-"değişken varsa değişkenAdı değerini döndür, yoksa öntanımlıDeğeri döndür"
+"getVar(string değişkenAdı,vector varsayılanDeğer)\n"
+"değişken varsa değişkenAdı değerini döndür, yoksa varsayılanDeğeri döndür"
 
 #: KSeExpr/ExprBuiltins.cpp:1879
 msgctxt "builtin|"
@@ -1277,7 +1277,7 @@ msgstr "Renk Eğrisi"
 #: KSeExprUI/ExprAddDialog.cpp:93
 msgctxt "ExprAddDialog|"
 msgid "Default"
-msgstr "Öntanımlı"
+msgstr "Varsayılan"
 
 #: KSeExprUI/ExprAddDialog.cpp:61 KSeExprUI/ExprAddDialog.cpp:77
 #: KSeExprUI/ExprAddDialog.cpp:94
@@ -1377,7 +1377,7 @@ msgstr "Dizi Türü"
 #: KSeExprUI/ExprAddDialog.cpp:162
 msgctxt "ExprAddDialog|"
 msgid "String Default"
-msgstr "Dizi Öntanımlısı"
+msgstr "Dizi Varsayılansı"
 
 #: KSeExprUI/ExprAddDialog.cpp:165
 msgctxt "ExprAddDialog|"
