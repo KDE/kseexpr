@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"PO-Revision-Date: 2026-11-22 19:50+0300\n"
+"PO-Revision-Date: 2026-11-26 17:24+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -1085,7 +1085,7 @@ msgid ""
 "Return parameter is empty, but must be assigned to a variable."
 msgstr ""
 "float printf(string biçim, [vec0, vec1,  ...])\n"
-"STDOUT'a bir dizi yazdırır. İzin verilen biçim parametreleri \"%v\" ve \"%f"
+"STDOUT'a bir dizge yazdırır. İzin verilen biçim parametreleri \"%v\" ve \"%f"
 "\"dir.\n"
 "Dönüş parametresi boştur; ancak bir değişkene atanmış olmalıdır."
 
@@ -1097,7 +1097,7 @@ msgid ""
 "format details."
 msgstr ""
 "sprintf(string biçim, [double|string, double|string, ...])\n"
-"Verilen değerlerden biçimlendirilmiş bir dizi döndürür. Biçim ayrıntıları "
+"Verilen değerlerden biçimlendirilmiş bir dizge döndürür. Biçim ayrıntıları "
 "için 'man sprintf'ye bakın."
 
 #: KSeExprUI/ECMQmLoader-seexpr2_qt.cpp:62
@@ -1158,7 +1158,7 @@ msgstr "Yanlış argüman sayısı, 1 veya daha çok olmalı"
 #: KSeExprUI/ErrorMessages.cpp:33
 msgctxt "ErrorMessages|"
 msgid "First argument must be a string"
-msgstr "İlk argüman bir dizi olmalı"
+msgstr "İlk argüman bir dizge olmalı"
 
 #: KSeExprUI/ErrorMessages.cpp:35
 msgctxt "ErrorMessages|"
@@ -1227,17 +1227,17 @@ msgstr "'%1' yakınında beklenmedik ifade sonu"
 #: KSeExprUI/ErrorMessages.cpp:57
 msgctxt "ErrorMessages|"
 msgid "Unexpected end of format string"
-msgstr "Biçim dizinin beklenmedik sonu"
+msgstr "Biçim dizgenin beklenmedik sonu"
 
 #: KSeExprUI/ErrorMessages.cpp:59
 msgctxt "ErrorMessages|"
 msgid "Invalid format string, only %v or %f is allowed"
-msgstr "Geçersiz biçim dizisi, yalnızca %v veya %f olabilir"
+msgstr "Geçersiz biçim dizgesi, yalnızca %v veya %f olabilir"
 
 #: KSeExprUI/ErrorMessages.cpp:61
 msgctxt "ErrorMessages|"
 msgid "Wrong number of arguments for format string"
-msgstr "Biçim dizisi için yanlış argüman sayısı"
+msgstr "Biçim dizgesi için yanlış argüman sayısı"
 
 #: KSeExprUI/ErrorMessages.cpp:64
 #, qt-format
@@ -1351,7 +1351,7 @@ msgstr "Parça"
 #: KSeExprUI/ExprAddDialog.cpp:152
 msgctxt "ExprAddDialog|"
 msgid "string"
-msgstr "dizi"
+msgstr "dizge"
 
 #: KSeExprUI/ExprAddDialog.cpp:153
 msgctxt "ExprAddDialog|"
@@ -1366,22 +1366,22 @@ msgstr "dizin"
 #: KSeExprUI/ExprAddDialog.cpp:158
 msgctxt "ExprAddDialog|"
 msgid "String Name"
-msgstr "Dizi Adı"
+msgstr "Dizge Adı"
 
 #: KSeExprUI/ExprAddDialog.cpp:160
 msgctxt "ExprAddDialog|"
 msgid "String Type"
-msgstr "Dizi Türü"
+msgstr "Dizge Türü"
 
 #: KSeExprUI/ExprAddDialog.cpp:162
 msgctxt "ExprAddDialog|"
 msgid "String Default"
-msgstr "Dizi Varsayılanı"
+msgstr "Dizge Varsayılanı"
 
 #: KSeExprUI/ExprAddDialog.cpp:165
 msgctxt "ExprAddDialog|"
 msgid "String"
-msgstr "Dizi"
+msgstr "Dizge"
 
 #: KSeExprUI/ExprBrowser.cpp:299
 msgctxt "ExprBrowser|"
